@@ -242,7 +242,7 @@ def index(rendered):
             parts.append('<li><a href="%s.html">%s</a>%s</li>'
                          % (r["path"][:-3], html.escape(r["label"]), who))
         parts.append("</ul>")
-    page = PAGE.format(title="ICM 2026 — rendered documents", css=CSS, mathjax="",
+    page = PAGE.format(title="ICM 2026 plenary lectures — tutorials and verification", css=CSS, mathjax="",
                        home="", meta="", body="\n".join(parts))
     io.open(os.path.join(OUT, "index.html"), "w", encoding="utf-8", newline="\n").write(page)
 
