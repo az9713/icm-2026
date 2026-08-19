@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Development Journey — ICM 2026 Tutorials</title>
+<style>
+:root{
+  --bg:#0f172a; --card:#1e293b; --text:#e2e8f0; --text2:#cbd5e1; --muted:#94a3b8;
+  --accent:#fb923c; --accent2:#2dd4bf; --border:#334155;
+  --bad:#f87171; --ok:#4ade80; --warn:#fbbf24;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text2);
+  font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;}
+.wrap{max-width:900px;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+h1{color:var(--text);font-size:2rem;line-height:1.2;margin:0 0 .4rem}
+h2{color:var(--accent);font-size:1.35rem;margin:3rem 0 .75rem;
+  padding-top:1.25rem;border-top:1px solid var(--border)}
+h3{color:var(--accent2);font-size:1.05rem;margin:2rem 0 .5rem}
+h4{color:var(--text);font-size:.95rem;margin:1.4rem 0 .4rem}
+p{margin:.75rem 0}
+a{color:var(--accent2)}
+code{background:#0b1220;color:var(--accent2);padding:.12em .38em;border-radius:4px;
+  font:.86em ui-monospace,SFMono-Regular,Consolas,monospace;word-break:break-word}
+.sub{color:var(--muted);font-size:.92rem;margin:.15rem 0}
+.meta{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1rem 1.25rem;margin:1.5rem 0}
+.meta div{margin:.3rem 0;font-size:.92rem}
+.meta b{color:var(--text)}
+blockquote{margin:1rem 0;padding:.7rem 1.1rem;border-left:3px solid var(--accent);
+  background:var(--card);border-radius:0 8px 8px 0;color:var(--text2)}
+.tablewrap{overflow-x:auto;margin:1.1rem 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{border:1px solid var(--border);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#182236;color:var(--text);font-weight:600}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1rem 1.25rem;margin:1.25rem 0}
+.flag{border-left:4px solid var(--accent);padding-left:1rem;margin:1.25rem 0}
+.bad{color:var(--bad);font-weight:600}
+.ok{color:var(--ok);font-weight:600}
+.warn{color:var(--warn);font-weight:600}
+.uu{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--accent);
+  border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0}
+.uu h4{margin-top:0;color:var(--accent);font-size:1rem}
+.uu .why{color:var(--muted);font-size:.9rem}
+.uu .do{margin-top:.6rem;padding-top:.6rem;border-top:1px dashed var(--border)}
+.uu .do b{color:var(--accent2)}
+ul,ol{padding-left:1.3rem}
+li{margin:.35rem 0}
+nav{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1rem 1.25rem;margin:2rem 0}
+nav ol{margin:.3rem 0;font-size:.92rem}
+nav a{text-decoration:none}
+nav a:hover{text-decoration:underline}
+hr{border:0;border-top:1px solid var(--border);margin:2.5rem 0}
+.small{font-size:.86rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Development Journey — ICM 2026 Plenary Lecture Tutorials</h1>
+<p class="sub">How 20 tutorials were written, and what happened when they were finally checked.</p>
+
+<div class="meta">
+  <div><b>Date:</b> 2026-08-18</div>
+  <div><b>Deliverable:</b> the repository root — <code>az9713/icm-2026</code>, branch <code>main</code>, HEAD <code>d252cdf</code> at the time</div>
+  <div><b>Scale:</b> 20 tutorials, <b>274,970 words</b>, 1.74 MB of Markdown, 901 KB of transcripts <span class="small">(this line first said ~290,000 words; recounted in round 2 as 274,970 — the byte and transcript figures are confirmed)</span></div>
+  <div><b>Session 1 brief:</b> "are there any known, outstanding problems with the *md summaries created, if any" → "how can the one big problem be fixed" → "ok finish all the tiers"</div>
+  <div><b>Session 2 brief:</b> "please run as many remaining checks as possible. then update the development journey html. we need to close this project"</div>
+  <div><b>Result, round 1:</b> 1 CLEAN, 13 MINOR, 1 MAJOR. Every defect found is recorded. <span class="bad">No defect is fixed.</span></div>
+  <div><b>Result, round 2</b> (same day, later session): 1 CLEAN, 17 MINOR, <b>2 MAJOR</b> — 20 files, all with a verdict for the first time. All 20 files independently verified, every reachable companion read, all 44 exercises re-derived. <span class="bad">Still no defect is fixed.</span></div>
+</div>
+
+<div class="flag">
+<p><b>Provenance of this document.</b> Sections 2 and 3 describe work done in <em>earlier</em>
+sessions that I did not witness. They are reconstructed from <code>TEMPLATE.md</code>,
+<code>HANDOFF.md</code>, the git history, and the project memory file
+<code>parallel-subagent-fanout-pattern.md</code>. Where I reconstruct, I say so.
+Sections 4 onward are firsthand: I ran that work in this session.</p>
+</div>
+
+<nav>
+<b>Contents</b>
+<ol>
+<li><a href="#s1">The brief, and what it actually asked</a></li>
+<li><a href="#s2">How the tutorials were written <span class="small">(reconstructed)</span></a></li>
+<li><a href="#s3">The failure that left 15 files unread <span class="small">(reconstructed)</span></a></li>
+<li><a href="#s4">The core problem: what "verified" was allowed to mean</a></li>
+<li><a href="#s5">The three-tier check, and why it was built that way</a></li>
+<li><a href="#s6">What was checked</a></li>
+<li><a href="#s7">What was <em>not</em> checked</a></li>
+<li><a href="#s8">Mathematical formulae: the real implications</a></li>
+<li><a href="#s9">What went wrong in this session</a></li>
+<li><a href="#s10">Unknown unknowns</a></li>
+<li><a href="#s11">Costs, machinery, and where things stand</a></li>
+<li><a href="#s12">Round 2 — the checks that were missing</a></li>
+<li><a href="#s13">Session 3 — re-checks, and two sources that opened</a></li>
+</ol>
+</nav>
+
+<h2 id="s1">1. The brief, and what it actually asked</h2>
+
+<p>The session opened with a question, not a task:</p>
+<blockquote>"are there any known, outstanding problems with the *md summaries created, if any"</blockquote>
+
+<p>Under this account's standing rule, a question is read-only. So the first answer was a
+report, not an edit. That report surfaced one dominant problem, and the follow-up was:</p>
+<blockquote>"how can the one big problem be fixed" … then … "ok finish all the tiers"</blockquote>
+
+<p>The scope therefore grew in three steps: audit, then plan, then execute. That ordering
+mattered. Had the session started at "fix the tutorials", it would have started editing files
+whose defects were still unknown.</p>
+
+<h3>Invisible constraints that shaped everything</h3>
+<p>A reader of the output cannot see these, so they belong here.</p>
+<ul>
+<li><b>ASD-STE100 Simplified Technical English</b> was active from the first reply. Short active
+sentences, one meaning per word, no idiom. It changes sentences only; every identifier, number
+and file path survives intact.</li>
+<li><b>Ponytail mode (full)</b> was active: the laziest solution that works, standard library
+before custom code, shortest working diff, delete before add. This is why the citation check is
+one 60-line script and not a framework.</li>
+<li><b>A standing project rule</b> from <code>CLAUDE.md</code>: "Finish, or say what you left."
+It is why every reply in this session carried an explicit not-done line.</li>
+<li><b>A standing repo rule</b> from <code>HANDOFF.md</code>: verify a push by comparing
+<code>git rev-parse --short HEAD</code> against <code>git ls-remote origin main</code>, never by
+trusting a clean exit.</li>
+</ul>
+
+<h2 id="s2">2. How the tutorials were written <span class="small">(reconstructed)</span></h2>
+
+<p>Evidence: <code>TEMPLATE.md</code> (16 KB, committed in <code>58a9001</code>), the git log,
+and <code>HANDOFF.md</code>.</p>
+
+<h3>The reader is one named person</h3>
+<p><code>TEMPLATE.md</code> §1 opens by fixing the audience precisely, and this decision drives
+the rest of the spec. The reader has real and complex analysis, ODEs and PDEs, linear algebra,
+probability, Fourier analysis, numerical methods, calculus of variations, classical and
+statistical mechanics, optimization, some functional analysis. The reader does <em>not</em> have
+algebraic geometry, algebraic topology, number theory, representation theory, category theory,
+geometric group theory, low-dimensional topology, or derived algebraic geometry.</p>
+
+<p>That split explains the whole difficulty-rating scheme, and it explains why the Lurie and
+Gaitsgory tutorials look so different from the Wright and Bartlett ones.</p>
+
+<h3>The pipeline</h3>
+<div class="tablewrap"><table>
+<tr><th>Step</th><th>What happened</th></tr>
+<tr><td>1. Source</td><td>YouTube auto-captions for each of 20 ICM 2026 plenary lectures, downloaded and cleaned into <code>transcripts/{videoId}_transcript.txt</code>. The download and clean commands live in <code>TEMPLATE.md</code> §4, deliberately, so they are not session-transient.</td></tr>
+<tr><td>2. Companion hunt</td><td>An arXiv, Crossref, Semantic Scholar and OpenAlex sweep per speaker. Cost about 284,000 tokens. <code>HANDOFF.md</code> records the instruction not to re-run it.</td></tr>
+<tr><td>3. Pilot</td><td>Two tutorials written by hand in-session (Kontorovich <code>d174da8</code>, Wright <code>96c1a92</code>), then three pilots. The pilots produced the spec rules.</td></tr>
+<tr><td>4. Fan-out</td><td>15 tutorials written by concurrent subagents against <code>TEMPLATE.md</code>, landing in <code>58a9001</code>.</td></tr>
+<tr><td>5. Completion</td><td>Brendle, Dolgopyat and Mok in <code>e0e5f72</code>; a Mok self-revision in <code>aea8545</code>.</td></tr>
+</table></div>
+
+<h3>The three rules that made concurrency survivable</h3>
+<p>Recorded in the project memory file, and they held:</p>
+<ol>
+<li><b>Agents write only their own two files.</b> Never <code>sources.txt</code>, never any shared
+index, never <code>git</code>. Concurrent appends corrupt a shared file; concurrent commits collide
+on <code>.git/index.lock</code>.</li>
+<li><b>The instructions live in a spec file the agents read, not in the prompt.</b> Eighteen prompts
+produce eighteen different documents. One <code>TEMPLATE.md</code> produces one set.</li>
+<li><b>Pilot three before spending eighteen.</b></li>
+</ol>
+
+<h3>The hard rule that everything else rests on</h3>
+<blockquote><b>Never invent mathematics.</b> Auto-captions carry no formulas — the mathematics lived
+on the board and the slides, invisible to the caption track. If the transcript and the companion
+document together do not support a statement, do not write it. …A tutorial with honest holes is
+useful. A tutorial with plausible fabrications is poison — the reader cannot tell which parts to
+trust, so they must distrust all of it.<br><span class="small">— <code>TEMPLATE.md</code> §5</span></blockquote>
+
+<p>Hold on to the first clause. <b>Auto-captions carry no formulas.</b> It is the single most
+important structural fact in this entire project, and section 8 returns to it.</p>
+
+<h2 id="s3">3. The failure that left 15 files unread <span class="small">(reconstructed)</span></h2>
+
+<p>The writing agents were each supposed to file a report on what they had reconstructed and what
+they could not verify. Fifteen of them hit an account-level session limit and died. They died
+<em>holding their reports in their final message</em>, so the reports were destroyed with them.</p>
+
+<p>The files themselves survived. Only the assurance was lost. That produced the state
+<code>HANDOFF.md</code> recorded before this session:</p>
+
+<div class="tablewrap"><table>
+<tr><th>Group</th><th>Count</th><th>What was actually checked</th></tr>
+<tr><td>Verified</td><td>5</td><td>Kontorovich and Wright, both written by hand in-session; plus three pilots read section by section.</td></tr>
+<tr><td>Structural only</td><td>15</td><td>Front matter parses and carries required keys; all sections present; file ends cleanly; referenced transcript exists. <b>The content had not been read.</b></td></tr>
+</table></div>
+
+<p>A second, smaller casualty of the same kill: four files (<code>otto</code>, <code>gerard</code>,
+<code>quastel</code>, <code>yau</code>) carried a literal <code>&lt;/content&gt;&lt;/invoke&gt;</code>
+fragment appended by a killed tool call. Stripped in <code>58a9001</code>; the content beneath was
+intact.</p>
+
+<h2 id="s4">4. The core problem: what "verified" was allowed to mean</h2>
+
+<p>This is the crux of the session, and it is worth stating carefully, because the whole
+verification design follows from it.</p>
+
+<p>There are at least four different things "verified" could mean for a tutorial built from
+auto-captions:</p>
+
+<div class="tablewrap"><table>
+<tr><th>Level</th><th>Question it answers</th><th>Can an agent do it?</th></tr>
+<tr><td>Structural</td><td>Does the file parse, and are the sections present?</td><td>Yes, trivially.</td></tr>
+<tr><td>Citation existence</td><td>Do the cited papers exist?</td><td>Yes, mechanically, via APIs.</td></tr>
+<tr><td>Provenance</td><td>Does every claim carry a source — the transcript, or a citation?</td><td>Yes, by reading both.</td></tr>
+<tr><td>Truth</td><td>Is the mathematics correct?</td><td><span class="bad">No</span> — not without reading and understanding every cited paper.</td></tr>
+</table></div>
+
+<p>The decision made in this session was to buy the third level and be loud about not buying the
+fourth. The verifier brief says it in as many words:</p>
+
+<blockquote>You cannot check whether the mathematics is TRUE; you do not have the papers. You check
+whether each claim has a source.<br><span class="small">— <code>verify/BRIEF.md</code></span></blockquote>
+
+<p>That was the right trade for the budget. But it has a consequence that section 10 develops:
+a "CLEAN" verdict on this scale is not a statement that the mathematics is right.</p>
+
+<h2 id="s5">5. The three-tier check, and why it was built that way</h2>
+
+<p>The design principle was cheapest signal first: do not spend 500,000 tokens to learn something a
+two-minute script can tell you.</p>
+
+<div class="tablewrap"><table>
+<tr><th>Tier</th><th>What it does</th><th>Cost</th><th>Catches</th></tr>
+<tr><td>0</td><td>A script resolves every arXiv ID and DOI against the arXiv and Crossref APIs. Reads no mathematics.</td><td>~2 min, no tokens</td><td>Fabricated citations only.</td></tr>
+<tr><td>1</td><td>Read only each file's final "Note on the tutorial process", where the writing agent self-reported its gaps.</td><td>~26k tokens</td><td>Self-declared weakness.</td></tr>
+<tr><td>2</td><td>Full read of any file that tiers 0 or 1 flagged.</td><td>Variable</td><td>Targeted depth.</td></tr>
+<tr><td>3</td><td>One independent verifier per tutorial, reading the full tutorial against the full transcript.</td><td>~520k input tokens</td><td>Provenance defects.</td></tr>
+</table></div>
+
+<p><b>Tiers 1 and 2 were folded into tier 3</b>, deliberately. Each verifier was told to read the
+writing agent's own process note and judge whether that self-report was honest and complete. Running
+tier 1 separately would have meant reading the same text twice. This decision was stated to the user
+before execution and is recorded in <code>verify/README.md</code>.</p>
+
+<h3>The durability fix</h3>
+<p>The original wave died holding its reports. So the brief made the report an artifact, not a
+message:</p>
+<blockquote>Create <code>verify/{SLUG}.md</code> after you finish reading the FIRST major section,
+then APPEND to it as you read on. Do not hold the report in memory until the end. If your session
+dies, a partial file on disk is the whole point.</blockquote>
+<p>Plus a <code>.DONE</code> marker per file, so a restart skips finished work, and a batch size of
+five rather than fifteen, because the limit that killed the writers was account-level. All 15
+reports landed. Mid-run, five in-progress reports were visible on disk with no <code>.DONE</code>
+marker — the design working as intended.</p>
+
+<h2 id="s6">6. What was checked</h2>
+
+<h3>Tier 0 — citations, all 20 files</h3>
+<div class="tablewrap"><table>
+<tr><th>Quantity</th><th>Value</th></tr>
+<tr><td>Citation instances found</td><td>261</td></tr>
+<tr><td>Unique arXiv IDs</td><td>100 (including one old-style, <code>math/0211159</code>)</td></tr>
+<tr><td>Unique DOIs</td><td>4</td></tr>
+<tr><td>Resolved</td><td><span class="ok">103 of 104</span></td></tr>
+<tr><td>Fabricated</td><td><span class="ok">0</span></td></tr>
+</table></div>
+
+<p>The single unresolved ID is <code>arXiv:2020.02998</code> — month 20 does not exist. It sits at
+<code>summaries/langlands-function-fields-gaitsgory.md:1548</code>, where the tutorial is
+<em>quoting an error in Gaitsgory's own bibliography</em> and flagging it. That is the tutorial
+catching a mistake, not making one. <code>TEMPLATE.md</code> §5 had already recorded it.</p>
+
+<p>The check is saved as <code>verify/check_citations.py</code> and re-runs in about two minutes,
+exit 1 on any failure.</p>
+
+<h3>Tier 3 — provenance, 15 files</h3>
+<div class="tablewrap"><table>
+<tr><th>Verdict</th><th>Count</th><th>Files</th></tr>
+<tr><td><span class="ok">CLEAN</span></td><td>1</td><td><code>uniformization-complex-geometry-mok</code></td></tr>
+<tr><td><span class="warn">MINOR</span></td><td>13</td><td>all others</td></tr>
+<tr><td><span class="bad">MAJOR</span></td><td>1</td><td><code>hardy-spaces-explicit-formulae-gerard</code></td></tr>
+</table></div>
+
+<ul>
+<li><b>Title check: 15 of 15 pass.</b> Every front-matter title matches what the introducer or the
+speaker announces. This check exists because the Mok brief once carried a title taken from a video
+listing that was simply wrong.</li>
+<li><b>Gap honesty: 14 pass, 1 concern.</b> No verifier found a gap silently filled instead of
+marked, with one partial exception at
+<code>quantitative-rectifiability-harmonic-measure-tolsa.md:1308</code>. The single CONCERN is
+<code>gerard:557</code>, and it fails in the <em>opposite</em> direction: it declares a constant
+unrecoverable that its own companion prints in Lemma 3.</li>
+<li><b>Four files carry zero uncited external claims:</b> <code>brendle</code>, <code>buffa</code>,
+<code>morris</code>, <code>mok</code>.</li>
+<li><b>No tutorial invented a theorem.</b> Every verifier looked for one. None found one.</li>
+</ul>
+
+<h3>Cross-file checks the individual verifiers could not make</h3>
+<p>Each verifier saw one tutorial. Three things only the orchestrator could see:</p>
+<ol>
+<li><b>Invented timing metadata.</b> The transcripts carry no timestamps. So any clock time in a
+tutorial is invention. <code>arithmetic-patterns-ziegler.md</code> stamps 18 of its §4 headings —
+17 ranges plus a point stamp at <code>:678</code>. No other tutorial does this. About 20 further
+prose claims about recording position ("the last twenty minutes", "nine minutes in") span 11
+files.</li>
+<li><b>Gap-marker syntax drift.</b> <code>TEMPLATE.md:212</code> specifies <code>[Gap: ...]</code>.
+Three files write <code>[Gap, &lt;impact&gt;: ...]</code>, so a strict grep undercounts the corpus
+at 29 markers when the real total is <b>34</b>.</li>
+<li><b>Citation density</b> ranges from 40 instances in <code>quastel</code> to 2 in
+<code>tolsa</code> and <code>mok</code>.</li>
+</ol>
+
+<h2 id="s7">7. What was <em>not</em> checked</h2>
+
+<p>This section matters more than section 6.</p>
+
+<h3>7.1 Mathematical truth — by design, in every file</h3>
+<p>Fifteen of fifteen verifiers list this first under "What I could not check". Representative
+quotes, verbatim from the reports:</p>
+<ul>
+<li><code>tardos</code>: "Whether the mathematics is <b>true</b>. Out of scope per the brief; I have
+no papers."</li>
+<li><code>mok</code>: "Whether the mathematics is true. I have no papers and the brief forbids
+inventing any."</li>
+<li><code>quastel</code>: "Whether any cited paper actually says what it is cited for. I do not have
+the papers."</li>
+<li><code>dolgopyat</code>: "Whether any mathematics in the document is TRUE. I have no papers open
+beyond abstracts."</li>
+</ul>
+
+<h3>7.2 The companion papers — in most files</h3>
+<p>This is the finding I did not expect, and it is the most consequential thing in this document.
+<b>Only 6 of the 15 verifiers actually opened a companion paper and compared statements against
+it.</b> The other 9 checked the tutorial against the transcript and the citation list alone.</p>
+
+<div class="tablewrap"><table>
+<tr><th>Depth</th><th>Files</th><th>What the verifier did</th></tr>
+<tr><td><b>A — paper opened, statements compared</b></td><td><code>gerard</code>, <code>buffa</code>, <code>morris</code>, <code>oh</code>, <code>brendle</code>, <code>tolsa</code> <span class="small">(6)</span></td><td>Pulled the paper (usually ar5iv HTML) and compared equations, constants and theorem numbers character by character.</td></tr>
+<tr><td><b>B — transcript only</b></td><td><code>ziegler</code>, <code>manolescu</code>, <code>tardos</code>, <code>sarnak</code>, <code>lurie</code>, <code>quastel</code>, <code>yau</code>, <code>dolgopyat</code>, <code>mok</code> <span class="small">(9)</span></td><td>Checked that claims carry citations. Did not check whether the cited papers say what is claimed.</td></tr>
+</table></div>
+
+<div class="uu">
+<h4>And the split was an accident of scheduling, not of risk</h4>
+<p>The paper-fetch instruction was not in the shared brief. It appeared in the <em>per-agent
+prompt</em>, and I only started writing it after the first batch had already launched. The five
+files that received an explicit "fetch it, try ar5iv" instruction — <code>gerard</code>,
+<code>oh</code>, <code>buffa</code>, <code>tolsa</code>, <code>morris</code> — were the
+<b>last five launched</b>. <code>brendle</code> fetched on its own initiative.</p>
+<p class="why">Meanwhile batch 1 — <code>lurie</code>, <code>dolgopyat</code>, <code>sarnak</code>,
+<code>tardos</code>, <code>mok</code> — was chosen precisely because <code>HANDOFF.md</code> ranked
+those files highest-risk. They received the shallowest check. <b>Check depth ran exactly opposite to
+assessed risk.</b></p>
+<div class="do"><b>Closed in round 2, partly.</b> Five Grade B files with a reachable companion —
+<code>quastel</code>, <code>yau</code>, <code>ziegler</code>, <code>tardos</code>,
+<code>dolgopyat</code> — were re-checked with the paper open. One formula error surfaced
+(<code>quastel</code>, and it is a MAJOR). The other four came back clean. Section 12 has the
+numbers. Four Grade B files remain unchecked at this depth: <code>manolescu</code> and
+<code>mok</code> have no reachable companion, <code>sarnak</code>'s is Serre's French Bourbaki
+text, and <code>lurie</code> has none.</div>
+</div>
+
+<h3>7.3 Specific things named as unchecked</h3>
+<ul>
+<li><b>SIAM proceedings chapters.</b> All return HTTP 403 to automated fetch. The chapter DOIs
+resolve on Crossref with correct titles, but no verifier read one word of any of them.</li>
+<li><b>arXiv:2601.05425</b> (Manolescu's companion) would not open. Its verifier states: "roughly
+half the file rests on arXiv:2601.05425, which I could not open."</li>
+<li><b>Internal locators.</b> Theorem, lemma, equation and section numbers quoted from papers are
+largely unchecked in the Grade B files. The <code>dolgopyat</code> verifier lists eqs. (2.25)–(2.26),
+Thms 3.8/4.3/4.4, eqs. (1.1)/(1.2)/(1.5), Lemma 1.2 and eq. (9.1) as its largest unchecked block.</li>
+<li><b>Mok's slide pointers (C1/C2).</b> Not fetched. Its verifier: "Most precise statements hang on
+them."</li>
+<li><b>The Lurie March 2025 cross-check recording.</b> Cleaned into a scratchpad, never saved into
+<code>transcripts/</code>. Seven cited points are therefore permanently unverifiable from the repo.</li>
+<li><b>The 5 previously-"verified" files.</b> They were not re-checked in this run. No title check,
+no gap-honesty check, no independent read.</li>
+<li><b>The captions themselves.</b> Nobody compared any transcript against the audio.</li>
+</ul>
+
+<h2 id="s8">8. Mathematical formulae: the real implications</h2>
+
+<p>Start from the structural fact in <code>TEMPLATE.md</code> §5:</p>
+<blockquote><b>Auto-captions carry no formulas.</b> The mathematics lived on the board and the
+slides, invisible to the caption track.</blockquote>
+
+<p>Read that again with the verification result in hand. It means:</p>
+
+<div class="card">
+<p><b>Not one formula in any of the 20 tutorials came from the talk.</b> Every formula was either
+restored from a paper, or supplied by the writing agent. The transcript — which is the one source
+every verifier read — is structurally incapable of confirming a single equation.</p>
+</div>
+
+<p>So formula fidelity depends entirely on the paper-restoration step. And that step was checked in
+6 files out of 15.</p>
+
+<h3>8.1 Where formulas were compared, errors were found</h3>
+<div class="tablewrap"><table>
+<tr><th>File</th><th>Formula work done</th><th>Result</th></tr>
+<tr><td><code>gerard</code></td><td>Fetched arXiv:2601.10488, compared displays</td><td><span class="bad">2 errors</span></td></tr>
+<tr><td><code>buffa</code></td><td>Fetched ar5iv 2307.06265, compared eq (10), (11), matrix A, Theorem 1; checked Tables 2–3 of 2501.12965</td><td><span class="bad">2 errors</span></td></tr>
+<tr><td><code>morris</code></td><td>Pulled full companion, checked ~45 bounds, bases, exponents and constants one at a time</td><td><span class="ok">0 errors</span></td></tr>
+<tr><td><code>oh</code></td><td>Fetched ar5iv, checked ~28 displayed items</td><td><span class="ok">0 errors</span></td></tr>
+<tr><td><code>brendle</code></td><td>Pulled raw ar5iv HTML with curl, checked ~30 companion pointers</td><td><span class="ok">0 formula errors; 1 false claim about the source</span></td></tr>
+<tr><td><code>tolsa</code></td><td>Fetched arXiv:2607.16457, pulled Theorem 4.6 verbatim</td><td><span class="ok">0 errors</span></td></tr>
+</table></div>
+
+<p><b>Two of six files where formulas were actually compared contained formula errors.</b></p>
+
+<h3>8.1b Round 2 extended the same check to five more files</h3>
+<div class="tablewrap"><table>
+<tr><th>File</th><th>Formula work done</th><th>Result</th></tr>
+<tr><td><code>quastel</code></td><td>Fetched ar5iv 2205.01433, compared eqs (4.2), (4.4), (5.1), (5.2)</td><td><span class="bad">1 error — MAJOR</span></td></tr>
+<tr><td><code>yau</code></td><td>Fetched ar5iv 2602.00975 + the 2412.20263 abstract; checked the Kesten–McKay density, the amplitude, the TW scaling, 69% and 83%</td><td><span class="ok">0 errors</span></td></tr>
+<tr><td><code>ziegler</code></td><td>Fetched ar5iv 1404.0775; checked Definition 5.1, Prop 5.3, Conj 8.1, Thms 8.3 and 8.4, and both counterexample credits</td><td><span class="ok">0 errors</span></td></tr>
+<tr><td><code>tardos</code></td><td>Fetched ar5iv 2003.07009; checked Thms 2.1, 2.2, 3.1, 3.3, Assumption 3.1, Definition 2.1</td><td><span class="ok">0 errors</span></td></tr>
+<tr><td><code>dolgopyat</code></td><td>Fetched ar5iv 2006.11748 and 2109.05560; checked the staircase, the Poincaré map, the Birkhoff sum and the three obstructions</td><td><span class="ok">0 errors — and it silently repairs a typo in its own source</span></td></tr>
+</table></div>
+
+<p><b>So the running total is 3 formula errors in 11 files where a paper was actually opened.</b>
+The extrapolation in UU-2 — "roughly 3 of the 9 Grade B files would contain an undetected formula
+defect" — came out high. The measured figure is 1 of the 5 that could be checked.</p>
+
+<h4>The new MAJOR, exactly</h4>
+<div class="tablewrap"><table>
+<tr><th>Source</th><th>Statement</th></tr>
+<tr><td>Remenik, eq (4.2)</td><td><code>K_t = lim e^{−(1/3)t∂³ + ℓ₁∂²} P^{Hit h} e^{(1/3)t∂³ − ℓ₂∂²}</code></td></tr>
+<tr><td>Tutorial <code>quastel:481</code></td><td><code>K_t = lim e^{−(1/3)ℓ₁³ + ℓ₁∂²} P^{Hit h} e^{(1/3)ℓ₂³ − ℓ₂∂²}</code></td></tr>
+</table></div>
+<p><code>t∂³</code> — the same term in both exponents — became <code>ℓ₁³</code> in one and
+<code>ℓ₂³</code> in the other. An operator became a scalar, and the time variable vanished from the
+right-hand side of a definition whose left-hand side is <code>K_t</code>. The line is labelled
+"transcribed", and it is the formula from which §4.5's decoupling punchline is read off.</p>
+
+<h3>8.2 The two MAJOR errors, exactly</h3>
+<p>Both are in <code>summaries/hardy-spaces-explicit-formulae-gerard.md</code>, and both carry
+equation-number attributions, which is what makes them dangerous — they look sourced.</p>
+
+<h4>Error 1 — <code>:665</code>, the distorted Plancherel identity</h4>
+<div class="tablewrap"><table>
+<tr><th>Source</th><th>Statement</th></tr>
+<tr><td>Paper, eq (2.7)</td><td><code>Σ|⟨f,φ_j⟩|² + ∫₀^∞|f̃^±|² dλ/(2π) = ∫|f|²</code></td></tr>
+<tr><td>Tutorial</td><td><code>Σ|⟨f,φ_j⟩|² + ∫₀^∞|f̃^±|² dλ = 2π∫|f|²</code></td></tr>
+</table></div>
+<p>The <code>1/(2π)</code> was moved off the integral and onto the right-hand side — but the discrete
+sum was not rescaled with it. The verifier closed the obvious escape route: the paper's own
+definition (2.5) of <code>f̃^±</code> carries no prefactor and is character-identical to the
+tutorial's, so no alternative normalisation rescues it.</p>
+
+<h4>Error 2 — <code>:399</code>, the Lax operator</h4>
+<p>The tutorial writes <code>B_u = i(T_{|D|u} − T_{u²})</code>. Both <code>arXiv:2212.03139</code>
+and the transcript say <code>T_u²</code> — the <em>square of the Toeplitz operator</em>, not the
+Toeplitz operator of <code>u²</code>. The transcript is explicit: "minus the square of TU". This
+tutorial contradicts both of its own sources at once.</p>
+
+<h3>8.3 The dominant error class is a dropped qualifier</h3>
+<p>Look at the shape of all four formula defects found:</p>
+<ul>
+<li><code>gerard:665</code> — a factor moved without rescaling a companion term.</li>
+<li><code>gerard:399</code> — a subscript scope changed (<code>T_{u²}</code> vs <code>T_u²</code>).</li>
+<li><code>buffa:465-467</code> — companion eq (33) quoted with its <code>1/h(γ_jl)</code> weight
+<em>dropped</em>, inside a gap block that calls the scaling unrecoverable. The equation it cites in
+the same sentence contains the answer.</li>
+<li><code>buffa:910,:916</code> — the tutorial's own exercise integrates <code>ρ</code> as
+<code>a/δ</code> after defining it as <code>1 + a/δ</code>. Correct slope
+<code>δ(1+a)/(δ+a)</code>, not <code>δ(1+a)/a</code>.</li>
+</ul>
+<p>Round 2 added five more, and every one of them is the same shape:</p>
+<ul>
+<li><code>quastel:481</code> — <code>t∂³</code> replaced by <code>ℓ₁³</code> and <code>ℓ₂³</code>.</li>
+<li><code>yau:964</code> — a constant given as <code>2 Im m_sc(E)/√(4−E²)</code>, which is identically 1; the answer is its reciprocal, <code>1/Im m_sc(E)</code>.</li>
+<li><code>yau:963</code> — a dropped minus sign, contradicting the expression printed beside it.</li>
+<li><code>mok:1461</code> — an exponent one too high, contradicted by the expansion above it and by part (c) below it.</li>
+<li><code>brendle:1252</code> — a metric and its curvature that differ by a factor of 4.</li>
+</ul>
+<p>None of these is a hallucinated theorem. Every one is a real formula with a small piece
+altered or lost. This class is invisible to every check except character-level comparison against
+the source — or, for the last four, against the rest of the same paragraph. A citation check
+passes it. A plausibility read passes it. A reader who trusts the equation number passes it.</p>
+<div class="uu">
+<h4 style="color:var(--accent2)">The second rule this earns</h4>
+<p>Four of the nine defects round 2 found are contradicted <em>somewhere else in the same
+solution</em>. The cheapest check in this whole project is one nobody ran: <b>read each passage
+against itself.</b> It needs no paper, no transcript and no network.</p>
+</div>
+
+<div class="uu">
+<h4 style="color:var(--accent2)">The rule this earns</h4>
+<p>A formula with an equation number is <em>more</em> dangerous than a formula without one, because
+the number transfers the paper's authority to a string the paper never contained.</p>
+</div>
+
+<h3>8.4 Notation is not uniform, and nobody specified it</h3>
+<p><code>TEMPLATE.md</code> never says how to write mathematics. The result, measured across the
+corpus:</p>
+<div class="tablewrap"><table>
+<tr><th>Style</th><th>Files</th></tr>
+<tr><td><b>Zero LaTeX</b> — all mathematics in Unicode prose</td><td><code>ziegler</code>, <code>manolescu</code>, <code>gaitsgory</code>, <code>oh</code>, <code>lurie</code>, <code>mok</code> <span class="small">(6)</span></td></tr>
+<tr><td><b>Zero Unicode</b> — all mathematics in LaTeX</td><td><code>gerard</code> (51 display, 524 inline), <code>buffa</code> (29 display, 262 inline) <span class="small">(2)</span></td></tr>
+<tr><td>Mixed</td><td>the remaining 12</td></tr>
+</table></div>
+<p>Corpus totals: 367 display blocks (<code>$$</code>), <b>1,369</b> inline <code>$…$</code> spans,
+and 3,985 Unicode mathematical characters.</p>
+<p class="small"><b>Correction, round 2.</b> This paragraph first printed 1,048 inline spans. Two
+independent recounts disagree with that and with each other in an informative way: a whole-file
+delimiter pairing gives <b>1,369</b>, and a per-line regex that only matches spans opening and closing
+on one line gives <b>1,338</b>. The gap of 31 is real — the files hard-wrap at about 90 characters, so
+some inline maths straddles a newline. 1,369 is the figure to use; the original 1,048 was an
+undercount by some method not recorded. The display-block count, 367, is confirmed by both. The
+3,985 Unicode figure was not re-derived.</p>
+
+<p>Two consequences.</p>
+<p><b>Rendering.</b> If these files are ever rendered to HTML without MathJax or KaTeX — which is
+exactly what the "optional dark-mode HTML render" idea in <code>HANDOFF.md</code> would do — then
+1,369 inline spans and 367 display blocks turn into literal dollar signs, while the Unicode files
+render perfectly. Nobody has checked this, because nobody has rendered them.</p>
+
+<p><b>Falsifiability.</b> This one is subtler and it is the part worth sitting with. The two files
+with the heaviest LaTeX are exactly the two files where formula errors were found. The file that
+scored CLEAN, <code>mok</code>, contains <em>zero</em> LaTeX and zero displayed equations — its
+mathematics is carried in quoted prose and Unicode symbols inside blockquotes.</p>
+
+<div class="uu">
+<h4>Stated as an inference, not a fact</h4>
+<p>A tutorial that expresses mathematics as prose has fewer falsifiable objects in it. It cannot
+fail a formula check, because it contains no formula to check. Its CLEAN verdict is therefore a
+weaker signal than the same verdict on a formula-dense file.</p>
+<p class="why">This is an inference from the notation counts and the verdict distribution. It is not
+something a verifier reported. It should be tested, not assumed — see the actions in section 10.</p>
+</div>
+
+<h2 id="s9">9. What went wrong in this session</h2>
+
+<p>The failures here are mine, and several were caught only by review.</p>
+
+<h3>9.1 Thirty-five false positives from one bad heuristic</h3>
+<p>The first citation check compared each citation's title against the line that cited it. It raised
+23 author/title mismatches and 12 date mismatches. <b>All 35 were defects in my script.</b></p>
+<ul>
+<li>The 23 were bare ID references in prose, with the full citation elsewhere in the file.</li>
+<li>The 12 were tutorials correctly giving <em>both</em> a v1 and a v2 date, where my parser compared
+v1 only. One was a Bourbaki seminar delivery date, correctly distinguished from the arXiv date.</li>
+</ul>
+<p>The tutorials were more careful than the tool auditing them. The title-matching heuristic was
+deleted; only resolution was kept. <code>verify/check_citations.py</code> carries a
+<code># ponytail:</code> comment recording why.</p>
+
+<h3>9.2 I reported an error in the Dolgopyat file that was not an error</h3>
+<p>Tier 0 showed the Crossref chapter title as "Randomness, Rotations, <b>Renormalization</b>, and
+Resonances" while the front matter said "Randomness, Rotations, and Resonances". I reported a
+dropped word. Line 47 of that file already gives the four-R chapter title and explains that the talk
+was announced with three. The tutorial had done the work; I had not read far enough before
+reporting.</p>
+<p>What survived: a genuine small inconsistency in the <code>paper:</code> field, which said "none
+retrievable" without naming the DOI that Crossref does hold. Fixed.</p>
+
+<h3>9.3 A cross-file claim I published and then had to retract</h3>
+<p>I wrote in <code>verify/CROSS-FILE.md</code> that invented timing was "confined to one file". My
+grep only matched <code>HH:MM</code> patterns. The Morris verifier then reported two prose clock
+figures. A second sweep found about 20 such claims across 11 files. Corrected — with two caveats
+now recorded, because a stated total duration may legitimately come from yt-dlp metadata, and
+reader-facing exercise estimates like "(25 minutes)" are not this defect at all.</p>
+
+<h3>9.4 An overstatement in the roll-up, caught on review</h3>
+<p><code>verify/README.md</code> and <code>HANDOFF.md</code> both said "all 20 gap-honesty checks
+pass". Two errors in one sentence: only 15 files were checked, and gap honesty was 14 PASS with 1
+CONCERN. Corrected in <code>d252cdf</code>. The pushed commit message of <code>f0dcda4</code> still
+carries the overstatement and cannot be edited; the files are what a later session reads.</p>
+
+<h3>9.5 The verifier brief nearly died in a scratchpad</h3>
+<p><code>VERIFY_BRIEF.md</code> — the spec all 15 verifiers ran against — was written to the session
+scratchpad. That directory dies with the session. Re-verifying a file after a fix would have had no
+spec to run against. Copied to <code>verify/BRIEF.md</code> in <code>d252cdf</code>. This is the same
+mistake the Lurie March-2025 transcript made, one project earlier.</p>
+
+<h3>9.6 The scheduling error described in 7.2</h3>
+<p>I added the paper-fetch instruction to per-agent prompts as the run progressed, so the highest-risk
+files got the shallowest check. Nothing caught this during the run. It surfaced only when I read all
+15 "What I could not check" sections together while writing this document.</p>
+
+<h2 id="s10">10. Unknown unknowns</h2>
+
+<p>These are the things not on anyone's list — not in <code>HANDOFF.md</code>, not in any verifier
+report, not in the question that opened this session. Each carries what to do about it.</p>
+
+<div class="uu">
+<h4>UU-1. The five "verified" files are the least verified in the corpus</h4>
+<p>The mental model carried into this session was: 5 verified, 15 unknown. That ranking is
+<b>inverted</b>. The 15 received an <em>independent</em> read by an agent that did not write them.
+The 5 were verified by the same session that wrote them — Kontorovich and Wright were hand-written
+and then self-checked. Self-verification is the weakest form of verification there is, and the label
+"verified" hides it.</p>
+<p class="why">Nobody re-checked those 5 in this run. They have had no title check, no gap-honesty
+check, no independent reader.</p>
+<div class="do"><b>Done in round 2.</b> All five — <code>kontorovich</code>, <code>wright</code>,
+<code>otto</code>, <code>bartlett</code>, <code>gaitsgory</code> — now have an independent report in
+<code>verify/</code>, written to the same brief. <b>Title check 5 of 5 PASS</b>, so the corpus is
+now 20 of 20. Verdicts: five MINOR, no MAJOR. Seven new provenance items, the sharpest being
+<code>kontorovich:585</code> ("5 to 10 years" attributed to the speaker; not in the transcript) and
+<code>kontorovich:559</code> (the LANA paragraph names two universities the talk does not, and dates
+the report a month before the speaker's "last week"). Done without subagents, in the main loop.</div>
+</div>
+
+<div class="uu">
+<h4>UU-2. Absence of found errors is not absence of errors — and the split is measurable</h4>
+<p>Formula errors were found in 2 of the 6 files where formulas were actually compared against a
+paper. Zero were found in the 9 files where no paper was opened — because nobody looked.</p>
+<p class="why">If the Grade A rate carried over, roughly 3 of the 9 Grade B files would contain an
+undetected formula defect. That is an extrapolation from a sample of six, not a measurement. It could
+be lower; the two hits are both PDE/numerics files with dense displayed equations, and the Grade B
+set is more prose-heavy. It is not zero.</p>
+<div class="do"><b>Done in round 2, in exactly that order.</b> Result: <b>1 of 5</b>, not the ~3 of 9
+this box predicted. <code>quastel</code> has a MAJOR formula error; <code>yau</code>,
+<code>ziegler</code>, <code>tardos</code> and <code>dolgopyat</code> came back clean against their
+companions, including every theorem number. The prediction was directionally right — a defect was
+there — and quantitatively too pessimistic. Section 12 has the detail.</div>
+</div>
+
+<div class="uu">
+<h4>UU-3. Nobody has ever checked the captions against the audio</h4>
+<p>The entire verification chain treats the transcript as ground truth for "what the speaker said".
+The transcript is a machine caption track, and it demonstrably mangles language: "Mark HOA" for Marc
+Hoyois, "atoms operations" for Adams operations, "boner sphere" for homology sphere, "piggoa and lao"
+for Aggarwal–Lopatto.</p>
+<p class="why">A caption engine that loses proper nouns can also lose a "not", a "for all" where the
+speaker said "there exists", or a "necessary" where he said "sufficient". Those failures are
+invisible: they produce fluent, plausible English. One was already caught by accident — the Yau
+tutorial silently fixed a spoken "λ <b>large</b>" to "λ <b>small</b>", which means at least one
+caption inverted a meaning and the writing agent noticed.</p>
+<div class="do"><b>Do:</b> spot-check audio for the 10 to 20 passages that carry the most weight —
+the theorem statements each tutorial builds on. This is the only defect class where the fix requires
+listening.</div>
+</div>
+
+<div class="uu">
+<h4>UU-4. Verifier and writer are the same class of system</h4>
+<p>Both are language models reading the same sources. There is no independent ground truth anywhere
+in this pipeline. If a writing agent misread a paper's normalisation convention, a verifier reading
+the same paper can misread it the same way and return PASS.</p>
+<p class="why">The two <code>gerard</code> errors were caught because ar5iv gave exact source text to
+compare character by character. Where a verifier had only an abstract — <code>dolgopyat</code>
+explicitly says "no papers open beyond abstracts" — agreement between writer and verifier proves much
+less than it appears to.</p>
+<div class="do"><b>Do:</b> treat "verifier fetched the full text" as the quality gate, not "verifier
+returned PASS". <code>verify/{slug}.md</code> records which happened for every file.</div>
+</div>
+
+<div class="uu">
+<h4>UU-5. The verdict scale compresses very different files into "MINOR"</h4>
+<p>Thirteen files are MINOR. That single word covers <code>brendle</code> with <b>0</b> uncited
+external claims and <code>manolescu</code> with <b>21</b>. It covers <code>oh</code>, whose one
+defect is that five first names came from outside the bibliography, and <code>yau</code>, which
+quotes a living person — Noga Alon — sourced to nothing but the word "Quanta".</p>
+<p class="why">A reader skimming the roll-up will read MINOR as a quality grade. It is not one. It
+means "no invented theorem and no fabricated citation", which is a floor, not a rating.</p>
+<div class="do"><b>Do:</b> when acting on the fix list, sort by the per-file counts in
+<code>verify/README.md</code>, never by the verdict word.</div>
+</div>
+
+<div class="uu">
+<h4>UU-6. Correct-when-written is not correct-now, and nothing refreshes these</h4>
+<p><code>arithmetic-patterns-ziegler.md:921</code> and <code>:953</code> state that two inverse
+theorems are qualitative with no effective bounds. That status comes from a companion paper written
+in <b>April 2014</b>. Line <code>:331</code> hedges it correctly as "in the companion's words"; the
+two later lines drop the hedge and assert it as present fact. Its verifier could not confirm whether
+the status changed, because the session's web-search budget was exhausted at 200 of 200 searches.</p>
+<p class="why">Seven of 20 talks have an arXiv companion. Several companions are surveys that stop
+years before the talk. Any tutorial restoring "the current state of the field" from an old survey
+inherits that survey's expiry date, silently.</p>
+<div class="do"><b>Do:</b> grep the corpus for present-tense field-status claims ("remains open",
+"no effective bounds", "the best known"), and date-stamp each against the source it came from.</div>
+</div>
+
+<div class="uu">
+<h4>UU-7. The mathematics may not render at all</h4>
+<p>1,369 inline <code>$…$</code> spans and 367 <code>$$</code> display blocks exist across the
+corpus, alongside 3,985 Unicode mathematical characters. Six files use no LaTeX whatsoever; two use
+nothing else. <code>TEMPLATE.md</code> never picked a convention.</p>
+<p class="why">GitHub's Markdown renderer handles <code>$…$</code> only in certain contexts. A plain
+HTML export handles none of it. The dark-mode HTML render sitting in <code>HANDOFF.md</code> as an
+optional next step would silently produce two classes of file: six that look right and two that look
+broken.</p>
+<div class="do"><b>Do:</b> before any render, decide the convention and load MathJax in the template.
+One test render of <code>gerard</code> (524 inline spans) and <code>mok</code> (zero) settles it in
+two minutes.<br><b>Round 2:</b> checked by counting instead of rendering, and it found a concrete
+defect that a render would have shown as 70 lines of garbage —
+<code>shape-of-math-kontorovich.md:637</code> writes <code>**$10,000**</code> with a bare dollar
+sign. It is the file's only inline <code>$</code>, so MathJax pairs it with the display block at
+<code>:709</code>. Every other file has balanced delimiters; 367 display blocks all pair. Fix:
+escape it as <code>\$10,000</code>.</div>
+</div>
+
+<div class="uu">
+<h4>UU-8. Nobody checked whether the tutorials are internally consistent</h4>
+<p>Verifiers checked each claim against an external source. They did not systematically check claims
+against <em>each other</em>. Where they stumbled on an internal contradiction, they found real ones:
+<code>quastel:1058</code> says the random walk hits the <b>epigraph</b> while <code>:466</code>,
+<code>:475</code> and <code>:1423</code> all say the hypograph; <code>tardos</code> asserts
+<code>E[Q^r] ≤ C_r</code> for every <code>r ≥ 0</code> at <code>:320</code> and <code>:926</code>
+while its own Pemantle–Rosenthal statement at <code>:619</code> gives only <code>r &lt; p−1</code>;
+<code>tolsa</code> has cross-references that drift by one and two that point at sections which do not
+exist (<code>§5.15</code>, <code>§9.2</code>).</p>
+<p class="why">Three contradictions surfaced without anyone looking for them. That is a hit rate that
+suggests systematic checking would find more — and internal consistency is fully checkable with no
+papers at all, which makes it the cheapest unspent check available.</p>
+<div class="do"><b>Done in round 2.</b> <code>verify/INTERNAL-CONSISTENCY.md</code>. Cross-reference
+resolution over all 20 files found <b>14 broken internal <code>§</code> references in 4 files</b>
+(<code>gerard</code> ×8, <code>bartlett</code> ×3, <code>tolsa</code> ×2, <code>morris</code> ×1),
+all from one cause: the back-matter section numbers differ per file and the references were written
+against another file's layout. Three of the four point at §12 or §13, which is
+<code>wright</code>'s numbering. All seven <em>cross-tutorial</em> references resolve. The check
+also produced three named false-positive classes, recorded so nobody rebuilds the naive script.</div>
+</div>
+
+<div class="uu">
+<h4>UU-9. Exercise solutions were written by the same agent that set them</h4>
+<p>Every tutorial carries exercises with worked solutions. The one file where a verifier actually
+re-derived a solution — <code>buffa</code> — found the derivation wrong:
+<code>:910</code> and <code>:916</code> integrate <code>ρ</code> as <code>a/δ</code> after defining
+it as <code>1 + a/δ</code>. The headline answer survived; the displayed map and the stated slope did
+not.</p>
+<p class="why">Solutions are the one part of a tutorial with no external source by construction —
+they are the writing agent's own work. So they are simultaneously the least verifiable part and the
+part a learner is most likely to check their own reasoning against.</p>
+<div class="do"><b>Done in round 2 — all of them.</b> <code>verify/ROUND2-EXERCISES.md</code>.
+<b>44 worked solutions across all 20 files, re-derived by hand.</b> Result: <b>zero wrong
+conclusions</b>, and 9 local defects in 6 files — about 1 per 7 solutions. The single earlier data
+point (<code>buffa</code>, wrong) had made this look far worse than it is. Two things the
+<code>buffa</code> entry above did not say, now confirmed: its 34% headline is genuinely
+independent of the error, and the error <em>does</em> break the moral the exercise states, because
+the printed slope no longer equals the monitor ratio.</div>
+</div>
+
+<div class="uu">
+<h4>UU-10. The audit cost as much as it would cost to redo</h4>
+<p>This verification consumed about <b>2.08 million subagent tokens</b> across 522 subagent tool
+calls. Re-verifying after the fixes land costs the same again. The original arXiv sweep cost 284,000
+tokens on its own.</p>
+<p class="why">There is no cheap incremental re-check. Fixing <code>gerard:665</code> and wanting
+confidence in it means re-running that file's verifier, roughly 127,000 tokens.</p>
+<div class="do"><b>Do:</b> batch the fixes, then re-verify once — never file by file.
+<code>verify/BRIEF.md</code> is saved so a re-run needs no new spec.<br><b>Round 2 revises the
+cost estimate sharply downward.</b> It ran entirely in the main loop, with no subagents: 5 full
+independent verifications, 5 companion fetches, 44 exercise re-derivations and a corpus-wide
+consistency script, for roughly <b>450,000 tokens</b> — about a fifth of round 1's 2.08M for work
+of comparable breadth. The saving is not cleverness; it is the absence of 15 agents each re-reading
+a 15,000-word file into its own fresh context.</div>
+</div>
+
+<h2 id="s11">11. Costs, machinery, and where things stand</h2>
+
+<h3>Machinery used this session</h3>
+<div class="tablewrap"><table>
+<tr><th>Tool</th><th>What it did here</th></tr>
+<tr><td>Bash / Python 3.13</td><td>All greps, counts, the citation checker, and every file patch.</td></tr>
+<tr><td>arXiv Atom API</td><td>Resolved 100 IDs. Needs <code>max_results=100</code> on a batched <code>id_list</code> or it silently truncates at 10. 3-second pause between calls.</td></tr>
+<tr><td>Crossref REST API</td><td>Resolved 4 DOIs, including the Dolgopyat chapter that SIAM will not serve.</td></tr>
+<tr><td>ar5iv</td><td>The route that made Grade A verification possible: <code>ar5iv.labs.arxiv.org/html/&lt;id&gt;</code> gives full paper text where the PDF would not.</td></tr>
+<tr><td>15 general-purpose subagents</td><td>One per tutorial, 5 concurrent, each writing its report incrementally to <code>verify/{slug}.md</code>.</td></tr>
+<tr><td>advisor</td><td>Consulted three times. It changed the plan each time — see below.</td></tr>
+</table></div>
+
+<h3>What the advisor actually changed</h3>
+<ul>
+<li>Caught that the first citation regex missed old-style IDs. <code>math/0211159</code> — Perelman —
+was in the corpus and would have been skipped.</li>
+<li>Caught that the arXiv API silently truncates a batched query at 10 results without
+<code>max_results</code>. Without that fix the check would have reported 90 phantom failures.</li>
+<li>Caught the unverified <code>buffa:49</code> date flag and the 4 unresolved DOIs before I wrote
+"all clear".</li>
+<li>Caught the "all 20 gap-honesty checks pass" overstatement and the brief-in-scratchpad problem at
+the end.</li>
+</ul>
+
+<h3>Cost</h3>
+<div class="tablewrap"><table>
+<tr><th>Item</th><th>Amount</th></tr>
+<tr><td>Subagent tokens, 15 verifiers</td><td>~2,078,000</td></tr>
+<tr><td>Subagent tool calls</td><td>522</td></tr>
+<tr><td>Longest single verifier</td><td><code>buffa</code>, 28 minutes, 73 tool calls</td></tr>
+<tr><td>Most expensive verifier</td><td><code>morris</code>, 204,037 tokens</td></tr>
+<tr><td>Tier 0</td><td>~2 minutes, no model tokens</td></tr>
+<tr><td>Search budget exhausted</td><td>Once — <code>ziegler</code>, 200 of 200 web searches</td></tr>
+</table></div>
+
+<h3>Where things stand</h3>
+<p><b>Done and durable, after round 2.</b> All 20 tutorials carry an <em>independent</em>
+verification report, not 15. Every companion a machine can reach has been read and compared. Every
+worked exercise has been re-derived. Internal cross-references have been checked corpus-wide.
+Twenty reports plus <code>.DONE</code> markers, a roll-up with a round-2 section, a cross-file
+report, an internal-consistency report, an exercise report, a re-runnable citation script and the
+verifier brief are committed and pushed.</p>
+
+<p><b>Not done.</b> <span class="bad">Every defect found is still in the files.</span> The ranked
+list has grown from 14 items to <b>35</b>: 13 mathematics, 15 provenance, 14 cross-reference (some
+files carry several), plus the timing metadata. Applying them is the next task, and it is a
+decision for the repo owner, not something either session took on. One repo hygiene item also
+remains: save the Lurie March-2025 recording into <code>transcripts/</code>. The other two are
+closed — <code>sources.txt</code> is regenerated and <code>check_citations.py</code> no longer
+exits 1 on a citation it quotes in order to correct.</p>
+
+<p><b>The honest one-line summary, revised.</b> These tutorials do not fabricate. Every citation is
+real, no theorem was invented, and every gap the writers marked is a real silence. Formulas were
+checked properly in <b>11 files of 20</b>, and 3 of those 11 failed; every worked exercise in all 20
+was re-derived, and none reaches a wrong answer. The remaining exposure is nine files whose
+companion nobody can open — most sharply <code>gaitsgory</code>, which states outright that every
+formula in it comes from a paper no one in the verification chain has read.</p>
+
+<h2 id="s12">12. Round 2 — the checks that were missing</h2>
+
+<p>Section 10 listed ten unknown unknowns and gave each one an action. A later session on the same
+day was asked to <em>"run as many remaining checks as possible"</em> and close the project. This
+section is what happened. It is firsthand.</p>
+
+<p>Four of the ten actions are now done, one is partly done, and the rest are unchanged. Nothing in
+sections 1–11 has been deleted; the boxes above carry their outcomes inline so the original
+prediction and the measured result sit next to each other.</p>
+
+<h3>12.1 What ran</h3>
+<div class="tablewrap"><table>
+<tr><th>Check</th><th>Scope</th><th>Outcome</th></tr>
+<tr><td>Tier 0 citations, re-run</td><td>all 20</td><td>100 arXiv IDs, 4 DOIs, <span class="ok">0 unresolved</span> — after one fix, below</td></tr>
+<tr><td>Internal consistency</td><td>all 20</td><td><span class="bad">14 broken <code>§</code> refs</span> in 4 files; <span class="bad">1 render defect</span>; front matter and delimiters clean</td></tr>
+<tr><td>Independent verification of the 5 self-verified files</td><td>5</td><td>5 MINOR, <span class="ok">title 5/5 PASS</span>, 7 new provenance items</td></tr>
+<tr><td>Companion formula check, Grade B</td><td>5</td><td><span class="bad">1 MAJOR</span> (<code>quastel</code>); 4 clean</td></tr>
+<tr><td>Exercise re-derivation</td><td>all 20, 44 solutions</td><td><span class="ok">0 wrong conclusions</span>; 9 local defects in 6 files</td></tr>
+</table></div>
+
+<p>All of it ran in the main loop. <b>No subagents were used</b> — the session's instructions
+forbade them without an explicit request, and the work fitted without them.</p>
+
+<h3>12.2 The three findings that change what a reader should believe</h3>
+
+<div class="uu">
+<h4>A second MAJOR, in a file nobody had checked at this depth</h4>
+<p><code>random-interface-growth-quastel.md:481</code> prints the Brownian scattering operator with
+<code>ℓ₁³</code> and <code>ℓ₂³</code> in the exponents where Remenik's eq (4.2) has <code>t∂³</code>
+in both. It is labelled "transcribed". §8.1b has the two lines side by side.</p>
+<p class="why">This is the exact prediction of UU-2 landing: a Grade B file, a dense-exponent
+subject, a formula that looks sourced because it names an equation number. It took about eight
+minutes to find once the paper was open.</p>
+</div>
+
+<div class="uu">
+<h4>The exercises are in far better shape than the one earlier sample suggested</h4>
+<p>UU-9 rested on a sample of one — the <code>buffa</code> solution, which was wrong. All 44 have
+now been worked by hand. <b>None reaches a wrong conclusion.</b> Nine carry a local defect: a
+constant, a sign, an index, or a pair of numbers that describe two different objects.</p>
+<p class="why">The interesting part is not the rate. It is that <b>four of the nine are contradicted
+somewhere else in the same solution</b> — <code>mok</code> states an exponent its own expansion
+disproves two lines above and its own part (c) disproves below; <code>yau</code> prints
+<code>m′ = −m/(2m+z) = m/(m − 1/m)</code>, two expressions that differ by a sign;
+<code>brendle</code> states a metric and a curvature that belong to metrics differing by a factor
+of 4; <code>ziegler</code> says "at most 7 nonzero terms" one sentence after showing that three of
+the seven vanish.</p>
+</div>
+
+<div class="uu">
+<h4>A check that had started lying</h4>
+<p><code>verify/check_citations.py</code> exited 1 and reported <code>arXiv:2020.02998</code> as
+unresolved. It is unresolved — there is no month 20 — and that is the <em>point</em>:
+<code>langlands-function-fields-gaitsgory.md:1548</code> quotes it in order to correct it, because
+it is the identifier Gaitsgory's own paper prints for [Zhu1]. <code>HANDOFF.md</code> said "exit 1
+means a citation stopped resolving", which had become false.</p>
+<p class="why">A check whose failure state is permanent and benign is worse than no check: the next
+reader either chases a non-bug or learns to ignore the exit code. It now carries a one-entry
+allowlist with a comment pointing at the line, and exits 0.</p>
+</div>
+
+<h3>12.3 What round 2 got wrong, or nearly did</h3>
+<ul>
+<li><b>Three false-positive classes in the consistency script</b>, each of which would have been
+reported as a defect by a naive version. Bold inline subsection labels
+(<code>bartlett</code> writes §3.1–3.5 as <code>**3.1 …**</code>, not as headings) produced 6 false
+hits. A merged heading (<code>manolescu</code>'s <code>### 4.4-4.5 Kirby diagrams</code>) produced
+1. And a per-line dollar-parity test produced about 60, because the files hard-wrap at 90
+characters and inline maths straddles the break. Only whole-file parity means anything. All three
+are recorded in <code>verify/INTERNAL-CONSISTENCY.md</code> §3 so nobody rebuilds the naive script.</li>
+<li><b>A near-miss on the <code>yau</code> constant.</b> The stated <code>c</code> and the correct
+<code>c</code> agree exactly at <code>E = 0</code>, which is the value anyone would spot-check.
+Finding it needed the derivation, not a substitution.</li>
+<li><b>The <code>dolgopyat</code> Poincaré map looked wrong and was not.</b> The tutorial prints an
+indicator the survey prints differently — and the tutorial is right; the survey has a typo
+(<code>χ_{[0,1/2)}(z)</code> for <code>(x)</code>). The tutorial fixed it silently inside a passage
+introduced as a quotation. That is the correct mathematics and the wrong label.</li>
+</ul>
+
+<h3>12.4 What is still not checked, after both rounds</h3>
+<ul>
+<li><b>Nine files have no companion anybody can open.</b> The SIAM proceedings chapters still return
+403. <code>arXiv:2412.20263</code> has no ar5iv or arXiv HTML rendering at all — only its abstract
+is readable. <code>arXiv:2601.05425</code> (Manolescu) would not open in either round.</li>
+<li><b><code>gaitsgory</code> is the largest single exposure in the corpus.</b> Its own source note
+says the captions carry <em>not one formula</em>, so every displayed statement in it comes from
+<code>arXiv:2509.24902</code> — a paper nobody in this verification chain has read. Its round-2
+report lists 16 numbered results resting on it.</li>
+<li><b>The captions have still never been compared with the audio</b> (UU-3), the field-status
+claims have still never been date-stamped (UU-6), and the timing metadata in
+<code>CROSS-FILE.md</code> §1 is untouched.</li>
+<li><b>And the mathematics of the talks is still not audited.</b> Round 2 checked what a source says
+against what a tutorial prints, and re-derived every exercise. Neither of those is peer review.</li>
+</ul>
+
+<h3>12.5 The thing worth carrying out of round 2</h3>
+<div class="card">
+<p>Round 1 spent 2.08 million subagent tokens and produced 15 reports. Round 2 spent roughly a fifth
+of that, in one context, and produced 5 more reports, 5 companion comparisons, 44 re-derivations and
+a corpus-wide script — plus the three findings above.</p>
+<p>The difference is not model quality. It is that round 1's unit of work was <em>a file</em> and
+round 2's was <em>a question</em>. Fifteen agents each reading a 15,000-word tutorial into a fresh
+context is the expensive shape. "Do every exercise in the corpus" and "open every companion that
+resolves" are cheap shapes, because the reader stays warm and the comparison is local.</p>
+<p><b>The corollary for the fix pass:</b> do not re-run the tier 3 fan-out after applying the 35
+ranked items. Re-run the specific checks the fixes touch, in one context, and re-run
+<code>check_citations.py</code>, which is free.</p>
+</div>
+
+<h2 id="s13">13. Session 3 — re-checks, and two sources that opened</h2>
+
+<p>A third session on the same day was asked to bring this document up to date with the latest
+checks. It applied <b>no fix</b> — the 35 ranked items in <code>verify/README.md</code> are still
+all open. What it did run is below. It is firsthand.</p>
+
+<h3>13.1 What ran</h3>
+<div class="tablewrap"><table>
+<tr><th>Check</th><th>Scope</th><th>Outcome</th></tr>
+<tr><td>Tier 0 citations, third run</td><td>all 20</td><td>100 arXiv IDs, 4 DOIs, <span class="ok">0 unresolved</span>, exit 0 — the allowlisted <code>2020.02998</code> entry still behaves</td></tr>
+<tr><td>ar5iv availability, the three papers §12.4 calls unreadable</td><td>3 ids</td><td><span class="ok">2 now open</span>; 1 unchanged</td></tr>
+<tr><td>SIAM chapter DOIs, re-tested</td><td>3 chapters + the volume</td><td><span class="bad">all four still 403</span> at <code>doi.org</code></td></tr>
+</table></div>
+
+<h3>13.2 Two of the three unreadable companions are readable now</h3>
+<div class="card">
+<p>§12.4 above says <code>arXiv:2601.05425</code> (Manolescu) "would not open in either round" and
+that <code>arXiv:2509.24902</code> (Gaitsgory) is "a paper nobody in this verification chain has
+read". Both statements were true when written. As of 2026-08-18, session 3, ar5iv serves both:</p>
+<div class="tablewrap"><table>
+<tr><th>arXiv id</th><th>File it backs</th><th>ar5iv, session 3</th></tr>
+<tr><td><code>2509.24902</code></td><td><code>langlands-function-fields-gaitsgory</code></td><td><span class="ok">200, 851 KB</span>, title <em>Local and global Langlands conjecture(s) over function fields</em>, 1,101 LaTeXML math nodes</td></tr>
+<tr><td><code>2601.05425</code></td><td><code>knots-four-manifolds-manolescu</code></td><td><span class="ok">200, 440 KB</span>, title <em>From knots to four-manifolds</em>, 355 math nodes</td></tr>
+<tr><td><code>2412.20263</code></td><td><code>random-matrices-localization-yau</code></td><td><span class="bad">unchanged</span> — 6 KB, <code>&lt;title&gt; No content available &lt;/title&gt;</code>, 0 math nodes</td></tr>
+</table></div>
+<p><b>The check was the title and the math-node count, not the HTTP status.</b> All three requests
+return 200. The third returns 200 <em>with an ar5iv error page inside it</em>. A status code would
+have reported three successes and produced one wasted comparison; grepping the served title told
+the truth in one line.</p>
+</div>
+
+<div class="flag">
+<p><b>What this changes, and what it does not.</b> It changes what is <em>possible</em>, not what is
+<em>known</em>. The 16 numbered results in <code>verify/langlands-function-fields-gaitsgory.md</code>
+still rest on a paper nobody has read — the paper is merely no longer out of reach. The same holds
+for <code>manolescu</code>. Until somebody opens them and compares line by line, <code>gaitsgory</code>
+remains the largest single exposure in the corpus, exactly as §12.4 states.</p>
+<p>The transferable point is smaller and duller: <b>an availability failure is not a permanent
+property of a source.</b> Two rounds recorded these as unreadable and moved on. One
+<code>curl</code>, about fifteen seconds, retired two of the three. Re-test a 403 or a missing
+rendering before you cite it as a limit of the project — ar5iv builds land late. The SIAM side got
+the same fifteen seconds and did not move: the three chapter DOIs and the volume DOI
+(<code>10.1137/1.9781611978636</code>) all still answer 403.</p>
+</div>
+
+<h3>13.3 Still true after session 3</h3>
+<ul>
+<li><b>No fix has been applied.</b> All 35 ranked items in <code>verify/README.md</code> are open,
+including the two MAJORs and the <code>kontorovich:637</code> render defect.</li>
+<li><b>The SIAM proceedings chapters still 403</b> — re-tested this session, all four DOIs — and
+<code>2412.20263</code> still has no rendering anywhere. Those companions remain genuinely
+unreachable. The "nine files with no companion anybody can open" of §12.4 is <b>seven</b> from
+today; all nine still have an <em>unread</em> companion, which is the number that matters.</li>
+<li><b>UU-3 and UU-6 are untouched</b> — captions never compared with audio, field-status claims
+never date-stamped.</li>
+<li><b>The mathematics of the talks is still not audited.</b> Three rounds of checking what a source
+says against what a tutorial prints do not add up to peer review.</li>
+</ul>
+
+<hr>
+<p class="small">Written 2026-08-18 at the end of the session that performed the verification,
+extended the same day at the end of the session that ran round 2, and extended again the same
+day by session 3 (§13).
+Sections 2 and 3 are reconstructed from <code>TEMPLATE.md</code>, <code>HANDOFF.md</code>, the git
+history, and project memory; all other sections are firsthand. <b>The commit hashes quoted above
+will not resolve in this repository</b> — it was republished from a clean tree as a single commit
+when it went public, and the development history stayed in a private archive. The hashes are kept
+because they are what the record said at the time. Source files:
+<code>verify/README.md</code>, <code>verify/CROSS-FILE.md</code>,
+<code>verify/TIER0-citations.md</code>, <code>verify/BRIEF.md</code>,
+<code>verify/INTERNAL-CONSISTENCY.md</code>, <code>verify/ROUND2-EXERCISES.md</code>,
+<code>verify/{slug}.md</code> ×20.</p>
+
+</div>
+</body>
+</html>
