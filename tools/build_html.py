@@ -215,21 +215,32 @@ def convert(path):
     dest = os.path.join(OUT, path[:-3] + ".html")
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     io.open(dest, "w", encoding="utf-8", newline="\n").write(page)
-    return dest, len(spans), sum(1 for s in spans if s[2])
+    label = re.sub(r"[*`]", "", title).strip()
+    who = fields.get("speaker", "").split(" (")[0]
+    return {"path": path, "spans": len(spans), "display": sum(1 for s in spans if s[2]),
+            "label": label, "speaker": who}
 
 
 def index(rendered):
     groups = {}
-    for path, _, _ in rendered:
-        groups.setdefault(os.path.dirname(path) or ".", []).append(path)
-    parts = ["<h1>ICM 2026 — rendered documents</h1>",
-             "<p>Every Markdown file in the repository, rendered with MathJax. "
-             "The Markdown originals stay the source of truth.</p>"]
-    labels = {".": "Top level", "summaries": "The twenty tutorials", "verify": "Verification record"}
-    for d in sorted(groups, key=lambda x: (x != ".", x)):
+    for r in rendered:
+        groups.setdefault(os.path.dirname(r["path"]) or ".", []).append(r)
+    parts = ["<h1>ICM 2026 plenary lectures</h1>",
+             "<p>Twenty long-form tutorials on the plenary lectures of the International Congress "
+             "of Mathematicians 2026, and the record of how they were checked. Every page below is "
+             'a Markdown file in <a href="https://github.com/az9713/icm-2026">the repository</a>, '
+             "rendered with MathJax; the Markdown stays the source of truth.</p>",
+             '<p><b>Start with</b> <a href="README.html">the README</a> — what the corpus is and '
+             'how far to trust it — or <a href="verify/README.html">the verification roll-up</a>, '
+             "which ranks the 35 defects found and not yet fixed.</p>"]
+    labels = {".": "Start here", "summaries": "The twenty tutorials",
+              "verify": "Verification record — one report per tutorial, and the corpus-wide passes"}
+    for d in sorted(groups, key=lambda x: (x != ".", x != "summaries", x)):
         parts.append("<h2>%s</h2><ul>" % html.escape(labels.get(d, d)))
-        for p in sorted(groups[d]):
-            parts.append('<li><a href="%s.html">%s</a></li>' % (p[:-3], html.escape(p)))
+        for r in sorted(groups[d], key=lambda r: (r["speaker"] or r["label"]).split()[-1]):
+            who = " — %s" % html.escape(r["speaker"]) if r["speaker"] else ""
+            parts.append('<li><a href="%s.html">%s</a>%s</li>'
+                         % (r["path"][:-3], html.escape(r["label"]), who))
         parts.append("</ul>")
     page = PAGE.format(title="ICM 2026 — rendered documents", css=CSS, mathjax="",
                        home="", meta="", body="\n".join(parts))
@@ -239,16 +250,13 @@ def index(rendered):
 def main():
     files = [p for p in subprocess.check_output(
         ["git", "ls-files", "*.md"], cwd=ROOT, text=True).split() if p]
-    rendered, total, disp = [], 0, 0
-    for p in files:
-        dest, n, d = convert(p)
-        rendered.append((p, n, d))
-        total += n
-        disp += d
+    rendered = [convert(p) for p in files]
+    total = sum(r["spans"] for r in rendered)
+    disp = sum(r["display"] for r in rendered)
     index(rendered)
     print("%d files -> html/  (%d math spans, %d of them display)" % (len(files), total, disp))
-    bad = [p for p, n, _ in rendered
-           if "MATHPLACEHOLDER" in io.open(os.path.join(OUT, p[:-3] + ".html"),
+    bad = [r["path"] for r in rendered
+           if "MATHPLACEHOLDER" in io.open(os.path.join(OUT, r["path"][:-3] + ".html"),
                                            encoding="utf-8").read()]
     if bad:
         print("UNRESTORED PLACEHOLDERS in:", bad, file=sys.stderr)
