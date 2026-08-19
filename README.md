@@ -1,5 +1,7 @@
 # ICM 2026 plenary lectures — 20 long-form tutorials
 
+**Read them online: https://az9713.github.io/icm-2026/** — every document rendered with MathJax.
+
 Twenty tutorials, one per plenary lecture of the International Congress of Mathematicians 2026,
 written from the talks themselves. About **275,000 words**. Each one is a reading course, not a
 summary: it builds the background a talk assumes, then walks the talk, then leaves worked
@@ -103,10 +105,9 @@ What they do not establish:
 
 ## Rendering
 
-**Pre-rendered pages live in `html/`** — one per Markdown file, 48 of them, with a contents page at
-`html/index.html`. They are self-contained apart from MathJax, which loads from a CDN, so open them
-from disk or serve the directory. GitHub does not render HTML from a repository page; GitHub Pages
-would.
+**The rendered pages are live at https://az9713.github.io/icm-2026/**, served by GitHub Pages from
+`html/` on `main`. The same 48 pages sit in `html/` in the repository, one per Markdown file, and
+open straight from disk — they are self-contained apart from MathJax, which loads from a CDN.
 
 The tutorials are Markdown with LaTeX — **367 `$$` display blocks and about 1,340 inline `$…$` spans**.
 Six files use no LaTeX at all. A renderer without MathJax or KaTeX will produce two visibly

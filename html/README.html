@@ -65,6 +65,7 @@ window.MathJax = {
 <div class="wrap">
 <a class="home" href="index.html">← all documents</a>
 <h1>ICM 2026 plenary lectures — 20 long-form tutorials</h1>
+<p><strong>Read them online: https://az9713.github.io/icm-2026/</strong> — every document rendered with MathJax.</p>
 <p>Twenty tutorials, one per plenary lecture of the International Congress of Mathematicians 2026,
 written from the talks themselves. About <strong>275,000 words</strong>. Each one is a reading course, not a
 summary: it builds the background a talk assumes, then walks the talk, then leaves worked
@@ -315,10 +316,9 @@ by a single reader asking one question at a time across all twenty. Both rounds 
   against what a tutorial <em>prints</em>. That is not peer review.</li>
 </ul>
 <h2>Rendering</h2>
-<p><strong>Pre-rendered pages live in <code>html/</code></strong> — one per Markdown file, 48 of them, with a contents page at
-<code>html/index.html</code>. They are self-contained apart from MathJax, which loads from a CDN, so open them
-from disk or serve the directory. GitHub does not render HTML from a repository page; GitHub Pages
-would.</p>
+<p><strong>The rendered pages are live at https://az9713.github.io/icm-2026/</strong>, served by GitHub Pages from
+<code>html/</code> on <code>main</code>. The same 48 pages sit in <code>html/</code> in the repository, one per Markdown file, and
+open straight from disk — they are self-contained apart from MathJax, which loads from a CDN.</p>
 <p>The tutorials are Markdown with LaTeX — <strong>367 <code>$$</code> display blocks and about 1,340 inline <code>$…$</code> spans</strong>.
 Six files use no LaTeX at all. A renderer without MathJax or KaTeX will produce two visibly
 different classes of file. One known render defect is still open: <code>shape-of-math-kontorovich.md:637</code>
