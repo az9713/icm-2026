@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — modern-ml-methods-bartlett</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — modern-ml-methods-bartlett</h1>
+<p>verdict: MINOR
+uncited_external_claims: 2
+unsupported_speaker_claims: 0
+title_check: PASS — the introducer reads the title in full: "modern machine learning methods, large scale optimization, implicit bias and benign overfitting". This is the only file in the corpus whose title is spoken word for word.
+gap_honesty: PASS — 3 <code>[Gap:</code> markers, each graded low / none / moderate impact, and two collaborator names explicitly refused rather than guessed.</p>
+<p>Round 2, 2026-08-18. Written and self-verified by the session that produced it; <strong>not</strong> in the
+15-file tier 3 run. First independent check. Method: full read of
+<code>summaries/modern-ml-methods-bartlett.md</code> against <code>transcripts/l-29P4oEXKE_transcript.txt</code>.
+No companion fetched.</p>
+<h2>Findings</h2>
+<h3>1. <code>summaries/modern-ml-methods-bartlett.md:65</code>, <code>:299</code>, <code>:580</code> — three references to a §12 that does not exist</h3>
+<p>The file ends at §11 "Note on the tutorial process", and the correction table it points at is
+at <code>:1081</code>, inside §11. All three references say §12. Cause and full list in
+<code>verify/INTERNAL-CONSISTENCY.md</code> §2 — the file was cross-referenced against the 13-section
+layout of <code>optimization-theory-practice-wright.md</code>.</p>
+<h3>2. <code>summaries/modern-ml-methods-bartlett.md:672</code> — a five-author paper named where the talk says only "a group at Google"</h3>
+<p>File: "A group at Google — <strong>Zhang, Bengio, Hardt, Recht and Vinyals</strong>, <em>Understanding deep
+learning requires rethinking generalization</em>, <strong>ICLR 2017</strong>".</p>
+<p>Transcript, in full: "several years ago there was this observation. This was a group at
+Google that discovered that … deep networks can be trained to give near zero loss on the
+training data and still give good predictive accuracy … The really surprising thing was that
+they discovered that that was still true even if you added noise."</p>
+<p>The five names, the title and the venue are the file's. None is cited — no arXiv id, no DOI,
+no URL — so <code>check_citations.py</code> never saw it. The attribution is correct as far as I know,
+but this is the one uncited external claim in the file with a named author list attached.</p>
+<h3>3. <code>summaries/modern-ml-methods-bartlett.md:497</code> — the same pattern, smaller</h3>
+<p>"Theorem (<strong>Soudry, Hoffer, Nacson, Gunasekar and Srebro</strong>)". The captions carry only "sudri
+at al". The file supplies four further names and no citation. Every <em>other</em> theorem in the
+file is cited by arXiv id, which makes this one conspicuous.</p>
+<h3>4. Framing drift at <code>:459</code> — a paper result introduced as a podium result</h3>
+<p>§4.5 opens "Now the trade-off Bartlett draws out", then gives η := γ²T/120 and
+L(w_T) = O(ln²T/T²). The trade-off <strong>is</strong> on the podium — he describes the budget, the first
+half spent bouncing, the second half decaying, and says "we can trade off those two competing
+effects and get some kind of acceleration here". The two <em>formulas</em> are not; the transcript
+has no 1/T² and no step-size formula. They are attributed to the paper in the sentence before
+("The paper's choice is"), so this is presentation, not provenance. Noted for completeness.</p>
+<h2>What I checked and found supported</h2>
+<ul>
+<li>The three-question decomposition and every row of the classical-versus-modern table.</li>
+<li>"Here's a picture from <strong>Francis Bach's</strong> website" ("Francis Bark") for the gradient-flow
+  figure — verbatim, including the red curve.</li>
+<li>"<strong>any step size</strong> is okay, which is kind of an <strong>extraordinary</strong> thing" — verbatim.</li>
+<li>The two-phase structure, the transition time depending on the step size, and the asymptotic
+  rate — all spoken, with the rate rendered "one over e to t" exactly as the file reports.</li>
+<li>The <strong>attention gap</strong>, word for word: "this doesn't work for attention because the squashing
+  function that's used there is a sort of nearly zero homogeneous function and the zero is
+  problematic in this setting. So this is an interesting gap." The file's §5.5 does not
+  overreach beyond this.</li>
+<li>Near-homogeneity as a <strong>calculus</strong> — "you can show the whole thing is near homogeneous and
+  do that for all kinds of various transformations" — supported.</li>
+<li>The homogenization as "the growth of that function at infinity" — verbatim in substance.</li>
+<li>The margin bound stated as depending on "the ratio between the norm squared of the solution
+  … and the sample size", with the dimension-free contrast — supported, and the file's
+  <code>[Gap:</code> on the constants is correctly placed: the captions carry the ratio and nothing else.</li>
+<li><strong>Both effective ranks</strong>, in Bartlett's own words: r_k is "the one norm over the infinity
+  norm of the tail … the number of times we can fit the largest one in all the rest", R_k is
+  "the one norm squared over the two norm squared". The file's gloss is his gloss.</li>
+<li>The <strong>small-ball condition</strong>, named from the podium — supported, and the file correctly
+  flags that the PNAS paper states its assumptions differently.</li>
+<li>Gradient flow from zero on squared error giving the minimum-norm interpolator — supported.</li>
+<li>The label-noise experiment and the graceful degradation of test error — supported.</li>
+<li>The collaborator list of part three, including "<strong>Louis</strong> Spencer and Gal were postdocs".
+  The file says it could not resolve "Louis" and omitted it. That is exactly right: the
+  caption string is there, and it is unresolvable.</li>
+</ul>
+<p><strong>The §11 caption-correction note is the best in the corpus on one specific point.</strong> The
+captions render the rate as "one over e to t", which reads as 1/eᵗ, an exponential. The real
+rate is 1/(ηt), a polynomial. The file names this, explains why an exponential reading would
+make the talk incoherent — there would be no η/t trade-off to optimize — and corrects it
+throughout §4. That is a substantive repair, not a spelling fix.</p>
+<h2>Exercises re-derived</h2>
+<p>Both worked solutions were re-derived by hand. <strong>Both correct.</strong></p>
+<ul>
+<li><strong>§7.1 self-boundedness.</strong> ℓ′(z) = −(1 − σ(z)); ℓ″(z) = σ(z)(1 − σ(z)) = σ′(z). ✓
+  For z ≥ 0, σ(z)(1 − σ(z)) ≤ 1 − σ(z) = 1/(1+eᶻ) ≤ e^{−z}. ✓
+  ln(1+u) ≥ u ln 2 on [0,1] by concavity against the chord; with u = e^{−z} ≤ 1 this gives
+  ℓ(z) ≥ (ln 2)e^{−z}. ✓
+  Each xᵢxᵢᵀ is PSD with spectral norm ‖xᵢ‖² ≤ 1, so
+  λ_max(∇²L) ≤ (1/n)Σ ℓ″(zᵢ) ≤ (1/n)Σ e^{−zᵢ} ≤ L(w)/ln 2. ✓
+  Hence η &lt; 2/λ_max follows from L(w) &lt; 2 ln 2/η, a 1/η threshold. ✓
+  The step-4 bound needs every margin zᵢ ≥ 0, and the exercise states that hypothesis. The
+  derivation is labelled as the writer's own in both §4.4 and §11, which is the honest call —
+  it is not in the captions.</li>
+<li><strong>§7.2 the interpolator as a ridge estimator.</strong> θ̂<em i_k_42_="i&gt;k*">H = X_Hᵀ(X_HX_Hᵀ + γI)⁻¹y under
+  X_TX_Tᵀ = γI. ✓ Push-through: A(ᵀ)(AAᵀ + γI) = AᵀAAᵀ + γAᵀ = (AᵀA + γI)Aᵀ, so inverting on
+  each side gives Aᵀ(AAᵀ + γI)⁻¹ = (AᵀA + γI)⁻¹Aᵀ. ✓ The file supplies exactly this
+  verification, and it is right. The conclusion — ridge on the head with penalty γ ≈ Σ</em>λᵢ
+  — follows.</li>
+</ul>
+<h2>What I could not check</h2>
+<ul>
+<li>No companion was fetched. The Acta Numerica survey (<code>arXiv:2103.09177</code>) is named from the
+  podium and the file uses it for the "simple plus spiky" decomposition; that use is
+  unverified here.</li>
+<li>Everything restored from the four primary papers: the exact two-phase theorem constants, the
+  η := γ²T/120 choice, Theorem 3's Ω(1/t) monotone lower bound, Definition 1 of
+  near-M-homogeneity, and Theorem 4's excess-risk bound. Each is cited by arXiv id, which is
+  what this check tests; whether each is transcribed correctly from its source is not.</li>
+<li>The o-minimality hypothesis and its role. The file's explanation is standard but I did not
+  check it against Ji–Telgarsky.</li>
+<li>Whether "Jason from Berkeley" is resolvable. The file declines to guess; I agree it is not
+  resolvable from the repo.</li>
+</ul>
+</div>
+</body>
+</html>

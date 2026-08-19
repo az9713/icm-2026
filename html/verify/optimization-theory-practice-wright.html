@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — optimization-theory-practice-wright</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — optimization-theory-practice-wright</h1>
+<p>verdict: MINOR
+uncited_external_claims: 3
+unsupported_speaker_claims: 0
+title_check: PASS — Wright from the podium: "I'd like to talk about optimization in its both theoretical and practical aspects."
+gap_honesty: PASS — no <code>[Gap:</code> markers; the file instead names three unrecoverable items in §13 and does not guess them.</p>
+<p>Round 2, 2026-08-18. This file was written and self-verified by the session that produced it
+and was <strong>not</strong> covered by the 15-file tier 3 run. This is its first independent check.
+Method: full read of <code>summaries/optimization-theory-practice-wright.md</code> against
+<code>transcripts/Ep1TzZDOHnU_transcript.txt</code>. Companion <code>arXiv:2510.15734</code> not fetched.</p>
+<h2>Findings</h2>
+<h3>1. <code>summaries/optimization-theory-practice-wright.md:298</code> — a rate restated in a form the talk never used, uncited</h3>
+<p>The file prints, under the heading <strong>"The gain, strongly convex case"</strong>:</p>
+<blockquote>
+<p>O(κ log(1/ε)) → O(κ^{0.786} log(1/ε))</p>
+</blockquote>
+<p>The podium says something different. Wright compares <strong>convex</strong> rates, and states the silver
+result as an epsilon exponent, not a condition-number exponent:</p>
+<blockquote>
+<p>"he was able to prove that you get epsilon accuracy for a convex function in order epsilon
+to the minus one half iteration. So this improves over the epsilon to the minus 1 that you
+get just from naive gradient descent. It also improves on what you get from the silver step
+size result which is epsilon to the .786."</p>
+</blockquote>
+<p>Both statements are real Altschuler–Parrilo results, and 0.786 is the same exponent
+(log_{1+√2} 2 = 0.7864) in both. But the strongly-convex κ form is <strong>not in this talk</strong>, and
+the file carries no citation for it — no arXiv id, no paper title. This is the uncited-external
+class the brief calls the dangerous one, even though the claim is almost certainly true.</p>
+<p>Repeated at <code>:1291</code> (self-test question 4) and <code>:1104</code> (§10.2), so a reader meets it three times.</p>
+<p><strong>What would settle it:</strong> cite Altschuler and Parrilo, <em>Acceleration by Stepsize Hedging</em>
+(arXiv:2309.07879), and say which of the two rates came from the podium.</p>
+<h3>2. <code>summaries/optimization-theory-practice-wright.md:224</code> — a constant sharpened past the podium, uncited</h3>
+<p>File: "currently <strong>ω ≈ 2.371339</strong>". Transcript: "currently that exponent stands at about 2.37".
+The extra four digits are external. They are consistent with the published value, but no source
+is given. Low impact — nobody's belief changes — but it is the same class as finding 1.</p>
+<h3>3. <code>summaries/optimization-theory-practice-wright.md:214-216</code> — a perturbation set stated wider than the podium</h3>
+<p>File, on smoothed analysis: "You bring <em>your</em> LP — your A, b, c. They are allowed to add small
+Gaussian perturbations of variance σ² to the entries."
+Transcript: "give us your A, B, and C. We're allowed to make random small Gaussian
+perturbations to the elements of <strong>A and B</strong>."</p>
+<p>The file then builds its §3.2 punchline on perturbing "only b and c — leaving A alone", which
+the transcript does support. So the drift is in the setup sentence only, and it slightly
+overstates what classical smoothed analysis perturbs. Cosmetic, but it sits directly under the
+contrast the section exists to draw.</p>
+<h2>What I checked and found supported</h2>
+<p>Every one of these is in the transcript, in the tutorial's own words or close to them:</p>
+<ul>
+<li>The thesis sentence, and the Roger Fletcher quotation, "Optimization is a fascinating blend
+  of theory and computation, heuristics and rigor" — verbatim.</li>
+<li>Smoothed analysis 1/σ dependence "from about 30 to about 1.5" — verbatim, including both numbers.</li>
+<li>"if you could reduce matrix multiplication to order n², there is an interior point method that
+  takes order n^{2 + 1/18}" — verbatim, the exponent included.</li>
+<li>Adam's "over a quarter of a million" citations — verbatim.</li>
+<li>The Hoffman constant as the basis of first-order LP convergence theory — verbatim.</li>
+<li>Muon's discarded Σ justified as "a trust region method where you define the radius … in the
+  spectral norm" — supported.</li>
+<li>Double descent, implicit bias (credited to Bartlett's plenary "yesterday"), and Weinan E's
+  plenary "at the last ICM" — all three supported.</li>
+<li>The PL condition, including the "step will be big enough" consequence — supported.</li>
+<li>Griewank's cubic regularization predating the complexity motivation — supported.</li>
+<li>Nemirovski and Yudin "throw up their hands" on global non-convex minimization — supported.</li>
+<li>The ICML AI-assisted PEP workflow "a couple of weeks ago" — supported.</li>
+<li>Silver's long step at condition number 64, "every 8th or 16th step", possibly uphill — supported.</li>
+</ul>
+<p><strong>The §13 correction table is honest.</strong> 14 caption corrections, and the file separates
+"verified" from "reconstructed" (Parrilo, Weijie Su) and names one it refuses to guess (the
+higher-order lower-bound author, rendered "Joe"). It also records one <strong>substantive</strong> transcript
+repair — the captions say the iterate has its "last n−k components nonzero", which is backwards
+— and flags it in place at <code>:381</code>. That repair is correct: the components are zero, and that is
+what makes the lower bound work.</p>
+<h2>Exercises re-derived</h2>
+<p>Both worked solutions were re-derived by hand. <strong>Both correct.</strong></p>
+<ul>
+<li><strong>§9.1 min–max LP reformulation.</strong> λ = t(b − Ax) drives the inner objective to +∞ exactly when
+  Ax ≠ b; on the feasible set the λ term vanishes. The stated conclusion follows.</li>
+<li><strong>§9.2 tridiagonal lower bound.</strong> ∇f(0) = −e₁, so x₁ ∝ e₁; Tx₁ = α(2e₁ − e₂), so ∇f(x₁) has
+  support {1,2}; induction gives supp(x_k) ⊆ {1..k}. And x* = T⁻¹e₁ has (x*)ᵢ = (n+1−i)/(n+1),
+  every component nonzero, so the discarded tail is genuinely nonzero. The argument is sound as
+  written.</li>
+</ul>
+<h2>What I could not check</h2>
+<ul>
+<li>The companion paper <code>arXiv:2510.15734</code> was not fetched, so paper-only claims — the six-section
+  list at <code>:24</code>, and anything the file marks as "in the paper" — rest on the writing agent.</li>
+<li>Whether the two smoothed-analysis bounds are transcribed correctly from <code>arXiv:2504.04197</code>.
+  They are cited, which is what this check tests; their exactness is not.</li>
+<li>Whether "Eleon Bach" is the right reconstruction of "Elon Bach". The file lists it under
+  <em>verified</em>; I did not re-verify it.</li>
+<li>Clock claims. There are none in this file — it makes no assertion about where anything sits in
+  the recording, which puts it outside the <code>CROSS-FILE.md</code> §1b defect entirely.</li>
+</ul>
+</div>
+</body>
+</html>

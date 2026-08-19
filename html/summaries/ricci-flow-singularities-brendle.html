@@ -1,0 +1,1772 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Hamilton&#x27;s Ricci Flow</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Simon Brendle (Columbia University)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=tKObU5yKXdk">https://www.youtube.com/watch?v=tKObU5yKXdk</a></div><div><b>Level:</b> 3/5</div><div><b>Reading time:</b> ~65 min</div></div>
+<h1>Hamilton's Ricci Flow — Simon Brendle</h1>
+<p><strong>Field:</strong> geometric analysis. Specifically: singularity formation in a nonlinear parabolic
+system, and the complete classification of the objects that describe it. Brendle opens by
+dedicating the lecture to the memory of Richard Hamilton, and says in his second minute
+that he will "focus exclusively on the Ricci flow."</p>
+<p><strong>Difficulty against your background: 3/5, and the number hides a useful asymmetry.</strong></p>
+<p>The <em>architecture</em> of this talk is your own material and you will recognise it inside
+thirty seconds. A nonlinear parabolic equation blows up in finite time. Rescale at the
+blow-up point using the equation's own parabolic scaling. Take a limit. The limit is an
+object that has existed for infinite backward time. Classify those objects, and you have
+classified the singularities. That is blow-up analysis, and it is a 1 or a 2 for you.</p>
+<p>The <em>objects</em> are the gap. The unknown in this parabolic equation is the Riemannian metric
+itself, so there is no fixed background to blow up <em>on</em>; curvature is a four-index tensor
+you have probably only met contracted into Einstein's equations; and the classification is
+stated in a vocabulary — soliton, neck, cap, κ-noncollapsed, ancient κ-solution — none of
+which you own. That is a real 3, and it is where this document spends its length.</p>
+<p>I have not split the rating, because the talk does not split. It is one continuous arc from
+"what is a Riemannian metric" to "here are the only three singularity models in dimension
+three," and the geometric vocabulary runs through all of it.</p>
+<p><strong>What this tutorial builds.</strong> Riemannian metric and curvature, in the minimum that the
+talk actually uses; why −2 Ric is the Laplacian of the metric and why that makes Ricci flow
+a heat equation; why that heat equation is only <em>weakly</em> parabolic and what is done about
+it; solitons as fixed points modulo coordinate change; parabolic rescaling and ancient
+solutions; κ-noncollapsing as a scale-invariant non-degeneracy condition; ε-necks; and then
+the classification theorems and the mechanism — the Neck Improvement Theorem — that proves
+them.</p>
+<p><strong>A note on sources — read this before you trust any formula below.</strong></p>
+<ul>
+<li><strong>The ICM proceedings chapter exists.</strong> Simon Brendle, <em>Hamilton's Ricci Flow</em>, in
+  <em>Proceedings of the International Congress of Mathematicians 2026, Volume 2: Plenary
+  Lectures</em>, SIAM, pp. 25–34, published online 13 July 2026,
+  <a href="https://doi.org/10.1137/25M1799052">doi:10.1137/25M1799052</a>. This is the first talk in
+  this folder for which a real proceedings chapter is known to exist. <strong>I could not read
+  it.</strong> SIAM's site returns HTTP 403 to automated fetching, and no abstract is carried by
+  Crossref, Semantic Scholar or OpenAlex. Crossref does confirm the title, the author, the
+  volume, the page range (10 pages) and that it carries 35 references. Nothing below is
+  taken from it.</li>
+<li><strong>A title discrepancy, and it is worth knowing about.</strong> The proceedings chapter is called
+  <em>Hamilton's Ricci Flow</em>. From the podium, the introducer announces the lecture as
+  <strong>"singularity models in three-dimensional Ricci flow."</strong> I have used the proceedings
+  title in the front matter because that is the ICM's own record of the lecture; the
+  spoken title is what the content actually is.</li>
+<li><strong>The companion is Brendle's own survey, and it carries the spoken title exactly.</strong>
+  <a href="https://arxiv.org/abs/2201.02522">arXiv:2201.02522</a>, Simon Brendle, <strong><em>Singularity models
+  in the three-dimensional Ricci flow</em></strong> (v1 January 2022, v2 October 2022; 30 pages;
+  comments field reads "To appear in KIAS Springer Series in Mathematics, vol 1").
+  <strong>This is a companion, not the ICM chapter</strong>, and I label it as such everywhere below. It
+  earns the label as strongly as a companion can: it is by the speaker, its title is the
+  title the introducer read out, and its section order is very nearly the talk's order. It
+  is the source for every numbered theorem and every explicit metric in this document.</li>
+<li><strong>I scanned the transcript for a podium self-citation and found none.</strong> The talk names no
+  survey, no book and no arXiv number. Brendle names his own results by year only ("I
+  proved this back in 2012"; "this is a theorem from 2018"; "in a joint work with … in
+  2020"). Those years match arXiv posting dates for the three papers, which is how I
+  matched them.</li>
+<li><strong>Individual results are restored from their own primary papers</strong>, cited inline by name
+  and journal, and kept visibly distinct from the companion. The companion's bibliography
+  is the source of those citations.</li>
+<li><strong>No formulas survive in the captions.</strong> Everything Brendle wrote was on slides. Every
+  displayed equation below is either (i) quoted from the companion survey and cited by its
+  numbered statement, (ii) standard textbook material that I label as such, or (iii) marked
+  as a gap. I have filled nothing by guessing.</li>
+</ul>
+<p><strong>Names.</strong> The auto-captions destroy nearly every proper noun, including Perelman's, the
+speaker's own, and the introducer's. Full correction table in §10.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>Brendle's opening frame is Hamilton's, and it is one sentence:</p>
+<blockquote>
+<p>Start with a geometric object. Evolve it by a nonlinear heat equation. Deform it toward a
+standard geometry that you understand.</p>
+</blockquote>
+<p>That is the whole programme. Heat equations smooth things out; the bet is that if you write
+the right heat equation for a geometric object, it will smooth the object into one of a
+short list of models you can recognise. Brendle traces the idea to Eells and Sampson's
+paper on harmonic maps, and says it "really took off in 1982 with the work of Richard
+Hamilton."</p>
+<p>He lists the family:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>object being evolved</th>
+<th>the flow</th>
+<th>first paper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a Riemannian metric</td>
+<td><strong>Ricci flow</strong></td>
+<td>Hamilton 1982</td>
+</tr>
+<tr>
+<td>a curve in the plane</td>
+<td>curve shortening flow</td>
+<td>Gage and Hamilton <em>(see §10 on the date)</em></td>
+</tr>
+<tr>
+<td>a submanifold of Euclidean space</td>
+<td>mean curvature flow</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>"Depending on what geometric object you want to study, you would look at a different heat
+equation that's tailored to that geometric object." Among them, he says, Ricci flow "has
+turned out to be the most useful," and he names why: Perelman's proof of the Poincaré
+conjecture, and the differentiable sphere theorem.</p>
+<p><strong>And then the bet fails, on purpose.</strong> The flow does not always smooth things out. It can
+blow up in finite time. In PDE this is normally the bad case — Brendle says so explicitly:</p>
+<blockquote>
+<p>"In PDE, usually singularities are thought of as undesirable. Singularities are something
+we want to avoid. In Ricci flow the situation is different, in that often we cannot avoid
+singularities, and furthermore singularities often encode important geometric
+information. So the point is not to avoid singularities but to understand them."</p>
+</blockquote>
+<p>That is the thesis of the lecture, and the next sentence is the payoff:</p>
+<blockquote>
+<p>"As the curvature gets large a hidden structure emerges, and understanding that hidden
+structure — this is the ultimate goal in the study of the Ricci flow."</p>
+</blockquote>
+<p>The concrete question the talk answers is: <strong>what does a three-dimensional Ricci flow look
+like just before it blows up?</strong> Perelman answered it qualitatively in 2002, and that was
+enough for the Poincaré conjecture. The talk's news is that the answer is now <em>complete</em>:
+there are exactly three models in dimension three, plus one extra in the compact case, and
+nothing else can happen.</p>
+<hr />
+<h2>2. Your anchor</h2>
+<p>The talk hands you two anchors from the podium and the companion hands you a third. Take
+all three; the first is the load-bearing one.</p>
+<h3>2.1 Blow-up analysis for a nonlinear heat equation — this is the whole talk</h3>
+<p>You have done this. Take the model semilinear heat equation on ℝⁿ,</p>
+<p>\[\partial_t u = \Delta u + u^p\]</p>
+<p>with p &gt; 1. Solutions blow up in finite time T. You do not study the blow-up directly. You
+pick a sequence of space-time points (x_j, t_j) with t_j → T where |u| → ∞, rescale using
+the equation's own scaling symmetry so that the rescaled solution has size 1 at the base
+point, and take a limit. What you get is a solution defined on all of ℝⁿ × (−∞, 0] — the
+rescaling stretched a finite backward history into an infinite one. Then you classify
+<em>those</em>, and every possible singularity is on your list.</p>
+<p>Brendle's talk is exactly that programme, for a system where the unknown is the metric.
+Here is the correspondence, item by item. The left column is yours; the right column is
+what the talk spends fifty minutes on.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>semilinear heat equation ∂ₜu = Δu + uᵖ</th>
+<th>Ricci flow ∂ₜg = −2 Ric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unknown: a scalar function on a fixed domain</td>
+<td>unknown: <strong>the metric itself</strong>; there is no fixed background</td>
+</tr>
+<tr>
+<td>blow-up criterion: ‖u‖<sub>∞</sub> → ∞ as t → T</td>
+<td>blow-up criterion: curvature unbounded as t → T (Hamilton, Thm 1.4 below)</td>
+</tr>
+<tr>
+<td>parabolic scaling: û(x,t) = λ<sup>2/(p−1)</sup> u(λx, λ²t)</td>
+<td>parabolic scaling: ĝ(t) = λ² g(λ⁻²t)</td>
+</tr>
+<tr>
+<td>normalise so |u| = 1 at the base point</td>
+<td>normalise so scalar curvature R = 1 at the base point</td>
+</tr>
+<tr>
+<td>limits taken in C<sup>∞</sup><sub>loc</sub> on a fixed ℝⁿ</td>
+<td>limits taken in the <strong>Cheeger–Gromov</strong> sense — see §3.7</td>
+</tr>
+<tr>
+<td>the limit is an entire/ancient solution</td>
+<td>the limit is an <strong>ancient solution</strong>: defined on (−∞, T]</td>
+</tr>
+<tr>
+<td>self-similar profiles u = (T−t)<sup>−1/(p−1)</sup>φ</td>
+<td><strong>solitons</strong>: fixed points modulo coordinate change</td>
+</tr>
+<tr>
+<td>extra ingredient making the list finite: a monotone functional (Giga–Kohn)</td>
+<td>extra ingredient: Perelman's monotone 𝒲-functional ⇒ <strong>κ-noncollapsing</strong></td>
+</tr>
+<tr>
+<td>type I vs type II blow-up rates</td>
+<td>shrinking cylinder (type I) vs Bryant soliton (type II)</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>(The left column and the type I/II row are mine, built to give you a handle; the talk
+never mentions the semilinear heat equation or Giga–Kohn. Everything in the right column is
+in the talk or the companion and is sourced below.)</em></p>
+<p>Brendle makes the parabolic-scaling point himself, and he makes it by appealing to the
+linear heat equation, which tells you exactly how much background he assumes:</p>
+<blockquote>
+<p>"The Ricci flow is invariant under simultaneous scaling of space and time … this is a
+basic feature of many parabolic equations. So even for the standard linear heat equation
+you have this behaviour that it is invariant under simultaneous rescaling in space and
+time, and for time you have to use lambda squared if you dilate by lambda in space."</p>
+</blockquote>
+<p>And he places the whole enterprise inside PDE, out loud:</p>
+<blockquote>
+<p>"Of course in PDE theory we study similar questions for any PDE. You can ask, does it
+have a global solution, or does it form a singularity in finite time?"</p>
+</blockquote>
+<p>The companion adds one line that is worth memorising, because it tells you what kind of
+object you are hunting:</p>
+<blockquote>
+<p>"The concept of an ancient solution to a parabolic PDE is analogous to the concept of an
+<strong>entire solution</strong> to an elliptic PDE." <em>(companion, §2)</em></p>
+</blockquote>
+<p>So: ancient solutions are the Liouville objects of parabolic theory. Classifying them is a
+Liouville theorem. Every classification result in this talk is, structurally, a Liouville
+theorem — and the punchline at the end of the talk is exactly that reading:</p>
+<blockquote>
+<p>"The property that the solution exists infinitely far back in time — this is a very rigid
+property, and these ancient solutions are much more rare than you would expect."</p>
+</blockquote>
+<h3>2.2 The Ricci tensor is the one from Einstein's equations</h3>
+<p>Brendle stops to say this, unprompted:</p>
+<blockquote>
+<p>"Let me also mention that the Ricci tensor plays a very important role not just in
+Riemannian geometry but also in relativity. So the Einstein field equations, they take
+[the Ricci tensor] equal to [the stress-energy source] for a Lorentzian metric. So the
+only difference is that in general relativity you look at Lorentzian metrics instead of
+Riemannian metrics."</p>
+</blockquote>
+<p>So the central object is not new to you. What is new is the <em>use</em>: in general relativity
+Ric is constrained algebraically by matter at each instant; here it is the right-hand side
+of an evolution equation, and the metric chases it.</p>
+<p>There is a second, sharper version of this anchor, and I flag immediately that <strong>it is in
+the companion and not in the talk.</strong> Einstein's equations in a general coordinate system
+are not hyperbolic — the diffeomorphism invariance of the theory eats one derivative's
+worth of ellipticity — and you fix that by choosing harmonic (de Donder) gauge, after which
+the equations become honestly hyperbolic. Ricci flow has the identical disease and the
+identical cure. See §3.5.</p>
+<h3>2.3 Where the anchor stops</h3>
+<p>Be clear about what does <strong>not</strong> transfer. In the semilinear problem the domain is fixed
+and only the function changes, so "rescale and take a limit" means what it usually means.
+Here the metric <em>is</em> the unknown, so:</p>
+<ul>
+<li>rescaling changes what "distance" means, which is why the scaling is a scaling of <em>g</em>, not
+  of coordinates;</li>
+<li>"the limit exists" needs an entirely new definition (Cheeger–Gromov, §3.7), because the
+  underlying manifolds in the sequence need not even be the same manifold;</li>
+<li>and the equation is invariant under all coordinate changes, so the solution is never
+  unique as a metric — only unique up to diffeomorphism. Fixed points are therefore fixed
+  points <em>modulo the symmetry group</em>, which is what a soliton is.</li>
+</ul>
+<p>Those three are the tax. §3 pays it.</p>
+<hr />
+<h2>3. The bridge</h2>
+<p>Everything here is the minimum needed to follow §4 and §5. Brendle himself spends the first
+eight minutes on §3.1–§3.3, and he pitches it at exactly this level.</p>
+<h3>3.1 A Riemannian metric</h3>
+<p>Fix an n-dimensional manifold M and local coordinates x¹,…,xⁿ near a point. A <strong>Riemannian
+metric</strong> is written</p>
+<p>\[g \;=\; \sum_{i,j} g_{ij}(x)\, dx^i \, dx^j\]</p>
+<p>where at each point the coefficients g_ij(x) form a <strong>symmetric positive definite matrix</strong>.
+Brendle's own gloss: "you can think of this as a smooth function that takes values in the
+space of positive definite matrices."</p>
+<p>What is it for? It measures lengths of curves, and hence distances between points. For a
+curve α with coordinate functions α¹,…,αⁿ,</p>
+<p>\[L(\alpha) \;=\; \int \sqrt{\textstyle\sum_{i,j} g_{ij}(\alpha(s))\, \dot\alpha^i(s)\, \dot\alpha^j(s)} \;\, ds\]</p>
+<p>and Brendle emphasises the one subtle bit: you evaluate g <strong>at the point α(s)</strong>, the point
+you are currently standing on. <em>(This display is a transcription of what he describes in
+words; the formula was on the slide.)</em></p>
+<p>The consequence he draws is the one to keep:</p>
+<blockquote>
+<p>On small scales near any point, a Riemannian manifold behaves approximately like Euclidean
+space, because on small scales g_ij is approximately constant. On large scales it can
+behave completely differently.</p>
+</blockquote>
+<p><strong>The three model spaces.</strong> Brendle gives the constant-curvature metrics as the simplest
+examples: Euclidean space (g_ij = δ_ij on ℝⁿ), the sphere, and hyperbolic space. He says the
+last two are the Euclidean metric multiplied by a point-dependent stretching factor, in
+stereographic coordinates, and that hyperbolic space is obtained by "flipping a sign" and
+lives on the unit ball in ℝⁿ. The standard formulas that match that description exactly are</p>
+<p>\[g^{\text{sph}} \;=\; \frac{4}{(1+|x|^2)^2}\,\delta_{ij} \quad\text{on } \mathbb{R}^n, \qquad
+g^{\text{hyp}} \;=\; \frac{4}{(1-|x|^2)^2}\,\delta_{ij} \quad\text{on } \{|x|&lt;1\}\]</p>
+<p><em>(Restored from standard references, not from the captions. The talk's verbal description —
+stereographic coordinates, flip a sign, unit ball — pins these down, and the sign flip in
+the denominator is exactly the difference. I label them restored because the slide is
+unreadable.)</em></p>
+<h3>3.2 Curvature, and why it has four indices</h3>
+<p>Brendle motivates curvature from the only honest starting point:</p>
+<blockquote>
+<p>"Curvature was invented to detect whether or not a given metric is locally isometric to
+the Euclidean metric."</p>
+</blockquote>
+<p>The problem is that the Euclidean metric written in spherical or otherwise curved
+coordinates does not look like δ_ij. So: given g, can you change coordinates to make it
+δ_ij? The <strong>Riemann curvature tensor</strong> R_ijkl is the object designed to answer that.</p>
+<p>Three facts, all from the podium:</p>
+<ol>
+<li>It is a complicated expression in the <strong>first and second derivatives</strong> of the metric.
+   "To leading order it looks like a linear expression in the second derivatives of the
+   metric, plus additional quadratic terms in the first derivatives, but let me not write
+   them down."</li>
+<li>It <strong>transforms tensorially</strong> under coordinate change. That is the whole point of the
+   construction.</li>
+<li><strong>R ≡ 0 near a point ⟺ there are coordinates in which g_ij = δ_ij near that point.</strong> Both
+   directions. Euclidean ⇒ tensor vanishes is easy; the converse is the substance.</li>
+</ol>
+<p><em>[Gap: the explicit formula for R_ijkl was on the slide and Brendle deliberately declined to
+write out the quadratic terms. </em><em>Impact: low.</em><em> He does not use the formula anywhere in the
+talk; he uses only the three facts above. The standard leading-order form —
+R_ijkl = ½(∂ᵢ∂ₖg_jl + ∂ⱼ∂ₗg_ik − ∂ᵢ∂ₗg_jk − ∂ⱼ∂ₖg_il) + (quadratic in ∂g) — is in any
+textbook, including the speaker's own book [Brendle, </em>Ricci Flow and the Sphere Theorem<em>,
+AMS GSM 111, 2010].]</em></p>
+<p><strong>Contracting down.</strong> Four indices is a lot. Trace two of them away, using g^{kl}, the
+inverse matrix of g_kl:</p>
+<p>\[\mathrm{Ric}_{ij} \;=\; g^{kl}\, R_{ikjl}, \qquad\qquad R \;=\; g^{ij}\, \mathrm{Ric}_{ij}\]</p>
+<p>The first is the <strong>Ricci tensor</strong> (two indices), the second the <strong>scalar curvature</strong> (one
+number per point). Brendle: "the Ricci and scalar curvature, they contain less information
+but they're easier objects."</p>
+<p><strong>And here is the analogy that unlocks the entire lecture for you.</strong> It is his, verbatim in
+substance:</p>
+<blockquote>
+<p>In calculus, the <strong>Hessian</strong> of a function is analogous to the <strong>Riemann tensor</strong>. Take a
+contraction of the Hessian and you get the <strong>Laplacian</strong>; the Laplacian of a function is
+analogous to the <strong>Ricci tensor</strong>. Specifically, <strong>−2 Ric can be thought of as the
+Laplacian of the metric.</strong></p>
+</blockquote>
+<p>Hold onto that. It is the reason the next equation is a heat equation.</p>
+<h3>3.3 Ricci flow</h3>
+<p>A one-parameter family of Riemannian metrics g(t) on M evolves by the <strong>Ricci flow</strong> if</p>
+<p>\[\frac{\partial}{\partial t}\, g_{ij}(t) \;=\; -2\,\mathrm{Ric}_{g(t)}\]</p>
+<p><em>(Companion, Definition 1.1, attributed to R. Hamilton, J. Diff. Geom. </em><em>17</em><em> (1982)
+255–306. Brendle states the same equation from the podium.)</em></p>
+<p>His two-sentence reading, which is the one you want:</p>
+<blockquote>
+<p>"You can think of this in some abstract sense as a dynamical system on the space of all
+Riemannian metrics. But what this really is, is a <strong>nonlinear heat equation for Riemannian
+metrics.</strong> … Keep in mind that this is nonlinear, because the Ricci tensor is nonlinear in
+the metric, and that in turn is dictated by the invariance properties that we want the
+curvature to have — that we want it to transform nicely under coordinate changes."</p>
+</blockquote>
+<p>That last clause is not decoration. <strong>The nonlinearity is the price of coordinate
+invariance.</strong> You cannot have a curvature that transforms tensorially and is linear in g.</p>
+<h3>3.4 Short-time existence, and the one dichotomy that matters</h3>
+<blockquote>
+<p><strong>Theorem (Hamilton 1982; DeTurck 1983).</strong> Let g₀ be a Riemannian metric on a compact
+manifold M. Then there exists a unique solution g(t), t ∈ [0,T), to the Ricci flow with
+g(0) = g₀, for some T &gt; 0 depending on the initial data.</p>
+<p><em>(Companion, Theorem 1.2.)</em></p>
+<p><strong>Theorem (Hamilton 1982).</strong> Let g(t), t ∈ [0,T), be the unique maximal solution. <strong>If
+T &lt; ∞, then the curvature of g(t) is unbounded as t → T.</strong></p>
+<p><em>(Companion, Theorem 1.4. Brendle states this from the podium: "the solution either exists
+for all time, or it has to become singular at some finite time T, and in the latter case
+the curvature is unbounded as you approach the singular time.")</em></p>
+</blockquote>
+<p>This is precisely the alternative you know from semilinear heat equations: continue until
+the norm blows up. What is different is that "the norm" is the curvature of the unknown
+itself.</p>
+<h3>3.5 Why the heat equation is only weakly parabolic — and DeTurck's fix</h3>
+<p><strong>This subsection is companion-only. The talk does not mention it.</strong> I include it because if
+you take "nonlinear heat equation" seriously — and you should — you will immediately ask
+where the short-time existence theorem comes from, and the honest answer is that it is not
+routine.</p>
+<p>The companion, §1, states the difficulty:</p>
+<blockquote>
+<p>"The main difficulty in proving Theorem 1.2 is that the Ricci flow is <strong>weakly, but not
+strictly, parabolic</strong>. This is due to the fact that the Ricci flow is invariant under the
+diffeomorphism group of M."</p>
+</blockquote>
+<p>Read that as a gauge problem, because that is what it is. If g(t) solves the flow and φ is
+any fixed diffeomorphism, φ*g(t) solves it too. So the symbol of the operator has a kernel
+in the directions generated by the symmetry, and standard parabolic theory does not apply.</p>
+<p><strong>DeTurck's trick</strong> is to break the gauge. Fix a background family h(t) — the companion notes
+the choice does not matter and can be taken t-independent. Define ξ_t := Δ_{g̃(t),h(t)} id and
+run the <strong>Ricci–DeTurck flow</strong></p>
+<p>\[\frac{\partial}{\partial t}\,\tilde g(t) \;=\; -2\,\mathrm{Ric}_{\tilde g(t)} \;-\; \mathcal{L}_{\xi_t}\big(\tilde g(t)\big)\]</p>
+<p><em>(Companion, Definition 1.3.)</em> The extra Lie-derivative term is exactly a gauge-fixing term,
+and the companion then gives the payoff in one display:</p>
+<p>\[\frac{\partial}{\partial t}\, \tilde g_{ij} \;=\; \tilde g^{kl}\, \partial_k \partial_l\, \tilde g_{ij} \;+\; \text{lower order terms}\]</p>
+<p><strong>That is a strictly parabolic quasilinear system, and it is written in a form you can read
+on sight.</strong> The principal part is g̃^{kl}∂_k∂_l — a Laplacian in the metric's own coefficients,
+applied to the metric. So the slogan "Ricci flow is a heat equation for the metric" is
+literally true, but only after gauge fixing; before that it is degenerate.</p>
+<p>The dictionary back to your own background is exact:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>general relativity</th>
+<th>Ricci flow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Einstein's equations are diffeomorphism-invariant, hence not hyperbolic as written</td>
+<td>Ricci flow is diffeomorphism-invariant, hence not strictly parabolic as written</td>
+</tr>
+<tr>
+<td>choose harmonic / de Donder gauge</td>
+<td>run harmonic map heat flow, i.e. DeTurck's trick</td>
+</tr>
+<tr>
+<td>reduced Einstein equations are honestly hyperbolic</td>
+<td>Ricci–DeTurck flow is honestly parabolic</td>
+</tr>
+<tr>
+<td>solutions correspond after applying the gauge diffeomorphism</td>
+<td>solutions correspond via φ_t with ∂ₜφ_t = ξ_t∘φ_t</td>
+</tr>
+</tbody>
+</table></div>
+<p>The companion spells out both directions of that last row: given a Ricci–DeTurck solution
+you integrate the vector field ξ_t to get diffeomorphisms φ_t and set g(t) = φ_t<em>(g̃(t));
+given a Ricci flow solution you solve the harmonic map heat flow ∂ₜφ_t = Δ_{g(t),h(t)}φ_t
+from φ₀ = id and set φ_t</em>(g̃(t)) = g(t).</p>
+<p><strong>Keep the gauge idea. It reappears in §4 as the definition of a soliton and again in §6 as
+the reason the linearised flow is a Lichnerowicz equation.</strong></p>
+<h3>3.6 Solitons: fixed points modulo coordinate change</h3>
+<p>A genuine fixed point of Ricci flow is a metric with Ric ≡ 0 — then ∂ₜg = 0. Brendle points
+out that this is the wrong notion:</p>
+<blockquote>
+<p>"It turns out you should take the point of view that metrics are equivalent if they differ
+by a coordinate change. And in that sense the cigar soliton is a fixed point of Ricci flow,
+because as you evolve it, the metric changes, but it only changes by a coordinate change.
+And so geometrically it's the same."</p>
+</blockquote>
+<p>A solution that "moves by diffeomorphisms" — g(t) is a reparameterisation of g(0) for every
+t — is called a <strong>soliton</strong>. In gradient form the companion gives the algebraic
+characterisation:</p>
+<blockquote>
+<p><strong>Definition (companion, Definition 1.5).</strong> (M, g, f) is a <strong>steady</strong> gradient Ricci
+soliton if Ric = D²f. It is <strong>shrinking</strong> if Ric = D²f + μg with μ &gt; 0, and <strong>expanding</strong>
+if Ric = D²f + μg with μ &lt; 0.</p>
+</blockquote>
+<p>D²f is the Hessian of the scalar function f. Read it against §3.2's analogy: Ric is the
+Laplacian of the metric, and a soliton says the Laplacian of the metric equals the Hessian
+of a potential, up to a constant multiple of g. The vector field ∇f is the gauge direction
+along which the metric slides.</p>
+<p>Note the direct payoff for §2.1: a soliton is a self-similar solution, and self-similar
+solutions are exactly the classification targets in blow-up analysis. Solitons are also
+automatically ancient, and Brendle makes the point explicitly — since they only move by
+reparameterisation, they can be extended infinitely far back in time.</p>
+<h3>3.7 What "the limit exists" means: Cheeger–Gromov convergence</h3>
+<p>You cannot compare metrics on different manifolds, and blow-up limits will in general not
+live on the manifold you started with. The companion works throughout "in the
+Cheeger–Gromov sense." Unpacked:</p>
+<blockquote>
+<p>A pointed sequence (M_j, g_j, p_j) converges in the Cheeger–Gromov sense to (M_∞, g_∞, p_∞)
+if for every compact K ⊂ M_∞ containing p_∞, for all j large there are embeddings
+ψ_j : K → M_j with ψ_j(p_∞) = p_j such that ψ_j*(g_j) → g_∞ in C^∞ on K.</p>
+</blockquote>
+<p>So: you do not compare the manifolds; you compare <em>pullbacks onto a fixed limit chart</em>, on
+larger and larger pieces, and only up to diffeomorphism. Brendle observes from the podium
+that the limits typically come out <strong>noncompact even when the original flow was compact</strong> —
+which is exactly what you expect if you have zoomed in by an unbounded factor.</p>
+<p><em>(The definition above is standard and is my unpacking of the phrase the companion uses; the
+companion states results "in the Cheeger–Gromov sense" without restating the definition.)</em></p>
+<h3>3.8 κ-noncollapsing: the scale-invariant non-degeneracy condition</h3>
+<p>This is the one genuinely new idea in the bridge, and it is the one that makes the
+classification finite. Perelman's definition, quoted exactly:</p>
+<blockquote>
+<p><strong>Definition (Perelman 2002; companion, Definition 2.2).</strong> An ancient solution to the
+Ricci flow in dimension n is <strong>κ-noncollapsed</strong> if</p>
+<p>\[\mathrm{vol}_{g(t)}\big(B_{g(t)}(p,r)\big) \;\ge\; \kappa\, r^n \qquad \text{whenever} \qquad \sup_{x \in B_{g(t)}(p,r)} R(x,t) \;\le\; r^{-2}.\]</p>
+</blockquote>
+<p>Brendle's own informal gloss, from the podium:</p>
+<blockquote>
+<p>"In a very informal way, non-collapsing tells us that <strong>curvature controls volume.</strong> If you
+have a ball of radius r such that in this ball the curvature is at most 1/r², then the
+volume is at least κ·rⁿ. And informally that says that the manifold looks n-dimensional in
+a kind of global sense, and it doesn't collapse to something lower-dimensional."</p>
+</blockquote>
+<p><strong>Read the two sides as a scale-invariant pair, because that is the design.</strong> Under
+g ↦ λ²g, curvature scales like λ⁻² and volume of an r-ball like λⁿ·(r-ball at the old
+scale). Both "R ≤ r⁻²" and "vol ≥ κrⁿ" are therefore unchanged by rescaling. That is not
+decoration: the condition has to be scale-invariant, or it would not survive the blow-up
+limit, and surviving the blow-up limit is its entire job.</p>
+<p><em>(One definitional delta worth having: the companion's Definition 2.2 uses </em><em>scalar
+curvature R</em><em>; from the podium Brendle says "the maximum curvature." For nonnegatively
+curved metrics — which is where it gets used, see §4.6 — the two are equivalent up to a
+dimensional constant, so this is a compression rather than an error. I flag it in §10.)</em></p>
+<hr />
+<h2>4. The talk, rebuilt</h2>
+<p>From here I follow Brendle's order.</p>
+<h3>4.1 The simplest solutions, and what they look like</h3>
+<p><strong>The shrinking sphere.</strong> Start from a round sphere. It has positive curvature, so it
+contracts. Brendle: "it just shrinks homothetically and it collapses to a point in finite
+time." Explicitly, on S² with the standard metric g_{S²}:</p>
+<p>\[g(t) \;=\; (-2t)\, g_{S^2}, \qquad t \in (-\infty, 0)\]</p>
+<p>and on S³ with the standard metric g_{S³}:</p>
+<p>\[g(t) \;=\; (-4t)\, g_{S^3}, \qquad t \in (-\infty, 0)\]</p>
+<p><em>(Companion, Examples 2.6 and 2.9. Both are κ-noncollapsed.)</em> You verify these in §6.1. Note
+that they are already written as <strong>ancient</strong> solutions: they exist for all t &lt; 0 and go
+extinct at t = 0.</p>
+<p>Brendle adds a caveat that is exactly the kind of thing you want to notice: "this picture is
+valid in dimension greater or equal to two. A one-dimensional sphere doesn't have curvature
+and therefore it doesn't shrink." A circle is flat. Keep that fact; it decides the cigar's
+fate in §4.6.</p>
+<p><strong>The shrinking cylinder.</strong> On S² × ℝ,</p>
+<p>\[g(t) \;=\; (-2t)\, g_{S^2} \;+\; dz \otimes dz, \qquad t \in (-\infty, 0)\]</p>
+<p><em>(Companion, Example 2.10; κ-noncollapsed.)</em> Brendle's intuition, which is the right one:
+"think of this cylinder as being made up of spheres. Then these spheres shrink to points,
+and in the axial direction there's no curvature, and therefore nothing happens." The
+cylinder collapses to a <strong>line</strong>.</p>
+<h3>4.2 Two solitons: the cigar and the Bryant soliton</h3>
+<p><strong>The cigar (dimension 2, Hamilton).</strong> Completely explicit, a conformal factor times the
+Euclidean metric on ℝ²:</p>
+<p>\[g_{ij}(t) \;=\; \frac{4}{e^{t} + |x|^{2}}\; \delta_{ij}, \qquad t \in (-\infty,\infty)\]</p>
+<p><em>(Companion, Example 2.7.)</em> It is rotationally symmetric, has positive curvature, moves by
+diffeomorphisms, and — Brendle's picture — <strong>opens up like a cylinder</strong>: foliate it by
+circles, and as you go to infinity the radius of the cross-sectional circles approaches a
+constant.</p>
+<p><strong>The Bryant soliton (dimension 3, Robert Bryant).</strong> The higher-dimensional analogue. It
+also moves by diffeomorphisms and is rotationally symmetric, but Brendle stresses that you
+<strong>cannot write it down in closed form</strong>, and that its asymptotics are different, "because S²
+has curvature while S¹ has not." Instead of opening like a cylinder, it <strong>opens up like a
+paraboloid</strong>: at distance s from the tip, the cross-sectional radius grows like √s rather
+than approaching a constant.</p>
+<p><em>(Companion, Example 2.11, citing R.L. Bryant, "Ricci flow solitons in dimension three with
+SO(3)-symmetries." The √s growth rate is Brendle's own statement from the podium: "the
+cross-sectional radius doesn't approach a constant, but instead it grows at a rate
+proportional to square root of s approximately." The companion says only "opens up like a
+paraboloid," which is the same fact.)</em></p>
+<p>That one difference — constant radius versus √s — decides everything in §4.6. It is the
+single most consequential number in the talk, and you compute its consequence yourself in
+§6.2.</p>
+<h3>4.3 The first two theorems: when the flow does smooth everything out</h3>
+<p><strong>Dimension 3, positive Ricci curvature.</strong></p>
+<blockquote>
+<p><strong>Theorem (Hamilton 1982).</strong> Let g₀ be a metric on a compact three-manifold M with
+<strong>positive Ricci curvature</strong>. Then the maximal solution has T &lt; ∞, and as t → T the
+rescaled metrics</p>
+<p>\[\frac{1}{4(T-t)}\, g(t)\]</p>
+<p>converge in C^∞ to a metric of <strong>constant sectional curvature 1</strong>.</p>
+<p><em>(Companion, Theorem 1.7. Brendle states the qualitative version from the podium: "the
+manifold collapses to a point and it becomes round after rescaling.")</em></p>
+</blockquote>
+<p>Brendle then draws the topological consequence, and this is the template for everything
+that follows: M admits a constant-curvature metric, hence M is diffeomorphic to a quotient
+of S³ by standard isometries. He is careful about which half is hard: "this latter part is
+easy to prove, because we completely understand constant-curvature metrics." <strong>The analysis
+is the hard part; the topology is a corollary.</strong></p>
+<p><em>The mechanism, restored from the companion (Brendle does not give it in the talk).</em> Let
+λ₁ ≤ λ₂ ≤ λ₃ be the eigenvalues of the tensor R g_ij − 2 Ric_ij. Then the scalar curvature
+is λ₁+λ₂+λ₃, the Ricci eigenvalues are ½(λ₂+λ₃), ½(λ₃+λ₁), ½(λ₁+λ₂), and <strong>Ric &gt; 0 ⟺
+λ₁ + λ₂ &gt; 0</strong>. Hamilton proved the differential inequalities</p>
+<p>\[\frac{\partial}{\partial t}\lambda_1 \;\ge\; \Delta \lambda_1 + \lambda_1^2 + \lambda_2\lambda_3, \qquad\qquad \frac{\partial}{\partial t}\lambda_3 \;\le\; \Delta \lambda_3 + \lambda_3^2 + \lambda_1\lambda_2\]</p>
+<p>(both in the barrier sense) and deduced from the maximum principle a <strong>pinching estimate</strong>
+λ₃ − λ₁ ≤ C(λ₁+λ₂)^{1−δ} for constants δ &gt; 0 small and C large depending on the initial
+data. <em>(Companion, §1, equations (3)–(4).)</em> That is a pure maximum-principle argument on a
+reaction–diffusion system, and you can read every line of it with the background you have.
+This is the moment to notice that the technique underneath all of geometric analysis here
+is the parabolic maximum principle.</p>
+<p><strong>Dimension 2, any initial metric.</strong></p>
+<blockquote>
+<p><strong>Theorem (Hamilton 1988; Chow 1991).</strong> Let g₀ be any metric on S². Then T &lt; ∞, and as
+t → T the rescaled metrics</p>
+<p>\[\frac{1}{2(T-t)}\, g(t)\]</p>
+<p>converge in C^∞ to a metric of <strong>constant Gauss curvature 1</strong>.</p>
+<p><em>(Companion, Theorem 1.6. Hamilton proved it assuming positive scalar curvature; Chow
+removed the assumption.)</em></p>
+</blockquote>
+<p>Brendle adds two things from the podium that the companion's theorem statement does not
+carry. First, <strong>in dimension two the Ricci flow preserves the conformal structure</strong> — "lengths
+will change, areas of regions will change, but angles will not change in dimension two. But
+this is not true in higher dimensions." Second, the consequence: this gives an <strong>alternative
+proof of the classical uniformization theorem</strong>.</p>
+<p>Notice the historical inversion Brendle flags: the two-dimensional case "historically was
+understood quite a bit after the 3D case." Lower dimension, later proof.</p>
+<p><em>(A bonus from the companion, because it is a lovely object and it is exactly your kind of
+mathematics. Hamilton's proof runs on a monotone entropy: for a metric on S² with positive
+scalar curvature and area A,</em></p>
+<p>\[E(g) \;=\; \int_{S^2} R \,\log\!\Big(\frac{AR}{8\pi}\Big)\, d\mu\]</p>
+<p><em>is scale-invariant, is nonnegative by Gauss–Bonnet (∫R dμ = 8π) plus Jensen's inequality,
+is strictly positive unless R is constant, and is </em><em>monotone decreasing under the flow</em><em>.
+Companion, equation (2). A Lyapunov functional whose zero set is exactly the target.)</em></p>
+<h3>4.4 Where it stops working: the neck pinch</h3>
+<p>Now take a <strong>generic</strong> metric on a compact 3-manifold. No positivity assumption. Brendle:
+"then Ricci flow can develop more complicated singularities. So you can no longer expect
+singularities to be modelled on round spheres."</p>
+<p><strong>The neck pinch.</strong> Take two three-spheres and join them by a thin neck. The neck looks like
+S² × interval. On the neck, the cross-sectional two-spheres are small, so their curvature is
+large. Brendle's account of the mechanism:</p>
+<blockquote>
+<p>"Because there's a lot of curvature on this neck, the neck will pinch off, and it will
+pinch off in a short time — before these big three-spheres have a chance to shrink much."</p>
+</blockquote>
+<p>So the manifold does <em>not</em> shrink to a point. The two large spheres shrink a little; the
+neck pinches; the curvature there goes to infinity; the solution ceases to exist. <strong>The
+singularity is local, and it is modelled on a family of shrinking cylinders.</strong></p>
+<p><strong>The degenerate neck pinch.</strong> Brendle names a second type and declines to give details:</p>
+<blockquote>
+<p>"The degenerate neck pinch is modelled on the Bryant soliton, in the same way that the
+ordinary neck pinch is modelled on shrinking cylinders."</p>
+</blockquote>
+<p><em>[Gap: no details on the degenerate neck pinch. </em><em>Impact: low.</em><em> He explicitly says he is
+skipping them, and the classification theorem in §5 tells you everything you need about the
+model — it is the Bryant soliton, and that is one of the three items on the final list.]</em></p>
+<h3>4.5 Parabolic rescaling and the birth of an ancient solution</h3>
+<p>Here is the construction that the whole talk turns on. I give it in Brendle's own steps.</p>
+<p><strong>The scaling symmetry.</strong> If g(t) solves Ricci flow, then so does</p>
+<p>\[\hat g(t) \;:=\; \lambda^{2}\, g(\lambda^{-2}\,t)\]</p>
+<p>for any λ &gt; 0. Distances are stretched by λ, times by λ². Taking λ large <strong>zooms in</strong>. You
+verify this in §6.1; it is three lines and it turns on Ric being scale-invariant as a
+(0,2)-tensor.</p>
+<p><strong>The blow-up.</strong> Suppose the flow becomes singular at finite time T. Then the curvature is
+unbounded, so choose:</p>
+<ul>
+<li>times t_j ↗ T, and points p_j, with curvature at (p_j, t_j) tending to infinity;</li>
+<li>for each j, the rescaling factor that makes the curvature at that base point exactly <strong>1</strong>.</li>
+</ul>
+<p>Concretely, set r_j⁻² := R(p_j, t_j) and consider g^{(j)}(t) := r_j⁻² g(r_j² t). <em>(Companion,
+proof of Corollary 4.4.)</em></p>
+<p><strong>Why the limit is ancient.</strong> This is Brendle's punchline and it is worth reading twice:</p>
+<blockquote>
+<p>"The important point is that in doing so we have increased distances in space by a massive
+amount, and because we have to scale time together with the rescaling in space, that means
+we also have to dilate time by a huge factor. And so then this previous flow, which had a
+back history going back by time t_j — so some finite number, but not a small number —
+after rescaling this flow has a <strong>huge back history</strong>. And so now if you take the limit,
+assuming that the limit exists, then in the limit you expect to get what is called an
+<strong>ancient solution</strong>."</p>
+</blockquote>
+<p>That is the mechanism in one paragraph. A finite backward history, divided by a factor
+going to zero, becomes an infinite one.</p>
+<blockquote>
+<p><strong>Definition (Hamilton, early 1990s; companion, Definition 2.1).</strong> An <strong>ancient solution</strong>
+to the Ricci flow is a solution defined on the time interval (−∞, T] for some T.</p>
+</blockquote>
+<p>Brendle credits Hamilton with recognising the importance of these: "he was the first to
+recognize the importance of ancient solutions, and he simply defined a solution to the Ricci
+flow to be ancient if it has a back history extending infinitely far back in time. So we
+don't really care so much here about the future; we care that it comes from infinitely far
+back in time."</p>
+<h3>4.6 Perelman's non-collapsing estimate, and the table it produces</h3>
+<p>Definition 3.8 was just a definition. Here is why it is the right one.</p>
+<blockquote>
+<p><strong>Theorem (Perelman 2002; companion, Theorem 2.3).</strong> Let M be compact of dimension n and
+let g(t), t ∈ [0,T), be a solution with T &lt; ∞. Take times t_j → T, a bounded sequence of
+radii r_j, and points p_j with</p>
+<p>\[r_j^2 \sup_{x \in B_{g(t_j)}(p_j, r_j)} R(x, t_j) \;&lt;\; \infty.\]</p>
+<p>Then</p>
+<p>\[\liminf_{j\to\infty}\; r_j^{-n}\,\mathrm{vol}_{g(t_j)}\big(B_{g(t_j)}(p_j,r_j)\big) \;&gt;\; 0.\]</p>
+<p>Consequently <strong>every blow-up limit at a finite-time singularity is κ-noncollapsed.</strong></p>
+</blockquote>
+<p>The companion notes that this "is a consequence of Perelman's monotonicity formula for the
+𝒲-functional." Brendle states the conclusion from the podium and calls it universal: "this
+is a universal property of any finite-time singularity, that it has to be κ-non-collapsed."</p>
+<p><strong>Now the table.</strong> Brendle walks through every example and asks whether it is collapsed. This
+is the most useful five minutes of the talk, because it shows the condition doing work.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>solution</th>
+<th>dimension</th>
+<th>collapsed?</th>
+<th>can it be a singularity model?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shrinking spheres</td>
+<td>n ≥ 2</td>
+<td><strong>non-collapsed</strong></td>
+<td>yes — and it does occur</td>
+</tr>
+<tr>
+<td>"shrinking" cylinders S¹ × ℝ</td>
+<td>2</td>
+<td><strong>collapsed</strong></td>
+<td><strong>no</strong></td>
+</tr>
+<tr>
+<td>shrinking cylinders S^{n−1} × ℝ</td>
+<td>n ≥ 3</td>
+<td><strong>non-collapsed</strong></td>
+<td>yes — the neck pinch</td>
+</tr>
+<tr>
+<td>cigar soliton</td>
+<td>2</td>
+<td><strong>collapsed</strong></td>
+<td><strong>no</strong> — Perelman's theorem rules it out</td>
+</tr>
+<tr>
+<td>Bryant soliton</td>
+<td>3</td>
+<td><strong>non-collapsed</strong></td>
+<td>yes — the degenerate neck pinch</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two entries deserve comment.</p>
+<p><strong>The cigar.</strong> Brendle's reason: it "is asymptotic to a cylinder, to a 2D cylinder." Since the
+2D cylinder is collapsed, so is the cigar, and Perelman's theorem eliminates it. This
+matters historically — before Perelman, the cigar was the standing worry in dimension two,
+and the non-collapsing estimate is what killed it.</p>
+<p><strong>The 2D cylinder, and a wrinkle in the phrasing.</strong> Brendle says "the shrinking cylinders in
+2D, they happen to be collapsed." Taken literally the phrase is a compression: S¹ × ℝ is
+<strong>flat</strong> — the circle has no curvature, as he himself said in §4.1 — so it does not shrink at
+all, and it is excluded from Definition 2.5 below by the non-flatness requirement anyway.
+What is true, and is the content, is that it is collapsed: a ball of radius r in a cylinder
+of fixed circumference has area growing <strong>linearly</strong> in r, not quadratically, so no κ works.
+You compute this in §6.2. <em>(Flagged in §10 as podium shorthand, not a caption error.)</em></p>
+<p><strong>Why Bryant survives and the cigar does not</strong> is the √s versus constant asymptotics of §4.2,
+and it is Brendle's own explanation: "the S² has curvature whereas S¹ does not." §6.2 turns
+that sentence into arithmetic.</p>
+<h3>4.7 The Hamilton–Ivey estimate, and the assembled picture</h3>
+<p>One more ingredient, and it is the only genuinely three-dimensional one.</p>
+<blockquote>
+<p><strong>Theorem (Hamilton 1995; Ivey 1993; companion, Theorem 2.4).</strong> Let g(t) be a solution on a
+compact three-manifold, and let λ₁ be the smallest eigenvalue of R g_ij − 2 Ric_ij. Then
+λ₁ satisfies a pointwise inequality λ₁ ≥ −f(R), where f satisfies lim_{s→∞} f(s)/s = 0.</p>
+<p>Consequently <strong>every blow-up limit of the Ricci flow in dimension 3 has nonnegative
+sectional curvature.</strong></p>
+</blockquote>
+<p>Read the shape of it: any negative curvature present is <em>sublinear</em> in the scalar curvature.
+So when you blow up — driving R to infinity and dividing everything by it — the negative
+part washes out. That is a beautiful and very PDE-flavoured argument: the estimate is proved
+by the maximum principle, and its meaning is entirely about which term wins under rescaling.</p>
+<p>Brendle assembles the three facts from the podium:</p>
+<blockquote>
+<p>The big picture about singularity formation in 3D:
+<strong>(a)</strong> singularities are modelled on ancient solutions;
+<strong>(b)</strong> singularity models have to be κ-noncollapsed, by Perelman's estimate;
+<strong>(c)</strong> singularity models in 3D have no negative curvature, by the Hamilton–Ivey pinching
+estimate.</p>
+<p>"The only part of this picture that's specific to three dimensions is the Hamilton–Ivey
+pinching estimate."</p>
+</blockquote>
+<p>Which is exactly the definition you now want:</p>
+<blockquote>
+<p><strong>Definition (companion, Definition 2.5).</strong> An <strong>ancient κ-solution</strong> to the Ricci flow in
+dimension n ∈ {2,3} is a <strong>complete, non-flat, κ-noncollapsed ancient solution with bounded
+and nonnegative curvature</strong>.</p>
+</blockquote>
+<p>Every hypothesis in that definition is earned by one of (a), (b), (c). Nothing is assumed
+for convenience.</p>
+<h3>4.8 Perelman's canonical neighbourhood theorem</h3>
+<p>Brendle notes that making the blow-up rigorous "is quite challenging from a technical point
+of view," and that Perelman succeeded. The statement, in his own quantifiers:</p>
+<blockquote>
+<p><strong>Theorem (Perelman 2002).</strong> Let (M, g(t)) be a solution to the Ricci flow on a compact
+three-manifold which forms a singularity in finite time. Then near each point where the
+curvature is large, one can approximate the solution <strong>to any desired degree of accuracy</strong>
+by an ancient κ-solution. Precisely: given ε &gt; 0 there is a constant C(ε) such that the
+approximation property holds at every point where the curvature exceeds C(ε).</p>
+<p><em>(Podium statement. The companion, §2, states it as: "if a solution to the Ricci flow in
+dimension 3 forms a singularity in finite time, then the high curvature regions can be
+approximated by ancient κ-solutions," citing Perelman, "The entropy formula for the Ricci
+flow and its geometric applications," arXiv:math/0211159, §12. I have not seen §12 itself
+and have not reproduced its exact hypotheses.)</em></p>
+</blockquote>
+<p>This is the reduction. <strong>The problem is now entirely about ancient κ-solutions in dimension
+3.</strong> Everything after this point is a classification problem.</p>
+<h3>4.9 The two supporting estimates Brendle names and skips</h3>
+<p>He lists four ingredients underlying Perelman's proof, and says two of them he had no time
+for. I restore them from the companion, flagged, because they are the reason the limits
+exist at all.</p>
+<ol>
+<li><strong>The Hamilton–Ivey pinching estimate</strong> — §4.7 above.</li>
+<li><strong>Hamilton's matrix Harnack inequality.</strong> <em>[Gap: named from the podium, never stated.
+   </em><em>Impact: low</em><em> — Brendle says outright "unfortunately I didn't have time to talk about"
+   it, and nothing later in the talk uses it. Reference: R. Hamilton, "The formation of
+   singularities in the Ricci flow," Surveys in Differential Geometry II (1995) 7–136.]</em></li>
+<li><strong>Perelman's non-collapsing estimate</strong> — §4.6 above.</li>
+<li><strong>Perelman's long-range curvature estimate.</strong> Brendle: "informally, this is what lets you
+   take limits." The companion gives it:</li>
+</ol>
+<blockquote>
+<p><strong>Theorem (Perelman; companion, Theorem 4.2).</strong> Let (M, g(t)), t ∈ (−∞,0], be an ancient
+κ-solution in dimension 3. Then there is a function ω : [0,∞) → [0,∞), depending on κ,
+with</p>
+<p>\[R(y,t) \;\le\; R(x,t)\,\omega\big(R(x,t)\, d_{g(t)}(x,y)^2\big)\]</p>
+<p>for all x, y ∈ M and all t ≤ 0.</p>
+</blockquote>
+<p>Stare at the argument of ω: R(x,t)·d(x,y)² is the <strong>scale-invariant</strong> distance from x to y,
+measured in units set by the curvature at x. So the estimate says the curvature anywhere is
+controlled by the curvature at your base point, times a universal function of how far away
+you are in curvature units. That is precisely what you need to prevent a blow-up sequence
+from losing control at large distances — and it is what gives compactness:</p>
+<blockquote>
+<p><strong>Theorem (Perelman; companion, Theorem 4.3).</strong> Let (M^{(j)}, g^{(j)}(t)), t ∈ (−∞,0], be a
+sequence of ancient κ-solutions in dimension 3 with points p_j satisfying R(p_j, 0) = 1.
+Then after passing to a subsequence, the flows converge in the Cheeger–Gromov sense to a
+limit which is again an ancient κ-solution.</p>
+</blockquote>
+<p><strong>The space of ancient κ-solutions is compact.</strong> That is the technical heart, and everything
+in §5 is an argument on a compact space.</p>
+<p>There is also a pointwise derivative estimate that makes the C^∞ convergence go through:</p>
+<blockquote>
+<p><strong>Theorem (Perelman; companion, Theorem 4.1).</strong> For an ancient κ-solution in dimension 3
+and each m ≥ 1, |D^m Rm| ≤ C R^{(m+2)/2}, with C depending only on m and κ.</p>
+</blockquote>
+<p>Again scale-invariant: both sides scale like λ^{−(m+2)} under g ↦ λ²g. That is the pattern
+of the entire subject — every usable estimate is scale-invariant, because the estimates have
+to survive the blow-up.</p>
+<h3>4.10 Perelman's structure theorem: necks and caps</h3>
+<p>Now the qualitative picture of a noncompact ancient κ-solution. First, the object you need:</p>
+<blockquote>
+<p><strong>Definition (ε-neck; companion, Definition 4.5; introduced by Hamilton).</strong> Let (x̄, t̄) be a
+point in space-time with R(x̄, t̄) = r⁻². Then (x̄, t̄) <strong>lies at the centre of an evolving
+ε-neck</strong> if, after rescaling by the factor r⁻¹, the parabolic neighbourhood</p>
+<p>\[B_{g(\bar t)}(\bar x,\, \varepsilon^{-1} r) \;\times\; [\,\bar t - \varepsilon^{-1}r^2,\; \bar t\,]\]</p>
+<p>is ε-close in C^{[ε⁻¹]} to a family of shrinking cylinders.</p>
+</blockquote>
+<p>Brendle's plain reading of it: "think of a very long cylinder, and then we're allowed to
+perturb that slightly. So it can be ε-close to an actual cylinder, and then we can scale it
+to make it bigger or smaller." A ball of radius ε⁻¹r rescales to an interval of length 2/ε,
+which is exactly the length the talk quotes.</p>
+<p>Notice the two roles of the single parameter ε: it is simultaneously how <em>close</em> to a
+cylinder (the ε in ε-close), how <em>long</em> the cylinder is (2/ε), how <em>many derivatives</em> you
+control (C^{[1/ε]}), and how far <em>back in time</em> you go (ε⁻¹r²). Making ε smaller makes every
+demand stricter at once.</p>
+<blockquote>
+<p><strong>Structure theorem (Perelman; companion, Corollary 4.6).</strong> Let (M, g(t)), t ∈ (−∞,0], be a
+noncompact ancient κ-solution in dimension 3 with positive sectional curvature. Fix ε &gt; 0
+and let M_ε be the set of points x with (x,0) <strong>not</strong> at the centre of an evolving ε-neck.
+Then M_ε has <strong>finite diameter</strong>, and</p>
+<p>\[\sup_{M_\varepsilon} R \;\le\; C(\kappa,\varepsilon)\, \inf_{M_\varepsilon} R, \qquad\qquad \sup_{M_\varepsilon} R \;\le\; C(\kappa,\varepsilon)\, \mathrm{diam}_{g(0)}(M_\varepsilon)^{-2}.\]</p>
+</blockquote>
+<p>Brendle's podium version says the same thing in pictures: the solution "has to look like a
+half-infinite <strong>tube</strong> with a <strong>cap</strong> attached on one side; in the tube part every point lies
+on an ε-neck; and in the cap part the curvature is positive, the cap has controlled geometry
+— there is one length scale r, the maximum curvature is between a small constant times 1/r²
+and a big constant times 1/r², and the diameter is at most a constant times r."</p>
+<p>Those are the same statement: put r = diam(M_ε) and the companion's two inequalities say the
+curvature on the cap is comparable to r⁻² from both sides.</p>
+<p><em>(Two deltas between talk and paper. First, the companion assumes </em><em>positive sectional
+curvature</em><em> where the talk instead excludes "a family of shrinking cylinders or a quotient of
+that." These are compatible: a noncompact ancient κ-solution has nonnegative curvature by
+Hamilton–Ivey, and if the curvature is not strictly positive the flow splits off a line and
+you are in the cylinder case. Second, Brendle adds a remark the paper does not: the constants
+degrade as ε shrinks — "the more picky you are about ε, the bigger the region you have to
+exclude, and the worse these estimates are going to be.")</em></p>
+<p>The companion also supplies the fact that drives the proof, and it is worth having because
+it is what "asymptotically cylindrical" means precisely:</p>
+<blockquote>
+<p><strong>Corollary (Perelman; companion, Corollary 4.4).</strong> For a noncompact ancient κ-solution in
+dimension 3 with positive sectional curvature, take points p_j with d(p₀, p_j) → ∞ and set
+r_j⁻² := R(p_j, 0). Rescale around (p_j, 0) by r_j⁻¹. Then a subsequence converges in the
+Cheeger–Gromov sense to <strong>a family of shrinking cylinders</strong>.</p>
+</blockquote>
+<p>So: far out, every such solution looks like a cylinder. That is what makes "tube plus cap"
+the right picture.</p>
+<h3>4.11 Surgery, and the Poincaré conjecture</h3>
+<p>Brendle covers this quickly, because it is not the news.</p>
+<p>Perelman showed that a singularity can be continued past the singular time by a <strong>surgery
+procedure</strong> — "that was envisioned by Hamilton and then successfully carried out by
+Perelman." You flow to the first singularity, cut and paste, obtain new initial data, flow
+again, and repeat. The process terminates: the flow becomes <strong>extinct</strong> in finite time, and
+for any potential counterexample to the Poincaré conjecture it must do so, which is how the
+topology is reconstructed.</p>
+<p>His summary line about the whole enterprise is worth keeping:</p>
+<blockquote>
+<p>"Perelman's monumental proof built on many brilliant ideas developed by Hamilton and
+Perelman over the course of several decades."</p>
+</blockquote>
+<p>And the sentence that sets up the rest of the lecture:</p>
+<blockquote>
+<p>"The bottom line is that to prove the Poincaré conjecture, this <strong>qualitative</strong> picture is
+enough."</p>
+</blockquote>
+<p><strong>Cross-reference.</strong> The Poincaré conjecture is settled in dimension 3 by exactly this
+machinery. In dimension 4 it is open — the smooth four-dimensional Poincaré conjecture is one
+of the central problems of Ciprian Manolescu's plenary at this same congress. See
+<code>summaries/knots-four-manifolds-manolescu.md</code>, especially its §1 and its discussion of
+S⁴. Two plenaries at one congress on the same conjecture in adjacent dimensions, and the
+methods have nothing in common.</p>
+<hr />
+<h2>5. The one argument</h2>
+<p>The talk's own news is the following theorem and its compact counterpart. Brendle introduces
+it as "today we know a lot more … and in particular we can give a complete classification."</p>
+<h3>5.1 The theorem</h3>
+<blockquote>
+<p><strong>Theorem (Brendle, 2018/2020).</strong> Assume (M, g(t)) is a <strong>noncompact ancient κ-solution of
+dimension 3</strong>. Then either (M, g(t)) is isometric to a family of <strong>shrinking cylinders</strong>
+(or a quotient thereof), or (M, g(t)) is isometric to the <strong>Bryant soliton</strong>, up to scaling.</p>
+<p><em>(Companion, Theorem 5.2. Primary source: S. Brendle, "Ancient solutions to the Ricci flow
+in dimension 3," Acta Math. </em><em>225</em><em> (2020) 1–102; arXiv:1811.02559, posted November 2018,
+which is the "2018" Brendle quotes from the podium. The companion notes: "Theorem 5.2
+confirms a conjecture of Perelman.")</em></p>
+</blockquote>
+<p>Brendle underlines what makes it a real theorem rather than a catalogue: "there are very few
+examples of ancient κ-solutions that were known before, and the theorem says these are the
+only ones."</p>
+<p>And the compact case:</p>
+<blockquote>
+<p><strong>Theorem (Brendle, Daskalopoulos, Šešum, 2020/2021).</strong> Assume (M, g(t)) is a <strong>compact
+ancient κ-solution of dimension 3</strong>. Then, up to parabolic rescaling, translation in time,
+and diffeomorphisms, (M, g(t)) is either a family of <strong>shrinking spheres</strong> or <strong>Perelman's
+ancient solution</strong>, or a quotient of these.</p>
+<p><em>(Companion, Theorem 5.3. Primary source: S. Brendle, P. Daskalopoulos, N. Šešum,
+"Uniqueness of compact ancient solutions to three-dimensional Ricci flow," Invent. Math.
+</em><em>226</em><em> (2021) 579–651.)</em></p>
+</blockquote>
+<p><strong>Perelman's ancient solution</strong> is the extra object in the compact case, and Brendle describes
+it carefully because there is no formula for it. It is a rotationally symmetric ancient
+solution on S³, defined for t ∈ (−∞, 0], not self-similar. As t → −∞ it "approximately looks
+like two Bryant solitons stuck together"; as t → 0 it looks like a family of shrinking
+spheres. So it <strong>interpolates</strong> between a long nearly-cylindrical piece capped at both ends by
+Bryant-like caps, and a round shrinking sphere. <em>(Companion, Example 2.12; the precise
+asymptotics are Angenent–Brendle–Daskalopoulos–Šešum, Comm. Pure Appl. Math. </em><em>75</em><em> (2022)
+1032–1073.)</em></p>
+<h3>5.2 The corollary — the three models</h3>
+<p>Combine Perelman's canonical neighbourhood theorem (§4.8) with Theorem 5.1, and you get the
+statement the lecture exists to deliver:</p>
+<blockquote>
+<p><strong>Corollary.</strong> Let (M, g(t)) be a solution on a compact three-manifold which forms a
+finite-time singularity. Then near each point where the curvature is large, the solution
+can be approximated <strong>to any desired degree of accuracy</strong> by one of exactly three models:</p>
+<ol>
+<li>a <strong>round sphere</strong>, or a quotient;</li>
+<li>a <strong>cylinder</strong>, or a quotient;</li>
+<li>the <strong>Bryant soliton</strong>.</li>
+</ol>
+<p>All three do occur, and nothing else can.</p>
+</blockquote>
+<p>Brendle's own emphasis: "all of these models do in fact occur — and even in the rotationally
+symmetric setting you can get these models — and in the general case you cannot get anything
+else."</p>
+<h3>5.3 The proof, in three steps — and the structure of the proof is the interesting part</h3>
+<p>Brendle breaks the classification into three steps and then says something about how they
+fit that is more instructive than the theorem.</p>
+<p><strong>Step 1 — classify the self-similar solutions that are κ-noncollapsed.</strong></p>
+<blockquote>
+<p><strong>Theorem (Brendle 2012/2013).</strong> Let (M, g) be a three-dimensional complete steady gradient
+Ricci soliton which is non-flat and κ-noncollapsed. Then (M, g) is rotationally symmetric,
+and therefore isometric to the <strong>Bryant soliton</strong> up to scaling.</p>
+<p><em>(Companion, Theorem 5.1. Primary source: S. Brendle, "Rotational symmetry of self-similar
+solutions to the Ricci flow," Invent. Math. </em><em>194</em><em> (2013) 731–764; arXiv:1202.1264, posted
+February 2012, which is the "2012" Brendle quotes.)</em></p>
+</blockquote>
+<p>Why this is the easy case, in his words: solitons "move by diffeomorphisms, so they're really
+fixed points of the Ricci flow modulo reparameterisation, and as such they have a back
+history going back infinitely far in time." Self-similarity collapses a parabolic problem to
+an elliptic one.</p>
+<p><strong>Step 2 — classify noncompact ancient κ-solutions that are rotationally symmetric.</strong> Drop
+self-similarity, impose SO(3) symmetry — "basically a warped product over a one-dimensional
+object with S² fibre." Brendle's account of why this is tractable:</p>
+<blockquote>
+<p>"In general the Ricci flow is a very complicated nonlinear system, but in this special case
+with rotational symmetry it boils down to just a <strong>scalar equation</strong>, and that's easier to
+analyse."</p>
+</blockquote>
+<p>Conclusion: the Bryant soliton is the only example.</p>
+<p><strong>Step 3 — show that every noncompact ancient κ-solution is rotationally symmetric.</strong></p>
+<p><strong>And here is the point Brendle stops to make.</strong> Step 3 is not proved from scratch; it <em>uses</em>
+Steps 1 and 2:</p>
+<blockquote>
+<p>"The interesting part that makes the classification possible is that <strong>step three uses step
+one and step two</strong>. So classifying these special examples — the subcategories of ancient
+solutions — allows you to prove the classification in general."</p>
+</blockquote>
+<p>His sketch of the mechanism, in words, because no formula reached the captions:</p>
+<ol>
+<li>Take an ancient solution. Go very far back in time.</li>
+<li>Find a sequence of times at which the solution looks <strong>approximately self-similar</strong>.</li>
+<li>By Step 1, at those times the solution therefore looks approximately like the <strong>Bryant
+   soliton</strong> — hence approximately rotationally symmetric. (The times may be far apart.)</li>
+<li>Propagate <strong>forward</strong> from those very early times and show the symmetry cannot be lost.</li>
+<li>Step 2 is what closes the loop: as long as you are close to the Bryant soliton you do not
+   lose rotational symmetry, and as long as you are close to rotationally symmetric you
+   remain close to the Bryant soliton.</li>
+</ol>
+<p>Brendle's takeaway: "these special cases are very useful to tackle the general case."</p>
+<p>The compact theorem is proved the same way. Companion, §5: first show every compact ancient
+κ-solution is rotationally symmetric — using the <em>noncompact</em> classification (Theorem 5.1
+above) plus the Neck Improvement Theorem — then classify the rotationally symmetric compact
+ones using the precise asymptotics.</p>
+<h3>5.4 The engine: why symmetry improves</h3>
+<p>Step 4 above — "propagate forward and show the symmetry cannot get lost" — is the technical
+core, and it is the one thing in the talk that Brendle names but does not explain. He calls
+it the <strong>symmetry improvement principle</strong>. The companion calls it the <strong>Neck Improvement
+Theorem</strong> and gives the mechanism in full.</p>
+<p><strong>Everything in this subsection is companion-restored. The talk contains none of it.</strong> I
+include it because it is the most transferable idea in the whole lecture (§7.1) and because
+you can read every step of it.</p>
+<p><strong>Why a linear parabolic equation appears.</strong> Symmetry of a metric means Killing vector fields:
+V is Killing exactly when h := 𝓛_V(g) = 0. So "approximately symmetric" should mean "there
+exist vector fields V with 𝓛_V(g) small." The question is what h does under the flow. The
+answer:</p>
+<blockquote>
+<p><strong>Definition (companion, Definition 6.1).</strong> The <strong>Lichnerowicz Laplacian</strong> of a symmetric
+(0,2)-tensor h is</p>
+<p>\[\Delta_L h_{ik} \;:=\; \Delta h_{ik} \;+\; 2R_{ijkl}h^{jl} \;-\; \mathrm{Ric}^l_{\;i} h_{kl} \;-\; \mathrm{Ric}^l_{\;k} h_{il}.\]</p>
+<p><strong>Proposition (Brendle 2020; companion, Proposition 6.3).</strong> Let (M, g(t)) be a Ricci flow.
+Let V(t) be a time-dependent vector field evolving by</p>
+<p>\[\frac{\partial}{\partial t} V(t) \;=\; \Delta_{g(t)} V(t) \;+\; \mathrm{Ric}_{g(t)}\big(V(t)\big)\]</p>
+<p>and set h(t) := 𝓛_{V(t)}(g(t)). Then</p>
+<p>\[\frac{\partial}{\partial t} h(t) \;=\; \Delta_{L,g(t)}\, h(t).\]</p>
+</blockquote>
+<p>So: evolve a candidate almost-Killing field by its own heat equation, and its failure to be
+Killing obeys a <strong>linear parabolic equation</strong> — the parabolic Lichnerowicz equation. The
+companion notes that both equations are exactly the linearisations of §3.5's gauge fixing:
+the V-equation is the linearised harmonic map heat flow around the identity, and the
+h-equation is the linearised Ricci–DeTurck flow around g(t). The gauge machinery from the
+existence theory comes back as the machinery for the classification.</p>
+<p><strong>Why the maximum principle applies.</strong> In dimension 3, with positive scalar curvature:</p>
+<blockquote>
+<p><strong>Proposition (Anderson–Chow 2005; companion, Proposition 6.5).</strong> If h solves the parabolic
+Lichnerowicz equation, then</p>
+<p>\[\frac{\partial}{\partial t}\Big(\frac{|h|^2}{R^2}\Big) \;\le\; \Delta\Big(\frac{|h|^2}{R^2}\Big) \;+\; \frac{2}{R}\Big\langle \nabla R, \nabla \Big(\frac{|h|^2}{R^2}\Big)\Big\rangle.\]</p>
+</blockquote>
+<p>That is a scalar drift–diffusion inequality with no zeroth-order term, so the maximum
+principle applies directly to |h|²/R² — a <strong>scale-invariant</strong> measure of the failure of
+symmetry. Same design rule as everywhere else in the subject.</p>
+<p><strong>The contraction.</strong> With a quantitative definition of "ε-symmetric" (companion, Definition
+7.2: there exist three vector fields U^(1), U^(2), U^(3) on a ball of radius 100r whose Lie
+derivatives are ε-small in a weighted C² norm, which are ε-nearly tangent to the CMC foliation
+of the neck, and whose Gram matrix is ε-close to the identity), the payoff is:</p>
+<blockquote>
+<p><strong>Neck Improvement Theorem (Brendle 2020; companion, Theorem 7.3).</strong> There are a large
+constant L and a small ε₁ &gt; 0 such that the following holds. Let (x₀, t₀) lie at the centre
+of an evolving ε₁-neck with R(x₀,t₀) = r⁻². Suppose <strong>every</strong> point in the parabolic
+neighbourhood B_{g(t₀)}(x₀, Lr) × [t₀ − Lr², t₀) is ε-symmetric, with ε ≤ ε₁. <strong>Then (x₀,t₀)
+is ε/2-symmetric.</strong></p>
+</blockquote>
+<p><strong>That factor of ½ is the whole proof.</strong> It is a strict contraction, so you iterate it: a neck
+that has existed for a long time is ε/2^k-symmetric for every k, hence exactly symmetric. An
+ancient solution has existed for infinite time, so on the neck the symmetry is exact.</p>
+<p>The reason it works is Proposition 7.1 in the companion: on an exact shrinking-cylinder
+background, decompose h in spherical harmonics on the S² factor. The system becomes a family
+of linear heat equations in one space variable. All modes decay except the ones that are
+themselves Lie derivatives of the metric — i.e. except the modes that correspond to genuine
+symmetries. Given long enough, only the symmetries survive.</p>
+<p><em>[Gap: the talk states only that a "symmetry improvement principle" exists and is used. Every
+formula in §5.4 is from the companion. </em><em>Impact: low for understanding the theorem, high for
+understanding the proof</em><em> — without the companion, Step 4 of §5.3 is an unexplained black box,
+and with it, it is a contraction argument you could have invented.]</em></p>
+<h3>5.5 What the theorem is not</h3>
+<p>Two honest limits.</p>
+<ul>
+<li><strong>This is dimension 3.</strong> The whole picture leans on Hamilton–Ivey, which Brendle explicitly
+  says is the only three-dimensional ingredient. In dimension 4 and up there is no such
+  pinching estimate and the classification is far less complete. The companion notes partial
+  higher-dimensional results (Brendle–Naff, Geom. Topol.; Brendle–Daskalopoulos–Naff–Šešum,
+  arXiv:2102.07180) but that is not this talk.</li>
+<li><strong>The talk announces no new theorem.</strong> Everything in §5 is published: 2013, 2020, 2021. The
+  lecture is a synthesis — the field's account of itself now that Perelman's conjectured
+  classification is a theorem.</li>
+</ul>
+<hr />
+<h2>6. Do this by hand</h2>
+<p>Both exercises are fully recoverable: every formula comes from the companion's Examples
+2.6–2.11, so <strong>nothing in this section is reconstructed from captions.</strong> Pen and paper, no
+computer.</p>
+<h3>6.1 Verify the explicit solutions and the scaling symmetry (25 minutes)</h3>
+<p>You will need exactly one fact, and it is the one that makes everything work:</p>
+<blockquote>
+<p><strong>Ric is scale-invariant as a (0,2)-tensor.</strong> For any constant c &gt; 0, Ric(cg) = Ric(g).</p>
+</blockquote>
+<p><em>(Reason: the Christoffel symbols Γ = ½g⁻¹(∂g) are unchanged when g ↦ cg, because the c
+cancels between g⁻¹ and ∂g; the Riemann tensor with all indices down scales like c, and Ric
+is a contraction of it with one factor of g⁻¹, so the c cancels again. You do not need to
+verify this; take it and use it.)</em></p>
+<p>You will also need: the standard round metric on Sⁿ of radius 1 has <strong>Ric = (n−1) g_{Sⁿ}</strong>.</p>
+<p><strong>(a)</strong> Show that g(t) = (−2t) g_{S²} on S², t ∈ (−∞,0), solves ∂ₜg = −2 Ric.</p>
+<p><strong>(b)</strong> Show that g(t) = (−4t) g_{S³} on S³, t ∈ (−∞,0), solves it.</p>
+<p><strong>(c)</strong> Generalise: start from a round Sⁿ of radius r₀ at time 0. Find the metric at time t
+and the extinction time T. Check your answer against (a) and (b).</p>
+<p><strong>(d)</strong> Show that g(t) = (−2t) g_{S²} + dz ⊗ dz on S² × ℝ solves it, and say in one sentence
+why the z-direction does nothing.</p>
+<p><strong>(e)</strong> Show that if g(t) solves Ricci flow then so does ĝ(t) := λ² g(λ⁻²t), for any λ &gt; 0.</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> Write g(t) = λ(t) g_{S²} with λ(t) = −2t. By scale invariance, Ric_{g(t)} = Ric_{g_{S²}}
+= (2−1) g_{S²} = g_{S²}. And ∂ₜg = λ′(t) g_{S²} = −2 g_{S²}. So</p>
+<p>\[\partial_t g \;=\; -2\, g_{S^2} \;=\; -2\, \mathrm{Ric}_{g(t)}. \qquad \checkmark\]</p>
+<p><strong>(b)</strong> Same computation with n = 3: Ric_{g(t)} = 2 g_{S³}, and ∂ₜg = −4 g_{S³} = −2·(2 g_{S³}).
+✓ Note the coefficient changed from 2 to 4 purely because Ric of the unit sphere is (n−1)g.</p>
+<p><strong>(c)</strong> Put g(t) = λ(t) g_{Sⁿ} with λ(0) = r₀². Then Ric_{g(t)} = (n−1) g_{Sⁿ} always, so
+λ′(t) = −2(n−1), giving</p>
+<p>\[\lambda(t) \;=\; r_0^2 \;-\; 2(n-1)\,t, \qquad\qquad T \;=\; \frac{r_0^2}{2(n-1)}.\]</p>
+<p>Check against (a): n = 2 gives λ(t) = r₀² − 2t, which is (−2t) shifted so that λ(0) = r₀²;
+the extinction time is r₀²/2. Against (b): n = 3 gives λ(t) = r₀² − 4t and T = r₀²/4. ✓</p>
+<p><strong>Two things to take from (c).</strong> First, the <strong>area/volume goes to zero but the shape never
+changes</strong> — this is the purest possible instance of a self-similar singularity, and it is why
+"round sphere" is one of the three models. Second, the extinction time is smaller in higher
+dimension for the same radius: more curvature, faster collapse.</p>
+<p><strong>(d)</strong> The metric splits as a product, and Ricci of a product is the direct sum of the
+Riccis. The ℝ factor is flat, so it contributes nothing: Ric_{g(t)} = g_{S²} ⊕ 0. Meanwhile
+∂ₜg = −2 g_{S²} ⊕ 0. ✓ The z-direction does nothing because <strong>a line has no curvature</strong>, so
+Ricci flow has no reason to move it — which is exactly Brendle's spoken intuition, that the
+cylinder is made of spheres which shrink while the axis stays put.</p>
+<p><strong>(e)</strong> Write ĝ(t) = c⁻¹g(ct) with c := λ⁻². Then by the chain rule</p>
+<p>\[\partial_t \hat g(t) \;=\; c^{-1}\cdot c\cdot (\partial_s g)(ct) \;=\; (\partial_s g)(ct) \;=\; -2\,\mathrm{Ric}_{g(ct)}\]</p>
+<p>and by scale invariance Ric_{g(ct)} = Ric_{c⁻¹g(ct)} = Ric_{ĝ(t)}. So ∂ₜĝ = −2 Ric_{ĝ}. ✓</p>
+<p><strong>The one thing to notice.</strong> The computation works <em>only</em> because Ric is scale-invariant while
+∂ₜg is not — the mismatch is what forces time to scale as the square of space. That is the
+same λ² you know from the linear heat equation, arriving here for a slightly different
+reason.</p>
+</details>
+<h3>6.2 Why the Bryant soliton survives and the cigar does not (25 minutes)</h3>
+<p>This is the exercise. It converts Brendle's one-sentence explanation — "the S² has curvature
+whereas S¹ does not" — into the arithmetic that decides which objects can be singularity
+models. Everything you need is in §4.2 and Definition 3.8.</p>
+<p>Recall the two asymptotic shapes, both stated by Brendle from the podium:</p>
+<ul>
+<li>the <strong>cigar</strong> (n = 2) opens like a <strong>cylinder</strong>: at large distance s from the tip, the
+  cross-sectional circle has a <strong>constant</strong> radius;</li>
+<li>the <strong>Bryant soliton</strong> (n = 3) opens like a <strong>paraboloid</strong>: at large distance s from the tip,
+  the cross-sectional 2-sphere has radius ≈ <strong>√s</strong>.</li>
+</ul>
+<p>And recall the test: κ-noncollapsed means vol(B(p,r)) ≥ κ rⁿ <strong>whenever</strong> sup_{B(p,r)} R ≤ r⁻².</p>
+<p><strong>(a)</strong> Start with the cigar's asymptotic geometry from the explicit formula. At t = 0 the
+cigar is g = 4/(1+|x|²) δ_ij on ℝ². Write δ in polar coordinates, take |x| = ρ large, and show
+that the metric becomes a <strong>flat cylinder</strong>. What is its circumference?</p>
+<p><strong>(b)</strong> Take a point p at large arclength s from the cigar's tip, and a ball B(p, r) with
+r ≤ s/2. Estimate the area of B(p,r) for large r, and estimate sup_{B(p,r)} R. Now test the
+κ-noncollapsing inequality as r → ∞. What happens?</p>
+<p><strong>(c)</strong> Now the Bryant soliton. At distance s from the tip the cross-sectional sphere has
+radius √s, so its scalar curvature contribution is ≈ 2/s. Take p at distance s and find the
+<strong>largest</strong> r for which the hypothesis sup_{B(p,r)} R ≤ r⁻² still holds.</p>
+<p><strong>(d)</strong> With that r, estimate vol(B(p,r)) and test the conclusion vol ≥ κ r³. What κ do you
+get?</p>
+<p><strong>(e)</strong> In one sentence: what exactly is the exponent that separates the two cases?</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> In polar coordinates δ = dρ² + ρ²dθ², so</p>
+<p>\[g \;=\; \frac{4}{1+\rho^2}\big(d\rho^2 + \rho^2 d\theta^2\big) \;\approx\; \frac{4}{\rho^2}\,d\rho^2 \;+\; 4\,d\theta^2 \qquad (\rho \to \infty).\]</p>
+<p>Set s := 2 log ρ, so that ds = 2 dρ/ρ and the first term becomes ds². Then</p>
+<p>\[g \;\approx\; ds^2 \;+\; 4\, d\theta^2\]</p>
+<p>a <strong>flat</strong> cylinder with cross-sectional circle of radius 2, hence circumference <strong>4π</strong>. This
+is Brendle's "it opens up like a cylinder," made explicit. Note also that the scalar curvature
+R ≈ 4/ρ² = 4e^{−s} decays <strong>exponentially</strong> in arclength.</p>
+<p><strong>(b)</strong> On the asymptotic cylinder, a ball of radius r around p has area</p>
+<p>\[\mathrm{area}\big(B(p,r)\big) \;\approx\; 4\pi \cdot 2r \;=\; 8\pi\, r\]</p>
+<p>— circumference times length, <strong>linear in r</strong>. Meanwhile sup_{B(p,r)} R ≈ 4e^{−(s−r)}, which
+for r ≤ s/2 is ≈ 4e^{−s/2}: exponentially small. So the hypothesis R ≤ r⁻² holds for <strong>every</strong>
+r up to s/2, once s is large. Test the conclusion:</p>
+<p>\[\frac{\mathrm{area}(B(p,r))}{r^{2}} \;\approx\; \frac{8\pi r}{r^{2}} \;=\; \frac{8\pi}{r} \;\longrightarrow\; 0.\]</p>
+<p>Since s is unbounded, r is unbounded, so <strong>no κ &gt; 0 works. The cigar is collapsed.</strong> ∎</p>
+<p>The same computation with n = 2 and a fixed circle radius ρ₀ shows that the 2D cylinder
+S¹ × ℝ itself is collapsed — area grows like 2πρ₀·2r, linearly, against a required r². That is
+the entry in Brendle's table, and note that it needs no shrinking: S¹ × ℝ is flat and static.</p>
+<p><strong>(c)</strong> On the Bryant soliton at distance s, the cross-sectional S² has radius √s, so its
+scalar curvature is 2/(√s)² = 2/s. Take the curvature scale to be R ≈ c/s. The hypothesis
+R ≤ r⁻² requires</p>
+<p>\[\frac{c}{s} \;\le\; \frac{1}{r^{2}} \qquad\Longleftrightarrow\qquad r \;\le\; \sqrt{\frac{s}{c}}.\]</p>
+<p>Take the largest admissible radius, r ≈ √(s/c) — i.e. <strong>r grows like √s</strong>, exactly the same
+rate as the cross-sectional radius. (Take c = 1 to keep the arithmetic clean.)</p>
+<p><strong>(d)</strong> With r ≈ √s and r ≪ s, the ball B(p, r) is approximately (cross-sectional S² of radius
+√s) × (interval of length 2r), so</p>
+<p>\[\mathrm{vol}\big(B(p,r)\big) \;\approx\; 4\pi\,(\sqrt{s})^{2}\cdot 2r \;=\; 8\pi\, s\, r \;=\; 8\pi\, r^{2}\cdot r \;=\; 8\pi\, r^{3}\]</p>
+<p>using s = r². So vol(B(p,r)) ≈ 8π r³ ≥ κ r³ with <strong>κ ≈ 8π</strong>. Non-collapsed. ∎</p>
+<p><strong>(e)</strong> <strong>Whether the cross-section keeps growing at all.</strong> Suppose the cross-sectional sphere
+has radius ≈ s^a at distance s from the tip, in dimension n.</p>
+<ul>
+<li><strong>If a &gt; 0</strong>, the cross-section has curvature ≈ s^{−2a}, so the largest admissible ball radius
+  is r ≈ s^a — the same rate. Then vol(B(p,r)) ≈ (s^a)^{n−1}·2r ≈ s^{a(n−1)}·s^a = s^{an}, and
+  the requirement κrⁿ ≈ κ s^{an} is met with room to spare. <strong>Non-collapsed, and the two rates
+  balance exactly.</strong> The Bryant soliton is the case a = ½.</li>
+<li><strong>If a = 0</strong> — the cross-section stops growing — the curvature does not merely stay bounded, it
+  decays to zero, so <em>r is no longer capped at all</em> and may be taken as large as you like. But
+  the volume then grows in only <strong>one</strong> direction, linearly in r, while κrⁿ demands growth in
+  <strong>n</strong>. <strong>Collapsed.</strong> The cigar is the case a = 0.</li>
+</ul>
+<p>So the dividing line is not the value of the exponent but whether it is positive. The clean
+summary is the one you just computed twice:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>cross-section radius</th>
+<th>admissible r</th>
+<th>vol(B(p,r))</th>
+<th>required</th>
+<th>verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cigar (n=2)</td>
+<td>constant</td>
+<td>unbounded</td>
+<td>~ 8π r</td>
+<td>κ r²</td>
+<td><strong>fails</strong></td>
+</tr>
+<tr>
+<td>Bryant (n=3)</td>
+<td>√s</td>
+<td>~ √s</td>
+<td>~ 8π r³</td>
+<td>κ r³</td>
+<td><strong>holds</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>The cigar's cross-section stops growing, so the ball can grow in only <em>one</em> direction while
+the volume needed grows in <em>two</em>. The Bryant soliton's cross-section keeps growing at exactly
+the rate that keeps the ball genuinely three-dimensional. <strong>That is Brendle's "S² has curvature
+whereas S¹ does not," in numbers</strong> — a curved cross-section shrinks under the flow, and the
+soliton's steady state has to open up to compensate; a flat cross-section does not, so the
+soliton stays a tube.</p>
+<p><strong>And this is the whole reason the classification is finite.</strong> Without κ-noncollapsing, the
+cigar (and in the compact case the King–Rosenau solution, companion Example 2.8) are perfectly
+good ancient solutions and the list is longer. The condition is what prunes it.</p>
+</details>
+<hr />
+<h2>7. What is actually useful to you</h2>
+<p>Four items, in order of how often you will reach for them. The first two are transferable
+method; the third is a modelling habit; the fourth is a caution.</p>
+<h3>7.1 Quantitative rigidity with a contraction factor beats qualitative rigidity</h3>
+<p>The Neck Improvement Theorem (§5.4) is the single best idea in the lecture to steal.</p>
+<p>The qualitative fact — Ricci flow preserves symmetry, because isometries of g(0) are
+isometries of g(t) — is trivial and useless: it applies only to <em>exact</em> symmetry, and nothing
+in a blow-up argument is ever exact. The theorem replaces it with a statement of the form</p>
+<blockquote>
+<p>if the neighbourhood is ε-good, the centre is <strong>ε/2</strong>-good</p>
+</blockquote>
+<p>and that single factor of ½ changes everything, because <strong>it iterates</strong>. Run it k times and you
+get ε/2^k. Run it over an infinite backward history — which you have, precisely because the
+object is <em>ancient</em> — and you get zero. Approximate symmetry becomes exact symmetry.</p>
+<p>The pattern, stated generally: <em>when you have a qualitative rigidity statement, look for the
+quantitative version with a factor strictly less than one, and then find the structure that
+lets you iterate it.</em> The qualitative version is a fact; the quantitative version is a tool.</p>
+<p>The reason this is worth carrying into your own work is that it is exactly the shape of a
+convergence guarantee for any iterative loop. A self-improvement claim of the form "the output
+is at least as good as the input" is worth almost nothing — it permits stalling forever. A
+claim of the form "the defect shrinks by a factor bounded away from 1 per round" composes, and
+composing is what you actually need. If you are designing an evaluate-and-revise loop, the
+question to ask about it is not "does this step help?" but "<strong>what is the contraction factor,
+and what supplies the unbounded number of rounds?</strong>" In Brendle's proof the answer to the
+second half is the infinite backward history, and it is not an accident that the theorem is
+about <em>ancient</em> solutions.</p>
+<p><em>(This paragraph's application is mine. The talk says nothing about iterative systems of any
+kind.)</em></p>
+<h3>7.2 Solve the special cases and then <em>use them as hypotheses</em></h3>
+<p>Brendle stops the lecture to point this out, which means he thinks it is the interesting
+part of the proof:</p>
+<blockquote>
+<p>"The interesting part that makes the classification possible is that step three uses step
+one and step two."</p>
+</blockquote>
+<p>The naive picture of a three-step proof is three independent lemmas. That is not what happens
+here. Step 1 (self-similar) and Step 2 (rotationally symmetric) are each strictly easier than
+the general problem — one collapses a parabolic problem to an elliptic one, the other collapses
+a nonlinear system to a scalar equation. And then Step 3 does not re-prove them: it <strong>takes a
+limit into their hypotheses</strong>. Go far enough back in time, and the general object <em>becomes</em>
+approximately self-similar; now Step 1 applies; now you know it is approximately Bryant; now
+Step 2 applies to keep it there.</p>
+<p>The reusable form: <em>a special case is not a warm-up, it is a lemma you are going to invoke.
+Choose which special cases to solve based on which ones the general object will asymptotically
+fall into</em>, not on which ones are easiest to state. Brendle's two special cases were chosen
+because the two limits available to him — t → −∞ and blow-up — deliver exactly those
+hypotheses.</p>
+<h3>7.3 Make the invariant scale-invariant, or it will not survive the limit</h3>
+<p>Notice how many of the estimates in this talk are ratios rather than quantities:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>estimate</th>
+<th>scale-invariant combination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>κ-noncollapsing</td>
+<td>vol(B(p,r)) / rⁿ and R·r²</td>
+</tr>
+<tr>
+<td>long-range curvature (Thm 4.2)</td>
+<td>R(x,t)·d(x,y)²</td>
+</tr>
+<tr>
+<td>derivative bounds (Thm 4.1)</td>
+<td>|D^m Rm| / R^{(m+2)/2}</td>
+</tr>
+<tr>
+<td>Anderson–Chow (Prop 6.5)</td>
+<td>|h|² / R²</td>
+</tr>
+<tr>
+<td>Hamilton's 2D entropy</td>
+<td>∫R log(AR/8π) dμ</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Every single one.</strong> This is not stylistic. The entire method is "rescale by an unbounded
+factor and take a limit," so any quantity that is not scale-invariant has a limit of 0 or ∞ and
+tells you nothing. The design rule is: <em>if your argument's central move is a change of scale,
+then every quantity you plan to control must be dimensionless with respect to that scale.</em></p>
+<p>That is a habit worth generalising past this subject. Any time your analysis involves taking
+a limit along a family of transformations — refining a mesh, growing a dataset, shrinking a
+step size — the invariants worth tracking are the ones that the transformation fixes. The
+others are bookkeeping.</p>
+<h3>7.4 The nonlinearity was the price of a symmetry, and so was the degeneracy</h3>
+<p>Two of Brendle's remarks are the same remark, and together they are a useful caution.</p>
+<ul>
+<li>Why is Ricci flow nonlinear? Because we insisted the curvature transform correctly under
+  coordinate change. Brendle: the nonlinearity "is dictated by the invariance properties that
+  we want the curvature to have."</li>
+<li>Why is Ricci flow not strictly parabolic? Because the equation is invariant under the whole
+  diffeomorphism group. <em>(Companion, §1.)</em></li>
+</ul>
+<p>So: <strong>the symmetry you built in on purpose is also the thing that broke your standard
+theory</strong>, and the fix (DeTurck's trick / harmonic gauge) is to quotient the symmetry out,
+solve, and map back. The same trilogy — invariance, degeneracy, gauge fixing — is what you
+know from general relativity and from Yang–Mills, and the same trilogy is why "fixed point" had
+to be replaced by "fixed point modulo the group" to get solitons.</p>
+<p>The engineering version, which you will recognise: any system with a genuine redundancy in its
+representation has no canonical solution, only an equivalence class, and comparisons only make
+sense after canonicalisation. If you find yourself unable to say whether two states are the
+same, check whether you forgot to fix the gauge.</p>
+<p><em>(The DeTurck half of this is companion-only; the talk covers the nonlinearity remark but never
+mentions DeTurck or weak parabolicity.)</em></p>
+<h3>7.5 A cross-reference rather than a repetition</h3>
+<p>Felix Otto's plenary at the same congress is the mirror image of this one, and the pair is
+worth holding together. <strong>Brendle uses PDE to answer questions about geometry</strong>; <strong>Otto uses
+geometry to make sense of PDE that are otherwise ill-posed.</strong> Both talks turn on
+scale-invariance, on what survives a blow-up, and on classifying limit objects. Otto's
+treatment of scale invariance in law, subcriticality, and what "zooming in" does to an
+exponent is at <code>summaries/geometric-concepts-pde-otto.md</code> §4.2, and I have not duplicated it
+here.</p>
+<hr />
+<h2>8. Where to read next</h2>
+<ol>
+<li><strong>Simon Brendle, <em>Singularity models in the three-dimensional Ricci flow</em>,</strong>
+   <a href="https://arxiv.org/abs/2201.02522">arXiv:2201.02522</a> — the companion, 30 pages, and the
+   right first stop. It is the talk with the slides restored: every theorem numbered, every
+   example given by an explicit metric, and §§6–9 supply the symmetry-improvement mechanism
+   the talk names but skips. Sections 1–5 are readable in an evening with what you now have.</li>
+<li><strong>Simon Brendle, <em>Ancient solutions to the Ricci flow in dimension 3</em>,</strong> Acta Math. <strong>225</strong>
+   (2020) 1–102; <a href="https://arxiv.org/abs/1811.02559">arXiv:1811.02559</a> — the main theorem of
+   §5.1, in full. Go here if you want the Neck Improvement Theorem proved rather than
+   described. It is 100 pages and it is the real thing.</li>
+<li><strong>Peter Topping, <em>Lectures on the Ricci Flow</em>,</strong> LMS Lecture Note Series <strong>325</strong>, Cambridge
+   University Press, 2006 — the companion's own reference for background. Free from the
+   author's page, and the shortest route to a working command of the Riemannian geometry that
+   §3 compressed into six pages. Read this instead of a general Riemannian geometry text: it
+   teaches only what Ricci flow uses.</li>
+</ol>
+<p><em>(A fourth, if you want the primary source for the qualitative theory rather than the
+classification: G. Perelman, "The entropy formula for the Ricci flow and its geometric
+applications," <a href="https://arxiv.org/abs/math/0211159">arXiv:math/0211159</a>, §§11–12. That is where
+Theorems 4.1–4.3 and the canonical neighbourhood theorem live.)</em></p>
+<hr />
+<h2>9. Self-test</h2>
+<details>
+<summary>1. Why is ∂ₜg = −2 Ric a heat equation, and why is it nonlinear?</summary>
+<p>Because −2 Ric plays the role of the Laplacian of the metric: the Riemann tensor is analogous
+to the Hessian of a function, and Ricci is the contraction of it, analogous to the Laplacian.
+It is nonlinear because Ric is a nonlinear function of g — and Brendle's point is that this is
+forced: you cannot have a curvature that transforms correctly under coordinate change and is
+linear in the metric. The nonlinearity is the price of coordinate invariance.</p>
+</details>
+<details>
+<summary>2. Explain, in the speaker's own logic, why a blow-up limit is an <em>ancient</em> solution.</summary>
+<p>You rescale around points (p_j, t_j) with curvature tending to infinity, by exactly the factor
+that brings the curvature at the base point back to 1. That factor is unbounded. Because the
+scaling is parabolic, time must be dilated by the square of the spatial factor. So the finite
+backward history t_j that the original flow had becomes, after rescaling, an enormous one — and
+in the limit, infinite. A solution with an infinite backward history is called ancient
+(Hamilton, early 1990s). The companion adds the right analogy: ancient is to parabolic what
+entire is to elliptic, so classifying ancient solutions is a Liouville theorem.</p>
+</details>
+<details>
+<summary>3. State the κ-noncollapsing condition and say why both of its sides had to be scale-invariant.</summary>
+<p>vol_{g(t)}(B(p,r)) ≥ κ rⁿ whenever sup_{B(p,r)} R ≤ r⁻² (Perelman; companion Definition 2.2).
+Under g ↦ λ²g the scalar curvature scales like λ⁻² and volumes like λⁿ, so both "R ≤ r⁻²" and
+"vol ≥ κrⁿ" are unchanged. That is mandatory: the condition's entire job is to be inherited by
+blow-up limits, and a condition that is not scale-invariant would be destroyed by the very
+rescaling it has to survive. Brendle's informal gloss: curvature controls volume, and the
+manifold does not collapse to something lower-dimensional.</p>
+</details>
+<details>
+<summary>4. Why is the cigar soliton not a singularity model, but the Bryant soliton is?</summary>
+<p>Asymptotics. The cigar opens like a cylinder, so its cross-sectional circle has constant
+radius; a ball of radius r therefore has area growing linearly in r, against the r² that
+noncollapsing demands, and no κ works — it is collapsed, and Perelman's theorem rules it out.
+The Bryant soliton opens like a paraboloid, cross-sectional radius ≈ √s at distance s, and the
+largest admissible ball radius is also ≈ √s, giving volume ≈ 8πr³ against the required κr³ — it
+is non-collapsed, and it does occur, as the model for the degenerate neck pinch. Brendle's
+one-line reason: S² has curvature, S¹ does not.</p>
+</details>
+<details>
+<summary>5. What is an ancient κ-solution, and where does each hypothesis come from?</summary>
+<p>A complete, non-flat, κ-noncollapsed ancient solution with bounded and nonnegative curvature,
+in dimension 2 or 3 (companion, Definition 2.5). "Ancient" comes from the blow-up construction;
+"κ-noncollapsed" comes from Perelman's noncollapsing theorem, which says every finite-time
+singularity model has it; "nonnegative curvature" comes from the Hamilton–Ivey pinching
+estimate, which is the only three-dimension-specific ingredient in the picture.</p>
+</details>
+<details>
+<summary>6. State the classification theorem in the noncompact case and its corollary for singularities.</summary>
+<p>Every noncompact ancient κ-solution in dimension 3 is, up to scaling, either a family of
+shrinking cylinders (or a quotient) or the Bryant soliton (Brendle, Acta Math. 225 (2020)
+1–102; confirming a conjecture of Perelman). Combined with Perelman's canonical neighbourhood
+theorem, the corollary is that near every high-curvature point of a finite-time singularity in
+dimension 3, the solution is approximated to any desired accuracy by one of exactly three
+models: a round sphere or quotient, a cylinder or quotient, or the Bryant soliton. All three
+occur; nothing else can. In the compact case there is one extra ancient κ-solution — Perelman's
+solution on S³ — and Brendle–Daskalopoulos–Šešum (Invent. Math. 226 (2021) 579–651) show
+shrinking spheres and Perelman's solution are the only ones.</p>
+</details>
+<details>
+<summary>7. Why does step three of the proof use steps one and two, rather than standing alone?</summary>
+<p>Because the general object falls into the special cases in the limit. Go very far back in time
+and you find times at which the solution looks approximately self-similar; step one then says it
+looks approximately like the Bryant soliton, hence approximately rotationally symmetric; and
+step two supplies the stability that lets you propagate that symmetry forward without losing it
+— close to Bryant means you do not lose rotational symmetry, and close to rotationally symmetric
+means you stay close to Bryant. The special cases are not warm-ups; they are the hypotheses that
+the limiting argument delivers.</p>
+</details>
+<details>
+<summary>8. What is the Neck Improvement Theorem and why does the factor ½ matter?</summary>
+<p>If every point of a parabolic neighbourhood B(x₀, Lr) × [t₀ − Lr², t₀) of the centre of an
+ε₁-neck is ε-symmetric (ε ≤ ε₁), then (x₀, t₀) is ε/2-symmetric (companion, Theorem 7.3). The
+½ matters because it is a strict contraction and therefore iterates: an ancient solution has
+infinite backward time, so applying it repeatedly drives the asymmetry to zero and the neck is
+exactly rotationally symmetric. The underlying mechanism is that h = 𝓛_V(g) obeys the linear
+parabolic Lichnerowicz equation, and |h|²/R² obeys a maximum principle (Anderson–Chow); on a
+cylinder background, decomposing in spherical harmonics kills every mode except the ones that
+are genuine symmetries.</p>
+</details>
+<details>
+<summary>9. Why is Ricci flow only weakly parabolic, and what is done about it?</summary>
+<p>Because it is invariant under the entire diffeomorphism group of M, so the linearisation has a
+kernel in the gauge directions and standard parabolic theory does not apply. DeTurck's trick
+adds a Lie-derivative term along ξ_t = Δ_{g̃,h} id, producing the Ricci–DeTurck flow, whose
+principal part is g̃^{kl}∂_k∂_l g̃_ij — strictly parabolic. Solutions of the two flows correspond
+via a family of diffeomorphisms solving the harmonic map heat flow. This is the exact analogue
+of choosing harmonic gauge to make Einstein's equations hyperbolic. <em>(Companion §1; the talk
+does not cover this.)</em></p>
+</details>
+<details>
+<summary>10. Which part of the three-dimensional picture is genuinely three-dimensional?</summary>
+<p>Only the Hamilton–Ivey pinching estimate, which forces blow-up limits to have nonnegative
+sectional curvature. Brendle says this explicitly. The rest — singularities are modelled on
+ancient solutions, and singularity models are κ-noncollapsed — holds in any dimension. That is
+why the classification is complete in dimension 3 and far less complete above it.</p>
+</details>
+<hr />
+<h2>10. Note on the tutorial process</h2>
+<p><strong>Difficulty versus reputation.</strong> Reputation would have got this badly wrong in one direction
+and mildly wrong in the other. Brendle's most-cited recent work is on scalar curvature and the
+positive mass theorem — the introduction names his proof of the positive mass theorem in all
+dimensions with his student Yipeng Wang as a headline result — and none of that appears in the
+lecture. He announces in his second minute that he will "focus exclusively on the Ricci flow,"
+and he keeps to it. The brief for this tutorial flagged the narrowing in advance and the
+transcript confirms it. In the other direction, reputation would have predicted difficulty 4 or
+5 for a geometric-analysis plenary; the actual talk is a 3, because Brendle spends eight minutes
+building Riemannian geometry from zero and because the argument's skeleton is blow-up analysis
+for a parabolic equation, which is home ground for this reader.</p>
+<p><strong>What earned the difficulty 3.</strong> Not the strategy — the strategy is standard PDE. The
+vocabulary: metric-as-unknown, curvature tensors, Cheeger–Gromov convergence, solitons, necks,
+noncollapsing. §3 is six sections long because that is what the gap actually costs.</p>
+<p><strong>Name corrections.</strong> The auto-captions destroy nearly every proper noun. Each correction below
+is verified against the companion's bibliography, the speaker's publication record, or a primary
+source; none is a phonetic guess.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simon Brandler</td>
+<td><strong>Simon Brendle</strong></td>
+</tr>
+<tr>
+<td>Colombia University</td>
+<td><strong>Columbia</strong> University</td>
+</tr>
+<tr>
+<td>Mich / Mikail Aishmire</td>
+<td><strong>Michael Eichmair</strong> (introducer; Chair of Global Analysis and Differential Geometry, University of Vienna)</td>
+</tr>
+<tr>
+<td>Gahatus</td>
+<td><strong>Gerhard Huisken</strong> (Brendle's doctoral adviser, Tübingen 2001)</td>
+</tr>
+<tr>
+<td>Richard Shane</td>
+<td>Richard <strong>Schoen</strong></td>
+</tr>
+<tr>
+<td>the loss and conjecture</td>
+<td>the <strong>Lawson</strong> conjecture</td>
+</tr>
+<tr>
+<td>sharp isoparametric inequality</td>
+<td>sharp <strong>isoperimetric</strong> inequality</td>
+</tr>
+<tr>
+<td>his PhD student Wang</td>
+<td><strong>Yipeng Wang</strong> (Columbia; Brendle–Wang, arXiv:2604.08473)</td>
+</tr>
+<tr>
+<td>Yels and Samson</td>
+<td><strong>Eells and Sampson</strong></td>
+</tr>
+<tr>
+<td>rei flow / reichi flow / richy flow / rich flow / reie flow / rey flow / rii flow</td>
+<td><strong>Ricci flow</strong></td>
+</tr>
+<tr>
+<td>richi tensor / reachy / richy curvature</td>
+<td><strong>Ricci</strong> tensor / Ricci curvature</td>
+</tr>
+<tr>
+<td>remmanion / Romanian / ramanian metric</td>
+<td><strong>Riemannian</strong> metric</td>
+</tr>
+<tr>
+<td>reman tensor / reman curvature</td>
+<td><strong>Riemann</strong> curvature tensor</td>
+</tr>
+<tr>
+<td>uklidian / ukidian / ukadian / uklitian</td>
+<td><strong>Euclidean</strong></td>
+</tr>
+<tr>
+<td>lorenian / lorenzian matrix</td>
+<td><strong>Lorentzian</strong> metrics</td>
+</tr>
+<tr>
+<td>Einstein bhome equations</td>
+<td>Einstein <strong>field</strong> equations</td>
+</tr>
+<tr>
+<td>hession</td>
+<td><strong>Hessian</strong></td>
+</tr>
+<tr>
+<td>llassian / llian / llasian</td>
+<td><strong>Laplacian</strong></td>
+</tr>
+<tr>
+<td>conical delta / chronic delta / kronic delta</td>
+<td><strong>Kronecker delta</strong></td>
+</tr>
+<tr>
+<td>Paramman / Pelman / Palman / perman</td>
+<td><strong>Perelman</strong> (Grigori Perelman)</td>
+</tr>
+<tr>
+<td>poner / ponare / fun conjecture</td>
+<td><strong>Poincaré</strong> conjecture</td>
+</tr>
+<tr>
+<td>Hamilton and Chao</td>
+<td>Hamilton and <strong>Chow</strong> (Bennett Chow)</td>
+</tr>
+<tr>
+<td>Hamilton IV pinching estimate</td>
+<td><strong>Hamilton–Ivey</strong> pinching estimate</td>
+</tr>
+<tr>
+<td>hornac inequality</td>
+<td><strong>Harnack</strong> inequality</td>
+</tr>
+<tr>
+<td>cigal / cigaral soliton</td>
+<td><strong>cigar</strong> soliton</td>
+</tr>
+<tr>
+<td>Brian Soliton / Brian Solitron / autorian soliton</td>
+<td><strong>Bryant</strong> soliton (Robert Bryant)</td>
+</tr>
+<tr>
+<td>ka / kapa / copper / kanon / capon non-collapsed</td>
+<td><strong>κ (kappa)</strong> non-collapsed</td>
+</tr>
+<tr>
+<td>ipsilon neck / ipssilla neck</td>
+<td><strong>ε-neck</strong></td>
+</tr>
+<tr>
+<td>deomorphisms / theomorphisms / fomorphisms / difforphisms</td>
+<td><strong>diffeomorphisms</strong></td>
+</tr>
+<tr>
+<td>difforphic</td>
+<td><strong>diffeomorphic</strong></td>
+</tr>
+<tr>
+<td>homothetically</td>
+<td>homothetically <em>(correct as spoken)</em></td>
+</tr>
+<tr>
+<td>propolite / paraboid asatics</td>
+<td><strong>paraboloid</strong> asymptotics</td>
+</tr>
+<tr>
+<td>asimatics / asmtoics / asytoic</td>
+<td><strong>asymptotics</strong> / asymptotic</td>
+</tr>
+<tr>
+<td>a wall product over a one-dimensional object</td>
+<td>a <strong>warped product</strong> over a one-dimensional object</td>
+</tr>
+<tr>
+<td>panayota dcalopulus</td>
+<td><strong>Panagiota Daskalopoulos</strong></td>
+</tr>
+<tr>
+<td>natasha sesum</td>
+<td><strong>Natasa Šešum</strong></td>
+</tr>
+<tr>
+<td>copper solutions / ancient copper solution</td>
+<td>ancient <strong>κ-solutions</strong></td>
+</tr>
+<tr>
+<td>the / this thumb / this therm / this film / these two films</td>
+<td>the <strong>theorem</strong> / these two <strong>theorems</strong></td>
+</tr>
+<tr>
+<td>PTE / PBE theory</td>
+<td><strong>PDE</strong> theory</td>
+</tr>
+<tr>
+<td>corary</td>
+<td><strong>corollary</strong></td>
+</tr>
+<tr>
+<td>gig j / gigj</td>
+<td><strong>g_ij</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Substantive corrections and compressions, not just spellings.</strong></p>
+<ul>
+<li><strong>"Shrinking cylinders in 2D."</strong> Brendle's table entry says the 2D shrinking cylinders are
+  collapsed. S¹ × ℝ is flat — as he himself said two minutes earlier, a circle has no curvature
+  — so it does not shrink at all, and it is excluded from the definition of an ancient
+  κ-solution by the non-flatness requirement in any case. The <em>content</em> of his entry is correct
+  and is what I verified in §6.2: a ball in a cylinder of fixed circumference has area growing
+  linearly, so no κ works. I have treated this as podium shorthand rather than an error, and
+  said so in §4.6.</li>
+<li><strong>κ-noncollapsing uses scalar curvature.</strong> The companion's Definition 2.2 has
+  sup_{B(p,r)} <strong>R</strong>(x,t) ≤ r⁻², with R the scalar curvature; from the podium Brendle says "the
+  maximum curvature." Where the definition is applied — to solutions with nonnegative curvature
+  — these differ only by a dimensional constant, so this is a compression, not a discrepancy. I
+  have used the companion's version and flagged the difference in §3.8.</li>
+<li><strong>Perelman's structure theorem hypotheses differ between talk and paper.</strong> The companion's
+  Corollary 4.6 assumes positive sectional curvature; the talk instead excludes shrinking
+  cylinders and their quotients. Compatible, via the splitting that occurs when the curvature
+  fails to be strictly positive. Noted in §4.10.</li>
+<li><strong>The curve shortening flow date.</strong> Brendle attributes curve shortening flow to "a paper by
+  Gage and Hamilton in 1983." The Gage–Hamilton paper, <em>The heat equation shrinking convex
+  plane curves</em>, is J. Diff. Geom. <strong>23</strong> (1986) 69–96; Gage's own earlier paper on curve
+  shortening is from 1983. The companion does not cite either. <strong>I have not corrected the date
+  in the text</strong> — I have written "Gage and Hamilton" without a year in §1's table and pointed
+  here, since I cannot tell whether Brendle's slide said 1983 or whether the caption garbled a
+  different number. Impact: nil for the mathematics.</li>
+<li><strong>"Theorem from 2018" and "back in 2012."</strong> These are arXiv posting dates, not publication
+  dates. The 2018 theorem is Acta Math. <strong>225</strong> (2020); the 2012 theorem is Invent. Math. <strong>194</strong>
+  (2013). I give both in §5.</li>
+</ul>
+<p><strong>One erratum in the companion.</strong> The survey's Example 2.9 reads "Let us define a family of
+metrics g(t) <strong>on S²</strong> by g(t) = (−4t) g_{S³}" — it plainly means <strong>on S³</strong>, since the metric
+being scaled is the round metric on the three-sphere and the coefficient −4t is the one that
+Ricci flow forces in dimension 3 (see §6.1(c)). Example 2.10 repeats the same slip, writing "a
+family of metrics g(t) <strong>on S²</strong>" for the metric (−2t) g_{S²} + dz ⊗ dz, which lives on
+<strong>S² × ℝ</strong>. I have used the corrected manifolds in §4.1 and note the source's wording here.
+Neither affects any statement in the survey.</p>
+<p><strong>What I reconstructed.</strong></p>
+<ul>
+<li>The <strong>spherical and hyperbolic conformal factors</strong> in §3.1. Brendle describes them precisely
+  in words (stereographic coordinates, a point-dependent stretching factor, flip a sign,
+  defined on the unit ball) but the formulas were on the slide. The two displayed metrics are
+  the standard ones matching that description exactly. <strong>Verify by</strong>: computing the sectional
+  curvature of each, which comes out +1 and −1.</li>
+<li>The <strong>length functional</strong> display in §3.1 is a transcription of his spoken formula, which he
+  gives completely ("integrating the square root of the sum of g_ij α̇ⁱ α̇ʲ ... you use the metric
+  at the point α(s)"). Nothing is added.</li>
+<li>The <strong>Cheeger–Gromov convergence definition</strong> in §3.7 is my unpacking of a phrase the
+  companion uses without restating. It is standard and appears in Topping's lectures.</li>
+<li>The <strong>anchor table in §2.1</strong> is entirely mine — the left column, the type I/II row, and the
+  Giga–Kohn reference are constructions for this reader, not claims about the talk. Labelled in
+  place.</li>
+</ul>
+<p><strong>Where the mathematics is unrecoverable, and how bad it is.</strong></p>
+<ul>
+<li><strong>The Riemann tensor formula (§3.2). Impact: low.</strong> Brendle explicitly declines to write the
+  quadratic terms from the podium, and the talk never uses the formula. Restorable from any
+  textbook including his own.</li>
+<li><strong>Hamilton's matrix Harnack inequality (§4.9). Impact: low.</strong> Named as one of four
+  ingredients, then skipped, with Brendle saying so. Nothing later in the talk depends on it.</li>
+<li><strong>The degenerate neck pinch (§4.4). Impact: low.</strong> He says "let me not go into details" and
+  gives the one fact that matters — it is modelled on the Bryant soliton.</li>
+<li><strong>The symmetry improvement mechanism (§5.4). Impact: moderate, and it is the biggest hole in
+  the talk itself rather than in the captions.</strong> Brendle names the "symmetry improvement
+  principle" as the crux of Step 3 and gives no mechanism at all. I have restored the whole
+  chain — Lichnerowicz Laplacian, the parabolic equation for h = 𝓛_V(g), the Anderson–Chow
+  maximum principle, the ε/2 contraction — from the companion's §§6–7, and labelled it. Without
+  the companion this section would have been a paragraph saying "a principle exists."</li>
+<li><strong>Every slide with a picture.</strong> The neck pinch diagram, the shrinking sphere, the cigar's
+  profile, the tube-and-cap picture, and Perelman's ancient solution interpolating between two
+  Bryant solitons and a round sphere were all drawn, and the caption track sees none of it.
+  Where §4 reads thinner than it should, a picture was doing the work.</li>
+</ul>
+<p><strong>Names I could not verify: none.</strong> Every proper noun in the correction table above is anchored
+to a located publication, an institutional page, or the companion's bibliography.</p>
+<p><strong>One thing I could not get.</strong> The ICM proceedings chapter itself. It exists
+(<a href="https://doi.org/10.1137/25M1799052">doi:10.1137/25M1799052</a>, SIAM, pp. 25–34, 35 references),
+and it is the one document that would tell me exactly which of the above Brendle considers the
+lecture's spine. SIAM returns 403 to automated fetching and no abstract is exposed by Crossref,
+Semantic Scholar or OpenAlex. If you have institutional access, ten pages by this author on this
+material is worth the download — and its 35 references will be a better reading list than my §8.</p>
+</div>
+</body>
+</html>

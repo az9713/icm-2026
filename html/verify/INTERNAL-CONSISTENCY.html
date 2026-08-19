@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Internal consistency — round 2, 2026-08-18</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Internal consistency — round 2, 2026-08-18</h1>
+<p>The check <code>HANDOFF.md</code> listed as never run: does every cross-reference resolve, and does the
+file render. No papers read, no transcripts read. Script:
+<code>internal_check.py</code> pattern recorded at the bottom of this file.</p>
+<p>Scope: all 20 files in <code>summaries/</code>.</p>
+<h2>Result summary</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Files scanned</th>
+<th>Defects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Front matter keys + transcript file exists</td>
+<td>20</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td><code>$$</code> display-block pairing</td>
+<td>20</td>
+<td><strong>0</strong> (367 blocks, all balanced)</td>
+</tr>
+<tr>
+<td>Inline <code>$...$</code> pairing, per file</td>
+<td>20</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>Internal section cross-references</td>
+<td>20</td>
+<td><strong>14</strong> in 4 files</td>
+</tr>
+<tr>
+<td>Cross-tutorial section references</td>
+<td>7 refs</td>
+<td><strong>0</strong> — all resolve</td>
+</tr>
+<tr>
+<td>Gap markers, grepped as <code>\[Gap[,:]</code></td>
+<td>20</td>
+<td>34, matches the recorded total</td>
+</tr>
+</tbody>
+</table></div>
+<h2>1. Render defect — one unescaped currency <code>$</code></h2>
+<p><code>summaries/shape-of-math-kontorovich.md:637</code> writes <code>**$10,000**</code> with a bare dollar sign.
+It is the file's only inline <code>$</code>. The next <code>$</code> in the file is the display block at <code>:709</code>.</p>
+<p>Under MathJax with inline <code>$...$</code> enabled, the parser pairs those two and swallows lines
+637-709 into a maths span. The file has no other inline maths, so nothing else masks it.</p>
+<p>Fix: <code>\$10,000</code>. This is the only such case in the corpus — a grep for <code>$</code> followed by a
+digit returns 51 hits and the other 50 are real maths (<code>$1/(x-z)$</code>, <code>$2t$</code>, <code>$32^3$</code>).</p>
+<p>No file escapes a dollar anywhere (<code>grep '\\$'</code> returns nothing), so the escape is a new
+convention, not a restored one.</p>
+<h2>2. Broken internal cross-references — 14, in 4 files</h2>
+<p>All 14 have one cause. Every tutorial ends with the same three back-matter sections, but
+their <strong>numbers differ per file</strong> because the body section count differs. A reference was
+written against another file's numbering.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Points at</th>
+<th>Section actually holding the target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:57</code></td>
+<td>§11</td>
+<td>§8 "Where to read next" (<code>:1002</code>)</td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:82</code></td>
+<td>§13</td>
+<td>§10 "Note on the tutorial process" (<code>:1141</code>)</td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:85</code></td>
+<td>§13</td>
+<td>§10, correction table at <code>:1169</code></td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:559</code></td>
+<td>§13</td>
+<td>§10</td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:852</code></td>
+<td>§13</td>
+<td>§10</td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:234</code></td>
+<td>§9.3</td>
+<td>§9 "Self-test" has no subsections; its items are numbered <code>&lt;details&gt;</code> blocks</td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:367</code></td>
+<td>§4.6</td>
+<td>§4 stops at 4.5</td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:421</code></td>
+<td>§4.6</td>
+<td>§4 stops at 4.5</td>
+</tr>
+<tr>
+<td><code>modern-ml-methods-bartlett.md:65</code></td>
+<td>§12</td>
+<td>§11 "Note on the tutorial process", table at <code>:1081</code></td>
+</tr>
+<tr>
+<td><code>modern-ml-methods-bartlett.md:299</code></td>
+<td>§12</td>
+<td>§11</td>
+</tr>
+<tr>
+<td><code>modern-ml-methods-bartlett.md:580</code></td>
+<td>§12</td>
+<td>§11</td>
+</tr>
+<tr>
+<td><code>ramsey-numbers-morris.md:65</code></td>
+<td>§12</td>
+<td>§11, table at <code>:1391</code></td>
+</tr>
+<tr>
+<td><code>quantitative-rectifiability-harmonic-measure-tolsa.md:643</code></td>
+<td>§5.15</td>
+<td>§5 stops at 5.14; the Jones-Wolff potential is at <code>:1252</code>, inside §5.14</td>
+</tr>
+<tr>
+<td><code>quantitative-rectifiability-harmonic-measure-tolsa.md:894</code></td>
+<td>§9.2</td>
+<td>§9 "Where to read next" has no subsections</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>optimization-theory-practice-wright.md</code> runs to §13 and is the only file with that layout.
+Three of the four broken files point at §12 or §13 — the Wright numbering.</p>
+<p><strong>Reader impact: low but real.</strong> A reader following "full correction table in §13" finds no
+§13. Nothing states a wrong fact about the mathematics.</p>
+<h2>3. What returned clean, and what were false positives</h2>
+<p><strong>Cross-tutorial references all resolve.</strong> Seven references reach into another summary file
+by name. All seven targets exist: <code>otto:446</code>→wright §6.4; <code>gerard:996,:1281</code>→otto §8.5;
+<code>sarnak:1355,:1730</code>→kontorovich §4.9 and §4.12; <code>bartlett:891</code>→wright §10.2;
+<code>quastel:1308</code>→wright §10.4; <code>lurie:191,:1249</code>→gaitsgory §7.3; <code>dolgopyat:1648</code>→otto §8.5.</p>
+<p><strong>Three false-positive classes</strong>, recorded so nobody rebuilds the naive script:</p>
+<ol>
+<li><strong>Bold inline subsection labels.</strong> <code>modern-ml-methods-bartlett.md</code> writes §3.1-3.5 as
+   <code>**3.1 Excess risk is not training loss.**</code>, not as headings. A heading-only scan calls
+   6 valid references broken.</li>
+<li><strong>Merged headings.</strong> <code>knots-four-manifolds-manolescu.md:642</code> is <code>### 4.4-4.5 Kirby
+   diagrams</code>. A scan keyed on one number per heading calls §4.5 missing.</li>
+<li><strong>Line-wrapped inline maths.</strong> The files hard-wrap at about 90 characters, so a <code>$...$</code>
+   span often straddles a newline. A per-line dollar-parity test raises about 60 false
+   positives in <code>gerard</code> and <code>sarnak</code> alone. Only whole-file parity is meaningful.</li>
+</ol>
+<p>External <code>§</code> references — "paper §1.5.2", "Serre §1.6.5", "arXiv:2006.11748 §8.5" — are out
+of scope here. They are provenance, and tier 3 covered them.</p>
+<h2>4. The script</h2>
+<p>Not kept as a repo file: it is 60 lines and re-derivable. Pattern, for a rebuild:</p>
+<ol>
+<li>Parse the front matter between the first two <code>---</code> lines; require
+   <code>title, speaker, source, date, transcript</code>; resolve <code>transcript</code> relative to <code>summaries/</code>.</li>
+<li>Blank out fenced code blocks before any delimiter counting.</li>
+<li>Count <code>$$</code> per file, require even. Remove <code>$$</code>, count <code>$</code>, require even. <strong>Per file, never
+   per line.</strong></li>
+<li>Collect section labels from <code>^#{2,4} N(.M)*</code> <strong>and</strong> from <code>^\*\*N.M</code>.</li>
+<li>Flag <code>§N</code> or <code>§N.M</code> whose label is absent — then read each hit, because a reference to a
+   companion paper looks identical to a reference to the file itself.</li>
+</ol>
+<h2>5. A count in <code>DEVELOPMENT-JOURNEY.html</code> that this check corrected</h2>
+<p>The journey document's §8.4 originally printed <strong>1,048</strong> inline <code>$...$</code> spans corpus-wide, and
+per-file figures of <code>gerard</code> (51 display, 349 inline) and <code>buffa</code> (39 display, 212 inline).</p>
+<p>Recounted here three ways:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>corpus inline spans</th>
+<th>gerard</th>
+<th>buffa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Whole-file delimiter pairing (after removing <code>$$</code>)</td>
+<td><strong>1,369</strong></td>
+<td>524</td>
+<td>262</td>
+</tr>
+<tr>
+<td>Per-line regex, single-line spans only</td>
+<td>1,338</td>
+<td>505</td>
+<td>262</td>
+</tr>
+<tr>
+<td>Raw <code>$$</code> count / 2</td>
+<td>—</td>
+<td>51 display</td>
+<td><strong>29</strong> display</td>
+</tr>
+</tbody>
+</table></div>
+<p>Three corrections follow, and they are now in the journey document:</p>
+<ol>
+<li><strong>1,369, not 1,048.</strong> The gap between the two counting methods, 31 spans, is real — the files
+   hard-wrap at about 90 characters, so some inline maths straddles a newline. Neither method
+   yields 1,048; the original figure came from a method that was not recorded.</li>
+<li><strong><code>gerard</code> has 524 inline spans, not 349.</strong> <code>buffa</code> has 262, not 212.</li>
+<li><strong><code>buffa</code> has 29 display blocks, not 39.</strong> The corpus display total, 367, is confirmed by
+   both methods and by the raw delimiter count, so the per-file 39 was simply wrong.</li>
+</ol>
+<p>The <code>3,985 Unicode mathematical characters</code> figure was <strong>not</strong> re-derived — "Unicode mathematical
+character" has no stable definition, and a naive character-class count returns numbers an order of
+magnitude larger because it catches ordinary punctuation and Greek in prose.</p>
+<p><strong>Why record this.</strong> The undercount pointed the same way as the truth (heavy LaTeX in two files,
+none in six), so nothing built on it was wrong. But it is a reminder that a corpus statistic
+quoted in a report is itself an unverified claim.</p>
+</div>
+</body>
+</html>

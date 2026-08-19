@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — prismatic-homotopy-lurie</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — prismatic-homotopy-lurie</h1>
+<p>verdict: MINOR
+uncited_external_claims: 7
+unsupported_speaker_claims: 0
+title_check: PASS — transcript opening announces "prismatics tabletop theory" by "Jacob Lurri from Institute for Advanced Study"; caption-mangled form of "Prismatic Stable Homotopy Theory", Jacob Lurie (IAS). Matches front matter.
+gap_honesty: PASS — all 3 [Gap:] markers plus the 2 in-text "Reconstructed"/"flagged" notes sit exactly where the captions really are silent; no gap was silently filled.
+self_report_audit: HONEST BUT INCOMPLETE — §11 under-reports 5 textbook-level imports it supplied itself (Lazard ring, HKR, Eilenberg–Steenrod axioms, "stable normal bundle", and its own quote-cleaning policy). No false claim in §11.
+citations_verified_live: 3 of 3 real (arXiv:2507.13471, arXiv:2405.04329, youtube 1fSd7FxEA3w); a 4th (Bhatt MAT 549 PDF) resolves to a real file.</p>
+<p>The 7 uncited external claims, all textbook-standard, none presented as the speaker's:
+Eilenberg–Steenrod axioms + "1940s" (<code>:280</code>); formal-group-law axioms and the
+Baker–Campbell–Hausdorff anchor (<code>:395</code>); "stable normal bundle" (<code>:443</code>); the Lazard ring
+named (<code>:447</code>); the HKR theorem named (<code>:487</code>); "symmetric monoidal" for his "tensor category"
+(<code>:984</code>); the height stratification of formal group laws (<code>:1187</code>).
+This header list is final and supersedes the interim enumeration in the §§2–3 findings block
+below: <code>:333</code> (Bott periodicity) was dropped because the transcript does state its content, and
+<code>:283</code> was reclassified as a quote-presentation issue rather than an external claim.</p>
+<p>Note: transcript is a single unbroken line (40,179 bytes, zero newlines). For reading I
+folded it to 375 lines at width 110 in scratchpad. Line cites below use that folded copy
+and are marked "tx:NNN" — they are NOT lines in the repo file.</p>
+<p>Talk has NO proceedings paper and NO companion (verified by caller: nothing on
+math.ias.edu/~lurie/). So every non-transcript claim needs an external citation or a
+[Gap:] marker. Judged on that basis.</p>
+<h2>Findings</h2>
+<p>Most-severe first. There is no MAJOR-class finding: no invented theorem, no wrong title, no
+fabricated citation, no silently filled gap. What follows is the MINOR class.</p>
+<h3>Sections 1–3 (framing + background scaffolding)</h3>
+<p><strong>No unsupported speaker claims found in §§1–3.</strong> Every quote attributed to the podium is in
+the transcript in caption-mangled form and the tutorial de-mangles it correctly. Spot checks:</p>
+<ul>
+<li>§1 "85-page paper… Adams and Atiyah reproved it in eight pages, main argument in a single
+  paragraph… proof from the Book" — tx:26–32 has all four details verbatim, including Erdős.</li>
+<li>§1 "There are some invariants that I can compute without being able to define…" — tx:345, exact.</li>
+<li>§1 Hopf fibrations built "out of the real division algebras" — tx:24 "constructed using
+  division algebras over the real numbers". The tutorial's expansion to "complex numbers,
+  quaternions, octonions" is external but is textbook and harmless.</li>
+<li>§1 "So unfortunately, I didn't tell you what any of these things are… fit into a larger
+  black box that I do not have a precise definition of" — tx:243–246, exact.</li>
+<li>§2.2 Clausen–Mathew–Morrow, "those three are the entire difference" — tx:79–84 supports this
+  reading closely ("the entirety of the difference between K theory and topological
+  cyclomology is explained by the three things").</li>
+<li>§3.2 Grothendieck priority, "they were imitating Grothendieck" — tx:43–45, exact.</li>
+<li>§3.7 "TC of R can be defined as just extensions from the unit object into THH of R" — tx:104.</li>
+<li>§3.7 Bökstedt THH(F_p) = polynomial on one degree-2 generator, "incarnation of Bott
+  periodicity in an algebraic world" — tx:109–112, exact.</li>
+<li>§3.7 "one spectral sequence away from just understanding algebraic differential forms" — tx:120.</li>
+<li>§3.8 étale descent gloss — tx:74–76, exact.</li>
+<li>§3.6 "roughly as many cohomology theories in the world of topology as there are formal
+  groups" — tx:352–354, exact (he says it late in the talk, not at §3.6's position; the
+  tutorial has moved it forward, which it does not flag, but it does not misattribute it).</li>
+</ul>
+<p><strong>Uncited external background in §§2–3 (the MINOR class).</strong> These are not in the transcript and
+carry no citation. All are standard textbook facts, none is presented as the speaker's:
+1. <code>:280</code> Eilenberg–Steenrod axioms "in the 1940s", the dimension axiom, the named list.
+2. <code>:333</code> "KU^n ≅ KU^{n+2}" as Bott's theorem — stated, explicitly not proved (tutorial says so).
+3. <code>:395–412</code> formal group law axioms; Baker–Campbell–Hausdorff as the anchor.
+4. <code>:443</code> MU built from "almost complex structure on the <strong>stable normal bundle</strong>" — the
+   transcript says only "almost complex manifolds up to bordism compatible with their almost
+   complex structures". The stable-normal-bundle refinement is the tutorial's own.
+5. <code>:447</code> the Lazard ring named. Transcript says only "another ring… which classifies formal
+   group laws" — the name Lazard is the tutorial's.
+6. <code>:487</code> the <strong>HKR theorem</strong> named. Transcript states the content (HH of a smooth F_p-algebra
+   = differential forms) but never the name or the attribution.
+7. <code>:283</code> "long exact sequences, or excision, or Mayer–Vietoris" given inside quotation marks.
+   The captions read "like long exact sequences for excision and meer via etc etc". The
+   de-mangling is almost certainly right, but it is presented as a verbatim quote and is not.</p>
+<p><strong>Two honest self-labels found, both correct and both to the tutorial's credit:</strong>
+- <code>:428</code> multiplicative formal group law F(x,y)=x+y+βxy explicitly marked "<em>Reconstructed from
+  standard literature — the talk states the additive case only</em>". Confirmed: the transcript
+  states only the additive rank-one rule (tx:325–328).
+- <code>:381</code> and <code>:518</code> two facts attributed to the <strong>March 2025 Simons recording, not the ICM</strong>
+  (Hℤ-modules = chain complexes; the Nikolaus–Scholze formulation of TC). Confirmed absent from
+  the ICM transcript. The labelling is exactly what the brief asks for.</p>
+<h3>Section 4 ("The talk, rebuilt") — the section that maps onto the transcript</h3>
+<p><strong>Zero unsupported speaker claims found.</strong> I walked §4.1 to §4.10 against the transcript line by
+line. Every attributed statement has a caption-level anchor:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tutorial claim</th>
+<th>Transcript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quillen 1970s, higher K-groups</td>
+<td>tx:53–54</td>
+</tr>
+<tr>
+<td>three constituencies (Riemann–Roch / L-functions / surgery obstructions)</td>
+<td>tx:55–60</td>
+</tr>
+<tr>
+<td>"K-theory of Z/4 still not completely known"</td>
+<td>tx:61–62</td>
+</tr>
+<tr>
+<td>finite groups; odd part known since Quillen; the p-adic part is hard</td>
+<td>tx:63–68</td>
+</tr>
+<tr>
+<td>three defects of TC; CMM makes them exhaustive</td>
+<td>tx:70–84</td>
+</tr>
+<tr>
+<td>THH Künneth over THH(ground)</td>
+<td>tx:130–134</td>
+</tr>
+<tr>
+<td>Atiyah–Hirzebruch spectral sequence "a good first approximation"</td>
+<td>tx:150–156</td>
+</tr>
+<tr>
+<td>"around 2000", Levine and Friedlander–Suslin, smooth affine case, later generalized</td>
+<td>tx:157–161</td>
+</tr>
+<tr>
+<td>Bhatt–Morrow–Scholze, syntomic → TC spectral sequence</td>
+<td>tx:163–169</td>
+</tr>
+<tr>
+<td>Fontaine–Messing 1980s, rational coefficients; BMS integral, via topological methods</td>
+<td>tx:169–174</td>
+</tr>
+<tr>
+<td>Bhatt–Scholze reinterpretation; "the part of prismatic cohomology where Frobenius acts by the identity"</td>
+<td>tx:175–178</td>
+</tr>
+<tr>
+<td>F-gauges black-boxed with the same two survivals</td>
+<td>tx:179–184</td>
+</tr>
+<tr>
+<td>"the point of having a formula like this is so that you can think about the Künneth formula"</td>
+<td>tx:186–188</td>
+</tr>
+<tr>
+<td>the chart, all six rows</td>
+<td>tx:196–205</td>
+</tr>
+<tr>
+<td>"extend this chart to the right as far as we wanted"</td>
+<td>tx:205–208</td>
+</tr>
+<tr>
+<td>conjecture demands (a)–(g) including S_prism, S_prism^X, Künneth, KU_prism/Hz_prism, module categories</td>
+<td>tx:222–248</td>
+</tr>
+<tr>
+<td>minimal vs maximal; "SH_prism : SH :: F-gauges : chain complexes"</td>
+<td>tx:249–258</td>
+</tr>
+<tr>
+<td>dimension-axiom answer raised then discarded</td>
+<td>tx:259–264</td>
+</tr>
+<tr>
+<td>MU_prism from Grassmannians; "let me not get into details"</td>
+<td>tx:300–306</td>
+</tr>
+<tr>
+<td>the acceptance test, "the test that you have to pass to prove the conjecture"</td>
+<td>tx:309–314</td>
+</tr>
+<tr>
+<td>Hopkins–Morel precedent, char ≠ p, and the "then it's a construction" conditional</td>
+<td>tx:318–325</td>
+</tr>
+<tr>
+<td>Cartan–Serre Steenrod algebra; "basic building blocks"</td>
+<td>tx:329–338</td>
+</tr>
+<tr>
+<td>Carmeli–Feng, Tate's Brauer-group conjecture, "trickiest cases", "proof of concept"</td>
+<td>tx:338–348</td>
+</tr>
+<tr>
+<td>relative SH_prism(R); "provisional… conditional definition"; p^n-th roots of unity; Z/p; Carmeli–Feng</td>
+<td>tx:358–375</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Citations checked live — all three are real and quoted accurately.</strong>
+1. <code>:572</code> <strong>arXiv:2405.04329</strong> — confirmed: Antieau, Krause, Nikolaus, "On the K-theory of
+   Z/p^n", submitted 7 May 2024. The tutorial's paraphrase (prismatic description of K-groups of
+   O_K/I plus a computation algorithm) matches the abstract. NOT a fabricated citation.
+2. <code>:889</code> <strong>arXiv:2507.13471</strong> — confirmed: Shachar Carmeli, Tony Feng, "Prismatic Steenrod
+   operations and arithmetic duality on Brauer groups", submitted 17 July 2025. I compared the
+   tutorial's three quoted abstract fragments against the live abstract: <strong>verbatim correct</strong>,
+   including "the last open cases of a 1966 Conjecture of Tate" and "generalizing the prismatic
+   F-gauges of Drinfeld and Bhatt--Lurie". NOT fabricated.
+3. <code>:79</code> <strong>youtube.com/watch?v=1fSd7FxEA3w</strong> — confirmed: "Jacob Lurie: Prismatic Stable
+   Homotopy Theory (March 14, 2025)". Real, same speaker, same title, correct date. The
+   tutorial's "seventeen months earlier" is arithmetically right (Mar 2025 → Aug 2026).</p>
+<p><strong>The Z/4 attribution trap: handled correctly.</strong> The transcript says only "we now know how big
+they are" and names nobody (tx:64–66). The tutorial supplies Antieau–Krause–Nikolaus but wraps
+it in an explicit bracket, "<em>Attribution restored, and the talk does not name the authors</em>"
+(<code>:570</code>), with the arXiv id. This is exactly the required behaviour.</p>
+<p><strong>Three gap markers, all placed where the transcript really is silent:</strong>
+- <code>:614</code> the Tor correction in the K-theory Künneth. tx:126 has literally "there's some slight
+  correction" and nothing more. Correctly marked, impact honestly rated low.
+- <code>:830</code> the MU_prism construction. tx:302 "let me not getting into details". Correctly marked.
+- <code>:963</code> the relative construction. tx:371–373 gives only "there's a definition that you can
+  write down that has all of the expected properties". Correctly marked.</p>
+<p><strong>One additional silence the tutorial marks as a gap and rates "moderate", correctly</strong>: <code>:701</code>,
+the explicit syntomic Künneth formula. tx:190–193 confirms he says "There is a formula written
+here" and the captions carry no formula. Not silently filled.</p>
+<p><strong>Two quotes correctly labelled as coming from the March 2025 recording, not the ICM</strong>: the
+Hoyois extension of Hopkins–Morel (<code>:857</code>) and the "I took the important structural theorem"
+sentence (<code>:880</code>). I grepped the ICM transcript: it contains "really control" but NOT "important
+structural theorem" — so the label is accurate, not decorative.</p>
+<h3>Sections 5–10</h3>
+<p><strong>§5 "The one conjecture, stated precisely".</strong> This was the section most at risk — the speaker
+calls his own conjecture "vague" (tx:205) and any tightening is the tutorial's work. It holds up.
+Clauses 1–5 each trace to a spoken demand (tx:222–248 and tx:249–258), and clause 5's
+factorization S_prism -&gt; MU_prism -&gt; Hz_prism is exactly tx:316–320 ("in the classical world you
+can factor that map in two steps... we're demanding that you get the prismatic Eilenberg–MacLane
+spectrum by a completely analogous procedure"). §4.5 also carries the honest header "Conjecture
+(<strong>vague form</strong>)". The Status table's five rows are each transcript-backed or citation-backed.
+<strong>One unflagged strengthening:</strong> <code>:984</code> says "symmetric monoidal, triangulated". The transcript
+says only "tensor category" and "triangulated category". Symmetric monoidal is almost certainly
+what is meant, but it is the tutorial's word, not his, and it is not marked. Low impact.</p>
+<p><strong>§6</strong> is interpretation of the §4.3 chart; no new external claims.</p>
+<p><strong>§7 exercises.</strong> Both are explicitly the tutorial's own — <code>:1122</code> "The swindle is standard and is
+not in either recording; the exercise is mine"; <code>:1191</code> "this exercise is mine end to end... the
+talk states that MU carries the universal formal group law and gives the additive law for
+ordinary cohomology; it never writes down the multiplicative law, the logarithm, or the
+denominators." I confirm: the transcript has zero hits for "Lazard", "height", "HKR". The
+mathematics in the solutions that I can check by hand is correct — 1+bF_m(x,y)=(1+bx)(1+by)
+holds, and log_{F_m}(x) = (1/b)ln(1+bx) = sum (-1)^{n-1} b^{n-1} x^n / n is the correct
+term-by-term integration of 1/(1+bt). <strong>One uncited external claim inside the solution</strong> at
+<code>:1187</code>: the height stratification of formal group laws (additive at height infinity,
+multiplicative at height 1). Standard, uncited, and only loosely covered by that section's
+blanket "entirely mine".</p>
+<p><strong>§9 reading list — three entries, all checked:</strong>
+- Entry 1, the March 2025 recording: URL resolves, correct title/speaker/date. But entry 1 also
+  makes detailed content claims (the Drinfeld/Bhatt syntomic stack Z_p^syn, the specific loci
+  giving de Rham / crystalline / Hodge–Tate / prismatic / q-de Rham, and TP / TC-minus / THH /
+  periodic HH for KU_prism). <strong>I cannot check any of these</strong> — §11 states that the 2025
+  transcript was cleaned "into my scratchpad, not into <code>transcripts/</code>", so the cross-check source
+  is not in the repo. See "What I could not check".
+- Entry 2, Bhatt, <em>Prismatic F-gauges</em>, MAT 549 Fall 2022:
+  <code>math.ias.edu/~bhatt/teaching/mat549f22/lectures.pdf</code> — the URL resolves to a real 1.2 MB PDF.
+  I could not extract its title text (compressed streams) and my web-search budget was exhausted,
+  so the title is unconfirmed; the path <code>mat549f22</code> is consistent with the claim. Not fabricated.
+- Entry 3 and the trailing AKN pointer: both verified above.</p>
+<p><strong>§10 self-test</strong> restates §§3–5 content; no new external claims beyond the Eilenberg–Steenrod
+package already logged.</p>
+<h2>Self-report audit</h2>
+<p><strong>Verdict on §11: substantially HONEST, and unusually detailed — but not COMPLETE. It
+under-reports in five specific places, all in the same direction: standard-textbook names and
+facts supplied by the writing agent are filed in the name-correction table, or nowhere, rather
+than in the "Reconstructed" list where they belong.</strong></p>
+<p>What §11 gets right, and which I confirmed independently rather than taking on trust:
+- Every one of its five listed gaps is in a place the transcript really is silent (checked above).
+- Its claim that the ICM talk never says "infinity-category" / "higher category" / "homotopy" in
+  that sense — I grepped the transcript; correct.
+- Its two "substantive corrections beyond spelling" (the unattributed Z/4 computation; the
+  Carmeli–Feng "trickiest cases" vs "last open cases" discrepancy) are both real, and both are
+  also flagged inline in the body, not only here.
+- Its six "Reconstructed" items are each genuinely reconstructed and each carries a verification
+  route.
+- Its "Could not verify" list is honest: the pre-2000 field case really is unnamed at tx:159–160,
+  and the writer really did decline to guess a name.
+- Its three cited sources all check out live (see the Section 4 block above). No fabrication.</p>
+<p><strong>Under-reported — five items.</strong></p>
+<ol>
+<li><strong>The name-correction table is doing double duty and hides one import.</strong> <code>lzard ring -&gt; Lazard
+   ring</code> is filed under "From the <strong>March 2025 recording only</strong>, listed separately because none of
+   it is in the ICM talk <strong>and I have used almost none of it in the body</strong>". But §3.6 <code>:447</code> uses
+   "the Lazard ring" in the body, unlabelled, as though it were the ICM talk's word. The ICM
+   transcript has zero hits for Lazard; it says only "another ring... which classifies formal
+   group laws". The fact is correct and standard; the disclosure placement is wrong, and it is the
+   one case where §11's own "almost none of it in the body" is not true.</li>
+<li><strong>The HKR theorem is named at <code>:487</code> and appears nowhere in §11.</strong> Zero transcript hits for
+   "HKR". The talk states the content, never the name or the attribution
+   (Hochschild–Kostant–Rosenberg). It belonged in the "Reconstructed" list.</li>
+<li><strong>Eilenberg–Steenrod and the dimension axiom (§3.1, reused in §10) appear nowhere in §11.</strong>
+   The transcript's five "Steenrod" hits are all the Steenrod <em>algebra</em>, late in the talk. The
+   named axiom list and the date "in the 1940s" are the writer's, correctly, but undisclosed.</li>
+<li><strong><code>:443</code> "almost complex structure on the stable normal bundle".</strong> The transcript says only
+   "almost complex manifolds up to bordism compatible with their almost complex structures". The
+   stable-normal-bundle refinement is the writer's and is not disclosed.</li>
+<li><strong>The quote-cleaning policy is never stated.</strong> §11's table covers word-level caption repairs,
+   but the body silently repairs text <em>inside quotation marks</em>. Clearest case, <code>:283</code>: the
+   tutorial prints as a quotation "like long exact sequences, or excision, or Mayer–Vietoris";
+   the captions read "like long exact sequences for excision and meer via etc etc". Filler removal
+   and de-mangling are almost certainly faithful to what was said, but a reader who trusts
+   quotation marks is never told this is happening.</li>
+</ol>
+<p><strong>One further transparency issue that §11 names but does not treat as a cost:</strong> it discloses that
+the March 2025 transcript "was cleaned into my scratchpad, not into <code>transcripts/</code>". Since the
+tutorial leans on that recording at seven labelled points plus the §9 entry-1 content claims,
+that decision makes roughly a tenth of the tutorial permanently unverifiable from the repo. The
+labelling is exemplary; the source is gone.</p>
+<p><strong>Nothing in §11 is a false claim.</strong> I found no case where §11 asserts something the transcript
+contradicts, no gap it claims to have marked that it did not mark, and no citation it claims to
+have verified that failed my check. The under-reporting is omission of textbook-level imports,
+not concealment of invention.</p>
+<h2>Why this is not thin, despite having no companion</h2>
+<p>The caller flagged this as the file most likely to be thin. It is not. The reason is in the
+transcript itself and the tutorial identifies it correctly at <code>:84</code>: <strong>this is a talk of spoken
+formulas.</strong> Lurie states TC(R) = Ext(unit, THH(R)), THH(F_p) = polynomial on one degree-2
+generator, the THH Kunneth formula, the motive Kunneth formula, MU^<em>(pt) = polynomial on one
+generator in each even degree, and "mod out MU by those generators and you get Hz" — all out
+loud, all caught by the captions. What died on the slides is only the indexing (degrees, weights,
+Tate twists, spectral-sequence pages) plus one displayed formula, and the tutorial marks that
+loss precisely rather than papering over it. The section that carries the conjecture (§4, §5) is
+the </em>best*-sourced part of the file, not the worst. The uncited material is concentrated in §3
+and §7 — the background scaffolding and the exercises — which is the right place for it.</p>
+<h2>What I could not check</h2>
+<ul>
+<li>Whether the mathematics is true. Out of scope per the brief.</li>
+<li><strong>Everything drawn from the March 2025 recording</strong> — seven labelled points plus the §9 entry-1
+  content list. The video is real and correctly titled, but its transcript is not in the repo and
+  I did not fetch its captions. To settle: save that transcript into <code>transcripts/</code> and re-run.</li>
+<li>The title of the Bhatt MAT 549 PDF. The file exists at the stated URL; text extraction failed
+  on the compressed streams and my web-search budget was exhausted.</li>
+<li>Whether the ICM programme lists this talk under exactly this title. The reconstruction from the
+  announcer's mangled words plus the March 2025 title is sound but is not the programme itself.</li>
+<li>Whether "he returns to Kunneth five separate times" (<code>:151</code>) is exactly five. The captions carry
+  11 mangled Kunneth tokens across roughly six to eight distinct discussion points; "five" is a
+  defensible count of occasions and if anything undercounts. Not a problem.</li>
+<li>Whether "Lurie has posted nothing to arXiv since January 2022" (<code>:57</code>) is current. The caller
+  verified math.ias.edu/~lurie independently; I did not re-check the arXiv listing.</li>
+</ul>
+</div>
+</body>
+</html>

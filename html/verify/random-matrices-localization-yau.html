@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — random-matrices-localization-yau</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — random-matrices-localization-yau</h1>
+<p>verdict: MINOR
+uncited_external_claims: 17 (counting rule and full enumeration below)
+unsupported_speaker_claims: 0
+title_check: PASS — Yau says from the podium "today I will talk about render matrices and wiggling universality and localization and beyond"; the front-matter title "Random Matrices, Wigner–Dyson Universality, Localization and Beyond" is a faithful de-mangling.
+gap_honesty: PASS — all four declared gaps are real silences in the transcript; I found no gap silently filled. Self-report under-reports at the edges (see Self-report audit), not in the mathematics.</p>
+<h2>Working notes (front matter through §3)</h2>
+<ul>
+<li>Transcript is a single unlined blob, 6793 words, auto-captioned and heavily mangled
+  (speaker's name -&gt; "HT H"/"Yao"/"Dao"; delocalization -&gt; "deoization"; matrix Brownian
+  motion -&gt; "magic brown emotions"; BBGKY -&gt; "BPGki"/"musical"; martingale -&gt; "mole term").
+  The tutorial states all of this in its header and it matches what I read.</li>
+<li>Anchor quote (§2) checked verbatim against transcript: "This is something similar to this
+  BPGki hierarchy in classical dynamics ... you get the the loop n you will be depend on
+  loop n plus one and this morning [martingale] will depend on loop n plus2 and uh the whole
+  thing is uh uh cannot be solved." SUPPORTED.</li>
+</ul>
+<h2>Findings</h2>
+<p>(in progress)</p>
+<h2>Working notes (§4 — the six definitions)</h2>
+<p>Every exponent in §4 checked against the transcript word-for-word:</p>
+<ul>
+<li>§4.1 variance profile <code>S_xy = W^{-d} f((x-y)/W)</code> — transcript "wus df of x - y / w". SUPPORTED.</li>
+<li>§4.1 <code>N = L^d</code> — transcript "because n is l3 to d". SUPPORTED.</li>
+<li>§4.2 dictionary <code>λ ↔ W^{-1}</code> — transcript "this lambda will be inter w minus one". SUPPORTED.</li>
+<li>§4.2 localization-length table (d=1: W²; d=2: exp(cW²); d≥3: ∞) — transcript "for d=1 is w²
+  and for d=2 will be x1 w² [exp W²] and d=3 will be infinity". SUPPORTED.</li>
+<li>§4.2 d=2 transition at W ≈ √(log N) — transcript "you really want to do the log square root
+  log n". SUPPORTED.</li>
+<li>§4.3 complete delocalization <code>‖u‖_∞² ≤ N^ε/N</code> — transcript "the error infinity norm squared
+  is less than one / n up to n to the epsilon". SUPPORTED.</li>
+<li>§4.5 local law needs <code>η ≫ 1/N</code> — transcript "the imaginary part is bigger than one / n".
+  SUPPORTED, and the podium quote about η ≈ 1/N is near-verbatim.</li>
+<li>§4.6 <code>H_t = H_0 + √t·GUE</code> — transcript "at time t is just h0 plus square root t times the
+  gue". SUPPORTED. The data-science aside is a near-verbatim quote.</li>
+</ul>
+<p>Provenance hygiene is unusually good in §4.2: Fyodorov–Mirlin PRL 67 (1991) 2405 is given a
+full reference AND explicitly labelled "the attribution is mine" because Yau said only
+"supersymmetric method and numerics"; likewise the 1979 scaling theory is expanded to
+Abrahams–Anderson–Licciardello–Ramakrishnan with a note that Yau said only "Anderson 1979".</p>
+<h2>Working notes (§5 — the rebuilt talk)</h2>
+<p>The exponent audit, which is the point of this file. Every threshold in §5.7:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>claim</th>
+<th>tutorial</th>
+<th>transcript</th>
+<th>citation on its own line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d=1 delocalization</td>
+<td>W ≥ N^{1/2+c}</td>
+<td>"in dimension one ... the width is square n"</td>
+<td>arXiv:2501.01718 YES</td>
+</tr>
+<tr>
+<td>d=2 delocalization</td>
+<td>W ≥ N^c</td>
+<td>"in dimension two is n to the epsilon"</td>
+<td>arXiv:2503.07606 YES</td>
+</tr>
+<tr>
+<td>d≥3 delocalization</td>
+<td>W ≥ N^c</td>
+<td>"in dimension three that is big n to epsilon"</td>
+<td>arXiv:2507.20274 YES</td>
+</tr>
+<tr>
+<td>d=2 conjectured sharp</td>
+<td>W ≈ √(log N)</td>
+<td>"you really want to do the log square root log n"</td>
+<td>— (spoken)</td>
+</tr>
+<tr>
+<td>d=1 localization</td>
+<td>W² ≪ N</td>
+<td>"for W le square root of the n is [localized]"</td>
+<td>arXiv:2508.05802 YES</td>
+</tr>
+<tr>
+<td>non-Gaussian extension</td>
+<td>W ≫ √N, 1d</td>
+<td>"extended by non-gaussing case by Erdish and Riabov"</td>
+<td>arXiv:2506.06441 YES</td>
+</tr>
+<tr>
+<td>DBM local equilibrium</td>
+<td>t ≳ N^{-1+ε}</td>
+<td>"the time scale is n to minus one"</td>
+<td>arXiv:1609.09011 YES</td>
+</tr>
+<tr>
+<td>comparison window</td>
+<td>t ≲ N^{-1/2}</td>
+<td>"remain unchanged up to ... entering minus one half"</td>
+<td>— (spoken)</td>
+</tr>
+<tr>
+<td>old quantum diffusion</td>
+<td>t ~ λ^{-2-κ}, d ≥ 3</td>
+<td>"t is lambda minus 2 epsilon", "intervention d uh 203"</td>
+<td>Acta Math 200/AHP 8 YES</td>
+</tr>
+</tbody>
+</table></div>
+<p>No exponent in the file contradicts the transcript, and none is stated bare. This is the
+single most important result of this verification.</p>
+<p>Speaker quotes spot-checked and SUPPORTED: "hundreds of graph computations ... total
+nightmare" / "didn't have the courage to continue"; "requires the matrix to be quite fat";
+"a very strange way of using dynamics ... the initial data is already the same as at time
+infinity"; "essentially everything we were hoping to prove for the band matrix was proved";
+"you really want to do √(log N), but we only do N^ε".</p>
+<p>Two caption inversions the tutorial catches and flags rather than propagating:
+- §4.3: transcript says "complete <strong>localization</strong>" where it must be de-localization.
+- §5.7: transcript says "for W ≤ √N is <strong>delocalized</strong>" where it must be localized.
+Both corrections are correct and both are declared inline.</p>
+<p>Honest gap verified: §5.5 marks the mechanism of step 3 as a gap. The transcript really
+does say "I will explain this later on in a minute" and never returns to it. TRUE GAP.</p>
+<h2>Findings</h2>
+<p><strong>F1 — <code>summaries/random-matrices-localization-yau.md:815</code> — a direct quotation of a named
+living person, sourced only to a magazine name.</strong> The file quotes Noga Alon: "Both of us were
+somewhat wrong. Still, I was a little bit more correct, because the probability is bigger
+than half," attributed to "<em>Quanta</em>" with no article title, author, date or URL. It is not in
+the transcript. This is the only unsourced direct quotation of a third party in the file and
+the highest-risk item in it, because a misattributed quote reads as fact.
+<em>What would settle it:</em> the Quanta article URL and date, or deletion of the quote.</p>
+<p><strong>F2 — lines 758–790, the random-regular-graph history block — a cluster of uncited external
+claims.</strong> Yau names only Lubotzky–Phillips–Sarnak, Marcus–Spielman–Srivastava, Alon and
+Sarnak from the podium. The tutorial adds, with no citation: the Alon–Boppana bound
+(λ₂ ≥ 2 − o(1)); Margulis's independent construction; the restriction to d−1 prime, later
+prime power; Friedman's 2008 proof of Alon's conjecture; later proofs by Bordenave and by
+Chen–Garza-Vargas–Tropp–van Handel; and "open since 1988". All are standard and none is
+implausible, but every one is an external claim carrying no id.
+<em>What would settle it:</em> a citation on each line, in the style already used in §4.2 and §5.7.</p>
+<p><strong>F3 — line 355 — an author attribution the transcript does not carry and the file does not
+label.</strong> "Yau's version, proved for Wigner matrices <strong>with Bourgade</strong> and now for band
+matrices." Bourgade is nowhere in the transcript. The file elsewhere labels exactly this kind
+of addition ("the attribution is mine" for Fyodorov–Mirlin, §4.2) and does not here.
+<em>What would settle it:</em> cite Bourgade–Yau on eigenvector QUE, or mark it as the writer's
+attribution.</p>
+<p><strong>F4 — line 371 and line 363 — uncited quantitative sharpenings of a spoken statement.</strong> Yau
+says only that projections of two eigenvectors onto a smaller set "are still also
+orthonormal". The tutorial states the normalization ⟨u_i, E_A u_j⟩ ≈ (|A|/N)δ_{ij} and the
+implication chain "QUE implies delocalization; the converse is false". Both are plausible and
+neither is spoken or cited.</p>
+<p><strong>F5 — line 1030 vs line 812 — internal date inconsistency.</strong> §5.9 says the existence question
+was "open since 1988"; §7.2 says the problem "waited thirty-seven years". 1988 to the December
+2024 preprint is 36 years. Trivial, but both numbers are uncited.</p>
+<p><strong>F6 — line 156 — an unverifiable timestamp.</strong> "He does, at minute 42." The transcript carries
+no timestamps at all; the quote itself is fully supported, only its position is asserted.
+The same applies to "minute two", "the last five minutes" and "the last ninety seconds".</p>
+<p><strong>F7 — §3 table, line 213 — a fourth meaning-inverting caption correction, not enumerated.</strong>
+The transcript says "dimension bigger than three and if the coupling constant lambda is
+<strong>large</strong> then it's delocalized"; the table correctly writes "once λ is <strong>small</strong> enough".
+The correction is right — Yau himself later says "in dimension three it's actually become
+infinity as long as lambda is small" — but §11 enumerates only three such inversions.</p>
+<p><strong>F8 — line 466 — the Wigner-matrix universality theorem is blockquoted with an author list
+and a date range that carry no citation.</strong> "Theorem (Erdős, Schlein, Yau, Yin, and
+independently in part Tao–Vu; roughly 2007–2012)." The mathematical content (2+ε moments,
+complete delocalization, probabilistic QUE) is fully spoken; the authors, apart from Tao–Vu,
+and the years are not, and no id is given. Low risk — this is the speaker's own famous work —
+but it is formatted as a theorem statement, which raises the standard.</p>
+<p><strong>F9 — four scattered single uncited claims.</strong> (a) line 431, Dyson Brownian motion described
+with its 1/(λ_i − λ_j) repulsion — textbook, and covered by the companion book, but not
+spoken and not cited at the line. (b) line 583, the gap note names "the Green function
+comparison theorem (Erdős–Yau–Yin), a Lindeberg-type entry-by-entry swap" with no id.
+(c) line 1013, "TW₁ puts about 83% of its mass below 0" — the number the whole 69% rests on,
+uncited (it is at least internally consistent: 0.83² = 0.6889). (d) line 141, "Anderson's
+answer, which won him the Nobel Prize" — common knowledge, uncited.</p>
+<p><strong>F10 — §3, grouped: standard attributions given author + year but no title or id.</strong> Minami
+(1996), Klein (1998), Aizenman–Warzel, Jimbo–Miwa–Môri–Sato (1980), Tracy–Widom (1993–94),
+and Yau's relative entropy method (1991). The names are all spoken (except the Jimbo
+co-authors and Klein/Aizenman–Warzel); the years are not. The brief's standard is
+"author+title+year", so these fall just short of it. Counted as <strong>one</strong> item, not six,
+because this is the weakest class in the file and the dates are uncontroversial.</p>
+<p><strong>Counting rule for the header.</strong> An "instance" is one claim not present in the transcript
+and not carrying an arXiv id, DOI, or author+title+year on its own line. F1=1, F2=6, F3=1,
+F4=2, F5=1, F8=1, F9=4, F10=1 (grouped) → <strong>17</strong>. F6 (timestamp) and F7 (a fourth caption
+inversion) are not uncited-claim instances and are excluded from the count.</p>
+<p><strong>One further item, recorded for completeness.</strong> Line 106: "Wigner's proposal was, in his own
+later phrase and Yau's from the podium, 'extremely bold' and 'or you can call it crazy'."
+Both phrases are Yau's, from the transcript ("he's going to made a extremely bold claim";
+"the wager has a fantastic — or you can call it crazy — idea"); neither is Wigner's own later
+phrase. This is a wording slip in attribution, not an uncited claim, so it is outside the
+count, but it is the one place the file assigns a quotation to the wrong mouth.</p>
+<p><strong>Not found:</strong> no invented theorem, no invented exponent, no fabricated-looking citation, no
+threshold stated bare, no wrong title, no silently-filled gap.</p>
+<h2>Self-report audit</h2>
+<p>The §11 "Note on the tutorial process" is <strong>honest, and substantially complete, but it
+under-reports in three places.</strong></p>
+<p>What it gets right, and this is the larger part. Every reconstruction I could detect is
+declared: the §6 denominator split and heat-semigroup reading ("my algebra"), the §7.1 √N
+heuristic, the schematic loop hierarchy that Yau explicitly declined to write, and the
+Fyodorov–Mirlin (1991) and Abrahams–Anderson–Licciardello–Ramakrishnan (1979) attributions
+that Yau did not voice. The "piggoa and lao" identification as Aggarwal–Lopatto–Yau is
+labelled in bold as "a reconstruction, not a fact" both in §5.2 and in §11 — that is the
+correct handling and it is rare. Two names ("emana and ego") are declared unresolved rather
+than guessed, and the unidentified "yesterday" lecture is declared too. All four declared
+gaps are real: I confirmed against the transcript that Yau says "I will explain this later on
+in a minute" about the comparison step and never returns to it. The Gaudin–Mehta date
+discrepancy (he says 1962; the tutorial writes "around 1960") is volunteered rather than
+buried, which is the opposite of the failure mode this audit is looking for.</p>
+<p>What it under-reports:</p>
+<ol>
+<li><strong>The Quanta quotation (F1) is invisible in §11.</strong> It appears in no list — not
+   reconstructions, not gaps, not "names I could not verify", not the citation tiers. §11
+   asserts "Everything else … comes from the primary papers, cited inline." That sentence is
+   true of the band-matrix mathematics and false of this quote.</li>
+<li><strong>The regular-graph history block (F2) is not covered by any §11 claim.</strong> §11 accounts for
+   "the loop hierarchy, the primitive hierarchy, the quantum diffusion formula, all six
+   thresholds, the localization matching result" — the mathematics. Six uncited historical
+   attributions in §5.9 fall outside that enumeration and are not mentioned.</li>
+<li><strong>The count of meaning-inverting caption corrections is under-stated (F7).</strong> §11 says
+   "Three, and all three invert a meaning." The λ large/small inversion in the d ≥ 3 Anderson
+   row is a fourth. Low severity, because the transcript itself supplies the correct version
+   later, but the file's own claim of exhaustiveness is what makes it a miss.
+   Similarly, the Bourgade attribution (F3) belongs in the "attributions are mine" list and
+   is not there.</li>
+</ol>
+<p>Nothing in §11 is a false statement. The pattern is omission at the edges of the mathematics
+— the history, the anecdote, one co-author — while the technical core is declared with real
+discipline. The writing agent did not overstate its recovery and did not hide a gap.</p>
+<h2>What I could not check</h2>
+<ul>
+<li><strong>Precise pointers into the cited papers.</strong> Definition 2.9 / eq (2.41) (the G-loop),
+  Lemma 2.11 / eq (2.45) (the loop hierarchy), Definition 2.12 / eq (2.48) (the primitive
+  hierarchy), Theorem 2.4 / eqns (2.8)–(2.9) (quantum diffusion), all of arXiv:2501.01718;
+  eq (1.2) and Corollary 1.3 and Remarks 3.10/3.12 of arXiv:2412.20263; Theorem 2.1 of
+  CLN 28. The arXiv ids are confirmed real by the caller, but I do not have the PDFs, so I
+  cannot confirm that the numbered items say what the tutorial says they say. <strong>This is the
+  file's largest residual risk</strong>: the citations are real, and the risk named in my brief was
+  a real citation attached to a claim the paper does not make. Fetching those four papers and
+  checking the four numbered statements would settle it.</li>
+<li><strong>Whether the mathematics is true.</strong> Out of scope by the brief.</li>
+<li><strong>The lecture's official printed title.</strong> The tutorial's title is Yau's own spoken words
+  and I confirmed that; no programme page was available to me.</li>
+<li><strong>The two unresolved caption names</strong> ("piggoa and lao", "emana and ego"). Audio would
+  settle both.</li>
+<li><strong>The Quanta quotation.</strong> No URL was given and I did not fetch the web.</li>
+<li><strong>Timestamp claims</strong> ("minute 42", "minute two"). The transcript has no timestamps.</li>
+</ul>
+<hr />
+<h1>Round 2 — companion formula check, 2026-08-18</h1>
+<p>Round 1 read the transcript and the tutorial, not the papers. This round fetched
+<strong>Huang–Yau, <em>Lecture Notes on Edge Universality for Random Regular Graphs</em>,
+<code>arXiv:2602.00975</code></strong> (via ar5iv) and the arXiv abstract page for
+<strong>Huang–McKenzie–Yau, <code>arXiv:2412.20263</code></strong>, and checked §5.9 — the section for which the
+tutorial claims that companion.</p>
+<p><strong>Result: every checkable formula in §5.9 is correct.</strong> No change to the verdict.</p>
+<h2>Checked against <code>arXiv:2602.00975</code></h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tutorial</th>
+<th>Companion</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:788</code> <code>λ₁ = d/√(d−1)</code></td>
+<td>Theorem 1.1 preamble, and the <code>2412.20263</code> abstract</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:795</code> Kesten–McKay density <code>1_{[−2,2]} (1 + 1/(d−1) − x²/d)^{−1} √(4−x²)/(2π)</code></td>
+<td>eq. (1.3)</td>
+<td><strong>correct, character for character</strong></td>
+</tr>
+<tr>
+<td><code>:801</code> amplitude <code>A = d(d−1)/(d−2)²</code></td>
+<td>eq. (1.4), <code>𝒜 := d(d−1)/(d−2)²</code></td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:826</code> <code>(AN)^{2/3}(λ₂ − 2) ⟹ TW₁</code></td>
+<td>Theorem 1.1, <code>ℙ_H((𝒜N)^{2/3}(λ₂−2) ⩾ s₁) = ℙ_GOE(N^{2/3}(μ₁−2) ⩾ s₁) + O(N^{−ε})</code></td>
+<td><strong>correct</strong>, scaling constant included</td>
+</tr>
+<tr>
+<td><code>:829</code> "the analogous statement for −λ_N; and the two limits are <strong>independent</strong>"</td>
+<td>"The analogous statement holds for the smallest eigenvalues"; "the largest and smallest nontrivial eigenvalues converge in distribution to <strong>independent</strong> Tracy-Widom 1 distributions"</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:830</code> bulk <code>N^{−1+o(1)}</code>, edge <code>N^{−2/3+o(1)}</code></td>
+<td><code>2412.20263</code> abstract, verbatim</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:832</code> "approximately <strong>69%</strong> … are Ramanujan, meaning max{λ₂,|λ_N|} ≤ 2"</td>
+<td>Corollary; <code>2412.20263</code> abstract, verbatim</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:803</code>, <code>:1022</code>, <code>:1037</code> TW₁ puts about <strong>83%</strong> of its mass below 0, and 0.83² ≈ 0.69</td>
+<td>"The Tracy-Widom 1 distribution has about 83% of its mass on {x : x &lt; 0}… Therefore Theorem 1.1 implies 83% of d-regular graphs have the second eigenvalue less than 2"</td>
+<td><strong>correct</strong>, and the tutorial's independence-squaring is the companion's own derivation</td>
+</tr>
+</tbody>
+</table></div>
+<p>I also re-derived the amplitude independently, because it is the one number a reader could
+check with a pen and the tutorial invites them to. Near the edge,
+<code>1 + 1/(d−1) − x²/d</code> at x = 2 equals <code>(d² − 4d + 4)/(d(d−1)) = (d−2)²/(d(d−1))</code>, so its
+reciprocal is <code>d(d−1)/(d−2)²</code>. That is A. It also passes the sanity check the tutorial does
+not make: A → 1 as d → ∞, recovering the semicircle amplitude.</p>
+<p>Confirmed as a <strong>false alarm</strong> from the depth audit: <code>random-matrices-localization-yau</code> is a
+Grade B file (transcript and citation list only), and the prediction in
+<code>DEVELOPMENT-JOURNEY.html</code> §7.2 was that Grade B files were unchecked, not that they were
+wrong. Here they are right.</p>
+<h2>Two attributions I still could not check</h2>
+<ul>
+<li><code>:797</code> cites the Kesten–McKay density as <strong>"equation (1.2) of arXiv:2412.20263"</strong>. The
+  companion carries the same density as its own eq. <strong>(1.3)</strong>. <code>arXiv:2412.20263</code> has no
+  ar5iv or arXiv HTML rendering (<code>ar5iv</code> returns "No content available", <code>arxiv.org/html</code>
+  returns 404), so only its abstract was readable and the equation number is unverified.
+  Same for <code>:833</code> "<strong>Corollary 1.3</strong>", which the companion states as its own Corollary 1.2.
+  Both are plausible; neither is confirmed.</li>
+<li><code>:404</code> Theorem 2.1 of the Erdős–Yau book (CLN 28) for the local law, and Theorem 2.2 of
+  <code>arXiv:2501.01718</code> for the band case. The book is not online; that paper was not fetched.</li>
+</ul>
+<h2>The round-1 MAJOR-adjacent finding stands</h2>
+<p><code>:815</code> still quotes <strong>Noga Alon</strong>, a living person, with a source that is the single word
+<em>Quanta</em> — no title, no author, no date, no URL. Nothing in this round touched it. It remains
+the sharpest provenance item in the file, and the companion papers cannot settle it.</p>
+<h2>Round 2 — exercises re-derived</h2>
+<p>Both worked solutions were re-derived by hand. <strong>Three defects</strong>, all detailed in
+<code>verify/ROUND2-EXERCISES.md</code> Errors 1-3:</p>
+<ol>
+<li><code>:964</code> the constant c is wrong — the stated <code>c = 2 Im m_sc(E)/√(4−E²)</code> is identically 1;
+   the correct value is <code>c = 1/Im m_sc(E) = 2/√(4−E²)</code>. Both agree at E = 0, which is why a
+   spot check misses it. No downstream effect: only <code>c &gt; 0</code> is used.</li>
+<li><code>:963</code> a dropped minus sign — <code>m′ = −m/(2m+z) = m/(m − 1/m)</code>; the second expression should
+   carry the minus.</li>
+<li><code>:1037-1041</code> the Tracy–Widom tail description is backwards. TW₁ has the <strong>thin</strong> tail on the
+   left (<code>exp(−|s|³/24)</code>) and the thicker one on the right (<code>exp(−(2/3)s^{3/2})</code>), is
+   right-skewed (+0.29), and has median ≈ −1.27, below 0. The numbers 0.83 and 0.69 are correct.</li>
+</ol>
+<p>Everything else in both exercises is correct, including <code>|m_sc(E)| = 1</code>, the <code>1 − S ≈ −DΔ</code>
+expansion, the <code>t ≈ 1/η</code> horizon, <code>W ≳ √N</code> in d = 1, <code>W ≳ 1</code> in d = 2, and the Fréchet bound
+<code>max(0, 0.83 + 0.83 − 1) = 0.66</code>.</p>
+</div>
+</body>
+</html>

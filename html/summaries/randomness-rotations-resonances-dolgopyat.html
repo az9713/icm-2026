@@ -1,0 +1,1607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Randomness, Rotations, and Resonances</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Dmitry Dolgopyat (University of Maryland, College Park)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=lwY_jFRy7O8">https://www.youtube.com/watch?v=lwY_jFRy7O8</a></div><div><b>Level:</b> 3/5 overall — 2/5 (the probability) / 4/5 (the space of lattices)</div><div><b>Reading time:</b> ~70 min</div></div>
+<h1>Randomness, Rotations, and Resonances — Dmitry Dolgopyat</h1>
+<p><strong>Field:</strong> limit theorems. Not hyperbolic dynamics, which is what Dolgopyat is famous for —
+see §13. The talk is about when a sum of many terms is Gaussian, when it is not, and what
+the answer has to do with number theory. He sets it up himself in the second minute: three
+problems, "each problem has elementary formulation," and each one needs "some ideas from
+dynamical systems as well as some elementary geometric considerations."</p>
+<p><strong>Difficulty against your background: 3 overall, and it splits cleanly.</strong></p>
+<ul>
+<li><strong>The probability spine is a 2.</strong> Central limit theorem, local limit theorem, Edgeworth
+  expansions, Kolmogorov's three-series theorem, characteristic functions, the Lindeberg
+  condition. You own every one of these objects or can absorb the one new one — the <em>local</em>
+  limit theorem — in twenty minutes. §4 is the calibration; skim it.</li>
+<li><strong>The machinery he reduces everything to is a 4.</strong> The <strong>space of lattices</strong>
+  SL(d,ℝ)/SL(d,ℤ), the <strong>Siegel transform</strong>, equidistribution and Poisson statistics for a
+  diagonal flow on that space, translation surfaces and their affine symmetry groups. These
+  are objects from homogeneous dynamics and you have none of them. §5 builds the ones the
+  talk actually uses and declines the rest, and §6 is where the two halves meet.</li>
+</ul>
+<p>Sections 4 and 7.1 carry the 2. Sections 5.4, 5.5, 7.3 and 7.4 carry the 4.</p>
+<p><strong>What this tutorial builds:</strong> the local limit theorem and its lattice obstruction;
+discrepancy of an orbit; continued fractions, bounded type, and <em>even</em> continued fractions;
+special (suspension) flows and the staircase translation surface; Markov partitions, just
+far enough to use them; the space of unimodular lattices and marked lattices, the Siegel
+transform, and what "equidistribution of a diagonal orbit" buys you; Edgeworth series and
+why they fail.</p>
+<p><strong>A note on sources — read this before you trust any formula below.</strong></p>
+<ul>
+<li><strong>There is no retrievable ICM proceedings paper.</strong> A proceedings chapter exists — SIAM,
+  DOI <code>10.1137/25m1806971</code>, pages 35–50, titled <strong><em>Randomness, Rotations, Renormalization,
+  and Resonances</em></strong> (four R's; the talk was announced with three). SIAM returns HTTP 403 to
+  automated fetching, and Crossref, Semantic Scholar and OpenAlex all return a null
+  abstract. <strong>I have not read one word of it.</strong> Nothing below comes from it. The one thing
+  its title tells us is that the fourth R, renormalization, is in the chapter too — and the
+  talk's closing summary is precisely about renormalization, so the chapter and the talk
+  are at least pointed the same way.</li>
+<li><strong>Companion for part one:</strong> Dolgopyat and <strong>Omri Sarig</strong>, <em>Local Limit Theorems for
+  Inhomogeneous Markov Chains</em>, Springer Lecture Notes in Mathematics <strong>2331</strong> (2023), 348
+  pages; free preprint <a href="https://arxiv.org/abs/2109.05560">arXiv:2109.05560</a>. <strong>This is a
+  companion, not the ICM paper.</strong> It earns the label: the theorem Dolgopyat states aloud as
+  "what we proved with Omri Sarig several years ago" is this book's main structure theorem,
+  and §7.1 below restores that theorem from it, statement numbers and all.</li>
+<li><strong>Companion for part two:</strong> Dolgopyat and <strong>Bassam Fayad</strong>, <em>Limit theorems for toral
+  translations</em>, Proc. Sympos. Pure Math. <strong>89</strong> (2015) 227–277;
+  <a href="https://arxiv.org/abs/2006.11748">arXiv:2006.11748</a>. A survey by the speaker on exactly
+  the rotations material, including §8.5 on the staircase surface, which is the picture he
+  showed and did not have time to explain. Also a companion, not the ICM paper.</li>
+<li><strong>Part three is restored from its own primary paper:</strong> Dolgopyat and <strong>Kasun Fernando</strong>,
+  <em>An error term in the Central Limit Theorem for sums of discrete random variables</em>,
+  <a href="https://arxiv.org/abs/2303.10235">arXiv:2303.10235</a>, IMRN <strong>2023</strong> no. 21, 18664–18713.
+  Every formula in §7.4 is quoted from it.</li>
+<li><strong>Individual results are restored from their own papers</strong>, cited inline by name: Beck,
+  Bromberg–Ulcigrai, Kesten, Borda, Hooper–Hubert–Weiss, Dolgopyat–Fayad's two <em>Deviations</em>
+  papers, Esseen. These are primary literature for one theorem each and are visibly
+  distinct from the two companions.</li>
+<li><strong>The talk's own main new result has no locatable preprint.</strong> See §7.3 and the gap
+  ledger in §13. This is the most consequential hole in the document.</li>
+<li><strong>No formulas survive in the captions.</strong> Everything was on slides. Every display below is
+  either quoted from a located paper and cited, reconstructed from spoken narration and
+  labelled, or marked as a gap.</li>
+</ul>
+<p><strong>Names.</strong> The auto-captions destroy almost every proper noun, including two that matter
+("Amrit Serik" is Omri Sarig; "Gaston Fernandez" is Kasun Fernando). Full table in §13.
+Two names I could <strong>not</strong> verify are reported as unverified rather than guessed.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>Here is the whole talk in one question.</p>
+<blockquote>
+<p>You add up a great many numbers. When is the answer Gaussian — and when it is not, what
+is it instead, and what decides?</p>
+</blockquote>
+<p>You already believe a version of the answer: add independent, identically distributed,
+finite-variance random variables, subtract the mean, divide by √n, and you get a Gaussian.
+That is the central limit theorem, and it is so robust that it is easy to stop asking
+questions.</p>
+<p>Dolgopyat asks three, and all three break the theorem.</p>
+<p><strong>Question one: what if the terms have different distributions?</strong> Not identically
+distributed, just independent and bounded. The central limit theorem mostly survives. The
+<em>local</em> limit theorem — the finer statement about landing in an interval of length 1 rather
+than of length √n — does not, and what obstructs it is <strong>arithmetic</strong>: whether the values
+sit on a lattice. That is already a probability question with a number-theoretic answer.</p>
+<p><strong>Question two: what if the terms are not random at all?</strong> Take a completely deterministic
+sequence. Not chaotic-deterministic like a hyperbolic map, where you can honestly say
+"unpredictable" — the <em>most regular</em> deterministic system there is, a rigid rotation of a
+circle. Count how often the orbit visits a fixed arc, subtract the expected count, and ask
+for the fluctuation. There is nothing random anywhere. And you still get a central limit
+theorem — with <strong>√log N</strong> in place of √N, and sometimes a Gaussian and sometimes a Cauchy
+distribution, depending on the arithmetic of the rotation number.</p>
+<p><strong>Question three: how good is the Gaussian approximation, exactly?</strong> The classical answer
+is the Edgeworth series: correct the Gaussian by powers of n^(−1/2) with Hermite
+polynomials. For a random variable with three or more atoms, that series fails at a
+predictable order — and the coefficient at which it fails turns out to be a random variable
+whose law is a <strong>universal</strong> object built from random lattices, with the property that
+knowing your model's parameters to ten decimal places tells you nothing about it.</p>
+<p>The unifying claim is his closing summary, and it is worth having in front of you from the
+start:</p>
+<blockquote>
+<p>Independent sums are the <em>most random</em> sequence you can write down. Quasi-periodic sums
+are the <em>most regular</em>. Both are studied by <strong>renormalization</strong>. In both, the answer is
+controlled by a <strong>small number of resonant harmonics</strong>. And on the Fourier side, the two
+renormalizations turn out to be <em>the same linear action on marked lattices</em> — which is
+why the same limiting distributions appear on both ends of the spectrum.</p>
+</blockquote>
+<p>That is the talk: two opposite extremes, one dictionary.</p>
+<hr />
+<h2>2. Your anchor</h2>
+<p>You get two, and Dolgopyat hands you both from the podium. Take them in this order.</p>
+<h3>2.1 The central limit theorem is a renormalization-group fixed point</h3>
+<p>This is the anchor, and it is his, not mine. Here is what he says in the summary, verbatim
+apart from caption noise:</p>
+<blockquote>
+<p>"Both systems can be studied by renormalization transformation. But these renormalization
+transformations are different. For if we want to sum 2n random variables, how can we do
+it? We first sum the first n random variables, then we sum the second. Then we already
+get something which is close to universal distribution, and then we sum the two random
+variables which we got. And so the renormalization transformation in this case looks as
+follows: you start with some random variable S, you consider its convolution with itself
+and maybe some scaling."</p>
+</blockquote>
+<p>Read that as an operator on probability distributions:</p>
+<p>\[\mathcal{R}[\mu] \;=\; \big(\mu * \mu\big)\ \text{rescaled by } \tfrac{1}{\sqrt{2}}\]</p>
+<p>Adding 2n variables = adding n twice, then adding the two blocks. <strong>That is block-spin
+decimation.</strong> The Gaussian is the attracting fixed point of 𝓡; finite variance is the
+condition for lying in its basin; the stable laws are the other fixed points; and √n is the
+scaling exponent that makes the fixed point non-trivial. Universality means "all these
+microscopic models flow to the same fixed point," and it means exactly that here.</p>
+<p>You know this construction from statistical mechanics. If you want it developed at length,
+the Quastel tutorial in this folder (<code>random-interface-growth-quastel.md</code>, §7.2) runs an
+explicit renormalization-group flow between two fixed points and is the better place to
+re-read the general theory. I will not rebuild it here.</p>
+<p>What is <em>new</em> is the second half of the sentence. For a quasi-periodic system there is a
+<strong>different</strong> renormalization, and it is geometric rather than probabilistic:</p>
+<blockquote>
+<p>"For a quasi-periodic map, where this is some rotation of some torus, and the torus is
+ℝ^d over a lattice, what is convenient to do is just to change this lattice by applying
+some linear map."</p>
+</blockquote>
+<p>So: renormalize a <em>sum</em> by convolving; renormalize a <em>rotation</em> by deforming the lattice
+that defines the torus. Two completely different-looking operations. The punchline of the
+talk is that on the Fourier side they are the same linear action, and §7.5 is where that
+lands.</p>
+<h3>2.2 Small divisors</h3>
+<p>The second anchor is perturbation theory in classical mechanics, and it is exact rather than
+decorative.</p>
+<p>Count visits of the orbit {x + nα} to the arc [0, ℓ). Expand the indicator function of the
+arc in a Fourier series, and sum the resulting geometric series in n. The k-th harmonic
+picks up a denominator</p>
+<p>\[\big|e^{2\pi i k \alpha} - 1\big| \;=\; 2\,\bigl|\sin \pi k \alpha\bigr|\]</p>
+<p>and the indicator's own Fourier coefficient contributes another 1/k, so the size of the
+k-th contribution is governed by</p>
+<p>\[\frac{1}{k\,|\sin \pi k\alpha|}\]</p>
+<p><em>(Reconstructed shape. Dolgopyat says aloud: "you have some expression, but what you have in
+the numerator is k times sine pi k alpha." The full displayed expression was on the slide.
+The </em><em>denominator</em><em> k·sin(πkα) is verbatim from him and it is the only part I use.)</em></p>
+<p>A term is large exactly when kα is close to an integer — when the harmonic is nearly
+<strong>resonant</strong> with the rotation. That is the small-divisor problem, in the same form you met
+it in perturbation theory for near-integrable Hamiltonians, and the condition that saves you
+is the same one: a <strong>Diophantine condition</strong>, here called <em>bounded type</em>, which says
+k·‖kα‖ ≥ c for all k. Dolgopyat–Fayad's own paper on the subject uses the words: the proof
+rests on "a correspondence between the <strong>small divisors</strong> in the Fourier series of the
+discrepancy function and lattices with short vectors" (GAFA 24 (2014) 85–115, abstract).</p>
+<p><strong>One honest limitation, stated because the spec demands it.</strong> <em>KAM theory itself never
+appears in this talk.</em> Not the theorem, not the name, not invariant tori. The small-divisor
+<em>apparatus</em> is here — Diophantine conditions, continued fractions, resonance counting,
+renormalization — and it is doing the same job it does in KAM. But if you go in expecting
+tori to survive a perturbation you will be looking for something that is not there. What
+survives here is not a torus; it is a limit law.</p>
+<h3>2.3 Two anchors that do not apply, named so you stop looking for them</h3>
+<ul>
+<li><strong>Billiards and the Lorentz gas: absent.</strong> My brief suggested them, reasonably — they are
+  Dolgopyat's field and they are literally statistical mechanics. The talk mentions neither,
+  not once.</li>
+<li><strong>Transfer operators and "Dolgopyat's method": absent.</strong> His most famous contribution, the
+  one the introducer spends a sentence on, does not appear. He explicitly declines the whole
+  subject: <em>"I'm not going to discuss this kind of dynamical systems in my talk, because in
+  this case it's quite well understood what is causing this stochastic behaviour."</em> See §13.</li>
+</ul>
+<hr />
+<h2>3. The three questions, as he poses them</h2>
+<p>Before the bridge, here is the skeleton, so you know what the vocabulary is for.</p>
+<p>He starts from De Moivre and Laplace, 300 years ago: a sum of n coin flips, and the
+approximation</p>
+<p>\[\sigma_n\,\mathbb{P}\big(S_n = k\big) \;\approx\; \varphi\!\left(\frac{k - \mathbb{E}S_n}{\sigma_n}\right),
+\qquad \varphi(z) = \tfrac{1}{\sqrt{2\pi}}e^{-z^2/2}\]</p>
+<p><em>(Reconstructed from his verbal statement: "the probability that the sum takes value k, once
+we multiply it by standard deviation, is approximately equal to Gaussian density computed at
+the point obtained from k by subtracting the mean and dividing by standard deviation." The
+formula was on the slide.)</em></p>
+<p>Sum that over k up to a threshold and you get the central limit theorem. Push Stirling's
+approximation to higher order instead of just the leading term and you get an asymptotic
+expansion in powers of 1/σ_n with polynomial coefficients — the Edgeworth series.</p>
+<p>So the three-hundred-year-old story already contains all three of his questions, and he asks
+what happens when you relax each hypothesis:</p>
+<ol>
+<li><strong>Non-stationary.</strong> Terms independent but not identically distributed.</li>
+<li><strong>Dependent.</strong> Terms not independent — and then, the extreme case, terms not random.</li>
+<li><strong>Higher order.</strong> The lattice case admits an expansion to any order. What about the
+   non-lattice case — three atoms instead of two?</li>
+</ol>
+<p>"Each of these questions commands a vast literature," he says. "One can give a graduate
+course for each." What he does instead is take the simplest non-trivial case of each and
+show the new phenomenon it exposes.</p>
+<hr />
+<h2>4. The bridge, part one: the probability (this is the 2)</h2>
+<p>Skim this if the vocabulary is already yours. Only §4.2 is likely to be new.</p>
+<h3>4.1 Central limit theorem, stated the way he uses it</h3>
+<p>X₁, …, X_n independent, mean zero, finite variance, S_n their sum, σ_n² = Var(S_n). Then</p>
+<p>\[\mathbb{P}\!\left(\frac{S_n}{\sigma_n} \le z\right) \longrightarrow \Phi(z) = \int_{-\infty}^{z}\varphi(y)\,dy\]</p>
+<p>His gloss is the operational one: <strong>on intervals of length comparable to σ_n, the hitting
+probability is universal.</strong> It agrees with a Gaussian of the same mean and variance, and
+nothing else about the model matters.</p>
+<h3>4.2 Local limit theorem — the new object</h3>
+<p>Now shrink the interval. Take (a, b) of length <strong>O(1)</strong>, not O(σ_n), sitting near the point
+z·σ_n. Expand the Gaussian to first order across such a short interval and you get</p>
+<p>\[\mathbb{P}\big(S_n - z\sigma_n \in (a,b)\big) \;\approx\; \frac{\varphi(z)}{\sigma_n}\,(b-a)\]</p>
+<p><em>(This one you can derive in a line: the density is essentially constant across an interval
+of length O(1) when the scale is σ_n → ∞.)</em></p>
+<p>When this holds we say the system satisfies the <strong>non-lattice local limit theorem</strong>.</p>
+<p>Dolgopyat's way of putting it is the one to keep, because the rest of the talk is a
+variation on it:</p>
+<blockquote>
+<p><strong>Zoom in around a point not far from the mean, and what you see is Lebesgue measure —
+which is Haar measure on the real line.</strong></p>
+</blockquote>
+<p>The local limit theorem is a statement that the fine-scale structure of the sum is the
+translation-invariant measure of ℝ. Every failure in this talk is a failure of that
+sentence, with Haar measure on ℝ replaced by Haar measure on some <em>smaller</em> group.</p>
+<p><strong>The obvious obstruction.</strong> If every X_i is integer-valued, and (a, b) contains no integer,
+the probability is exactly zero and no such asymptotic can hold. <strong>Gnedenko and Stone</strong>:
+that is the <em>only</em> obstruction in the i.i.d. case. Either the non-lattice local limit theorem
+holds, or, after a shift, the variables take values in a sublattice tℤ — and then the local
+picture is Haar measure on that shifted subgroup, i.e. counting measure on a
+one-dimensional lattice.</p>
+<p>Notice the shape of the statement, because the whole talk has it: <em>classify the closed
+subgroups of ℝ.</em> There are only three kinds — {0}, tℤ, and ℝ — and each one names a regime.</p>
+<h3>4.3 Non-stationary independent sums</h3>
+<p>Independent, uniformly bounded, mean zero, different distributions. V_n = Var(S_n).</p>
+<p><strong>Does the CLT hold?</strong> He attributes the answer to <strong>Kolmogorov's three-series theorem</strong>
+(this setting is essentially the main case of it). Two possibilities:</p>
+<ul>
+<li><strong>V_n bounded</strong> ⟹ S_n converges almost surely. There is no fluctuation to normalize.</li>
+<li><strong>V_n unbounded</strong> ⟹ the central limit theorem holds.</li>
+</ul>
+<p>So the <em>only</em> obstruction to the CLT is almost-sure convergence of the sum. Clean.</p>
+<p><strong>Does the local limit theorem hold?</strong> Assume the CLT. Two possibilities again:</p>
+<ul>
+<li>The local distribution is Lebesgue measure on ℝ. Business as usual.</li>
+<li>There is a <strong>local obstruction</strong>: for some a &gt; 0, the projection of S_n to the torus ℝ/aℤ
+  <em>converges in distribution</em>, after a <strong>time-dependent change of origin</strong> on the torus.
+  (Dolgopyat: <em>"like in dynamical systems, we need to introduce some normal form — we need to
+  change origin on the torus at different times."</em>) Then the local distribution is invariant
+  only under translations by aℤ, and the limiting object is the law of the limiting random
+  variable Y on that torus.</li>
+</ul>
+<p>The point of the second bullet, and he says it explicitly: <strong>a purely probabilistic question
+about local distributions has an answer that depends on the arithmetic nature of the support
+of the measure.</strong> That is the first interaction of probability and number theory in the
+talk, and there are two more coming.</p>
+<h3>4.4 Edgeworth series</h3>
+<p>Keep going past the leading term. The <strong>order-r Edgeworth series</strong> is</p>
+<p>\[E_r(z) \;=\; \Phi(z) \;+\; \varphi(z)\sum_{k=1}^{r}\frac{P_k(z)}{n^{k/2}}\]</p>
+<p>with P_k polynomials (built from Hermite polynomials and the cumulants). The polynomials are
+<em>defined</em> by matching Fourier transforms: the characteristic function of S_n/(σ√n) and the
+Fourier transform of E_r must agree to o(n^(−r/2)). We say S_n <strong>admits an order-r Edgeworth
+expansion</strong> if</p>
+<p>\[\lim_{n\to\infty} n^{r/2}\left[\mathbb{P}\!\left(\frac{S_n}{\sigma\sqrt n}\le z\right) - E_r(z)\right] = 0
+\qquad\text{for every } z\]</p>
+<p><em>(Quoted from Dolgopyat–Fernando, arXiv:2303.10235, eq. (1.1) and the display above it.)</em></p>
+<p>Dolgopyat's remark about this definition is the seed of part three:</p>
+<blockquote>
+<p>The series is <strong>a priori only formal</strong>, because it is built by matching the characteristic
+function <strong>at zero only</strong>. It ignores every other resonance.</p>
+</blockquote>
+<p>Hold onto that. Matching at ξ = 0 is a local condition on the characteristic function; the
+Edgeworth series knows nothing about what happens at other frequencies where |φ̂(ξ)| is close
+to 1. Those other frequencies are the resonances, and they are what breaks it.</p>
+<hr />
+<h2>5. The bridge, part two: the geometry (this is the 4)</h2>
+<p>Five objects. Each is defined by deforming something you have.</p>
+<h3>5.1 Discrepancy</h3>
+<p>Given a map f : X → X, a point x, and a target set I, the <strong>discrepancy</strong> is</p>
+<p>\[D_N(I, f, x) \;=\; \#\{\,0 \le n &lt; N : f^n(x) \in I\,\} \;-\; N\,|I|\]</p>
+<p>Visits minus expected visits. This is the "sum" in parts two and three of the talk: an
+ergodic (Birkhoff) sum of the centred indicator function 𝟙_I − |I|.</p>
+<p><strong>Borel's example, which Dolgopyat uses to set the tone.</strong> Let f(x) = 10x mod 1 on [0,1).
+In decimal notation this map <strong>erases the first digit</strong>. If x is uniform, the digits are
+i.i.d. uniform on {0,…,9}; so if you count how often the digit 3 appears among the first N
+digits and subtract N/10, that discrepancy divided by √N satisfies a central limit theorem.
+This is Borel, about 100 years ago, and it is the prototype of the whole subject:</p>
+<blockquote>
+<p><strong>a completely deterministic system with genuinely random behaviour.</strong></p>
+</blockquote>
+<p>He is careful about why the statistical description is <em>legitimate</em> rather than a
+convenience: if you know x only to 10^(−10) — ten digits — then after ten iterations you know
+nothing at all about the state. Determinism plus finite precision equals randomness, and the
+mechanism is <strong>exponential divergence of nearby orbits</strong>: two points at distance 10^(−n) are
+at distance 1 after n steps.</p>
+<h3>5.2 The systems he sets aside, and why you should know their names anyway</h3>
+<p><strong>Hyperbolic toral automorphisms.</strong> Take A ∈ SL(2,ℤ) with real eigenvalues off the unit
+circle — one expanding (λ &gt; 1), one contracting — and let it act on 𝕋² = ℝ²/ℤ². Arnold's cat
+picture: iterate a portrait a few times and the phase space is uniformly grey. Completely
+deterministic, explicitly solvable in eigencoordinates, statistically indistinguishable from
+noise.</p>
+<p><strong>Markov partitions and symbolic dynamics.</strong> Chop the torus into pieces Π₁, …, Π_K. Record
+which piece the orbit is in at each time: an <em>itinerary</em>, a sequence of symbols. If the
+resulting process is a Markov chain when x is uniform, the partition is a <strong>Markov
+partition</strong>. <strong>Adler and Weiss</strong> (about 50 years ago) proved that every hyperbolic toral
+automorphism in dimension 2 has one, with elements that are parallelograms whose sides are
+parallel to the stable and unstable eigenvectors. The construction was extended by <strong>Sinai,
+Bowen, Young, Sarig</strong> and many others; Dolgopyat points at <strong>Jérôme Buzzi's</strong> lecture at the
+same congress for recent results. In higher generality the partition elements are fractal,
+but they still work.</p>
+<p>This is the machinery that turns a deterministic map into a Markov chain, and therefore into
+§4.3's setting. <strong>Remember that it exists — §7.3 uses it.</strong></p>
+<p>And then he puts it all down:</p>
+<blockquote>
+<p>"I'm not going to discuss this kind of dynamical systems in my talk, because it's quite
+well understood what is causing this stochastic behaviour, which is exponential divergence
+of nearby orbits. So I'm going to consider <strong>the opposite end of the spectrum</strong>."</p>
+</blockquote>
+<p>The opposite end is the circle rotation x ↦ x + α mod 1. An <strong>isometry</strong>. Zero divergence of
+nearby orbits. Nothing chaotic anywhere. And limit theorems all the same.</p>
+<h3>5.3 Continued fractions and bounded type</h3>
+<p>\[\alpha \;=\; a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{\ddots}}}\]</p>
+<p><strong>Regular expansion:</strong> a₀ ∈ ℤ, and a_k a <em>positive integer</em> for k ≥ 1.</p>
+<p><strong>Bounded type</strong> (he says "bounded type"; the captions render it "boundary type"
+throughout): there is C = C(α) with</p>
+<p>\[|q\alpha - p| \;\ge\; \frac{C}{|q|}\qquad\text{for all integers } p,\ q \ne 0\]</p>
+<p>Equivalently: the partial quotients a_k are bounded. This is the Diophantine condition of
+§2.2 — α is badly approximable by rationals. Quadratic irrationals are of bounded type, by
+Lagrange's theorem (eventually periodic expansion ⟹ bounded partial quotients).</p>
+<p><strong>Even continued fractions.</strong> He then introduces a variant, and it looks arbitrary until §7.3
+explains it. Require every partial quotient to be <strong>even</strong>, and non-zero from the second one
+on. (Partial quotients may now be negative — that is what makes an even expansion possible.)
+Lagrange's theorem still holds: quadratic irrationals have eventually periodic even
+expansions.</p>
+<p>Bounded type in the even expansion needs <strong>an extra condition</strong>, and it is the one his main
+theorem is about:</p>
+<blockquote>
+<p>the entries must be bounded, <strong>and</strong> there must be no arbitrarily long alternating blocks
+<code>+2, −2, +2, −2, …</code>.</p>
+</blockquote>
+<p><em>(Verbatim in substance from the transcript. Why the alternating block is bad: <code>+2, −2</code>
+repeating is the even-expansion way of encoding a partial quotient 1 in the regular
+expansion, so long alternating blocks are the even expansion's way of hiding an unbounded
+regular partial quotient.</em> <strong>This parenthetical explanation is mine, not his</strong> <em>— he states
+the condition and moves on. I include it because it makes the condition memorable, and I
+flag it because he did not say it.)</em></p>
+<h3>5.4 Special flows and the staircase surface</h3>
+<p>A <strong>special flow</strong> (or suspension flow) over a map T with roof function r: take the region
+under the graph of r over the base, and flow straight up at unit speed; when you hit the
+graph, return to the base at the point T(x). Conversely, a flow on a surface plus a
+transversal cross-section gives you a map — the <strong>Poincaré map</strong> — plus a return time. The
+move Dolgopyat makes is the second direction: <strong>replace a map by a flow on a surface</strong>,
+because surfaces have symmetries that maps do not.</p>
+<p>The surface is the <strong>staircase</strong> St, and it is the one picture in the talk I can fully
+restore, because Dolgopyat–Fayad's survey draws it (arXiv:2006.11748, Figure 4, §8.5) and
+credits it to <strong>Hooper, Hubert and Weiss</strong>:</p>
+<ul>
+<li>Take 2 × 1 rectangles ("bricks"). Stack them so that the bottom-left corner of the next
+  brick sits at the <em>centre of the top edge</em> of the previous one — each brick is offset by
+  half a brick. The pile is infinite in both directions; index the bricks by z ∈ ℤ.</li>
+<li>Identify sides that differ by <strong>2 units</strong> horizontally or vertically. The result is a
+  translation surface.</li>
+<li>There is a translation symmetry G(x, y) = (x + 1, y + 1) — climb one step — and
+  <strong>St/G is a torus</strong>. So the staircase is a <strong>ℤ-cover of a torus</strong>, and the covering index
+  z is a <em>height</em>: which step you are on.</li>
+</ul>
+<p>Now flow in a straight line of slope β. Take Σ = the union of the top edges of the bricks as
+your cross-section, and identify Σ with 𝕋 × ℤ. Then the Poincaré map is</p>
+<p>\[(x, z) \;\longmapsto\; \Big(x + \alpha,\ \ z + \mathbb{1}_{[1/2,\,1)}(x) - \mathbb{1}_{[0,\,1/2)}(x)\Big),
+\qquad \alpha = \frac{\tan\theta + 1}{2}\]</p>
+<p><em>(Quoted from Dolgopyat–Fayad, arXiv:2006.11748 §8.5, where
+this display appears with tan θ = β. Dolgopyat says in the talk "we consider a line with
+constant slope β = 2α − 1", which is the same relation solved the other way.)</em></p>
+<p><strong>Stare at that map for a second, because it is the entire trick.</strong> The first coordinate is
+just the rotation by α. The second coordinate goes <strong>up</strong> when x is in the right half of the
+circle and <strong>down</strong> when x is in the left half. So after n steps,</p>
+<p>\[z_n \;=\; z_0 + D_n\big([1/2, 1),\, R_\alpha,\, x\big) \;-\; D_n\big([0,1/2),\, R_\alpha,\, x\big)\]</p>
+<p>which, up to the trivial identity D + D′ = 0 for a partition into two halves, is exactly
+<strong>twice the discrepancy of the rotation with respect to the half-circle</strong>.</p>
+<blockquote>
+<p><strong>The height on the staircase <em>is</em> the discrepancy.</strong> A question about counting visits of a
+circle rotation to an arc has become a question about how a straight line climbs an
+infinite staircase.</p>
+</blockquote>
+<p>That is the "passing to a special flow" step he names and does not have time to draw.</p>
+<p><strong>And now the symmetries.</strong> The staircase has more than the deck transformation G. Following
+Hooper–Hubert–Weiss (the survey's citation [53]), St is a <strong>Veech surface</strong>:</p>
+<blockquote>
+<p>For every A ∈ SL(2,ℤ) with <strong>A ≡ I mod 2</strong> — odd on the diagonal, even off it — there is a
+unique automorphism ψ_A of St which commutes with G, fixes the singularities, has
+derivative A at every non-singular point, and has <strong>zero drift</strong>. In coordinates,
+ψ_A(p, z) = (Ap, z + τ(p)) with ∫_{𝕋²} τ = 0.</p>
+</blockquote>
+<p><em>(Quoted in substance from arXiv:2006.11748, eq. (40) and the sentence above it. Dolgopyat
+states exactly this from the podium — "on the diagonal you have odd entries, off diagonal you
+have even entries… derivative equal to this matrix A… we have zero drift, meaning that on
+average our orbit is equally likely to go up and down, and they commute with the deck
+transformations.")</em></p>
+<p>The subgroup {A ∈ SL(2,ℤ) : A ≡ I mod 2} is the <strong>theta group</strong>. Its continued-fraction
+algorithm is the <strong>even</strong> continued fraction algorithm. <em>That</em> is why §5.3 introduced even
+expansions: they are the symbolic dynamics of the staircase's own symmetry group. Dolgopyat
+does not say this; it is forced by putting his two slides next to each other, and I flag it
+as my inference.</p>
+<h3>5.5 The space of lattices, and the Siegel transform</h3>
+<p>This is the object you do not have, and it is worth twenty minutes.</p>
+<p>A <strong>unimodular lattice</strong> in ℝ^d is L = Aℤ^d with det A = 1. Two matrices give the same
+lattice exactly when they differ by right multiplication by an element of SL(d,ℤ) (a change
+of ℤ-basis). So</p>
+<p>\[\mathcal{M}_d \;=\; \{\text{unimodular lattices in } \mathbb{R}^d\} \;\cong\; \mathrm{SL}(d,\mathbb{R})/\mathrm{SL}(d,\mathbb{Z})\]</p>
+<p>This is a finite-volume (but non-compact) homogeneous space carrying a natural <strong>Haar
+measure</strong>, normalized to a probability measure. Non-compact because a lattice can have an
+arbitrarily short vector and run off to infinity in the space; that non-compactness is not a
+nuisance here, it is where the heavy tails come from.</p>
+<p><strong>Why you should find this familiar.</strong> It is a phase space with a group acting on it by
+translations, and the dynamics is a one-parameter subgroup acting on the right — the
+<strong>diagonal</strong> (or Cartan) flow diag(e^t, …, e^t, e^{−(d−1)t}). For d = 2 this is literally the
+geodesic flow on the modular surface. If you want the general framework of Γ\G, right
+translations as flows, and mixing implying equidistribution, built at length, read
+<code>lens-of-circles-oh.md</code> in this folder — Hee Oh's tutorial constructs Γ\PSL₂(ℂ) as a phase
+space and develops exactly that machinery. I need only the special case and only two facts
+about it.</p>
+<p><strong>Fact one: the Siegel transform and its mean.</strong> For a nice compactly supported
+g : ℝ^d → ℝ, define</p>
+<p>\[S(g)(L) \;=\; \sum_{w \in L \setminus \{0\}} g(w)\]</p>
+<p>— evaluate g at every non-zero lattice point and add. This is a function on the space of
+lattices. Its average over Haar measure is the integral of g:</p>
+<p>\[\mathbb{E}_L\big[S(g)\big] \;=\; \int_{\mathbb{R}^d} g(w)\,dw\]</p>
+<p><em>(Quoted from Dolgopyat–Fernando eq. (9.1), where it is attributed to Rogers; it is the
+classical Siegel mean-value identity.)</em> In particular, for a set B with 0 ∉ B,
+ℙ(L ∩ B ≠ ∅) ≤ Vol(B). This is the tool for "how many lattice points land in this box" —
+which is exactly "how many resonances are there".</p>
+<p><strong>Fact two: marked lattices.</strong> A <strong>marked lattice</strong> is a pair (L, χ) where χ : L → 𝕋 is a
+homomorphism (a character) — every lattice point carries a phase. The space of these is</p>
+<p>\[\mathcal{M} \;\cong\; \big(\mathrm{SL}_d(\mathbb{R}) \ltimes \mathbb{R}^d\big)\big/\big(\mathrm{SL}_d(\mathbb{Z}) \ltimes \mathbb{Z}^d\big)\]</p>
+<p>with its own Haar measure — pick a lattice at random, then pick the phases independently and
+uniformly. <em>(Quoted from Dolgopyat–Fernando §1. The paper writes "homeomorphism χ : L → 𝕋";
+that is a typo for </em><em>homomorphism</em><em> — see §13.)</em></p>
+<p>Marked lattices are what the talk ends on. Keep the picture: <strong>a lattice of harmonics, each
+carrying a phase, with a linear map acting on the lattice.</strong></p>
+<hr />
+<h2>6. What the three parts have in common, stated once</h2>
+<p>Before the walkthrough, the pattern, so you can see each part as an instance:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>part one (non-stationary sums)</th>
+<th>part two (rotations)</th>
+<th>part three (Edgeworth)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the sum</td>
+<td>S_N of independent or Markov terms</td>
+<td>discrepancy D_N of a rotation</td>
+<td>S_n of i.i.d. terms with d+1 atoms</td>
+</tr>
+<tr>
+<td>"resonance" means</td>
+<td>ξ where the characteristic function does not → 0</td>
+<td>k with k·‖kα‖ small</td>
+<td>k with all c_j k near integers to within n^(−1/2)</td>
+</tr>
+<tr>
+<td>resonances form</td>
+<td>a closed subgroup of ℝ</td>
+<td>continued-fraction denominators</td>
+<td>short vectors in a lattice</td>
+</tr>
+<tr>
+<td>the answer is decided by</td>
+<td>which subgroup: {0}, tℤ, or ℝ</td>
+<td>how many resonances, and their signs</td>
+<td>equidistribution of a lattice in 𝓜</td>
+</tr>
+<tr>
+<td>normalization</td>
+<td>√Var</td>
+<td>√log N or log N</td>
+<td>n^(−d/2)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Gaussian, or Haar on a subgroup</td>
+<td>Gaussian, or Cauchy</td>
+<td>random Siegel transform</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every row is the same sentence: <strong>find the resonances, count them, and look at their
+geometry.</strong></p>
+<hr />
+<h2>7. The talk, rebuilt</h2>
+<h3>7.1 Part one — inhomogeneous Markov chains, and the group of resonances</h3>
+<p>He moves from independent to dependent by the shortest possible route: a <strong>non-stationary
+Markov chain</strong>, in the simplest setting where anything can be said.</p>
+<p><strong>The setting</strong>, as he states it: for each n there is a background measure μ_n on the state
+space; the transition probability with respect to μ_n has a density <strong>uniformly bounded above
+and below</strong> (this is <em>uniform ellipticity</em>); the observable is an <strong>additive functional</strong>
+depending on two consecutive states,</p>
+<p>\[S_N \;=\; \sum_{n=1}^{N} f_n(X_n, X_{n+1}), \qquad \sup_n \|f_n\|_\infty &lt; \infty\]</p>
+<p>Why two states and not one? Because that is where the new phenomenon lives, and he shows you
+immediately: if f_n(X_n, X_{n+1}) = g_{n+1}(X_{n+1}) − g_n(X_n) — a <strong>gradient</strong> — the sum
+telescopes, S_N stays bounded, and there is no central limit theorem no matter how large the
+individual variances are. A functional of one variable cannot do that.</p>
+<p><strong>The theorem</strong> ("what we proved with Omri Sarig several years ago"), stated as he states it:
+either the classical local limit theorem holds, or f_n decomposes into <strong>four</strong> parts —
+a constant part, a lattice part, a convergent part, and one more part that exists only
+because the variables are dependent.</p>
+<p>Now let me restore that properly, because the companion book states it in a form you can
+actually use, and it is a genuinely elegant classification.</p>
+<p><strong>The three obstructions</strong> <em>(Dolgopyat–Sarig, arXiv:2109.05560, §1.2 — quoted)</em>. Define the
+<strong>algebraic range</strong> G_alg to be the smallest closed subgroup G ⊆ ℝ such that, after
+subtracting constants, f_n(X_n, X_{n+1}) ∈ G almost surely for every n. Then the complete
+list of obstructions to the local limit theorem is:</p>
+<ol>
+<li><strong>Lattice behaviour.</strong> G_alg = tℤ for some t &gt; 0.</li>
+<li><strong>Center-tightness.</strong> There are constants m_N with {S_N − m_N} tight. Equivalently
+   Var(S_N) ↛ ∞.</li>
+<li><strong>Reducibility.</strong> f = g + c, where c is center-tight and G_alg(g) is <em>strictly smaller</em>
+   than G_alg(f).</li>
+</ol>
+<p><strong>If none of the three occurs, all the classical asymptotics hold.</strong> That is the book's main
+theorem and it is exactly the shape of Gnedenko–Stone, one level up in generality.</p>
+<p><strong>Characterizing (2), which is the gradient story made precise</strong> <em>(Theorem 3.8 of the book)</em>:</p>
+<blockquote>
+<p>Var(S_N) is bounded ⟺ f is center-tight ⟺ <strong>f = ∇a + h</strong>, where a is a uniformly bounded
+potential and h has summable variance.</p>
+</blockquote>
+<p>There is the "constant part, gradient part, convergent part" he says aloud, in three symbols.
+The book notes that this characterization "seems to be new" in the inhomogeneous setting, and
+that the <em>summable-variance</em> term is genuinely new — in the stationary homogeneous world it
+cannot occur unless the functional is constant.</p>
+<p><strong>Now the resonances, which is the part he spends his time on.</strong> He defines resonant points
+by first defining non-resonant ones: ξ is non-resonant if the characteristic function of S_N
+at ξ tends to 0. But that is too crude, and he gives the counterexample himself: let every
+term be integer-valued except the first, which is uniform on [0,1]. Then the characteristic
+function vanishes at ξ = 2π because of the <em>first term alone</em>, forever — and yet the system
+is morally lattice. So he wants <strong>stably</strong> non-resonant: the characteristic function should
+tend to 0 even after deleting the first few terms. The complement of that set is the set of
+<strong>resonances</strong>.</p>
+<p>The companion book's version of this is a genuinely computable quantity, and it is worth
+seeing because it makes "resonance" concrete. Take a <strong>hexagon</strong>: two three-step paths
+x_{n−2} → x_{n−1} → x_n → y_{n+1} and x_{n−2} → y_{n−1} → y_n → y_{n+1} sharing their
+endpoints. The <strong>balance</strong> Γ(P) is the value of the additive functional along the first path
+minus its value along the second. The <strong>structure constants</strong> are</p>
+<p>\[d_n(\xi)^2 \;=\; \mathbb{E}\Big[\big|e^{i\xi\Gamma(P)} - 1\big|^2\Big]\]</p>
+<p>and the <strong>co-range</strong> is</p>
+<p>\[H(X, f) \;=\; \Big\{\xi \in \mathbb{R} \;:\; \sum_{n\ge3} d_n(\xi)^2 &lt; \infty\Big\}\]</p>
+<p><em>(Quoted from arXiv:2109.05560, eqs. (2.25)–(2.26) and §4.2.1.)</em> Read it: d_n(ξ) measures how
+far ξ·Γ is from 2πℤ — how nearly the two paths are <em>indistinguishable at frequency ξ</em>.
+Summable means the frequency ξ never gets destroyed. <strong>The co-range is Dolgopyat's group of
+resonances</strong>, written down as a convergent series in computable quantities. And the summation
+from n = 3 is precisely his "after we maybe remove the first few terms."</p>
+<p><strong>The trichotomy.</strong> He says from the podium: the resonance group is a closed subgroup of ℝ,
+so there are three possibilities, and each names a regime. The book's Theorems 4.3 and 4.4
+give them exactly:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>resonance group H(X, f)</th>
+<th>what it means</th>
+<th>what happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ℝ</strong></td>
+<td>f is center-tight</td>
+<td>S_N is tight; <strong>no CLT</strong>, no universal behaviour</td>
+</tr>
+<tr>
+<td><strong>{0}</strong></td>
+<td>irreducible, non-lattice</td>
+<td><strong>the usual local limit theorem</strong>, essential range ℝ</td>
+</tr>
+<tr>
+<td><strong>tℤ</strong>, t &gt; 0</td>
+<td>arithmetic resonance</td>
+<td>lattice local limit theorem on the sublattice (2π/t)ℤ</td>
+</tr>
+</tbody>
+</table></div>
+<p>with a quantitative bound in the lattice case: t ≥ π/(3 ess sup |f|), so the resonance
+spacing cannot be arbitrarily fine.</p>
+<p>In the third case, he says, "we can just use the Laplace approximation to compute the
+contribution of these resonances," giving a formula like the independent one — but with an
+extra complication, and here is the one place he explicitly declines to write the formula:</p>
+<blockquote>
+<p>"For the Markov case the expression is slightly more complicated, so I don't give it,
+because now to identify fibers at different points you need to modify not only the change
+which depends on time, but also it depends on the state of your Markov chain."</p>
+</blockquote>
+<p><em>[Gap: the reducible-case asymptotic formula for the Markov setting was not shown. It is
+Theorem 6.2 / Chapter 6 of the companion book. </em><em>Impact: low</em><em> — the structure is fully
+stated and the shape (Gaussian × a periodic correction) is clear; only the explicit
+correction factor is missing, and it is available in the book.]</em></p>
+<p><strong>One name I cannot verify.</strong> He attributes the CLT characterization to "a theorem of
+Dabrowski and Gorodetsky" (captions). No such pair appears anywhere in the companion book.
+What the book does attribute: the central limit theorem for uniformly elliptic inhomogeneous
+Markov arrays is <strong>Dobrushin's</strong> (their Theorem 3.10, following the martingale proof of
+Sethuraman–Varadhan); the "constant + gradient + convergent" characterization is their own
+Theorem 3.8; and the method behind both is <strong>Gordin's</strong> martingale–coboundary decomposition.
+"Dobrushin" and "Gordin" are the phonetically plausible readings, and I am not going to write
+them down as if I had checked them. See §13.</p>
+<h3>7.2 The pivot: from most random to most regular</h3>
+<p>He now flips the sign of the whole talk. §5.1 and §5.2 above are his interlude — Borel's
+digits, the cat map, Markov partitions — and they exist to establish one contrast:</p>
+<ul>
+<li><strong>Exponentially unstable systems</strong> behave randomly, and we understand why.</li>
+<li><strong>Rotations</strong> are isometries. Orbits neither converge nor diverge. Nothing is unstable.</li>
+</ul>
+<blockquote>
+<p>"And surprisingly, during the last two decades there were several papers about central
+limit theorems for rotations."</p>
+</blockquote>
+<h3>7.3 Part two — rotations</h3>
+<p><strong>Beck's theorem</strong> (<strong>József Beck</strong>, <em>Randomness of the square root of 2 and the giant leap</em>,
+Period. Math. Hungar. Part I: <strong>60</strong> (2010) 137–242, Part II: <strong>62</strong> (2011) 127–246). As
+stated in the Dolgopyat–Fayad survey (Theorem 8(b)):</p>
+<blockquote>
+<p>Let α be a <strong>quadratic irrational</strong>, ℓ <strong>rational</strong>, x = 0. Let M be uniformly distributed
+on {1, …, N}. Then there are constants C(α, ℓ) and σ(α, ℓ) with</p>
+<p>\[\frac{D_M\big([0,\ell],\ \alpha,\ 0\big) \;-\; C(\alpha,\ell)\log N}{\sqrt{\log N}}
+&gt; \;\xrightarrow{\ d\ }\; \mathcal{N}\big(0, \sigma^2(\alpha,\ell)\big)\]</p>
+</blockquote>
+<p><strong>Substantive caption correction.</strong> The transcript says "you take interval L to be a
+irrational number." It must be <strong>rational</strong>. Two independent confirmations: the survey's
+Theorem 8(b) says ℓ rational; and Bromberg–Ulcigrai's abstract describes Beck's case as "α
+quadratic irrational, β <strong>rational</strong>, and the initial point the origin" — their whole
+contribution is extending it to irrational β, which would be vacuous otherwise. Corrected in
+the text; flagged in §13.</p>
+<p>Note the <em>source of the randomness</em>: the initial point is fixed at 0 and α is fixed. The only
+random object is <strong>the time N</strong>. Dolgopyat calls this out — "it seems there are no free
+parameters, but you can change n." Limit theorems of this kind are called <strong>temporal</strong> limit
+theorems, a term Bromberg–Ulcigrai credit to Dolgopyat and Sarig.</p>
+<p><strong>Two things are surprising, and he says so.</strong></p>
+<ol>
+<li><strong>The normalization is √log M, not √M.</strong> If M is uniform on {1, …, N} then a typical M is
+   of order N. For a hyperbolic toral automorphism the scaling would be √N. Here it is
+   √log N — <em>exponentially smaller fluctuations</em>. The isometry is far more equidistributed
+   than a chaotic map.</li>
+<li><strong>There is a drift.</strong> The discrepancy is already centred — the mean was subtracted in its
+   definition. You would expect it to be equally likely positive or negative. Instead it
+   sits around C(α, ℓ)·log M, which is <em>much larger</em> than the fluctuation √log M. So if
+   C &gt; 0, <strong>the discrepancy is positive 99.9% of the time.</strong> The constant may or may not
+   vanish: he says it is <strong>zero for the golden mean and for √3</strong>, and <strong>non-zero for √2 and
+   for √7</strong>, and that it "depends on some special values of some L-function."</li>
+</ol>
+<p><em>[The L-function claim is stated aloud and not elaborated. Beck's own papers are titled
+   around quadratic fields; the constant being expressible through special values attached to
+   the real quadratic field ℚ(α) is consistent with that literature — see Borda,
+   arXiv:2512.03884, which ties analogous constants to "fundamental units and special values
+   of zeta functions" of ℚ(α). </em><em>I have not verified the specific values C(golden mean) = 0,
+   C(√3) = 0, C(√2) ≠ 0, C(√7) ≠ 0.</em><em> They are reported as spoken. </em><em>Impact: low</em><em> — they are
+   illustrations, not load-bearing.]</em></p>
+<p><strong>Bromberg–Ulcigrai</strong> (<strong>Michael Bromberg</strong> and <strong>Corinna Ulcigrai</strong>, <em>A temporal Central
+Limit Theorem for real-valued cocycles over rotations</em>, <a href="https://arxiv.org/abs/1705.06484">arXiv:1705.06484</a>,
+Ann. Inst. H. Poincaré Probab. Statist. <strong>54</strong> (2018) 2304–2334). Three relaxations of Beck:</p>
+<ul>
+<li>α of <strong>bounded type</strong>, not necessarily quadratic (so: bounded partial quotients, not
+  eventually periodic ones).</li>
+<li>ℓ of <strong>bounded type with respect to α</strong>: ‖qα − ℓ‖ ≥ C/q. Rational ℓ satisfies this
+  automatically when α is of bounded type. The set of such ℓ is uncountable and has
+  <strong>Hausdorff dimension 1</strong>.</li>
+<li><strong>arbitrary initial point</strong>, not just 0.</li>
+</ul>
+<p>The conclusion is still a central limit theorem, with one change: the centring and scaling
+constants <strong>oscillate</strong> — they no longer equal C·log M and √(C·log M) but wander between
+C₁ log M and C₂ log M. Losing periodicity of the continued fraction costs you exact
+constants and nothing else.</p>
+<p>And their method is the bridge back to part one, in their own words: continued-fraction
+renormalization plus dynamical Ostrowski expansions gives "a suitable symbolic coding
+framework which allows us to reduce the main result to a <strong>CLT for non-homogeneous Markov
+chains</strong>."</p>
+<p><strong>From central to local.</strong> Those results give the probability that the discrepancy lands in
+an interval of size √log M. Dolgopyat then asks for the probability that it takes a <strong>fixed
+value k</strong> — the local limit theorem — and says it holds with a Gaussian approximation. One
+consequence he draws out: if the drift constant C = 0, the discrepancy is <strong>uniformly
+distributed</strong> in the sense that any two values k₁ and k₂ are attained with the same
+asymptotic frequency.</p>
+<p><strong>The main new result.</strong> This is the talk's own contribution to part two, and it is where my
+sourcing runs out.</p>
+<blockquote>
+<p>Let α be of bounded type, let <strong>β = 2α − 1</strong>, and take the <strong>even</strong> continued fraction
+expansion of β. Then:</p>
+<ul>
+<li><strong>all values of the discrepancy are asymptotically equally likely</strong> ⟺ the number of
+  <strong>sign changes</strong> in that expansion grows <strong>sublinearly</strong> in n;</li>
+<li>the discrepancy is <strong>positive half the time and negative half the time</strong> ⟺ the number of
+  sign changes grows <strong>slower than √n</strong>.</li>
+</ul>
+</blockquote>
+<p>The second condition is much more restrictive than the first, and he stresses that this is
+<em>not</em> an artefact:</p>
+<blockquote>
+<p>"This may be not — because even if you consider a random walk, for a random walk it is also
+the same thing. Local time at two nearby points converges to one, but a random walk does
+<strong>not</strong> spend 50% of the time on the positive axis and 50% on the negative axis."</p>
+</blockquote>
+<p>That is the <strong>arcsine law</strong>, and it is exactly right: for simple random walk the local times
+at two nearby sites are asymptotically equal, but the fraction of time spent positive is
+arcsine-distributed, not concentrated at 1/2. So "every value equally likely" and "signs
+balanced" are genuinely different statements, and the rotation reproduces the random walk's
+dichotomy. Specializing to ℓ = 1/2 — count visits to the left half-circle minus visits to the
+right half — and taking the starting point x random, he states: <strong>the first condition holds
+with probability one, the second with probability zero.</strong></p>
+<p><em>[Gap, and it is the big one. This theorem has no locatable preprint: it is not on arXiv (I
+enumerated all Dolgopyat arXiv entries through May 2026) and not on his publication page. He
+names </em><em>no coauthors</em><em> for it — he says only "we". The precise meaning of "sublinearly", the
+exact definition of "sign change" for the even expansion, the role of the initial point x
+(the criterion as stated depends only on α, yet the conclusion is stated for random x), and
+the statement for general ℓ are all unavailable. </em><em>Impact: moderate-to-structural.</em><em> This is
+the newest mathematics in the talk and I can convey only its shape. Everything around it —
+Beck, Bromberg–Ulcigrai, the proof strategy, the Cauchy theorem — is fully sourced.]</em></p>
+<p><strong>The proof, in four moves.</strong> He says "the proofs are kind of long, so I don't have time to
+show it — you can ask maybe your virtual assistant" and then shows pictures. Here is what the
+pictures say, restored from the survey's §8.5.</p>
+<ol>
+<li><strong>Suspend.</strong> Pass to the staircase surface of §5.4 and the linear flow of slope
+   β = 2α − 1. The height coordinate is the discrepancy. A statement about N steps of the
+   rotation becomes a statement about a straight line segment of length ~N on the staircase,
+   and the question is: <strong>which brick does it end on?</strong></li>
+<li><strong>Renormalize using the surface's symmetries.</strong> The line is very long and the brick is
+   small — hopeless directly. But the affine automorphisms ψ_A of §5.4 exist, they act with
+   derivative A, and a suitable A contracts along the direction of the line. So apply ψ_A^{−m}
+   until the segment has length of order 1. Since A expands by a factor λ each time,
+   <strong>m ≍ log N / log λ</strong>. Now the question is about a unit segment: <em>after m renormalization
+   steps, what is the probability of ending on brick k?</em></li>
+<li><strong>The height becomes a Birkhoff sum over a hyperbolic map.</strong> Because
+   ψ_A(p, z) = (Ap, z + τ(p)), each renormalization step shifts the level by τ evaluated at
+   the current base point, and the base dynamics is the <strong>hyperbolic toral automorphism A</strong>.
+   So the brick index is
+   \[\sum_{j=1}^{m} \tau\big(A^{-j} q\big)\]
+   <em>(quoted in form from arXiv:2006.11748 §8.5).</em> A sum of <strong>m ≍ log N</strong> terms.</li>
+<li><strong>Now use part one.</strong> A is hyperbolic, so it has a Markov partition (§5.2), so this sum is
+   an additive functional of a Markov chain, so the theorems of §7.1 apply and give a CLT and
+   a local limit theorem for it.</li>
+</ol>
+<p><strong>And there is the √log N.</strong> The discrepancy is not a sum of N things; it is a sum of
+<strong>log N</strong> things, one per renormalization step. Its fluctuation is the square root of that.
+The exponent was never mysterious — it is counting renormalization steps.</p>
+<p><strong>Where bounded type is used.</strong> He is precise about this, and it is the hinge of the last
+part:</p>
+<blockquote>
+<p>The assumption that α is of bounded type is used many times, but the most important use is
+that the additive functional τ is <strong>uniformly bounded</strong>. Because it is uniformly bounded it
+satisfies the <strong>Feller–Lindeberg condition</strong> — each term is small compared to the whole sum.
+And that condition <strong>fails</strong> for a typical α.</p>
+</blockquote>
+<p><em>(Captions: "failure Lindeberg condition" → </em><em>Feller–Lindeberg</em><em>.)</em></p>
+<p><strong>Typical α: the Cauchy theorem.</strong> So take α random too. Dolgopyat and <strong>Bassam Fayad</strong>
+(<em>Deviations of ergodic sums for toral translations II. Boxes</em>,
+<a href="https://arxiv.org/abs/1211.4323">arXiv:1211.4323</a>, Publ. Math. IHÉS <strong>132</strong> (2020) 293–352):</p>
+<blockquote>
+<p>Let n be uniform on {1, …, N} and α uniform on the torus. Then the normalization is
+<strong>log N</strong>, not √log N, and the limit is the <strong>Cauchy distribution</strong>, not the Gaussian.</p>
+</blockquote>
+<p><em>(He dates it "around 5 years ago." The paper's abstract states the d-dimensional version:
+discrepancy relative to a random box, normalized by ln^d N, converges to Cauchy, and "the key
+ingredient of the proof is a </em><em>Poisson limit theorem</em><em> for the Cartan action on the space of
+d+1 dimensional lattices." The talk states the d = 1 case.)</em></p>
+<p>This extends <strong>Kesten</strong> (<em>Uniform distribution mod 1</em>, Ann. of Math. <strong>71</strong> (1960) 445–471,
+and Acta Arith. <strong>7</strong> (1961/62) 355–380), whose theorem randomizes α and the initial point but
+keeps <strong>N deterministic</strong>:</p>
+<p>\[\frac{D_N\big([0,\ell],\ \alpha,\ x\big)}{\sigma \log N} \;\xrightarrow{\ d\ }\; \text{standard Cauchy},
+\qquad (\alpha, x) \text{ uniform on } \mathbb{T}^2\]</p>
+<p>Kesten's explicit formula for σ involved an integral whose <em>domain of integration depended on
+whether ℓ was rational or irrational</em> — so the constant appeared to depend on ℓ. Dolgopyat
+reports that "last year, <strong>Bence Borda</strong> computed this integral and showed that it does not
+depend on ℓ." Verified, and here is the number:</p>
+<blockquote>
+<p><strong>Borda</strong> (<em>Equidistribution of continued fraction convergents in SL(2, ℤ_m) with an
+application to local discrepancy</em>, J. Mod. Dyn. <strong>21</strong> (2025) 327–359,
+<a href="https://arxiv.org/abs/2303.08504">arXiv:2303.08504</a>, Theorem 2): Kesten's limit law holds
+with <strong>σ = 1/(3π)</strong> for <strong>all</strong> ℓ ∈ (0,1). The paper's own phrasing: the apparent dependence
+"has been cited by several authors… we show that the dependence is illusory."</p>
+</blockquote>
+<p><strong>Why √log for bounded type and log for typical α.</strong> This is the heart of the talk and it
+gets its own section — §8.</p>
+<h3>7.4 Part three — Edgeworth expansions and random lattices</h3>
+<p>Back to i.i.d. sums, and the question of how good the Gaussian approximation is.</p>
+<p><strong>The necessary condition nobody can improve.</strong> E_r(z) is a smooth function of z. So if the
+distribution of S_n/(σ√n) has <strong>atoms of size much larger than n^(−r/2)</strong>, the order-r
+expansion cannot hold: at a jump, a smooth function cannot approximate both the value before
+and the value after to accuracy o(n^(−r/2)).</p>
+<p>For r = 1, jumps of size 1/√n occur exactly in the lattice case, and <strong>Esseen</strong> proved in 1945
+that this is the <em>only</em> obstruction: S_n admits an order-1 Edgeworth expansion iff X is
+non-lattice. (C.-G. Esseen, <em>Fourier analysis of distribution functions</em>, Acta Math. <strong>77</strong>
+(1945) 1–125 — reference [6] of Dolgopyat–Fernando. The captions render this as "proven by SN
+in 1945".) For higher orders, he says, much less is understood. <strong>Cramér's</strong> sufficient
+condition — moments to order r+2 and a density — is "far from being necessary."</p>
+<p><strong>The simplest non-trivial case.</strong> Let X take <strong>d+1 values</strong> a₁, …, a_{d+1} with probabilities
+p₁, …, p_{d+1}, mean zero. Two values (d = 1) is the lattice case and already fails at order 1.
+So take d ≥ 2.</p>
+<p>Then S_n takes the values Σ m_i a_i over compositions with Σ m_i = n, and</p>
+<p>\[\mathbb{P}(S_n \le z) \;=\; \sum_{\substack{m_i \ge 0,\ \sum m_i = n \\ \sum m_i a_i \le z}}
+\frac{n!}{m_1!\cdots m_{d+1}!}\; p_1^{m_1}\cdots p_{d+1}^{m_{d+1}}\]</p>
+<p><em>(Quoted from Dolgopyat–Fernando eq. (1.2).)</em> The multinomial term is a <strong>local central limit
+theorem for a ℤ^d random walk</strong> — the walk that steps to e_i with probability p_i and stays
+put with probability p_{d+1}. That local limit theorem says the multinomial coefficient, times
+n^{d/2}, is bounded below in the bulk. So:</p>
+<blockquote>
+<p><strong>P(S_n ≤ z) has jumps of size ≍ n^(−d/2)</strong>, hence the order-d Edgeworth expansion <strong>never</strong>
+holds, for any parameters.</p>
+</blockquote>
+<p>The whole of §4.2 was setting up this one paragraph: the local limit theorem is what converts
+"the values are discrete" into "the jumps have size exactly n^(−d/2)".</p>
+<p><strong>The Dolgopyat–Fernando result</strong> (with his student <strong>Kasun Fernando</strong> — captions: "Gaston
+Fernandez"). Two halves:</p>
+<ul>
+<li><strong>Order d−1 does hold</strong>, for almost every choice of the atoms. Precisely (their Theorem 1),
+  if a is β-Diophantine — meaning max_j dist(b_j s, 2πℤ) ≥ K/|s|^β for |s| &gt; 1, where
+  b_j = a_j − a₁ — and 2R &lt; 1/β + 1, then n^R (P − E_{d−1}) → 0. Almost
+  every a is β-Diophantine as soon as β &gt; 1/(d−1). <strong>The same Diophantine condition as the
+  rotations story, in a different costume.</strong></li>
+<li><strong>The failure at order d is by exactly n^(−d/2) — the smallest possible — but the
+  coefficient is wild.</strong> This is the striking part, and it is his Theorem 2. Put a smooth
+  probability density on the parameters (a, p) — you know your model only approximately, say
+  to 10^(−10). Then, for each fixed z, the error becomes a random variable, and</li>
+</ul>
+<p>\[\frac{e^{z^2/2}\, n^{d/2}}{\Lambda(a,p)}\left[E_d(z) - \mathbb{P}\!\left(\frac{S_n}{\sigma\sqrt n} \le z\right)\right]
+\;\xrightarrow{\ d\ }\; \mathcal{X}\]</p>
+<p>where <em>(their eq. (1.5))</em></p>
+<p>\[\Lambda(a,p) \;=\; \frac{|a_{d+1} - a_1|}{2^d\,\pi^{\,d+\frac12}\sqrt{\det(D_{a,p})}\ \sigma(a,p)}\]</p>
+<p>and 𝓧 is the <strong>random Siegel transform</strong> <em>(their Lemma 1.2, quoted exactly)</em>:</p>
+<p>\[\mathcal{X}(L, \chi) \;=\; \lim_{R\to\infty}
+\sum_{\substack{w \in L\setminus\{0\} \\ \|w\| \le R}} \frac{\sin\big(2\pi\chi(w)\big)}{y(w)}\; e^{-\|x(w)\|^2}\]</p>
+<p>Here (L, χ) is a <strong>marked unimodular lattice</strong> in ℝ^d (§5.5), distributed according to Haar
+  measure on 𝓜; y(w) is the <strong>first</strong> coordinate of w and x(w) the remaining d−1. The sum does
+  <strong>not</strong> converge absolutely — it is conditionally convergent, and the paper proves the limit
+  exists for almost every (L, χ) by any reasonable summation method.</p>
+<p><strong>The two properties that make this worth knowing:</strong></p>
+<blockquote>
+<p><strong>The law of 𝓧 depends neither on the density you put on the parameters, nor on z.</strong> It is
+universal.</p>
+</blockquote>
+<p>and its practical consequence, which he states in exactly these terms:</p>
+<blockquote>
+<p><strong>If you know your atoms and probabilities to ten decimal places, you still do not know the
+error in the expansion for large n.</strong> The information you are missing is not more decimal
+places. It is the <em>arithmetic</em> of the parameters, and no finite precision resolves it.</p>
+</blockquote>
+<p>That is a genuinely useful thing to have been told.</p>
+<p><strong>Where the lattice comes from — the dynamical correspondence.</strong> He shows this and it is
+clean enough to reconstruct.</p>
+<p>By scaling, assume the first value is 0 and the last is 2π. Then the characteristic function
+can be close to 1 only near integer points, and, writing c₁, …, c_{d−1} for the remaining
+rescaled values, a <strong>resonance</strong> is an integer k for which every c_j k is close to an integer
+— close to within <strong>n^(−1/2)</strong>.</p>
+<p><em>Why n^(−1/2)?</em> He gives the reason in one line: cos θ = 1 − θ²/2 + …, so a phase error θ costs
+a factor (1 − θ²/2) per term, and over n terms that is negligible exactly when nθ² ≲ 1, i.e.
+θ ≲ n^(−1/2). <strong>The resonance width is set by the number of terms.</strong></p>
+<p>Now record each resonance by the integer vector (k, m₁, …, m_{d−1}) where m_j is the nearest
+integer to −c_j k. Apply the unipotent matrix with 1's on the diagonal and the c_j in the last
+column — this maps the vector to (m_j + c_j k)_j and k, i.e. to the <em>distances</em> rather than the
+integers. Then apply the diagonal matrix with √n in the first d−1 slots and n^(−(d−1)/2) in the
+last, which has determinant 1 and puts everything on the right scale (the distances must be
+measured at scale n^(−1/2); k ranges up to n^{d−1}).</p>
+<p>The result: <strong>the set of resonances is the set of lattice points of a specific unimodular
+lattice inside a fixed box</strong> — first d−1 coordinates bounded by R, last coordinate in [0,1].
+Counting them is applying the Siegel transform of an indicator function.</p>
+<blockquote>
+<p><strong>So the resonances of an i.i.d. sum <em>are</em> the short vectors of a lattice, and the lattice
+is determined by the parameters.</strong></p>
+</blockquote>
+<p>The proof of the limit law is then <strong>equidistribution</strong>: as the parameters vary with a smooth
+density, the image lattice equidistributes in the space of lattices with respect to Haar
+measure, and the limiting random variable is the Siegel transform of a random lattice. For
+Kesten-type Cauchy laws you use the same action but replace mixing/equidistribution with a
+<strong>Poisson limit theorem</strong> — "again we use the chaotic nature of the dynamics of these
+<strong>diagonal flows</strong> on the space of lattices."</p>
+<p><em>[Gap: one slide passed quickly — the statement that when the random variable takes several
+values, the possible values of the sum are values of a </em><em>linear form in d variables</em><em>, weighted
+by multinomial coefficients, and that with </em><em>equal weights</em><em> you get a Kesten-type Cauchy
+distribution instead. He attributes the equal-weight result to a pair of authors that the
+captions render as "some fire and Zolotarev". </em><em>I could not identify either name and I do not
+guess.</em><em> </em><em>Impact: low</em><em> — it is a remark on a special case, not part of the main line.]</em></p>
+<h3>7.5 The synthesis</h3>
+<p>He closes by putting the two ends of the spectrum side by side, and this is the passage that
+justifies the four R's in the proceedings title.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>i.i.d. sums</th>
+<th>quasi-periodic sums</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>character</td>
+<td>the <strong>most random</strong> sequence</td>
+<td>the <strong>most regular</strong> sequence</td>
+</tr>
+<tr>
+<td>growth of the sum</td>
+<td>≍ √n</td>
+<td>≍ (log n)^power</td>
+</tr>
+<tr>
+<td>renormalization</td>
+<td>S ↦ S * S, rescaled — <strong>convolution</strong></td>
+<td>𝕋^d = ℝ^d/L, L ↦ AL — <strong>change the lattice</strong></td>
+</tr>
+<tr>
+<td>what dominates</td>
+<td>a few resonant harmonics</td>
+<td>a few resonant harmonics</td>
+</tr>
+<tr>
+<td>individual contribution</td>
+<td>Laplace, 200 years ago</td>
+<td>Laplace, 200 years ago</td>
+</tr>
+<tr>
+<td>what is still needed</td>
+<td>the <strong>geometry</strong> of the resonances</td>
+<td>the <strong>geometry</strong> of the resonances</td>
+</tr>
+</tbody>
+</table></div>
+<p>And then the punchline:</p>
+<blockquote>
+<p>"If we pass to the Fourier transform and look at how renormalization acts on Fourier
+harmonics, we see that <strong>this action is exactly the same</strong>. We have marked lattices, so each
+lattice point has a certain phase associated with it, and we have a linear action on this.
+This allows us to build a <strong>dictionary</strong> between these two problems."</p>
+</blockquote>
+<p>The evidence he gives for the dictionary being useful rather than decorative is historical:
+<strong>the random Siegel transform appeared first</strong> in the study of discrepancy for toral
+translations, and then turned out to describe the Edgeworth error for <strong>independent</strong>
+sequences. A tool built at one end of the spectrum solved a problem at the other.</p>
+<p>His own summary of why any of this is possible: the two families "are opposite ends of the
+spectrum, one most random and the other most regular, but what we have in common is that we
+have <strong>a lot of hidden symmetries</strong> which allow us to do computation."</p>
+<p>And the open problem he leaves: <strong>the conditions for uniform distribution of the discrepancy
+when α is not of bounded type are unknown.</strong></p>
+<hr />
+<h2>8. The one argument: why √log N for bounded type and log N for typical α</h2>
+<p>This is the single calculation in the talk that you can do yourself, it explains the most
+striking fact in it, and Dolgopyat presents it as the explanation. It is his §"why we have
+different scaling", restored.</p>
+<p><strong>Setup.</strong> The discrepancy's k-th Fourier harmonic contributes an amount governed by</p>
+<p>\[\frac{1}{k\,|\sin \pi k \alpha|}\]</p>
+<p>and only harmonics with <strong>k ≲ N</strong> matter. He gives the reason for the cutoff: for k &gt; N the
+denominator can be small, of order 1/k, but then the numerator is small too, "so you will not
+get any improvement in your sum."</p>
+<p>Call k a <strong>resonance at level ε</strong> if k·|sin πkα| ≲ ε. Since |sin πkα| ≍ ‖kα‖ (distance to the
+nearest integer), this says k·‖kα‖ ≲ ε.</p>
+<p><strong>Case 1: α of bounded type.</strong> By definition k‖kα‖ ≥ c &gt; 0 for every k. So</p>
+<blockquote>
+<p><strong>k·|sin πkα| is uniformly bounded below.</strong> There are no strong resonances at all.</p>
+</blockquote>
+<p>The harmonics that come closest to resonance are the <strong>continued-fraction denominators</strong> q_j
+(he calls them "prime resonances"), the best rational approximations. For bounded type these
+grow at least geometrically, so the number of them below N is</p>
+<p>\[\#\{j : q_j \le N\} \;\asymp\; \log N\]</p>
+<p>Each contributes an amount of order 1, with a sign. Some are positive, some negative, and the
+signs behave like a weakly dependent sequence — which is exactly what §7.3's renormalization
+argument proves. Hence <strong>cancellation</strong>, hence</p>
+<p>\[D_N \;\sim\; \sqrt{\log N}\]</p>
+<p><strong>Case 2: α uniform on the torus.</strong> Now kα is equidistributed mod 1, so for fixed k,
+ℙ(‖kα‖ ≤ ε/k) ≈ 2ε/k. First-moment count:</p>
+<p>\[\mathbb{E}\,\#\{k \le N : k\|k\alpha\| \le \varepsilon\}
+\;\approx\; \sum_{k \le N} \frac{2\varepsilon}{k} \;\approx\; 2\varepsilon \log N\]</p>
+<p><strong>Choose ε so that this count is of order 1</strong>: ε ≍ 1/log N. Then there are <strong>O(1)</strong> harmonics
+with k·‖kα‖ ≍ 1/log N, and each of them contributes an amount of order</p>
+<p>\[\frac{1}{k\|k\alpha\|} \;\asymp\; \log N\]</p>
+<p>So instead of log N terms of size 1 that cancel down to √log N, you have <strong>O(1) terms of size
+log N</strong> and nothing to cancel against. The sum is dominated by a <em>bounded number of large
+contributions</em>, and the number of them is asymptotically <strong>Poisson</strong>.</p>
+<p>\[D_N \;\sim\; \log N\]</p>
+<p><strong>And the limit law follows from the shape of that sum.</strong> A sum dominated by a few terms whose
+sizes are 1/(small quantity), with the small quantity roughly uniform, is a sum of
+reciprocals of near-uniform variables — the classic recipe for a <strong>stable law of index 1</strong>,
+which is the Cauchy distribution. That is why Kesten and Dolgopyat–Fayad get Cauchy and Beck
+gets Gaussian. As he says: <strong>"the key step in the proof of the Cauchy limit theorem is a
+Poisson limit theorem for the number of strong resonances."</strong></p>
+<p><strong>State the general principle, because it is the transferable one.</strong></p>
+<blockquote>
+<p><strong>Many comparable contributions ⟹ Gaussian, with cancellation, at scale √(number).
+A bounded number of dominant contributions ⟹ heavy-tailed, no cancellation, at the scale of
+the largest.</strong></p>
+</blockquote>
+<p>The Feller–Lindeberg condition is precisely the formal statement of "no single term
+dominates," and §7.3 told you exactly where it fails: bounded type keeps the additive
+functional bounded, and a typical α does not.</p>
+<hr />
+<h2>9. Do this by hand</h2>
+<p>Three exercises. The first is the one that must land.</p>
+<h3>9.1 The resonance count (25 minutes, pen)</h3>
+<p><strong>(a)</strong> Let α be of bounded type, so k‖kα‖ ≥ c for all k ≥ 1. Show that the number of
+continued-fraction denominators q_j ≤ N is O(log N), and that it is also ≳ log N. <em>(Use the
+recursion q_{j+1} = a_{j+1} q_j + q_{j−1} with 1 ≤ a_j ≤ A.)</em></p>
+<p><strong>(b)</strong> Let α be uniform on [0,1). For fixed k ≥ 1, compute ℙ(‖kα‖ ≤ δ) exactly.</p>
+<p><strong>(c)</strong> Using (b), estimate the expected number of k ≤ N with k‖kα‖ ≤ ε. Then choose ε so
+that this expectation is 1, and say how large the corresponding harmonic's contribution
+1/(k‖kα‖) is.</p>
+<p><strong>(d)</strong> Explain in one sentence each why (a) gives √log N and (c) gives log N.</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> From q_{j+1} = a_{j+1} q_j + q_{j−1} ≥ q_j + q_{j−1} we get q_{j+1} ≥ q_j + q_{j−1},
+so q_j grows at least like the Fibonacci numbers: q_j ≳ φ^j with φ the golden ratio. Hence
+q_j ≤ N forces j ≲ log N / log φ. For the lower bound, boundedness of the partial quotients
+gives q_{j+1} ≤ (A+1) q_j, so q_j ≤ (A+1)^j and j ≳ log N / log(A+1). Both bounds are
+constant multiples of log N, so the count is <strong>≍ log N</strong>. Note that the <em>upper</em> bound holds
+for every irrational α; it is the <strong>lower</strong> bound that needs bounded type. That asymmetry is
+the whole point: for a general α the denominators can jump, and a single enormous partial
+quotient a_{j+1} means q_j approximates α extraordinarily well — one huge resonance.</p>
+<p><strong>(b)</strong> ‖kα‖ ≤ δ means kα mod 1 lies in [0,δ] ∪ [1−δ, 1). Since α ↦ kα mod 1 pushes the
+uniform measure on [0,1) to the uniform measure on [0,1) (it wraps k times), the probability
+is exactly <strong>2δ</strong> for δ &lt; 1/2.</p>
+<p><strong>(c)</strong> Set δ = ε/k in (b): ℙ(k‖kα‖ ≤ ε) = 2ε/k. Sum over k ≤ N:</p>
+<p>\[\sum_{k=1}^{N}\frac{2\varepsilon}{k} \;=\; 2\varepsilon\big(\log N + \gamma + o(1)\big) \;\approx\; 2\varepsilon\log N\]</p>
+<p>Setting this equal to 1 gives <strong>ε ≈ 1/(2 log N)</strong>. Such a harmonic contributes
+1/(k‖kα‖) ≍ 1/ε ≍ <strong>log N</strong>.</p>
+<p><strong>(d)</strong> Bounded type: ≍ log N resonant harmonics, each of size O(1), signs varying — a sum of
+log N comparable weakly-dependent terms, so the CLT applies and the total is ≍ <strong>√log N</strong>.
+Typical α: O(1) harmonics of size ≍ log N with nothing to cancel them, so the total is
+≍ <strong>log N</strong>, and because the count of near-resonances is Poisson and the sizes are
+reciprocals of near-uniform quantities, the limit is <strong>Cauchy</strong> rather than Gaussian.</p>
+<p><strong>The thing to take away.</strong> The exponent was never exotic. √log versus log is the difference
+between <em>many small contributions that cancel</em> and <em>a few large ones that do not</em>, and the
+Diophantine condition is exactly the statement that no contribution is allowed to be large.</p>
+</details>
+<h3>9.2 Why an Edgeworth expansion of order d is impossible (15 minutes, pen)</h3>
+<p>Let X take d+1 values a₁, …, a_{d+1} with probabilities p₁, …, p_{d+1} and mean zero.</p>
+<p><strong>(a)</strong> Write P(S_n ≤ z) as a sum over (m₁, …, m_{d+1}) with Σ m_i = n. Which multinomial
+terms appear?</p>
+<p><strong>(b)</strong> Consider the ℤ^d random walk that jumps to e_i with probability p_i (i = 1, …, d) and
+stays at 0 with probability p_{d+1}. What does the <em>local</em> central limit theorem say about the
+probability that it is at a given site after n steps, in the bulk?</p>
+<p><strong>(c)</strong> Deduce that P(S_n ≤ z) has jumps of size ≍ n^{−d/2}.</p>
+<p><strong>(d)</strong> Conclude that the order-d Edgeworth expansion cannot hold — and say why order d−1 is
+not immediately excluded by the same argument.</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> The terms are the multinomial probabilities</p>
+<p>\[\frac{n!}{m_1!\cdots m_{d+1}!}\,p_1^{m_1}\cdots p_{d+1}^{m_{d+1}}\]</p>
+<p>summed over all compositions of n with Σ m_i a_i ≤ z. Note S_n is determined by the <em>counts</em>
+m_i, and the constraint Σ m_i = n means the state lives in a d-dimensional lattice, not a
+(d+1)-dimensional one. <strong>That d is the d in n^{−d/2}.</strong></p>
+<p><strong>(b)</strong> The vector (m₁, …, m_d) after n steps is a d-dimensional random walk with mean n·p and
+covariance of order n. The local CLT says the probability of any particular site within O(√n)
+of the mean is ≍ n^{−d/2} — a d-dimensional Gaussian density (∝ n^{−d/2}) times the unit cell
+volume 1. This is exactly Dolgopyat–Fernando's observation that</p>
+<p>\[n^{d/2}\,\frac{n!}{m_1!\cdots m_{d+1}!}\,p_1^{m_1}\cdots p_{d+1}^{m_{d+1}}\]</p>
+<p>is uniformly bounded <strong>below</strong> when Σ m_i a_i = n Σ a_i p_i + O(√n).</p>
+<p><strong>(c)</strong> Each attainable value of S_n therefore carries mass ≍ n^{−d/2}, so the distribution
+function P(S_n ≤ z) — as a function of z — has jumps of that size at each attainable value.</p>
+<p><strong>(d)</strong> E_d(z) is smooth in z. At a jump point of size c·n^{−d/2}, a smooth function cannot be
+within o(n^{−d/2}) of both the left and the right limit; the two differ by c·n^{−d/2}. So the
+order-d expansion fails for every parameter choice. It does <strong>not</strong> exclude order d−1, because
+the requirement there is only o(n^{−(d−1)/2}), and n^{−d/2} = o(n^{−(d−1)/2}). The jumps are
+one power of √n too small to matter at order d−1 — which is exactly why Dolgopyat and Fernando
+can prove order d−1 holds for almost every parameter, and why the failure at order d is by
+<em>precisely</em> the smallest amount the jump argument allows.</p>
+</details>
+<h3>9.3 The staircase is the discrepancy (10 minutes, paper and pencil)</h3>
+<p>Draw four bricks of the staircase (2 × 1 rectangles, each offset half a brick to the right and
+one unit up relative to the previous). Take the Poincaré map on the top edges from §5.4:</p>
+<p>\[(x, z) \;\longmapsto\; \Big(x + \alpha,\ z + \mathbb{1}_{[1/2, 1)}(x) - \mathbb{1}_{[0, 1/2)}(x)\Big)\]</p>
+<p><strong>(a)</strong> Iterate from (x₀, 0) and write z_n as a sum.</p>
+<p><strong>(b)</strong> Express z_n in terms of the discrepancy D_n(I, R_α, x₀) of the rotation with respect to
+I = [1/2, 1).</p>
+<p><strong>(c)</strong> The affine automorphism ψ_A has <em>zero drift</em>, ∫τ = 0. What is the probabilistic
+content of that condition, and what would go wrong without it?</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> z_n = Σ_{j=0}^{n−1} [𝟙_{[1/2,1)}(x₀ + jα) − 𝟙_{[0,1/2)}(x₀ + jα)], since the first
+coordinate is just the rotation.</p>
+<p><strong>(b)</strong> Every term is ±1, and the two indicator counts sum to n. Writing V_n for the number of
+visits to [1/2, 1), we get z_n = V_n − (n − V_n) = 2V_n − n = 2(V_n − n/2) = <strong>2·D_n([1/2,1),
+R_α, x₀)</strong>, since |I| = 1/2. So the brick index is exactly twice the discrepancy for the
+half-circle. This is why ℓ = 1/2 is the case the staircase handles, and why other ℓ needs
+either a different surface or the continued-fraction/Ostrowski route of Bromberg–Ulcigrai.</p>
+<p><strong>(c)</strong> Zero drift means the renormalization step is, on average, <strong>level-preserving</strong>: the
+orbit is equally likely to be pushed up or down the staircase. If ∫τ ≠ 0 the Birkhoff sum
+Σ_{j≤m} τ(A^{−j}q) would have a linear-in-m mean, i.e. a term of order log N with a
+deterministic coefficient, which would swamp the √log N fluctuation entirely. Zero drift is
+what makes the fluctuation the leading interesting object rather than a correction. (Compare
+Beck's constant C(α,ℓ)·log N: a genuine drift term does appear there, from the geometry of the
+arc rather than from the renormalization, and it does exactly what I just described — it
+dominates the fluctuation and forces a definite sign 99.9% of the time.)</p>
+</details>
+<hr />
+<h2>10. What is actually useful to you</h2>
+<p>Six things, in order of how often you will reach for them.</p>
+<h3>10.1 The scaling exponent counts renormalization steps</h3>
+<p>The most memorable fact in the talk is that the discrepancy of a circle rotation fluctuates
+like √log N. It looks exotic until you see §7.3: the argument reduces N steps of the rotation
+to <strong>log N steps of a renormalization map</strong>, and then applies the ordinary central limit
+theorem to a sum of log N terms. √log N is just √(number of terms).</p>
+<p>Generalize the move: <strong>when you see an unusual exponent, ask what is being counted.</strong> A
+√log means something logarithmic is being summed. A log N without a square root means the
+sum is dominated by O(1) terms rather than log N of them. The exponent is a census, not a
+mystery.</p>
+<h3>10.2 Gaussian versus heavy-tailed is a question about domination, and it is diagnosable</h3>
+<p>§8 is a diagnostic you can run on any aggregate quantity — a latency distribution, a cost
+metric, an eval score averaged over a suite:</p>
+<ul>
+<li><strong>Many comparable contributions that partially cancel ⟹ Gaussian, scale √(count).</strong></li>
+<li><strong>A bounded number of dominant contributions ⟹ heavy-tailed, scale = size of the largest.</strong></li>
+</ul>
+<p>The formal version is the Feller–Lindeberg condition: no single term is large compared to the
+total. And the talk shows the two regimes are separated by an <em>arithmetic</em> condition on a
+parameter — the same system is Gaussian or Cauchy depending on how well a number is
+approximable by rationals. That is worth internalizing: <strong>the tail behaviour of an aggregate
+can be controlled by a structural property of the system that has nothing to do with any
+individual term's distribution.</strong></p>
+<p>Applied to your work: if an agent-system metric has a heavy tail, "the average case got
+worse" is usually the wrong model. The right question is which small set of inputs dominates
+the sum, and what property of those inputs makes them dominant.</p>
+<h3>10.3 Classify the obstructions instead of assuming them away</h3>
+<p>This is the methodological idea I would take out of §7.1, and it is a genuinely different way
+of writing a theorem.</p>
+<p>The conventional form is: <em>assume A, B, C; conclude the limit theorem.</em> Dolgopyat and Sarig
+instead <strong>enumerate a complete list of the ways the conclusion can fail</strong> — lattice,
+center-tight, reducible — prove the list is complete, and then supply a <strong>computable test</strong>
+(the structure constants d_n(ξ), built from the transition kernels and the observable) that
+decides which obstruction is present.</p>
+<p>The difference in practice is large:</p>
+<ul>
+<li>A sufficient condition tells you when you are safe. A complete obstruction list tells you
+  what to <em>check</em>, and tells you what happens in each failure mode instead of leaving you
+  with nothing.</li>
+<li>The test is computable from the model's data, not from the answer.</li>
+</ul>
+<p>For agent systems the translation is direct. "Here are the conditions under which the pipeline
+is correct" is weaker and less useful than "here are the four ways it can fail, here is a
+check that tells you which one you are in, and here is what each failure actually produces."
+The second is a debuggable specification; the first is a hope.</p>
+<h3>10.4 Finite precision does not resolve arithmetic</h3>
+<p>§7.4 has a claim you should be able to state to someone else: for a sum of i.i.d. variables
+with three or more atoms, <strong>knowing the atoms and probabilities to ten decimal places tells
+you nothing about the error term for large n</strong>. The error's limit law is universal and depends
+on the parameters only through where they sit relative to a lattice — a property that no finite
+number of decimal places determines.</p>
+<p>This is a sharper version of an intuition you already have about chaotic systems, and it is
+sharper in a useful direction: it is not that small errors <em>grow</em>, it is that the quantity you
+want is <strong>not a continuous function of the parameters at all</strong>. More precision does not
+converge on the answer. If you find yourself adding significant figures and the output keeps
+jumping, consider that you may be measuring a discontinuous functional and no amount of
+precision will help.</p>
+<h3>10.5 Build a dictionary between the two extremes of your problem</h3>
+<p>The structural achievement of the talk is that the <em>most random</em> and the <em>most regular</em>
+systems turn out to have the same renormalization action on the Fourier side, so a tool built
+for one solves problems in the other — the random Siegel transform was invented for rotations
+and now describes Edgeworth errors for i.i.d. sums.</p>
+<p>The general move: when you have two regimes that look opposite, <strong>look for the object each
+one's renormalization acts on, and check whether the actions coincide.</strong> Otto's talk at the
+same congress makes the same point from the other side — singular SPDE and stochastic
+homogenization look opposite and are the same problem — and §8.5 of
+<code>geometric-concepts-pde-otto.md</code> in this folder develops it. Two plenaries, one lesson: the
+opposite of your problem is often your problem.</p>
+<h3>10.6 The two remarks about agents, reported because he made them</h3>
+<p>He opened with:</p>
+<blockquote>
+<p>"I think maybe next ICM most people would send their digital agents to record the talks
+during weekends, but now it's nice to see a live audience."</p>
+</blockquote>
+<p>and, when he ran out of time to present the proof of the main new theorem:</p>
+<blockquote>
+<p>"The proofs are kind of long, so I don't have time to show it. <strong>You can ask maybe your
+virtual assistant.</strong>"</p>
+</blockquote>
+<p>Both are jokes. The second is also a fact about this document: the proof he declined to give
+is the one part of the talk I could not restore, because it exists in no paper I can find
+(§7.3). The assistant's honest answer is that it does not know either.</p>
+<hr />
+<h2>11. Where to read next</h2>
+<ol>
+<li><strong>Dolgopyat and Sarig, <em>Local Limit Theorems for Inhomogeneous Markov Chains</em>,</strong> Springer
+   LNM <strong>2331</strong> (2023); free at <a href="https://arxiv.org/abs/2109.05560">arXiv:2109.05560</a>. The
+   companion for part one, and the most self-contained item in the list — it has appendices
+   with background, worked examples, and a historical account. Chapters 3 and 4 are the ones
+   §7.1 restores. Start here if you want <em>one</em> thing.</li>
+<li><strong>Dolgopyat and Fayad, <em>Limit theorems for toral translations</em>,</strong> Proc. Sympos. Pure Math.
+   <strong>89</strong> (2015) 227–277; <a href="https://arxiv.org/abs/2006.11748">arXiv:2006.11748</a>. The companion
+   for part two: Beck's theorem, Kesten's theorem, the staircase surface in §8.5, and — this
+   is its distinctive feature — <strong>fifty-six open questions</strong>, numbered, several of which are
+   the ones the talk says are still open. Read it for the questions if nothing else.</li>
+<li><strong>Dolgopyat and Fernando, <em>An error term in the Central Limit Theorem for sums of discrete
+   random variables</em>,</strong> <a href="https://arxiv.org/abs/2303.10235">arXiv:2303.10235</a>, IMRN <strong>2023</strong>
+   no. 21, 18664–18713. Part three in full, thirty-odd pages, and the place to see the random
+   Siegel transform constructed rather than asserted. §9 of that paper is where Rogers'
+   mean-value identity does the work.</li>
+</ol>
+<hr />
+<h2>12. Self-test</h2>
+<details>
+<summary>1. What does the local limit theorem say that the central limit theorem does not, and what is the only obstruction in the i.i.d. case?</summary>
+<p>The CLT controls the probability of landing in an interval of length comparable to the
+standard deviation σ_n. The <strong>local</strong> limit theorem controls intervals of length <strong>O(1)</strong>,
+asserting P(S_n − zσ_n ∈ (a,b)) ≈ φ(z)(b−a)/σ_n. Dolgopyat's gloss: zoom in near the mean and
+you should see <strong>Lebesgue measure = Haar measure on ℝ</strong>. The only obstruction (Gnedenko–Stone)
+is the lattice one: if the variables live on a shifted lattice tℤ, no interval avoiding the
+lattice can have the predicted mass, and the local picture is Haar measure on the shifted
+subgroup instead of on ℝ.</p>
+</details>
+<details>
+<summary>2. In the inhomogeneous Markov setting, what are the three obstructions, and what is the "resonance group"?</summary>
+<p><strong>(I) Lattice behaviour</strong> — the algebraic range is tℤ. <strong>(II) Center-tightness</strong> — S_N minus
+centring constants is tight, equivalently Var(S_N) stays bounded; equivalently (Theorem 3.8 of
+the companion) f = ∇a + h with a a bounded potential and h of summable variance. <strong>(III)
+Reducibility</strong> — f = g + c with c center-tight and the range of g strictly smaller. If none
+occurs, all the classical asymptotics hold.</p>
+<p>The resonance group is the <strong>co-range</strong> H(X,f) = {ξ : Σ_n d_n(ξ)² &lt; ∞}, where the structure
+constants d_n(ξ)² = E|e^{iξΓ(P)} − 1|² measure how far the frequency ξ is from being killed by
+the chain. It is a closed subgroup of ℝ, hence ℝ (center-tight, no CLT), {0} (ordinary LLT),
+or tℤ (lattice LLT on the sublattice (2π/t)ℤ).</p>
+</details>
+<details>
+<summary>3. Why is a circle rotation the "opposite end of the spectrum" from a hyperbolic toral automorphism, and why is a limit theorem for it surprising?</summary>
+<p>A hyperbolic toral automorphism separates nearby orbits <strong>exponentially</strong>, which is the
+standard explanation for why a deterministic system behaves randomly — finite precision is
+destroyed at an exponential rate. A rotation is an <strong>isometry</strong>: distances between orbits are
+constant forever, nothing is unstable, and the standard mechanism is entirely absent. It is
+surprising that a central limit theorem holds at all; it is more surprising that the
+normalization is √log N rather than √N, i.e. the fluctuations are exponentially smaller.</p>
+</details>
+<details>
+<summary>4. State Beck's theorem, and name the two things about it Dolgopyat calls surprising.</summary>
+<p>For α a quadratic irrational, ℓ <strong>rational</strong>, initial point 0, and M uniform on {1,…,N}:
+(D_M([0,ℓ],α,0) − C(α,ℓ)log N)/√(log N) converges to a centred Gaussian with variance
+σ²(α,ℓ). Randomness comes only from the <strong>time</strong> M — a <em>temporal</em> limit theorem.</p>
+<p>Surprise one: the normalization is <strong>√log N</strong>, not √N. Surprise two: there is a <strong>drift</strong>
+C(α,ℓ)·log N even though the mean was already subtracted, and it is much larger than the
+fluctuation — so if C &gt; 0 the discrepancy is positive 99.9% of the time. C vanishes for some
+quadratic irrationals (he says the golden mean and √3) and not others (√2, √7), and depends on
+special values of an L-function.</p>
+</details>
+<details>
+<summary>5. Where does √log N come from, mechanically?</summary>
+<p>From renormalization. Pass to the staircase surface, where the discrepancy is the height
+(brick index) of a straight line of slope β = 2α−1. Apply the surface's affine automorphism
+ψ_A^{−1} repeatedly to shrink a length-N segment to length 1; since ψ_A expands by λ each time,
+this takes <strong>m ≍ log N/log λ</strong> steps. The height is then a Birkhoff sum Σ_{j≤m} τ(A^{−j}q)
+over the hyperbolic toral automorphism A — a sum of <strong>log N</strong> weakly dependent terms. Its
+fluctuation is √(log N). The exponent is the number of renormalization steps.</p>
+</details>
+<details>
+<summary>6. Why does a typical α give log N and Cauchy instead of √log N and Gaussian?</summary>
+<p>Resonance counting. The k-th harmonic contributes ≍ 1/(k|sin πkα|). For α of <strong>bounded type</strong>
+k‖kα‖ ≥ c, so no term is large; the ≍ log N continued-fraction denominators below N each
+contribute O(1) with varying signs, and cancellation gives √log N (CLT). For <strong>uniform</strong> α,
+E#{k ≤ N : k‖kα‖ ≤ ε} ≈ 2ε log N; taking ε ≍ 1/log N makes this O(1), so there are <strong>O(1)
+harmonics each of size ≍ log N</strong> and nothing cancels. The count of strong resonances is
+<strong>Poisson</strong>, the sizes are reciprocals of near-uniform quantities, and the limit is the
+<strong>Cauchy</strong> distribution at scale log N. Formally: bounded type keeps the additive functional
+bounded, hence the Feller–Lindeberg condition holds; a typical α breaks it.</p>
+</details>
+<details>
+<summary>7. Why does a distribution with d+1 atoms never admit an order-d Edgeworth expansion?</summary>
+<p>S_n's values are Σ m_i a_i with Σ m_i = n, and the multinomial weights are the transition
+probabilities of a d-dimensional lattice random walk. The <strong>local</strong> CLT for that walk says
+each attainable value carries mass ≍ n^{−d/2}, so the distribution function has jumps of size
+≍ n^{−d/2}. But E_d(z) is smooth in z, and a smooth function cannot approximate both sides of
+a jump of size c·n^{−d/2} to accuracy o(n^{−d/2}). Order d−1 survives, because n^{−d/2} is
+o(n^{−(d−1)/2}).</p>
+</details>
+<details>
+<summary>8. What is the random Siegel transform, and what is universal about it?</summary>
+<p>A <strong>marked unimodular lattice</strong> is a pair (L, χ) with L ⊂ ℝ^d of covolume 1 and χ : L → 𝕋 a
+character; the space of these is (SL_d(ℝ) ⋉ ℝ^d)/(SL_d(ℤ) ⋉ ℤ^d) with Haar measure. The random
+variable is</p>
+<p>𝓧(L,χ) = lim_{R→∞} Σ_{w ∈ L{0}, ‖w‖≤R} sin(2πχ(w))/y(w) · e^{−‖x(w)‖²},</p>
+<p>with y(w) the first coordinate and x(w) the other d−1; the sum converges conditionally. It is
+the limit law of the (rescaled) failure of the order-d Edgeworth expansion, and it is
+<strong>universal</strong>: its distribution depends neither on the density placed on the model's
+parameters nor on the point z. Concretely, knowing your atoms and probabilities to ten decimal
+places tells you nothing about the error for large n.</p>
+</details>
+<details>
+<summary>9. What is the "dynamical correspondence" that turns resonances into lattice points?</summary>
+<p>Normalize the first value to 0 and the last to 2π. A resonance is an integer k for which every
+rescaled remaining value c_j satisfies dist(c_j k, ℤ) ≲ n^{−1/2} — the width is n^{−1/2}
+because cos θ ≈ 1 − θ²/2 and n·θ² ≲ 1. Encode a resonance by (k, m₁, …, m_{d−1}) with m_j the
+nearest integer, apply the unipotent matrix with 1's on the diagonal and the c_j in the last
+column (turning integers into distances), then the determinant-one diagonal matrix
+diag(√n, …, √n, n^{−(d−1)/2}). Resonances become <strong>lattice points of a unimodular lattice inside
+a fixed box</strong>; counting them is the Siegel transform of an indicator; and the limit law follows
+from <strong>equidistribution</strong> of that lattice in the space of lattices (or, for Cauchy-type laws, a
+<strong>Poisson limit theorem</strong> for the same diagonal action).</p>
+</details>
+<details>
+<summary>10. What is the single structural claim the whole talk argues for?</summary>
+<p>That i.i.d. sums (the most random sequence) and quasi-periodic sums (the most regular) are
+governed by <strong>the same object</strong>. Both are studied by renormalization — convolution-and-rescale
+for sums, change-of-lattice for rotations — and although the two renormalizations look
+unrelated, on the <strong>Fourier</strong> side both are the same <strong>linear action on marked lattices</strong>: a
+lattice of harmonics, each carrying a phase. That correspondence is a dictionary, and the
+evidence that it is real rather than cosmetic is historical: the random Siegel transform was
+invented to describe discrepancy for toral translations and turned out to describe the
+Edgeworth error for independent sums. In both cases the leading contribution comes from a
+<strong>small number of resonant harmonics</strong>; Laplace handled one harmonic 200 years ago; what is
+new is the <strong>geometry of the set of resonances</strong>.</p>
+</details>
+<hr />
+<h2>13. Note on the tutorial process</h2>
+<p><strong>Difficulty versus reputation: Rule 1 fires, hard.</strong> Dolgopyat is famous for <strong>Dolgopyat's
+method</strong> — exponential decay of correlations for Anosov flows, transfer operators, spectral
+methods for hyperbolic systems. His introducer spends a full sentence on it. <strong>None of it
+appears in the talk.</strong> He mentions hyperbolic systems only to set them aside, in as many
+words: <em>"I'm not going to discuss this kind of dynamical systems in my talk, because it's
+quite well understood what is causing this stochastic behaviour."</em> Reputation would have
+predicted a difficulty-5 talk on transfer operators and spectral gaps. The actual talk is a
+probability talk about limit theorems, whose hardest object is the space of lattices, and
+whose first third is very close to material the reader already owns. Predicted 3; delivered
+3, but for entirely different reasons than a reputation-based guess would have given.</p>
+<p><strong>Anchors: what I used and what I rejected.</strong></p>
+<ul>
+<li><strong>Used, and handed over by the speaker:</strong> the central limit theorem as a
+  <strong>renormalization-group fixed point</strong> — his own closing summary describes 𝓡[μ] = (μ * μ)
+  rescaled, in words, as the renormalization transformation for sums. This is the
+  best-supported anchor in the talk and it is his, not mine.</li>
+<li><strong>Used, supported by the primary literature:</strong> <strong>small divisors</strong>. The denominators
+  k·sin(πkα) are spoken aloud; Dolgopyat–Fayad's GAFA abstract uses the phrase "the small
+  divisors in the Fourier series of the discrepancy function".</li>
+<li><strong>Rejected: billiards and the Lorentz gas.</strong> My brief proposed them as the statistical-
+  mechanics bridge. They are absent from the talk — not mentioned once. I have not used them.</li>
+<li><strong>Rejected: transfer operators and hyperbolic dynamics as a subject.</strong> Present only as a
+  tool inside one proof (§7.3 needs a Markov partition for a cat map) and explicitly declined
+  as a topic.</li>
+<li><strong>Named as absent: KAM theory.</strong> The small-divisor apparatus is genuinely here and it is the
+  reader's natural association, so §2.2 states plainly that KAM itself — the theorem, the
+  name, invariant tori — never appears. Decorating the talk with it would have been the
+  subtler kind of fabrication.</li>
+</ul>
+<p><strong>Name corrections.</strong> Auto-captions destroy essentially every proper noun. Each correction
+below is anchored to a located publication, except the two marked <em>unverified</em>.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+<th>how it was resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Amrit Serik"</td>
+<td><strong>Omri Sarig</strong></td>
+<td>co-author of LNM 2331, the theorem he describes</td>
+</tr>
+<tr>
+<td>"Konyukhovsky"</td>
+<td><strong>Adam Kanigowski</strong></td>
+<td>Dolgopyat–Kanigowski–Rodriguez Hertz, <em>Exponential mixing implies Bernoulli</em>, Ann. of Math. <strong>199</strong> (2024) 1225–1292</td>
+</tr>
+<tr>
+<td>"Rodriguez Hertz"</td>
+<td><strong>Federico Rodriguez Hertz</strong></td>
+<td>same paper</td>
+</tr>
+<tr>
+<td>"Gaston Fernandez"</td>
+<td><strong>Kasun Fernando</strong></td>
+<td>arXiv:2303.10235, the Edgeworth paper</td>
+</tr>
+<tr>
+<td>"Bromberg and Tsuchigai"</td>
+<td>Michael Bromberg and <strong>Corinna Ulcigrai</strong></td>
+<td>arXiv:1705.06484</td>
+</tr>
+<tr>
+<td>"Joseph Beck"</td>
+<td><strong>József Beck</strong></td>
+<td>Period. Math. Hungar. 60/62</td>
+</tr>
+<tr>
+<td>"Huber Huber and Barakh Weiss"</td>
+<td><strong>Hooper, Hubert and Weiss</strong></td>
+<td><em>Dynamics on the infinite staircase</em>, DCDS-A <strong>33</strong> (2013) 4341–4347 (survey ref. [53])</td>
+</tr>
+<tr>
+<td>"Ben Borda"</td>
+<td><strong>Bence Borda</strong></td>
+<td>J. Mod. Dyn. <strong>21</strong> (2025) 327–359</td>
+</tr>
+<tr>
+<td>"proven by SN in 1945"</td>
+<td><strong>Esseen</strong> (Carl-Gustav Esseen)</td>
+<td>Acta Math. <strong>77</strong> (1945) 1–125, ref. [6] of Dolgopyat–Fernando</td>
+</tr>
+<tr>
+<td>"Zeglin transform", "Ziggurat distribution"</td>
+<td><strong>Siegel</strong> transform</td>
+<td>he says "Siegel transform" correctly later in the same passage</td>
+</tr>
+<tr>
+<td>"Jerôme Buzzi"</td>
+<td><strong>Jérôme Buzzi</strong></td>
+<td>ICM 2026 lecture, named from the podium</td>
+</tr>
+<tr>
+<td>"Adler and Weiss"</td>
+<td>Roy <strong>Adler</strong> and Benjamin <strong>Weiss</strong></td>
+<td>Markov partitions, ~1967</td>
+</tr>
+<tr>
+<td>"Kolmogorov free series theorem"</td>
+<td>Kolmogorov <strong>three-series</strong> theorem</td>
+<td>—</td>
+</tr>
+<tr>
+<td>"hard measure"</td>
+<td><strong>Haar</strong> measure</td>
+<td>—</td>
+</tr>
+<tr>
+<td>"failure Lindeberg condition"</td>
+<td><strong>Feller–Lindeberg</strong> condition</td>
+<td>—</td>
+</tr>
+<tr>
+<td>"boundary type" (throughout)</td>
+<td><strong>bounded type</strong></td>
+<td>standard term; matches the stated inequality</td>
+</tr>
+<tr>
+<td>"after more phase", "total after more phase"</td>
+<td><strong>automorphism</strong>, <strong>toral automorphism</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>"Edgeworth extension"</td>
+<td>Edgeworth <strong>expansion</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>"Cramer"</td>
+<td><strong>Cramér</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>"Dabrowski and Gorodetsky"</td>
+<td><strong><em>unverified</em></strong></td>
+<td>see below</td>
+</tr>
+<tr>
+<td>"some fire and Zolotarev"</td>
+<td><strong><em>unverified</em></strong></td>
+<td>see below</td>
+</tr>
+<tr>
+<td>"William Orange is a closed subgroup of ℝ"</td>
+<td><strong><em>garbled beyond recovery</em></strong></td>
+<td>the object is unambiguous from context — the group of resonances, i.e. the co-range — but I cannot recover the words</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The two names I did not guess.</strong></p>
+<ul>
+<li><strong>"Dabrowski and Gorodetsky."</strong> Attributed by Dolgopyat to a theorem saying the only
+  obstruction to the CLT is a decomposition into constant + gradient + convergent parts. No
+  such pair appears in the companion book's 200-item bibliography. What the book <em>does</em>
+  attribute: the CLT for uniformly elliptic inhomogeneous Markov arrays is <strong>Dobrushin's</strong>
+  (their Theorem 3.10, proved following Sethuraman–Varadhan); the constant + gradient +
+  summable-variance characterization is <strong>their own Theorem 3.8</strong>, which they explicitly call
+  new for the inhomogeneous setting; and the technique behind both is <strong>Gordin's</strong>
+  martingale–coboundary decomposition. "Dobrushin and Gordin" is the phonetically plausible
+  reading. It is a coin flip and I have not written it into the text.</li>
+<li><strong>"Some fire and Zolotarev."</strong> Attributed a Kesten-type Cauchy limit for the equal-weight
+  case of the linear-form picture in part three. I could not identify either name. Reported as
+  a gap in §7.4.</li>
+</ul>
+<p><strong>Substantive caption corrections, not just spellings.</strong></p>
+<ol>
+<li><strong>Beck's theorem: "interval L to be a irrational number" → ℓ RATIONAL.</strong> This is the
+   important one, because the whole later structure depends on it. Two confirmations: the
+   Dolgopyat–Fayad survey's Theorem 8(b) states ℓ rational; and Bromberg–Ulcigrai's abstract
+   describes Beck's hypotheses as "α quadratic irrational, β rational and the initial point
+   the origin," their contribution being to cover irrational β. Internal consistency clinches
+   it: Dolgopyat says of the Bromberg–Ulcigrai condition "if L is rational then this always
+   holds… just from the definition of bounded type", which only makes sense if rational ℓ is
+   the <em>already known</em> case.</li>
+<li><strong>"the sum of 10 terms converges to the Gaussian"</strong> → the sum of <strong>n</strong> terms. Caption
+   mis-hearing of "n".</li>
+<li><strong>"each sum ends take only two values"</strong> → each <strong>summand</strong> takes only two values.</li>
+<li><strong>"we know the initial condition up to error 10 to the 10"</strong> → 10^(−10). He immediately
+   glosses it as "we know the first 10 digits," which fixes the sign of the exponent.</li>
+</ol>
+<p><strong>Where the mathematics is unrecoverable, and how bad it is.</strong></p>
+<ul>
+<li><strong>The main new theorem of part two (§7.3): sign changes in the even continued fraction
+  expansion of β = 2α−1.</strong> No preprint on arXiv (I enumerated every Dolgopyat arXiv entry
+  through May 2026), nothing on his publication page, <strong>no coauthors named aloud</strong>. I have the
+  shape of both conditions (sublinear growth of sign changes; growth slower than √n) and the
+  random-walk analogy he gives, and nothing else — not the precise definition of a sign
+  change, not the role of the initial point, not the general-ℓ statement. <strong>Impact:
+  moderate-to-structural.</strong> This is the newest result in the talk and it is the one thing here
+  a reader cannot follow up.</li>
+<li><strong>Every displayed formula on every slide.</strong> The talk showed the De Moivre–Laplace
+  approximation, the Edgeworth polynomials, the reducible-case Markov formula, the discrepancy
+  Fourier expansion, the staircase picture, the Poincaré map, the resonance matrices, and the
+  Siegel-transform definition. <strong>The caption track carries none of them.</strong> Where I display a
+  formula it is (i) quoted from a located paper with the citation attached, (ii) reconstructed
+  from spoken narration and labelled as such, or (iii) marked as a gap. I have restored more
+  than usual — the co-range and structure constants from LNM 2331, the staircase Poincaré map
+  and the affine-automorphism property from the survey, the entire Siegel-transform apparatus
+  from arXiv:2303.10235 — but each restoration is from a <em>paper</em>, never from a guess.</li>
+<li><strong>Beck's drift constant vanishing for the golden mean and √3 and not for √2 and √7, and its
+  connection to L-functions.</strong> Stated aloud; not verified. <strong>Impact: low</strong> — illustration only.</li>
+<li><strong>The reducible-case asymptotic formula for Markov chains.</strong> He explicitly declines to write
+  it. <strong>Impact: low</strong> — it is Chapter 6 of the companion.</li>
+<li><strong>The equal-weights linear-form slide and its attribution.</strong> Passed over quickly; attribution
+  unverifiable. <strong>Impact: low.</strong></li>
+</ul>
+<p><strong>Where the companion is not infallible.</strong> Dolgopyat–Fernando (arXiv:2303.10235) defines the
+marking χ as a "<strong>homeomorphism</strong> χ : L → 𝕋" — twice, in §1. A homeomorphism from a discrete
+lattice to a circle does not exist; the intended word is <strong>homomorphism</strong>, i.e. a character,
+which is what the surrounding text (linear functional χ̃, "characters", the action of (ℝ^d)<em>)
+makes unambiguous. Dolgopyat says "the character, which is like a homomorphism from L to the
+torus" from the podium, which settles it. I use </em>homomorphism* in §5.5 and note the paper's
+typo here.</p>
+<p><strong>One inference of mine, flagged.</strong> §5.4 observes that the staircase's affine symmetry group
+is the theta group {A ≡ I mod 2} and that the even continued fraction algorithm is the
+continued-fraction algorithm of that group — which is why §5.3's even expansions appear at all.
+Dolgopyat never says this. It is forced by putting two of his statements side by side, and it
+is labelled as my inference in the text rather than as his.</p>
+<p><strong>Cross-references rather than rebuilds.</strong> The renormalization-group background for §2.1 is in
+<code>random-interface-growth-quastel.md</code> §7.2 and I do not reproduce it. The general framework of
+homogeneous spaces Γ\G, flows as right translations, and mixing implying equidistribution — the
+setting my §5.5 needs a special case of — is built at length in <code>lens-of-circles-oh.md</code>, and
+§5.5 cites it and takes only the two facts it needs. The "two opposite problems are the same
+problem" methodological point in §10.5 is developed in <code>geometric-concepts-pde-otto.md</code> §8.5.</p>
+<p><strong>Length and shape.</strong> The split rating drove the layout. §4 is compressed calibration for the
+probability half (difficulty 2), §5 is the full bridge for the geometry half (difficulty 4),
+and §7 walks the talk in Dolgopyat's own order — three problems, then his synthesis. §8 breaks
+the usual pattern by promoting a <em>calculation</em> rather than a theorem to "the one argument",
+because the talk's most striking fact (√log N versus log N) has a two-line explanation that he
+gives and that the reader can verify in twenty minutes. That felt like the highest-value
+possible use of that section.</p>
+</div>
+</body>
+</html>

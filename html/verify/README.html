@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification of the 20 ICM 2026 tutorials</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification of the 20 ICM 2026 tutorials</h1>
+<p>Run 2026-08-18. Before this run, 5 of 20 tutorials were content-verified and 15 had passed a
+structure check only. <strong>All 20 are now content-verified.</strong></p>
+<h2>How to read this folder</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.md</code></td>
+<td>this roll-up</td>
+</tr>
+<tr>
+<td><code>{slug}.md</code></td>
+<td>the full verification report for one tutorial</td>
+</tr>
+<tr>
+<td><code>{slug}.DONE</code></td>
+<td>marker written when that report finished</td>
+</tr>
+<tr>
+<td><code>TIER0-citations.md</code></td>
+<td>the machine citation check over all 20 files</td>
+</tr>
+<tr>
+<td><code>CROSS-FILE.md</code></td>
+<td>defects no single-file verifier could see</td>
+</tr>
+<tr>
+<td><code>check_citations.py</code></td>
+<td>re-runnable tier 0 check; exit 1 if a citation fails</td>
+</tr>
+<tr>
+<td><code>BRIEF.md</code></td>
+<td>the spec every verifier ran against; reuse it to re-verify a fixed file</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Method</h2>
+<p>Three tiers, cheapest first.</p>
+<ol>
+<li><strong>Tier 0</strong> — a script resolved every arXiv ID and DOI against the arXiv and Crossref APIs.
+   No mathematics read. Catches fabricated citations only.</li>
+<li><strong>Tier 1 and 2</strong> — folded into tier 3. Each verifier read the writing agent's own
+   "Note on the tutorial process" and judged whether that self-report was honest.</li>
+<li><strong>Tier 3</strong> — one independent verifier per tutorial, 5 at a time, each reading the full
+   tutorial against the full transcript and, where readable, the companion paper.</li>
+</ol>
+<p>Verifiers checked <strong>provenance, not mathematical truth</strong>: does every claim have a source?
+They could not check whether a cited theorem is correct.</p>
+<p>Each verifier wrote its report incrementally and set a <code>.DONE</code> marker at the end. The
+original writing run lost 15 reports because the reports lived only in the agents' final
+messages and an account session limit killed them. Writing to disk as you read is the fix.</p>
+<h2>Result</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Verdict</th>
+<th>Count</th>
+<th>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLEAN</td>
+<td>1</td>
+<td><code>uniformization-complex-geometry-mok</code></td>
+</tr>
+<tr>
+<td>MINOR</td>
+<td>13</td>
+<td>all others</td>
+</tr>
+<tr>
+<td>MAJOR</td>
+<td>1</td>
+<td><code>hardy-spaces-explicit-formulae-gerard</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>No tutorial invented a theorem. No tutorial fabricated a citation.</strong> 100 arXiv IDs and 4
+DOIs all resolve — that check covered all 20 files.</p>
+<p>The title and gap-honesty checks covered <strong>the 15 files verified in this run</strong>, not all 20.
+The 5 files verified earlier were not re-checked.</p>
+<ul>
+<li><strong>Title check: 15 of 15 PASS.</strong></li>
+<li><strong>Gap honesty: 14 PASS, 1 CONCERN.</strong> The CONCERN is
+  <code>hardy-spaces-explicit-formulae-gerard</code> — at <code>:557</code> it declares a constant unrecoverable
+  that is printed in <code>arXiv:2212.03139</code> Lemma 3. Note this fails in the <em>opposite</em>
+  direction from a filled gap: it over-declared. The one place a gap was arguably filled
+  instead of marked is <code>quantitative-rectifiability-harmonic-measure-tolsa.md:1308</code>, whose
+  verifier still returned PASS with a caveat.</li>
+</ul>
+<p>Four files carry <strong>zero</strong> uncited external claims: <code>ricci-flow-singularities-brendle</code>,
+<code>mesh-generation-pdes-buffa</code>, <code>ramsey-numbers-morris</code>, <code>uniformization-complex-geometry-mok</code>.</p>
+<h2>What must be fixed — mathematics</h2>
+<p>These change what a reader would believe. Fix these first.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Defect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:665</code></td>
+<td>Plancherel identity: the <code>1/(2pi)</code> was moved off the integral to the right side as <code>2pi</code> without rescaling the discrete sum. Paper eq (2.7) disagrees.</td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md:399</code></td>
+<td><code>B_u = i(T_{|D|u} - T_{u^2})</code>. Both the paper and the transcript say <code>T_u^2</code>, the square of the operator.</td>
+</tr>
+<tr>
+<td><code>mesh-generation-pdes-buffa.md:465-467</code></td>
+<td>Quotes companion eq (33) with its <code>1/h(gamma_jl)</code> weight dropped, inside a gap block that calls the scaling unrecoverable.</td>
+</tr>
+<tr>
+<td><code>mesh-generation-pdes-buffa.md:910,:916</code></td>
+<td>The §8.1 exercise integrates rho as <code>a/delta</code> after defining it as <code>1 + a/delta</code>. Correct slope is <code>delta(1+a)/(delta+a)</code>. The 34% headline still holds.</td>
+</tr>
+<tr>
+<td><code>random-interface-growth-quastel.md:1058</code></td>
+<td>Says the walk hits the <strong>epigraph</strong>; <code>:466</code>, <code>:475</code>, <code>:1423</code> all say the hypograph.</td>
+</tr>
+<tr>
+<td><code>ramsey-numbers-morris.md:340</code></td>
+<td>Says Kim used the method "for both directions". Kim proved the lower bound only; the upper is AKS/Shearer.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>What must be fixed — provenance</h2>
+<p>A source is claimed that does not exist, or exists differently.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Defect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ricci-flow-singularities-brendle.md:1699-1704</code></td>
+<td>Claims companion Example 2.10 repeats a misprint. It does not; only 2.9 has it.</td>
+</tr>
+<tr>
+<td><code>learning-in-games-tardos.md:694,:952,:1145</code></td>
+<td>A Gaitonde-Tardos theorem is called "the most underrated fact in the lecture". It is not in the lecture. Correctly attributed to the paper, wrongly placed in the talk.</td>
+</tr>
+<tr>
+<td><code>random-interface-growth-quastel.md:998,:1616</code></td>
+<td>Credits "Johansson and Rahman" and "Liu" with no locator, then states that every such pointer is cited.</td>
+</tr>
+<tr>
+<td><code>random-matrices-localization-yau.md:815</code></td>
+<td>Quotes Noga Alon, a living person, sourced only to the word "Quanta". No title, author, date or URL.</td>
+</tr>
+<tr>
+<td><code>knots-four-manifolds-manolescu.md:866-868</code></td>
+<td>Credits Juhasz and Zemke a named result with no locator, in a paragraph whose neighbours do cite.</td>
+</tr>
+<tr>
+<td><code>prismatic-homotopy-lurie.md:447</code></td>
+<td>Uses "the Lazard ring" in the body; the process note says that material was not used. The ICM transcript has zero hits for Lazard.</td>
+</tr>
+<tr>
+<td><code>arithmetic-patterns-ziegler.md:921,:953</code></td>
+<td>States a 2014 open-problem status as present fact, without the hedge it carries at <code>:331</code>.</td>
+</tr>
+<tr>
+<td><code>ramsey-numbers-morris.md:164,:508,:509</code></td>
+<td>Dates two papers 2026; Morris says "last year" from an August 2026 podium, so 2025.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>What must be fixed — metadata</h2>
+<p>See <code>CROSS-FILE.md</code> §1. Seventeen invented timestamp ranges in <code>arithmetic-patterns-ziegler</code>,
+and about 20 prose claims about recording position across 11 files.</p>
+<h2>Repo hygiene</h2>
+<ul>
+<li><code>prismatic-homotopy-lurie</code> cites a March 2025 recording that was cleaned into a scratchpad,
+  not into <code>transcripts/</code>. Seven cited points cannot be checked from the repo. Save it.</li>
+<li>Three files use <code>[Gap, &lt;impact&gt;: ...]</code> where <code>TEMPLATE.md:212</code> specifies <code>[Gap: ...]</code>.
+  Grep <code>\[Gap[,:]</code>, not <code>\[Gap:</code>.</li>
+</ul>
+<h2>What this run did NOT check</h2>
+<p>Whether the cited mathematics is true. Verifiers checked that claims have sources, not that
+the sources are right. Several companion papers were unreadable: the SIAM proceedings
+chapters return HTTP 403, and <code>arXiv:2601.05425</code> (Manolescu) could not be opened, leaving
+about half that file resting on a source no verifier read.</p>
+<hr />
+<h1>Round 2 — 2026-08-18</h1>
+<p>Run after the roll-up above, in the same session that wrote <code>DEVELOPMENT-JOURNEY.html</code>. It
+executes the checks <code>HANDOFF.md</code> listed as <strong>never run</strong>, and closes the depth gap the journey
+document identified. <strong>It applies none of the fixes above; those are still outstanding.</strong></p>
+<h2>What round 2 added</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INTERNAL-CONSISTENCY.md</code></td>
+<td>cross-reference resolution, math-delimiter balance, front matter, gap-marker count — all 20 files</td>
+</tr>
+<tr>
+<td><code>ROUND2-EXERCISES.md</code></td>
+<td><strong>all 44 worked exercise solutions re-derived by hand</strong> — all 20 files</td>
+</tr>
+<tr>
+<td><code>optimization-theory-practice-wright.md</code></td>
+<td>first independent verification (was self-verified)</td>
+</tr>
+<tr>
+<td><code>shape-of-math-kontorovich.md</code></td>
+<td>first independent verification (was self-verified)</td>
+</tr>
+<tr>
+<td><code>geometric-concepts-pde-otto.md</code></td>
+<td>first independent verification (was self-verified)</td>
+</tr>
+<tr>
+<td><code>modern-ml-methods-bartlett.md</code></td>
+<td>first independent verification (was self-verified)</td>
+</tr>
+<tr>
+<td><code>langlands-function-fields-gaitsgory.md</code></td>
+<td>first independent verification (was self-verified)</td>
+</tr>
+<tr>
+<td><code>random-interface-growth-quastel.md</code> (appended)</td>
+<td><strong>companion fetched</strong>, every cited equation compared</td>
+</tr>
+<tr>
+<td><code>random-matrices-localization-yau.md</code> (appended)</td>
+<td><strong>companion fetched</strong>, every cited formula compared</td>
+</tr>
+<tr>
+<td><code>arithmetic-patterns-ziegler.md</code> (appended)</td>
+<td><strong>companion fetched</strong>, every cited theorem compared</td>
+</tr>
+<tr>
+<td><code>learning-in-games-tardos.md</code> (appended)</td>
+<td><strong>companion fetched</strong>, every cited theorem compared</td>
+</tr>
+<tr>
+<td><code>randomness-rotations-resonances-dolgopyat.md</code> (appended)</td>
+<td><strong>both companions fetched</strong>, every quoted passage compared</td>
+</tr>
+</tbody>
+</table></div>
+<p>All 20 files are now independently verified, all 20 title-checked, and every companion that a
+machine can reach has been read.</p>
+<h2>New: one MAJOR</h2>
+<p><strong><code>random-interface-growth-quastel.md:481</code></strong> prints the Brownian scattering operator with
+exponents <code>ℓ₁³</code> and <code>ℓ₂³</code> where Remenik <code>arXiv:2205.01433</code> eq. (4.2) has <code>t∂³</code> — in both
+factors. An operator becomes a scalar and the time variable vanishes from the right-hand side
+of a definition whose left-hand side is <code>K_t</code>. It is labelled "transcribed". It is also the
+formula from which §4.5's decoupling punchline is read off. Detail in that file's round-2
+section. <strong>Verdict for that file: MINOR → MAJOR.</strong></p>
+<p>Revised counts over all 20 files: <strong>CLEAN 1, MINOR 17, MAJOR 2</strong>. Arithmetic: the round-1 table
+above covers only the 15 files verified in that run (1 + 13 + 1 = 15). Round 2 added verdicts for
+the other five, all MINOR, giving 18 MINOR; <code>random-interface-growth-quastel</code> then moved MINOR to
+MAJOR, leaving 17. The two MAJORs are <code>hardy-spaces-explicit-formulae-gerard</code> and
+<code>random-interface-growth-quastel</code>.</p>
+<h2>New: mathematics fixes</h2>
+<p>Add these to the "What must be fixed — mathematics" table above.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Defect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>random-interface-growth-quastel.md:481</code></td>
+<td><strong>MAJOR.</strong> Companion eq. (4.2) misquoted: <code>ℓ₁³</code>, <code>ℓ₂³</code> for <code>t∂³</code>, <code>t∂³</code>.</td>
+</tr>
+<tr>
+<td><code>random-matrices-localization-yau.md:964</code></td>
+<td>The exercise constant <code>c = 2 Im m_sc(E)/√(4−E²)</code> is identically 1; correct is <code>c = 1/Im m_sc(E)</code>.</td>
+</tr>
+<tr>
+<td><code>random-matrices-localization-yau.md:963</code></td>
+<td><code>m′ = −m/(2m+z) = m/(m − 1/m)</code> — the second expression drops the minus.</td>
+</tr>
+<tr>
+<td><code>random-matrices-localization-yau.md:1037-1041</code></td>
+<td>Tracy–Widom described as left-skewed with a thin right tail. Both backwards; TW₁ is right-skewed with the thin tail on the left, median ≈ −1.27.</td>
+</tr>
+<tr>
+<td><code>uniformization-complex-geometry-mok.md:1461</code></td>
+<td><code>Σ_j z_j^{d−k} w_j^{k+1} = 0</code> — exponent on z one too high. Contradicted by the expansion above it and by part (c) below it.</td>
+</tr>
+<tr>
+<td><code>ricci-flow-singularities-brendle.md:1252</code></td>
+<td>The stated metric <code>4δ/(1+ρ²)</code> has <code>R ≈ 1/ρ²</code>, not the <code>4/ρ²</code> printed. Metric and curvature differ by a factor 4.</td>
+</tr>
+<tr>
+<td><code>shape-of-math-kontorovich.md:637</code></td>
+<td><code>**$10,000**</code> — an unescaped currency <code>$</code>. Under MathJax it pairs with the display block at <code>:709</code> and swallows 70 lines. Write <code>\$10,000</code>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>New: provenance items</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Defect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shape-of-math-kontorovich.md:585</code>, <code>:917</code></td>
+<td>"5 to 10 years" is stated as the speaker's estimate. Not in the transcript, and no locator, though the three surrounding claims all carry one.</td>
+</tr>
+<tr>
+<td><code>shape-of-math-kontorovich.md:559-566</code></td>
+<td>The LANA paragraph names Utrecht and Alberta and dates the report 17 July 2026. The talk says only "coming out of Japan" and "last week", from an August podium.</td>
+</tr>
+<tr>
+<td><code>optimization-theory-practice-wright.md:298</code></td>
+<td>The silver-step-size gain is given as <code>κ^{0.786}</code> for the strongly convex case. The podium gives the convex form <code>ε^{−0.786}</code>. Both are Altschuler–Parrilo; neither is cited.</td>
+</tr>
+<tr>
+<td><code>modern-ml-methods-bartlett.md:672</code></td>
+<td>Zhang, Bengio, Hardt, Recht and Vinyals named with title and venue where the talk says only "a group at Google". No citation.</td>
+</tr>
+<tr>
+<td><code>modern-ml-methods-bartlett.md:497</code></td>
+<td>Soudry, Hoffer, Nacson, Gunasekar and Srebro named where the captions carry "sudri at al". No citation.</td>
+</tr>
+<tr>
+<td><code>geometric-concepts-pde-otto.md:660</code></td>
+<td>Naddaf–Spencer given a year and a subject line the talk does not supply.</td>
+</tr>
+<tr>
+<td><code>langlands-function-fields-gaitsgory.md:487</code></td>
+<td>The file replaces the speaker's audible "Jean-Pierre Serre, 40 years ago" with Laumon, on the paper's authority. Flagged in place — correct call, but it is the corpus's only contradiction of a clear, unmangled speaker statement.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>New: cross-reference defects</h2>
+<p>14 broken internal <code>§</code> references in 4 files, all from one cause: the back-matter section
+numbers differ per file and references were written against another file's layout. Full table
+in <code>INTERNAL-CONSISTENCY.md</code> §2. <code>gerard</code> ×8, <code>bartlett</code> ×3, <code>tolsa</code> ×2, <code>morris</code> ×1.</p>
+<h2>Corrections to this roll-up</h2>
+<ul>
+<li><strong>"No tutorial fabricated a citation" still holds</strong>, but the tier 0 checker now exits 1 on a
+  <strong>benign</strong> case: <code>langlands-function-fields-gaitsgory.md:1548</code> deliberately quotes
+  <code>arXiv:2020.02998</code>, an invalid identifier, <strong>in order to correct it</strong> — the id is the one
+  Gaitsgory's own paper lists for [Zhu1]. <code>check_citations.py</code> now carries a one-entry
+  allowlist with a comment pointing at that line, and exits 0 again.</li>
+<li><strong>The epigraph/hypograph item is settled.</strong> The Remenik companion uses <em>hypograph</em>
+  throughout, confirming that <code>random-interface-growth-quastel.md:1058</code> is the wrong line and
+  <code>:466</code>, <code>:475</code>, <code>:1423</code> are right.</li>
+</ul>
+<h2>What round 2 still did not check</h2>
+<ul>
+<li>Companions behind a paywall or a 403: the SIAM proceedings chapters, and
+  <code>arXiv:2412.20263</code> (no ar5iv or arXiv HTML rendering — only its abstract was readable).</li>
+<li>The gaitsgory companion <code>arXiv:2509.24902</code>. That file states outright that <strong>every</strong> displayed
+  formula comes from it, so it is the largest single unchecked surface in the corpus.</li>
+<li>Whether the cited mathematics is true, in general. Round 2 checked what a source <em>says</em>
+  against what a tutorial <em>prints</em>, for the sources it could open, and re-derived every
+  exercise. It did not audit the mathematics of the talks.</li>
+<li>The metadata items in <code>CROSS-FILE.md</code> §1. Untouched.</li>
+</ul>
+</div>
+</body>
+</html>

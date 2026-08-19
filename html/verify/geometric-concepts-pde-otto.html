@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — geometric-concepts-pde-otto</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — geometric-concepts-pde-otto</h1>
+<p>verdict: MINOR
+uncited_external_claims: 1
+unsupported_speaker_claims: 0
+title_check: PASS — the introducer announces "geometric concepts in partial differential equations" and Otto repeats it: "I'll be talking about geometric concepts in partial differential equation."
+gap_honesty: PASS — 2 <code>[Gap:</code> markers, both at genuine slide-only content, plus a full unrecoverable-mathematics ledger in §11 that names five more holes and grades each.</p>
+<p>Round 2, 2026-08-18. Written and self-verified by the session that produced it; <strong>not</strong> in the
+15-file tier 3 run. First independent check. Method: full read of
+<code>summaries/geometric-concepts-pde-otto.md</code> against <code>transcripts/K8-O-FdUzGs_transcript.txt</code>.
+Companion <code>arXiv:2401.05935</code> not fetched.</p>
+<p><strong>This is the most carefully sourced file I checked in round 2.</strong> Every displayed equation in
+it is labelled as reconstructed, cited, or marked a gap. The finding below is the only one.</p>
+<h2>Findings</h2>
+<h3>1. <code>summaries/geometric-concepts-pde-otto.md:660</code> — a date and a description attached to a paper the talk names without either</h3>
+<p>File: "they found the idea in an <strong>unpublished paper by Naddaf and Spencer</strong>, a <strong>1998
+preprint on variance estimates in homogenization built on a spectral gap inequality</strong>."</p>
+<p>Transcript, in full: "that's what Antoine Gloria and I used when we started thinking about
+quantitative homogenization and this basic idea we found in an unpublished paper by Naf
+Spencer."</p>
+<p>The year, the subject line and the mechanism are the file's, not the speaker's, and carry no
+source. The claim is almost certainly right — the Naddaf–Spencer preprint is a real and
+well-known object — but an unpublished 1998 preprint is exactly the sort of citation nobody
+can check later, and the file elsewhere is scrupulous about this distinction.</p>
+<p><strong>What would settle it:</strong> cite the preprint by title, or drop the year and the description and
+keep what Otto said.</p>
+<h3>2. <code>summaries/geometric-concepts-pde-otto.md:1361</code> — a correction-table row for a name the file never uses</h3>
+<p>The §11 table corrects "Terrence Tao" to "Terence <strong>Tao</strong>". Tao appears nowhere else in the
+file. Harmless, but it means the correction table is not a table of corrections <em>made</em>.</p>
+<h2>What I checked and found supported</h2>
+<p>The auto-captions in this talk destroy every proper noun including the speaker's own, so each
+of these was located by idea and then matched to the mangled string:</p>
+<ul>
+<li>"kind of a <strong>personal tour</strong>" and the elementary-geometry-in-infinite-dimensions framing — verbatim.</li>
+<li>Arnold's geodesic reading, Gauss's theorem, negative sectional curvature, unpredictability.</li>
+<li><strong>Shnirelman</strong> ("Alexander Schneerman") and non-existence of shortest geodesics in three
+  dimensions and higher; <strong>Brenier</strong>'s relaxation.</li>
+<li>The variational time discretization, "we still have ill-posedness at this stage, minimizers
+  will not exist", and the weak convergence to volume fractions.</li>
+<li>The relaxed dissipation as "the sum of the square of two metrics, weighted by the mobilities"
+  — which is exactly why the file writes w₁, w₀ as symbols instead of numbers.</li>
+<li><strong>Almgren</strong> ("Angrin") and <strong>Luckhaus</strong> ("Lucaus") for motion by mean curvature, before De
+  Giorgi named minimizing movements.</li>
+<li>"<strong>there's a minus sign missing here</strong>" — verbatim, and the file's refusal to reproduce the
+  formula is correct: the formula is not in the captions.</li>
+<li>The mixing zone "opens linearly in time", with profile and speed depending "in a very
+  characteristic way on these mobilities" — verbatim.</li>
+<li>The non-convexity passage and the <strong>Peter Bartlett</strong> connection — verbatim, including "it's
+  not always the best to choose the smallest time step size" and "we've inverted the order of
+  relaxation. We first relax and then we let the time step size go to zero."</li>
+<li>The CMU / <strong>Rich Jordan</strong> / <strong>Kinderlehrer</strong> origin story, with the Kullback–Leibler energy
+  and the Fokker–Planck conclusion, told as the <em>sequel</em> — verbatim, and the file's §3.7 point
+  that the two-phase problem came first is Otto's own ordering, not the file's.</li>
+<li>The <strong>Stephen Wright</strong> neural-network reference at the end of part one.</li>
+<li>The <strong>cast</strong> image — verbatim: "we want to take a cast … the impressions which are the
+  charts … and then discard the differential operator."</li>
+<li><strong>Jeremy Quastel</strong>'s plenary invoked for the zoom-<em>out</em> contrast — verbatim.</li>
+<li><strong>Felix Klein's</strong> philosophy for the transition maps — verbatim.</li>
+<li><strong>Armstrong and Smart</strong> as the source of the low-regularity / high-order-approximability idea.</li>
+<li>The coherence remark, "gives rise to a new condition in low dimensions, not in high
+  dimensions, and is well known in the field" — verbatim.</li>
+<li>"satisfies all the axioms to the last <strong>iota</strong>" ("to the last Yoda" in captions) — verbatim.</li>
+<li>The closing thermal-noise / quenched-noise summary — verbatim.</li>
+</ul>
+<p><strong>The §11 ledger is the model the other 19 files should have followed.</strong> It states what is
+lost, how bad each hole is, and which exponents are spoken versus slide-only — and it is right
+that the exponents are spoken: α, α−2, d/2, α+d/2, α+d/2−2 and the coherence condition all
+appear in the caption track.</p>
+<p><strong>Collaborator reconstruction is anchored, not guessed.</strong> "Pablo, Marcos and Pablo" →
+Linares, Tempelmayr, Tsatsoulis and "Luca and Marcus" → Broux, Tempelmayr are each tied to a
+located publication, and the Oberwolfach report the file could not retrieve is recorded as a
+404 rather than quoted.</p>
+<h2>Exercises re-derived</h2>
+<p>Both worked solutions were re-derived by hand. <strong>Both correct</strong>, and §7.2 is the strongest
+exercise in the corpus because it is fully checkable from the caption track alone.</p>
+<ul>
+<li><strong>§7.1 Fokker–Planck from the JKO scheme.</strong> δE/δρ = log ρ + 1 + V; ρ∇(log ρ + V) = ∇ρ + ρ∇V;
+  so ∂ₜρ = ∇·(∇ρ + ρ∇V) = Δρ + ∇·(ρ∇V). Correct, signs included. The closing remark — run it
+  in flat L² and you get ∂ₜρ = −(log ρ + 1 + V), not a PDE — is also correct and is the point
+  of the exercise.</li>
+<li><strong>§7.2 exponent bookkeeping, all four parts.</strong> (a) α − 2 = −d/2 gives α = 2 − d/2; d=3 gives
+  1/2, d=4 gives 0. Correct. (c) subtract 2: α + d/2 − 2. Correct. (d) α + (α + d/2 − 2) &gt; 0,
+  equivalently 2α &gt; 2 − d/2, equivalently <strong>α &gt; 1 − d/4</strong>. Correct. The table (3/4, 1/2, 1/4,
+  0, negative) is arithmetically right at every row, and the conclusion that it binds only in
+  low dimensions matches Otto's spoken remark. The bonus check is also right: substituting
+  α = 2 − d/2 into α + d/2 − 2 gives exactly 0 for every d.</li>
+</ul>
+<p>One thing the exercise does not say, and a reader might trip on it: at d = 1 the tabulated
+threshold 3/4 cannot bind for <strong>white noise</strong>, because white noise there gives α = 3/2, outside
+the file's own 0 &lt; α &lt; 1 window. The table is about general dilation-invariant ensembles, which
+is correct, but the two paragraphs sit next to each other.</p>
+<h2>What I could not check</h2>
+<ul>
+<li>The companion <code>arXiv:2401.05935</code> was not fetched. Its abstract is quoted at <code>:55-60</code> as
+  supporting the charts-and-transition-maps identification, and that quotation is unverified here.</li>
+<li>Whether "Saffman–Taylor" is the right reconstruction of "suffment … instability". The file
+  marks it reconstructed, names Rayleigh–Taylor as the competing candidate, and does not
+  assert. That is the correct handling; it just leaves the question open.</li>
+<li>The claim that no ICM proceedings paper exists. The file says it searched arXiv and the MPI
+  MIS list. <code>HANDOFF.md</code> independently records that only 7 of 20 talks have an arXiv companion,
+  which is consistent, but I did not re-run the search.</li>
+<li>The publication data in §3.7 (SIAM J. Math. Anal. 29 (1998) 1–17; CPAM 52 (1999) 873–915) and
+  the Oberwolfach Report 33/2025 number.</li>
+<li>Whether the mathematics is true. Unchanged from the whole project: this is a provenance check.</li>
+</ul>
+</div>
+</body>
+</html>

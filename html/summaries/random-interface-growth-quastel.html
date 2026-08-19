@@ -1,0 +1,1620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Random Interface Growth</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Jeremy Quastel (University of Toronto)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=B5OhjD222w0">https://www.youtube.com/watch?v=B5OhjD222w0</a></div><div><b>Level:</b> 2/5 (the physics and the scaling) — 3/5 (the integrable machinery)</div><div><b>Reading time:</b> ~65 min</div></div>
+<h1>Random Interface Growth — Jeremy Quastel</h1>
+<p><strong>Field:</strong> probability. Interacting particle systems, stochastic PDE, and the branch now
+called <em>integrable probability</em> — the part of probability that borrows machinery from
+classical integrable systems.</p>
+<p><strong>Difficulty against your background: split, and the split is clean.</strong></p>
+<ul>
+<li><strong>The physics half is nearly yours.</strong> Surface growth, an interface that fluctuates like
+  t^{1/3} with correlations on scale t^{2/3}, a nonlinear PDE forced by white noise, a
+  renormalization-group fixed point, universality classes, scaling exponents. You have all
+  of this. <strong>Difficulty 2</strong> — you need one new scaling (1:2:3 instead of 1:2) and one new
+  fixed point, and both take an afternoon.</li>
+<li><strong>The integrable half is a real gap.</strong> Fredholm determinants, determinantal point
+  processes, biorthogonalization of shifted Charlier polynomials, the Brownian scattering
+  transform, the Airy line ensemble, and the fact that the answer solves the
+  Kadomtsev–Petviashvili equation. <strong>Difficulty 3.</strong> You have the prerequisites — you know
+  inverse scattering for KdV, you know what a trace-class operator is, you know Hopf–Lax —
+  but the specific machine is new. That half gets the bridge.</li>
+</ul>
+<p><strong>What this tutorial builds.</strong> The 1:2:3 scaling derived rather than asserted; Fredholm
+determinants and why non-intersecting paths produce them; the biorthogonalization problem
+and the trick that solved it; the Brownian scattering transform and its Lax equation; the
+KP equation the answer satisfies; and the Airy line ensemble route that replaces formulas
+by an axiom.</p>
+<p><strong>A note on sources — read this before you trust anything below.</strong></p>
+<ul>
+<li><strong>There is no ICM 2026 proceedings paper for this talk.</strong> I searched arXiv (Quastel's
+  most recent posting is arXiv:2409.08465, September 2024, on a different question) and the
+  SIAM listing for <em>Proceedings of the ICM 2026, Volume 2: Plenary Lectures</em>, whose
+  contents page returns HTTP 403 and which I could not open. Nothing with a matching title
+  exists in any index I could reach.</li>
+<li><strong>The title is the speaker's own description, not a confirmed programme title.</strong> The
+  introducer never states a title. Quastel's first sentence is "so the talk's about random
+  interface growth," and that is where the title above comes from. The IMU speaker listing
+  and the ICM 2026 speaker page both give his name with no lecture title. Treat the title
+  as reconstructed. <em>(Contrast Otto's talk in this folder, where the title is stated twice
+  on the video.)</em></li>
+<li><strong>The companion is
+  <a href="https://arxiv.org/abs/2205.01433">arXiv:2205.01433</a>, Daniel Remenik, <em>Integrable
+  fluctuations in the KPZ universality class</em></strong> (3 May 2022; Proc. ICM 2022, Vol. 6,
+  4426–4450). <strong>This is a companion, not the proceedings paper, and it is not by the
+  speaker.</strong> It earns the label anyway: it is a survey of exactly this talk's spine, by
+  Quastel's principal collaborator, and its abstract reads like the talk's outline — the
+  KPZ fixed point, its construction through TASEP, "how the construction reveals the KPZ
+  fixed point as a stochastic integrable system," and the KP equation. Every formula I
+  quote from it is cited.</li>
+<li><strong>Quastel's own lecture notes on the same construction</strong> are
+  <a href="https://arxiv.org/abs/1710.02635">arXiv:1710.02635</a>, Quastel and Remenik, <em>From the
+  totally asymmetric simple exclusion process to the KPZ fixed point</em> (PCMI graduate summer
+  school, 2017). Older, and it predates the KP result, but it is the speaker's own.</li>
+<li><strong>Primary literature is used heavily and kept visibly separate.</strong> Where the talk states a
+  published result, I recover the mathematics from <em>its own</em> paper and name it inline. Those
+  are one-theorem citations, not a substitute for a proceedings paper.</li>
+<li><strong>No formulas survive in the captions.</strong> Everything Quastel wrote was on slides, and at
+  one point he says out loud "I won't show you the formula. I was warned not to show you the
+  formula." Every displayed equation below is either (i) taken from a cited published source,
+  (ii) a derivation I did from exponents he spoke aloud and labelled as such, or (iii) marked
+  as a gap. Nothing is filled in by guessing.</li>
+</ul>
+<p><strong>Names.</strong> The auto-captions destroy almost every proper noun, including the speaker's own
+("Jeremy Quest", "Jeremy Quaster"). Full correction table in §11.</p>
+<p><strong>One cross-reference.</strong> The talk spends about two minutes on singular stochastic PDE and
+renormalization, and takes a strong position on what those tools can and cannot reach.
+<code>summaries/geometric-concepts-pde-otto.md</code> §4 builds that machinery at length — white-noise
+scaling, subcriticality, Cameron–Martin, Malliavin derivatives, regularity structures,
+counterterms. I do not rebuild it. I state Quastel's verdict on it in §5.13 and say what it
+means. The two tutorials point at each other: Otto's §4.2 explicitly names <em>this</em> talk as
+the place you watch scale invariance by zooming <strong>out</strong>, where his own construction zooms
+<strong>in</strong>.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>The first slide is a photograph of a wildfire and a photograph of lichen. The burnt region
+grows into the unburnt; the lichen grows into the bare rock. The two pictures are separated
+by many orders of magnitude in size and share no physics whatsoever, and the boundary
+between the invaded and the invading phase <strong>looks the same in both</strong>.</p>
+<p>That observation is a century old in spirit and thirty years old as a research programme.
+What is new — and it is the whole content of the talk — is that the object the two pictures
+share has now been <strong>written down</strong>.</p>
+<p>Here is the precise shape of the claim. Turn the wildfire picture on its side so the burnt
+region is the region under a graph, and call that graph the height function h(t, x). Then:</p>
+<ul>
+<li>The height <strong>grows linearly</strong>: h ≈ c·t, and c depends on every microscopic detail — the
+  wind, the fuel, the lattice, the reaction rates. Nobody cares about c.</li>
+<li>The height <strong>fluctuates like t^{1/3}</strong>. Not t^{1/2}. This is what the physics literature
+  calls <strong>kinetic roughening</strong>.</li>
+<li>Those fluctuations are <strong>correlated over a distance of order t^{2/3}</strong> in space.</li>
+</ul>
+<p>Two exponents, 1/3 and 2/3, in place of the diffusive 1/2 you would get from a sum of
+independent things. That much was predicted in 1977 by Forster, Nelson and Stephen for the
+stochastic Burgers equation using the <strong>dynamic renormalization group</strong>, and extended in
+1986 by Kardar, Parisi and Zhang to a large class of models (Remenik, arXiv:2205.01433, §1).
+Quastel's assessment of what that method delivered is blunt and it is the hinge of the whole
+lecture:</p>
+<blockquote>
+<p>"When they do that they can't tell you what that object is. It's not much more than saying
+well, there's something there."</p>
+</blockquote>
+<p>Renormalization group tells you a nontrivial limit exists. It does not tell you what the
+limit <em>is</em>. You cannot sample from "there's something there", you cannot compare it against
+an experiment, and you cannot discover that it satisfies a differential equation.</p>
+<p>So the question of the talk is:</p>
+<blockquote>
+<p><strong>What is the universal random object that all of these interfaces converge to, written
+explicitly enough that you can compute with it?</strong></p>
+</blockquote>
+<p>The answer has a name — the <strong>KPZ fixed point</strong> — and the talk is the story of how it was
+constructed, why it turned out to be an integrable system, and which parts of the
+universality claim remain completely open. On the last point Quastel is unusually candid:
+for the very first model he shows you, the Eden model, and for the ballistic-deposition
+movie he shows you, <strong>nobody can prove any of this</strong>, and he explains exactly where the
+proof gets stuck.</p>
+<hr />
+<h2>2. Your anchors</h2>
+<p>Quastel hands you both of them from the podium. Neither needs to be invented, and per Rule 2
+that makes them better than anything a search would produce.</p>
+<h3>2.1 Anchor one: the KPZ fixed point is the central limit theorem for surfaces</h3>
+<p>He builds it explicitly, and slowly, in the middle of the talk. Take Brownian motion. It has
+one property that makes it matter:</p>
+<blockquote>
+<p>B(ε^{-1}x) has the same law as ε^{-1/2}B(x).</p>
+</blockquote>
+<p>Rescale space by ε^{-1}, rescale height by ε^{1/2}, and Brownian motion is unchanged. It is
+the <strong>fixed point of the 1:2 scaling</strong>. That is exactly why it is the limit of essentially
+every random walk with independent increments, short-range correlations and a couple of
+moments — his words. The central limit theorem is the statement that the 1:2 scaling has a
+fixed point, and that the fixed point attracts everything generic.</p>
+<p>Now the second half of the observation, which is the one to keep:</p>
+<blockquote>
+<p>"Fixed points are a good place to look for integrability."</p>
+</blockquote>
+<p>Brownian motion has <strong>exact formulas</strong> — the probability that it sits in prescribed places
+at prescribed times is a finite-dimensional Gaussian integral. Random walks generally do
+not. The fixed point is more symmetric than any of the models attracted to it, and the extra
+symmetry is what makes it solvable.</p>
+<p>That is the entire strategy of the talk, one level up: <strong>don't solve the growth model, solve
+its fixed point.</strong> The scaling is 1:2:3 rather than 1:2 because there is now a time
+direction. The fixed point is not Gaussian. And the exact formulas are Fredholm determinants
+rather than Gaussian integrals. Everything else is the same story.</p>
+<h3>2.2 Anchor two: this is inverse scattering, and it lands on KP</h3>
+<p>You know how KdV is solved. You do not integrate the nonlinear equation. You</p>
+<ol>
+<li>map the initial data to spectral data (the forward scattering transform),</li>
+<li>evolve the spectral data by a <strong>linear</strong>, in fact trivial, flow,</li>
+<li>map back (the inverse transform).</li>
+</ol>
+<p>Quastel describes his own machine in exactly these three steps, and he calls it a
+<strong>scattering transform</strong> himself:</p>
+<blockquote>
+<p>"You lift up your initial data to an operator — this Brownian scattering transform. And now
+there's some linear evolution which I showed you which gets you the thing at time t and
+these positions x and heights r, and the Fredholm determinant just pulls you back to your
+solution."</p>
+</blockquote>
+<p>The correspondence is not decorative. In the published construction the operator
+K_t^{hypo(h₀)} satisfies</p>
+<p>\[K_t^{\mathrm{hypo}(h_0)} \;=\; e^{-\frac{t}{3}\partial^3}\, K_0^{\mathrm{hypo}(h_0)}\, e^{\frac{t}{3}\partial^3}\]</p>
+<p>— conjugation by the propagator of ∂³, which is the linear part of KdV — equivalently the
+<strong>Lax equation</strong> ∂_t K_t = [−⅓∂³, K_t] (Remenik, arXiv:2205.01433, eq. (5.1)). The
+dependence on time is completely decoupled from the dependence on the initial data, and the
+time flow is linear at the level of kernels. Then the Fredholm determinant is the inverse
+transform.</p>
+<p>And the punchline closes the circle: the one-point distribution of the resulting process
+satisfies the <strong>Kadomtsev–Petviashvili equation, KP-II</strong>, the two-dimensional generalization
+of KdV, reducing to KdV itself for flat initial data (Quastel–Remenik,
+<a href="https://arxiv.org/abs/1908.10353">arXiv:1908.10353</a>, Thm. 1.1 and eq. (1.8)). You started
+with a growth model. You ended in the Sato theory of the KP hierarchy.</p>
+<h3>2.3 The Burgers anchor: real, but smaller than you would expect</h3>
+<p>Your brief proposed the stochastic Burgers equation as the anchor. Test it against the talk.</p>
+<p><strong>Supported.</strong> Quastel says of the KPZ equation: "you should really think about the thing as
+two parts. There's the integrated Burgers equation or Hamilton–Jacobi equation or whatever.
+There's that part which is sort of the simplest nonlinear PDE which we understand very
+well." And the Hamilton–Jacobi structure shows up visibly: "you can see from this thing the
+Burgers part, which just tells you that the solution is just the envelope of a bunch of
+parabolas." That is the <strong>Hopf–Lax formula</strong>, and you can see it in his simulation.</p>
+<p>It goes further than he says aloud. The KPZ fixed point inherits a Hopf–Lax formula
+literally:</p>
+<p>\[\mathfrak{h}(t,x) \;\overset{\text{dist}}{=}\; \sup_{y\in\mathbb{R}}\Big\{ t^{1/3}\mathcal{A}\big(t^{-2/3}x,\,t^{-2/3}y\big) \;-\; \frac{(x-y)^2}{t} \;+\; h_0(y)\Big\}\]</p>
+<p>(Quastel–Remenik, arXiv:1908.10353, eq. (1.3)). The −(x−y)²/t is the Hopf–Lax cost you know
+from Hamilton–Jacobi; the object 𝒜 is the <strong>Airy sheet</strong>, and it is the noise. Quastel shows
+you exactly this in the talk without writing it, when he takes two narrow wedges and says
+"the height function now at t and x is actually just the sup of the height functions of the
+two ones coming from two different narrow wedges."</p>
+<p><strong>Not supported.</strong> He never discusses shocks, viscosity solutions, entropy conditions, or
+turbulence, and he never once says "stochastic Burgers equation" — only "integrated
+Burgers." Do not import that machinery; it is not what the talk is doing.</p>
+<h3>2.4 The Cole–Hopf transformation and the stochastic heat equation are absent</h3>
+<p>Your brief also proposed the Cole–Hopf transformation, KPZ ↔ stochastic heat equation, as an
+anchor. <strong>The talk never mentions it.</strong> Not the transformation, not the multiplicative
+stochastic heat equation, not the continuum directed polymer. I am naming the route so you
+know it exists and know it is not what this lecture does.</p>
+<p>It exists and it is standard: setting Z = exp(h) formally linearizes the KPZ nonlinearity
+into a multiplicative-noise heat equation, and this is the definition of "Hopf–Cole solution"
+of KPZ used, for instance, in Hairer and Quastel's own <em>A class of growth models rescaling to
+KPZ</em> (<a href="https://arxiv.org/abs/1512.07845">arXiv:1512.07845</a>). Quastel simply does not go
+there, because the talk's route to exact formulas is through discrete models and
+determinants, not through the continuum equation. Decorating his talk with the Cole–Hopf
+picture would misdescribe the argument.</p>
+<hr />
+<h2>3. Calibration: what you can skip</h2>
+<p>Skim this, confirm we are using the same words, and go to §4.</p>
+<p><strong>Universality class.</strong> A collection of microscopically different models whose large-scale
+fluctuation behaviour coincides. Microscopic detail survives only in non-universal constants
+(the growth speed c, and one or two more). Quastel's version of the "it doesn't matter what
+you choose" test is unusually direct: when he defines the Eden model he says a neighbour is
+whatever you want it to be, and "this thing is supposed to be extremely universal, so it
+would make no difference how you did that." When he shows a growth rule he says "if you
+didn't catch it, make your own rule of this nature. It's supposed to also be in the class."</p>
+<p><strong>Scaling exponents and the fixed point.</strong> Same as your statistical mechanics. Rescale, take
+a limit, get a fixed point of the rescaling; the fixed point has more symmetry than any
+member of the class; membership of the class is the statement that you flow to it.</p>
+<p><strong>The exponents here.</strong> Height fluctuation t^{1/3}, spatial correlation length t^{2/3},
+against the diffusive t^{1/2} and t^{1/2}. Compactly, 1:2:3 — height : space : time.</p>
+<p><strong>The KPZ equation</strong> (Kardar, Parisi, Zhang, 1986):</p>
+<p>\[\partial_t h \;=\; \tfrac{\nu}{2}\,\partial_x^2 h \;+\; \tfrac{\lambda}{2}\,(\partial_x h)^2 \;+\; \sigma\,\xi\]</p>
+<p>with ξ space-time white noise. Three mechanisms, and Quastel walks through each:</p>
+<ul>
+<li><strong>ξ</strong> — the random deposition. Space-time white noise means the forcing at two distinct
+  space-time points is <em>independent</em>. That independence is the whole content.</li>
+<li><strong>∂_x²h</strong> — smoothing, "supposed to keep the interface from just becoming something
+  completely crazy."</li>
+<li><strong>(∂_x h)²</strong> — the nonlinearity, and his explanation of it is the physical one. The
+  interface grows <strong>normal to itself</strong>; it "doesn't know what direction is up." So the
+  vertical component of growth is a nonlinear function of the slope, and geometrically that
+  function should be √(1 + (∂_x h)²). "But there's a kind of magic in this thing that it
+  actually doesn't care what nonlinear function. It says no, no, no, I'll take (∂_x h)²."</li>
+</ul>
+<p>That magic is a theorem, and it is his own: Hairer and Quastel, <em>A class of growth models
+rescaling to KPZ</em> (<a href="https://arxiv.org/abs/1512.07845">arXiv:1512.07845</a>), shows a large class
+of continuous growth models with general nonlinearities converges to Hopf–Cole solutions of
+KPZ. You will see in §7.2 why only the quadratic term survives the rescaling.</p>
+<p><strong>White noise, and the reason it has to be white noise.</strong> Quastel anticipates the obvious
+objection — space-time white noise is a horrible object, it makes the equation hard to even
+define, why not smooth it? — and gives the answer:</p>
+<blockquote>
+<p>"It's only if you start with space-time white noise that Brownian motion stays invariant
+when you add the nonlinear term. And this you should really consider a miracle. This is
+something that shouldn't happen. And all the calculations I'm going to show you are in
+some sense consequences of this miracle and miracles like it."</p>
+</blockquote>
+<p>Precisely: drifted two-sided Brownian motions are invariant measures <strong>modulo the overall
+height</strong> for the KPZ equation. That is the content of Gu and Quastel,
+<a href="https://arxiv.org/abs/2409.08465">arXiv:2409.08465</a>, <em>Integration by parts and invariant
+measure for KPZ</em> (v2, April 2025), which proves it by Stein's method plus Gaussian
+integration by parts. <em>(This is the paper your brief flagged as a possible companion. It is
+primary literature for one sentence of the talk, not a companion for the talk.)</em></p>
+<p><strong>The reversible / irreversible split, in your language.</strong> Quastel decomposes the equation
+the way a statistical mechanic would:</p>
+<ul>
+<li><strong>∂_x²h + ξ together</strong> are the Langevin dynamics — reversible with respect to Brownian
+  motion, "stuff fluctuating back and forth", designed so Brownian motion is invariant.</li>
+<li><strong>(∂_x h)²</strong> is the non-reversible part. "This is non-reversible non-equilibrium processes
+  which we understand very poorly, which we're trying to probe here."</li>
+</ul>
+<p>And he places the whole problem in a frame you will recognize from engineering: "There's a
+box, a nonlinear box, and you pump into it some white noise, or some noise you understand,
+and out the other end comes some other noise, and you'd like to understand that."</p>
+<p><strong>The Eden model</strong> (Murray Eden, 1961). A subset of ℤ², growing by neighbours joining
+independently at rate 1. Undirected — there is no time axis, so there is no height function,
+which turns out to matter enormously (§5.14).</p>
+<p><strong>Ballistic deposition with sticky particles.</strong> Particles rain down onto a 1+1-dimensional
+substrate and stack up — but they are <strong>sticky</strong>, so a falling particle attaches to the side
+of the neighbouring column on the way past. Quastel's remark on this is the one to keep:
+"this stickiness makes all the difference. If they weren't sticky, then it would just be a
+kind of trivial problem where stacks would grow up. But now the growth is <em>out</em>." Sticking
+sideways is what couples neighbouring columns and produces the lateral growth that the
+(∂_x h)² term models.</p>
+<p>That is the whole prerequisite. Everything in §4 onwards is new.</p>
+<hr />
+<h2>4. The bridge</h2>
+<p>Five things. The first you can derive yourself; the rest are genuinely new machinery.</p>
+<h3>4.1 The 1:2:3 scaling, derived rather than asserted</h3>
+<p>Quastel derives this on the fly and says "I hope it's clear that there's only one choice."
+The captions carry the conclusion but not the algebra, so here is the algebra. <em>(This
+derivation is mine, assembled from three statements he makes aloud; it reproduces exactly
+the exponents he states, which is the check that it is the argument he had in mind.)</em></p>
+<p>Watch his polynuclear-growth simulation from narrow-wedge initial data. Two things are
+visible on the screen and he points at both.</p>
+<p><strong>One.</strong> The profile is "roughly like a random walk minus a parabola," and the parabola is
+spreading, "getting shallower and shallower" as x²/t. This is Hopf–Lax again: from a point
+source, the deterministic envelope is a parabola opening linearly in time.</p>
+<p><strong>Two.</strong> In the middle, once you squash the vertical axis by the right amount, the interface
+<strong>looks like a Brownian motion</strong>. He makes this point by re-plotting the same simulation with
+a compressed vertical axis and saying "all I did is squish the vertical axis, and now you see
+in the middle it really looked the same." His aside is worth having: it does not look
+Brownian at first "because our visual system is designed to just see the volatility."</p>
+<p>Now put the two together.</p>
+<p>The Brownian appearance fixes the <strong>height : space</strong> ratio. If the spatial process is locally
+Brownian, then rescaling space by ε^{-1} forces rescaling height by ε^{1/2}. That is 1:2, and
+you have no freedom.</p>
+<p>The parabola then fixes <strong>time</strong>. Under x ↦ ε^{-1}x̂ the parabola term becomes</p>
+<p>\[\frac{(\varepsilon^{-1}\hat{x})^2}{t} \;=\; \varepsilon^{-2}\,\frac{\hat{x}^2}{t}\]</p>
+<p>For the parabola to remain visible at the same magnification as the fluctuations — neither
+swamping them nor flattening to nothing — its size must match the height scale ε^{-1/2}. Set
+t = ε^{-3/2}T:</p>
+<p>\[\varepsilon^{-2}\,\frac{\hat{x}^2}{\varepsilon^{-3/2}T} \;=\; \varepsilon^{-1/2}\,\frac{\hat{x}^2}{T}\]</p>
+<p>which is exactly ε^{-1/2}. So <strong>t must scale as ε^{-3/2}</strong>, and there is no other choice.</p>
+<p>The scaling is therefore</p>
+<p>\[h_\varepsilon(t,x) \;=\; \varepsilon^{1/2}\Big[\, h\big(\varepsilon^{-3/2}t,\ \varepsilon^{-1}x\big) \;-\; C\varepsilon^{-3/2}t \,\Big]\]</p>
+<p>(the published form: Quastel–Remenik, arXiv:1908.10353, eq. (1.2)). The subtraction is the
+deterministic linear growth c·t, which under this magnification "goes shifting away from you
+and you have to pull it back down."</p>
+<p>Read the three numbers off the exponents: height ε^{1/2}, space ε^{-1}, time ε^{-3/2}, i.e.
+<strong>1 : 2 : 3</strong>. And the fluctuation exponent falls out: at t of order ε^{-3/2}, the height
+fluctuation is of order ε^{-1/2} = t^{1/3}. Quastel says exactly this — "t^{1/3} is just this
+ε^{1/2}."</p>
+<h3>4.2 Non-intersecting paths make determinants</h3>
+<p>This is the mechanism behind every exact formula in the talk, and Quastel states it in one
+sentence:</p>
+<blockquote>
+<p>"Non-intersecting lines produce determinants. If you have a bunch of Markov chains in one
+dimension on ℤ and you ask that they go from here to here but that they don't ever
+intersect each other, that's just given by the determinant of their transition
+probabilities."</p>
+</blockquote>
+<p>This is the <strong>Lindström–Gessel–Viennot lemma</strong> in its probabilistic form, also known as the
+Karlin–McGregor formula. The reason it is a determinant is an inclusion–exclusion argument
+you can reconstruct: sum over all path families, weight each by the sign of the permutation
+matching starts to ends, and every family in which two paths cross cancels against the family
+obtained by swapping the two paths after their first crossing. Only the non-crossing families
+survive, all with sign +1.</p>
+<p>\[\mathbb{P}\big(\text{paths } x_i \to y_i,\ \text{non-intersecting}\big) \;=\; \det\big[\, p_t(x_i, y_j) \,\big]_{i,j=1}^{n}\]</p>
+<p><em>(Standard; not in the captions. Stated because §5.7 uses it.)</em></p>
+<p>So: <strong>if you can rewrite your growth model as a family of non-intersecting paths, you get a
+determinant for free.</strong> That is the entire reason a "menagerie" of about ten growth models is
+exactly solvable and the rest are not.</p>
+<h3>4.3 Fredholm determinants, and why they are the right object</h3>
+<p>Once n is large — and you always need n → ∞ — an n×n determinant of complicated entries is
+useless. The object that survives the limit is a <strong>Fredholm determinant</strong>: the determinant of
+I − K where K is a trace-class operator on a function space. Its expansion is</p>
+<p>\[\det(I - K)_{L^2(X)} \;=\; \sum_{n \ge 0} \frac{(-1)^n}{n!} \int_{X^n} \det\big[\,K(x_i,x_j)\,\big]_{i,j=1}^n \; dx_1\cdots dx_n\]</p>
+<p><em>(Standard definition; not in the captions.)</em></p>
+<p>Two facts make it the natural object here.</p>
+<p><strong>It is a gap probability.</strong> For a determinantal point process with kernel K, the probability
+that no point falls in a set A is det(I − K)_{L²(A)}. And "the height is below r" is exactly a
+gap statement in the associated point process. That is why every distribution function in
+this subject is a Fredholm determinant.</p>
+<p><strong>The kernel is where the model lives, and it is small.</strong> The n×n determinant of §4.2 has all
+its information spread across n² entries. In the Fredholm form, all of it is compressed into a
+single two-variable function K(u, v). The limit n → ∞ is then a limit of <em>kernels</em>, which is a
+tractable analysis problem, rather than a limit of growing matrices, which is not. Quastel puts
+the difficulty exactly this way: "you're going to have to take a limit, a large n limit, of
+matrices — very complicated matrices — and it's not exactly clear how to do such a thing."</p>
+<h3>4.4 The biorthogonalization problem — the technical obstruction, and the trick</h3>
+<p>This is the one place where I can tell you precisely what the hard step was, because Quastel
+describes it in words at some length and the companion states it formally.</p>
+<p>For TASEP — the totally asymmetric simple exclusion process, particles on ℤ hopping right at
+rate 1 into empty sites — the multipoint distribution reduces to a Fredholm determinant whose
+kernel is built from two families of functions. One family is explicit. It is a family of
+<strong>Charlier polynomials</strong>, the orthogonal polynomials for the Poisson weight, <strong>shifted by the
+initial data</strong>: the k-th function is displaced by the position of the k-th particle minus its
+label (Remenik, arXiv:2205.01433, §3).</p>
+<p>The kernel needs the <strong>biorthogonal</strong> family: functions Ψ_k such that ⟨Φ_j, Ψ_k⟩ = δ_{jk},
+subject to a side condition (2^{-x}Ψ_k(x) must be a polynomial of degree k).</p>
+<p>Quastel's account of the obstruction is the most human moment in the talk:</p>
+<blockquote>
+<p>"You might think, well, their biorthogonal pairs are just the shifted orthogonal
+polynomials. You try it, it doesn't work, and then you realize you don't have a second
+idea."</p>
+</blockquote>
+<p>For the special <strong>step / narrow-wedge</strong> initial data the shift is trivial and the Charlier
+polynomials biorthogonalize themselves. That is why the narrow wedge was solved first and why
+everything for two decades was about the narrow wedge. For <strong>flat</strong> initial data Sasamoto
+(2005) and Borodin, Ferrari, Prähofer and Sasamoto (2007) solved it essentially by linear
+algebra. For <strong>general</strong> initial data there was no idea at all.</p>
+<p>The trick, from Matetski–Quastel–Remenik, is the one Quastel states from the podium and it is
+worth stating carefully because it is completely unobvious:</p>
+<blockquote>
+<p>Take a random walk — in general, the invariant measure of the solvable process — and ask
+for the probability that this walk, started at x, <strong>hits the region under the initial data
+curve</strong>. Those hitting probabilities biorthogonalize the shifted polynomials.</p>
+</blockquote>
+<p>So the initial height profile enters the formula not as a function but as <strong>the boundary of a
+region that a random walk is killed on</strong>. That is the germ of the scattering transform.</p>
+<h3>4.5 The Brownian scattering transform</h3>
+<p>Take the 1:2:3 limit of the above. The random walk becomes a Brownian motion; the discrete
+hitting probabilities become Brownian hitting probabilities of the <strong>hypograph</strong> of h₀ — the
+region below the initial height profile. Formally (Remenik, arXiv:2205.01433, §4):</p>
+<p>Let P^{No hit h}_{ℓ₁,ℓ₂}(u₁, du₂) be the transition density of a Brownian motion with diffusion
+coefficient 2 that stays strictly above h on [ℓ₁, ℓ₂], let P^{Hit h} = I − P^{No hit h}, and
+define the <strong>Brownian scattering operator</strong> as a conjugated limit,</p>
+<p>\[K_t^{\mathrm{hypo}(h)} \;=\; \lim_{\ell_1\to-\infty,\ \ell_2\to\infty} e^{-\frac{1}{3}\ell_1^3 + \ell_1\partial^2}\; P^{\mathrm{Hit}\,h}_{\ell_1,\ell_2}\; e^{\frac{1}{3}\ell_2^3 - \ell_2\partial^2}\]</p>
+<p><em>(Companion eq. (4.2), transcribed. The existence of this limit is a theorem, not an
+observation — Quastel and Remenik proved it for a restricted class in
+<a href="https://arxiv.org/abs/1908.10353">arXiv:1908.10353</a> and references therein.)</em></p>
+<p>In words, and this is Quastel's word for it: it is a <strong>scattering transform</strong>. It computes an
+asymptotic transition density for a Brownian motion on the whole line, killed unless it hits
+the region under h. The initial height profile is probed by Brownian motions, and what you keep
+is not the profile but the record of how Brownian motions collide with it.</p>
+<p>And then the payoff, already quoted in §2.2:</p>
+<p>\[K_t^{\mathrm{hypo}(h_0)} = e^{-\frac{t}{3}\partial^3} K_0^{\mathrm{hypo}(h_0)} e^{\frac{t}{3}\partial^3}, \qquad \partial_t K_{t,\mathrm{ext}} = \big[-\tfrac{1}{3}\partial^3,\; K_{t,\mathrm{ext}}\big]\]</p>
+<p><em>(Companion §5, eq. (5.1).)</em> The time dependence and the initial-data dependence are
+<strong>completely decoupled</strong>, and the time evolution is <strong>linear</strong>. There is a companion identity
+in the spatial variables involving ∂²_u — a heat operator rather than an Airy operator
+(companion eq. (5.2)). Quastel's phrasing: "you just adjust these linear dials. You solve some
+linear PDEs, which is sort of an elementary thing to do, and you evolve around this kernel."</p>
+<hr />
+<h2>5. The talk, rebuilt</h2>
+<p>In his order.</p>
+<h3>5.1 The pictures, and the one distinction that matters</h3>
+<p>Wildfire, lichen, the Eden model on ℤ², and a movie of sticky ballistic deposition. Quastel
+draws one line through this set, and it will govern the rest of the lecture:</p>
+<ul>
+<li><strong>Undirected models</strong> (Eden, first-passage percolation, a burning region spreading in the
+  plane): two space dimensions, no time axis, <strong>no height function</strong>.</li>
+<li><strong>Directed, or "1+1 dimensional" models</strong> (ballistic deposition, polynuclear growth, TASEP):
+  one space dimension plus time, and therefore <strong>an actual height function h(t, x)</strong>.</li>
+</ul>
+<p>Everything provable in the talk is about the directed models. Everything unprovable — and he
+says so twice — is about the undirected ones.</p>
+<h3>5.2 The KPZ equation, and then a promise to drop it</h3>
+<p>He writes the equation, explains the three terms as in §3, delivers the white-noise miracle,
+and then says something you should take at face value:</p>
+<blockquote>
+<p>"After this we won't even mention stochastic partial differential equations, so don't get
+worried."</p>
+</blockquote>
+<p>The KPZ equation is the <strong>name</strong> of the class and the reason it has a name. It is not the route
+to the answer. It comes back only at the very end (§5.13), as a hard theorem to be proved
+rather than a tool to prove with.</p>
+<h3>5.3 Brownian motion, the 1:2 fixed point, and why probabilists chase fixed points</h3>
+<p>Covered in §2.1. Two sentences to carry forward: fixed points let you describe vast basins of
+fluctuation behaviour using one object, and fixed points are where integrability lives.</p>
+<h3>5.4 Two routes: quantum integrable systems, and stochastic ones</h3>
+<p>Physicists attack KPZ through generating functions that satisfy <strong>quantum integrable systems</strong>
+— specifically the <strong>delta Bose gas</strong>, which is completely diagonalizable — and from that
+construct divergent series and try to extract distributions.</p>
+<p>Mathematicians take a different route: special <strong>discretizations</strong> of KPZ that turn out to be a
+new kind of object, which Quastel calls <strong>stochastic integrable systems</strong> (§5.12).</p>
+<p>And then a sociological remark he clearly enjoys:</p>
+<blockquote>
+<p>"This is a fun business, because unusually, instead of the mathematicians coming and proving
+the physicists' conjecture — actually it's not even working like that. There are even examples
+where a mathematician discovered and proved a thing, and then the physicists came up with a
+non-rigorous proof afterwards."</p>
+</blockquote>
+<h3>5.5 Polynuclear growth, defined completely</h3>
+<p>This is the model he asks you to keep, and it takes four sentences to define exactly. The height
+function h(t, x) is <strong>integer valued</strong> on ℝ. Then:</p>
+<ol>
+<li>Every <strong>up-step</strong> moves <strong>left</strong> at speed 1, deterministically.</li>
+<li>Every <strong>down-step</strong> moves <strong>right</strong> at speed 1, deterministically.</li>
+<li><strong>Up–down pairs are created at rate 1</strong>, at every height, driven by a space-time Poisson
+   process behind the picture.</li>
+<li>When an up-step and a down-step meet, they <strong>annihilate</strong>.</li>
+</ol>
+<p>Step heights need not be 1; a step of height 8 just moves as a unit. Note what is and is not
+random: the motion is deterministic, and the only randomness is the Poisson creation of new
+pairs. Quastel is pleased with this and says so: "I hope, unlike the KPZ equation, it's just
+completely clear what it is."</p>
+<p><strong>Narrow wedge initial data</strong>: h₀(0) = 0 and h₀ = −∞ everywhere else. Nothing can nucleate off
+to the sides because there is nothing there yet, so the picture is a spreading parabola with
+fluctuations on top — which is where §4.1 came from.</p>
+<h3>5.6 PNG from a point <em>is</em> the longest increasing subsequence</h3>
+<p>A genuinely beautiful reduction, and the picture argument is complete in the captions.</p>
+<p>Turn the space-time picture on its side and keep only the Poisson points and the lifetimes of
+the created pairs. The points of a space-time Poisson process in a box, read as a bijection
+between the ordering in one coordinate and the ordering in the other, <strong>encode a uniformly
+random permutation</strong>. And:</p>
+<blockquote>
+<p>The height at time t at position 0 — the top right corner of the box — is exactly the
+<strong>length of the longest increasing subsequence</strong> of that permutation.</p>
+</blockquote>
+<p>Quastel: "you can see the longest increasing subsequence in green, right, with your eye."</p>
+<p><em>[Gap: the caption says "we've got t equals about n² points in the box." That is inverted. The
+relevant space-time box has area of order t², so the number of Poisson points n is of order t²,
+i.e. t ≈ √n. I have corrected it; see §11.]</em></p>
+<p>With the correction the classical numbers line up, and this is a check worth doing yourself.
+For a uniform random permutation of n letters the longest increasing subsequence has length
+≈ 2√n (Logan–Shepp and Vershik–Kerov, 1977). With n ≈ t², that gives height ≈ 2t — linear
+growth, as promised. Its fluctuations are of order n^{1/6} (Baik–Deift–Johansson, 1999), and
+n^{1/6} = (t²)^{1/6} = <strong>t^{1/3}</strong>. The KPZ exponent, recovered from a combinatorics theorem
+about permutations.</p>
+<h3>5.7 Multi-line PNG, the watermelon, and GUE Tracy–Widom</h3>
+<p>Now the construction that produces the determinant. PNG will accept <strong>any</strong> set of space-time
+points as input, not just a Poisson process. So build a stack of lines:</p>
+<ul>
+<li>Line 1 is ordinary PNG driven by the Poisson process.</li>
+<li>Line 2 is a PNG line started one unit below, driven by the points where line 1's pairs
+  <strong>annihilated</strong>.</li>
+<li>Line 3 is driven by line 2's annihilations. And so on.</li>
+</ul>
+<p>Every line eats the collisions of the line above it. Quastel concedes this "perhaps you think
+is a kind of baroque construction," and then delivers the point: <strong>the lines stay ordered</strong>.
+They never cross. <em>(This is the Prähofer–Spohn multi-line PNG construction; he does not name it
+in the captions, and I flag the attribution as mine.)</em></p>
+<p>Non-intersecting ⟹ determinant (§4.2). A determinantal formula for the height at time t at 0
+was in fact available since <strong>Gessel, 1990</strong> — <em>Symmetric functions and P-recursiveness</em>, J.
+Combin. Theory Ser. A <strong>53</strong>, 257–285, which expresses the generating function for permutations
+with bounded longest increasing subsequence as a Toeplitz determinant. Quastel's dry note: "it
+took a while for mathematicians to realize what to do with it."</p>
+<p>Apply the 1:2:3 scaling to Gessel's formula — no spatial scaling needed, since you only look at
+x = 0 — and the limit is the <strong>GUE Tracy–Widom distribution</strong>: the fluctuation law of the
+largest eigenvalue of a Gaussian unitary ensemble matrix, i.e. a Hermitian n×n matrix with
+entries as independent as Hermiticity allows.</p>
+<p><strong>The picture that makes it unsurprising.</strong> Multi-line PNG is essentially a family of
+non-intersecting random walks. Take the continuum version: n Brownian motions all starting at 0
+and all ending at 1, conditioned never to intersect. Draw it and you get the <strong>watermelon</strong> —
+Quastel's word, and the shape is obvious. Now cut the watermelon vertically in the middle and
+read off the n crossing heights. <strong>Those n numbers have exactly the law of the eigenvalues of a
+GUE matrix.</strong> So the top line of the watermelon is the top eigenvalue, and rescaling it gives
+Tracy–Widom.</p>
+<blockquote>
+<p><strong>Correction, and it is substantive.</strong> The captions have Quastel saying "Gaussian unitary
+ensemble" twice and then, in the same breath, "which is this <strong>GOE</strong> Tracy–Widom
+distribution." That is wrong and it is the opposite of the truth: narrow wedge gives <strong>GUE</strong>
+Tracy–Widom, and <strong>flat</strong> initial data gives <strong>GOE</strong> (Quastel–Remenik, arXiv:1908.10353, §1;
+Remenik, arXiv:2205.01433, §§2 and 4). Everything else in the paragraph — GUE matrix, top
+eigenvalue, the watermelon cut — is consistent with GUE. I have corrected it in the text.
+Flagged again in §11.</p>
+</blockquote>
+<h3>5.8 Other initial data, and why it was hard for twenty years</h3>
+<p>Take <strong>two</strong> narrow wedges instead of one. Each grows a parabola; the parabolas merge. The
+answer is a variational formula — the height is the sup of the two — which looks like it
+trivializes the problem.</p>
+<p>It does not, and Quastel's explanation is precise. The two contributions are <strong>not
+independent</strong>: "in the middle, of course, they're using the same noise." So the input to the
+variational problem is a <strong>two-parameter stochastic process</strong> — the <strong>Airy sheet</strong> 𝒜(x, y) —
+whose joint distribution is unknown. Quastel: "you actually don't know its distributions. You
+don't know how they depend on each other."</p>
+<p>And the multi-line structure, the thing that gave you the determinant, <strong>does not survive</strong>.
+"That was just a special thing that exists in the one initial data. If there are things like
+multi-line here, they're much more complicated, hard to understand, hard to see."</p>
+<p>So the route has to change. Move to <strong>TASEP</strong>, which is solvable for a different reason —
+"Bethe ansatz solvable, or if you like free fermion, or if you like you could use the
+Yang–Baxter; they're sort of the same thing" — and which gives you an n×n determinant for the
+transition probabilities from any n-particle configuration to any other. Correct, complete, full
+of contour integrals, and effectively unusable, because you need the n → ∞ limit.</p>
+<h3>5.9 The partial solution (≈2007) and the full one</h3>
+<p>Sasamoto and Borodin and their collaborators did flat initial data around 2007, and reduced the
+general case to the biorthogonalization problem of §4.4. Quastel and his coauthors solved that
+problem by the random-walk hitting trick.</p>
+<p>The result is a <strong>Fredholm determinant formula for the height function of polynuclear growth at
+time t at any collection of positions, starting from any initial data</strong>, with the initial data
+entering through hitting probabilities. And the property he stresses:</p>
+<blockquote>
+<p>"One of the things about this theorem is that there's <strong>no conditions</strong>. It's true for <strong>any</strong>
+initial data."</p>
+</blockquote>
+<p><em>[Gap: he does not display the formula. "I won't show you the formula. I was warned not to show
+you the formula." Impact: </em><em>low</em><em>. The structure — Fredholm determinant, kernel, initial data
+encoded via hitting probabilities — is fully described in words and is exactly the published
+Thm. in Matetski–Quastel–Remenik, Acta Math. 227 (2021) 115–203,
+<a href="https://arxiv.org/abs/1701.00018">arXiv:1701.00018</a>. Nothing about the argument depends on the
+symbols.]</em></p>
+<h3>5.10 The KPZ fixed point</h3>
+<p>Now rescale by 1:2:3 and take the limit. What emerges is the object the whole lecture is for.</p>
+<p><strong>The KPZ fixed point</strong> is the Markov process h(t, x) with</p>
+<p>\[\mathbb{P}_{h_0}\big(\mathfrak{h}(t,x_1)\le r_1,\ldots,\mathfrak{h}(t,x_m)\le r_m\big) \;=\; \det\!\Big(I - \chi_r\, K^{\mathrm{hypo}(h_0)}_{t,\mathrm{ext}}\, \chi_r\Big)_{L^2(\{x_1,\ldots,x_m\}\times\mathbb{R})}\]</p>
+<p><em>(Companion eq. (4.3); χ_r is the projection encoding the levels r.)</em></p>
+<p>Its properties, as Quastel lists them:</p>
+<ul>
+<li>It is a <strong>Markov process</strong> — the finite-dimensional distributions above define a transition
+  kernel.</li>
+<li>It is <strong>invariant under the 1:2:3 scaling</strong>. That is what "fixed point" means.</li>
+<li>Its <strong>invariant measure is Brownian motion</strong>, modulo the overall height. Start it from a
+  Brownian profile, run it, and you get a Brownian profile again — shifted upward, and, he
+  notes, "correlated in a very bizarre way, which one can compute", with the one you started
+  from.</li>
+<li>It is conjecturally <strong>the</strong> 1:2:3 limit of every model in the class, and the class is huge:
+  "driven diffusive systems, polymer free energies."</li>
+</ul>
+<h3>5.11 Three reasons the exact formulas matter</h3>
+<p>Quastel asks the question himself — "why do we care so much if there's exact formulas?" — and
+gives three answers. They are the most portable part of the talk.</p>
+<p><strong>One: you cannot take the limit without them.</strong> The dynamic renormalization group of the 1970s
+told you a nontrivial fixed point existed. It could not tell you what it was. Quastel: "the
+point is, if you have formulas we can actually take the limit. You really need the formulas to
+take a limit. <strong>No one's ever been able to take these limits really without some input of exact
+formulas.</strong>"</p>
+<p><strong>Two: experiments need something to compare against.</strong> Kazumasa Takeuchi, in Japan, takes a
+<strong>liquid crystal</strong> that exists in two states — one centimetre square — fires a laser pulse into
+it to nucleate the stable phase, and watches the interface grow. He repeats it many times and
+measures the distribution precisely. Quastel's point is the methodological one: "you need to
+match them to something. You want to match them to something, you need exact formulas. You need
+to know exactly what you're matching against to see if this is true." <em>(Takeuchi and Sano's
+liquid-crystal turbulence experiments confirmed not just the exponents but the Tracy–Widom
+distributions themselves, and the geometry dependence — circular growth giving GUE, flat growth
+GOE. See Takeuchi and Sano, and Takeuchi et al.,
+<a href="https://arxiv.org/abs/1108.2118">arXiv:1108.2118</a> and
+<a href="https://arxiv.org/abs/1203.2530">arXiv:1203.2530</a>.)</em></p>
+<p><strong>Three: you can find structure in a formula that you could never have guessed.</strong> Which is §5.12.</p>
+<h3>5.12 KP: a physical law obtained by grinding</h3>
+<p>Take the one-point distribution of the KPZ fixed point:</p>
+<p>\[F(t,x,r) \;=\; \mathbb{P}_{h_0}\big(\mathfrak{h}(t,x)\le r\big)\]</p>
+<p>Take its logarithm. Take <strong>two</strong> derivatives in r — the variable that is the height threshold,
+not a space or time variable. Call the result φ. Then φ satisfies the <strong>KP-II equation</strong>:</p>
+<p>\[\partial_t\varphi \;+\; \tfrac{1}{2}\,\partial_r\!\left(\varphi^2\right) \;+\; \tfrac{1}{12}\,\partial_r^3\varphi \;+\; \tfrac{1}{4}\,\partial_r^{-1}\partial_x^2\varphi \;=\; 0\]</p>
+<p><em>(Quastel and Remenik, arXiv:1908.10353, Thm. 1.1, eq. (1.7).)</em></p>
+<p>For <strong>flat</strong> initial data φ has no x dependence and the last term drops, leaving the
+Korteweg–de Vries equation:</p>
+<p>\[\partial_t\varphi \;+\; \tfrac{1}{2}\,\partial_r\!\left(\varphi^2\right) \;+\; \tfrac{1}{12}\,\partial_r^3\varphi \;=\; 0\]</p>
+<p><em>(Same paper, eq. (1.8).)</em></p>
+<p>For several space points there is a <strong>matrix KP</strong> equation, with a commutator term. Quastel says
+so from the podium — "it's matrix versions of the KP equation, which are also known integrable
+systems" — and the published statement is</p>
+<p>\[\partial_t q + \tfrac{1}{2}D_r q^2 + \tfrac{1}{12}D_r^3 q + \tfrac{1}{4}D_x^2 Q + \tfrac{1}{2}[q, D_xQ] = 0\]</p>
+<p>with Q = ((I − K)^{-1}K)(0,0) an n×n matrix-valued function, q = D_r Q, and D_r log F = tr Q
+(<em>ibid.</em>, eq. (1.6)).</p>
+<p>And the Tracy–Widom distributions themselves reappear as <strong>special self-similar solutions of KP
+and KdV</strong> (<em>ibid.</em>, §1.2). GUE Tracy–Widom is what you get from narrow-wedge initial data; GOE
+from flat.</p>
+<p>Now the part that makes this the most quotable minute of the lecture. <strong>Nobody knows why.</strong>
+Quastel describes the proof — take third and second derivatives of the log of the Fredholm
+determinant, generate an enormous string of operator traces, watch the nonlinear terms merge,
+and observe that the whole thing equals zero. It is done by hand. And then:</p>
+<blockquote>
+<p>"This is the universal equation for random interface growth. And please somebody tell me why
+it's true. All we can do is prove it. How pathetic is that?"</p>
+</blockquote>
+<p>The published version of the same admission is worth setting alongside it: "The result was
+unexpected. We do not have physical intuition why it is true; it follows by, essentially,
+algebra... <strong>and we believe it is the first example of a physical law having been obtained in
+such a fashion</strong>" (arXiv:1908.10353, Remark 1.2.1).</p>
+<p>And this generalizes across the solvable menagerie. There are about ten models like PNG that can
+be solved exactly, and — this is the thesis of Quastel's student <strong>C. Alexander Rodriguez</strong>
+(Toronto) — each corresponds to an <strong>integrable discretization of KP</strong>, a <strong>discrete Hirota</strong>
+equation. For polynuclear growth specifically it is the <strong>2D Toda lattice</strong>. See Rodriguez,
+<a href="https://arxiv.org/abs/2509.16316">arXiv:2509.16316</a>; the thesis, <em>Non-abelian Hirota–Miwa
+equations for the KPZ universality</em>, covers eighteen models across four scaling regimes.
+<em>(Quastel says "like 10 of them" from the podium. Where the two disagree, I am quoting the
+thesis.)</em> The PNG ↔ 2D Toda correspondence is Quastel and Remenik's <em>Polynuclear growth and the
+Toda lattice</em>, <a href="https://arxiv.org/abs/2209.02643">arXiv:2209.02643</a>.</p>
+<h3>5.13 What is a stochastic integrable system?</h3>
+<p>This is the conceptual centre of the lecture, and Quastel presents it explicitly as an open
+question with a proposal attached, not as a settled definition:</p>
+<blockquote>
+<p>"You can ask, what's a stochastic integrable system? And the answer is, I think we don't quite
+know yet. But I'm going to propose something, and you're welcome to propose something else,
+and somehow there should be a discussion."</p>
+</blockquote>
+<p>Here is the difficulty, in his framing. In a <strong>classical</strong> integrable system you have enough
+conserved quantities to resolve the dynamics. Here there is nothing conserved. The dynamics is a
+Markov process; it does not conserve anything. So integrability cannot mean what it usually
+means.</p>
+<p>His proposal:</p>
+<blockquote>
+<p><strong>The random dynamics is not the integrable object. The transition probabilities are.</strong></p>
+</blockquote>
+<p>Transition probabilities are <em>deterministic</em> quantities. They form a flow. And that flow is
+completely integrable, in the exact classical sense: it is <strong>linearized by a transform</strong>.</p>
+<ol>
+<li>Lift the initial height function to an operator, via the Brownian scattering transform (§4.5).</li>
+<li>Evolve linearly — conjugate by e^{±t∂³/3} in time, a heat-type operator in space (§4.5).</li>
+<li>Come back down via the Fredholm determinant.</li>
+</ol>
+<p>Read against §2.2: this is inverse scattering, applied not to the trajectories of the system but
+to the deterministic object the system induces on distributions.</p>
+<p>This is worth pausing on in your own vocabulary, because you already own the pattern under a
+different name. A stochastic differential equation induces a <strong>deterministic</strong> linear evolution
+on its densities — the Fokker–Planck / Kolmogorov equation. Quastel's proposal is: call the
+process integrable when <em>that</em> deterministic linear evolution is a completely integrable system,
+solvable by a scattering transform. Nothing about the individual random trajectories has to be
+solvable, and here nothing about them is.</p>
+<h3>5.14 The KPZ equation itself, and the ceiling on perturbative methods</h3>
+<p>Now the harder theorem: does the <strong>KPZ equation</strong> — not PNG, not TASEP — converge to the KPZ
+fixed point?</p>
+<p>First, do the rescaling on the equation itself. Under h_ε(t,x) = ε^{1/2}h(ε^{-3/2}t, ε^{-1}x)
+the three coefficients (λ, ν, σ) transform to (λ, ε^{1/2}ν, ε^{1/4}σ) — the nonlinearity is
+<strong>invariant</strong>, and both the viscosity and the noise strength go to zero (arXiv:1908.10353, §1).
+You derive this yourself in §7.2. Quastel's comment on the naive reading:</p>
+<blockquote>
+<p>"As ε goes to zero, well, it looks pretty silly. It looks like it just goes to the Burgers
+equation. But that's much too naive. That's not true. And of course the Burgers equation
+itself is not well posed."</p>
+</blockquote>
+<p>Second, look at the other end. Send the coupling λ → 0 and the equation becomes Gaussian — the
+<strong>Edwards–Wilkinson</strong> model, whose scaling is <strong>1:2:4</strong>, not 1:2:3. So there are two fixed points
+in this universe: a trivial Gaussian one and the nonlinear KPZ one. <strong>The KPZ equation is the
+road between them.</strong></p>
+<p>Third — and this is the passage that concerns your other tutorial — Quastel places the singular
+SPDE toolkit on this map, and his placement is unflattering:</p>
+<blockquote>
+<p>"We have some tools which have been invented over the past maybe 20 years — stochastic analysis
+for singular stochastic partial differential equations. These tools kind of exist <strong>down
+there</strong>. In a sense, they're all <strong>perturbation around this Gaussian fixed point</strong>. And you're
+just not, using those tools, ever going to be — well, maybe not ever, but at least now — able
+to probe up into this world, which as far as we can tell we can only really get to by exact
+formulas, by algebra."</p>
+</blockquote>
+<p>That is a sharp and falsifiable claim about the reach of a whole research programme, and it is
+the direct point of contact with <strong><code>summaries/geometric-concepts-pde-otto.md</code> §4</strong>, which builds
+that machinery in full: white-noise scaling and subcriticality, the Cameron–Martin space, the
+Malliavin derivative and the spectral gap inequality, regularity structures as charts and
+transition maps of a solution manifold, and renormalization by counterterms. Read that section
+if you want the machinery. The point to take here is the <strong>structural</strong> one, and it is a good
+one to carry around:</p>
+<blockquote>
+<p>Every perturbative method perturbs around <em>some</em> fixed point, and it can only reach the basin
+of that fixed point. Subcriticality — the condition that makes regularity structures work — is
+precisely the statement that the nonlinearity is <em>irrelevant</em> at small scales, i.e. that you
+are near the Gaussian fixed point. The nonlinear fixed point is by construction out of reach.</p>
+</blockquote>
+<p>Otto's talk and Quastel's talk are the two halves of one disagreement about method, delivered at
+the same congress. Otto's tutorial notes the mirror: Otto's construction sees scale invariance by
+zooming <strong>in</strong>, where Quastel's is seen by zooming <strong>out</strong>.</p>
+<h3>5.15 The geometric route: the Airy line ensemble and a characterization</h3>
+<p>So how <em>do</em> you prove the KPZ equation converges to the fixed point, if it is not integrable?
+Quastel shows a route that is "a bit more geometric," and it is the most consequential recent
+development in the talk.</p>
+<p>Go back to the watermelon (§5.7). Look at the top of it, in a window of KPZ size — recall
+t ≈ n², so the KPZ window at the top of an n-line watermelon is exactly the right window. Rescale.
+The limit is a determinantal process called the <strong>Airy line ensemble</strong>.</p>
+<p>The Airy line ensemble has a remarkable property, found by <strong>Ivan Corwin and Alan Hammond</strong>: the
+<strong>Brownian Gibbs property</strong>. Quastel demonstrates it by animation and it is easy to state.</p>
+<ol>
+<li>Choose an interval, and erase the pieces of all the curves inside it.</li>
+<li>Now paste back independent Brownian bridges, conditioned to match the curves at the two
+   endpoints of the interval, and conditioned not to intersect each other or anything else.</li>
+<li><strong>The result has exactly the same law as what you erased.</strong></li>
+</ol>
+<p>That is a Gibbs property in exactly your sense: the conditional law inside a window, given
+everything outside, is the "free" measure — here, non-intersecting Brownian bridges — subject
+only to the boundary data.</p>
+<p>And then the recent theorem, which Quastel calls "an amazing work":</p>
+<blockquote>
+<p><strong>Aggarwal and Huang.</strong> The Airy line ensemble is the <strong>only</strong> line ensemble with the Brownian
+Gibbs property whose top curve is parabolic at infinity.</p>
+</blockquote>
+<p><em>(Amol Aggarwal and Jiaoyang Huang, </em>Strong characterization for the Airy line ensemble<em>,
+<a href="https://arxiv.org/abs/2308.11908">arXiv:2308.11908</a>, Invent. Math., 2025.)</em></p>
+<p>Quastel spells out why this matters, and it is the most transferable single sentence in the
+lecture:</p>
+<blockquote>
+<p>"That's finally a <strong>characterization</strong> of a KPZ universal object which doesn't just depend on
+formulas."</p>
+</blockquote>
+<p>A formula-based definition transfers only to models that have that formula — the ten solvable
+ones. An axiom-based definition transfers to <strong>anything that satisfies the axiom</strong>. So the proof
+strategy inverts: instead of computing a limit, show your model's limit has the Brownian Gibbs
+property and parabolic asymptotics, and the characterization identifies it for you.</p>
+<p>Combined with methods of <strong>Duncan Dauvergne and Bálint Virág</strong> — his Toronto colleagues — for
+passing between the Airy line ensemble and the Airy sheet (the noise in the Hopf–Lax formula of
+§2.3; see Dauvergne, Ortmann and Virág, <em>The directed landscape</em>,
+<a href="https://arxiv.org/abs/1812.00309">arXiv:1812.00309</a>, Acta Math. <strong>229</strong> (2022)), the chain now
+closes:</p>
+<p><strong>ASEP</strong> (the two-directional version of TASEP) → <strong>KPZ equation</strong> under 1:2:4 scaling →
+<strong>KPZ fixed point</strong> under 1:2:3.</p>
+<p>So the KPZ equation converges to the KPZ fixed point, via a model that is not exactly solvable.</p>
+<h3>5.16 The frontier</h3>
+<p>Quastel then lists what can and cannot be done now.</p>
+<p><strong>What is provable, "a bit lower down."</strong> Models that live in the world of stochastic analysis
+can be shown to converge to the KPZ <em>equation</em>, and then a double limit sends the KPZ equation to
+the fixed point. Examples he names:</p>
+<ul>
+<li>The <strong>planar (2D) stochastic heat equation</strong> with spatial white noise — an <em>undirected</em> model.
+  Solutions from a Dirac initial condition "look sort of like a Mount Fuji," and cuts of that
+  Mount Fuji have KPZ-equation fluctuations. This is Quastel, Ramírez and Virág, <em>KPZ fluctuations
+  in the planar stochastic heat equation</em>,
+  <a href="https://arxiv.org/abs/2210.13607">arXiv:2210.13607</a>, Duke Math. J. <strong>174</strong> (2025) 1261–1340.</li>
+<li><strong>Stochastic Hamilton–Jacobi equations</strong> and <strong>directed random polymers</strong> under 1:2:4 scaling.</li>
+</ul>
+<p><strong>What is expected and mostly not provable.</strong> In one dimension, take <strong>interacting spins</strong> —
+spatial discretizations of the nonlinear Schrödinger equation, say. These have invariant measures
+that look Brownian. Started from those, one expects KPZ universal fluctuations. Here physics has
+introduced a <strong>dichotomy</strong>:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>the model is</th>
+<th>you should see</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>non-integrable</strong></td>
+<td>KPZ universal fluctuations, at long times, in the right window</td>
+</tr>
+<tr>
+<td><strong>integrable</strong></td>
+<td>ordinary <strong>diffusive</strong> fluctuations</td>
+</tr>
+</tbody>
+</table></div>
+<p>The integrable side has just been proved for one case: <strong>Amol Aggarwal</strong>, who spoke the day before
+at the same congress, established that the 1D <strong>Toda lattice</strong> — an integrable case — does <strong>not</strong>
+show KPZ fluctuations. <em>(Aggarwal and Nicoletti, </em>Fluctuations for the Toda lattice<em>,
+<a href="https://arxiv.org/abs/2604.14346">arXiv:2604.14346</a>, shows diffusive scaling with an explicit
+Gaussian limit for the current fluctuations, Brownian motion for a single trajectory, and
+two-point correlations decaying like 1/t with the scaling functions predicted by Doyon and
+Spohn.)</em></p>
+<p>The non-integrable side, Quastel says, is "extremely hard to prove, because these are
+<strong>non-stochastic dynamics</strong>, and you're supposed to see over very long space-time scales these
+KPZ fluctuations."</p>
+<p><strong>What nobody can do at all.</strong> The undirected models. The Eden model. First-passage percolation.
+"Nobody has much idea how to prove that."</p>
+<h3>5.17 Why universality is genuinely hard — the one obstruction he explains</h3>
+<p>He gives one reason among many, and it is a good one because it is completely concrete.</p>
+<p>Suppose you want to prove sticky ballistic aggregation — the movie from the first slide — is in
+the KPZ class. The rule is simple. It is not hard to prove the process <strong>has invariant measures</strong>.</p>
+<blockquote>
+<p>"The problem is that any proof we have that it has invariant measures is <strong>non-constructive</strong>,
+and we just don't know what that invariant measure is."</p>
+</blockquote>
+<p>And now note the containment. A sub-problem of proving the 1:2:3 scaling limit is proving it <strong>at
+time zero</strong>, started from the invariant measure. So:</p>
+<blockquote>
+<p>The full universality statement is <strong>strictly harder</strong> than proving that the invariant measure
+of ballistic aggregation looks like Brownian motion on large scales.</p>
+</blockquote>
+<p>And that easier statement is itself open. Quastel's aside is characteristic: "people claim it
+does — I don't know, if you look at pictures it's not so clear — but of course we all believe it
+does."</p>
+<p>Sit with the shape of this. An existence proof that yields no description of the object is a
+<strong>wall</strong>, not a step. The theory can prove the measure exists and can prove nothing about it. That
+is the obstruction.</p>
+<h3>5.18 Directions, in his order</h3>
+<ul>
+<li><strong>Build new solvable models on purpose.</strong> They now understand the <em>mechanism</em> that makes exact
+  formulas work: the determinants have to satisfy the <strong>Kolmogorov backward equations</strong>, and they
+  can now explain <em>why</em> they do, "well enough that you can actually just attempt to build new ones
+  from scratch."</li>
+<li><strong>Half-space.</strong> Quastel's student <strong>Xincheng Zhang</strong> constructed the <strong>half-space KPZ fixed
+  point</strong> — the universal growth model on [0, ∞) with a Neumann boundary condition at 0 carrying an
+  arbitrary forcing parameter — with exact <strong>Pfaffian</strong> formulas for the transition probabilities.
+  (Zhang, <em>TASEP in half-space</em>, <a href="https://arxiv.org/abs/2409.09974">arXiv:2409.09974</a>; Toronto PhD
+  under Quastel.) Pfaffians rather than determinants is the signature of a boundary; it is the same
+  GOE/GSE-versus-GUE distinction.</li>
+<li><strong>Multi-time formulas.</strong> All the formulas above are fixed-time: transition probabilities from one
+  time to another. In principle that determines everything, since the process is Markov and you can
+  chain via Chapman–Kolmogorov. But there are also direct formulas for arbitrary space-time point
+  configurations, due to <strong>Johansson and Rahman</strong> and to <strong>[Zhipeng] Liu</strong>. Quastel's verdict: "these
+  formulas are so complicated that nobody knows what to do with them, but they exist." His reading of
+  their existence is the interesting part — it "points to the fact that there's even more integrable
+  structure than we had imagined."</li>
+<li><strong>2+1 dimensions.</strong> "Much harder — of course." <em>(Laughter from the room.)</em> It is the <strong>critical
+  dimension</strong>; things get much more irregular; "even understanding what's the analogue of the KPZ
+  equation turns out to be an enormously difficult problem." There has been progress, some of it
+  reported at this congress.</li>
+<li><strong>The physics deluge.</strong> "There's this deluge of physics papers coming every week claiming KPZ
+  fluctuations in some physical system — polariton condensates and things like that — by measuring
+  various observables." And the caution: "it's not completely clear they are KPZ. They might be sort
+  of like KPZ, or they might really be KPZ, and one has to really understand this." <em>(Caption reads
+  "polaron condensates"; polariton condensates are the systems in which KPZ phase-ordering has been
+  reported. Marked as reconstructed in §11.)</em></li>
+</ul>
+<h3>5.19 The last slide</h3>
+<p>He closes with the carpet on the floor of his house. A carpet is a <strong>random Riemannian metric</strong>,
+statistically homogeneous in space. Ants walk on it; look at where they get after time 2, 3, 4, 5,
+6. The frontier of where-you-can-get-by-time-t on a random metric is a growing interface.</p>
+<blockquote>
+<p>"Well, that's supposed to be KPZ, if anybody can prove it."</p>
+</blockquote>
+<p>Which is first-passage percolation, in a continuum dress. The talk opens with a wildfire nobody
+can analyze and closes with a carpet nobody can analyze, and everything provable sits in between.</p>
+<hr />
+<h2>6. The one argument, stated precisely</h2>
+<p>The talk is not organized around a theorem, so here is the claim it argues for, in the sharpest
+form the sources support.</p>
+<blockquote>
+<p><strong>Claim (Matetski–Quastel–Remenik, and its consequences).</strong> There is a Markov process
+h(t, x) — the <strong>KPZ fixed point</strong> — taking values in upper semicontinuous functions, invariant
+under the 1:2:3 scaling, with Brownian motion as its invariant measure modulo height, whose
+transition probabilities are given <strong>explicitly and for arbitrary initial data</strong> by</p>
+<p>\[\mathbb{P}_{h_0}\big(\mathfrak{h}(t,x_1)\le r_1,\ldots,\mathfrak{h}(t,x_m)\le r_m\big) \;=\; \det\!\Big(I - \chi_r\, K^{\mathrm{hypo}(h_0)}_{t,\mathrm{ext}}\, \chi_r\Big)\]</p>
+<p>where K^{hypo(h₀)} is the Brownian scattering operator: the initial data enters only through the
+probabilities that a Brownian motion hits the region below h₀.</p>
+<p>This process is a <strong>stochastic integrable system</strong> in the following sense: the flow of transition
+kernels is <strong>linearized</strong> by the scattering transform, satisfying the Lax equation
+∂<em t_ext="t,ext">t K</em>], with the t-dependence completely decoupled from the initial
+data.} = [−⅓∂³, K_{t,ext</p>
+<p>As a consequence, φ = ∂²_r log F for the one-point distribution F satisfies the <strong>KP-II
+equation</strong>, reducing to <strong>KdV</strong> for flat initial data, with the GUE and GOE Tracy–Widom
+distributions arising as self-similar solutions.</p>
+</blockquote>
+<p><strong>How the proof goes, at honest depth.</strong></p>
+<ol>
+<li>TASEP's transition probabilities have an n×n determinantal form (Bethe ansatz / free fermion
+   / Yang–Baxter).</li>
+<li>That form reduces to a Fredholm determinant whose kernel is built from shifted Charlier
+   polynomials and their biorthogonal partners (Sasamoto; Borodin–Ferrari–Prähofer–Sasamoto, via
+   Gelfand–Tsetlin patterns and the Eynard–Mehta theorem — companion §2).</li>
+<li>The biorthogonal family is unknown in general. <strong>It is found by expressing it through the
+   probability that a random walk hits the epigraph of the initial data.</strong> This is the new
+   ingredient (companion §3).</li>
+<li>Rescale by 1:2:3. The random walk becomes Brownian; hitting probabilities of a discrete curve
+   become hitting probabilities of the hypograph of h₀; the kernel converges to the Brownian
+   scattering operator.</li>
+<li>Read off the Lax structure from the conjugation e^{∓t∂³/3}, and grind the derivatives of
+   log det to obtain KP.</li>
+</ol>
+<p><strong>What is <em>not</em> proved, and Quastel is explicit about it.</strong> That every model in the class converges
+to this process. That is the universality problem, and §5.17 is the obstruction. What exists is:
+convergence for TASEP and its relatives (exactly solvable), and, via the Airy line ensemble
+characterization, convergence for ASEP and hence the KPZ equation. Everything else — Eden, ballistic
+deposition, first-passage percolation, non-integrable spin chains, the wildfire, the carpet — is
+conjecture.</p>
+<p><em>[Gap: the talk displays no formula anywhere. Every equation in this tutorial comes from a cited
+published source or is labelled as my own derivation. Impact: </em><em>low to moderate</em><em>. Low for the
+construction, because the published statements are exactly what he describes in words. Moderate for
+one thing only — the spatial evolution equations for the kernel, which he calls "linear dials" and
+which I have stated only in the schematic form given in the companion (eqs. (5.1)–(5.2)); the
+precise operators were on the slide.]</em></p>
+<hr />
+<h2>7. Do this by hand</h2>
+<h3>7.1 Derive the 1:2:3 scaling (15 minutes, pen)</h3>
+<p>You saw the argument in §4.1. Do it yourself with the pieces stated bare, because the whole
+lecture rests on this and it is three lines.</p>
+<p><strong>Given:</strong>
+- (i) The interface is locally <strong>Brownian</strong> in space: increments over distance ℓ are of size ℓ^{1/2}.
+- (ii) From a point source, the deterministic profile is a <strong>parabola</strong> of the Hopf–Lax form x²/t.</p>
+<p><strong>Find:</strong> the exponents a, b in the rescaling h_ε(t, x) = ε^{a}·[h(ε^{-b}t, ε^{-1}x) − c·ε^{-b}t]
+that produces a nontrivial limit.</p>
+<details>
+<summary>Solution</summary>
+<p><strong>Step 1 — height from space.</strong> Rescale space by ε^{-1}. By (i), the fluctuation of the interface
+over that distance is (ε^{-1})^{1/2} = ε^{-1/2}. To keep it order one, multiply the height by
+ε^{1/2}. So <strong>a = 1/2</strong>.</p>
+<p><strong>Step 2 — time from the parabola.</strong> Substitute x = ε^{-1}x̂ into (ii):</p>
+<p>\[\frac{(\varepsilon^{-1}\hat{x})^2}{t} = \varepsilon^{-2}\frac{\hat{x}^2}{t}\]</p>
+<p>Set t = ε^{-b}T:</p>
+<p>\[\varepsilon^{-2+b}\frac{\hat{x}^2}{T}\]</p>
+<p>For this to survive multiplication by ε^{1/2} — i.e. to be visible at the same magnification as the
+fluctuations, neither vanishing nor blowing up — we need ε^{-2+b}·ε^{1/2} = ε^0, so</p>
+<p>\[b = \tfrac{3}{2}\]</p>
+<p>So <strong>height : space : time = ε^{1/2} : ε^{-1} : ε^{-3/2}</strong>, which is 1 : 2 : 3. ∎</p>
+<p><strong>Now the two consequences, which are the exponents from the first slide.</strong></p>
+<p>At time t, the height fluctuation is ε^{-1/2} where t = ε^{-3/2}, so ε^{-1/2} = t^{1/3}. And the
+spatial correlation scale is ε^{-1} = t^{2/3}.</p>
+<p><strong>The thing to notice.</strong> There is <strong>exactly one</strong> free choice in the whole derivation, and it is
+already made for you: the local Brownianity of the interface. Once the invariant measure is
+Brownian, the exponents 1/3 and 2/3 are forced by dimensional analysis. That is why Quastel spends
+a full minute on the white-noise "miracle" in §3 — the invariance of Brownian motion is not a
+curiosity, it is the input that determines the exponents.</p>
+</details>
+<h3>7.2 Renormalization-group flow between the two fixed points (25 minutes, pen)</h3>
+<p>This is your own material — the relevance of an operator under rescaling — applied to KPZ. It
+recovers, from scratch, the sentence in §5.14 that the 1:2:3 scaling sends (λ, ν, σ) to
+(λ, ε^{1/2}ν, ε^{1/4}σ).</p>
+<p>Take</p>
+<p>\[\partial_t h = \tfrac{\nu}{2}\partial_x^2 h + \tfrac{\lambda}{2}(\partial_x h)^2 + \sigma\xi\]</p>
+<p>with ξ space-time white noise on ℝ × ℝ. Define h_ε(t, x) = ε^{β}h(ε^{-z}t, ε^{-1}x).</p>
+<p><strong>(a)</strong> Show that space-time white noise satisfies ξ(ε^{-z}t, ε^{-1}x) =^{law} ε^{(z+1)/2}ξ(t, x).</p>
+<p><strong>(b)</strong> Find the equation satisfied by h_ε, i.e. the three new coefficients as powers of ε.</p>
+<p><strong>(c)</strong> Put β = 1/2, z = 3/2 (the KPZ scaling). What happens to each term as ε → 0? Reconcile with
+Quastel's "it looks pretty silly, it looks like it just goes to the Burgers equation."</p>
+<p><strong>(d)</strong> Put β = 1/2, z = 2 (the <strong>Edwards–Wilkinson</strong> scaling). Which terms are preserved? What
+happens to the nonlinearity? What does that tell you about which of the two fixed points is
+attracting at large scales?</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> White noise has covariance 𝔼[ξ(t,x)ξ(t′,x′)] = δ(t−t′)δ(x−x′). Under the substitution,</p>
+<p>\[\mathbb{E}\big[\xi(\varepsilon^{-z}t,\varepsilon^{-1}x)\,\xi(\varepsilon^{-z}t',\varepsilon^{-1}x')\big] = \delta\big(\varepsilon^{-z}(t-t')\big)\,\delta\big(\varepsilon^{-1}(x-x')\big) = \varepsilon^{z}\varepsilon^{1}\,\delta(t-t')\delta(x-x')\]</p>
+<p>using δ(ax) = |a|^{-1}δ(x). A centred Gaussian field is determined by its covariance, so the field
+equals ε^{(z+1)/2}ξ in law. ∎</p>
+<p><strong>(b)</strong> Write the original equation at the rescaled arguments and multiply through by ε^{β−z}:</p>
+<ul>
+<li>∂_t h_ε = ε^{β−z}(∂_t h), so the left side is exactly ∂_t h_ε.</li>
+<li>∂_x²h_ε = ε^{β−2}(∂_x²h), so (∂_x²h) = ε^{2−β}∂_x²h_ε, contributing ε^{β−z}·ε^{2−β} = <strong>ε^{2−z}</strong>.</li>
+<li>(∂_x h_ε)² = ε^{2β−2}(∂_x h)², so (∂_x h)² = ε^{2−2β}(∂_x h_ε)², contributing
+  ε^{β−z}·ε^{2−2β} = <strong>ε^{2−z−β}</strong>.</li>
+<li>The noise contributes ε^{β−z}·ε^{(z+1)/2} = <strong>ε^{β−(z−1)/2}</strong>.</li>
+</ul>
+<p>So</p>
+<p>\[\partial_t h_\varepsilon = \tfrac{\nu}{2}\varepsilon^{2-z}\,\partial_x^2 h_\varepsilon + \tfrac{\lambda}{2}\varepsilon^{2-z-\beta}\,(\partial_x h_\varepsilon)^2 + \sigma\,\varepsilon^{\beta - (z-1)/2}\,\xi\]</p>
+<p><strong>(c) KPZ scaling, β = 1/2, z = 3/2.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>term</th>
+<th>exponent</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>viscosity</td>
+<td>2 − z = 1/2</td>
+<td><strong>ε^{1/2}</strong> → 0</td>
+</tr>
+<tr>
+<td>nonlinearity</td>
+<td>2 − z − β = 0</td>
+<td><strong>1</strong> — invariant</td>
+</tr>
+<tr>
+<td>noise</td>
+<td>β − (z−1)/2 = 1/2 − 1/4 = 1/4</td>
+<td><strong>ε^{1/4}</strong> → 0</td>
+</tr>
+</tbody>
+</table></div>
+<p>So (λ, ν, σ) ↦ (λ, ε^{1/2}ν, ε^{1/4}σ), which is exactly the published statement
+(arXiv:1908.10353, §1). <strong>The nonlinearity is the only term preserved by the 1:2:3 scaling.</strong> That
+is why the class is named after it and why the exponents are what they are.</p>
+<p>Formally, ε → 0 kills both the viscosity and the noise, leaving ∂_t h = ½λ(∂_x h)², the inviscid
+Hamilton–Jacobi / Burgers equation — Quastel's "looks pretty silly." Why it is wrong: the limit is
+singular. The noise coefficient goes to zero but the noise itself is a distribution of unbounded
+size, and the viscosity going to zero makes the deterministic equation ill posed at exactly the same
+rate. The two vanishing terms do not vanish; they conspire. The correct limit is the KPZ fixed point,
+which is not the solution of any PDE.</p>
+<p><strong>(d) Edwards–Wilkinson scaling, β = 1/2, z = 2.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>term</th>
+<th>exponent</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>viscosity</td>
+<td>2 − 2 = 0</td>
+<td><strong>1</strong> — invariant</td>
+</tr>
+<tr>
+<td>nonlinearity</td>
+<td>2 − 2 − 1/2 = −1/2</td>
+<td><strong>ε^{−1/2}</strong> → ∞</td>
+</tr>
+<tr>
+<td>noise</td>
+<td>1/2 − 1/2 = 0</td>
+<td><strong>1</strong> — invariant</td>
+</tr>
+</tbody>
+</table></div>
+<p>The <strong>linear</strong> equation ∂_t h = ½ν∂_x²h + σξ is exactly scale invariant under 1:2:4. That is the
+Gaussian, or Edwards–Wilkinson, fixed point.</p>
+<p>And the nonlinearity is <strong>relevant</strong> there: its effective coupling grows like ε^{−1/2} as you zoom
+out. So the Gaussian fixed point is <strong>unstable</strong> in the direction of the nonlinearity. Switch on λ,
+however small, and the flow leaves the Gaussian fixed point and heads for the KPZ fixed point, which
+is the one that governs the large-scale behaviour.</p>
+<p><strong>Now read §5.14 again with this in hand.</strong> Quastel's claim that singular-SPDE methods are
+"perturbation around the Gaussian fixed point" and cannot climb to the KPZ fixed point is precisely a
+statement about this flow. Subcriticality — the working hypothesis of regularity structures, and the
+thing <code>summaries/geometric-concepts-pde-otto.md</code> §4.2 spends a page on — is the requirement that the
+nonlinearity be <strong>irrelevant as you zoom in</strong>. That is the same computation with the arrow reversed,
+and it puts you on the stable manifold of the Gaussian fixed point by hypothesis. The KPZ fixed point
+is the place the flow goes when you zoom <strong>out</strong>, and it is not in the domain of the method.</p>
+<p>That is the cleanest way to see why the two ICM plenaries at issue reach the same object from two
+directions and only one of them arrives.</p>
+</details>
+<hr />
+<h2>8. What is actually useful to you</h2>
+<p>Six items, in order of how often you will reach for them.</p>
+<h3>8.1 An existence theorem you cannot compute with is a wall, not a step</h3>
+<p>§5.17 is the sharpest instance of this I have seen stated from a podium. Ballistic aggregation
+provably <strong>has</strong> invariant measures. Every proof of that fact is non-constructive. And so the entire
+universality programme for that model is blocked — not by a missing technique, but by the fact that
+the object it needs is known only to exist.</p>
+<p>The general form: <strong>an existence proof that yields no handle on the object bounds what you can ever
+prove downstream.</strong> When you are choosing between a construction and a soft existence argument, that
+is a real cost, not a stylistic preference.</p>
+<p>The same principle drives the other direction of the talk. "You really need the formulas to take a
+limit. No one's ever been able to take these limits really without some input of exact formulas."
+Twenty-five years of work in this field is the story of what changes when a soft statement becomes an
+explicit one.</p>
+<h3>8.2 Characterize by axiom, not by formula — that is what makes results transfer</h3>
+<p>§5.15 is the clean case, and it is worth reading twice.</p>
+<p>The KPZ fixed point was defined by a <strong>formula</strong>. That is why the theory could only prove convergence
+for the ten models that have a formula. Then Corwin and Hammond found that the Airy line ensemble has
+the <strong>Brownian Gibbs property</strong>, and Aggarwal and Huang proved that this property, plus parabolic
+asymptotics, <strong>uniquely characterizes it</strong>. Quastel: "that's finally a characterization of a KPZ
+universal object which doesn't just depend on formulas."</p>
+<p>The consequence is not incremental. Convergence proofs stopped being "compute the limit" and became
+"verify two properties." That immediately reached ASEP and hence the KPZ equation, neither of which is
+exactly solvable.</p>
+<p>Translate this to your work directly. A component specified by its <strong>implementation</strong> binds every
+consumer to that implementation. A component specified by <strong>invariant properties that pin it down
+uniquely</strong> admits any implementation satisfying them, and — the part usually missed — lets you <em>prove
+things about implementations you have not seen</em>. The valuable artefact is the uniqueness theorem, not
+the construction.</p>
+<p><em>(This is the same move as <code>summaries/geometric-concepts-pde-otto.md</code> §8.4 — uniqueness by postulate,
+where Otto's counterterm is pinned down by four invariance requirements rather than computed. Two
+plenaries, same lesson.)</em></p>
+<h3>8.3 Solve the fixed point, not the model</h3>
+<p>§2.1. Do not try to solve the object in front of you. Identify the rescaling under which the family
+of objects is closed, find its fixed point, and solve <em>that</em>. The fixed point is more symmetric than
+anything in its basin, and the extra symmetry is usually what makes it tractable. Brownian motion has
+exact formulas that no individual random walk has; the KPZ fixed point has Fredholm determinants that
+no individual growth model has.</p>
+<p>The corollary is the operational one: <strong>when you see a hard family of problems, ask what invariance
+the hard part is approximately preserving, and study the exactly invariant object instead.</strong></p>
+<h3>8.4 A stochastic system can be integrable in its distributions while its trajectories are hopeless</h3>
+<p>§5.13, and this is a genuinely new reframe rather than a restatement.</p>
+<p>The obstruction to calling a Markov process "integrable" is that nothing is conserved. Quastel's
+answer is to move the question to the deterministic object the process induces — its transition
+probabilities — and to ask whether <em>that</em> flow linearizes under a transform. For the KPZ fixed point
+it does, by the Brownian scattering transform, with the Lax equation ∂_t K = [−⅓∂³, K].</p>
+<p>You already know one half of this pattern: an SDE with unsolvable paths still induces a linear
+Fokker–Planck evolution on densities. What Quastel adds is that this induced evolution can be
+<strong>completely integrable in the classical sense</strong>, solvable by inverse scattering, even when nothing
+about the sample paths is.</p>
+<p>The transferable question: <strong>when a system resists analysis, is there a deterministic flow it induces
+— on distributions, on aggregates, on statistics — that is better behaved than the system?</strong> And is
+<em>that</em> flow the one to attack?</p>
+<h3>8.5 Know which fixed point your method perturbs around</h3>
+<p>§5.14 and §7.2(d). Every perturbative method is a perturbation around some fixed point, and it can
+only reach that fixed point's basin. Regularity structures require subcriticality, which is exactly
+the statement that the nonlinearity is irrelevant at small scales — that is, that you are near the
+Gaussian fixed point. So the KPZ fixed point, which is what the flow reaches when you zoom <strong>out</strong>,
+is structurally outside the method's reach, and Quastel says so.</p>
+<p>This is not a criticism of the method. It is a statement about what a hypothesis buys and what it
+costs, and it generalizes past mathematics: check whether the assumption that makes your tool work is
+the same assumption that excludes the regime you care about. <em>(Compare
+<code>summaries/optimization-theory-practice-wright.md</code> §10.4 — a theorem whose hypotheses destroy your
+problem's structure is not a theorem about your problem. Different field, same failure mode.)</em></p>
+<h3>8.6 Proof is not understanding, and saying so is a service</h3>
+<p>The KP result was obtained by taking derivatives of the log of a Fredholm determinant, generating an
+enormous string of operator traces, and observing that it all cancels. It is correct. It is
+verified. It is published in <em>Forum of Mathematics, Pi</em>. And:</p>
+<blockquote>
+<p>"This is the universal equation for random interface growth. And please somebody tell me why it's
+true. All we can do is prove it. How pathetic is that?"</p>
+</blockquote>
+<p>The published version is the same admission in formal register: "We do not have physical intuition why
+it is true; it follows by, essentially, algebra... and we believe it is the first example of a physical
+law having been obtained in such a fashion."</p>
+<p>Two things to take from this. First, the practical one: <strong>a verified result whose mechanism you do not
+understand is a legitimate deliverable, provided you say which it is.</strong> Quastel labels the gap from the
+podium of the ICM. That label is what lets a room of specialists know where the open problem is.</p>
+<p>Second, and this bears directly on machine-assisted work: this is exactly the shape of an
+algebra-verified result with no available narrative. The field's response was not to discard it — it
+was to publish it, flag the gap, and go looking for the reason. That is the right protocol, and it is
+worth having a name for.</p>
+<hr />
+<h2>9. Where to read next</h2>
+<ol>
+<li><strong>Remenik, <em>Integrable fluctuations in the KPZ universality class</em>.</strong>
+   <a href="https://arxiv.org/abs/2205.01433">arXiv:2205.01433</a> — 19 pages, ICM 2022 proceedings, and the
+   companion to this talk. Start here. It is the talk's spine written down: the history, TASEP, the
+   biorthogonalization, the Brownian scattering operator, the Lax equation, and the KP result, with
+   every formula stated.</li>
+<li><strong>Matetski, Quastel and Remenik, <em>The KPZ fixed point</em>.</strong>
+   <a href="https://arxiv.org/abs/1701.00018">arXiv:1701.00018</a>, Acta Math. <strong>227</strong> (2021) 115–203 — the paper
+   the introducer names as the main achievement. This is where the biorthogonalization is solved and
+   the fixed point is constructed.</li>
+<li><strong>Quastel and Remenik, <em>KP governs random growth off a one dimensional substrate</em>.</strong>
+   <a href="https://arxiv.org/abs/1908.10353">arXiv:1908.10353</a>, Forum Math. Pi <strong>10</strong> (2022) e10 — 19 pages,
+   and the source of every KP formula above. Read Remark 1.2 in particular; it is the honest account of
+   a result the authors do not understand.</li>
+</ol>
+<p><em>(If you want the singular-SPDE machinery Quastel dismisses in one sentence, do not go to a fourth
+paper — go to <code>summaries/geometric-concepts-pde-otto.md</code> §4, which builds it from your background.)</em></p>
+<hr />
+<h2>10. Self-test</h2>
+<details>
+<summary>1. Derive the 1:2:3 scaling from two facts about the picture.</summary>
+<p>(i) The interface is locally Brownian in space, so rescaling space by ε^{-1} forces rescaling height
+by ε^{1/2} — that is the 1:2 part, and there is no freedom in it. (ii) From a point source the
+deterministic profile is a Hopf–Lax parabola x²/t; under x ↦ ε^{-1}x̂ it becomes ε^{-2}x̂²/t, and for
+that to sit at the height scale ε^{-1/2} you need t ∼ ε^{-3/2}. Hence height : space : time =
+1 : 2 : 3, giving fluctuations t^{1/3} and correlation length t^{2/3}.</p>
+</details>
+<details>
+<summary>2. Why must the KPZ equation be driven by space-time white noise specifically?</summary>
+<p>Because it is the only forcing for which <strong>Brownian motion remains invariant once the nonlinearity is
+switched on</strong> — precisely, drifted two-sided Brownian motions are invariant measures modulo the
+overall height (Gu and Quastel, arXiv:2409.08465). Quastel calls this a miracle and says every
+calculation in the talk is a consequence of it and miracles like it. Structurally it matters because
+the Brownian invariant measure is exactly the input that forces the exponents (see question 1).</p>
+</details>
+<details>
+<summary>3. Why does the exact form of the nonlinearity not matter?</summary>
+<p>Geometrically the growth is normal to the interface, so the vertical growth rate should be
+√(1 + (∂_x h)²). Under the 1:2:3 rescaling only the quadratic term is scale invariant — the constant
+is absorbed into the linear growth you subtract, and the higher terms carry strictly positive powers
+of ε (see §7.2(b): the term of degree k picks up ε^{2−z−(k−1)β}, which is ε^{0} only at k = 2). This
+is a theorem, not a heuristic: Hairer and Quastel, <em>A class of growth models rescaling to KPZ</em>
+(arXiv:1512.07845).</p>
+</details>
+<details>
+<summary>4. Define polynuclear growth completely, and say what its height at 0 has to do with permutations.</summary>
+<p>h is integer valued on ℝ; up-steps move left at speed 1 and down-steps move right at speed 1,
+deterministically; up–down pairs are created at rate 1 by a space-time Poisson process; steps
+annihilate on meeting. From narrow-wedge initial data (h₀(0)=0, −∞ elsewhere), the Poisson points in
+the space-time box encode a uniform random permutation, and <strong>the height at time t at position 0 is
+the length of the longest increasing subsequence</strong> of that permutation. The box has area of order t²,
+so n ≈ t², and the classical results L_n ≈ 2√n with fluctuations n^{1/6} give height ≈ 2t with
+fluctuations t^{1/3}.</p>
+</details>
+<details>
+<summary>5. How does multi-line PNG produce a determinant, and what is the watermelon?</summary>
+<p>Each line below the first uses, as its creation points, the <strong>annihilation</strong> points of the line above.
+The lines then stay ordered — they never intersect. Non-intersecting Markov chains have transition
+probabilities given by a determinant of individual transition probabilities (Lindström–Gessel–Viennot
+/ Karlin–McGregor), so you get a determinantal formula — available since Gessel, 1990. The continuum
+analogue is n Brownian motions from 0 to 1 conditioned never to intersect: the <strong>watermelon</strong>. Cutting
+it in the middle gives n heights distributed exactly as the eigenvalues of a GUE matrix, so the top
+line rescales to <strong>GUE Tracy–Widom</strong>. <em>(The captions say GOE at this point; that is wrong — GOE is the
+flat-initial-data answer.)</em></p>
+</details>
+<details>
+<summary>6. What was the biorthogonalization obstruction, and how was it solved?</summary>
+<p>TASEP's Fredholm kernel is built from Charlier polynomials <strong>shifted by the initial data</strong>, and needs
+their biorthogonal family. For step/narrow-wedge data the Charlier polynomials biorthogonalize
+themselves; for flat data Sasamoto and Borodin–Ferrari–Prähofer–Sasamoto did it by linear algebra
+around 2007; in general nobody had an idea. Quastel: "you try it, it doesn't work, and then you
+realize you don't have a second idea." The solution (Matetski–Quastel–Remenik): the biorthogonal
+functions are expressed through the probability that a <strong>random walk hits the region under the initial
+data curve</strong>. In the 1:2:3 limit this becomes Brownian hitting probabilities of the hypograph of h₀ —
+the Brownian scattering transform.</p>
+</details>
+<details>
+<summary>7. In what sense is the KPZ fixed point an integrable system, given that nothing is conserved?</summary>
+<p>The random dynamics is not the integrable object; the <strong>transition probabilities</strong> are, and they are
+deterministic. The flow of kernels is linearized by the Brownian scattering transform:
+K_t^{hypo(h₀)} = e^{−t∂³/3} K_0^{hypo(h₀)} e^{t∂³/3}, equivalently the Lax equation
+∂<em t_ext="t,ext">t K</em>], with the time dependence completely decoupled from the initial
+data. Lift initial data to an operator, evolve linearly, come back down by a Fredholm determinant —
+the three steps of inverse scattering. Quastel presents this as a proposal for what "stochastic
+integrable system" should mean, explicitly inviting alternatives.} = [−⅓∂³, K_{t,ext</p>
+</details>
+<details>
+<summary>8. State the KP result and say why Quastel is unhappy about it.</summary>
+<p>For F(t,x,r) = P_{h₀}(h(t,x) ≤ r), the function φ = ∂²_r log F satisfies the KP-II equation
+∂_tφ + ½∂_r(φ²) + (1/12)∂_r³φ + ¼∂_r^{-1}∂_x²φ = 0, reducing to KdV for flat initial data, with a
+matrix KP equation for several space points. The Tracy–Widom distributions are self-similar solutions.
+He is unhappy because there is no reason for it: the proof is a long computation on the Fredholm
+determinant that happens to cancel. "All we can do is prove it. How pathetic is that?" The published
+remark calls it "the first example of a physical law having been obtained in such a fashion."</p>
+</details>
+<details>
+<summary>9. What is the Brownian Gibbs property, and why did characterizing the Airy line ensemble change the field?</summary>
+<p>Erase all the curves of the line ensemble inside an interval, then paste back independent Brownian
+bridges matching the boundary values and conditioned not to intersect anything; the law is unchanged
+(Corwin and Hammond). Aggarwal and Huang proved this property, plus parabolic asymptotics at infinity,
+<strong>uniquely characterizes</strong> the Airy line ensemble (arXiv:2308.11908). This replaced a formula-based
+definition by an axiomatic one, so convergence proofs became verifications of two properties rather
+than computations of a limit — which immediately reached ASEP, and hence the KPZ equation, neither of
+which is exactly solvable.</p>
+</details>
+<details>
+<summary>10. Why can nobody prove the Eden model or ballistic aggregation is in the KPZ class?</summary>
+<p>Several reasons; the one Quastel explains is decisive. Ballistic aggregation provably has invariant
+measures, but <strong>every proof of that is non-constructive</strong> and nobody knows what the measure is. A
+sub-problem of proving the 1:2:3 limit is proving it at time zero started from the invariant measure —
+so the full statement is strictly harder than showing that invariant measure looks Brownian on large
+scales, and even that is open. Separately, the Eden model is <strong>undirected</strong>: two space dimensions and
+no time axis, so there is no height function at all, and none of the machinery applies.</p>
+</details>
+<hr />
+<h2>11. Note on the tutorial process</h2>
+<p><strong>Difficulty versus reputation.</strong> Reputation predicts this one correctly, which is not the norm in this
+playlist. Quastel is famous for KPZ and the talk is about KPZ. But reputation would have predicted the
+<strong>wrong difficulty</strong>. From the outside "KPZ" reads as singular stochastic PDE — the hardest thing in
+the neighbourhood, and the thing Otto's talk builds machinery for. In fact Quastel drops the KPZ
+equation nine minutes in ("after this we won't even mention stochastic partial differential equations,
+so don't get worried") and spends the lecture on determinants, orthogonal polynomials and integrable
+systems. The gap for your background is not SPDE. It is integrable probability. That is why the rating
+is split 2 / 3 rather than a flat 4.</p>
+<p><strong>The Tier-0 inversion, applied to one half.</strong> The physics half gets a compressed calibration (§3) you
+can skim, because you own universality classes, RG fixed points, Langevin dynamics, white noise and
+Hopf–Lax. The integrable half gets a full bridge (§4) and the walkthrough carries the length.</p>
+<p><strong>Anchors: which of the brief's held up.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>suggested anchor</th>
+<th>verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>surface growth model</td>
+<td>supported — it is the opening slide, but it is setup, not an anchor</td>
+</tr>
+<tr>
+<td>stochastic Burgers, shocks, turbulence</td>
+<td><strong>partly</strong>. He says "integrated Burgers or Hamilton–Jacobi" and shows the envelope of parabolas. He never says "stochastic Burgers", never mentions shocks or turbulence. Used narrowly, in §2.3</td>
+</tr>
+<tr>
+<td>universality class in the statistical-mechanics sense; 1/3 and 2/3 not 1/2</td>
+<td>strongly supported, and stated repeatedly</td>
+</tr>
+<tr>
+<td>Cole–Hopf ↔ stochastic heat equation</td>
+<td><strong>absent from the talk entirely.</strong> Named as absent in §2.4 rather than imported</td>
+</tr>
+<tr>
+<td>Tracy–Widom links to random matrices</td>
+<td>strongly supported — the watermelon-cut-equals-GUE picture is his</td>
+</tr>
+</tbody>
+</table></div>
+<p>The anchors actually used are the two the <strong>speaker hands over</strong>: the KPZ fixed point as the central
+limit theorem for surfaces (he draws the analogy himself, saying fixed points are "a good place to look
+for integrability"), and the construction as an <strong>inverse scattering transform</strong> (he names his own
+machine "the Brownian scattering transform" and the answer solves KP). Per the template's guidance, a
+speaker-supplied anchor beats a searched one.</p>
+<p><strong>Name corrections.</strong> The captions destroy nearly every proper noun. All corrections below are verified
+against the companion, the cited primary literature, or the speaker's publication list.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jeremy Quest / Jeremy Quaster / Questell</td>
+<td><strong>Jeremy Quastel</strong></td>
+</tr>
+<tr>
+<td>Carter Puer Jiang / KPZ</td>
+<td><strong>Kardar–Parisi–Zhang</strong></td>
+</tr>
+<tr>
+<td>Vadan</td>
+<td>S. R. S. <strong>Varadhan</strong> (PhD adviser, Courant, 1990)</td>
+</tr>
+<tr>
+<td>Chuck Newman</td>
+<td>Charles ("Chuck") <strong>Newman</strong></td>
+</tr>
+<tr>
+<td>Constantine Mateeski</td>
+<td>Konstantin <strong>Matetski</strong></td>
+</tr>
+<tr>
+<td>Daniel Rmenik</td>
+<td>Daniel <strong>Remenik</strong></td>
+</tr>
+<tr>
+<td>Gel (1990)</td>
+<td>Ira <strong>Gessel</strong> (1990)</td>
+</tr>
+<tr>
+<td>Sasimoto</td>
+<td>Tomohiro <strong>Sasamoto</strong></td>
+</tr>
+<tr>
+<td>Bordon</td>
+<td>Alexei <strong>Borodin</strong></td>
+</tr>
+<tr>
+<td>charlier polomials</td>
+<td><strong>Charlier</strong> polynomials</td>
+</tr>
+<tr>
+<td>Takushi</td>
+<td>Kazumasa <strong>Takeuchi</strong></td>
+</tr>
+<tr>
+<td>Corwin and Hammond</td>
+<td>Ivan <strong>Corwin</strong> and Alan <strong>Hammond</strong> ✓</td>
+</tr>
+<tr>
+<td>Agrawal and Huang</td>
+<td>Amol <strong>Aggarwal</strong> and Jiaoyang <strong>Huang</strong></td>
+</tr>
+<tr>
+<td>Mol Argawal</td>
+<td>Amol <strong>Aggarwal</strong></td>
+</tr>
+<tr>
+<td>Duncan Diver</td>
+<td>Duncan <strong>Dauvergne</strong></td>
+</tr>
+<tr>
+<td>Bound Ber</td>
+<td>Bálint <strong>Virág</strong></td>
+</tr>
+<tr>
+<td>Ver and Ramirez</td>
+<td><strong>Virág</strong> and <strong>Ramírez</strong> (Alejandro Ramírez)</td>
+</tr>
+<tr>
+<td>Johansson and Roman bike</td>
+<td><strong>Johansson</strong> and <strong>Rahman</strong> (Kurt Johansson, Mustazee Rahman)</td>
+</tr>
+<tr>
+<td>leu</td>
+<td><strong>Liu</strong> (Zhipeng Liu)</td>
+</tr>
+<tr>
+<td>delta boza gas</td>
+<td><strong>delta Bose gas</strong></td>
+</tr>
+<tr>
+<td>beta anzot solvable</td>
+<td><strong>Bethe ansatz</strong> solvable</td>
+</tr>
+<tr>
+<td>back baxter</td>
+<td><strong>Yang–Baxter</strong></td>
+</tr>
+<tr>
+<td>free fermon</td>
+<td><strong>free fermion</strong></td>
+</tr>
+<tr>
+<td>TAP</td>
+<td><strong>TASEP</strong></td>
+</tr>
+<tr>
+<td>"back and forth versions of the TAP"</td>
+<td><strong>ASEP</strong> (the two-directional exclusion process)</td>
+</tr>
+<tr>
+<td>PNG</td>
+<td><strong>polynuclear growth</strong></td>
+</tr>
+<tr>
+<td>ketam pas equation / KP2</td>
+<td><strong>Kadomtsev–Petviashvili</strong>, KP-II</td>
+</tr>
+<tr>
+<td>discrete hi herota equations</td>
+<td>discrete <strong>Hirota</strong> equations</td>
+</tr>
+<tr>
+<td>2D totalis</td>
+<td>2D <strong>Toda</strong> lattice</td>
+</tr>
+<tr>
+<td>Edward's Wilkinson</td>
+<td><strong>Edwards–Wilkinson</strong></td>
+</tr>
+<tr>
+<td>Koma backward / kamoga of backward equations</td>
+<td><strong>Kolmogorov</strong> backward equations</td>
+</tr>
+<tr>
+<td>Chapman Koma grav</td>
+<td><strong>Chapman–Kolmogorov</strong></td>
+</tr>
+<tr>
+<td>fafian formulas</td>
+<td><strong>Pfaffian</strong> formulas</td>
+</tr>
+<tr>
+<td>area sheet / ary sheet</td>
+<td><strong>Airy sheet</strong></td>
+</tr>
+<tr>
+<td>area line ensemble</td>
+<td><strong>Airy line ensemble</strong></td>
+</tr>
+<tr>
+<td>Bernie Gibbs / brand and Gibbs property</td>
+<td><strong>Brownian Gibbs</strong> property</td>
+</tr>
+<tr>
+<td>Jeffrey Williams prize</td>
+<td><strong>Jeffery–Williams</strong> Prize (CMS)</td>
+</tr>
+<tr>
+<td>fred holm determinant</td>
+<td><strong>Fredholm</strong> determinant</td>
+</tr>
+<tr>
+<td>igen value</td>
+<td><strong>eigenvalue</strong></td>
+</tr>
+<tr>
+<td>herian</td>
+<td><strong>Hermitian</strong></td>
+</tr>
+<tr>
+<td>plus on process</td>
+<td><strong>Poisson</strong> process</td>
+</tr>
+<tr>
+<td>lelassian</td>
+<td><strong>Laplacian</strong></td>
+</tr>
+<tr>
+<td>langan dynamics</td>
+<td><strong>Langevin</strong> dynamics</td>
+</tr>
+<tr>
+<td>marov / markup chains</td>
+<td><strong>Markov</strong> chains</td>
+</tr>
+<tr>
+<td>determinal formula</td>
+<td><strong>determinantal</strong> formula</td>
+</tr>
+<tr>
+<td>bythogonalize / biothogonal</td>
+<td><strong>biorthogonalize</strong> / <strong>biorthogonal</strong></td>
+</tr>
+<tr>
+<td>polaron condensates</td>
+<td><strong>polariton</strong> condensates <em>(reconstructed — see below)</em></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Students named but not named.</strong> Quastel refers to two of his students without giving names. Both are
+identified here from published work, not guessed:</p>
+<ul>
+<li>"my student in his thesis was able to construct the half-space KPZ fixed point" → <strong>Xincheng Zhang</strong>,
+  <em>TASEP in half-space</em>, <a href="https://arxiv.org/abs/2409.09974">arXiv:2409.09974</a>; Toronto PhD thesis <em>The
+  totally asymmetric exclusion process and the KPZ fixed point in the half-space</em>, supervised by
+  Quastel.</li>
+<li>"this is the thesis of one of my students" (the menagerie of solvable models ↔ discrete Hirota
+  equations) → <strong>C. Alexander Rodriguez</strong>, <a href="https://arxiv.org/abs/2509.16316">arXiv:2509.16316</a>;
+  Toronto PhD thesis <em>Non-abelian Hirota–Miwa equations for the KPZ universality</em>, supervised by
+  Quastel. Note the discrepancy: he says "like 10 of them" from the podium, the thesis abstract says
+  <strong>eighteen</strong> models across four scaling regimes. I quote the thesis and flag it.</li>
+</ul>
+<p><strong>Reconstructed, not verified.</strong></p>
+<ul>
+<li>The <strong>title</strong>. He describes the talk as being about "random interface growth"; no programme listing I
+  could reach gives a title, and the SIAM proceedings contents page returns HTTP 403.</li>
+<li>The introducer's name — "Thanks Pablo" — is the only clue. Not reconstructed; omitted.</li>
+<li>"polaron condensates" → <strong>polariton</strong> condensates. Polariton condensates are the systems in which KPZ
+  phase-ordering has been reported in the physics literature; "polaron" is the closest phonetic
+  neighbour and is not such a system. Marked as reconstructed in §5.18.</li>
+<li>The <strong>multi-line PNG</strong> construction is due to Prähofer and Spohn. Quastel does not name them in the
+  captions; the attribution in §5.7 is mine, from the literature.</li>
+<li>The <strong>derivation of the 1:2:3 scaling</strong> in §4.1 is mine, assembled from three statements he makes
+  aloud (Brownian in the middle, the spreading parabola, "you're absolutely forced to look at times of
+  order ε^{-3/2}"). It reproduces his stated exponents exactly, which is the check.</li>
+<li>The introducer's prize list is partly unverifiable from the captions ("the poly prize in 24 and the
+  polani award in 26"). The published record gives: CRM–Fields–PIMS Prize 2018, CMS Jeffery–Williams
+  Prize 2019, EMS Paul Lévy Prize in Probability 2024, NSERC John C. Polanyi Award 2025, FRSC 2016,
+  FRS 2021. I have not reproduced the introducer's version because I cannot reconcile the years.</li>
+</ul>
+<p><strong>Substantive caption errors corrected, not just spellings.</strong> Two, and both matter.</p>
+<ol>
+<li><strong>"GOE Tracy–Widom" for the narrow wedge</strong> (§5.7). In the same paragraph he correctly says
+   "Gaussian unitary ensemble" twice, and then the caption has him conclude "this GOE Tracy–Widom
+   distribution." That is the wrong ensemble and the reverse of the truth: narrow wedge → <strong>GUE</strong>, flat
+   → <strong>GOE</strong> (Quastel–Remenik, arXiv:1908.10353 §1; Remenik, arXiv:2205.01433 §§2, 4). Corrected in the
+   text with the correction flagged in place. <strong>Impact if uncorrected: high</strong> — the whole watermelon
+   picture is a GUE picture and the paragraph would be self-contradictory.</li>
+<li><strong>"t equals about n² points in the box"</strong> (§5.6). Inverted. The space-time box has area of order t²,
+   so the number of Poisson points is n ≈ t², i.e. t ≈ √n. With the correction, L_n ≈ 2√n gives height
+   ≈ 2t and n^{1/6} gives fluctuation t^{1/3}; with the caption as written, neither works. Corrected
+   with a gap marker in place. <strong>Impact if uncorrected: moderate</strong> — it breaks the exponent check,
+   which is the whole point of the reduction.</li>
+</ol>
+<p><strong>Where the mathematics is unrecoverable, and how bad it is.</strong></p>
+<ul>
+<li><strong>Every formula in the talk.</strong> Quastel explicitly declines to display the main formula — "I was warned
+  not to show you the formula" — and the rest lived on slides invisible to the caption track. <strong>Impact:
+  low.</strong> Almost everything is recoverable from the cited published sources, because the talk follows the
+  companion's outline closely. Each equation above carries its citation.</li>
+<li><strong>The "linear dials"</strong> — the exact linear PDEs by which the kernel is evolved in the spatial and
+  height variables. I have given only the schematic Lax form and the spatial identity as stated in the
+  companion (eqs. (5.1)–(5.2)). The precise operators he pointed at were on the slide. <strong>Impact:
+  moderate</strong>, and it is the one place where a reader wanting to implement the formula must go to the
+  papers.</li>
+<li><strong>The half-space Pfaffian formulas, the multi-time formulas, and the discrete Hirota equations</strong> are
+  named but never displayed. <strong>Impact: low</strong> — each is a pointer to a paper, and the papers are cited.</li>
+<li><strong>No theorem is stated from the podium</strong> with hypotheses. §6 assembles the claim from the published
+  sources and says so.</li>
+</ul>
+<p><strong>Length.</strong> Comparable to the two model tutorials, and shorter than the Otto one. The talk is a single
+argument rather than two half-talks, so the walkthrough carries most of the weight and the bridge is
+one section rather than a whole document.</p>
+<p><strong>What the write-up cannot carry.</strong> This lecture was driven by <strong>animations</strong>. The sticky ballistic
+deposition movie, the polynuclear growth simulation with the vertical axis squashed and unsquashed, the
+watermelon, and the Brownian-Gibbs resampling animation — erase, paste back, unchanged — each did work
+that no sentence does. Two of the arguments in this tutorial (§4.1 and §5.15) are reconstructions of
+things he showed rather than said. Where a section here feels thinner than it should, that is where a
+picture was carrying the argument.</p>
+</div>
+</body>
+</html>

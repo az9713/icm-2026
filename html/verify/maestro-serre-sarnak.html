@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — maestro-serre-sarnak</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — maestro-serre-sarnak</h1>
+<p>verdict: MINOR
+uncited_external_claims: 5
+unsupported_speaker_claims: 0
+title_check: PASS — Katz's introduction announces "maestro Jean Pierre sir" (Serre) and Sarnak says "my talk from now on will be about Jean Pier"; front-matter title and speaker both match.
+gap_honesty: PASS — the auto-captions carry no formula anywhere, and the tutorial marks the formula-heavy sections (§5.6 inline <code>[Gap: ...]</code>, plus a gap table in §11.6) exactly where the transcript really goes silent. I found no silently filled gap.</p>
+<h2>Citation existence check (the MAJOR-risk class)</h2>
+<p>All six external citations were fetched and verified. <strong>None is fabricated.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Cited as</th>
+<th>Verified</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arXiv:1807.11700, Serre, <em>Distribution asymptotique des valeurs propres des endomorphismes de Frobenius [d'après Abel, Chebyshev, Robinson, ...]</em>, Bourbaki, 42pp, French</td>
+<td>exact title, author, page count and language match</td>
+</tr>
+<tr>
+<td>arXiv:2603.05849, Gamburd–Ghosh–Sarnak–Whang, <em>On indefinite integral ternary quadratic forms</em>, v1 6 Mar 2026, v2 2 Jun 2026</td>
+<td>exact title, all four authors, both dates match</td>
+</tr>
+<tr>
+<td>arXiv:2111.12660, A. Smith, <em>Algebraic integers with conjugates in a prescribed distribution</em>, bound 1.89831</td>
+<td>title, author and the constant 1.89831 all present in the abstract</td>
+</tr>
+<tr>
+<td>arXiv:2401.03252, Orloski–Sardari–Smith, <em>New Lower Bounds for the Schur–Siegel–Smyth Trace Problem</em>, bound 1.80203</td>
+<td>exact; the abstract also confirms the tutorial's description of the method (new constraints reduce the number of variables; recovers Schur's and Siegel's bounds)</td>
+</tr>
+<tr>
+<td>arXiv:2302.02872, Orloski–Sardari, general-K classification</td>
+<td><em>Limiting distributions of conjugate algebraic integers</em>, correct authors</td>
+</tr>
+<tr>
+<td>arXiv:1704.02106, Parzanchevski–Sarnak, <em>Super-Golden-Gates for PU(2)</em></td>
+<td>exact</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Verdict on the tribute-lecture adaptation (§5 and §6, checked hard)</h2>
+<p><strong>The adaptation is honest.</strong> The failure mode named in my instructions — expanding a
+passing mention into a full worked treatment Sarnak never gave — does occur in §6, but it
+is declared, not concealed.</p>
+<ul>
+<li>§6 is a complete four-step proof (resultant integrality → weak limit → two variables →
+  capacity) of a result Sarnak states in <strong>one sentence</strong> of the transcript: "any weak
+  limit must satisfy that the integral of log of absolute of Q against that weak limit
+  measure must be greater than equal to zero". Sarnak never mentions the resultant, never
+  defines it, and gives no proof of anything in the last third.</li>
+<li>The tutorial says so, repeatedly and unprompted. The section opens "Here it is in full,
+  <strong>from Serre's §1.3–1.4</strong>"; every step carries a lemma number from the companion (1.3.1,
+  1.3.4, 1.3.7, 1.2.8, 1.2.11); and §11.6's gap table records "§5.11, §6 — the mathematics
+  | <strong>None. Fully restored from Serre's own exposé, with theorem numbers.</strong>"</li>
+<li>§5.11 behaves the same way: every theorem number (1.2.10, 1.6.2, 1.7.8, 1.8.1, 1.8.2,
+  (1.7.3), §1.5, §1.6.5) is attributed to arXiv:1807.11700, and the tutorial's own
+  explanatory additions (the Joukowski derivation of the exponent 1/4; the electrostatics
+  gloss) are visibly in the tutorial's voice rather than put into Sarnak's mouth.</li>
+<li>Everything the tutorial <strong>does</strong> attribute to Sarnak in §5.11 is in the transcript,
+  including the q^(1/4) threshold, cap(circle of radius sqrt q) = sqrt q, Honda–Tate, the
+  "much much smaller quite a thin set" remark, and "it's hard to compute capacities, by
+  the way".</li>
+</ul>
+<p>The one wobble is a framing sentence, not a claim: §6 opening (line ~1023), "The lecture
+has no single theorem. But <strong>it has</strong> one argument that is short, complete, and entirely
+within your reach." The lecture does not have that argument; Serre's exposé does. The very
+next sentence names the source, so a reader is not misled for more than one line.</p>
+<p>§5.1–5.9 track the transcript closely. Spot-checked and supported: the rank condition
+i = 4m−1, n = 2m ("if I n is 4 m minus one 2 m"); S^61; Weyl's laudation wording; the 37 in
+Serre uniformity; the knee-surgery story; the "cocycle races" acknowledgement; CSP kernel
+finite iff the unit group is infinite; the Hamilton-quaternion two-primes challenge;
+Conjectures I and II with the Steinberg 1965 / Merkurjev–Suslin 1985 /
+Bayer-Fluckiger–Parimala 1995 chain; the Clifford+T and IBM quantum computer aside; the
+closing 15 September 2026 paragraph. §5.5 correctly reproduces <strong>and repairs</strong> Sarnak's
+live self-correction on the open image theorem, and flags in place that it is doing so.</p>
+<h2>Findings</h2>
+<p><strong>F1 — §5.10, line ~797. Uncited external history, and not disclosed in §11.</strong>
+Claim: "Serre proved an upper bound with the large sieve; Hooley proved a matching lower
+bound of the same order. The exact asymptotic resisted for 35 years."
+Problem: none of this is in the transcript. Sarnak says only that Serre asked the question
+in 1990 and that "this was resolved recently by Gamburd Gosh and myself and Wang".
+"Hooley" appears nowhere in the transcript, nowhere in the §11.2 caption-correction table,
+and nowhere in §11.5's "reconstructed" or "could not verify" lists. The nearby
+arXiv:2603.05849 citation is attached to the <em>theorem statement</em>, not to this history.
+This is the tutorial's clearest under-report.
+Settles it: the introduction of arXiv:2603.05849, which would name Serre's and Hooley's
+prior bounds if they exist.</p>
+<p><strong>F2 — §1, lines ~113–115. Uncited biographical detail, asserted as checked.</strong>
+Claim: "<strong>Paul Serre</strong> (1895–1972), a France international wing and centre" and "<strong>Denis
+Serre</strong>, who works on nonlinear PDE at <strong>ENS Lyon</strong>", closed with "Both facts check out."
+Problem: the transcript supports only "a Paul sir who was a very famous rugby player
+playing for France internationally", "uncle", and "Dennis S is a very accomplished
+mathematician working in nonlinear PD". The birth and death years, the playing positions,
+and the ENS Lyon affiliation are external, carry no citation, and "Both facts check out"
+asserts a verification the reader cannot audit. Low stakes, but it is exactly the
+uncited-external pattern.
+Settles it: a source for Paul Serre's dates and positions.</p>
+<p><strong>F3 — §5.4, line ~500. "Bass–Milnor–Serre (1967)".</strong>
+The transcript gives the names ("basil ner") but <strong>no year</strong>. 1967 is external and uncited.
+§11.2 even reprints "1967" in the <em>Check</em> column of the correction table without a source,
+which makes an added fact look like a recovered one.
+Settles it: the Bass–Milnor–Serre paper reference.</p>
+<p><strong>F4 — §5.7, line ~677. Book subtitle and publisher.</strong>
+Claim: "<em>Chasing a Conjecture: Inside the Mind of a Mathematician</em>, Juggernaut. <strong>It
+exists</strong>." The transcript gives only "a book ... called chasing a conjecture". The subtitle
+and the publisher are external and uncited, and "It exists" again asserts an unauditable
+check.
+Settles it: the book's catalogue entry.</p>
+<p><strong>F5 — §5.8, line ~717. Tunnell.</strong>
+Claim: "The octahedral case is Tunnell's, building on Langlands. Sarnak did not say this;
+I add it." The disclosure is exemplary — the tutorial flags its own addition inline — but
+the addition still carries no citation.
+Settles it: Tunnell, <em>Artin's conjecture for representations of octahedral type</em>, 1981.</p>
+<p><strong>Borderline, not counted.</strong> "Chris Smyth, who introduced this technique in 1984" (§5.11).
+The 1984 date is external, but §11.3 states that Serre cites him as "[Sm 84]" in the
+exposé, so it is effectively sourced to the companion.</p>
+<p><strong>Not a finding, recorded for completeness — the two Orloski arXiv ids are both correct.</strong>
+§5.11 uses 2302.02872 for the general-K classification (Orloski–Sardari) and 2401.03252
+for the 1.80203 lower bound (Orloski–Sardari–Smith). I verified these are two genuinely
+distinct papers and that each is attached to the right claim. The front-matter "note on
+sources" mentions only 2401.03252; that is incompleteness, not error.</p>
+<p><strong>Not a finding, recorded — one internal muddle.</strong> §5.8 says Maass forms "with eigenvalue
+exactly 1/4" and then, two lines later, "Those eigenvalues are 'outside a quarter'". Both
+halves derive from the caption "an igen value with value of quarter ... those are outside
+a quarter". The two sentences read as contradicting each other. <strong>Cannot determine</strong> which
+reading Sarnak intended; the captions are the only evidence and they are ambiguous. The
+audio would settle it.</p>
+<p><strong>Unsupported speaker claims: none found.</strong> The nearest candidate is §5.11's "If you
+restrict to <strong>Jacobians of curves</strong> with genus growing" — the transcript says only "a
+sequence of curves whose genus is getting large". "Jacobians" is the tutorial's
+interpolation and is the standard reading of the statement; I do not count it.</p>
+<h2>Self-report audit</h2>
+<p><strong>The §11 self-report is honest and, on everything structural, unusually complete.</strong> It
+correctly discloses:</p>
+<ul>
+<li>that §6 and §5.11 are restored from Serre's exposé rather than from the lecture (§11.5,
+  §11.6). This is the single most important disclosure in the document and it is made
+  plainly, in two separate places, rather than buried;</li>
+<li>the Smyth / Alexander Smith conflation (§11.3), which the captions genuinely make
+  invisible — a real trap, correctly identified as two different people, with the
+  consequence spelled out (Smyth's condition is necessary, Smith proved it sufficient);</li>
+<li>Sarnak's live self-correction on the open image theorem (§11.3);</li>
+<li>the Fekete–Szegő "every neighbourhood" versus Robinson "in E itself" distinction that
+  Sarnak blurred, and why the difference matters for Serre's application (§11.3);</li>
+<li>five reconstructions with their evidence: Kneser, Eskin–Oh, Mestre, Milnor-as-reviewer,
+  Fricke;</li>
+<li>five "could not verify" items, including the unrecoverable "GMA" lecture of 1953, which
+  it <strong>omits rather than guesses</strong> — the right call;</li>
+<li>the <strong>Tsfasman–Vlăduţ versus Drinfeld–Vlăduţ</strong> ambiguity (§11.5). This is the item most
+  worth praising. The captions read "a theorem of Vlad and Drenfell", i.e.
+  Drinfeld–Vlăduţ; the tutorial prints Tsfasman–Vlăduţ instead, and then says exactly
+  that, gives its reason (the companion cites [TV 97]), and names the alternative reading.
+  A dishonest agent would have printed one name and said nothing;</li>
+<li>an ~80-row caption/correction table which matched the transcript, row for row, on every
+  entry I sampled.</li>
+</ul>
+<p><strong>Where it under-reports.</strong> Four items, all of one kind: small external facts laid on top
+of what Sarnak said, none disclosed anywhere in §11.</p>
+<ol>
+<li><strong>Hooley and the large sieve (F1)</strong> — the most substantive omission. A named
+   mathematician and a named method, attributed to a research history the lecture never
+   gives, absent from both the name table and the "could not verify" list.</li>
+<li><strong>Paul Serre's dates and playing positions, and Denis Serre's ENS Lyon affiliation
+   (F2)</strong> — and the sentence "Both facts check out" claims a verification that §11 never
+   accounts for.</li>
+<li><strong>Bass–Milnor–Serre 1967 (F3)</strong> — the year is added silently, and §11.2 reprints it in
+   a column reserved for recovered facts.</li>
+<li><strong>The Khare book's subtitle and publisher (F4)</strong>, again with an "It exists" assertion
+   that §11 does not back.</li>
+</ol>
+<p>Also unlisted in §11, though flagged inline where each occurs: <strong>Tunnell</strong> (F5), and the
+§5.8 eigenvalue muddle.</p>
+<p><strong>Net judgement.</strong> The self-report is honest about everything structural — what was
+reconstructed, what came from the companion instead of the lecture, what could not be
+recovered, and which name it deliberately changed against the captions. It under-reports
+only small uncited biographical and bibliographic garnish. None of the omissions touches
+the mathematics, and none is a case of the agent concealing a reconstruction. The pattern
+is a writer who policed the mathematics rigorously and then relaxed on the anecdotes.</p>
+<h2>What I could not check</h2>
+<ul>
+<li>Whether the mathematics is <strong>true</strong>. Out of scope by the brief.</li>
+<li><strong>Every theorem number quoted from arXiv:1807.11700</strong> — 1.2.8, 1.2.10, 1.2.11, 1.3.1,
+  1.3.4, 1.3.7, §1.5, 1.6.2, §1.6.5, 1.6.8, (1.7.3), 1.7.8, 1.8.1, 1.8.2, and Appendix
+  A.1/A.2/A.3. The paper exists with the exact claimed title, author, length and language,
+  but I did not read the PDF. Settles it: reading arXiv:1807.11700.</li>
+<li><strong>The two claimed errata in the companion</strong> (§3.3 and §11.4: the doubled 1/n exponent in
+  (A.2.1); §7.3 and §11.4: e^(3/2) printed as "4,816"). Note that the arXiv comment field
+  for 1807.11700 records "two corrections suggested by J. Rivera-Letelier and M. Sombra",
+  so the posted version has already been corrected once — the tutorial's errata may or may
+  not survive in the current version. Settles it: the PDF.</li>
+<li><strong>Theorem 1.3 and Theorem 1.1 of arXiv:2603.05849</strong> as quoted in §5.10, including the
+  X^6 / sqrt(log X) asymptotic and the Markoff-spectrum statement. Paper, authors and both
+  submission dates verify; the theorem statements were not read.</li>
+<li><strong>Serre's <em>Œuvres</em> volume V</strong>, and the Oberwolfach Report citation for the quaquaversal
+  group (vol. 6 (2009) no. 2, 1421–1426), including the claim that the generators have
+  orders 6 and 4 — the transcript says only "two rotations".</li>
+<li><strong>Whether Sarnak said "Drinfeld–Vlăduţ" or "Tsfasman–Vlăduţ"</strong>. Only the audio settles it.</li>
+<li><strong>Milnor as the reviewer of Serre's collected works I–III.</strong> Captions say "Milton"; the
+  tutorial's reading is plausible and is flagged as unconfirmed in two places.</li>
+<li><strong>The exact wording of Weyl's 1954 laudation</strong> against the printed Amsterdam proceedings.</li>
+<li>The tutorial's process claim that Sarnak's arXiv author listing has "39 entries, most
+  recent March 2026" and contains no ICM proceedings contribution.</li>
+</ul>
+</div>
+</body>
+</html>

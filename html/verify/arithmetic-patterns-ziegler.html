@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — arithmetic-patterns-ziegler</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — arithmetic-patterns-ziegler</h1>
+<p>verdict: MINOR
+uncited_external_claims: 4
+unsupported_speaker_claims: 0
+title_check: PASS — chair announces "the structure of sets with an unexpected number of arithmetic patterns"; Ziegler repeats it verbatim in her own second sentence. Front-matter title matches exactly.
+gap_honesty: PASS — the single <code>[Gap: …]</code> marker (PTE, line 859) and the single <code>[My reading]</code> marker (line 872) both sit where the transcript really is silent; no gap is silently filled with mathematics.
+self_report_audit: HONEST BUT INCOMPLETE — §11 makes the critical disclosure (no ICM 2026 paper; 2014 companion; last third from primary papers) and does not restore 2026 content from the 2014 survey. It omits three additions: the invented §4 timeline, a stale 2014 open-problem status stated as current, and one uncited researcher name.</p>
+<p><strong>Why MINOR and not MAJOR:</strong> no invented theorem, no wrong title, no fabricated citation. All
+24 arXiv instances resolve (checked independently by the caller). The four uncited claims are
+navigational or standard-textbook, not load-bearing mathematics.</p>
+<p><strong>Caller question (b) — answered, cleared.</strong> I fetched the abstract of arXiv:1605.04628. Every
+clause the tutorial attributes to Tao's 2016 paper is in that abstract, including the two I
+had provisionally flagged. See finding F4.</p>
+<h3>Progress log — sections 1–4 read against the full transcript</h3>
+<p>The transcript is a single 40.7 KB line (387 wrapped lines). I read all of it. No Q&amp;A follows
+the applause. Transcript quoted below by wrapped-line number.</p>
+<p><strong>Attribution ledger (caller question (a): Ziegler vs. others).</strong> Checked every named result:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tutorial line</th>
+<th>Attributed to</th>
+<th>Transcript support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>548</td>
+<td>Roth–Meshulam</td>
+<td>"the Roth Mishulan dichotomy" (tr. 44) ✓</td>
+</tr>
+<tr>
+<td>555</td>
+<td>Szemerédi 1975</td>
+<td>"sami ... his celebrated sarity theorem" (tr. 76) ✓</td>
+</tr>
+<tr>
+<td>568</td>
+<td>Furstenberg (Kronecker factor, k=2)</td>
+<td>"what Fenberg shows ... obstruction comes from a non-trivial morphism to an aelion dynamical system" (tr. 113–114) ✓</td>
+</tr>
+<tr>
+<td>575</td>
+<td>Furstenberg–Weiss, 1980s, 2-step nilpotent</td>
+<td>"fenber advice in the 80s showed that there are new obstructions coming from ... two-step nil potent" (tr. 140–141) ✓</td>
+</tr>
+<tr>
+<td>587</td>
+<td>Conze–Lesigne; Furstenberg–Weiss (4-term universal char. factor)</td>
+<td>"kwansine and fenburg and vice showed ... the universal characteristic factor for four term progressions has a structure of a two step ... pro nil systems" (tr. 158–160) ✓</td>
+</tr>
+<tr>
+<td>597</td>
+<td>Host–Kra 2005; Ziegler 2007 (general k)</td>
+<td>"shown by this by host Cryan myself" (tr. 165–166) ✓ — the tutorial correctly reads "myself" as Ziegler's own JAMS 2007 paper and does NOT claim she proved the k=2 or k=3 cases</td>
+</tr>
+<tr>
+<td>632</td>
+<td>Green and Tao <em>conjectured</em> the inverse theorem</td>
+<td>"green and conjectured that the underlying reason should be algebraic" (tr. 193) ✓</td>
+</tr>
+<tr>
+<td>516/644</td>
+<td>Green–Tao–Ziegler <em>proved</em> it (arXiv:1009.3998)</td>
+<td>not spoken; carries full citation ✓</td>
+</tr>
+<tr>
+<td>637</td>
+<td>Green–Tao (progressions in primes)</td>
+<td>"green and tiles theorem" (tr. 220) ✓</td>
+</tr>
+<tr>
+<td>761</td>
+<td>Tao 2016 (log-Chowla ⟺ log-Sarnak)</td>
+<td>"Tao showed in 2016 that ... a logarithmic ... version of these conjectures ... they actually are equivalent" (tr. 307–308) ✓</td>
+</tr>
+<tr>
+<td>773</td>
+<td>Frantzikinakis–Host 2018</td>
+<td>"franchikinakis and host in 2018" (tr. 315) ✓</td>
+</tr>
+<tr>
+<td>782</td>
+<td>Matomäki–Radziwiłł</td>
+<td>"Matumaki Razil about short interval estimates" (tr. 320–321) ✓</td>
+</tr>
+<tr>
+<td>784</td>
+<td>Tao's entropy decrement argument</td>
+<td>"an additional ... entropy decrement argument of toao" (tr. 322) ✓</td>
+</tr>
+<tr>
+<td>799</td>
+<td>Matomäki, Radziwiłł, Tao, Teräväinen, <strong>Ziegler</strong></td>
+<td>"relatively recent work with Mataki, Radi Tao and Terodina" (tr. 329) ✓ — "with" makes her a coauthor, not sole author; tutorial lists her last, correctly</td>
+</tr>
+<tr>
+<td>826</td>
+<td>Walsh</td>
+<td>"Walsh was able to show" (tr. 349) ✓</td>
+</tr>
+<tr>
+<td>734</td>
+<td>"Sarnak proved Chowla ⟹ Sarnak"</td>
+<td>"sarn shows that his conjecture follows from chala's conjecture" (tr. 288) ✓</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Verdict on (a): the tutorial separates Ziegler's own results from others' cleanly.</strong>
+Nowhere does it hand her a theorem the transcript gives to someone else. It is in fact more
+conservative than it needed to be: §4.7 splits Host–Kra (2005) from Ziegler (2007) where the
+captions say only "host Cryan myself".</p>
+<p><strong>Leng / Sah / Sawhney: absent.</strong> The tutorial makes <strong>no</strong> quantitative-bound claim about
+the inverse theorems — so it cannot get one wrong. The one consequence is the reverse
+problem: it inherits the 2014 companion's "these bounds are open" and states it as current.
+See finding F2.</p>
+<hr />
+<h2>Findings</h2>
+<h3>F1 — MINOR/systemic. Eighteen fabricated timestamp ranges; the transcript has none.</h3>
+<p><code>summaries/arithmetic-patterns-ziegler.md:539, 546, 553, 560, 565, 573, 595, 626, 635, 678, 683, 704, 736, 756, 771, 808, 844, 863</code></p>
+<p>Every §4 subsection heading carries a clock range — "(00:00–08:00)", "(30:00–36:00)",
+"(70:00–end)". The transcript file contains <strong>zero</strong> timestamps (grep for a <code>[0-9]:</code> pattern
+returns 0 hits; it is one unbroken 8,048-word paragraph). The ranges are therefore inferred,
+and nothing in the document says so.</p>
+<p>Why it matters: a reader will treat them as citations and try to scrub to 56:00 for the
+Sarnak/entropy argument. They are also internally inconsistent — line 29 says "<strong>In fifty
+minutes</strong> she uses Kronecker factors, …", §11 line 1481 says "five minutes of a
+<strong>seventy-minute</strong> talk", and line 1500 says "None of the three fit in a <strong>fifty-minute</strong>
+talk". The §4 grid runs to 70:00. Both numbers cannot be right. 8,048 words at a normal
+lecture pace of 130–160 wpm is about 50–62 minutes, which favours the fifty.</p>
+<p>What would settle it: the video runtime from the YouTube metadata for <code>czHiX0pYTDg</code>.</p>
+<p><strong>Not disclosed in §11.</strong> The self-report lists reconstructions, name corrections, caption
+corrections and gaps in detail — and never mentions that the timeline is invented. This is
+the clearest under-report.</p>
+<h3>F2 — MINOR. "no effective bounds" for the inverse theorem, sourced from a 2014 document, stated as current.</h3>
+<p><code>summaries/arithmetic-patterns-ziegler.md:331-332, 921-922, 953-955</code></p>
+<p>Three statements:
+- 331: "both inverse theorems are <strong>qualitative</strong>: making them quantitative is, in the
+  companion's words, 'a major open question'." — attributed, fine
+- 921: "This step is the hard one … and it is qualitative — <strong>no effective bounds</strong>." — flat
+  present tense, no attribution
+- 953: "<strong>Honesty check.</strong> … What is <em>not</em> known: quantitative forms of step 2" — flat
+  present tense, no attribution</p>
+<p>The companion is arXiv:1404.0775, <strong>April 2014</strong>. Ziegler never says this from the podium —
+no such claim appears anywhere in the transcript. Presenting a 2014 open-problem status as
+the 2026 state of the art is exactly the 2014-companion hazard, and lines 921 and 953 drop
+the "in the companion's words" hedge that line 331 keeps. Whether the status has since
+changed I cannot determine from the two files I have; the fix is one hedge, not a rewrite.</p>
+<p>What would settle it: a literature check on quantitative bounds for the U^(s+1)[N] inverse
+theorem published between 2014 and 2026.</p>
+<p><strong>Not disclosed in §11.</strong></p>
+<h3>F3 — MINOR. Uncited name: "the Walsh/<strong>Pilatte</strong> frontier".</h3>
+<p><code>summaries/arithmetic-patterns-ziegler.md:954</code></p>
+<p>"Pilatte" appears exactly once in the document, in §5's honesty check. No citation, no arXiv
+id, no first name, no explanation — and §4.16, which the sentence cross-references, discusses
+only Walsh. Not in the transcript. Every other researcher named in the tutorial carries
+either transcript support or a full citation; this one carries neither.</p>
+<p>What would settle it: an arXiv id, as given for Walsh (2310.07873), Koymans–Pagano
+(2412.01768) and Zywina (2502.01957).</p>
+<p><strong>Not disclosed in §11.</strong></p>
+<h3>F4 — RESOLVED, NOT A DEFECT. Caller question (b): the Tao arXiv:1605.04628 attribution is fully correct.</h3>
+<p><code>summaries/arithmetic-patterns-ziegler.md:761-765</code></p>
+<blockquote>
+<p>"<strong>Theorem (Tao 2016).</strong> The logarithmically averaged Chowla and Sarnak conjectures are
+<strong>equivalent</strong> to each other, <strong>and to the 'local Gowers uniformity' of λ</strong>."</p>
+</blockquote>
+<p>The first half is exactly what she says (tr. 307–312: "Tao showed in 2016 that if you take a
+logarithmic average version of these conjectures then they actually are equivalent") and
+exactly what the cited paper's title asserts. <strong>Correct.</strong> The tutorial also gets the
+neighbouring attributions right: <strong>Sarnak</strong>, not Tao, proved Chowla ⟹ Sarnak (line 734 vs
+tr. 288), and the entropy decrement argument is <strong>Tao's</strong> (line 784 vs tr. 322).</p>
+<p>I initially flagged the third conjunct — equivalence "to the local Gowers uniformity of λ" —
+and the parenthetical "The proof uses the entropy decrement argument together with the
+Green–Tao–Ziegler inverse theorem", because neither is spoken in the transcript and neither
+is implied by the paper's title. <strong>I then fetched the arXiv abstract, and all three check
+out.</strong> Tao's own abstract for 1605.04628:</p>
+<ul>
+<li>names the equivalence "to the <strong>'local Gowers uniformity'</strong> of the Liouville function" as
+  part of the main result — the tutorial even keeps Tao's scare quotes;</li>
+<li>names "the <strong>entropy decrement argument</strong> of the author used recently" as a main tool;</li>
+<li>names "the <strong>inverse conjecture for the Gowers norms, obtained by Green, Ziegler, and the
+  author</strong>" as the other key tool.</li>
+</ul>
+<p>So the tutorial did not stretch the citation. It supplied three details from the paper it
+cites, at the point of citation, exactly as the front matter promises. <strong>Claim attribution
+on arXiv:1605.04628 is correct in every clause.</strong> Nothing to fix.</p>
+<p>Source: <a href="https://arxiv.org/abs/1605.04628">arXiv:1605.04628</a>.</p>
+<p>The name-correction table at lines 1412–1413 lists "Tao arXiv:1605.04628" as the <em>source</em> for
+the spellings <strong>Chowla</strong> and <strong>Sarnak</strong>. That is a source for an orthography, not a claim
+attribution, and is fine.</p>
+<h3>F5 — MINOR. Riemann-hypothesis equivalence: an exponent not spoken and not cited.</h3>
+<p><code>summaries/arithmetic-patterns-ziegler.md:695-697</code></p>
+<p>"Σ_{n≤N} λ(n) = <strong>O(N^(1/2+ε))</strong> is equivalent to the Riemann hypothesis." She says only
+"square root cancellation" and "like random walk on the integers" (tr. 252–254). The
+neighbouring PNT equivalence at line 693 <em>is</em> spoken (tr. 248–252). The 1/2+ε is standard
+textbook material, but per the brief every quantitative statement not in the transcript needs
+a citation on its own line, and this one has none.</p>
+<p>By contrast the tutorial handles the other numbers correctly: δ³|V|² and δ²|V|² (tr. 31, 42),
+N^(1/3) (tr. 57), σ_k·N²/(log N)^k (tr. 222–223, 230), N^θ (tr. 336–337), log 2 and zero
+entropy (tr. 276–279), λ(12) = −1 (tr. 245) are all spoken; Sanders' 1/(log N)^(1−o(1))
+(line 228) and Walsh's (log X)^(ψ(X)) (line 829) both carry sources.</p>
+<h3>F6 — informational, not a defect. Zywina's mechanism.</h3>
+<p><code>summaries/arithmetic-patterns-ziegler.md:853-857</code></p>
+<p>The tutorial says Zywina gets infinitude "by applying the <strong>Tao–Ziegler</strong> polynomial
+Szemerédi theorem for primes — that is, her own theorem, Acta Math. 201 (2008), 213–305."
+She does <strong>not</strong> say this; she names the elliptic-curve result in one clause (tr. 359–361)
+with no author. The claim carries the arXiv id 2502.01957 so it passes the brief's citation
+test, but the rhetorical payoff ("her own theorem") is the tutorial's construction, not hers.
+I cannot check the paper. Low risk; recorded for completeness.</p>
+<hr />
+<h2>Self-report audit (§11, lines 1368–1506)</h2>
+<p><strong>Verdict on the self-report: honest in substance, thorough well beyond the norm, and
+under-reported in three specific places.</strong></p>
+<p>What §11 gets right, and it is a lot:</p>
+<ul>
+<li>It states plainly that there is <strong>no ICM 2026 proceedings paper</strong> and that the companion is
+  a <strong>2014 sectional survey</strong> that "<strong>stops in 2014</strong>" (lines 42–61, 1379–1384). It says the
+  last third is restored from primary papers. This is the single most important disclosure
+  the caller asked about, and it is made three times: front matter line 9, the "A note on
+  sources" block at lines 57–61, and §11 lines 1382–1384. <strong>It does not restore 2026 content
+  from the 2014 document.</strong></li>
+<li>It separates <strong>four substantive caption corrections</strong> (indexing drift; the weaker
+  plain-existence vs. the averaged Furstenberg statement; the non-classical-polynomial
+  caveat; Walsh's GRH-vs-RH) from mere spellings, and all four check out against the
+  transcript.</li>
+<li>It lists <strong>six reconstructions</strong> with a verification recipe for each. I confirmed all six
+  are genuinely absent from the transcript — that is, it did not claim as spoken anything it
+  invented.</li>
+<li>It names the two acknowledgement spellings it <strong>could not</strong> verify and refuses to guess
+  (lines 1430–1434). That is the right call.</li>
+<li>Its four declared gaps (PTE, the multidimensional outlook, the slides, Conze–Lesigne) are
+  real gaps: the transcript genuinely says nothing more on any of them. The one in-text
+  <code>[Gap: …]</code> marker (line 859) and the one <code>[My reading, marked as such]</code> marker (line 872)
+  are both placed where the transcript is actually silent.</li>
+<li>Its 29-row name table is accurate. I checked every caption string against the transcript;
+  all 29 mangled forms occur there, and every correction is either transcript-derivable or
+  labelled "search".</li>
+</ul>
+<p><strong>Where §11 under-reports.</strong> Three items, all things the writing agent added and did not
+list:</p>
+<ol>
+<li><strong>The §4 timestamps (F1).</strong> Eighteen invented clock ranges, presented with the authority
+   of a citation, plus a 50-vs-70-minute self-contradiction. §11 has a "Reconstructed, with
+   what would verify each" list; the timeline belongs on it and is absent. This is the
+   material omission.</li>
+<li><strong>The stale 2014 open-problem status (F2).</strong> §11 has a whole subsection titled "Where the
+   companion beats the talk", naming three places the 2014 document is <em>better</em> than the
+   talk. It has no corresponding note on where the 2014 document is <strong>older</strong> than 2026 — and
+   "quantitative inverse theorems are open" is precisely such a place. §3.10 hedges it; §5
+   twice does not.</li>
+<li><strong>"Pilatte" (F3).</strong> A researcher named once, uncited, in a document whose §11 makes a
+   point of listing everything it could not verify. Either a citation was dropped or a name
+   was recalled from memory; §11 mentions neither.</li>
+</ol>
+<p><strong>Not under-reported — checked and cleared:</strong></p>
+<ul>
+<li>No claim of an ICM 2026 paper anywhere.</li>
+<li>No 2026 content presented as coming from the 2014 companion. Every post-2014 result
+  (Tao 2016, Frantzikinakis–Host 2018, MRTTZ 2023, Walsh 2023, Koymans–Pagano 2024, Zywina
+  2025) carries its own arXiv id at the point of use, never a companion reference.</li>
+<li>No theorem transferred to Ziegler that the transcript gives to someone else — see the
+  attribution ledger above.</li>
+<li>All 20-plus direct quotations are faithful to the caption text; several are verbatim.</li>
+<li>The <code>[Gap: …]</code> marker is used where the transcript is silent, not to paper over anything.</li>
+</ul>
+<hr />
+<h2>What I could not check</h2>
+<ul>
+<li>Whether the mathematics is <strong>true</strong>. I have neither the companion (arXiv:1404.0775) nor any
+  of the 20-plus cited primary papers. Every "(Companion, Theorem X.Y)" pointer is unverified
+  as to <em>content</em>; I verified only that such pointers exist and are used consistently.</li>
+<li>Whether "quantitative inverse theorem" is still open in 2026 (F2).</li>
+<li>Who "Pilatte" is and which result is meant (F3).</li>
+<li>Zywina's actual proof mechanism (F6).</li>
+<li>The video runtime, which would settle the 50-vs-70-minute contradiction (F1).</li>
+<li>The two unverified acknowledgement names ("Cecile Gashon", "Danny Castle"). The tutorial
+  also does not know them and says so; I have no better source.</li>
+<li>Every displayed formula. The captions carry none, so for §§2, 3, 5, 6 and 7 I could check
+  only that a citation or a "reconstructed" label is attached — never the algebra itself. Per
+  the hard rule I did not invent mathematics to test mathematics; §7's worked solutions look
+  internally consistent on inspection, but I make no claim about them.</li>
+</ul>
+<hr />
+<h1>Round 2 — companion formula check, 2026-08-18</h1>
+<p>Round 1 was a transcript-and-citation-list check. This round fetched the companion —
+Ziegler, <em>Linear equations in primes and dynamics of nilmanifolds</em>, <code>arXiv:1404.0775</code>
+(her ICM 2014 sectional survey), via ar5iv — and compared every statement the tutorial
+attributes to it.</p>
+<p><strong>Result: every companion-attributed statement is correct.</strong> No change to the verdict.</p>
+<h2>Checked against <code>arXiv:1404.0775</code></h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tutorial</th>
+<th>Companion</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:452</code> <code>Δ_h f(x) = f(x+h)·conj(f(x))</code></td>
+<td>Definition 5.1</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:456</code> <code>‖f‖^{2^k}_{U^k} = 𝔼_{x,h₁,…,h_k} Δ_{h₁}⋯Δ_{h_k} f(x)</code></td>
+<td>Definition 5.1</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:461</code> 1-bounded <code>‖f‖_{U^k} = 1</code> iff <code>f = e^{2πi q(x)}</code>, <code>deg q &lt; k</code></td>
+<td>first bullet after Remark 5.2</td>
+<td><strong>correct</strong>, including the strict <code>&lt; k</code></td>
+</tr>
+<tr>
+<td><code>:464</code> correlation implies large norm, by repeated Cauchy–Schwarz</td>
+<td>second bullet</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:465</code> a random ±1 function has <code>‖f‖_{U^k} = o(1)</code></td>
+<td>third bullet</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:469</code> <code>AP_k(f) = 𝔼_{x,d} f(x)f(x+d)⋯f(x+kd)</code> and <code>\|AP_k(f) − AP_k(g)\| ≪_k ‖f−g‖_{U^k[N]}</code></td>
+<td>eq. (3) and the sentence defining <code>AP_k</code> as the count of <strong>(k+1)</strong>-term progressions</td>
+<td><strong>correct</strong>, and the tutorial's <code>(k+1)-term ↔ U^k</code> pairing at <code>:342</code> is the companion's own indexing</td>
+</tr>
+<tr>
+<td><code>:474-478</code> generalized von Neumann, m forms in d variables, no two affinely dependent</td>
+<td>Proposition 5.3</td>
+<td><strong>correct</strong>, hypothesis included</td>
+</tr>
+<tr>
+<td><code>:510-516</code> the over-ℤ inverse theorem: finite list of s-step nilmanifolds depending on (s, δ), some g ∈ G, Lipschitz F, <code>\|𝔼_{n∈[N]} f(n) conj(F(gⁿxΓ))\| ≥ c(s,δ)</code></td>
+<td>Conjecture 8.1, GI(s)</td>
+<td><strong>correct</strong>, clause for clause</td>
+</tr>
+<tr>
+<td><code>:518</code> Green–Tao–Ziegler, <strong>Ann. of Math. 176 (2012), 1231–1372</strong></td>
+<td>reference [24]: "Ann. Math. (2) 176 (2012), no. 2, 1231-1372"</td>
+<td><strong>correct</strong>, page range included</td>
+</tr>
+<tr>
+<td><code>:519</code> "(Companion, Conjecture 8.1 and Theorem 8.4.)"</td>
+<td>Theorem 8.4 is stated as "Conjecture 8.1 was proved"</td>
+<td><strong>correct pointer</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2>The caveat at <code>:501-509</code> is the file's strongest passage, and it is right</h2>
+<p>The tutorial says the naive finite-field inverse conjecture is <strong>false</strong>, that the
+counterexample for <code>U⁴(𝔽₂ⁿ)</code> was found <strong>independently by Green–Tao and by
+Lovett–Meshulam–Samorodnitsky (STOC 2008)</strong>, that the repair replaces "polynomial" with
+<strong>non-classical polynomial</strong> (noting the companion's word is "non-standard"), that this is
+<strong>Theorem 8.3, Bergelson–Tao–Ziegler and Tao–Ziegler</strong>, and that Ziegler says "polynomial
+phase function" from the podium without the caveat.</p>
+<p>Every clause checks out:</p>
+<ul>
+<li>Companion: "Surprisingly, <strong>Conjecture 8.2 turned out to be false</strong>; a counter example for
+  the <code>U⁴[𝔽₂ⁿ]</code> was constructed <strong>independently</strong> in [18, 35]."</li>
+<li>Reference <strong>[18]</strong> is B. Green, T. Tao, <em>The distribution of polynomials over finite fields,
+  with applications to the Gowers norms</em>, Contrib. Discrete Math. 4(2), 2009.</li>
+<li>Reference <strong>[35]</strong> is S. Lovett, R. Meshulam, A. Samorodnitsky, <em>Inverse conjecture for the
+  Gowers norm is false</em>, <strong>STOC 2008</strong>.</li>
+<li>Companion Theorem 8.3 is credited "(Bergelson-Tao-Z (10), Tao-Z (10,12))" and its
+  conclusion is a <strong>non-standard polynomial of degree ≤ s</strong>.</li>
+</ul>
+<p>One precision the tutorial could add: the companion numbers the <em>false</em> statement
+<strong>Conjecture 8.2</strong> (the finite-field form), while <strong>Conjecture 8.1</strong> is the ℤ form that is
+true. The tutorial cites 8.1 and 8.3 and 8.4 correctly and never cites 8.2, so nothing is
+wrong — but a reader tracing "the naive form of this conjecture is false" back to the
+companion will be looking for a number the tutorial never gives.</p>
+<h2>Re-derived independently, not just matched</h2>
+<p>Two things in §3.8 are the tutorial's own and neither is in the companion. Both are correct.</p>
+<ul>
+<li><strong><code>:150</code> the U² identity.</strong> <code>‖f‖⁴_{U²} = Σ_r |f̂(r)|⁴</code> and <code>‖f̂‖⁴_4 ≤ ‖f̂‖²_∞·‖f̂‖²_2</code> are
+  standard; with Parseval <code>Σ_r|f̂(r)|² = 𝔼_x|f(x)|² ≤ 1</code> for 1-bounded f, they give
+  <code>‖f‖⁴_{U²} ≤ ‖f̂‖²_∞</code>, hence <code>‖f‖_{U²} ≥ η ⟹ ‖f̂‖_∞ ≥ η²</code>. The tutorial's conclusion is
+  right, including the square.</li>
+<li><strong><code>:157</code> the 3AP Fourier identity</strong>, which the tutorial labels <em>reconstructed</em> because "the
+  companion asserts the consequence without displaying the identity" — an accurate description
+  of the companion. I re-derived it. Expanding all three functions in characters gives the two
+  constraints <code>a+b+c ≡ 0</code> and <code>b+2c ≡ 0</code>, so <code>b = −2c</code> and <code>a = c</code>, leaving
+  <code>Σ_c f̂(c) ĝ(−2c) ĥ(c)</code>. <strong>That is exactly what the tutorial prints.</strong></li>
+</ul>
+<h2>What this round did not check</h2>
+<p>Everything in the talk's last third, which postdates the 2014 survey: Chowla, Sarnak,
+logarithmic averaging, the Liouville subshift, sign patterns, the multidimensional frontier.
+The tutorial cites those to primary papers (<code>arXiv:1708.00677</code>, <code>arXiv:2007.15644</code> and
+others named inline); none was fetched. Also unchecked: the round-1 finding at <code>:921</code>/<code>:953</code>
+that a 2014 open-problem status is stated as present fact — the companion is precisely the
+2014 source, so it cannot settle whether the status changed since.</p>
+<hr />
+<h2>Round 2 — exercises re-derived, 2026-08-18</h2>
+<p>Both worked solutions re-derived by hand, all ten parts. <strong>The mathematics is correct
+throughout.</strong> Two wording slips, detailed in <code>verify/ROUND2-EXERCISES.md</code> Error 4:</p>
+<ul>
+<li><code>:1039</code> "Summing the <strong>at most 7</strong> nonzero mixed terms" — the solution has just shown that
+  three of the seven mixed terms vanish, so at most <strong>4</strong> are nonzero. The bound still holds
+  and the exercise statement's constant 7 is correct as a generous bound; the sentence just
+  contradicts the one before it.</li>
+<li><code>:1037</code> the Cauchy–Schwarz step writes <code>≤ ‖f̂‖_∞ Σ_r |f̂(r)||ĥ(r)|</code>; the middle factor
+  should be <code>|ĝ(−2r)|</code>.</li>
+</ul>
+<p>Verified correct: the four-fold expansion collapsing to <code>Σ_a |f̂(a)|⁴</code>; the η-to-η² deduction;
+the 3AP identity <code>Σ_c f̂(c)ĝ(−2c)ĥ(c)</code>; the two-parameter obstruction for 4APs; the skew-shift
+induction <code>Tⁿ(z,w) = (z+nα, w+2nz+n²α)</code>; the third-difference identity with weights
+(1,−3,3,−1); the eigenvalue <code>e(2α)</code>; the zero Kronecker projection; and the four-function
+construction whose correlation is identically 1.</p>
+</div>
+</body>
+</html>

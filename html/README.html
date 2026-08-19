@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>ICM 2026 plenary lectures — 20 long-form tutorials</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="index.html">← all documents</a>
+<h1>ICM 2026 plenary lectures — 20 long-form tutorials</h1>
+<p>Twenty tutorials, one per plenary lecture of the International Congress of Mathematicians 2026,
+written from the talks themselves. About <strong>275,000 words</strong>. Each one is a reading course, not a
+summary: it builds the background a talk assumes, then walks the talk, then leaves worked
+exercises with full solutions.</p>
+<p>Source: the <strong><a href="https://www.youtube.com/playlist?list=PLFQq7_q5ORIs">ICM 2026 Plenary Talks</a></strong>
+playlist (Simons Foundation, 20 videos). Every tutorial's front matter carries its video URL, its
+speaker, and the companion paper it was checked against, where one exists.</p>
+<h2>Read this before you read a tutorial</h2>
+<p><strong>These were written for one reader.</strong> They address a specific background — classical physics and
+applied mathematics, no algebraic geometry, no algebraic topology, no number theory — in the second
+person, and rate each talk against it. <code>TEMPLATE.md</code> is that specification. If your background is
+different, the level ratings are the part that will not transfer.</p>
+<p><strong>The talks were transcribed by machine, and machine captions carry no formulas.</strong> Where a formula
+was spoken but not recoverable, the tutorial says so in place — <strong>34 <code>[Gap: …]</code> markers</strong> across the
+corpus — rather than guessing. That rule is the reason the documents are usable at all: a tutorial
+with honest holes can be trusted around them; one with plausible fabrications cannot.</p>
+<p><strong>They have been checked twice, and the defects found are recorded but not yet fixed.</strong> See below.</p>
+<h2>The twenty</h2>
+<p><code>Level</code> is the tutorial's own difficulty rating for its intended reader, 1–5.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Talk</th>
+<th>Speaker</th>
+<th>Level</th>
+<th>Words</th>
+<th>Tutorial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=l-29P4oEXKE">Modern Machine Learning Methods: Large Scale Optimization, Implicit Bias and Benign Overfitting</a></td>
+<td>Peter L. Bartlett</td>
+<td>2/5</td>
+<td>10,029</td>
+<td><a href="summaries/modern-ml-methods-bartlett.html"><code>modern-ml-methods-bartlett.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=tKObU5yKXdk">Hamilton's Ricci Flow</a></td>
+<td>Simon Brendle</td>
+<td>3/5</td>
+<td>15,883</td>
+<td><a href="summaries/ricci-flow-singularities-brendle.html"><code>ricci-flow-singularities-brendle.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=D2_RHzeWcgk">New Challenges in Numerical Approximation of PDEs</a></td>
+<td>Annalisa Buffa</td>
+<td>1/5</td>
+<td>10,845</td>
+<td><a href="summaries/mesh-generation-pdes-buffa.html"><code>mesh-generation-pdes-buffa.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=lwY_jFRy7O8">Randomness, Rotations, and Resonances</a></td>
+<td>Dmitry Dolgopyat</td>
+<td>3/5</td>
+<td>15,747</td>
+<td><a href="summaries/randomness-rotations-resonances-dolgopyat.html"><code>randomness-rotations-resonances-dolgopyat.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=aeZ0TpVvM5w">Local and global Langlands conjecture(s) over function fields</a></td>
+<td>Dennis Gaitsgory</td>
+<td>5/5</td>
+<td>14,083</td>
+<td><a href="summaries/langlands-function-fields-gaitsgory.html"><code>langlands-function-fields-gaitsgory.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=7eLznYeQm7k">Hardy Spaces of Holomorphic Functions and Explicit Formulae for a Class of Integrable PDEs</a></td>
+<td>Patrick Gérard</td>
+<td>2/5</td>
+<td>10,802</td>
+<td><a href="summaries/hardy-spaces-explicit-formulae-gerard.html"><code>hardy-spaces-explicit-formulae-gerard.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=ZKF6dWzOiPA">The Shape of Math To Come</a></td>
+<td>Alex Kontorovich</td>
+<td>2/5</td>
+<td>7,201</td>
+<td><a href="summaries/shape-of-math-kontorovich.html"><code>shape-of-math-kontorovich.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=wkUJoGqYFN4">Prismatic Stable Homotopy Theory</a></td>
+<td>Jacob Lurie</td>
+<td>5/5</td>
+<td>15,308</td>
+<td><a href="summaries/prismatic-homotopy-lurie.html"><code>prismatic-homotopy-lurie.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=6GYIK6uK-s4">From knots to four-manifolds</a></td>
+<td>Ciprian Manolescu</td>
+<td>4/5</td>
+<td>17,052</td>
+<td><a href="summaries/knots-four-manifolds-manolescu.html"><code>knots-four-manifolds-manolescu.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=TYOQ2l6m4gM">Uniformization theorems and related results in higher dimensional complex geometry</a></td>
+<td>Ngaiming Mok</td>
+<td>4/5</td>
+<td>20,095</td>
+<td><a href="summaries/uniformization-complex-geometry-mok.html"><code>uniformization-complex-geometry-mok.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=McbrzDd7hCg">Some Recent Results in Ramsey Theory</a></td>
+<td>Robert Morris</td>
+<td>2/5</td>
+<td>13,624</td>
+<td><a href="summaries/ramsey-numbers-morris.html"><code>ramsey-numbers-morris.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=clMjIGdpVMw">Dynamics and Rigidity through the Lens of Circles</a></td>
+<td>Hee Oh</td>
+<td>3/5</td>
+<td>17,714</td>
+<td><a href="summaries/lens-of-circles-oh.html"><code>lens-of-circles-oh.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=K8-O-FdUzGs">Geometric Concepts in Partial Differential Equations</a></td>
+<td>Felix Otto</td>
+<td>1/5</td>
+<td>12,409</td>
+<td><a href="summaries/geometric-concepts-pde-otto.html"><code>geometric-concepts-pde-otto.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=B5OhjD222w0">Random Interface Growth</a></td>
+<td>Jeremy Quastel</td>
+<td>2/5</td>
+<td>14,973</td>
+<td><a href="summaries/random-interface-growth-quastel.html"><code>random-interface-growth-quastel.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=NK7R4Nnz2mg">Maestro Jean-Pierre Serre</a></td>
+<td>Peter Sarnak</td>
+<td>5/5</td>
+<td>15,408</td>
+<td><a href="summaries/maestro-serre-sarnak.html"><code>maestro-serre-sarnak.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=u-ssCmb8YBo">Learning in Games with Carryover Effects</a></td>
+<td>Éva Tardos</td>
+<td>2/5</td>
+<td>13,062</td>
+<td><a href="summaries/learning-in-games-tardos.html"><code>learning-in-games-tardos.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=hyZsD4UWy1o">Quantitative Rectifiability and Harmonic Measure</a></td>
+<td>Xavier Tolsa</td>
+<td>2/5</td>
+<td>17,393</td>
+<td><a href="summaries/quantitative-rectifiability-harmonic-measure-tolsa.html"><code>quantitative-rectifiability-harmonic-measure-tolsa.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=Ep1TzZDOHnU">Optimization in Theory and Practice</a></td>
+<td>Stephen J. Wright</td>
+<td>1/5</td>
+<td>6,529</td>
+<td><a href="summaries/optimization-theory-practice-wright.html"><code>optimization-theory-practice-wright.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=R_lDnWf9W3Y">Random Matrices, Wigner–Dyson Universality, Localization and Beyond</a></td>
+<td>Horng-Tzer Yau</td>
+<td>2/5</td>
+<td>13,689</td>
+<td><a href="summaries/random-matrices-localization-yau.html"><code>random-matrices-localization-yau.md</code></a></td>
+</tr>
+<tr>
+<td><a href="https://www.youtube.com/watch?v=czHiX0pYTDg">Structure of sets with an unexpected number of arithmetic patterns</a></td>
+<td>Tamar Ziegler</td>
+<td>3/5</td>
+<td>13,197</td>
+<td><a href="summaries/arithmetic-patterns-ziegler.html"><code>arithmetic-patterns-ziegler.md</code></a></td>
+</tr>
+</tbody>
+</table></div>
+<p>Most files split that rating across the parts of their talk, and the table shows the first part
+only. The front matter carries the full split, and it is often the wider number that matters:
+Wright is 1/5 for the frame and 3/5 for the post-2015 frontier, Otto 1/5 then 3/5, Dolgopyat 2/5
+for the probability and 4/5 for the space of lattices, Manolescu 4/5 for the topological frame and
+2/5 for the two invariants once framed.</p>
+<h2>What is in the repository</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Path</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summaries/</code></td>
+<td>the 20 tutorials</td>
+</tr>
+<tr>
+<td><code>verify/</code></td>
+<td>the verification record — one report per tutorial, plus the roll-up and the cross-file checks</td>
+</tr>
+<tr>
+<td><code>verify/README.md</code></td>
+<td><strong>the roll-up, and the ranked list of every known defect</strong></td>
+</tr>
+<tr>
+<td><code>verify/check_citations.py</code></td>
+<td>resolves every arXiv ID and DOI in the corpus; ~2 minutes, no API key</td>
+</tr>
+<tr>
+<td><code>TEMPLATE.md</code></td>
+<td>the specification the tutorials were written against</td>
+</tr>
+<tr>
+<td><code>DEVELOPMENT-JOURNEY.html</code></td>
+<td>how they were written and checked, and what was <em>not</em> checked</td>
+</tr>
+<tr>
+<td><code>html/</code></td>
+<td>every Markdown file rendered with MathJax, dark theme — start at <code>html/index.html</code></td>
+</tr>
+<tr>
+<td><code>tools/build_html.py</code></td>
+<td>the renderer that produces <code>html/</code> (<code>pip install markdown</code>, then run it)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Each tutorial's front matter points at <code>../transcripts/&lt;video_id&gt;_transcript.txt</code>. <strong>The caption
+transcripts are not published here</strong> — they are the speakers' words, not this project's. <code>TEMPLATE.md</code>
+§4 has the exact <code>yt-dlp</code> commands that regenerate them from the playlist.</p>
+<h2>How far to trust these</h2>
+<p>The corpus was verified twice — once by fifteen independent agents reading one tutorial each, once
+by a single reader asking one question at a time across all twenty. Both rounds recorded defects.
+<strong>Neither round edited a tutorial, and no fix has been applied since.</strong></p>
+<p>What the checks establish:</p>
+<ul>
+<li><strong>No tutorial invented a theorem, and no tutorial fabricated a citation.</strong> 100 arXiv IDs and 4
+  DOIs all resolve (<code>verify/check_citations.py</code>, last run 2026-08-18).</li>
+<li><strong>Every title claim is correct</strong> — 20 of 20. This was not free: one brief asserted a talk's
+  subject from a video listing, and both the subject and its framing were wrong.</li>
+<li><strong>All 44 worked exercises have been re-derived by hand.</strong> None reaches a wrong conclusion. Nine
+  carry a local defect — a constant, a sign, an index.</li>
+<li><strong>Every companion paper a machine could reach has been read</strong> and compared against the tutorial
+  citing it. Formula errors turned up in 3 of the 11 files where that was possible.</li>
+</ul>
+<p>What they do not establish:</p>
+<ul>
+<li><strong>Two files carry a MAJOR defect</strong>, both a misquoted formula:
+  <code>random-interface-growth-quastel.md:481</code> and <code>hardy-spaces-explicit-formulae-gerard.md:665</code>.
+  Seventeen more carry MINOR ones. <code>verify/README.md</code> ranks all <strong>35 open items</strong>.</li>
+<li><strong>Nine tutorials have a companion nobody has read.</strong> The largest exposure is
+  <code>langlands-function-fields-gaitsgory</code>: its captions carry not one formula, so every displayed
+  statement in it comes from <code>arXiv:2509.24902</code>, and 16 numbered results rest on that paper.</li>
+<li><strong>The mathematics of the talks is not audited.</strong> Both rounds compared what a source <em>says</em>
+  against what a tutorial <em>prints</em>. That is not peer review.</li>
+</ul>
+<h2>Rendering</h2>
+<p><strong>Pre-rendered pages live in <code>html/</code></strong> — one per Markdown file, 48 of them, with a contents page at
+<code>html/index.html</code>. They are self-contained apart from MathJax, which loads from a CDN, so open them
+from disk or serve the directory. GitHub does not render HTML from a repository page; GitHub Pages
+would.</p>
+<p>The tutorials are Markdown with LaTeX — <strong>367 <code>$$</code> display blocks and about 1,340 inline <code>$…$</code> spans</strong>.
+Six files use no LaTeX at all. A renderer without MathJax or KaTeX will produce two visibly
+different classes of file. One known render defect is still open: <code>shape-of-math-kontorovich.md:637</code>
+writes <code>**$10,000**</code> unescaped, which pairs with a later display block and swallows about 70 lines.</p>
+<h2>Provenance and licence</h2>
+<p>The tutorials, <code>TEMPLATE.md</code>, <code>verify/</code> and <code>DEVELOPMENT-JOURNEY.html</code> are original writing about
+publicly posted lectures. The lectures themselves belong to their speakers and to the
+<a href="https://www.youtube.com/playlist?list=PLFQq7_q5ORIs">Simons Foundation</a>, and quoted passages are
+attributed in place. Nothing here is endorsed by the ICM, by the speakers, or by their institutions.
+No licence is granted; ask before reusing.</p>
+</div>
+</body>
+</html>

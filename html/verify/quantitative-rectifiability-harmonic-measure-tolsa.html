@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — quantitative-rectifiability-harmonic-measure-tolsa</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — quantitative-rectifiability-harmonic-measure-tolsa</h1>
+<p>verdict: MINOR
+uncited_external_claims: 5 (author-only attributions, all sourced to the verified survey; no fabricated citation found)
+unsupported_speaker_claims: 0
+title_check: PASS — transcript intro says verbatim "the title of today's talk is quantitative rectifiability and harmonic measure"; speaker "Shabiel/Shavier Tulsa" = Xavier Tolsa, "research professor at the Catalan Institution for Research and Advanced Studies" (= ICREA), "universaton de Barcelona and CRM". Front matter matches on every field.
+gap_honesty: PASS (one caveat) — 4 gaps + 1 correction are marked and accurately rated, but written as [Gap, <impact>: ...] instead of the TEMPLATE form [Gap: ...]; one small unmarked fill at 6 Step 3.</p>
+<h2>Working notes (in progress)</h2>
+<h3>Source situation — this is the key structural fact</h3>
+<p>Front matter claims arXiv:2607.16457 as a proceedings paper. VERIFIED by fetching
+https://arxiv.org/abs/2607.16457 : title "Interactions between quantitative rectifiability,
+singular integrals, and boundary value problems for harmonic functions", author Xavier Tolsa,
+[v1] 17 July 2026, [v2] 21 July 2026, comment field verbatim "Survey paper for the ICM 2026
+plenary lecture of the author". The tutorial's §preamble claim about the paper is exact,
+including both dates and the verbatim comment string.</p>
+<p>This explains the anomaly flagged in my brief (110 KB, only 2 arXiv citation instances,
+ZERO <code>[Gap: ...]</code> markers). The tutorial does not need per-claim arXiv ids because it
+declares ONE governing source and uses it throughout. Whether that is honest is the
+question §11 audit below answers.</p>
+<h3>Timestamp check (cross-file)</h3>
+<p><code>grep -n "[0-9][0-9]:[0-9][0-9]"</code> over the whole 1951-line tutorial returns ZERO hits.
+No timestamp ranges in any section heading. CLEAN on this check.</p>
+<h3>Transcript ground truth (single-line file, 38797 chars, no timestamps)</h3>
+<p>Named results the speaker actually states, in order:
+Kakutani 1944 (Brownian exit) / F.&amp;M. Riesz brothers 1916 / Dahlberg 1977 (Lipschitz) /
+David–Semmes β₂ + UR characterization, 1990s, "inspired in part by previous results of
+Peter Jones" / Azzam–Tolsa 2015 ("Jonasa Sam and myself in 2015") / earlier work of
+Schul ("Shul"), Naber ("neighbor") / Nazarov–Tolsa–Volberg 2014
+("near of myself and Borick") / Coifman–McIntosh–Meyer ("Cadron Kman Mintosh and meer") /
+David–Semmes problem "early '90s" / planar n=1 case by "matila and vertera" using
+curvature of measures / Dąbrowski–Tolsa ("a former student Danielski") general measures /
+Painlevé problem "from the 1900 more or less" / Vitushkin conjecture proved by David /
+"Navidan Matila in 2000" (plane) / AHM3TV-type one-phase theorem "Hman Martu myself and
+Bber", solving a question of Chris Bishop 1990 / two-phase theorem "Jonas Moru and Borber",
+Bishop planar 1991, Bishop conjecture 1992, blowup inspired by "kenik presenter",
+Alt–Caffarelli–Friedman monotonicity formula, rectifiability criterion "due to a student of
+myself and me" / frozen-snowflake example / Dahlberg, Verchota, Dahlberg–Kenig 1980s, L² on
+Lipschitz / Kenig's question "early '9s".</p>
+<h3>RESOLUTION of the "zero [Gap:] markers" anomaly — it is a FALSE ALARM</h3>
+<p>The tutorial DOES mark gaps. It uses the syntax <code>[Gap, &lt;severity&gt; impact: ...]</code>, not the
+literal <code>[Gap: ...]</code> the survey grep looked for. FOUR markers exist:
+- line 747 <code>[Gap, moderate impact:</code> — the |∇_x G(x,y₀)| ≲ ω(B(x,r))/r^{d−1} estimate,
+  correctly identified as "the single most load-bearing unproved step in the talk";
+  transcript confirms the speaker waves at it ("by a standard estimates from harmonic
+  measure it turns out that this gradient of the green function can be estimated by this
+  density ratio of harmonic measure").
+- line 754 <code>[Gap, low impact:</code> — the informal ε truncation. Transcript confirms verbatim:
+  "I am of course I am cheating a little because I am I have introduced for free this
+  epsilon".
+- line 1017 [Gap, low impact: — the frozen-snowflake construction (speaker: "if you dont remember the precise construction, dont worry").
+- line 1107 [Gap in the talk, structural — but low net impact...] — the talk poses Kenigs question and stops. NOTE: this fourth marker has no colon in its opening clause, so a grep for the literal "[Gap:" or "[Gap...:" misses it too.
+Plus explicit non-gap honesty devices: "<em>Reconstructed reasoning, not stated by either
+source:</em>" (line 634, with "I have not done that; I flag the reasoning as mine"), and
+"paper-only" / "paper-not-podium" labels for every survey-sourced block.
+So the combination the brief flagged (long file + structural language + no gaps) is NOT
+gap-filling-without-marking. It is a marker-syntax mismatch against the TEMPLATE spec.</p>
+<h3>Cross-reference drift — real, small, several</h3>
+<p>Internal section pointers do not resolve. Confirmed:
+- line ~370 (§3.3) "We will use it again for removability in §5.10" — removability is §5.9
+  (line 896); §5.10 is the one-phase problem.
+- line ~229 (§2.4) "we differentiate it in §5.7" — the Green-function differentiation is
+  §5.6 (line 699); §5.7 is NToV.
+- line ~424 (§3.5) "We come to that in §5.8" — plausible target is §5.3 or §5.8; ambiguous.
+- line ~648 (§5.4) "the Dąbrowski–Tolsa theorem of §5.9" — Dąbrowski–Tolsa is §5.8 (line 845).
+- line ~648 (§5.4) and §4 map both cite "§5.15" and "Coda (§5.14–5.15)". There is no §5.15.
+  Highest numbered subsection is §5.14 (line 1212).
+These are MINOR (navigation, not mathematics), but they are systematic: the numbering
+appears to have shifted by one after drafting and the back-references were not updated.</p>
+<h3>Ground truth obtained from the survey (ar5iv HTML of 2607.16457)</h3>
+<p>Theorem numbering and attributions from the paper match the tutorial where checked:
+Thm 3.2 David–Semmes (n-AD-regular, 1≤p&lt;2n/(n−2), Carleson β²); Thm 3.3 non-AD-regular
+pointwise β₂ characterization (direct implication [105] = Tolsa, converse Azzam–Tolsa [14]);
+Thm 4.2 David–Semmes problem solved for n=1 (Mattila–Melnikov–Verdera 1996) and n=d−1
+(Nazarov–Tolsa–Volberg); Question 4.4 the 1&lt;n&lt;d−1 case OPEN; Thm 4.7 Dąbrowski–Tolsa;
+Thm 5.2 Painlevé for Lipschitz harmonic functions (Tolsa–Volberg; d=2 David–Mattila;
+holomorphic David); Thm 6.1 Dahlberg; Thm 6.3 one-phase AHM3TV [7]; Thm 6.4 two-phase
+Azzam–Mourgoglou–Tolsa–Volberg [12], d=2 Bishop [18]; Thm 3.8 Alt–Caffarelli–Friedman.
+The paper also confirms the tutorial's sharp p-claim: "on the theorem above one cannot
+replace the coefficients β₂,E^n by β_{p,E}^n for any p≠2".
+The tutorial's §3.6 attribution of that to "Tolsa, <em>Publ. Mat.</em> 63 (2019)" is consistent
+with the paper's citation [106]; I could not open reference [106] to confirm the exact
+volume/year. Marked as UNVERIFIED-BUT-PLAUSIBLE, not fabricated.</p>
+<h2>Findings</h2>
+<p><strong>F1 — MINOR. One silently filled step in the centrepiece argument.</strong>
+<code>summaries/quantitative-rectifiability-harmonic-measure-tolsa.md:1308</code> (§6 Step 3).
+Claims the passage from "R_<em>w finite a.e." to "L2(mu) bounded on a subset" is done "by
+Chebyshev" plus "a T1/good-lambda argument". The transcript says only "using this fact and
+some uh tools from harmonic analysis", and the survey does not spell it out either.
+Chebyshev is obvious; naming </em><em>T1 / good-lambda</em><em> is a specific mechanism supplied from
+outside both sources and NOT marked as a reconstruction — unlike the §5.4 density-theorem
+reasoning, which IS marked. This is the single genuine gap-fill I found in 1951 lines.
+</em>What would settle it:* the survey's proof sketch of Theorem 6.3, or the GAFA 2016 paper.</p>
+<p><strong>F2 — MINOR. Gap markers use non-spec syntax, which is why the audit grep read zero.</strong>
+Lines 747, 754, 1017, 1107 carry [Gap, moderate impact: ...] / [Gap, low impact: ...] / [Gap in the talk, structural ...] (this last with no colon at all), and
+line 1063 carries <code>[Correction, moderate impact: ...]</code>. <code>TEMPLATE.md:212</code> specifies the
+literal form <code>[Gap: ...]</code>; <code>TEMPLATE.md:231</code> separately asks for an impact rating in the
+process note. The writer merged the two into the marker. The content is compliant and the
+ratings are accurate; the string is not. This fully explains the "110 KB, zero gaps"
+signal in the audit.</p>
+<p><strong>F3 — MINOR. Systematic off-by-one cross-reference drift; two targets do not exist.</strong>
+- §3.3 -&gt; "removability in §5.10" — removability is §5.9 (line 896).
+- §2.4 -&gt; "we differentiate it in §5.7" — the differentiation is §5.6 (line 699).
+- §5.4 -&gt; "the Dabrowski-Tolsa theorem of §5.9" — it is §5.8 (line 845).
+- §5.4 and the §4 map -&gt; "§5.15" and "Coda (§5.14-5.15)". <strong>No §5.15 exists</strong>; the last
+  subsection is §5.14 (line 1212).
+- §5.8 -&gt; "I return to it in §9.2". <strong>§9 has no subsections</strong>; the real target is §8.1/§8.2.
+Navigational only. No mathematics affected.</p>
+<p><strong>F4 — MINOR. Five survey-sourced claims carry author names but no year or title.</strong>
+Not fabrications, and each is explicitly attributed to the survey, but below the brief's
+author+title+year bar: "Eiderman-Nazarov-Volberg" on vanishing lower density (§5.7); the
+"David-Semmes BAUP criterion" (§5.7); Naber-Valtorta on harmonic-map singular sets (§5.4);
+Hofmann-Mitrea-Taylor on (N_p) in SKT domains (§5.13); Jones and Murai on zero Favard
+length with positive analytic capacity (§5.14). Count: 5.</p>
+<p><strong>F5 — INFORMATIONAL, not a defect. Timestamps: NONE.</strong>
+The specific cross-file check requested. <code>grep -n "[0-9][0-9]:[0-9][0-9]"</code> over all 1951
+lines returns zero hits. No section heading in this file carries a timestamp range. The
+file is clean on the contamination pattern seen elsewhere in this repo.</p>
+<h2>Self-report audit</h2>
+<p>§11 "Note on the tutorial process" (lines 1793-1951) is the most detailed self-report in
+this repo: a talk/paper divergence table (8 rows), a 30-row caption-&gt;name correction table,
+two explicit "not corroborated by the companion" notes (Calderon-Coifman-McIntosh-Meyer;
+Kakutani), a "Names I could not verify, and did not guess" section naming two ("Pot",
+"hung"), three substantive caption sign-flips, five rated gaps, two marked reconstructions.</p>
+<p><strong>Load-bearing self-reported items I verified against the transcript — all true:</strong>
+- The three sign-flips are real caption errors, each present verbatim: "E is uniformly
+  unrectifiable if and only if uh the risk transform ... is bounded in L2"; "this implies
+  that f is unrectifiable"; "the set is invertifiable if and only if this integral is
+  finite". Correcting all three was necessary; leaving them would have inverted theorems.
+- "Pot" genuinely has no resolvable match. Refusing to write "Pajot" is the right call.
+- The Bishop 1990/1992 and Kenig 1991/1994 reconciliations match the transcript
+  ("bishop Chris Bishop in 1990", "a conjecture by bishop by 1992", "Carlos Kenik in the
+  early '9s").
+- The beta_{mu,1} vs beta_{mu,2} correction is CORRECT. I pulled the survey's Theorem 4.6
+  verbatim: hypothesis (b) reads "beta_{mu,1}^{(d-1,L)}(B) &lt;= delta * Theta_mu^{(d-1)}(B)".
+  The speaker did say beta_2. The tutorial quoted the survey and flagged the divergence.
+- Every block quote I spot-checked ("main black box", "cheating a little", "more visible",
+  "I think that you should know this", "don't worry", "exhausting argument", "should not be
+  so surprising", "topology in higher dimensions", "these domains are not interesting for
+  us") is in the transcript, cleaned of disfluency only.</p>
+<p><strong>What the self-report UNDER-reports — three items, all small:</strong></p>
+<ol>
+<li><strong>A fourth silent caption correction, not among the "three sign-flips."</strong> Line 215 quotes
+   the speaker as "What is interesting and <strong>remarkable</strong>, I think...". The transcript reads
+   "What is interesting and and <strong>unremarkable</strong> I think from this uh result". The fix is
+   obviously right in context, but it is a fourth substantive (not spelling) caption change,
+   and §11 asserts there are exactly three.</li>
+<li><strong>The §6 Step 3 fill (F1) is absent from "Reconstructed and marked as such."</strong> §11 lists
+   two reconstructions (§5.4 density theorem, §7.2 constants). "Chebyshev + T1/good-lambda"
+   is a third and is unlisted.</li>
+<li><strong>The cross-reference drift (F3) is not mentioned at all</strong>, including the two pointers to
+   sections that do not exist (§5.15, §9.2).</li>
+</ol>
+<p><strong>Verdict on the self-report: HONEST, and substantially complete.</strong> Nothing it reports is
+false; nothing material is concealed. The three omissions are one minor quote repair, one
+unlabelled small reconstruction, and internal-numbering hygiene. That is under-reporting at
+the margins, not misrepresentation.</p>
+<h2>Direct answer to the audit hypothesis</h2>
+<p>The brief's worry: 110 KB + "structural" impact language x6 + zero <code>[Gap: ]</code> markers =
+either the speaker stated everything, or gaps were filled instead of marked. <strong>Neither.</strong>
+The correct third answer: <strong>the tutorial DID mark its gaps, in a different string format,
+and it had a full published companion paper — arXiv:2607.16457, which I verified is real,
+with the exact title, both submission dates (17 and 21 July 2026), and the verbatim comment
+field "Survey paper for the ICM 2026 plenary lecture of the author" that the front matter
+claims</strong> — to restore what the auto-captions destroyed. That is why the citation density is
+low: it declares one governing source once, then labels every block drawn from it
+"paper-only" or "paper-not-podium". One real fill exists (F1) and it is small.</p>
+<h2>What I could not check</h2>
+<ul>
+<li>Survey reference [106] (the p != 2 sharpness result). The tutorial gives it as Tolsa,
+  <em>Publ. Mat.</em> 63 (2019); the survey's numbered citation exists but I could not open the
+  bibliography entry. Plausible, not confirmed.</li>
+<li>Whether the survey truly contains NO probability/Kakutani anywhere (the tutorial's claim).
+  My two ar5iv fetches surfaced none, consistent with the claim, but I did not read all
+  ~25 pages.</li>
+<li>Exact page ranges on ~15 journal citations (Acta 213 (2014) 237-321; GAFA 26 (2016)
+  703-728; Duke 173 (2024) 1731-1837; Invent. Math. 222 (2020) 881-993; Ann. of Math. 194
+  (2021) 97-161; etc.). Journals, volumes and years are all consistent with real papers;
+  I did not open each one.</li>
+<li>Whether the mathematics is TRUE. Out of scope by the brief.</li>
+<li>The identity of "Pot" and of "hung" — as the tutorial itself says, undeterminable from
+  the captions.</li>
+</ul>
+</div>
+</body>
+</html>

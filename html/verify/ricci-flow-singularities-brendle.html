@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — ricci-flow-singularities-brendle</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — ricci-flow-singularities-brendle</h1>
+<p>verdict: MINOR
+uncited_external_claims: 0
+unsupported_speaker_claims: 0
+false_claims_about_a_source: 1 — §10's "erratum in the companion" is half wrong (Example 2.9 yes, Example 2.10 no). Mathematically inert; see Finding 1.
+title_check: PASS — front matter uses the ICM proceedings title "Hamilton's Ricci Flow", confirmed exactly on Crossref (doi:10.1137/25M1799052); the introducer announces "singularity models in three-dimensional Ricci flow"; the file flags this discrepancy itself at L59-63 and explains the choice.
+gap_honesty: PASS — all 4 [Gap:] markers sit exactly where Brendle says on tape that he is skipping something; no silently filled gap found anywhere in the file.</p>
+<h2>Transcript ground truth (what Brendle actually says)</h2>
+<p>Full talk recovered; 37,686 chars, ends "That's all I have to say. Thank you."
+Introducer (Vienna) announces the lecture as "singularity models in three-dimensional
+Ricci flow". Talk content, in order: Hamilton dedication; Eells-Sampson harmonic maps;
+1982 Hamilton; table of flows (Ricci / curve shortening Gage+Hamilton 1983 / MCF);
+Riemannian metric; length formula; Riemann tensor 4 indices; Ricci and scalar by
+contraction; "-2 Ric = Laplacian of the metric"; Einstein equations aside; Ricci flow
+definition; short-time existence 1982 + blow-up dichotomy; shrinking sphere; shrinking
+cylinder; cigar soliton (2D, explicit conformal factor); Bryant soliton (higher dim,
+no closed form, paraboloid asymptotics ~sqrt(s)); Hamilton 1982 positive Ricci in 3D -&gt;
+round -&gt; quotient of S3; 2D Hamilton and Chow -&gt; uniformization, conformal structure
+preserved; neck pinch; degenerate neck pinch modeled on Bryant; parabolic rescaling;
+blow-up limits; ancient solutions (Hamilton, early 90s); Perelman non-collapsing 2002 +
+kappa definition; collapsed/non-collapsed table; Hamilton-Ivey pinching; Perelman
+canonical-neighbourhood theorem; epsilon-neck definition (C^{1/eps}, S2 x interval of
+length 2/eps); Perelman structure theorem (tube + cap, c/r^2 &lt;= max curv &lt;= C/r^2,
+diam &lt;= Cr); surgery; four ingredients (Hamilton-Ivey, Hamilton matrix Harnack,
+Perelman non-collapsing, Perelman long-range curvature estimate); 2018 classification
+of non-compact ancient kappa solutions; three steps (self-similar 2012 / rotationally
+symmetric / symmetry improvement); corollary of three models; Perelman's compact
+ancient solution on S3; Brendle-Daskalopoulos-Sesum 2020 compact classification;
+closing rigidity remark.</p>
+<h2>Findings</h2>
+<h3>Pass 1 (front matter through §5): no fabrications found</h3>
+<p>Sourcing discipline in this file is unusually strict. Every displayed equation is tagged
+either (i) companion + numbered statement, (ii) "standard / restored", or (iii) [Gap].
+Spot-checks of speaker-attributed material against the transcript, all SUPPORTED:</p>
+<ul>
+<li>L20 "focus exclusively on the Ricci flow" — transcript verbatim.</li>
+<li>L99-101 Eells and Sampson; "really took off in 1982" — transcript verbatim.</li>
+<li>L119-127 the two long PDE/singularity quotes — transcript verbatim, mangling only.</li>
+<li>L178-186 parabolic-rescaling and "of course in PDE theory" quotes — verbatim.</li>
+<li>L205-209 Einstein-equations aside — transcript has it ("Einstein bhome equations ...
+  lorenian metric"). The tutorial brackets the two mangled nouns as [the Ricci tensor] and
+  [the stress-energy source]; the caption there reads "performi equal to sora", genuinely
+  unreadable, and the bracketing is marked.</li>
+<li>L289-290 "curvature was invented to detect ..." — verbatim.</li>
+<li>L299-301 leading-order/quadratic-terms quote and "let me not write them down" — verbatim.</li>
+<li>L326-329 Hessian/Riemann, Laplacian/Ricci, "-2 Ric = Laplacian of the metric" — verbatim.</li>
+<li>L344-348 "dynamical system on the space of all Riemannian metrics" quote — verbatim.</li>
+<li>L427-430 soliton / "geometrically it's the same" — verbatim.</li>
+<li>L478-483 non-collapsing gloss "curvature controls volume" — verbatim.</li>
+<li>L518-520 "one-dimensional sphere doesn't have curvature" — verbatim.</li>
+<li>L528-529 cylinder-of-spheres intuition — verbatim.</li>
+<li>L546-549 Bryant, no closed form, paraboloid, sqrt(s) — verbatim.</li>
+<li>L578-579 "this latter part is easy to prove" — verbatim.</li>
+<li>L609-612 conformal structure preserved + uniformization — verbatim.</li>
+<li>L614-615 "historically was understood quite a bit after the 3D case" — verbatim.</li>
+<li>L637-638 neck-pinch mechanism quote — verbatim.</li>
+<li>L646-647 degenerate neck pinch modelled on Bryant — verbatim.</li>
+<li>L676-682 "huge back history" quote — verbatim.</li>
+<li>L690-694 Hamilton first to recognise ancient solutions — verbatim.</li>
+<li>L713-714 "universal property of any finite-time singularity" — verbatim.</li>
+<li>L719-725 the collapsed/non-collapsed TABLE — every row is in the transcript, in order.</li>
+<li>L729-732 cigar asymptotic to a 2D cylinder — verbatim.</li>
+<li>L764-771 the (a)/(b)/(c) big picture + "only part specific to three dimensions" — verbatim.</li>
+<li>L787-791 canonical-neighbourhood theorem incl. the C(eps) quantifier — verbatim.</li>
+<li>L804-814 four ingredients, two skipped, "this is what lets you take limits" — verbatim.</li>
+<li>L860-862, L877-881 eps-neck plain reading and tube/cap description incl. c/r^2, C/r^2,
+  diam &lt;= Cr — verbatim.</li>
+<li>L890-892 "the more picky you are about epsilon ..." — verbatim.</li>
+<li>L909-914 surgery "envisioned by Hamilton ... carried out by Perelman", extinction — verbatim.</li>
+<li>L918-924 "monumental proof" and "qualitative picture is enough" — verbatim.</li>
+<li>L951-953 "very few examples ... these are the only ones" — verbatim.</li>
+<li>L966-970 Perelman's compact ancient solution, two Bryant solitons glued, -&gt; shrinking
+  spheres — verbatim.</li>
+<li>L990-992 "all of these models do in fact occur" — verbatim.</li>
+<li>L1030-1032 "step three uses step one and step two" — verbatim.</li>
+<li>L1041 five-step mechanism sketch — matches the transcript's own word-sketch step for step.</li>
+<li>L1015-1017 rotational symmetry "boils down to just a scalar equation" — verbatim.</li>
+</ul>
+<p>Companion-only material is announced as such in bold each time it appears:
+L374 ("This subsection is companion-only. The talk does not mention it."), L215-216,
+L465-466, L582, L617, L805, L1063-1065, L886-892. No companion claim is dressed as
+something Brendle said aloud.</p>
+<p>Cross-reference at L926-931 to <code>summaries/knots-four-manifolds-manolescu.md</code> — file exists.</p>
+<h3>Pass 2 — external citations checked live</h3>
+<p>Every checkable identifier in the file resolves, and resolves to what the file says it does.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>file claim</th>
+<th>checked against</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>doi:10.1137/25M1799052 = Brendle, <em>Hamilton's Ricci Flow</em>, ICM 2026 Vol. 2 Plenary Lectures, SIAM, pp. 25-34, July 2026, 35 references</td>
+<td>Crossref API</td>
+<td>EXACT match on title, author, container, page range, month, reference count</td>
+</tr>
+<tr>
+<td>arXiv:2201.02522 = Brendle, <em>Singularity models in the three-dimensional Ricci flow</em>, v1 Jan 2022, v2 Oct 2022, comments "To appear in KIAS Springer Series in Mathematics, vol 1"</td>
+<td>arXiv abs page</td>
+<td>EXACT match, comments field verbatim</td>
+</tr>
+<tr>
+<td>arXiv:1811.02559 = Brendle, <em>Ancient solutions to the Ricci flow in dimension 3</em>, posted November 2018, Acta Math.</td>
+<td>arXiv abs page</td>
+<td>EXACT (submitted 6 Nov 2018; "to appear in Acta Mathematica")</td>
+</tr>
+<tr>
+<td>arXiv:2604.08473 = Brendle-Wang, positive mass theorem in arbitrary dimension (used in the §10 name table to expand "his PhD student Wang")</td>
+<td>arXiv abs page</td>
+<td>EXACT (S. Brendle, Y. Wang, "A dimension descent scheme for the positive mass theorem in arbitrary dimension")</td>
+</tr>
+<tr>
+<td>arXiv:2102.07180 = Brendle-Daskalopoulos-Naff-Sesum, higher-dimensional case (§5.5)</td>
+<td>arXiv abs page</td>
+<td>EXACT ("Uniqueness of compact ancient solutions to the higher dimensional Ricci flow")</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Every "companion, X.Y" pointer was checked against the companion's own numbering.</strong> All ~30
+of them are correct in number, attribution AND content: Def 1.1 (Hamilton, dg/dt = -2Ric),
+Thm 1.2 (Hamilton; DeTurck), Def 1.3 (Ricci-DeTurck), Thm 1.4 (curvature unbounded),
+Def 1.5 (steady/shrinking/expanding solitons), Thm 1.6 (Hamilton; Chow, S^2),
+Thm 1.7 (Hamilton, 3D positive Ricci), Def 2.1 (ancient), Def 2.2 (kappa-noncollapsed, and
+it does use SCALAR curvature exactly as the tutorial's §3.8 flag says), Thm 2.3 (Perelman),
+Thm 2.4 (Hamilton; Ivey, lambda_1 &gt;= -f(R), f(R)/R -&gt; 0), Def 2.5 (ancient kappa-solution:
+complete, non-flat, kappa-noncollapsed, bounded nonnegative curvature), Ex 2.6-2.12
+including the cigar formula 4/(e^t+|x|^2) delta_ij verbatim and the King-Rosenau solution,
+Thm 4.1 (|D^m Rm| &lt;= C R^{(m+2)/2}), Thm 4.2 (R(y,t) &lt;= R(x,t) omega(R d^2)),
+Thm 4.3 (compactness), Cor 4.4, Def 4.5 (eps-neck), Cor 4.6 (and it DOES assume positive
+sectional curvature, exactly as the tutorial's §4.10 delta says), Thm 5.1/5.2/5.3,
+Def 6.1 (Lichnerowicz Laplacian, formula verbatim), Prop 6.3 (Brendle), Prop 6.5
+(Anderson-Chow, inequality verbatim), Prop 7.1, Def 7.2, Thm 7.3 (Neck Improvement, eps/2).</p>
+<p>Not one fabricated theorem number, not one misattributed author, not one invented arXiv id.</p>
+<h3>Gap honesty</h3>
+<p>Four <code>[Gap: ...]</code> markers, at L307 (Riemann tensor formula), L649 (degenerate neck pinch),
+L809 (Hamilton's matrix Harnack), L1120 (symmetry improvement mechanism). All four sit where
+the transcript really is silent:</p>
+<ul>
+<li>L307 — Brendle says "let me not write them down". Confirmed verbatim.</li>
+<li>L649 — Brendle says "let me not go into details". Confirmed verbatim.</li>
+<li>L809 — Brendle says "unfortunately I didn't have time to talk about". Confirmed verbatim.</li>
+<li>L1120 — the transcript names the "symmetry improvement principle" and gives no mechanism
+  whatsoever. Confirmed: the entire content of §5.4 is absent from the talk, and §5.4 says so
+  in bold before any of it.</li>
+</ul>
+<p><strong>No silently filled gap found.</strong> I looked specifically for the failure mode where podium
+hand-waving is replaced by a crisp companion statement wearing the speaker's voice. The file
+does the opposite, repeatedly and by construction: where talk and paper both cover a result
+it prints the companion's precise version in a quoted theorem block and then adds, separately,
+what Brendle actually said. Examples: §4.3 gives the rescaling factor 1/(4(T-t)) and
+"constant sectional curvature 1" as companion Thm 1.7, and attributes to the podium only the
+qualitative "it becomes round after rescaling" (which is what he said). §4.8 labels the
+canonical-neighbourhood theorem "(Podium statement.)" and adds "I have not seen §12 itself and
+have not reproduced its exact hypotheses." §4.10 prints companion Cor 4.6 and then Brendle's
+picture-version separately, flagging the hypothesis mismatch.</p>
+<h2>Self-report audit</h2>
+<p><strong>Verdict on the self-report: SUBSTANTIALLY HONEST, with one over-claim.</strong></p>
+<p>The writing agent did not under-report its gaps. It over-reported one defect in its source.
+Those are opposite failure modes, and the second is the milder one: it errs toward flagging
+too much rather than concealing too much, which is the direction you want an agent to err in.</p>
+<p>Its falsifiable claims check out, with the single exception recorded as Finding 1:</p>
+<ul>
+<li><strong>Name table.</strong> Every correction is anchorable. "Mich ... University of Vienna" +
+  "Mikail Aishmire" -&gt; Michael Eichmair (Vienna) is forced by the transcript itself. "PhD 25
+  years ago at the age of 19" -&gt; Tuebingen 2001 under Huisken is arithmetically consistent
+  with the 2026 date. "Richard Shane" -&gt; Schoen, "loss and conjecture" -&gt; Lawson,
+  "isoparametric" -&gt; isoperimetric, "his PhD student Wang" -&gt; Yipeng Wang all match Brendle's
+  actual record, and the arXiv id offered for the last one is real and correct. No phonetic
+  guessing detected.</li>
+<li><strong>"I scanned the transcript for a podium self-citation and found none."</strong> TRUE. The talk
+  names no paper, no book and no arXiv number; Brendle gives only years ("2012", "2018",
+  "2020"), exactly as reported.</li>
+<li><strong>"The talk announces no new theorem."</strong> TRUE.</li>
+<li><strong>The Gage-Hamilton date.</strong> The self-report says it declined to correct Brendle's spoken
+  "1983" and instead wrote the §1 table entry with no year plus a pointer to §10. Checked: the
+  §1 table really does read "Gage and Hamilton <em>(see §10 on the date)</em>". Reported accurately.</li>
+<li><strong>The four "unrecoverable" items</strong> map one-to-one onto the four <code>[Gap:]</code> markers. No fifth
+  hole was papered over.</li>
+<li><strong>"Names I could not verify: none"</strong> — I found no unverifiable name either.</li>
+<li><strong>"One erratum in the companion"</strong> — HALF TRUE, and the only claim in §10 that fails. See
+  Finding 1. Example 2.9's typo is real; Example 2.10 has no typo.</li>
+</ul>
+<p><strong>Under-reporting: one category quibble, no concealment.</strong></p>
+<p>The §10 list "What I reconstructed" names four items (spherical/hyperbolic conformal factors,
+the length functional, the Cheeger-Gromov definition, the §2.1 anchor table). The set of
+passages actually restored from the companion is larger — §3.5 (the whole DeTurck /
+weak-parabolicity subsection), §4.3's Hamilton eigenvalue inequalities and pinching estimate
+(companion eqns (3)-(4)), §4.3's 2D entropy functional (companion eqn (2)), and §4.9's
+Theorems 4.1-4.3. <strong>None of these is hidden</strong>: each carries its own in-place label, and §3.5
+opens with a bold sentence "This subsection is companion-only. The talk does not mention it."
+So the §10 list is under-inclusive relative to the in-text labelling, not relative to the
+truth. A reader is never misled at the point of reading.</p>
+<p>The one place where a §10-adjacent claim is slightly wide: §6's opening says "every formula
+comes from the companion's Examples 2.6-2.11, so <strong>nothing in this section is reconstructed
+from captions</strong>." That sentence is true as written. But the §6.2 <em>solutions</em> contain the
+writing agent's own derived arithmetic — the asymptotic cylinder of circumference 4pi, the
+decay R ~ 4e^{-s}, the value kappa ~ 8pi, and the general s^a exponent analysis in 6.2(e) —
+which are neither transcript nor companion. They are derivations from cited inputs, presented
+as worked solutions, which is the honest category; but they are not covered by any §10 entry.
+Low severity.</p>
+<h2>Findings</h2>
+<p><strong>1. <code>summaries/ricci-flow-singularities-brendle.md:1699-1704</code> — the "erratum in the
+companion" claim is HALF FALSE.</strong> §10 asserts that the companion's Example 2.9 <em>and</em> Example
+2.10 both misprint the manifold as "S²". I pulled the ar5iv HTML of arXiv:2201.02522 with
+curl and read the two sentences raw, bypassing any summarizer:</p>
+<ul>
+<li><strong>Example 2.9 — the tutorial is RIGHT.</strong> Verbatim: <em>"Let g_{S³} denote the standard metric
+  on S³. Let us define a family of metrics g(t) </em><em>on S²</em><em> by g(t) = (−4t) g_{S³} for
+  t ∈ (−∞,0)."</em> A genuine typo in the source; should be S³. Correctly caught.</li>
+<li><strong>Example 2.10 — the tutorial is WRONG.</strong> Verbatim: <em>"Let again g_{S²} denote the standard
+  metric on S². Let us define a family of metrics g(t) </em><em>on S² × ℝ</em><em> by
+  g(t) = (−2t) g_{S²} + dz ⊗ dz for t ∈ (−∞,0)."</em> The companion names S² × ℝ correctly.
+  There is no second slip. The tutorial's sentence "Example 2.10 repeats the same slip,
+  writing 'a family of metrics g(t) on S²'" is a false statement about the source.</li>
+</ul>
+<p>(For completeness, Example 2.6 also reads "on S²" and is correct there, since the metric
+really does live on S². So the pattern the writing agent thought it saw does not exist; there
+is exactly one typo, not two.)</p>
+<p><strong>Why this counts even though nothing mathematical breaks.</strong> The mathematics is untouched —
+§4.1 of the tutorial uses S³ and S² × ℝ, which are the right manifolds. But this is a claim
+<em>about a source</em>, asserted in the very section whose job is honest self-reporting, and half of
+it does not survive contact with the source. It is the single verifiable defect I found in
+1,733 lines. <strong>This is what moves the verdict from CLEAN to MINOR.</strong></p>
+<p><strong>Settled by:</strong> <code>curl -sL https://ar5iv.labs.arxiv.org/html/2201.02522</code>, then reading the
+Example 2.9 / 2.10 sentences with markup stripped. Reproducible in one command.</p>
+<p><em>Also confirmed from the same raw source:</em> the one verbatim companion quote in §2.1 that the
+numbered-statement check did not cover — <em>"analogous to the concept of an entire solution to
+an elliptic PDE"</em> — is present in the companion's §2 exactly as quoted at
+<code>summaries/ricci-flow-singularities-brendle.md:191-192</code>.</p>
+<p><strong>2. <code>summaries/ricci-flow-singularities-brendle.md:1140-1145 and 1272-1327</code> — §6.2's worked
+solutions carry derived numbers not covered by any source label.</strong> Circumference 4pi, the
+exponential decay R ~ 4e^{-s}, kappa ~ 8pi, and the s^a exponent dichotomy are the writing
+agent's own computations from cited inputs. §6's header sentence, read quickly, suggests
+heavier sourcing than the solutions have. <strong>Settled by</strong> doing the arithmetic; the inputs
+(companion Examples 2.7 and 2.11, and Definition 2.2) are all correctly cited.</p>
+<p><strong>3. <code>summaries/ricci-flow-singularities-brendle.md:1691-1697</code> — a citation given without
+volume or year.</strong> §5.5 cites "Brendle-Naff, Geom. Topol." with no volume, number or year,
+where every other citation in the file is complete. The companion arXiv id given alongside it
+(2102.07180) is real and correct. <strong>Settled by</strong> the companion's bibliography.</p>
+<p>Nothing above rises to MAJOR. There is no invented theorem, no invented formula, no fabricated
+citation, and no wrong title. Finding 1 is the whole of the MINOR.</p>
+<h2>What I could not check</h2>
+<ul>
+<li>Whether the mathematics is TRUE. Out of scope by the brief; I verified only that each claim
+  is attached to a source and that the source says what is claimed.</li>
+<li>The companion's §§3, 8, 9 and its bibliography as a list. I pulled the full ar5iv HTML but
+  only grepped it for the specific statements the tutorial cites.</li>
+<li>The ICM proceedings chapter itself (doi:10.1137/25M1799052). SIAM returns 403 to automated
+  fetching, exactly as the tutorial reports. Its 35 references and 10 pages are confirmed by
+  Crossref metadata only. The tutorial states nothing is taken from it, and nothing in the
+  file requires it.</li>
+<li>Exact page ranges for Invent. Math. 194 (2013) 731-764, Invent. Math. 226 (2021) 579-651,
+  Acta Math. 225 (2020) 1-102, CPAM 75 (2022) 1032-1073, and J. Diff. Geom. 17 (1982) 255-306
+  / 23 (1986) 69-96. Authors, titles and years all check out; I did not confirm the page
+  digits.</li>
+<li>Every slide. The talk is slide-driven and the caption track carries no formula at all. The
+  tutorial says so and marks the consequences.</li>
+<li>The companion's own bibliography (used as the source for the inline primary-source
+  citations); I verified the arXiv ids it produced but not the bibliography as a list.</li>
+</ul>
+<hr />
+<h2>Round 2 — exercises re-derived, 2026-08-18</h2>
+<p>Both worked solutions re-derived by hand. <strong>One defect</strong>, detailed in
+<code>verify/ROUND2-EXERCISES.md</code> Error 6.</p>
+<p><code>summaries/ricci-flow-singularities-brendle.md:1252-1259</code> states the cigar as
+<code>g = 4δ/(1+ρ²)</code> and correctly derives an asymptotic cylinder of circumference 4π from it — but
+then gives the scalar curvature as <code>R ≈ 4/ρ²</code>, which is the curvature of <code>δ/(1+ρ²)</code>. Since
+<code>R(cg) = R(g)/c</code>, the metric as printed has <code>R ≈ 1/ρ²</code>. Two displayed numbers in one solution
+describe two different metrics.</p>
+<p>Impact on the exercise: none. R is exponentially small in arclength either way, so the
+κ-noncollapsing hypothesis holds for every <code>r ≤ s/2</code> either way, and the collapsing verdict
+comes from the area count <code>8πr/r² → 0</code>, which does not use R.</p>
+<p>Everything else is correct: the whole of 6.1 (<code>λ(t) = r₀² − 2(n−1)t</code>, <code>T = r₀²/(2(n−1))</code>, the
+product-metric argument, the scaling symmetry), and the rest of 6.2 including <code>vol ≈ 8πr³</code> for
+the Bryant soliton and the <code>s^{an}</code> exponent balance in part (e).</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Tier 0 — citation resolution check</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Tier 0 — citation resolution check</h1>
+<p>Run 2026-08-18. Machine check only: every arXiv ID and DOI in <code>summaries/*.md</code>
+resolved against the arXiv API and the Crossref API. No mathematics was read.</p>
+<h2>Result</h2>
+<ul>
+<li><strong>261 citation instances</strong>, <strong>100 unique arXiv IDs</strong>, 4 unique DOIs.</li>
+<li><strong>99 of 100 arXiv IDs resolve</strong> to a real paper.</li>
+<li><strong>4 of 4 DOIs resolve</strong> on Crossref.</li>
+<li><strong>Zero fabricated citations.</strong></li>
+</ul>
+<p>The single unresolved ID is <code>arXiv:2020.02998</code> (month 20 is impossible), at
+<code>summaries/langlands-function-fields-gaitsgory.md:1548</code>. The tutorial is <em>quoting an
+error in Gaitsgory's own bibliography</em> and flags it as such. Not a defect.</p>
+<h2>The four DOIs</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>DOI</th>
+<th>Resolves to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10.1137/25M1799052</code></td>
+<td>Brendle, <em>Hamilton's Ricci Flow</em>, ICM 2026 Proceedings</td>
+</tr>
+<tr>
+<td><code>10.1137/25M1805497</code></td>
+<td>Gérard, <em>Hardy Spaces of Holomorphic Functions and Explicit Formulae...</em>, ICM 2026 Proceedings</td>
+</tr>
+<tr>
+<td><code>10.1137/25m1806971</code></td>
+<td>Dolgopyat, <em>Randomness, Rotations, Renormalization, and Resonances</em>, ICM 2026 Proceedings</td>
+</tr>
+<tr>
+<td><code>10.1145/3587250</code></td>
+<td>Gaitonde, Tardos, <em>The Price of Anarchy of Strategic Queuing Systems</em>, J. ACM</td>
+</tr>
+</tbody>
+</table></div>
+<h2>False positives — recorded so nobody re-runs them</h2>
+<p>The first pass raised 23 author/title mismatches and 12 date mismatches. <strong>All 35 were
+defects in the checking script, not in the tutorials.</strong></p>
+<ul>
+<li>The 23 were bare ID references in prose, with the full citation elsewhere in the file.</li>
+<li>The 12 were tutorials correctly giving BOTH a v1 and a v2 date; the script compared v1 only.
+  One was a Bourbaki seminar delivery date, correctly distinguished from the arXiv date.</li>
+</ul>
+<p>Positive evidence: the v1/v2 dates are accurate throughout. The writing agents opened the
+real arXiv pages; they did not recite from memory.</p>
+<h2>What this check CANNOT see</h2>
+<p>An invented formula. A theorem stated with no citation next to it. An author-year
+reference carrying no ID. <strong>Tier 0 moves no file from 'structural' to 'content-verified'.</strong>
+Only a read does that. See <code>verify/{slug}.md</code> for the tier 3 reads.</p>
+<h2>Citation density per file</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>Citation instances</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>random-interface-growth-quastel.md</code></td>
+<td>40</td>
+</tr>
+<tr>
+<td><code>random-matrices-localization-yau.md</code></td>
+<td>33</td>
+</tr>
+<tr>
+<td><code>arithmetic-patterns-ziegler.md</code></td>
+<td>24</td>
+</tr>
+<tr>
+<td><code>hardy-spaces-explicit-formulae-gerard.md</code></td>
+<td>24</td>
+</tr>
+<tr>
+<td><code>randomness-rotations-resonances-dolgopyat.md</code></td>
+<td>21</td>
+</tr>
+<tr>
+<td><code>modern-ml-methods-bartlett.md</code></td>
+<td>19</td>
+</tr>
+<tr>
+<td><code>maestro-serre-sarnak.md</code></td>
+<td>18</td>
+</tr>
+<tr>
+<td><code>langlands-function-fields-gaitsgory.md</code></td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>mesh-generation-pdes-buffa.md</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>learning-in-games-tardos.md</code></td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>prismatic-homotopy-lurie.md</code></td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>ricci-flow-singularities-brendle.md</code></td>
+<td>9</td>
+</tr>
+<tr>
+<td><code>geometric-concepts-pde-otto.md</code></td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>optimization-theory-practice-wright.md</code></td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>ramsey-numbers-morris.md</code></td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>knots-four-manifolds-manolescu.md</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>lens-of-circles-oh.md</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>quantitative-rectifiability-harmonic-measure-tolsa.md</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>shape-of-math-kontorovich.md</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>uniformization-complex-geometry-mok.md</code></td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</body>
+</html>

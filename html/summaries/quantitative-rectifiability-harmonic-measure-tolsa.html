@@ -1,0 +1,1826 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Quantitative Rectifiability and Harmonic Measure</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Xavier Tolsa (ICREA / Universitat Autònoma de Barcelona / Centre de Recerca Matemàtica)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=hyZsD4UWy1o">https://www.youtube.com/watch?v=hyZsD4UWy1o</a></div><div><b>Companion:</b> <a href="https://arxiv.org/abs/2607.16457">https://arxiv.org/abs/2607.16457</a></div><div><b>Level:</b> 2/5 (the PDE half) — 3/5 (the geometric measure theory)</div><div><b>Reading time:</b> ~60 min</div></div>
+<h1>Quantitative Rectifiability and Harmonic Measure — Xavier Tolsa</h1>
+<p><strong>Field:</strong> the intersection of geometric measure theory, harmonic analysis, and elliptic
+PDE. Concretely: how rough can the boundary of a domain be before the classical theory of
+the Dirichlet problem stops working, and what exactly is the geometric condition that
+draws the line.</p>
+<p><strong>Difficulty against your background: split, and the split is the useful part.</strong></p>
+<p>The PDE half of this talk is yours already. Harmonic measure, the Green function, the
+fundamental solution, layer potentials, non-tangential maximal functions, the Dirichlet
+and Neumann problems, Brownian motion — you have all of it. That half rates <strong>2/5</strong>: a
+handful of definitions to fix, not a subject to learn.</p>
+<p>The other half is a genuine gap. Rectifiability, pure unrectifiability, Hausdorff measure
+and density, Ahlfors–David regularity, uniform rectifiability, the β-coefficients, and
+Calderón–Zygmund operators taken with respect to a <em>general measure</em> rather than Lebesgue
+measure — none of this is in your training. That half rates <strong>3/5</strong>: real, and crossable
+in one sitting if the definitions are built by deforming things you know.</p>
+<p>So this tutorial compresses the PDE background into a calibration section you can skim,
+and spends its length building the geometric measure theory. Then it walks the talk.</p>
+<p><strong>What this tutorial builds.</strong> The single chain that the whole hour is about:</p>
+<blockquote>
+<p>mutual absolute continuity of harmonic measure and surface measure
+→ boundedness of a Riesz transform
+→ rectifiability of the boundary</p>
+</blockquote>
+<p>and the reverse implications, and the price paid at each arrow.</p>
+<p><strong>Note on sources.</strong> This one is unusually clean. There <em>is</em> a proceedings paper:
+<a href="https://arxiv.org/abs/2607.16457">arXiv:2607.16457</a>, Tolsa, <em>Interactions between
+quantitative rectifiability, singular integrals, and boundary value problems for harmonic
+functions</em>, submitted 17 July 2026, revised 21 July 2026, whose arXiv comment field reads
+verbatim "Survey paper for the ICM 2026 plenary lecture of the author." Every theorem the
+speaker stated is in it, with the formulas the auto-captions could not carry. I use the
+paper to restore the mathematics and the transcript to fix the order and the emphasis.</p>
+<p>They are not identical, and I flag every divergence. Three matter:</p>
+<ul>
+<li>The paper contains three large topics the talk skipped entirely: Jones' traveling
+  salesman theorem, Carleson's ε²-conjecture, and the Painlevé problem stated as a
+  characterization of <em>capacity</em>. Each gets a clearly labelled paper-only block below.</li>
+<li>The talk contains one thing the paper never mentions: <strong>Kakutani's theorem</strong>, and
+  therefore Brownian motion. The paper has no probability in it at all. That absence is
+  interesting, because Kakutani is the best anchor in the talk.</li>
+<li>The talk poses Kenig's 1991 question and then stops. The paper answers it, with the
+  speaker's own theorem. I include the answer, labelled as paper-not-podium.</li>
+</ul>
+<p><strong>Names.</strong> The auto-captions destroy essentially every proper noun in this lecture,
+including the speaker's. Corrections are in a table in §11, verified against the survey's
+bibliography except where marked.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>Here is the question with no jargon in it.</p>
+<p>You have a region of space. You hold its boundary at a prescribed temperature — hotter
+here, colder there. You wait. The interior settles into equilibrium. What is the
+temperature at a point inside?</p>
+<p>That is the Dirichlet problem for the Laplacian, and you have solved it a thousand times.
+For a nice region the answer is an integral: the interior temperature at a point <em>p</em> is a
+weighted average of the boundary temperatures, and the weight is a probability measure on
+the boundary. That measure is called <strong>harmonic measure with pole at p</strong>, written ω^p.
+Everything about the problem is encoded in it.</p>
+<p>Now make the boundary ugly. Not merely non-smooth — genuinely fractal. Infinitely many
+corners at infinitely many scales. Does the averaging formula survive? Does the weight
+measure still behave like surface area, so that a set of zero area on the boundary
+receives zero weight and vice versa? Does the solution still converge to its boundary
+values in any useful sense?</p>
+<p>The classical answer, from the 1970s and 1980s, is: yes, if the boundary is a Lipschitz
+graph. That is already a big class — corners allowed, cusps not. But it is a <em>smoothness</em>
+condition, and it is not the right one. It is sufficient, not necessary, and it is stated
+in coordinates.</p>
+<p>The discovery this talk is about is that <strong>the right condition is not smoothness at all.
+It is a measure-theoretic notion of "n-dimensional-ness" called rectifiability</strong>, and the
+correspondence between the PDE behaviour and the geometry is not one-way. It is an
+equivalence. Harmonic measure behaving well <em>forces</em> the boundary to be rectifiable. There
+is no topological assumption anywhere in the modern statements — no simple connectivity,
+no connectivity at all in the strongest one-phase theorem.</p>
+<p>And the tool that proves it is a singular integral operator, the Riesz transform, whose
+L² boundedness turns out to be <em>exactly equivalent</em> to rectifiability in the two
+dimensions where anyone can prove it. That equivalence is a theorem from 2014 and it is
+the load-bearing wall of the entire subject.</p>
+<p>Three fields, one chain. That is the talk.</p>
+<hr />
+<h2>2. Your anchor</h2>
+<p>The speaker hands you the first one from the podium, which is always the best case.</p>
+<h3>2.1 Harmonic measure is where Brownian motion exits</h3>
+<p>Tolsa states it plainly, calling it "the classical theorem from Kakutani from 1944":</p>
+<blockquote>
+<p>If Ω is a bounded open set, x₀ ∈ Ω, and E ⊂ ∂Ω, then ω^{x₀}(E) equals the probability
+that Brownian motion started at x₀ first exits Ω through E.</p>
+</blockquote>
+<p>That is the whole of harmonic measure, and it is a probabilistic object you already own.
+Release a particle at x₀. Let it diffuse. Record where it first touches the boundary.
+Repeat. The histogram you accumulate on ∂Ω <em>is</em> ω^{x₀}. The averaging formula
+u(x₀) = ∫ f dω^{x₀} is then the statement that the equilibrium temperature at x₀ is the
+expected boundary temperature at the exit point — the Feynman–Kac representation for the
+Laplacian with no potential and no killing.</p>
+<p>The speaker immediately extracts the intuition that carries the rest of the talk:</p>
+<blockquote>
+<p>"The more visible is some part of the boundary for Brownian motion, the larger will be
+harmonic measure."</p>
+</blockquote>
+<p>At an outward-pointing vertex, a diffusing particle hits early and often, so harmonic
+measure is large there. Down in a deep fjord, the particle has to thread a narrow channel
+without escaping first, so harmonic measure is small. On a fractal boundary this
+visibility varies wildly across scales, and the question of whether ω is comparable to
+surface measure becomes a question about whether the boundary is, in a quantitative sense,
+<em>flat enough at most scales at most points that visibility does not collapse</em>.</p>
+<p>Hold onto that sentence. Rectifiability is the rigorous version of it.</p>
+<p><strong>Divergence to note:</strong> the survey never mentions Kakutani, Brownian motion, or
+probability. It builds harmonic measure the functional-analytic way — the map
+f ↦ u_f(x₀) is a positive bounded linear functional of norm one on C(∂Ω) by the maximum
+principle, so the Riesz representation theorem hands you a probability measure. That is a
+cleaner derivation and a worse picture. The speaker chose the picture. So do I.</p>
+<h3>2.2 The Riesz transform is the field of a surface charge</h3>
+<p>The second anchor is not decoration either — the speaker states the identity it rests on.</p>
+<p>The <strong>n-dimensional Riesz transform</strong> of a measure ν in ℝ^d is</p>
+<p>\[\mathcal{R}^n\nu(x) = \int \frac{x-y}{|x-y|^{n+1}}\, d\nu(y).\]</p>
+<p>Tolsa's own justification for why this object has anything to do with harmonic functions
+is one sentence: "the Riesz kernel is the gradient of the fundamental solution of the
+Laplacian modulo some constant."</p>
+<p>In codimension one — n = d−1, the case that matters — that is literally true. The
+fundamental solution of −Δ in ℝ^d is E(x) = |x|^{2−d}/((d−2)κ_d) for d ≥ 3, and
+∇E(x) = −c·x/|x|^d. The kernel x/|x|^d <em>is</em> the Coulomb field of a unit point charge in d
+dimensions, up to sign and constant.</p>
+<p>So read the Riesz transform as electrostatics. Put a charge distribution ν on a surface.
+𝓡^{d−1}ν(x) is the electric field it produces at x. The truncated version 𝓡_ε^{d−1}ν
+ignores charge within distance ε of the observation point — it is the field with the
+self-interaction cut out. Asking whether the operator is bounded on L²(μ) is asking
+whether the field of a charge density in L²(μ) has finite energy in the same norm.</p>
+<p>And the speaker's explanation of why boundedness should force flatness is a physics
+argument dressed as an analysis argument:</p>
+<blockquote>
+<p>"The naive idea why there is a connection between the Riesz transform and
+rectifiability is that the existence and finiteness of this integral only occurs when
+there are many cancellations among the positive part of the integral and the negative
+part. That's the naive idea, and the precise statement is that the naive idea is
+correct."</p>
+</blockquote>
+<p>The kernel is <strong>odd</strong>. On a flat sheet, the in-plane components of the field cancel by
+reflection symmetry and the integral converges. On a set that fails to be flat at
+infinitely many scales, the symmetry that produced the cancellation is gone, and the
+integral has no reason to converge — and the theorems below say it does not.</p>
+<p>That is the content. Bounded field ⟺ flat surface, where "flat" is the quantitative
+measure-theoretic version.</p>
+<h3>2.3 The square function is Littlewood–Paley</h3>
+<p>The third anchor is structural rather than physical, and it is the one that makes the
+central definitions readable at a glance instead of intimidating.</p>
+<p>Every characterization in this talk has the shape</p>
+<p>\[\int_0^R \big(\text{a defect measured at scale } r\big)^2\, \frac{dr}{r} &lt; \infty .\]</p>
+<p>You have seen exactly this object. It is a <strong>square function</strong>. The defect at scale r
+plays the role of the Littlewood–Paley piece Δ_j f; the measure dr/r is the Haar measure
+of the multiplicative group of scales, the continuous version of "sum over dyadic j"; and
+finiteness of the L² sum over scales is the statement that the total defect, counted once
+per octave, is summable.</p>
+<p>Once you see that, "β-coefficient" stops being a new idea and becomes: <em>the L² distance,
+at scale r around x, from the measure to the nearest n-plane, normalized to be scale
+invariant.</em> And "the square function is finite almost everywhere" becomes: <em>the set is
+close to flat at almost every point, in a summable sense, across all scales.</em></p>
+<p>The dr/r is not cosmetic. It is what makes the criterion invariant under dilation, which
+is what allows a purely local, scale-by-scale condition to force a <em>global</em> conclusion
+about the set. The speaker singles this out as the remarkable feature of the David–Semmes
+theorem:</p>
+<blockquote>
+<p>"What is interesting and remarkable, I think, from this result is that from some local
+behaviour of these coefficients one can derive global information of the set."</p>
+</blockquote>
+<h3>2.4 Calibration: the PDE half you can skip</h3>
+<p>Skim this. It exists so we agree on words. All of it appears in the talk, and it is all
+standard.</p>
+<p><strong>The Dirichlet problem.</strong> Ω ⊂ ℝ^{n+1} bounded open, f ∈ C(∂Ω). Find u ∈ C(Ω̄), harmonic
+in Ω, with u|_{∂Ω} = f. Tolsa's own gloss: "one has a domain, one can think of f as a
+distribution of temperatures on the boundary, and u(x) is the temperature in equilibrium
+inside at the point x."</p>
+<p><strong>Dimension convention, which matters throughout.</strong> The ambient space is ℝ^{n+1} (or
+ℝ^d), and <strong>n is reserved for the dimension of the boundary and of the measures on it</strong>.
+So a hypersurface boundary in ℝ^d is (d−1)-dimensional, and the relevant Riesz transform
+is 𝓡^{d−1}. The talk and the paper use both letterings; I follow whichever source I am
+quoting and say which.</p>
+<p><strong>Harmonic measure.</strong> ω^p is the probability measure on ∂Ω with u_f(p) = ∫_{∂Ω} f dω^p for
+every f ∈ C(∂Ω). For a Borel set E ⊂ ∂Ω, ω^p(E) is the value at p of the harmonic
+extension of χ_E. It depends on the pole p, but <strong>if Ω is connected, harmonic measures
+with different poles are mutually absolutely continuous</strong> — one is a positive finite
+density times the other — so qualitative questions do not depend on the pole.</p>
+<p><strong>Mutual absolute continuity</strong>, written ω ≪≫ σ, means each measure is a positive finite
+density times the other: they have the same null sets. This is the property the whole talk
+is about. It is the precise version of "harmonic measure behaves like surface area."</p>
+<p><strong>Surface measure.</strong> σ = ℋ^{d−1}|_{∂Ω}, the (d−1)-dimensional Hausdorff measure on the
+boundary. For a smooth boundary this is ordinary surface area. For a rough one it is the
+only thing that still makes sense.</p>
+<p><strong>Green function.</strong> G(x,p) for Ω is the fundamental solution corrected to vanish on the
+boundary:</p>
+<p>\[G(x,p) = \mathcal{E}(x-p) - \int_{\partial\Omega} \mathcal{E}(x-z)\, d\omega^{p}(z).\]</p>
+<p>Read the correction term as the potential of the induced surface charge on a grounded
+conductor. That is not an analogy; it is the same equation. <strong>This identity is the hinge
+of the entire talk</strong> and we differentiate it in §5.7.</p>
+<p><strong>Non-tangential maximal function.</strong> For a fixed aperture a &gt; 0 and ξ ∈ ∂Ω, the
+non-tangential region is Γ_a(ξ) = {y ∈ Ω : |ξ−y| &lt; (1+a) dist(y,∂Ω)} — a cone with vertex
+at ξ that stays away from the rest of the boundary. Then 𝒩(u)(ξ) = sup_{y∈Γ_a(ξ)} |u(y)|.</p>
+<p><strong>The three L^p problems.</strong> With σ = ℋ^{d−1}|_{∂Ω}:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>statement</th>
+<th>reads as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(D_p)</td>
+<td>‖𝒩(u)‖<em L_p_σ_="L^p(σ)">{L^p(σ)} ≤ C‖f‖</em></td>
+<td>Dirichlet data in L^p controls the solution</td>
+</tr>
+<tr>
+<td>(R_p)</td>
+<td>‖𝒩(∇u)‖<em L_p_σ_="L^p(σ)">{L^p(σ)} ≤ C‖∇_t f‖</em></td>
+<td>tangential gradient of the data controls the gradient</td>
+</tr>
+<tr>
+<td>(N_p)</td>
+<td>‖𝒩(∇u)‖<em L_p_σ_="L^p(σ)">{L^p(σ)} ≤ C‖∂_ν u‖</em></td>
+<td>Neumann data controls the gradient</td>
+</tr>
+</tbody>
+</table></div>
+<p>The point of the non-tangential maximal function, as the speaker puts it, is that this
+estimate "determines the convergence of u to the values at the boundary for functions that
+are in L^p." Without it you have a harmonic function with no boundary trace worth the
+name.</p>
+<p>That is the whole prerequisite from your side. Everything from here is the part you do not
+have.</p>
+<hr />
+<h2>3. The bridge — geometric measure theory in six definitions</h2>
+<p>Each definition below is built by deforming something you already use. Each comes with a
+concrete instance. This section is the main event of the tutorial.</p>
+<h3>3.1 Hausdorff measure ℋ^s — box counting, done honestly</h3>
+<p>You know how to define the length of a curve and the area of a surface when they are
+parameterized. Hausdorff measure is how you do it when they are not — when you have an
+arbitrary set and no chart.</p>
+<p>For E ⊂ ℝ^d and ε ∈ (0,∞],</p>
+<p>\[\mathcal{H}^n_{\varepsilon}(E) = c_n \inf\Big\{\sum_i \operatorname{diam}(A_i)^n : E \subset \bigcup_i A_i,\ \operatorname{diam}(A_i)\le \varepsilon\Big\},\]</p>
+<p>and then ℋ^n(E) = lim_{ε→0} ℋ^n_ε(E), which exists because the infimum only increases as
+you shrink ε. The constant c_n is chosen so that ℋ^n agrees with Lebesgue measure on ℝ^n.</p>
+<p>Three things to internalize:</p>
+<ol>
+<li><strong>The limit ε → 0 is essential.</strong> With ε = ∞ you get the <em>Hausdorff content</em> ℋ^n_∞,
+   which is a genuinely different and coarser object; it appears in the talk's cone-point
+   theorem. Forcing the covering sets to be small is what makes the measure see fine
+   structure.</li>
+<li><strong>ℋ^1 is arclength and ℋ^n on a smooth n-manifold is its volume.</strong> The speaker says
+   exactly this. So this is not a new measure; it is the old one with the parameterization
+   removed.</li>
+<li><strong>The exponent is a dial, not a fact about the set.</strong> For any E there is a critical
+   exponent — the Hausdorff dimension — below which ℋ^s(E) = ∞ and above which it is 0.
+   The interesting sets are the ones where ℋ^n(E) is positive and finite <em>at</em> the critical
+   exponent.</li>
+</ol>
+<h3>3.2 Rectifiable and purely unrectifiable</h3>
+<p>Here is the definition. It is short, and its content is entirely in the words "countable"
+and "up to a null set."</p>
+<blockquote>
+<p><strong>E ⊂ ℝ^d is n-rectifiable</strong> if there is a countable family of Lipschitz maps
+g_i : ℝ^n → ℝ^d with ℋ^n(E ∖ ⋃_i g_i(ℝ^n)) = 0.</p>
+</blockquote>
+<p>Deform from "manifold" in two steps. First replace <em>smooth chart</em> by <em>Lipschitz map</em>: you
+allow corners, you allow the image to be a horrible non-injective mess, you only forbid
+infinite stretching. Second, allow <em>countably many</em> pieces and throw away a set of measure
+zero. What survives is not a shape. It is a measure-theoretic statement: <strong>almost all of
+the set, in the ℋ^n sense, can be covered by countably many Lipschitz images of ℝ^n.</strong></p>
+<p>Rectifiability is stable under countable unions — that is immediate from the definition
+and the speaker notes it. Curves of finite length are 1-rectifiable; smooth n-manifolds
+are n-rectifiable. Both are elementary.</p>
+<p>The opposite notion is the interesting one:</p>
+<blockquote>
+<p><strong>E is purely n-unrectifiable</strong> if ℋ^n(E ∩ Γ) = 0 for every n-rectifiable set Γ.</p>
+</blockquote>
+<p>Equivalently: no subset of E of positive ℋ^n measure is rectifiable. A curve of finite
+length can be threaded through such a set as carefully as you like and it will still catch
+zero length.</p>
+<p>These are not complementary — a general set splits into a rectifiable part and a purely
+unrectifiable part — but the dichotomy is the right one, and every theorem in the talk is
+a statement about which side of it something falls on.</p>
+<h3>3.3 The example that carries the whole talk: the four-corner Cantor set</h3>
+<p>The speaker builds it on a slide and returns to it three times. It is the standard
+counterexample of the subject and it is worth having in your hands.</p>
+<p>Start with the unit square in the plane. Replace it by four squares of side 1/4 sitting in
+its four corners. Replace each of those by four squares of side 1/16 in <em>their</em> corners.
+Iterate forever. E is the intersection of the nested unions.</p>
+<p>At generation k there are <strong>4^k squares Q_{k,i} of side 4^{−k}</strong>. Now compute the sum of
+diameters at generation k:</p>
+<p>\[\sum_i \operatorname{diam}(Q_{k,i}) = 4^k \cdot \sqrt{2}\cdot 4^{-k} = \sqrt{2},\]</p>
+<p><strong>independent of k.</strong> So the natural covering at every generation gives the same answer,
+and this is the numerical signature of a set that is exactly one-dimensional. With more
+work — the speaker says so and does not do it — one shows</p>
+<p>\[\mathcal{H}^1(E) = \sqrt{2}.\]</p>
+<p>Positive and finite. This set has honest one-dimensional length.</p>
+<p>And it is <strong>purely 1-unrectifiable.</strong> No rectifiable curve captures positive length of it.
+The speaker's picture is a curve drawn through the set, intersecting it, and the caption
+that the intersection has at most zero length.</p>
+<p>Sit with the contradiction between those two sentences for a moment, because it is where
+the whole subject lives. The set has the <em>measure</em> of a curve and none of the <em>structure</em>
+of one. It is one-dimensional in size and zero-dimensional in coherence. Every quantity
+that only sees size — Hausdorff measure, dimension, density — cannot tell it from a
+circle. Every quantity in this talk can.</p>
+<p>We will use it again for removability in §5.10 and as an exercise in §7.2.</p>
+<h3>3.4 Ahlfors–David regularity — dimension n at every point and every scale</h3>
+<p>Rectifiability is qualitative. Everything from here is its quantitative counterpart, and
+the first step is to demand that the set has the right dimension <em>uniformly</em>, not just in
+the limit.</p>
+<blockquote>
+<p>A Radon measure μ in ℝ^d is <strong>n-Ahlfors regular</strong> (equivalently n-AD-regular) if there
+is C₀ &gt; 0 with
+\[C_0^{-1} r^n \le \mu(B(x,r)) \le C_0\, r^n \quad\text{for all } x\in\operatorname{supp}\mu,\ 0&lt;r\le\operatorname{diam}(\operatorname{supp}\mu).\]
+If only the upper bound holds, μ is said to have <strong>n-polynomial growth</strong>. A closed set E
+is n-AD-regular if ℋ^n|_E is.</p>
+</blockquote>
+<p>Read it as: the measure of a ball behaves like r^n with constants, at every centre and
+every scale. It is exactly the doubling condition you know, sharpened from "μ(2B) ≲ μ(B)"
+to the specific power n.</p>
+<p>The density ratio the speaker writes on the board is the same object,</p>
+<p>\[\Theta_\mu^n(x,r) = \frac{\mu(B(x,r))}{r^n},\]</p>
+<p>and AD-regularity says Θ is bounded above and below.</p>
+<p>The four-corner Cantor set is 1-AD-regular. So is every Lipschitz graph. So is every
+smooth hypersurface, away from the boundary scale.</p>
+<h3>3.5 Uniform rectifiability — rectifiable, with constants</h3>
+<p>The speaker deliberately declines to define this precisely from the podium — "I will not
+define precisely what is uniform n-rectifiability, but I will say something" — and his
+"something" is the right thing to remember. Here is the full definition from the survey
+(§3.2), followed by his gloss.</p>
+<blockquote>
+<p>μ is <strong>uniformly n-rectifiable</strong> if it is n-AD-regular and there exist θ, M &gt; 0 such
+that for every x ∈ supp μ and 0 &lt; r ≤ diam(supp μ) there is a Lipschitz map
+g : B_n(0,r) ⊂ ℝ^n → ℝ^d with Lip(g) ≤ M and
+\[\mu\big(B(x,r)\cap g(B_n(0,r))\big) \ge \theta\, r^n.\]</p>
+</blockquote>
+<p>The phrase for this is <strong>big pieces of Lipschitz images</strong>: inside every ball, at every
+scale, a fixed fraction of the measure sits on a single Lipschitz image with a <em>uniform</em>
+Lipschitz constant.</p>
+<p>Compare with plain rectifiability, which allows countably many pieces with unbounded
+Lipschitz constants and permits an exceptional null set. Uniform rectifiability
+quantifies both: finitely much of the measure, uniformly good pieces, at every scale.</p>
+<p>It implies rectifiability. It is strictly stronger.</p>
+<p>The reason it is the right notion, and the reason David and Semmes invented it, is stated
+in the survey: uniformly rectifiable measures are precisely the class on which every
+singular integral operator with an odd Calderón–Zygmund kernel is L²-bounded. It was
+designed backwards, from the operator theory. We come to that in §5.8.</p>
+<h3>3.6 The β-coefficients — flatness defect at one point and one scale</h3>
+<p>Now the central quantitative object, and the speaker defines it fully.</p>
+<blockquote>
+<p>For a Radon measure μ, 1 ≤ p &lt; ∞, x ∈ ℝ^d, r &gt; 0:
+\[\beta_{p,\mu}^n(x,r) = \inf_L \left(\frac{1}{r^n}\int_{B(x,r)} \left(\frac{\operatorname{dist}(y,L)}{r}\right)^p d\mu(y)\right)^{1/p},\]
+the infimum over all n-planes L ⊂ ℝ^d. For p = ∞, replace the integral by a supremum
+over supp μ.</p>
+</blockquote>
+<p>Take it apart:</p>
+<ul>
+<li><strong>dist(y,L)/r</strong> — how far the point y is from the candidate plane, measured in units of
+  the ball's own radius. Dimensionless.</li>
+<li><strong>∫ ... dμ(y)</strong> — averaged against the measure itself, not against Lebesgue measure.
+  This is what makes it see the set rather than the ambient space.</li>
+<li><strong>1/r^n</strong> — the normalization. If μ is n-AD-regular then μ(B(x,r)) ≈ r^n, so this factor
+  turns the integral into an average.</li>
+<li><strong>inf over L</strong> — you get to pick the best plane. β measures the residual after the best
+  linear fit.</li>
+</ul>
+<p>So β^n_{2,μ}(x,r) is the <strong>root-mean-square residual of the best n-plane fit to μ inside
+B(x,r), in units of r</strong>. It is a least-squares regression coefficient. If μ inside the
+ball is supported on an n-plane, β = 0 exactly — the speaker says so. If the measure lives
+in a slab of thickness h around a plane, β ≲ h/r.</p>
+<p>The whole construction is scale invariant when μ is n-AD-regular: dilating the picture
+leaves β unchanged. That is what makes the dr/r integration in the next definition the
+correct one and not an arbitrary weighting.</p>
+<p><strong>Why p = 2 and not p = ∞.</strong> The p = ∞ version, β_∞, is Peter Jones' original coefficient
+and is the natural one for the traveling salesman theorem. The p = 2 version is the one
+that works in the theorems below, and the survey records something sharp about this: for
+sets of finite ℋ^n measure the characterization in §5.5 is <strong>true for p = 2 and false for
+every p ≠ 2</strong> (Tolsa, <em>Publ. Mat.</em> 63 (2019)). That is not a technical preference. It is
+the Hilbert-space exponent doing what Hilbert-space exponents do, and it is why the
+subject reads like harmonic analysis rather than like geometry.</p>
+<h3>3.7 Carleson conditions — the square function, and what it forces</h3>
+<p>Two ways to assemble the β's over scales, and the difference between them is the whole
+distinction between qualitative and quantitative.</p>
+<p><strong>Pointwise (qualitative).</strong> Fix x and integrate over scales with the invariant measure:</p>
+<p>\[\int_0^1 \beta_{2,E}^n(x,r)^2\, \frac{dr}{r} &lt; \infty \quad \text{for } \mathcal{H}^n\text{-a.e. } x\in E.\]</p>
+<p>Read: at almost every point, the flatness defect is square-summable across octaves.</p>
+<p><strong>Carleson (quantitative).</strong> Integrate over scales <em>and</em> over points, and demand the
+result be controlled by the measure of the ball:</p>
+<p>\[\int_{B(x,r)}\!\int_0^r \beta_{p,\mu}^n(y,t)^2\, \frac{dt}{t}\, d\mu(y) \le C\,\mu(B(x,r)).\]</p>
+<p>Read: the defect, integrated over the whole Carleson box above a ball, is bounded by the
+<em>base</em> of the box. This is the same shape as every Carleson-measure condition you have
+seen in H^p theory or in the Littlewood–Paley characterization of BMO. The measure
+β² (dt/t) dμ on the "space × scale" upper half space is a Carleson measure.</p>
+<p>The distinction is exactly the distinction between rectifiable and uniformly rectifiable.
+The pointwise condition characterizes the first; the Carleson condition characterizes the
+second. Both theorems are in §5.</p>
+<p>That is the bridge. Six definitions, all of which now have a picture attached. Everything
+from here is the talk.</p>
+<hr />
+<h2>4. A one-paragraph map before the walkthrough</h2>
+<p>The talk runs in three movements and one coda.</p>
+<p><strong>Movement one (§5.1–5.5): geometry.</strong> Rectifiability, its quantitative version, and the
+characterization of both by square functions of β-coefficients. Pure geometric measure
+theory and harmonic analysis; no PDE.</p>
+<p><strong>Movement two (§5.6–5.10): the operator.</strong> The Riesz transform, its identity with the
+gradient of the fundamental solution, the theorem that its L² boundedness is equivalent to
+rectifiability, and the payoff for removable singularities — the Painlevé problem.</p>
+<p><strong>Movement three (§5.11–5.13): the PDE.</strong> Harmonic measure, the one-phase and two-phase
+free boundary theorems, and the L^p solvability of the boundary value problems.</p>
+<p><strong>Coda (§5.14–5.15):</strong> what the paper does that the talk did not.</p>
+<hr />
+<h2>5. The talk, rebuilt</h2>
+<h3>5.1 Why rectifiability matters in analysis</h3>
+<p>Tolsa opens with the motivation, and it is a two-column slide: rectifiability appears in
+<strong>boundary value problems for elliptic PDE</strong> and in <strong>removable singularities</strong> for
+bounded holomorphic functions in the plane and for Lipschitz harmonic functions in higher
+dimensions.</p>
+<p>And he draws the distinction that organizes everything:</p>
+<blockquote>
+<p>"Broadly speaking there are two types of questions. The first one is [assuming]
+rectifiability, where one is usually interested in obtaining regularity results for
+solutions of elliptic PDEs such as harmonic functions. And in the other direction, we
+could assume good behaviour of certain PDE solutions and then we would like to
+characterize, or obtain, or prove rectifiability under this assumption."</p>
+</blockquote>
+<p>Direction one is classical: nice geometry gives nice analysis. Direction two — analysis
+forcing geometry — is the <em>free boundary</em> direction, and it is where all the recent work
+is. Keep the two directions separate as you read; almost every theorem below is a
+statement about one arrow or the other, and the two arrows have completely different
+proofs.</p>
+<p>He also states which domains he cares about, which is a useful filter: "we are interested
+in open sets whose boundaries may be very rough, because if we have an open set whose
+boundary is smooth then this is always true, and these domains are not interesting for
+us." His running example of a suitable domain is <strong>the complement of the four-corner
+Cantor set</strong>.</p>
+<h3>5.2 Two classical theorems, and the higher-dimensional collapse</h3>
+<p>Two results frame the subject.</p>
+<p><strong>F. and M. Riesz, 1916.</strong> If Ω is a <strong>simply connected</strong> domain in the plane with
+ℋ^1(∂Ω) &lt; ∞, then harmonic measure and arclength measure on ∂Ω are mutually absolutely
+continuous.</p>
+<p>Note the hypotheses. Finite length in particular implies the boundary is 1-rectifiable —
+that is not obvious but it is true, and the speaker says so. And simple connectivity is
+doing real work: this is a theorem about conformal maps in disguise.</p>
+<p><strong>What happens in higher dimensions: it fails.</strong> The speaker is blunt — "the analogous
+statement is false. There are counterexamples in both directions." His diagnosis is the
+right one: "topology in higher dimensions is not so determined." In the plane, simple
+connectivity plus finite length is a rigid combination because the Riemann map exists. In
+ℝ^3 it buys you nothing.</p>
+<p><strong>Dahlberg, 1977.</strong> The replacement. If Ω ⊂ ℝ^{n+1} is a <strong>Lipschitz domain</strong> — locally
+the region on one side of a rotated Lipschitz graph — then harmonic measure and surface
+measure are mutually absolutely continuous, and quantitatively so.</p>
+<p>The speaker skips the quantitative statement. The survey gives it, and it is worth having
+because it is the form all the later generalizations take. Writing ω^{x₀} for harmonic
+measure with a pole at corkscrew distance from a ball B centred on ∂Ω:</p>
+<p>\[\left(\fint_{B\cap\partial\Omega}\Big(\frac{d\omega^{x_0}}{d\sigma}\Big)^2 d\sigma\right)^{1/2} \le C \fint_{B\cap\partial\Omega}\frac{d\omega^{x_0}}{d\sigma}\, d\sigma = C\,\frac{\omega^{x_0}(B)}{\sigma(B)},\]</p>
+<p>and moreover ω^{x₀} is a doubling measure. The constants depend only on the dimension, the
+Lipschitz character, and the corkscrew constant.</p>
+<p>That display is an <strong>L² reverse Hölder inequality</strong> for the Poisson kernel dω/dσ. Reverse
+Hölder is the wrong-way inequality — the L² average controlled by the L¹ average — and it
+holds only for weights that do not concentrate. Its presence here is the statement that
+harmonic measure on a Lipschitz boundary is an A_∞ weight with respect to surface measure.
+That is a much stronger and much more usable statement than mutual absolute continuity,
+and it is the reason Dahlberg's theorem is the foundation of everything in §5.13.</p>
+<h3>5.3 The David–Semmes characterization</h3>
+<p>Now the geometry. This is Theorem 3.2 of the survey, and the speaker states it in the
+AD-regular case.</p>
+<blockquote>
+<p><strong>Theorem (David–Semmes, 1991/1993).</strong> Let μ be n-AD-regular in ℝ^d and 1 ≤ p &lt; 2n/(n−2)
+(in particular any 1 ≤ p ≤ 2 works for every n). Then μ is <strong>uniformly n-rectifiable</strong>
+if and only if for all x ∈ supp μ and 0 &lt; r ≤ diam(supp μ),
+\[\int_{B(x,r)}\int_0^r \beta_{\mu,p}^n(y,t)^2\, \frac{dt}{t}\, d\mu(y) \le C\, \mu(B(x,r)).\]</p>
+</blockquote>
+<p>The speaker states the right-hand side as C·r^n and notes it is comparable to
+μ(B(x,r)) by AD-regularity. Same thing.</p>
+<p>He credits the inspiration to Peter Jones' earlier work and to techniques from harmonic
+analysis — "multiscale arguments" — which is exactly right: the proof is a corona
+decomposition, the same stopping-time architecture as in the Carleson corona theorem.</p>
+<p>Then he makes the observation quoted in §2.3, that a purely <em>local</em> condition on the
+coefficients yields <em>global</em> structure, and gives the sharpest instance: in the plane, for
+a 1-AD-regular set E, this estimate holding for all x and r forces E to be contained in an
+AD-regular <strong>curve</strong>, because in the plane uniform 1-rectifiability is exactly containment
+in an AD-regular curve.</p>
+<p>That is worth pausing on. You verify an inequality about least-squares residuals at every
+location and scale, and out comes a single connected curve through the whole set.</p>
+<h3>5.4 Dropping Ahlfors regularity</h3>
+<p>AD-regularity is a strong hypothesis — it forbids the measure from being thin anywhere,
+at any scale. Can it be removed?</p>
+<blockquote>
+<p><strong>Theorem (Tolsa 2015; Azzam–Tolsa 2015).</strong> Let E ⊂ ℝ^d be ℋ^n-measurable with
+ℋ^n(E) &lt; ∞. Then E is <strong>n-rectifiable</strong> if and only if
+\[\int_0^1 \beta_{2,E}^n(x,r)^2\, \frac{dr}{r} &lt; \infty \quad\text{for } \mathcal{H}^n\text{-a.e. } x\in E.\]</p>
+</blockquote>
+<p>The speaker attributes it to "Jonas [Azzam] and myself in 2015." The two halves are in two
+papers: the forward implication in Tolsa, <em>Characterization of n-rectifiability in terms
+of Jones' square function: part I</em>, Calc. Var. PDE 54 (2015) 3643–3665; the converse in
+Azzam–Tolsa, <em>Part II</em>, GAFA 25 (2015) 1371–1412.</p>
+<p>Two remarks he makes and one he does not.</p>
+<p><strong>The pointwise version is the right generalization.</strong> With AD-regularity gone, the
+Carleson condition has nothing to be compared against, so you drop to a pointwise
+statement — finiteness of the square function at almost every point — and you get plain
+rectifiability rather than uniform rectifiability. Qualitative hypothesis, qualitative
+conclusion. Note the integral now has only dr/r and no dμ: "so notice again that this
+quantity is essentially scale invariant."</p>
+<p><strong>The density-weighted version is equivalent.</strong> The speaker adds: "the finiteness of this
+condition is equivalent to the finiteness of the same integral but here putting the
+density of this measure," meaning β² can be replaced by β²·Θ^n_{ℋ^n|_E}(x,r) without
+changing the truth of the statement.</p>
+<p><em>Reconstructed reasoning, not stated by either source:</em> this is believable because for a
+set of finite ℋ^n measure the upper density satisfies 2^{−n} ≤ θ^{<em>n}(x,E) ≤ 1 for
+ℋ^n-a.e. x ∈ E — the standard density theorem. So the weight Θ is bounded above and below
+by absolute constants at almost every point at small scales, and the two integrals are
+comparable there. </em><em>What would verify it:</em>* checking that the density theorem's bounds
+apply at the relevant scales uniformly enough. I have not done that; I flag the reasoning
+as mine, not the speaker's.</p>
+<p><strong>Why this matters for later:</strong> the weighted form β²·Θ (dr/r) is exactly the integrand in
+the Dąbrowski–Tolsa theorem of §5.9 and in the Jones–Wolff potential of §5.15. The
+speaker himself points forward: "the fact that this factor appears should not be so
+surprising if we remember [this theorem]."</p>
+<p><strong>The offshoot the speaker singles out.</strong> Naber and Valtorta proved a discrete,
+quantitative version of this theorem, with effective bounds on Hausdorff measure and
+Minkowski content, and applied it to bound the size of the <strong>singular sets of stationary
+and minimizing harmonic maps</strong>. Their techniques have since been used on the singular sets
+of many free boundary problems. (The talk says "elliptic PDEs" generally; the survey says
+harmonic maps and free boundary problems specifically. I quote the survey.)</p>
+<p>This is the escape hatch from the subject into geometric analysis, and it is why this
+machinery shows up in papers that look nothing like this talk.</p>
+<h3>5.5 The Riesz transform, defined properly</h3>
+<p>Definitions from §2.2, made precise, following the speaker.</p>
+<p>The n-dimensional Riesz transform of a signed Radon measure ν is
+𝓡^n ν(x) = ∫ (x−y)/|x−y|^{n+1} dν(y). The kernel has <strong>homogeneity −n</strong>, which is exactly
+critical against an n-dimensional measure: the integral is not absolutely convergent. The
+speaker's example is the one to keep: if μ is n-dimensional Lebesgue measure on an
+n-plane, the kernel is not locally integrable against it. "I think that you should know
+this," he says, and you do — it is the same divergence as the Hilbert transform on the
+line.</p>
+<p>The standard fix, and the same one you use for the Hilbert transform: <strong>truncate</strong>.</p>
+<p>\[\mathcal{R}^n_{\varepsilon}\nu(x) = \int_{|x-y|&gt;\varepsilon} \frac{x-y}{|x-y|^{n+1}}\, d\nu(y),\]</p>
+<p>and then the principal value pv 𝓡^n ν(x) = lim_{ε→0} 𝓡^n_ε ν(x) when it exists, and the
+maximal transform 𝓡^n_* ν(x) = sup_{ε&gt;0} |𝓡^n_ε ν(x)|.</p>
+<p>Notation used throughout: 𝓡^n_μ f = 𝓡^n(fμ), and <strong>𝓡^n μ means 𝓡^n applied to the
+constant function 1</strong> — the field of the measure itself, with no density.</p>
+<p>And the definition that matters:</p>
+<blockquote>
+<p><strong>𝓡^n_μ is bounded in L²(μ)</strong> means the truncated operators 𝓡^n_{μ,ε} are bounded on
+L²(μ) <strong>uniformly in ε</strong>.</p>
+</blockquote>
+<p>The survey is explicit that this formulation is chosen to sidestep the existence question
+for principal values. Uniform-in-ε boundedness is a statement you can verify; existence of
+the pointwise limit is a conclusion you hope to derive.</p>
+<p><strong>Here is the thing that makes this hard, and that I want to state loudly because it is
+the piece of the talk furthest from your training.</strong> You know Calderón–Zygmund theory with
+respect to Lebesgue measure. The measures here are <em>not</em> Lebesgue measure and need not be
+doubling. They live on fractals. They may have polynomial growth and nothing else. The
+entire classical CZ toolkit — the Calderón–Zygmund decomposition, the good-λ inequality,
+the standard T1 theorem — has to be rebuilt in the non-homogeneous setting. That rebuild
+is a body of work in its own right (Nazarov–Treil–Volberg, Tolsa, Volberg's CBMS
+monograph), and it is the technical substrate under every theorem in §5.8 and §5.9. The
+talk does not mention it. The survey mentions it only through its bibliography. It is the
+reason these theorems took twenty years.</p>
+<h3>5.6 The bridge: from harmonic measure to the Riesz transform</h3>
+<p>This is the hinge, and the speaker walks it slowly. Start from the Green function identity
+of §2.4:</p>
+<p>\[G(x,y_0) = \mathcal{E}(x-y_0) - \int_{\partial\Omega} \mathcal{E}(x-z)\, d\omega^{y_0}(z).\]</p>
+<p>Differentiate in x, and move the derivative under the integral:</p>
+<p>\[\nabla_x G(x,y_0) = \nabla\mathcal{E}(x-y_0) - c_d\, \mathcal{R}^{d-1}\omega^{y_0}(x).\]</p>
+<p><strong>That is the whole bridge.</strong> Up to a constant, ∇E is the Riesz kernel, so differentiating
+the correction term in the Green function produces exactly the Riesz transform of harmonic
+measure.</p>
+<p>Now the asymptotics that make it useful, in the speaker's own framing. When you study
+harmonic measure you take <strong>x near the boundary</strong> and <strong>y₀ deep inside</strong> Ω. Then
+|x − y₀| is bounded away from zero, so the term ∇E(x−y₀) is <em>bounded</em> — it is the harmless
+one. He calls it the error term explicitly and gives the reason: "this is bounded because
+the denominator of x − y₀ is bounded away from zero."</p>
+<p>So, up to a bounded error,</p>
+<p>\[\mathcal{R}^{d-1}\omega^{y_0}(x) \approx -c_d^{-1}\,\nabla_x G(x,y_0).\]</p>
+<p>The Riesz transform of harmonic measure <em>is</em> the gradient of the Green function. In
+electrostatic terms: harmonic measure is the induced surface charge on a grounded
+conductor, and its Riesz transform is the field that charge produces, which is the field
+of the Green function.</p>
+<p>Then the estimate that converts this into something checkable. The survey states it as a
+consequence of (6.4) plus "standard estimates relating the Green function and harmonic
+measure": if Ω satisfies the capacity density condition,</p>
+<p>\[\mathcal{R}_*^{d-1}\omega^{y_0}(x) \lesssim \sup_{r&gt;0} \frac{\omega^{y_0}(B(x,r))}{r^{d-1}}.\]</p>
+<p><strong>Read this line carefully, because it is the payoff.</strong> The left side is an analytic
+quantity — the maximal Riesz transform, the thing whose finiteness will force
+rectifiability. The right side is a purely <em>metric</em> quantity — the supremum of the density
+ratio of harmonic measure. So:</p>
+<blockquote>
+<p><strong>If harmonic measure has bounded (d−1)-density ratios at a point, the maximal Riesz
+transform is finite there.</strong></p>
+</blockquote>
+<p>And bounded density ratios is precisely what mutual absolute continuity with ℋ^{d−1} gives
+you, almost everywhere. That is how the hypothesis of the one-phase theorem turns into the
+hypothesis of the rectifiability theorem.</p>
+<blockquote>
+<p><em>[Gap, moderate impact: neither source proves the estimate |∇_x G(x,y₀)| ≲
+ω^{y₀}(B(x,r))/r^{d−1}. The speaker calls it "standard estimates from harmonic measure";
+the survey calls it "some standard estimates." It is the single most load-bearing
+unproved step in the talk. It is genuinely standard — it is the Caffarelli–Fabes–Mortola–
+Salsa type comparison between the Green function and harmonic measure — but you will not
+reconstruct it from either document.]</em></p>
+<p><em>[Gap, low impact: the speaker's on-the-fly derivation introduces the truncation
+parameter ε informally and says so — "I am cheating a little because I have introduced
+for free this epsilon." The survey's version is clean and I have followed it.]</em></p>
+</blockquote>
+<h3>5.7 NToV: the black box</h3>
+<p>Now the theorem the speaker himself calls "the main black box."</p>
+<blockquote>
+<p><strong>Theorem (Nazarov–Tolsa–Volberg, 2014).</strong> Let n = 1 or n = d−1.</p>
+<p><strong>(a) Qualitative version.</strong> Let E ⊂ ℝ^d be Borel with ℋ^n(E) &lt; ∞ and μ = ℋ^n|_E. If
+𝓡^n_μ is bounded in L²(μ), then E is n-rectifiable.</p>
+<p><strong>(b) Quantitative version.</strong> Let μ be n-AD-regular with 𝓡^n_μ bounded in L²(μ). Then
+μ is <strong>uniformly</strong> n-rectifiable.</p>
+<p><strong>(c) The form the speaker used.</strong> If E is Borel with ℋ^n(E) &lt; ∞ and μ is mutually
+absolutely continuous with ℋ^n on E, then E is n-rectifiable <strong>if and only if</strong>
+𝓡^n_* μ(x) &lt; ∞ for μ-a.e. x ∈ E.</p>
+</blockquote>
+<p>References: (b) for n = d−1, d &gt; 2 is Nazarov–Tolsa–Volberg, <em>Acta Math.</em> 213 (2014)
+237–321; (a) for n = d−1, d &gt; 2 is Nazarov–Tolsa–Volberg, <em>Publ. Mat.</em> 58 (2014) 517–532;
+the n = 1 cases are earlier — Mattila–Melnikov–Verdera, <em>Ann. of Math.</em> 144 (1996) 127–136
+for (b) and Léger, <em>Ann. of Math.</em> 149 (1999) 831–869 for (a), the latter also proved in
+an unpublished manuscript of Guy David.</p>
+<p><strong>The easy direction and the hard direction.</strong> The speaker separates them and the
+distinction is instructive.</p>
+<p><em>Rectifiable ⟹ bounded</em> was known: David and Semmes, resting on the Calderón–
+Coifman–McIntosh–Meyer theory of the Cauchy integral on Lipschitz graphs. This is the
+classical direction. Once you know the Cauchy integral is bounded on a Lipschitz graph,
+you build the general case by decomposing a rectifiable set into graph pieces.</p>
+<p><em>Bounded ⟹ rectifiable</em> is the <strong>David–Semmes problem</strong>, posed in the early 1990s, and it
+is much harder because it is a free boundary problem: you are given analytic information
+and asked to produce geometry. The speaker says so directly — "the other implications,
+that go from Riesz transform to rectifiability, are more like free boundary problems, are
+more difficult."</p>
+<p><strong>Why the plane was solved first, and why it did not generalize.</strong> For n = 1 the tool is
+<strong>Menger curvature</strong>: for three points x, y, z in the plane, c(x,y,z) is the reciprocal of
+the radius of the circle through them, and Melnikov's identity expresses the L² norm of
+the Cauchy transform in terms of a triple integral of c². Positivity of c² turns the
+problem into a geometric one about how much the measure bends. The speaker: "their methods
+used the so-called curvature of measures, and this is a notion that is useful in the plane
+but not in higher dimensions." There is no positive curvature-like quantity for the Riesz
+kernel in higher dimensions. The whole approach dies.</p>
+<p><strong>What replaced it, and I state these as facts, not as a proof.</strong> The speaker gives the
+one honest sentence about the difficulty:</p>
+<blockquote>
+<p>"In order to prove this theorem what we have to do is to estimate the β₂ coefficients in
+terms of the L² norm of the Riesz transform — that is, in particular, we have to
+estimate from below the Riesz transform of μ. And this is difficult because the Riesz
+transform involves a kernel that has cancellations, and these cancellations we don't
+know where they are. It's like when we wish to sum positive and negative numbers: we can
+bound from above, maybe with difficulty, but from below, if we want to show this is
+bounded away from zero, this could be more difficult."</p>
+</blockquote>
+<p>That is the entire conceptual obstacle in three sentences. <strong>Upper bounds on an
+oscillating integral are routine; lower bounds are not</strong>, because you cannot rule out
+cancellation you cannot locate.</p>
+<p>The ingredients, from the survey: the David–Semmes <strong>BAUP criterion</strong> for uniform
+rectifiability; <strong>quasiorthogonality</strong> arguments; a variational argument rooted in
+Eiderman–Nazarov–Volberg, who showed that vanishing lower density forces the Riesz
+transform to be <em>unbounded</em>; the <strong>maximum principle</strong> for harmonic functions, used to
+transfer L^∞ bounds on 𝓡^{d−1}(ℋ^{d−1}|_E) from E to the ambient space; and then the
+<strong>Fourier transform</strong> in the ambient space to produce the lower bounds.</p>
+<p><strong>I am declaring this a black box and stopping.</strong> Following the precedent of the Gaitsgory
+tutorial in this series (<code>langlands-function-fields-gaitsgory.md</code>), which declines to teach
+two objects and says so: this proof is a 90-page <em>Acta</em> paper resting on a rebuilt
+non-homogeneous Calderón–Zygmund theory. Neither the talk nor the survey attempts a sketch
+beyond the paragraph above. A tutorial that manufactured one would be manufacturing
+fiction. What you should take away is: the statement, the reason the plane was easy, the
+reason higher dimensions were not, and the fact that the maximum principle is what makes
+codimension one work.</p>
+<p><strong>Which is exactly why the general case is open.</strong></p>
+<blockquote>
+<p><strong>Question (David–Semmes problem, still open).</strong> For an integer n with 1 &lt; n &lt; d−1: if μ
+is n-AD-regular and 𝓡^n_μ is bounded in L²(μ), is μ uniformly n-rectifiable?</p>
+</blockquote>
+<p>The survey names the obstruction precisely: "the absence of a suitable maximum principle
+for functions of the form 𝓡^n η for n &lt; d−1." In codimension one the Riesz transform is
+the gradient of a harmonic potential and inherits the maximum principle. In intermediate
+dimensions it is not, and there is nothing to inherit. That is a clean statement of why a
+proof does not generalize, and it is the kind of statement worth collecting.</p>
+<h3>5.8 General measures: the Dąbrowski–Tolsa characterization</h3>
+<p>The theorem the speaker presents as the most recent piece of this story, joint with a
+former student.</p>
+<blockquote>
+<p><strong>Theorem (Dąbrowski–Tolsa).</strong> Let μ be a Radon measure in ℝ^d with <strong>no point masses</strong>.
+Then 𝓡^{d−1}_μ is bounded in L²(μ) <strong>if and only if</strong> both</p>
+<p>\[\mu(B(x,r)) \le C\, r^{d-1} \quad \text{for all } x\in\operatorname{supp}\mu,\ r&gt;0 \tag{growth}\]</p>
+<p>and</p>
+<p>\[\int_B \int_0^{\operatorname{rad}(B)} \beta_{2,\mu}^{d-1}(x,r)^2\, \Theta_\mu^{d-1}(x,r)\, \frac{dr}{r}\, d\mu(x) \le C^2\, \mu(B) \quad\text{for every ball } B. \tag{Carleson}\]</p>
+<p>Moreover the optimal constant C is comparable to ‖𝓡^{d−1}<em L_μ_L_μ_="L²(μ)→L²(μ)">μ‖</em>.</p>
+</blockquote>
+<p>(<em>Mem. Amer. Math. Soc.</em>, to appear. The d = 2 case was known from Azzam–Tolsa via Menger
+curvature.)</p>
+<p>This is the completion of the programme. Compare the three levels:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>hypothesis on μ</th>
+<th>geometric condition</th>
+<th>conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n-AD-regular</td>
+<td>Carleson condition on β²</td>
+<td>uniformly rectifiable (David–Semmes)</td>
+</tr>
+<tr>
+<td>ℋ^n(E) &lt; ∞</td>
+<td>pointwise square function finite</td>
+<td>rectifiable (Tolsa; Azzam–Tolsa)</td>
+</tr>
+<tr>
+<td>any Radon, no atoms</td>
+<td>growth + Carleson on β²·Θ</td>
+<td>𝓡^{d−1}_μ bounded on L² (Dąbrowski–Tolsa)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Note the <strong>density weight Θ</strong> in the third row — the same weight the speaker flagged in
+§5.4. With AD-regularity gone, Θ is no longer ≈ 1 and has to be carried explicitly. The
+speaker points this out and says it "should not be so surprising."</p>
+<p>Also note that the third row characterizes <em>L² boundedness of the operator</em> directly, not
+rectifiability. That is the right target once the measure is arbitrary, because an
+arbitrary measure with polynomial growth need not be rectifiable in any sense — it might
+have fractional dimension. The theorem says the operator does not care about
+rectifiability per se; it cares about the weighted Carleson condition.</p>
+<p><strong>A corollary the speaker did not mention and that is startling.</strong> From the survey: the
+condition (Carleson) is stable under bilipschitz maps, so <strong>L² boundedness of 𝓡^{d−1}_μ is
+a bilipschitz invariant</strong>, with the operator norm controlled by the bilipschitz constant.
+The survey adds: "up to now, the preceding result was not known even for the case of
+invertible affine maps such as φ(x₁,…,x_d) = (2x₁, x₂,…,x_d)."</p>
+<p>Sit with that. Until this theorem, nobody knew whether stretching a set by a factor of two
+in one direction preserved the L² boundedness of the Riesz transform on it. The kernel is
+not affine-invariant, and there was no way to track what a linear map does to it. Getting
+a <em>geometric</em> characterization — one phrased entirely in terms of β's and densities, which
+are visibly bilipschitz-stable — turns an intractable analytic question into a triviality.</p>
+<p>That is a general lesson worth extracting, and I return to it in §9.2.</p>
+<h3>5.9 Removable singularities and the Painlevé problem</h3>
+<p>The speaker calls this "essentially just one slide," and says something worth noting about
+motivation:</p>
+<blockquote>
+<p>"The initial motivation for the proof of the NTV theorem was not the application to
+harmonic measure, but the application to the study of removable singularities."</p>
+</blockquote>
+<p><strong>The definitions.</strong> A compact E ⊂ ℂ is <strong>removable for bounded holomorphic functions</strong> if
+for every open Ω ⊃ E, every function holomorphic and bounded on Ω ∖ E extends
+holomorphically to Ω. A compact E ⊂ ℝ^d is <strong>removable for Lipschitz harmonic functions</strong>
+if for every open Ω ⊃ E, every function Lipschitz on Ω and harmonic on Ω ∖ E extends
+harmonically to Ω.</p>
+<p>The speaker's calibration point: <strong>a single point is removable</strong>, by Riemann's removable
+singularity theorem. The question is how large a set can be and still be invisible to the
+function class.</p>
+<p>The <strong>Painlevé problem</strong>, from around 1900: give a metric-geometric description of the
+removable sets. And the speaker's framing of the dimensional analogy is exactly right:
+"the role of holomorphic functions in the plane is taken by Lipschitz harmonic functions
+in higher dimensions."</p>
+<p><strong>The theorem.</strong></p>
+<blockquote>
+<p><strong>Theorem (Nazarov–Tolsa–Volberg, 2014).</strong> Let E ⊂ ℝ^d be compact with ℋ^{d−1}(E) &lt; ∞.
+Then E is removable for Lipschitz harmonic functions <strong>if and only if</strong> E is purely
+(d−1)-unrectifiable.</p>
+</blockquote>
+<p>The plane case for Lipschitz harmonic functions is David–Mattila, <em>Rev. Mat.
+Iberoamericana</em> 16 (2000) 137–215. The plane case for <strong>bounded holomorphic</strong> functions is
+David's celebrated 1998 theorem, which resolved <strong>Vitushkin's conjecture</strong> for sets of
+finite length. So the theorem above is the extension of Vitushkin's conjecture to higher
+dimensions — the speaker says so.</p>
+<p><strong>And the four-corner Cantor set is the example.</strong> It has finite length in the plane, it is
+purely 1-unrectifiable, and therefore it is removable both for Lipschitz harmonic functions
+and for bounded holomorphic functions.</p>
+<p>Read what that means concretely. Take a bounded holomorphic function on the complement of
+the four-corner set. It extends across. The set is a genuinely one-dimensional obstacle —
+positive finite length — and bounded holomorphic functions cannot see it at all. Meanwhile
+a circle, with the <em>same</em> one-dimensional measure, is completely opaque: 1/z on the
+complement of a circle does not extend.</p>
+<p>Length is not what determines removability. <strong>Coherence</strong> is.</p>
+<p>The mechanism, once you have §5.7, is straightforward: removability is characterized by
+the non-existence of measures on E with polynomial growth and bounded Riesz transform;
+NToV says such a measure forces rectifiability; so removability ⟺ pure unrectifiability.</p>
+<h3>5.10 The one-phase problem</h3>
+<p>Back to harmonic measure, and the first of the two free boundary theorems. This is the
+converse direction to the Riesz brothers and to Dahlberg: <strong>analysis forcing geometry.</strong></p>
+<blockquote>
+<p><strong>Theorem (Azzam, Hofmann, Martell, Mayboroda, Mourgoglou, Tolsa, Volberg, 2016).</strong> Let
+Ω ⊂ ℝ^d be an <strong>arbitrary open set</strong> and y₀ ∈ Ω. Suppose there is E ⊂ ∂Ω with
+0 &lt; ℋ^{d−1}(E) &lt; ∞ such that ω^{y₀}|_E and ℋ^{d−1}|_E are mutually absolutely
+continuous. Then <strong>E is (d−1)-rectifiable</strong>.</p>
+</blockquote>
+<p>(<em>Geom. Funct. Anal.</em> 26 (2016) 703–728. It solves a question of Christopher Bishop.)</p>
+<p>The speaker emphasizes the hypothesis that is <em>not</em> there: "one interesting feature of
+this theorem is that here we don't have any topological assumption on Ω. This holds for
+arbitrary open sets Ω."</p>
+<p>That is the whole distance travelled since 1916. F. and M. Riesz needed simple
+connectivity in the plane. Dahlberg needed a Lipschitz graph. This needs <strong>nothing</strong> — not
+connectivity, not a corkscrew condition, not AD-regularity of the boundary. Just: on some
+piece of the boundary of finite positive measure, harmonic measure and surface measure
+have the same null sets. Geometry follows.</p>
+<p><strong>The proof chain, which the speaker gives in full and which is the centrepiece of the
+talk.</strong> See §6.</p>
+<h3>5.11 The two-phase problem, and the frozen snowflake</h3>
+<p>Now two domains instead of one.</p>
+<blockquote>
+<p><strong>Theorem (Azzam, Mourgoglou, Tolsa, Volberg, 2019).</strong> For d ≥ 3, let Ω₁, Ω₂ ⊂ ℝ^d be
+two <strong>disjoint</strong> domains with harmonic measures ω₁, ω₂. Let E ⊂ ∂Ω₁ ∩ ∂Ω₂ be Borel with
+ω₁|_E and ω₂|_E mutually absolutely continuous. Then E contains a (d−1)-rectifiable
+subset F with ω₁(E ∖ F) = 0, such that ω₁|_F and ω₂|_F are both mutually absolutely
+continuous with ℋ^{d−1}|_F.</p>
+</blockquote>
+<p>(<em>Amer. J. Math.</em> 141 (2019) 1259–1279; the planar case is Bishop's; a version under the
+capacity density condition is Azzam–Mourgoglou–Tolsa, <em>Comm. Pure Appl. Math.</em> 70 (2017)
+2121–2163, which additionally yields tangents ω_i-a.e.)</p>
+<p>Two disjoint domains sharing part of their boundary. Probe the shared boundary from inside
+Ω₁ with Brownian motion, then from inside Ω₂. If the two exit distributions see the same
+null sets, then almost all of the harmonic measure is concentrated on a rectifiable piece,
+and there it is comparable to surface measure.</p>
+<p><strong>Why it is hard.</strong> The speaker names the difficulty and it is the right one: "we don't
+assume a priori the boundary to have finite ℋ^{d−1} measure. It could be very rough,
+although this picture seems everything to be smooth." So there is no ambient
+finite-measure hypothesis to work inside — you must <em>produce</em> σ-finiteness as part of the
+conclusion.</p>
+<p><strong>The frozen snowflake.</strong> The example the speaker draws to show what the theorem is
+actually saying, and it is a good one. Build a von Koch snowflake, but at each stage,
+<strong>freeze one of the segments</strong> — leave it alone instead of replacing it with the bumped
+pattern. Take Ω₁ to be the interior and Ω₂ the exterior.</p>
+<p>Then the boundary has two parts:</p>
+<ul>
+<li>a <strong>countable union of line segments</strong> — the frozen ones, one per stage per location —
+  which is 1-rectifiable;</li>
+<li>a <strong>fractal remainder</strong>, which has infinite length and is purely 1-unrectifiable.</li>
+</ul>
+<p>One can check that interior and exterior harmonic measures are mutually absolutely
+continuous on the <em>whole</em> boundary. So the theorem applies, and its conclusion is:
+harmonic measure is concentrated on the rectifiable part. <strong>All of it lives on the frozen
+segments. The fractal part, despite being infinitely long, carries essentially none.</strong></p>
+<p>That is exactly Kakutani's visibility intuition from §2.1, made into a theorem. The
+diffusing particle overwhelmingly exits through the flat pieces. The fractal part is
+infinitely long and effectively invisible.</p>
+<blockquote>
+<p><em>[Gap, low impact: the speaker gives no precise construction of the frozen snowflake and
+no formula — "if you don't remember the precise construction, don't worry." The survey
+does not contain this example. The description above is faithful to what he said and is
+qualitative because his was.]</em></p>
+</blockquote>
+<p><strong>The proof route</strong>, from the survey, because it names the tools:</p>
+<ol>
+<li>Reduce to showing 0 &lt; θ^{*,d−1}(x, ω₁) := limsup_{r→0} ω₁(B(x,r))/(2r)^{d−1} &lt; ∞ for
+   ω₁-a.e. x ∈ E. Given that, rectifiability of F follows from the one-phase theorem.</li>
+<li>The <strong>upper</strong> bound is standard. The <strong>lower</strong> bound is the difficulty.</li>
+<li>For the lower bound: suppose there is F ⊂ ∂Ω₁ ∩ ∂Ω₂ with positive ω₁ measure on which
+   the density vanishes. Apply the rectifiability criterion below in a small ball at a
+   density point of F. It produces a uniformly rectifiable set carrying a non-negligible
+   portion of the measure, on which the density is positive — contradiction.</li>
+<li>Getting the criterion's hypotheses to hold requires the <strong>Alt–Caffarelli–Friedman
+   monotonicity formula</strong> and a delicate blowup argument in the style of Kenig–Preiss–Toro,
+   plus the Green-function identity of §5.6.</li>
+</ol>
+<p><strong>The rectifiability criterion.</strong> The speaker explicitly declines to state it precisely —
+"I will not state the precise criterion for rectifiability, but instead roughly speaking"
+— and then gives the shape: a ball B, a measure μ, β small so most of the measure is near
+a plane, and the <strong>L² oscillation of 𝓡^{d−1}μ about its mean on B small</strong>; conclusion, a
+big piece of μ inside B sits on a rectifiable set, which forces that piece to be
+absolutely continuous with respect to ℋ^{d−1}.</p>
+<p>Here is the survey's precise version (Girela-Sarrión–Tolsa, <em>Calc. Var. PDE</em> 57 (2018);
+the variant stated is from the CPAM two-phase paper). Write Θ^n_μ(B) = μ(B)/rad(B)^n and
+P^n_μ(B) = Σ_{j≥0} 2^{−j} Θ^n_μ(2^j B).</p>
+<blockquote>
+<p><strong>Theorem.</strong> Let μ be Radon in ℝ^d and B a ball with μ(B) &gt; 0 such that:
+<strong>(a)</strong> P^{d−1}<em μ_1="μ,1">μ(B) ≤ C₀ Θ^{d−1}_μ(B);
+<strong>(b)</strong> there is a (d−1)-plane L through the centre of B with
+β^{d−1,L}</em>}(B) ≤ δ Θ^{d−1<em 0_r_2rad_B_="0&lt;r≤2rad(B)">μ(B);
+<strong>(c)</strong> there is G_B ⊂ B with
+sup</em>} Θ^{d−1<em>μ(x,r) + 𝓡^{d−1}</em><em>(χ_{2B}μ)(x) ≤ C₁ Θ^{d−1}_μ(B) for x ∈ G_B,
+and μ(B ∖ G_B) ≤ δ μ(B);
+</em><em>(d)</em>* ∫<em μ_G_B="μ,G_B">{G_B} |𝓡^{d−1}μ − m</em>_μ(B)² μ(B).}(𝓡^{d−1}μ)|² dμ ≤ τ Θ^{d−1</p>
+<p>Then for δ, τ small enough (depending on C₀, C₁) there is θ &gt; 0 and a uniformly
+(d−1)-rectifiable set Γ with μ(G_B ∩ Γ) ≥ θ μ(B).</p>
+</blockquote>
+<p>Reading the hypotheses in the survey's own gloss: (a) is a doubling-type condition on B;
+(b) says the measure in B is concentrated near a hyperplane through the centre; (c) says
+that on most of B, both the density ratios and the maximal Riesz transform are controlled;
+(d) is the key one — the Riesz transform has <strong>small oscillation about its mean</strong>.</p>
+<p>The survey adds a candid line: "It is not clear to the author whether the assumptions in
+the theorem are sharp. For example, it is natural to wonder if the assumption (b) can be
+eliminated."</p>
+<blockquote>
+<p><em>[Correction, moderate impact: the speaker says the smallness hypothesis is on the
+</em><em>β_{μ,2}</em><em> coefficient. The survey's stated version uses </em><em>β_{μ,1}</em><em>. I have quoted the
+survey. The distinction matters if you go to the source.]</em></p>
+</blockquote>
+<h3>5.12 The quantitative boundary value problems, and where the talk stops</h3>
+<p>The last movement, which the speaker compresses into a single slide and then ends.</p>
+<p>The setting: Ω a domain with (d−1)-AD-regular boundary, σ = ℋ^{d−1}|_{∂Ω}, cones and
+non-tangential maximal function as in §2.4, and the three solvability statements (D_p),
+(R_p), (N_p).</p>
+<p>The classical results the speaker names: these problems are solvable in <strong>L²</strong> in Lipschitz
+domains, by "deep results and very important results due to Dahlberg, Verchota, and
+Dahlberg and Kenig from the 80s." Restoring the attributions from the survey:</p>
+<ul>
+<li><strong>Dahlberg, 1977:</strong> (D_2) in Lipschitz domains, via the reverse Hölder inequality of
+  §5.2.</li>
+<li><strong>Verchota, 1984:</strong> (R_2) in Lipschitz domains, <em>J. Funct. Anal.</em> 59 (1984) 572–611.</li>
+<li><strong>Dahlberg and Kenig, 1987:</strong> (R_p) and (N_p) for p ∈ (1, 2+ε) in Lipschitz domains,
+  <em>Ann. of Math.</em> 125 (1987) 437–465.</li>
+<li>Earlier, <strong>Fabes, Jodeit, and Rivière:</strong> both problems for all p ∈ (1,∞) in C¹ domains.</li>
+</ul>
+<p>The survey notes that all of these rest on proving the <strong>invertibility of the double layer
+potential</strong> in L^p — which is a method you know, and which is exactly why C¹ and Lipschitz
+are the natural classes for it.</p>
+<p>And then the question that ends the talk:</p>
+<blockquote>
+<p><strong>Kenig's question (posed in his 1991 CBMS lectures; published as Problem 3.2.2 in
+<em>Harmonic analysis techniques for second order elliptic boundary value problems</em>, AMS
+1994).</strong> In a bounded <strong>chord-arc</strong> domain Ω ⊂ ℝ^d, does there exist p &gt; 1 such that the
+regularity and Neumann problems for the Laplacian are solvable in L^p?</p>
+</blockquote>
+<p>The speaker's closing sentence: "in the last years the introduction of these techniques
+from quantitative rectifiability and other ideas have allowed to obtain many results in
+this area. So I finish here."</p>
+<p>He names none of them. That is the largest gap in the talk.</p>
+<blockquote>
+<p><em>[Gap in the talk, structural — but low net impact on this tutorial, because the survey's
+§7 covers it in full and I restore it below. The talk poses the field's central open
+question of the 1990s and stops without saying that it has been answered, in part by the
+speaker.]</em></p>
+</blockquote>
+<h3>5.13 The slide after the talk ended (paper, not podium)</h3>
+<p>Everything in this section is from the survey. None of it was spoken.</p>
+<p><strong>First, the vocabulary of rough domains</strong>, which is the taxonomy the field runs on:</p>
+<ul>
+<li><strong>Corkscrew:</strong> for every x ∈ ∂Ω and r ∈ (0, 2diam Ω), there is a ball B ⊂ B(x,r) ∩ Ω
+  with rad(B) ≥ c₁ r. <em>There is always room inside, at every scale.</em> <strong>Two-sided
+  corkscrew</strong> demands it of the exterior too.</li>
+<li><strong>Harnack chain condition:</strong> any two points of Ω are joined by a chain of balls staying
+  in Ω, of length logarithmic in the ratio of their separation to their distance from the
+  boundary. <em>You can get from anywhere to anywhere without squeezing.</em></li>
+<li><strong>Uniform</strong> = corkscrew + Harnack chain. <strong>NTA</strong> (non-tangentially accessible, from
+  Jerison–Kenig) = uniform + two-sided corkscrew. <strong>Chord-arc</strong> = NTA + (d−1)-AD-regular
+  boundary. <strong>Two-sided chord-arc</strong> = Ω and its exterior both chord-arc.</li>
+</ul>
+<p>Note that these are <em>quantitative topology</em> conditions, and that they replace simple
+connectivity. That is the higher-dimensional substitute the speaker said was missing in
+§5.2.</p>
+<p><strong>Second, the geometric characterization of L^p solvability of the Dirichlet problem.</strong>
+This is the headline of the survey's §7, and it is the direct answer to the question in
+§1 of this tutorial.</p>
+<blockquote>
+<p><strong>Theorem (Azzam, Hofmann, Martell, Mourgoglou, Tolsa, <em>Invent. Math.</em> 222 (2020)
+881–993).</strong> Let Ω ⊂ ℝ^d, d ≥ 3, be open with (d−1)-AD-regular boundary satisfying the
+corkscrew condition. The following are equivalent:
+<strong>(a)</strong> Ω has big pieces of chord-arc subdomains;
+<strong>(b)</strong> harmonic measure for Ω is in local weak-A_∞.</p>
+<p>And both are equivalent to: <strong>∂Ω is uniformly (d−1)-rectifiable and Ω satisfies the weak
+local John condition.</strong></p>
+</blockquote>
+<p>Local weak-A_∞ is exactly the reverse Hölder condition of §5.2 holding for some p &gt; 1,
+which by the survey's Theorem 7.1 is exactly the L^p solvability of the Dirichlet problem.</p>
+<p>So, in one line: <strong>the Dirichlet problem is L^p-solvable if and only if the boundary is
+uniformly rectifiable and the domain is quantitatively connected.</strong> Geometry and
+connectivity, separately necessary, jointly sufficient. That is the answer to "how rough
+can the boundary be," and it is a complete answer.</p>
+<p><strong>Third, a characterization that will interest you specifically</strong>, because it is a
+Littlewood–Paley statement:</p>
+<blockquote>
+<p><strong>Theorem (Hofmann–Martell–Mayboroda, and the converse by Garnett–Mourgoglou–Tolsa,
+<em>Duke Math. J.</em> 167 (2018) 1473–1524).</strong> Let Ω ⊂ ℝ^d, d ≥ 2, be a corkscrew domain with
+(d−1)-AD-regular boundary. Then <strong>∂Ω is uniformly (d−1)-rectifiable if and only if</strong>
+there is C &gt; 0 such that for every bounded harmonic u on Ω and every ball B centred on
+∂Ω,
+\[\int_B |\nabla u(x)|^2\, \operatorname{dist}(x,\partial\Omega)\, dx \le C\, \|u\|_{L^\infty(\Omega)}^2\, \operatorname{rad}(B)^{d-1}.\]</p>
+</blockquote>
+<p>That left-hand side is the classical Carleson measure estimate for harmonic functions —
+the one that gives you Littlewood–Paley theory and the H¹–BMO duality on the half space.
+The theorem says: <strong>that estimate holds if and only if the boundary is uniformly
+rectifiable.</strong> The analytic tool and the geometric hypothesis are the same statement.</p>
+<p><strong>Fourth, Kenig's question, answered.</strong></p>
+<blockquote>
+<p><strong>Theorem (Mourgoglou–Tolsa, <em>Duke Math. J.</em> 173 (2024) 1731–1837).</strong> Let Ω ⊂ ℝ^d be a
+bounded corkscrew domain with (d−1)-AD-regular boundary. For p ∈ (1,∞), the Dirichlet
+problem (D_{p′}) is solvable <strong>if and only if</strong> the regularity problem (R̃<em Ẇ_1_p="Ẇ^{1,p">p) is
+solvable, where R̃ is the regularity problem stated with the Hajłasz–Sobolev norm
+‖f‖</em> in place of ‖∇}(∂Ω)<em L_p="L^p">t f‖</em>.</p>
+</blockquote>
+<p>Consequences the survey draws: for chord-arc domains (D_{p′}) holds for p′ large, hence
+(R̃<em L_p="L^p">p) holds for p small; and for <strong>two-sided chord-arc</strong> domains the boundary supports a
+weak q-Poincaré inequality for every q ≥ 1, so ‖∇_t f‖</em> and the
+genuine (R_p) is solvable for p &gt; 1 small. } ≈ ‖f‖_{Ẇ^{1,p}<strong>Kenig's regularity question: yes.</strong></p>
+<p>The Hajłasz–Sobolev detour is worth a sentence, because it is a nice piece of engineering.
+On a rough boundary there may be no tangential gradient to speak of. Hajłasz's definition
+sidesteps it: g is an upper gradient of f if |f(x) − f(y)| ≤ |x−y|(g(x) + g(y)) for
+σ-a.e. x, y, and ‖f‖<em L_p="L^p">{Ẇ^{1,p}} is the infimum of ‖g‖</em> over such g. No derivative, no
+chart, no smoothness — just a metric-space substitute for the mean value theorem. The
+survey notes that in the absence of a connectivity condition (D_{p′}) ⟹ (R_p) can <em>fail</em>,
+so the switch to R̃ is not cosmetic.</p>
+<p>The proof strategy, one sentence from the survey, because it is a nice construction: build
+an "almost harmonic extension" v of the boundary data whose distributional Laplacian
+satisfies an L^p-Carleson condition and whose normal derivative is controlled by the
+Hajłasz gradient, using a corona decomposition of Ω into interior Lipschitz subdomains
+plus a buffer region; then a duality argument gives a one-sided Rellich inequality
+‖∂<em L_p="L^p">ν u‖</em>; then layer potentials finish it.} ≤ C‖f‖_{Ẇ^{1,p}</p>
+<p><strong>Fifth, the Neumann problem is still open.</strong></p>
+<blockquote>
+<p><strong>Question (survey 7.5).</strong> Is there p &gt; 1 such that the Neumann problem is L^p-solvable
+in chord-arc domains?</p>
+</blockquote>
+<p>Best known: Hofmann–Mitrea–Taylor proved (N_p) for all p ∈ (1,∞) in <strong>SKT domains</strong> —
+chord-arc with outer unit normal in VMO, which forces Reifenberg flatness,
+lim_{r→0} β^{d−1}_{∞,∂Ω}(x,r) = 0 uniformly. And Mourgoglou–Tolsa (2024) get it for
+chord-arc domains where (R_p) is solvable and which have <strong>very big pieces</strong> of Lipschitz
+subdomains — the γ in the big-pieces definition taken close to 1.</p>
+<p>The survey's own assessment: "there has been little progress since the proof of the
+solvability for p ∈ (1, 2+ε) in Lipschitz domains by Dahlberg and Kenig." Forty years.
+Note the asymmetry — Dirichlet is characterized completely, regularity is characterized
+completely relative to Dirichlet, and Neumann is essentially where it was in 1987.</p>
+<h3>5.14 What else is in the paper and not in the talk</h3>
+<p>Three more topics, listed briefly so you know they exist and know they are not what the
+talk did.</p>
+<p><strong>Jones' analyst's traveling salesman theorem</strong> (survey §3.1). A set E ⊂ ℝ^d is contained
+in a curve of finite length if and only if Σ_{Q dyadic} β^1_{∞,E}(3Q)² ℓ(Q) &lt; ∞, and the
+length of the shortest such curve is comparable to diam(E) plus that sum. Jones for the
+plane; Okikiolu for one implication in higher dimensions. This is the origin of the whole
+β-coefficient enterprise and the speaker credits Jones in passing without stating it.</p>
+<p><strong>Carleson's ε²-conjecture</strong> (survey §3.4–3.5). <em>This is in the brief for this tutorial and
+in the paper's abstract, and the talk does not mention it at all.</em> Stating it briefly,
+labelled as paper-only: for a Jordan domain Ω₁ ⊂ ℝ² with Γ = ∂Ω₁ and Ω₂ the exterior, let
+I_i(x,r) be the longest open arc of ∂B(x,r) inside Ω_i, and</p>
+<p>\[\varepsilon(x,r) = \frac{1}{r}\max\big(|\pi r - \mathcal{H}^1(I_1(x,r))|,\ |\pi r - \mathcal{H}^1(I_2(x,r))|\big),\]</p>
+<p>so ε(x,r) = 0 exactly when both arcs are semicircles. Then Carleson's conjecture, now a
+theorem (Jaye, Tolsa, Villa, <em>Ann. of Math.</em> 194 (2021) 97–161), says
+∫₀¹ ε(x,r)² dr/r &lt; ∞ if and only if Γ has a tangent at x, up to ℋ^1-null sets; in
+particular the set where the square function is finite is 1-rectifiable. Fleschler, Tolsa
+and Villa extended it to ℝ^d, where the sharp coefficient involves the <strong>Dirichlet
+eigenvalues</strong> of the two spherical caps cut out by Ω₁ and Ω₂ and the Friedland–Hayman
+inequality α₁ + α₂ ≥ 2 — which is the engine of the Alt–Caffarelli–Friedman monotonicity
+formula.</p>
+<p>Following the precedent set by the Gaitsgory tutorial in this series with
+Kapustin–Witten: <strong>a suggested topic that the talk does not support gets named as absent,
+not woven in.</strong> The ε²-conjecture is real, important, and the speaker's own work. He did
+not talk about it. Now you know it exists and know it is not what you heard.</p>
+<p><strong>The Painlevé problem as a capacity statement</strong> (survey §5). The talk gives removability
+for sets of finite measure. The survey gives the full solution, which is about <em>capacity</em>.
+Define the Lipschitz harmonic capacity κ(E) = sup |⟨Δf, 1⟩| over Lipschitz
+f : ℝ^d → ℝ harmonic off E with ‖∇f‖_∞ ≤ 1 — the higher-dimensional analogue of Ahlfors'
+analytic capacity γ. Then κ(E) ≈ sup{μ(E) : U_μ ≤ 1 on E}, where</p>
+<p>\[U_\mu(x) = \sup_{r&gt;0}\Theta^{d-1}_\mu(x,r) + \left(\int_0^\infty \beta^{d-1}_{2,\mu}(x,r)^2\, \Theta^{d-1}_\mu(x,r)\, \frac{dr}{r}\right)^{1/2}\]</p>
+<p>is the <strong>Jones–Wolff potential</strong>. The survey calls this "a possible solution of the
+Painlevé problem for Lipschitz harmonic functions" — a metric-geometric characterization
+of an analytic capacity, which is what Painlevé asked for in 1900. Note that the integrand
+is exactly the Dąbrowski–Tolsa integrand of §5.8. Everything in this subject is the same
+square function.</p>
+<p><strong>Two open problems worth knowing</strong>, both from the survey and neither in the talk:</p>
+<ul>
+<li><strong>Vitushkin's Favard length conjecture.</strong> Fav(E) = ∫₀^π ℋ^1(P_θ(E)) dθ, the average
+  length of the shadows. For sets of finite length, positive Favard length ⟺ positive
+  analytic capacity, by David's theorem plus Besicovitch. For general sets it is open in
+  one direction: Jones and Murai built a set with zero Favard length and positive analytic
+  capacity, so one implication is false; <strong>whether positive Favard length implies positive
+  analytic capacity is open</strong>. Dąbrowski proved a quantitative Besicovitch projection
+  theorem in 2024, which was the missing tool, but the survey says it is not yet clear
+  whether it applies.</li>
+<li><strong>The dimension of harmonic measure.</strong> Jones and Wolff: dim_H ω ≤ 1 for <em>any</em> planar
+  domain. Bourgain, 1987: dim_H ω ≤ d − ε_d in ℝ^d, for some ε_d &gt; 0 depending only on d.
+  The natural guess ε_d = 1 is <strong>false</strong> — Wolff built a snowflake domain in ℝ^d, d ≥ 3,
+  with dim_H ω &gt; d − 1. Bishop and Jones conjecture ε_d = 1/(d−1); the survey says "at
+  present there is not much evidence supporting this conjecture."</li>
+</ul>
+<p>That second one is worth carrying around. In the plane, harmonic measure never has
+dimension above 1 no matter how bad the domain — Brownian motion cannot spread its exit
+distribution across more than a curve's worth of boundary. In three dimensions, that fails,
+and nobody knows by how much.</p>
+<hr />
+<h2>6. The one argument</h2>
+<p>The centrepiece of the talk is the proof of the one-phase theorem (§5.10), and the speaker
+gives it in full at the level of the chain of implications. It is short, it uses everything
+above, and it is worth having exactly.</p>
+<p><strong>Claim.</strong> Ω ⊂ ℝ^d arbitrary open, y₀ ∈ Ω, E ⊂ ∂Ω with 0 &lt; ℋ^{d−1}(E) &lt; ∞, and
+ω^{y₀}|_E ≪≫ ℋ^{d−1}|_E. Then E is (d−1)-rectifiable.</p>
+<p><strong>Step 1 — the hypothesis gives bounded density ratios.</strong> Mutual absolute continuity means
+ω^{y₀}|_E = h·ℋ^{d−1}|_E with h positive and finite a.e. Since ℋ^{d−1}(E) &lt; ∞, the
+standard density theorem bounds the density ratios of ℋ^{d−1}|_E, and hence of ω^{y₀},
+above at a.e. point of E — with a bound that may depend on the point but not on the scale.</p>
+<p>The speaker states the outcome exactly: the quantity is "bounded uniformly in ε for almost
+all points. Perhaps the bound will depend on x, but not on ε."</p>
+<p><strong>Step 2 — bounded density ratios give a finite maximal Riesz transform.</strong> Apply the Green
+function estimate of §5.6:</p>
+<p>\[\mathcal{R}_*^{d-1}\omega^{y_0}(x) \lesssim \sup_{r&gt;0}\frac{\omega^{y_0}(B(x,r))}{r^{d-1}} &lt; \infty \quad \text{for } \omega^{y_0}\text{-a.e. } x\in E.\]</p>
+<p>This is the only place the PDE enters. Everything before it is measure theory and
+everything after it is harmonic analysis. <strong>The Green function identity is the entire
+bridge</strong>, and it is one differentiation of one representation formula.</p>
+<p><strong>Step 3 — from a.e.-finiteness to L² boundedness on a subset.</strong> A.e. finiteness is
+qualitative; NToV wants an operator bound. The passage is standard harmonic analysis:
+since 𝓡^{d−1}_<em> ω is finite a.e. on E, by Chebyshev it is </em>uniformly* bounded on a subset
+of positive measure, and a T1/good-λ argument upgrades uniform pointwise bounds on a big
+piece to L² boundedness there. The speaker: "using this fact and some tools from harmonic
+analysis, one deduces that E contains some subset F with positive ℋ^{d−1} measure such
+that the Riesz transform operator with respect to this measure is bounded in L²."</p>
+<p><strong>Step 4 — NToV.</strong> By the theorem of §5.7, F is (d−1)-rectifiable.</p>
+<p><strong>Step 5 — exhaustion.</strong> F is one subset of positive measure. Repeat on E ∖ F, which
+satisfies the same hypotheses; iterate. Since rectifiability is stable under countable
+unions, and the residual has measure zero by a maximality argument, <strong>E itself is
+rectifiable</strong>. The speaker: "then by an exhaustion argument, considering many other
+subsets, we deduce that E itself is n-rectifiable."</p>
+<p>∎</p>
+<p><strong>What to notice about the shape of this argument.</strong> Steps 1, 3 and 5 are soft — measure
+theory and standard harmonic analysis. Step 2 is a single identity. <strong>All the difficulty
+is concentrated in step 4</strong>, which is the black box, and the speaker says so in as many
+words: "putting all together is the main difficulty of this theory, but of course here the
+main black box is this array."</p>
+<p>That is a good architecture to recognize. The theorem looks like it is about PDE. Almost
+none of the work is about PDE. The PDE contributes one differentiation, and the rest of
+the labour has been exported to a statement about singular integrals on general measures
+that was proved for entirely different reasons — removable singularities — eighteen years
+after the problem was posed.</p>
+<hr />
+<h2>7. Do this by hand</h2>
+<p>Two exercises. The first is in your own field and takes ten minutes. The second is the
+talk's own example and takes twenty.</p>
+<h3>7.1 Differentiate the Green function (10 minutes)</h3>
+<p>Start from the representation</p>
+<p>\[G(x,y_0) = \mathcal{E}(x-y_0) - \int_{\partial\Omega}\mathcal{E}(x-z)\, d\omega^{y_0}(z),\]</p>
+<p>where E is the fundamental solution of −Δ in ℝ^d, so that for d ≥ 3,
+E(x) = |x|^{2−d}/((d−2)κ_d).</p>
+<p>(a) Compute ∇E(x) explicitly and confirm it is a constant multiple of the Riesz kernel
+x/|x|^d.</p>
+<p>(b) Differentiate the identity in x and identify the resulting integral as a Riesz
+transform. Which measure is it the Riesz transform of?</p>
+<p>(c) Now put x near ∂Ω and y₀ deep inside. Explain in one sentence why the term
+∇E(x − y₀) is harmless.</p>
+<p>(d) Finally: what would go wrong if you tried to run the same argument with x and y₀
+<em>both</em> near the boundary?</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> ∇(|x|^{2−d}) = (2−d)|x|^{1−d}·(x/|x|) = (2−d) x/|x|^d. So</p>
+<p>\[\nabla\mathcal{E}(x) = \frac{(2-d)}{(d-2)\kappa_d}\cdot\frac{x}{|x|^{d}} = -\frac{1}{\kappa_d}\cdot\frac{x}{|x|^{d}}.\]</p>
+<p>The Riesz kernel in codimension one is x/|x|^{(d−1)+1} = x/|x|^d. Identical up to the
+constant −1/κ_d. This is the statement the speaker makes verbally and it is a one-line
+check.</p>
+<p><strong>(b)</strong> Differentiating under the integral,</p>
+<p>\[\nabla_x G(x,y_0) = \nabla\mathcal{E}(x-y_0) - \int_{\partial\Omega}\nabla\mathcal{E}(x-z)\,d\omega^{y_0}(z) = \nabla\mathcal{E}(x-y_0) - c_d\,\mathcal{R}^{d-1}\omega^{y_0}(x),\]</p>
+<p>with c_d = −1/κ_d. It is the Riesz transform of <strong>harmonic measure itself</strong> — the measure
+with no density, 𝓡^{d−1}ω^{y₀} in the notation of §5.5.</p>
+<p><strong>(c)</strong> If x ∈ ∂Ω (or within a small distance of it) and y₀ is deep inside Ω, then
+|x − y₀| ≥ dist(y₀, ∂Ω) &gt; 0, bounded below independently of x. The kernel |x−y₀|^{1−d} is
+therefore bounded. All the singular behaviour lives in the integral term, which is exactly
+the Riesz transform. That is why the identity is useful: it isolates the singular part.</p>
+<p><strong>(d)</strong> The bound in (c) fails — you can have x → y₀ and ∇E(x−y₀) blows up like
+|x−y₀|^{1−d}. You would then have two singular objects and no way to attribute the
+behaviour of ∇G to the Riesz transform alone. The asymmetry of the setup (pole deep,
+observation point at the boundary) is load-bearing, not incidental. This is also why
+harmonic measure's independence of the pole (§2.4) matters: you get to <em>choose</em> the pole
+deep inside without losing generality.</p>
+<p><strong>The transferable observation.</strong> A representation formula plus one differentiation turned
+a PDE object (the Green function's gradient) into a singular integral operator applied to
+a measure. That move — differentiate the potential, get the operator — is available
+whenever you have a fundamental solution. It is why the codimension-one Riesz transform,
+and not some other operator, is <em>the</em> operator of this subject.</p>
+</details>
+<h3>7.2 The four-corner Cantor set (20 minutes, pen and paper)</h3>
+<p>Let E be the set from §3.3. Generation k has 4^k squares Q_{k,i} of side ℓ_k = 4^{−k},
+sitting at the four corners of each generation-(k−1) square.</p>
+<p>(a) Verify Σ_i diam(Q_{k,i}) = √2 for every k. What does the k-independence tell you about
+the dimension of E?</p>
+<p>(b) Granting ℋ^1(E) = √2, compute ℋ^1(E ∩ Q) for a generation-k square Q.</p>
+<p>(c) <strong>The main estimate.</strong> Fix a generation-k square Q of side ℓ = 4^{−k}, take x ∈ E ∩ Q,
+and consider the ball B = B(x, 2ℓ) ⊃ Q. Show that for <strong>every</strong> line L there is an
+absolute constant c &gt; 0 with</p>
+<p>\[\int_{B}\left(\frac{\operatorname{dist}(y,L)}{2\ell}\right)^2 d\mathcal{H}^1|_E(y) \ \ge\ c\,\ell,\]</p>
+<p>and deduce β^1_{2,E}(x, 2ℓ) ≥ β₀ for an absolute β₀ &gt; 0.</p>
+<p>(d) Conclude that ∫₀¹ β^1_{2,E}(x,r)² dr/r = ∞ for every x ∈ E, and say which theorem of
+§5.4 this is consistent with.</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> Each Q_{k,i} is a square of side 4^{−k}, so diam(Q_{k,i}) = √2·4^{−k}. There are
+4^k of them. The sum is 4^k · √2 · 4^{−k} = √2.</p>
+<p>The k-independence is the signature of dimension exactly 1 at the critical exponent. Try
+the same computation with exponent s: Σ diam^s = 4^k (√2·4^{−k})^s = 2^{s/2} 4^{k(1−s)},
+which → 0 for s &gt; 1 and → ∞ for s &lt; 1. So the Hausdorff dimension is 1, and only at s = 1
+is the covering sum bounded and bounded away from zero. The scaling was <em>designed</em> to make
+this happen: four pieces each scaled by 1/4 gives dimension log 4 / log 4 = 1.</p>
+<p><strong>(b)</strong> By self-similarity, E ∩ Q is a scaled copy of E by the factor 4^{−k}, and ℋ^1
+scales linearly. So ℋ^1(E ∩ Q_{k,i}) = √2 · 4^{−k} = √2 ℓ. (Consistency check: 4^k pieces
+× √2·4^{−k} = √2 = ℋ^1(E). ✓)</p>
+<p><strong>(c)</strong> E ∩ Q consists of four pieces, one in each of the four corner sub-squares
+Q', Q'', Q''', Q'''' of side ℓ/4, sitting at the four corners of Q. Each carries ℋ^1
+measure √2 ℓ/4, by (b) applied one generation down.</p>
+<p>The four corner sub-squares are, up to their own diameter ℓ√2/4, located at the four
+corners of Q. <strong>A line cannot be close to all four corners of a square.</strong> Concretely: let
+L be any line. If L is within distance ℓ/8 of three of the four corner regions, it would
+have to be within ℓ/8 of three non-collinear points separated by distance ≥ ℓ, which for a
+line means those three points are within ℓ/4 of a common line — impossible for three
+corners of a square of side ℓ, since the third corner is at distance ℓ/√2 ≈ 0.707ℓ from
+the diagonal through the other two. So <strong>at least two</strong> of the four corner regions are at
+distance ≥ cℓ from L, with c an absolute constant (c = 1/8 works comfortably).</p>
+<p>Therefore</p>
+<p>\[\int_B \left(\frac{\operatorname{dist}(y,L)}{2\ell}\right)^2 d\mathcal{H}^1|_E(y) \ \ge\ 2\cdot\frac{\sqrt{2}\,\ell}{4}\cdot\left(\frac{c\ell}{2\ell}\right)^2 = \frac{\sqrt{2}\,c^2}{8}\,\ell.\]</p>
+<p>Since this holds for every L, taking the infimum and dividing by the normalization
+r = 2ℓ gives</p>
+<p>\[\beta^1_{2,E}(x,2\ell)^2 = \inf_L \frac{1}{2\ell}\int_B\left(\frac{\operatorname{dist}(y,L)}{2\ell}\right)^2 d\mathcal{H}^1|_E \ \ge\ \frac{\sqrt{2}\,c^2}{16} =: \beta_0^2 &gt; 0,\]</p>
+<p>an absolute constant independent of k and of x.</p>
+<p><strong>(d)</strong> The estimate in (c) holds at r = 2·4^{−k} for every k, and by the same argument
+(with slightly worse constants) for every r in the range [4^{−k}, 4^{−k+1}] — the geometry
+inside a ball of any such radius still sees four corner clusters. So β^1_{2,E}(x,r)² ≥ β₀²
+on a set of scales covering (0,1] up to constants. Hence</p>
+<p>\[\int_0^1 \beta^1_{2,E}(x,r)^2\,\frac{dr}{r} \ \ge\ \sum_{k=0}^{\infty}\beta_0^2\int_{4^{-k-1}}^{4^{-k}}\frac{dr}{r} = \sum_{k=0}^{\infty}\beta_0^2 \log 4 = \infty.\]</p>
+<p>The square function diverges at <strong>every</strong> point of E, not merely almost every point.</p>
+<p>By the theorem of §5.4 (Tolsa; Azzam–Tolsa 2015), a set of finite ℋ^1 measure is
+1-rectifiable if and only if the square function is finite ℋ^1-a.e. Divergence everywhere
+is therefore consistent with — and, given the theorem, equivalent to the statement that —
+<strong>no subset of positive measure is rectifiable.</strong> That is pure 1-unrectifiability, which is
+what §3.3 asserted without proof.</p>
+<p><em>Marked as reconstruction:</em> part (c)'s constant-chasing is mine, not the speaker's and not
+the survey's. The geometric fact — four corners, no line close to more than two — is
+elementary and I have given the argument. What would tighten it: a careful treatment of
+the boundary case where B(x,2ℓ) straddles two generation-k squares, which changes constants
+but not the conclusion, since the straddling ball contains a full generation-k square.</p>
+<p><strong>The thing to carry away.</strong> The divergence came entirely from <strong>self-similarity</strong>: the
+same flatness defect at every scale, and Σ 1 over infinitely many octaves diverges. That
+is why the dr/r measure is the right one. A set that is flat-ish but with defect decaying
+like 1/k across octaves would still be rectifiable; a set with constant defect never is.
+Rectifiability is not about being flat. It is about the <em>defect being summable</em>.</p>
+</details>
+<hr />
+<h2>8. What is actually useful to you</h2>
+<p>Four transferable things, in decreasing order of how portable they are.</p>
+<h3>8.1 A characterization is worth more than the theorem it replaces</h3>
+<p>The pattern repeats four times in this talk and it is the same pattern each time.</p>
+<ul>
+<li>Uniform rectifiability was <strong>defined</strong> geometrically. David–Semmes gave it a
+  <strong>characterization</strong> as a Carleson condition on β's. Now you can <em>check</em> it.</li>
+<li>L² boundedness of the Riesz transform is an <strong>operator</strong> statement. Dąbrowski–Tolsa gave
+  it a <strong>characterization</strong> in terms of growth plus a weighted Carleson condition. Now you
+  can check it, and — the corollary from §5.8 — you can immediately see it is a bilipschitz
+  invariant, which nobody could prove before, not even for the map (x₁,…,x_d) ↦ (2x₁,…,x_d).</li>
+<li>L^p solvability of the Dirichlet problem is a <strong>PDE estimate</strong>. Azzam–Hofmann–Martell–
+  Mourgoglou–Tolsa gave it a <strong>characterization</strong> as uniform rectifiability plus weak local
+  John. Now you know exactly which domains it holds in.</li>
+<li>Removability is a <strong>function-theoretic</strong> property. NToV gave it a <strong>characterization</strong> as
+  pure unrectifiability. Now you can decide it for a given set.</li>
+</ul>
+<p>In each case the characterization does something the original definition could not: it is
+<em>stable under operations you care about</em>. The bilipschitz case is the sharpest instance.
+The operator-theoretic definition gave no handle on what a stretch does to it. The
+geometric characterization is visibly stable under stretching, because β's and densities
+are. Same theorem, and one form is usable and the other is not.</p>
+<p><strong>The version for your work:</strong> when you have a property defined by "the system behaves well
+under this test," push hard for an equivalent condition stated on the <em>structure</em> rather
+than on the <em>behaviour</em>. The structural form is what survives refactoring, composition, and
+transport into a new setting. The behavioural form only tells you about the instance in
+front of you.</p>
+<h3>8.2 Find the one place the hard part is concentrated, and name it a black box</h3>
+<p>Look at §6 again. Five steps. Four of them are soft. One of them is a 90-page <em>Acta</em>
+paper. The speaker says so from the podium — "the main black box is this array" — and this
+is a mature research habit, not a rhetorical flourish.</p>
+<p>Being able to say <em>which single step carries the difficulty</em> is what lets you:</p>
+<ul>
+<li>reuse the argument in a new setting by checking only whether the black box still applies;</li>
+<li>know exactly what would break if a hypothesis changed (here: drop to 1 &lt; n &lt; d−1, and
+  only step 4 fails, because only step 4 needed the maximum principle);</li>
+<li>state honestly what you have and have not proved.</li>
+</ul>
+<p>The survey does this too, and precisely: the David–Semmes problem is open in intermediate
+codimension for exactly one identified reason — "the absence of a suitable maximum
+principle for functions of the form 𝓡^n η for n &lt; d−1." Not "it is hard." A named
+missing tool.</p>
+<p>That is the standard to hold your own dependency analysis to. "This works because of X"
+and "this would break if X went away" are the same sentence, and if you cannot write it,
+you do not know why your system works.</p>
+<h3>8.3 Two lower-bound problems are harder than two upper-bound problems</h3>
+<p>The speaker's clearest methodological remark, from §5.7:</p>
+<blockquote>
+<p>"It's like when we wish to sum positive and negative numbers: we can bound from above,
+maybe with difficulty, but from below, if we want to show this is bounded away from
+zero, this could be more difficult."</p>
+</blockquote>
+<p>The asymmetry: to bound an oscillating sum from above you may discard cancellation and use
+the triangle inequality — crude, but it works. To bound it from below you must <strong>locate</strong>
+the cancellation and show it is incomplete. There is no crude method.</p>
+<p>This is why "rectifiable ⟹ Riesz transform bounded" was known in the 1980s and the converse
+took until 2014. It is the same asymmetry that makes lower bounds hard in complexity
+theory, and — from the sibling tutorial <code>optimization-theory-practice-wright.md</code> §7 — it is
+why Wright reports that AI systems have been most useful in optimization for constructing
+<strong>lower bounds</strong>, which are counterexample constructions.</p>
+<p>Two ICM plenaries, two fields, same structural observation: the hard direction is always
+the one where you must exhibit something rather than estimate something. When you are
+planning work, that is where the schedule risk is.</p>
+<h3>8.4 The right invariant is often a square function over scales</h3>
+<p>Every characterization in this talk has the same form: a defect measured at one point and
+one scale, squared, integrated dr/r, and either finite pointwise (qualitative) or
+Carleson-bounded (quantitative).</p>
+<p>That is a template, and it is more general than this subject. When you have a
+multi-scale object and want a single condition that decides its global behaviour:</p>
+<ol>
+<li>Define a <strong>scale-invariant, dimensionless defect</strong> at each (location, scale). Here:
+   the normalized least-squares residual from the best plane.</li>
+<li><strong>Square it and integrate against dr/r</strong> — the invariant measure on scales, so that
+   every octave counts equally.</li>
+<li>Distinguish two strengths: <strong>finite at almost every point</strong> gives the qualitative
+   conclusion; <strong>Carleson-bounded over every box</strong> gives the quantitative one.</li>
+</ol>
+<p>The gap between those two strengths is exactly the gap between rectifiable and <em>uniformly</em>
+rectifiable. And that distinction — "works a.e." versus "works with uniform constants at
+every location and scale" — is the same distinction as between a property holding in the
+limit and a property holding with a budget you can spend. If you have ever had a system
+that was correct in the limit and useless under load, you already know which one you
+actually needed.</p>
+<p>The p = 2 detail is worth keeping too: the theorem in §5.4 is <strong>true for p = 2 and false
+for every other p</strong>. The Hilbert-space exponent is not a convenience. It is where
+orthogonality lives, and orthogonality across scales is what makes the sum converge.</p>
+<hr />
+<h2>9. Where to read next</h2>
+<ol>
+<li><strong>Tolsa, <em>Interactions between quantitative rectifiability, singular integrals, and
+   boundary value problems for harmonic functions</em>.</strong>
+   <a href="https://arxiv.org/abs/2607.16457">arXiv:2607.16457</a> — the proceedings paper for this
+   talk. Roughly 25 pages of statements with essentially no proofs, and a 111-item
+   bibliography that is the map of the field. Read §3 and §4 for the geometry and the
+   operator, §6 and §7 for the PDE.</li>
+<li><strong>Prats and Tolsa, <em>Notes on harmonic measure</em></strong> (to appear, 2025), at
+   <a href="https://mat.uab.es/~xtolsa/mesuraharmonica.pdf">https://mat.uab.es/~xtolsa/mesuraharmonica.pdf</a> — the speaker's own lecture notes on
+   harmonic measure, cited in the survey's bibliography. This is where to go for the
+   "standard estimates relating the Green function and harmonic measure" that both the
+   talk and the survey wave at, and that are the one genuine gap in §5.6.</li>
+<li><strong>Nazarov, Tolsa, and Volberg, <em>On the uniform rectifiability of AD-regular measures
+   with bounded Riesz transform operator: the case of codimension 1</em>,</strong> <em>Acta Math.</em> 213
+   (2014) 237–321 — the black box. Read it only if you want the black box opened; the
+   statement plus §5.7's ingredient list is enough for everything else.</li>
+</ol>
+<hr />
+<h2>10. Self-test</h2>
+<details>
+<summary>1. State Kakutani's theorem and say what it buys you.</summary>
+<p>For Ω bounded open, x₀ ∈ Ω, E ⊂ ∂Ω, harmonic measure ω^{x₀}(E) equals the probability
+that Brownian motion started at x₀ first exits Ω through E (Kakutani, 1944).</p>
+<p>It buys the visibility intuition that runs the whole talk: parts of the boundary that a
+diffusing particle reaches easily carry large harmonic measure; parts buried in deep
+recesses carry little. The frozen-snowflake example of §5.11 is that intuition as a
+theorem — harmonic measure concentrates entirely on the flat segments and essentially
+ignores the infinitely long fractal part.</p>
+<p>Note: this is in the talk and <strong>not</strong> in the survey, which builds harmonic measure via the
+maximum principle and Riesz representation instead.</p>
+</details>
+<details>
+<summary>2. Define n-rectifiable and purely n-unrectifiable, and give the example that separates them from Hausdorff measure.</summary>
+<p>E ⊂ ℝ^d is n-rectifiable if there are countably many Lipschitz maps g_i : ℝ^n → ℝ^d with
+ℋ^n(E ∖ ⋃ g_i(ℝ^n)) = 0. E is purely n-unrectifiable if ℋ^n(E ∩ Γ) = 0 for every
+n-rectifiable Γ.</p>
+<p>The example: the four-corner Cantor set. Start with the unit square, replace by four
+squares of side 1/4 at the corners, iterate. At generation k there are 4^k squares of side
+4^{−k}, the diameter sum is √2 at every generation, and ℋ^1(E) = √2 — positive and finite.
+Yet it is purely 1-unrectifiable. Same one-dimensional measure as a circle, none of the
+structure.</p>
+</details>
+<details>
+<summary>3. Write down β^n_{p,μ}(x,r) and say what each factor is doing.</summary>
+<p>β^n_{p,μ}(x,r) = inf over n-planes L of ( (1/r^n) ∫_{B(x,r)} (dist(y,L)/r)^p dμ(y) )^{1/p}.</p>
+<p>dist(y,L)/r is the distance to the candidate plane in units of the ball's radius —
+dimensionless. The integral is against μ, so it sees the measure rather than the ambient
+space. The 1/r^n normalizes: if μ is n-AD-regular then μ(B(x,r)) ≈ r^n, so the whole thing
+is an average. The infimum over L means β measures the residual after the best plane fit.
+It is a scale-invariant least-squares regression coefficient.</p>
+</details>
+<details>
+<summary>4. State the difference between the pointwise and Carleson forms of the square-function condition, and which notion each characterizes.</summary>
+<p>Pointwise: ∫₀¹ β^n_{2,E}(x,r)² dr/r &lt; ∞ for ℋ^n-a.e. x ∈ E. For sets with ℋ^n(E) &lt; ∞ this
+characterizes <strong>rectifiability</strong> (Tolsa Part I; Azzam–Tolsa Part II, both 2015). True for
+p = 2 and false for every p ≠ 2.</p>
+<p>Carleson: ∫<em p_μ="p,μ">{B(x,r)} ∫₀^r β^n</em>(y,t)² (dt/t) dμ(y) ≤ C μ(B(x,r)) for every ball. For
+n-AD-regular μ this characterizes <strong>uniform rectifiability</strong> (David–Semmes), valid for
+1 ≤ p ≤ 2 in every dimension.</p>
+<p>Qualitative hypothesis gives qualitative conclusion; a uniform Carleson budget gives
+uniform constants.</p>
+</details>
+<details>
+<summary>5. Why is the Riesz transform the operator of this subject and not some other singular integral?</summary>
+<p>Because in codimension one the Riesz kernel <em>is</em> the gradient of the fundamental solution:
+x/|x|^d = −κ_d ∇E(x). So differentiating the Green function representation
+G(x,y₀) = E(x−y₀) − ∫ E(x−z) dω^{y₀}(z) produces
+∇_x G(x,y₀) = ∇E(x−y₀) − c_d 𝓡^{d−1}ω^{y₀}(x). The Riesz transform of harmonic measure is
+the gradient of the Green function, up to a term that is bounded whenever the pole is deep
+inside and the observation point near the boundary.</p>
+<p>That single differentiation is the entire bridge between the PDE and the harmonic
+analysis. In ℝ², the Riesz kernel z/|z|² is the conjugate of the Cauchy kernel 1/z, which
+is why the plane case connects to complex analysis.</p>
+</details>
+<details>
+<summary>6. State NToV and explain why the plane was solved eighteen years earlier.</summary>
+<p>For n = 1 or n = d−1: if μ = ℋ^n|_E with ℋ^n(E) &lt; ∞ and 𝓡^n_μ is L²(μ)-bounded, then E is
+n-rectifiable; and if μ is n-AD-regular with 𝓡^n_μ L²(μ)-bounded, then μ is uniformly
+n-rectifiable. (Nazarov–Tolsa–Volberg 2014 for n = d−1, d &gt; 2; Mattila–Melnikov–Verdera
+1996 and Léger 1999 for n = 1.)</p>
+<p>The plane fell first because of <strong>Menger curvature</strong>: Melnikov's identity expresses the L²
+norm of the Cauchy transform as a triple integral of c(x,y,z)², a manifestly <em>positive</em>
+quantity, turning an oscillating-integral problem into a geometric one. There is no
+positive curvature-like quantity for the Riesz kernel in higher dimensions, so the whole
+method dies and one needs the maximum principle, quasiorthogonality, and Fourier estimates
+instead.</p>
+</details>
+<details>
+<summary>7. Why is the David–Semmes problem still open for 1 &lt; n &lt; d−1?</summary>
+<p>Because the proof in codimension one uses the <strong>maximum principle</strong> to transfer L^∞ bounds
+on 𝓡^{d−1}(ℋ^{d−1}|_E) from the set to the ambient space, where the Fourier transform
+gives lower bounds. That works because in codimension one the Riesz transform is the
+gradient of a harmonic potential. For 1 &lt; n &lt; d−1 it is not, and the survey names this
+exactly: "the absence of a suitable maximum principle for functions of the form 𝓡^n η for
+n &lt; d−1."</p>
+<p>An alternative route is Jaye and Nazarov's programme on <strong>reflectionless measures</strong>: if
+every n-AD-regular reflectionless measure for 𝓡^n is n-flat (of the form c ℋ^n|_L), then
+David–Semmes has a positive answer. Known only for n = 1.</p>
+</details>
+<details>
+<summary>8. State the one-phase theorem and give its five-step proof chain.</summary>
+<p>Theorem (Azzam–Hofmann–Martell–Mayboroda–Mourgoglou–Tolsa–Volberg, GAFA 2016): Ω ⊂ ℝ^d an
+<strong>arbitrary open set</strong>, y₀ ∈ Ω, E ⊂ ∂Ω with 0 &lt; ℋ^{d−1}(E) &lt; ∞ and ω^{y₀}|_E ≪≫
+ℋ^{d−1}|_E. Then E is (d−1)-rectifiable. No topological hypothesis on Ω.</p>
+<p>Chain: (1) mutual absolute continuity plus finiteness of ℋ^{d−1}(E) gives bounded density
+ratios for ω a.e. on E, uniformly in scale; (2) the Green-function estimate
+𝓡_*^{d−1}ω(x) ≲ sup_r ω(B(x,r))/r^{d−1} turns that into finiteness of the maximal Riesz
+transform a.e.; (3) Chebyshev plus standard harmonic analysis upgrades this to L²(μ)
+boundedness on a subset F of positive measure; (4) NToV gives F rectifiable; (5) exhaust E
+by such subsets and use stability of rectifiability under countable unions.</p>
+<p>All the difficulty is in step (4).</p>
+</details>
+<details>
+<summary>9. What does the two-phase theorem say, and what does the frozen snowflake illustrate?</summary>
+<p>Theorem (Azzam–Mourgoglou–Tolsa–Volberg, Amer. J. Math. 2019): for d ≥ 3, Ω₁ and Ω₂
+disjoint domains with harmonic measures ω₁, ω₂, and E ⊂ ∂Ω₁ ∩ ∂Ω₂ Borel with ω₁|_E ≪≫
+ω₂|_E. Then E contains a (d−1)-rectifiable F with ω₁(E ∖ F) = 0 on which both ω₁ and ω₂
+are mutually absolutely continuous with ℋ^{d−1}|_F.</p>
+<p>The frozen snowflake: build a von Koch snowflake but freeze one segment at each stage. The
+boundary is a countable union of segments (rectifiable) plus a fractal remainder of
+infinite length that is purely 1-unrectifiable. Interior and exterior harmonic measures are
+mutually absolutely continuous on the whole boundary, so the theorem applies, and its
+conclusion is that harmonic measure lives entirely on the segments. The infinitely long
+fractal part carries essentially none of it.</p>
+</details>
+<details>
+<summary>10. What is the complete geometric characterization of L^p-solvability of the Dirichlet problem, and where does it come from?</summary>
+<p>For Ω ⊂ ℝ^d, d ≥ 3, open with (d−1)-AD-regular boundary satisfying the corkscrew
+condition: harmonic measure is in local weak-A_∞ (equivalently, (D_p) is solvable for some
+p &gt; 1) <strong>if and only if</strong> Ω has big pieces of chord-arc subdomains, equivalently <strong>∂Ω is
+uniformly (d−1)-rectifiable and Ω satisfies the weak local John condition</strong>
+(Azzam–Hofmann–Martell–Mourgoglou–Tolsa, <em>Invent. Math.</em> 222 (2020) 881–993).</p>
+<p>Geometry of the boundary plus quantitative connectivity of the interior, both necessary,
+jointly sufficient. This is <strong>in the survey and not in the talk</strong> — the speaker's last
+slide poses Kenig's question and stops.</p>
+</details>
+<details>
+<summary>11. Name three things in the paper that were not in the talk.</summary>
+<p>(i) <strong>Jones' analyst's traveling salesman theorem</strong> — E lies on a curve of finite length
+iff Σ_Q β^1_{∞,E}(3Q)² ℓ(Q) &lt; ∞, with the shortest length comparable to that sum.</p>
+<p>(ii) <strong>Carleson's ε²-conjecture</strong>, now a theorem (Jaye–Tolsa–Villa, <em>Ann. of Math.</em> 194
+(2021)), and its higher-dimensional extension via Dirichlet eigenvalues on spherical caps
+and the Friedland–Hayman inequality — the engine of the ACF monotonicity formula.</p>
+<p>(iii) <strong>The Painlevé problem as a capacity statement</strong>: κ(E) ≈ sup{μ(E) : U_μ ≤ 1 on E}
+where U_μ is the Jones–Wolff potential, built from the same β²·Θ (dr/r) integrand as
+everything else.</p>
+<p>Also: the answer to Kenig's regularity question (Mourgoglou–Tolsa, <em>Duke</em> 2024), the
+bilipschitz invariance corollary, Vitushkin's Favard length conjecture, and the open
+problem on the dimension of harmonic measure.</p>
+</details>
+<hr />
+<h2>11. Note on the tutorial process</h2>
+<p><strong>Difficulty versus reputation.</strong> Tolsa's reputation is geometric measure theory and the
+semiadditivity of analytic capacity, and the talk is exactly what that reputation predicts
+— unlike Kontorovich, whose talk was about Lean and formal verification. So Rule 1 of the
+template did not bite here. What <em>did</em> bite is that the reputation predicted the wrong
+<strong>difficulty</strong>. A geometric-measure-theory plenary sounds like a 4; against this reader's
+background half of it is a 2, because harmonic measure, the Green function, layer
+potentials, non-tangential maximal functions, and Brownian motion are all his. The split
+rating is the honest one, and the compression of §2.4 relative to §3 follows from it.</p>
+<p><strong>Anchor selection.</strong> The speaker handed over Kakutani from the podium, which the template
+identifies as the best case, and I tested it against the transcript rather than assuming
+it: he states the theorem, gives the visibility intuition, and returns to it implicitly in
+the snowflake example. The brief also proposed "how rough can a boundary be before the
+classical PDE theory fails" as an anchor from numerical PDE; the transcript supports it
+directly ("we are interested in open sets whose boundaries may be very rough, because if
+the boundary is smooth then this is always true, and these domains are not interesting for
+us"), so it became §1. The electrostatic reading of the Riesz transform is supported by the
+speaker's own sentence that the Riesz kernel is the gradient of the fundamental solution.
+The Littlewood–Paley reading of ∫β²dr/r is mine, added because it converts the talk's
+central object into something the reader recognizes on sight; it is a structural
+correspondence, not a decoration, since dt/t is literally the continuous dyadic sum.</p>
+<p><strong>Talk/paper divergences, all flagged in place.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>talk</th>
+<th>paper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kakutani / Brownian motion</td>
+<td>central to the exposition</td>
+<td>absent entirely</td>
+</tr>
+<tr>
+<td>Carleson ε²-conjecture</td>
+<td>absent entirely</td>
+<td>§3.4–3.5, in the abstract</td>
+</tr>
+<tr>
+<td>Jones' traveling salesman theorem</td>
+<td>Jones credited in passing</td>
+<td>§3.1, stated in full</td>
+</tr>
+<tr>
+<td>Painlevé as capacity (κ, γ, Jones–Wolff potential)</td>
+<td>absent; removability only</td>
+<td>§5, the paper's own framing</td>
+</tr>
+<tr>
+<td>§7 boundary value problems</td>
+<td>one slide, no results named</td>
+<td>full section, seven theorems</td>
+</tr>
+<tr>
+<td>Bishop's one-phase question</td>
+<td>"1990"</td>
+<td>"1992"</td>
+</tr>
+<tr>
+<td>Kenig's regularity question</td>
+<td>"early '90s"</td>
+<td>"1991" citing a 1994 book</td>
+</tr>
+<tr>
+<td>rectifiability criterion smallness hypothesis</td>
+<td>β_{μ,<strong>2</strong>}</td>
+<td>β_{μ,<strong>1</strong>}</td>
+</tr>
+</tbody>
+</table></div>
+<p>On the two date discrepancies, both sources are defensible and neither is an error.
+Bishop's <em>Some questions concerning harmonic measure</em> appeared in the proceedings of a
+<strong>1990</strong> conference in Chicago, published as an IMA volume in <strong>1992</strong>. Kenig's <em>Harmonic
+analysis techniques for second order elliptic boundary value problems</em> is a CBMS volume of
+lectures delivered in <strong>1991</strong> and published in <strong>1994</strong>. Talk and paper each picked one
+end.</p>
+<p><strong>Name corrections.</strong> The auto-captions destroy every proper noun in this lecture,
+beginning with the speaker's, whom the introducer's captions render as "Shabiel Tulsa."
+All corrections below are verified against the survey's bibliography except where noted.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shabiel Tulsa / Shavier Tulsa / Shertosa</td>
+<td>Xavier Tolsa</td>
+</tr>
+<tr>
+<td>the re brothers</td>
+<td>F. and M. Riesz (the Riesz brothers)</td>
+</tr>
+<tr>
+<td>bronial motion / abonian motion / bron motion / baron trajectory</td>
+<td>Brownian motion</td>
+</tr>
+<tr>
+<td>Dalberg</td>
+<td>Björn E. J. Dahlberg</td>
+</tr>
+<tr>
+<td>lich's graph / le's domain / leis domain / lipis harmonic</td>
+<td>Lipschitz graph / Lipschitz domain / Lipschitz harmonic</td>
+</tr>
+<tr>
+<td>David Sims / David SS</td>
+<td>Guy David and Stephen Semmes</td>
+</tr>
+<tr>
+<td>Jonasa Sam / Jonas Moru</td>
+<td>Jonas Azzam / Jonas Azzam and Mihalis Mourgoglou</td>
+</tr>
+<tr>
+<td>near of myself and Borick / Nazar of myself and Warberg / Borber / Bulberg / lbert</td>
+<td>Fedor Nazarov, Xavier Tolsa, Alexander Volberg</td>
+</tr>
+<tr>
+<td>Danielski</td>
+<td>Damian Dąbrowski</td>
+</tr>
+<tr>
+<td>matila and vertera</td>
+<td>Pertti Mattila, Mark Melnikov and Joan Verdera</td>
+</tr>
+<tr>
+<td>Cadron Kman Mintosh and meer</td>
+<td>Calderón, Coifman, McIntosh and Meyer <em>(see note)</em></td>
+</tr>
+<tr>
+<td>the nature</td>
+<td>Jean-Christophe Léger</td>
+</tr>
+<tr>
+<td>Hman Martu</td>
+<td>Steve Hofmann, José María Martell, Mihalis Mourgoglou</td>
+</tr>
+<tr>
+<td>bishop Chris Bishop</td>
+<td>Christopher J. Bishop</td>
+</tr>
+<tr>
+<td>Alafar Friedman</td>
+<td>Alt, Caffarelli and Friedman</td>
+</tr>
+<tr>
+<td>kenik presenter</td>
+<td>Kenig, Preiss and Toro</td>
+</tr>
+<tr>
+<td>Berota</td>
+<td>Gregory Verchota</td>
+</tr>
+<tr>
+<td>Carlos Kenik</td>
+<td>Carlos Kenig</td>
+</tr>
+<tr>
+<td>neighbor</td>
+<td>Aaron Naber (with Daniele Valtorta)</td>
+</tr>
+<tr>
+<td>Shul</td>
+<td>Raanan Schul</td>
+</tr>
+<tr>
+<td>vuskin conjecture / B2K conjecture</td>
+<td>Vitushkin's conjecture</td>
+</tr>
+<tr>
+<td>pale problem</td>
+<td>Painlevé problem</td>
+</tr>
+<tr>
+<td>Freeman</td>
+<td>Riemann (removable singularity theorem)</td>
+</tr>
+<tr>
+<td>vonok snowflake</td>
+<td>von Koch snowflake</td>
+</tr>
+<tr>
+<td>one quarter planner tantor set</td>
+<td>the four-corner (one-quarter) planar Cantor set</td>
+</tr>
+<tr>
+<td>alpha regular / al for regularity / AD regularity</td>
+<td>Ahlfors regular / Ahlfors–David regularity</td>
+</tr>
+<tr>
+<td>half of measure / hard measure / hers measure / heart of measure</td>
+<td>Hausdorff measure</td>
+</tr>
+<tr>
+<td>restra form / reser form / risk transform / ris transform</td>
+<td>Riesz transform</td>
+</tr>
+<tr>
+<td>direct problem / dular problem</td>
+<td>Dirichlet problem</td>
+</tr>
+<tr>
+<td>regality problem</td>
+<td>regularity problem</td>
+</tr>
+<tr>
+<td>norman problem</td>
+<td>Neumann problem</td>
+</tr>
+<tr>
+<td>llashian / llian</td>
+<td>Laplacian</td>
+</tr>
+<tr>
+<td>homorphic / holorphic / colomorphic</td>
+<td>holomorphic</td>
+</tr>
+<tr>
+<td>richest images</td>
+<td>Lipschitz images</td>
+</tr>
+<tr>
+<td>subjectivity of the analytic capacity <em>(introducer)</em></td>
+<td><strong>semiadditivity</strong> of analytic capacity</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Note on Calderón–Coifman–McIntosh–Meyer:</em> this attribution is <strong>not</strong> in the survey's
+bibliography. The caption "Cadron Kman Mintosh and meer" in the context "works on the
+Cauchy transform" is unambiguous against the standard literature — Calderón's 1977 result
+for small Lipschitz constant and Coifman–McIntosh–Meyer's 1982 result in general — and I
+state it, but the reader should know the companion document does not corroborate it.</p>
+<p><em>Note on Kakutani:</em> the survey contains no probability at all, so this attribution rests on
+the talk plus general knowledge (Kakutani, <em>Two-dimensional Brownian motion and harmonic
+functions</em>, Proc. Imp. Acad. Tokyo, 1944). It is entirely standard, but it is not
+corroborated by the companion.</p>
+<p><strong>Names I could not verify, and did not guess.</strong></p>
+<ul>
+<li><strong>"Pot"</strong> — in "there were in fact previous results by Pot, others by Schul," describing
+  earlier work on β-coefficients for non-AD-regular sets. Schul is Raanan Schul, confirmed
+  from the bibliography (Azzam–Schul; Badger–Schul). "Pot" has no plausible match in the
+  survey's 111-item bibliography. A reader might guess Hervé Pajot, whose work is on
+  exactly this topic, but the survey does not cite him and I will not assert it.</li>
+<li><strong>"hung ... although she called [it] a regularity"</strong> — a reference to another ICM 2026
+  speaker who used Ahlfors–David regularity in her talk. Two plenary speakers at this
+  congress fit the pronoun and the caption phonetics; the captions cannot discriminate and
+  I have not guessed.</li>
+</ul>
+<p><strong>Substantive caption errors corrected, not merely spellings.</strong> Three sign-flips, of the
+same kind as the "last n−k components nonzero" error flagged in
+<code>optimization-theory-practice-wright.md</code>:</p>
+<ol>
+<li>"E is <strong>uniformly unrectifiable</strong> if and only if the Riesz transform is bounded in L²" —
+   the correct statement is <strong>uniformly rectifiable</strong>. As captioned it says the exact
+   opposite of the theorem.</li>
+<li>"then this implies that F is <strong>unrectifiable</strong>" in the one-phase proof sketch — should be
+   <strong>rectifiable</strong>; the whole chain collapses otherwise.</li>
+<li>"the set is <strong>invertifiable</strong> if and only if this integral is finite" — caption garble
+   for <strong>n-rectifiable</strong>.</li>
+</ol>
+<p>All three are corrected silently in the body text above and flagged here.</p>
+<p><strong>Gaps, rated.</strong></p>
+<ul>
+<li><strong>Moderate.</strong> The estimate |∇_x G(x,y₀)| ≲ ω^{y₀}(B(x,r))/r^{d−1}, which converts the
+  Green-function identity into the density-ratio bound and is the hinge of §6 step 2. Both
+  sources call it "standard estimates" and neither proves or cites it precisely. This is the
+  one place a reader working from these two documents alone cannot reconstruct the argument.
+  Item 2 of §9 is where to go.</li>
+<li><strong>Moderate.</strong> The precise rectifiability criterion behind the two-phase theorem. The
+  speaker explicitly declined to state it; restored from the survey's Theorem 4.6, with the
+  β_1/β_2 discrepancy flagged. The survey itself says it does not know whether the
+  hypotheses are sharp.</li>
+<li><strong>Low, and deliberate.</strong> The proof of NToV. Neither source attempts a sketch beyond a
+  list of ingredients. I have declared it a black box, following the Gaitsgory precedent in
+  this series — stated with its motivation, its consequence, and the reason the plane was
+  easier, and no manufactured proof. The speaker calls it a black box himself.</li>
+<li><strong>Low.</strong> The frozen snowflake construction. Qualitative in the talk, absent from the
+  survey, qualitative here.</li>
+<li><strong>Structural in the talk, low net here.</strong> The final section on quantitative boundary
+  value problems is one slide ending in "many results have been obtained," with none named.
+  The survey's §7 restores all of it, and §5.13 above is that restoration, labelled
+  paper-not-podium throughout. The single most consequential item: the talk poses Kenig's
+  1991 question and does not say that the speaker himself answered the regularity half of
+  it in <em>Duke Math. J.</em> 173 (2024).</li>
+</ul>
+<p><strong>Reconstructed and marked as such.</strong> (i) The density-theorem justification in §5.4 for
+why the weighted and unweighted square functions are equivalent — my reasoning, not stated
+by either source. (ii) The constants in exercise 7.2(c) — the geometric fact is elementary
+and I give the argument, but the constant-chasing and the treatment of straddling balls are
+mine.</p>
+<p><strong>Cross-references rather than rewrites.</strong> Two sibling tutorials in <code>summaries/</code> cover
+shared material and are cited in place rather than reproduced:
+<code>optimization-theory-practice-wright.md</code> §7 for the upper-bound/lower-bound asymmetry and
+the counterexample-construction observation (§8.3 above), and
+<code>langlands-function-fields-gaitsgory.md</code> for the precedent of declaring an object
+un-teachable and saying so (§5.7 above).</p>
+</div>
+</body>
+</html>

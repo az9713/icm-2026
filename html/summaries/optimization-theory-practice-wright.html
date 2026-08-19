@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Optimization in Theory and Practice</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Stephen J. Wright (University of Wisconsin–Madison)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=Ep1TzZDOHnU">https://www.youtube.com/watch?v=Ep1TzZDOHnU</a></div><div><b>Companion:</b> <a href="https://arxiv.org/abs/2510.15734">https://arxiv.org/abs/2510.15734</a></div><div><b>Level:</b> 1/5 (frame) — 3/5 (the post-2015 frontier)</div><div><b>Reading time:</b> ~50 min</div></div>
+<h1>Optimization in Theory and Practice — Stephen J. Wright</h1>
+<p><strong>Field:</strong> continuous optimization. Linear programming, and unconstrained minimization
+of smooth functions.</p>
+<p><strong>Difficulty against your background: inverted.</strong> You already own the frame. So this
+tutorial does not teach you gradient descent, convexity, condition number, or the
+simplex method. It spends its length on <strong>what has changed since your training</strong> — most
+of it since 2015, some of it since last year.</p>
+<p><strong>Sources.</strong> The talk and the paper
+(<a href="https://arxiv.org/abs/2510.15734">arXiv:2510.15734</a>, Wright, submitted 17 October
+2025, revised 2 December 2025, ICM 2026 proceedings) cover the same ground. The paper's
+sections are: Introduction, Formulations and Optimality Conditions, Convergence and
+Complexity, Linear Programming, Unconstrained Optimization, Discussion. Where I quote a
+number that appears only in the talk I say so.</p>
+<p><strong>Names.</strong> The auto-captions mangle almost every proper noun in this talk. I verified
+each one and give the correct spelling. Where I could not verify, I say so.</p>
+<hr />
+<h2>1. The thesis</h2>
+<p>Wright's claim is a single sentence, and the whole hour is evidence for it:</p>
+<blockquote>
+<p>Theory and practice in optimization <strong>continually drive each other</strong>. Practical
+experience inspires new questions in complexity theory; theoretical insight inspires
+new algorithms and new techniques inside algorithms.</p>
+</blockquote>
+<p>He is careful to say the loop runs badly in both directions too. There are algorithms
+that are excellent in practice with no theory explaining why. There are algorithms with
+better worst-case bounds than their rivals that behave badly in practice and nobody uses.</p>
+<p>He closes on Roger Fletcher's preface to <em>Practical Methods of Optimization</em> (1980s),
+which he and Jorge Nocedal also quoted in the foreword to <em>Numerical Optimization</em>:</p>
+<blockquote>
+<p>"Optimization is a fascinating blend of theory and computation, heuristics and rigor."</p>
+</blockquote>
+<p>His verdict forty years later: still true. <strong>Practice does not wait for theory.</strong> Theory
+certifies practice after the fact, and occasionally illuminates a technique that turns
+out to matter.</p>
+<hr />
+<h2>2. Calibration: what you can skip</h2>
+<p>You know all of this. It is here so you can confirm we are using the same words, then
+move to §3.</p>
+<p><strong>Two problem classes.</strong></p>
+<p><em>Linear programming:</em> minimize cᵀx over {Ax = b, x ≥ 0}, with A an m×n matrix. May be
+infeasible or unbounded. If a solution exists, at least one is a vertex of the polytope.</p>
+<p><em>Smooth unconstrained minimization:</em> minimize f(x) over x ∈ ℝⁿ, with ∇f Lipschitz
+(constant L).</p>
+<p><strong>The complexity convention.</strong> Cost is counted in <strong>oracle calls</strong>, not flops. An oracle
+returns one unit of information about f — a function value, a gradient, an unbiased
+gradient estimate. This is the Nemirovski–Yudin model (Russian edition 1979). Yurii
+Nesterov gave the Gauss lecture at this congress on the same framework.</p>
+<p><strong>Two ways to say the same thing.</strong> Track a quantity t_k (either f(x_k) − f* or
+‖∇f(x_k)‖). Either state the decay rate, t_k ≤ C/√k, or invert it and state the
+iteration count, k ≥ C²ε⁻². Wright uses both.</p>
+<p><strong>Baseline gradient descent</strong>, x_{k+1} = x_k − (1/L)∇f(x_k):</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>f is</th>
+<th>measure</th>
+<th>iterations to ε</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smooth, non-convex</td>
+<td>‖∇f‖ ≤ ε</td>
+<td>O(ε⁻²)</td>
+</tr>
+<tr>
+<td>convex</td>
+<td>f − f* ≤ ε</td>
+<td>O(ε⁻¹)</td>
+</tr>
+<tr>
+<td>strongly convex</td>
+<td>f − f* ≤ ε</td>
+<td>O(κ log(1/ε))</td>
+</tr>
+</tbody>
+</table></div>
+<p>κ is the ratio of upper to lower bounds on the curvature — the condition number of the
+Hessian. Wright: "I could prove each of these results to you in about half a slide."</p>
+<p>That is the whole prerequisite. Everything below is the part that is new.</p>
+<hr />
+<h2>3. Linear programming: three eras, and where the frontier is now</h2>
+<h3>3.1 Simplex — 80 years, and the theory still does not explain it</h3>
+<p>George Dantzig, 1940s. Walk vertex to vertex along edges, always downhill in cᵀx. The
+choice of which adjacent vertex to move to is the <strong>pivot rule</strong>, and it is where all the
+variants live.</p>
+<p>The empirical fact: simplex needs a <strong>modest multiple of n</strong> iterations — 2n or 3n is
+typically enough.</p>
+<p>The theoretical fact, known since the early 1970s: there exist linear programs requiring
+<strong>exponentially many</strong> pivots. Not polynomial. Exponential.</p>
+<p>And after fifty years of searching, <strong>no provably polynomial pivot rule is known.</strong></p>
+<p>Wright's point about that failure is the first instance of his thesis, and it is not the
+obvious one. The search failed at its stated goal and succeeded at another: hunting for
+provably good pivot rules produced a stream of better heuristics, and the commercial
+software kept improving. <em>The search for theory improved practice even though the theory
+never arrived.</em></p>
+<h3>3.2 Why simplex works: smoothed analysis, and the 2025 improvements</h3>
+<p><strong>First attempt — Karl-Heinz Borgwardt, 1980s.</strong> Assume the LP data is drawn from a
+probability distribution. Then the expected number of simplex iterations is polynomial.</p>
+<p>The objection, which Wright states from experience: <strong>random LPs look nothing like real
+LPs.</strong> So the result explains little about practice.</p>
+<p><strong>The breakthrough — Daniel Spielman and Shang-Hua Teng, 2004: smoothed analysis.</strong> A
+genuinely different move. You bring <em>your</em> LP — your A, b, c. They are allowed to add
+small Gaussian perturbations of variance σ² to the entries. Then they prove the expected
+number of pivots is polynomial in the dimension <strong>and in 1/σ</strong>.</p>
+<p>This is the interesting hybrid: not worst case, not average case over a fake
+distribution, but worst case <em>followed by a small random smear</em>.</p>
+<p><strong>What is new (this is the part that postdates most textbooks).</strong> Eleon Bach and Sophie
+Huiberts and collaborators have sharply improved the σ dependence. In the talk Wright
+puts it as reducing the polynomial dependence on 1/σ from <strong>about 30 to about 1.5</strong>. The
+current published result is an upper bound of</p>
+<blockquote>
+<p>O(σ^{−1/2} · d^{11/4} · log(n)^{7/4}) pivot steps</p>
+</blockquote>
+<p>improving the previous strongest bound of O(σ^{−3/2} · d^{13/4} · log(n)^{7/4}) due to
+Huiberts, Lee and Zhang — with a matching high-probability lower bound, so the noise
+dependence is <strong>optimal among simplex methods</strong> up to polylogarithmic factors
+(<a href="https://arxiv.org/abs/2504.04197">arXiv:2504.04197</a>).</p>
+<p><strong>And then the result Wright calls enormously significant.</strong> Roughly nine months before
+the talk, the same group showed you can get polynomial expected behaviour by perturbing
+<strong>only b and c — leaving A alone</strong>
+(<a href="https://arxiv.org/abs/2510.21613">arXiv:2510.21613</a>, "Beyond Smoothed Analysis:
+Analyzing the Simplex Method by the Book").</p>
+<p>Why that matters is a practitioner's reason, not a theorist's. In real LPs <strong>A is
+extremely sparse</strong> — it usually has a network adjacency matrix buried in it. Classical
+smoothed analysis requires you to replace every structural zero in A with a little
+Gaussian. That destroys exactly the structure the whole solver is built to exploit. The
+new analysis leaves A intact, so the theorem finally applies to the object people
+actually solve.</p>
+<p><em>Read that as a general lesson: a theorem whose hypotheses destroy your problem's
+structure is not a theorem about your problem.</em></p>
+<h3>3.3 Provably polynomial: ellipsoid, Karmarkar, interior point</h3>
+<p><strong>Leonid Khachiyan, 1979.</strong> Took the ellipsoid method — already known for general
+constrained optimization, from Yudin and Nemirovskii — and showed that applied to an LP
+it runs in polynomial time. A genuine breakthrough; several prizes.</p>
+<p>And useless in practice. When implemented it <strong>essentially always attains its worst-case
+bound</strong>, and is far slower than simplex. A clean instance of Wright's reverse failure
+mode: good theory, bad practice.</p>
+<p><strong>Narendra Karmarkar, 1984, AT&amp;T.</strong> The projective algorithm. Polynomial <em>and</em>, he
+claimed, practically good. It reached the <em>New York Times</em> and <em>Time</em>.</p>
+<p>Wright's assessment: the practical performance was not actually that great. But the
+excitement it generated caused the field to find, very quickly, methods inspired by it
+that genuinely had both — <strong>primal–dual interior point methods</strong>.</p>
+<p><strong>How primal–dual IPMs work,</strong> because the mechanism is worth having exactly.</p>
+<p>The optimality certificate for an LP is a set of linear (in)equalities. Find x, λ ∈ ℝᵐ,
+s ∈ ℝⁿ with</p>
+<ul>
+<li>Ax = b  (primal feasibility)</li>
+<li>Aᵀλ + s = c  (dual feasibility)</li>
+<li>x ≥ 0, s ≥ 0</li>
+<li>xᵢsᵢ = 0 for every i  (<strong>complementarity</strong>)</li>
+</ul>
+<p>Now <strong>relax the last condition</strong>: replace 0 with a parameter μ &gt; 0, so xᵢsᵢ = μ. As μ
+ranges over the positive reals, the solutions trace out the <strong>central path</strong> through the
+interior of the polytope.</p>
+<p>The algorithm follows that path. Fix μ. Apply two or three steps of Newton's method to
+the nonlinear system {Ax = b, Aᵀλ + s = c, xᵢsᵢ = μ}, curtailing each step so x and s
+stay positive. Decrease μ. Repeat.</p>
+<p>Wright notes with evident satisfaction that this is polynomial <strong>and</strong> the analysis is
+elementary — an end-to-end complexity result you can teach in one or two lectures of a
+graduate course.</p>
+<p><strong>Classical complexity: O(n^{3.5}).</strong> That is O(√n) iterations, each requiring you to
+form and solve an n×n linear system at O(n³).</p>
+<h3>3.4 The current frontier: chasing the matrix-multiplication exponent</h3>
+<p>Seven or eight years ago the theoretical computer science community asked whether n^{3.5}
+could be beaten. It could.</p>
+<p>The picture Wright shows (credited to <strong>Yin-Tat Lee</strong>, now at OpenAI) plots year against
+the exponent on n. Two curves:</p>
+<ul>
+<li><strong>Blue: the exponent ω for multiplying two n×n matrices.</strong> Classically 3. Reduced
+  since the 1960s; currently <strong>ω ≈ 2.371339</strong>. It is believed it may one day reach 2.</li>
+<li><strong>Red: the exponent for interior point methods on LP.</strong> Falling toward the blue curve.</li>
+</ul>
+<p>The punchline: <strong>if ω were 2, there is an interior point method running in
+O(n^{2 + 1/18}).</strong></p>
+<p>Sit with that. The cost of <em>solving a linear program</em> of dimension n has been driven to
+within a positive constant, in the exponent, of the cost of <em>multiplying two matrices</em> of
+the same size.</p>
+<p><strong>What the new IPMs do differently:</strong></p>
+<ul>
+<li>Compute Newton steps only <strong>approximately</strong>.</li>
+<li>Exploit the fact that consecutive Newton systems are nearly identical — apply <strong>low-rank
+  updates</strong> rather than re-solving.</li>
+<li>Use <strong>weighted central paths</strong>.</li>
+<li>Some work only for special LP classes, such as max-flow on networks.</li>
+</ul>
+<p>And the detail Wright singles out as fascinating: these methods pay careful attention to
+the <strong>memory hierarchy</strong> and to <strong>updating matrix factorizations</strong>. Those were regarded as
+grungy scientific-computing concerns for three or four decades. They are now essential
+components of methods advancing the <em>theoretical</em> frontier of linear programming.</p>
+<p><strong>Honest caveat, which he gives:</strong> these methods are <strong>not yet practical</strong>. The constants
+hidden in the O(·) are large. What they have changed is the mathematical frontier.</p>
+<h3>3.5 First-order LP: the one that actually shipped</h3>
+<p>The newest practically important class, and it comes from a different direction.</p>
+<p>Reformulate the LP as a <strong>min–max saddle problem</strong>:</p>
+<p>\[\min_{x \ge 0}\ \max_{\lambda}\ c^\top x + \lambda^\top (b - Ax)\]</p>
+<p>The reasoning, which is worth doing once. Hold x fixed and maximize over λ. If Ax ≠ b you
+can drive the bilinear term to +∞ by sending λ in the right direction. So the inner max is
+finite <strong>only if Ax = b</strong>, and in that case it collapses to cᵀx. Now minimize over x ≥ 0
+and you have recovered the original LP exactly.</p>
+<p>The workhorse method is <strong>PDHG</strong> (primal–dual hybrid gradient): alternate a gradient step
+in x with a gradient step in λ, with momentum built into the λ step. Production
+implementations add heavy preconditioning to improve conditioning, plus restarting and
+other tricks.</p>
+<p><strong>Why it won, and it is purely an architecture argument.</strong> The only work per iteration is
+a multiplication by A and by Aᵀ.</p>
+<ol>
+<li>If A is sparse — and it is — that multiplication is cheap.</li>
+<li>Those multiplications run <strong>extremely efficiently on GPUs</strong>.</li>
+</ol>
+<p>So despite needing many more iterations, these methods entered commercial LP packages
+very quickly and are <strong>competitive with simplex and interior point on very large
+problems</strong>.</p>
+<p>And here, unusually, <strong>theory tracks practice well.</strong> The convergence theory is based on
+the <strong>Hoffman constant</strong> for a certain formulation of the LP optimality conditions, and it
+does a decent job of predicting the iteration count you actually observe.</p>
+<hr />
+<h2>4. Smooth minimization: what changed after the textbook</h2>
+<h3>4.1 Silver step sizes — the same direction, better steps</h3>
+<p>The question: can you beat the baseline rates in §2 while still moving in the <strong>negative
+gradient direction every iteration</strong>, changing only the step lengths α_k?</p>
+<p>Answer, and it is recent: <strong>yes</strong>. Jason Altschuler and Pablo Parrilo, <strong>silver step
+sizes</strong>. (The transcript renders the second name as "and pillo"; Parrilo is the
+reconstruction, consistent with the published work.)</p>
+<p>The idea is a change of objective, and it is the transferable part. Standard step-size
+rules ask for the <strong>best decrease in f over a single iteration</strong>. Altschuler and Parrilo
+argue that is the wrong question. Ask instead: over a horizon of 10 or 100 iterations,
+what <em>sequence</em> of α_k gives the best possible improvement?</p>
+<p>You get a completely different answer. The schedule is <strong>non-uniform</strong>, and increasingly
+so as the conditioning worsens. Occasionally — in Wright's example with condition number
+64, roughly every 8th or 16th step — you take a step <strong>much longer than all the others</strong>.</p>
+<p>That long step <strong>may go uphill</strong>. Monotone decrease is given up. Over the full horizon you
+obtain the provably better reduction.</p>
+<p>The gain, strongly convex case:</p>
+<blockquote>
+<p>O(κ log(1/ε))  →  O(κ^{0.786} log(1/ε))</p>
+</blockquote>
+<p><strong>Why this is worth your attention beyond the constant.</strong> The whole of classical
+line-search theory is built on enforcing decrease at every iteration. This result says
+that constraint was costing you, and that the greedy per-step objective was never the
+right one.</p>
+<h3>4.2 Nesterov's momentum, and why silver does not beat it</h3>
+<p>Nesterov, 1983. Take the search direction as a combination of the current negative
+gradient and an extrapolation along the direction you just moved.</p>
+<p>That much was known for <strong>quadratic</strong> f since the 1950s. What was not proved was that it
+helps for general convex f. Nesterov's trick was small and decisive: <strong>evaluate the
+gradient at the extrapolated point</strong>, not at x_k. With that, for convex f:</p>
+<blockquote>
+<p>O(ε^{−1/2})  — versus O(ε⁻¹) for plain gradient descent</p>
+</blockquote>
+<p>Note the ordering Wright draws out: momentum beats silver step sizes, because <strong>silver
+uses no momentum</strong>. Two independent levers; momentum is the stronger one.</p>
+<h3>4.3 PEP: designing algorithms by solving an optimization problem</h3>
+<p>This is the most transferable idea in the talk, and it has been building since about 2010.</p>
+<p><strong>PEP — the Performance Estimation Problem.</strong> (Wright says "protocol" from the podium;
+the established term is Problem.)</p>
+<p>Fix a horizon T, a class of functions, and a class of algorithms. Then:</p>
+<ul>
+<li><strong>Inner maximization.</strong> Given a specific algorithm — say, fixed step lengths α and
+  momentum β — what is the <em>worst</em> function in the class, the one giving the least
+  improvement over T iterations?</li>
+<li><strong>Outer minimization.</strong> Now choose the algorithm's parameters to make that worst case
+  as small as possible.</li>
+</ul>
+<p>So you solve a <strong>min–max problem to design the algorithm.</strong></p>
+<p>The obvious objection is that you cannot maximize over an infinite-dimensional class of
+functions. The resolution is the clever part: <strong>parameterize f by the iterates x_k and
+the gradient values g_k.</strong> That turns the inner problem into a finite matrix optimization
+problem. Once you have found optimal g_k and x_k, you <strong>interpolate</strong> to recover an actual
+function f in the class.</p>
+<p>Result: a tractable finite problem whose solution <em>is</em> a new optimization method with a
+proven worst-case guarantee.</p>
+<p>Wright notes that this framework plugs naturally into AI-assisted workflows. At <strong>ICML, a
+couple of weeks before this talk</strong>, a workflow was presented that wraps around PEP: you
+describe your function class and which variant of gradient method you want, and it finds
+the optimal step lengths.</p>
+<p><strong>The reframe worth taking:</strong> algorithm design stops being invention-then-analysis and
+becomes a solvable optimization problem in its own right.</p>
+<h3>4.4 Lower bounds, and the one construction to remember</h3>
+<p>An upper bound alone never tells you a method is good. You need the matching lower bound.</p>
+<p>A lower bound statement has this shape: <em>there is a problem in the problem class for which
+</em><em>every</em><em> algorithm in the algorithm class needs at least N(ε) oracle calls.</em></p>
+<p>Wright gives the structural insight that unifies these constructions:</p>
+<blockquote>
+<p>Worst-case functions are functions where the algorithm learns information about f only
+<strong>gradually</strong>, in a systematic way. Most of the information is hidden and revealed one
+piece at a time.</p>
+</blockquote>
+<p><strong>The canonical construction</strong> — the one proving Nesterov's method optimal. Take f
+quadratic, with a <strong>positive-definite tridiagonal Hessian</strong>, plus a linear term whose
+coefficient vector is e₁. The solution x* has all components nonzero. But start a gradient
+method at the zero vector, and the tridiagonal structure means successive iterates <strong>fill
+in one component at a time</strong>: x₁ has only its first component nonzero, x₂ its first two,
+and x_k its first k. (The transcript says "last n−k components nonzero"; that is a caption
+slip — those components are <strong>zero</strong>, which is exactly what makes the argument work.)</p>
+<p>So you can lower bound ‖x_k − x*‖ by the norm of the last n−k components of x* alone,
+since the corresponding components of x_k are still zero. For any method whose iterates
+lie in the span of the gradients seen so far, this yields</p>
+<blockquote>
+<p>f(x_k) − f* ≥ c / k²</p>
+</blockquote>
+<p>Nesterov's accelerated gradient achieves an upper bound of C/k². <strong>They match to within a
+constant.</strong> Nesterov's method is therefore <strong>optimal</strong> for smooth convex minimization among
+gradient methods whose iterates lie in the span of observed gradients.</p>
+<p>This argument has been extended to parallel and randomized algorithms, coordinate descent,
+and higher-order methods.</p>
+<hr />
+<h2>5. Optimization for machine learning: where theory is losing</h2>
+<h3>5.1 The finite-sum problem and SGD</h3>
+<p>\[f(x) = \frac{1}{N}\sum_{j=1}^{N} f_j(x)\]</p>
+<p>N can be in the <strong>billions</strong>. x is the model weights — arcs of a network, or the matrices
+in a transformer. f_j measures how badly the model fits training item j; zero if the
+prediction matches the label.</p>
+<p>Computing one full gradient means back-propagating over the entire dataset. Prohibitive.</p>
+<p>So: pick one term j_k at random, and use ∇f_{j_k}(x_k) as a proxy for ∇f(x_k). It is an
+<strong>unbiased</strong> estimate with <strong>enormous variance</strong> — it typically looks nothing like the true
+gradient. Step in its negative direction.</p>
+<p><strong>Robbins and Monro, 1951.</strong> Wright's note: one of those ideas that lay forgotten for
+forty or fifty years before turning out to be indispensable.</p>
+<p>Theory exists: for convex f, expected optimality gap below ε in O(ε⁻²) iterations, with
+analogous bounds for strongly convex and non-convex. Expected, because the algorithm is
+random.</p>
+<h3>5.2 Adam, and the honest admission</h3>
+<p>Practice adds batching (10³ to 10⁶ terms, not one), momentum, adaptive scaling, step-size
+and warm-up schedules, layer normalization, and much more. Armies of people at technology
+companies work on it.</p>
+<p><strong>Adam</strong> (2015) is used overwhelmingly. It applies an <strong>adaptive diagonal scaling</strong> to the
+update direction g_k — it tracks previous g_k values, effectively learns how the variables
+are scaled, and weights each component accordingly. Also called preconditioning.</p>
+<p>Wright: look it up on Google Scholar and it has <strong>over a quarter of a million citations</strong>.</p>
+<p>Then the admission, stated plainly:</p>
+<blockquote>
+<p>There are variants of Adam with provable convergence, but the rates are <strong>generally not
+much better than SGD</strong>. You can identify a few special problem classes where Adam is
+provably better. In general it is not provably faster. It is used because in practice it
+is a lot better.</p>
+</blockquote>
+<h3>5.3 Muon, and the matrix sign</h3>
+<p>Proposed in a <strong>blog post at the end of 2024</strong>. Competitive with, and on some datasets
+better than, Adam.</p>
+<p>The mechanism, which is genuinely interesting:</p>
+<ol>
+<li><strong>Reshape</strong> the weights from a long vector into a <strong>matrix</strong>. Natural for transformers
+   and neural nets, where the unknowns already aggregate that way. The gradient is then
+   also a matrix.</li>
+<li>Form a stochastic estimate of that matrix gradient, combined across iterations with
+   momentum. Call it B_k.</li>
+<li><strong>Take the SVD:</strong> B_k = U Σ Vᵀ.</li>
+<li><strong>Throw away Σ.</strong> Use <strong>U Vᵀ</strong> as the search direction.</li>
+</ol>
+<p>Step 4 is the <strong>matrix sign</strong> function. Discarding the singular values sounds mad. The
+justification: it is a <strong>trust region method whose radius is defined in the spectral
+matrix norm</strong>. Under that geometry, U Vᵀ is the right step.</p>
+<p>The practical objection is obvious — X may have trillions of entries and the SVD is
+impossible. The answer: an <strong>iterative approximation</strong>, good enough, and it runs on GPUs.</p>
+<p>Theory is already appearing. Wright refers to a talk given a few days earlier at the same
+congress by <strong>Weijie Su</strong> <em>(reconstructed — the captions render this as "way Sue")</em>.</p>
+<h3>5.4 The verdict</h3>
+<blockquote>
+<p>"In modern machine learning, the theory is running far behind the practice. The practice
+is throwing up very interesting issues faster than the theory can address them."</p>
+</blockquote>
+<p>And the sociological observation: the algorithms used in ML over the last fifteen years
+have <strong>overwhelmingly come from practitioners</strong>, not theorists.</p>
+<p>His statement of the open problem: <em>what is the right theory for large-scale training of
+neural networks — for stochastic-gradient-based methods minimizing non-convex, non-smooth
+functions?</em></p>
+<hr />
+<h2>6. Benign non-convexity</h2>
+<h3>6.1 From hopeless to local</h3>
+<p><strong>Nemirovski and Yudin</strong> (Russian edition 1979) essentially threw up their hands: for a
+non-convex f, even a smooth one, finding the <strong>global</strong> minimum costs work exponential in
+the dimension. Hopeless.</p>
+<p><strong>Nesterov and Polyak, 2006</strong>, changed the target. Do not ask for the global minimum. Ask
+for an <strong>ε-approximate local minimum</strong>:</p>
+<ul>
+<li>‖∇f(x)‖ ≤ ε</li>
+<li>λ_min(∇²f(x)) ≥ −ε</li>
+</ul>
+<p>With that target, complexity is <strong>polynomial in 1/ε</strong>. Their method is <strong>cubic
+regularization</strong> — which had actually been proposed by <strong>Andreas Griewank</strong> in the 1980s,
+not for complexity reasons but because it worked well in practice, which it does.</p>
+<p>That 2006 paper spawned an industry: take a method known to work well, add small
+enhancements, and equip it with a complexity theory. Wright says he worked on this
+extensively.</p>
+<p><strong>But the bound is still pessimistic.</strong> At ε = 10⁻⁶ you are talking about thousands of
+iterations, and practical methods routinely converge far faster.</p>
+<h3>6.2 The phenomenon</h3>
+<p>Problems that are <strong>bona fide non-convex</strong> and yet on which your favourite method reliably
+converges to a <strong>global</strong> minimizer.</p>
+<p>Observed first and most clearly in <strong>low-rank matrix optimization</strong>: the unknown is a
+matrix that is low rank at the solution, which you parameterize in a way that makes the
+formulation non-convex — and gradient descent finds the global solution anyway.</p>
+<p>Then found elsewhere: <strong>AC power flow</strong> in electrical grids, and <strong>phase retrieval</strong>.</p>
+<h3>6.3 The taxonomy — there is no single reason</h3>
+<p>Wright is explicit that this is a <em>family</em> of unrelated mechanisms, not one theorem:</p>
+<ol>
+<li><strong>All local minima are global.</strong> Every local minimum has the same function value. Find
+   one, you are done. (Common in the matrix problems.)</li>
+<li><strong>Strict saddles.</strong> At every saddle point — gradient zero, not a minimizer — the Hessian
+   has a <strong>strictly negative</strong> eigenvalue. That eigenvector is an escape direction, so the
+   saddle cannot trap you.</li>
+<li><strong>The Polyak–Łojasiewicz (PL) condition.</strong> As you move away from the minimizing set,
+   the gradient grows reasonably fast. Consequence: a gradient step is guaranteed to be
+   <strong>big enough</strong> to make real progress toward the set.</li>
+</ol>
+<p>Leveraging any of these gives much tighter complexity bounds than the generic theory.</p>
+<h3>6.4 Overparameterized networks</h3>
+<p>Enough weights to fit the training data <strong>exactly</strong> — the current regime, with trillions of
+weights.</p>
+<p>The loss surface, from contour plots projected to three dimensions, is genuinely nasty:
+non-smooth, ridges, local minima everywhere.</p>
+<p>And yet run SGD long enough and it frequently reaches <strong>zero loss</strong>. Moreover the solution
+found — typically one point on a whole manifold of solutions, in fact <strong>disconnected</strong>
+manifolds — tends to <strong>predict well on unseen data</strong>.</p>
+<p>Explanations Wright cites:</p>
+<ul>
+<li><strong>Double descent.</strong> Keep iterating past the point of fitting the data and SGD moves to a
+  different solution with better prediction properties.</li>
+<li><strong>Implicit bias / implicit regularization.</strong> The optimization method does not find <em>any</em>
+  solution; it is biased toward ones that generalize. (Peter Bartlett's plenary the
+  previous day.)</li>
+<li><strong>Neural tangent kernel.</strong> Make a convolutional network's layers wide enough and it
+  starts behaving like a <strong>kernel method</strong> — and kernel method performance is well
+  understood. <strong>Weinan E</strong> gave a plenary at the previous ICM on exactly this.</li>
+<li><strong>Mean-field analysis and PDE.</strong> Wright cites <strong>Chizat and Bach</strong>, and <strong>Weinan E</strong> and
+  collaborators. He has worked in this area.</li>
+<li><strong>Very recent:</strong> SGD iterates bounce between local minima but are <strong>attracted to the ones
+  with lower function values</strong>. The author defended his thesis a few weeks before the talk.</li>
+</ul>
+<h3>6.5 The methods with no matching theory</h3>
+<p>Worth stating flatly, because it is a list of things you probably use:</p>
+<p><strong>Newton's method. Quasi-Newton. Limited-memory quasi-Newton (L-BFGS). Nonlinear conjugate
+gradient.</strong></p>
+<p>All used successfully and broadly. And for <strong>every one of them</strong> there exist worst-case
+functions on which they are <strong>as slow as plain gradient descent</strong>. Excellent practice,
+mediocre worst-case theory. Recent work has narrowed the function classes and added
+enhancements to close some of the gap, but the gap remains.</p>
+<hr />
+<h2>7. AI as a collaborator in optimization theory</h2>
+<p>Wright's argument for why optimization is unusually well matched to AI assistance:</p>
+<ol>
+<li>The questions are <strong>very precise</strong>.</li>
+<li>The techniques are <strong>very technical</strong> — papers carry 40- or 50-page appendices.</li>
+<li>But those techniques are <strong>used over and over again</strong>.</li>
+</ol>
+<p>Precise, technical, repetitive. That should be a good fit, and he reports that it is.</p>
+<p><strong>Results from the last year:</strong></p>
+<ul>
+<li><strong>Ernest Ryu</strong> (now at OpenAI): the classical convergence result for Nesterov's
+  accelerated gradient is stated for the <strong>average of all iterates seen so far</strong>. It is now
+  shown that the <strong>last iterate</strong> converges to the minimizer — a far more natural
+  statement. Proved with the help of <strong>GPT Pro</strong>.</li>
+<li><strong>Ryu and collaborators</strong>, using <strong>ChatGPT</strong>: for <strong>Nesterov flow</strong>, the continuum limit
+  of the method, the trajectory converges to a minimizer — but the <strong>path length can be
+  infinite</strong>. It may spiral a great deal before arriving.</li>
+<li><strong>About a month before the talk</strong>: sharp first-order <strong>lower bounds</strong> for f at different
+  levels of smoothness. The ε⁻¹ ᐟ ² bound under Lipschitz gradient was known; going higher —
+  Lipschitz Hessian, Lipschitz third derivatives — gives different lower bounds, now
+  verified using AI. <em>(The author's name is unrecoverable from the captions; I have not
+  guessed it.)</em></li>
+<li>The <strong>AI-assisted PEP workflow</strong> from §4.3, for designing optimal gradient methods.</li>
+</ul>
+<p><strong>The pattern worth extracting.</strong> Look at where AI succeeded: <strong>lower bounds</strong>. Wright says
+so directly — constructing lower-bound functions is essentially constructing
+<strong>counterexamples</strong>, and that is what these systems turn out to be good at.</p>
+<p>That is a sharper claim than "AI helps with math." It says: point the model at <em>find the
+adversarial instance</em>, not at <em>prove my theorem</em>.</p>
+<hr />
+<h2>8. The open challenges he names</h2>
+<ol>
+<li><strong>The theory–practice gap in machine learning.</strong> The largest one.</li>
+<li><strong>New models of complexity.</strong> The oracle model and the flop model are both blind to the
+   machine. Wright suggests models that account for the <strong>memory hierarchy, parallelism,
+   and GPUs</strong>. People have begun this. <em>(Note how this rhymes with §3.4 — those same
+   concerns are already load-bearing in cutting-edge LP theory.)</em></li>
+<li><strong>Better theory for successful non-convex algorithms.</strong></li>
+<li><strong>AI as a collaborator.</strong></li>
+</ol>
+<hr />
+<h2>9. Do this by hand</h2>
+<h3>9.1 Derive the min–max LP reformulation (10 minutes)</h3>
+<p>From §3.5, verify for yourself that</p>
+<p>\[\min_{x \ge 0}\ \max_{\lambda}\ c^\top x + \lambda^\top(b - Ax)\]</p>
+<p>is exactly the original LP.</p>
+<details>
+<summary>Check</summary>
+<p>Fix x. If Ax ≠ b, then b − Ax ≠ 0, so choosing λ = t(b − Ax) gives an inner objective of
+cᵀx + t‖b − Ax‖², which → +∞ as t → ∞. So the inner max is +∞ unless Ax = b.</p>
+<p>If Ax = b, the λ term vanishes identically and the inner max is cᵀx.</p>
+<p>So the outer minimization sees +∞ on infeasible x and cᵀx on feasible x. It therefore
+minimizes cᵀx over {Ax = b, x ≥ 0}. ∎</p>
+<p>Now notice what the reformulation bought: the only appearance of A is in the products Ax
+and Aᵀλ. That is the entire reason first-order LP solvers run on GPUs.</p>
+</details>
+<h3>9.2 The tridiagonal lower bound (20 minutes, pen)</h3>
+<p>Take f(x) = ½xᵀTx − e₁ᵀx with T the n×n tridiagonal matrix having 2 on the diagonal and −1
+on the off-diagonals. Start at x₀ = 0.</p>
+<p>Compute ∇f(x) = Tx − e₁. Now check by hand: what is ∇f(x₀)? Which components are nonzero?
+Take one gradient step and compute ∇f(x₁). Which components are nonzero now?</p>
+<details>
+<summary>What you should find, and why it matters</summary>
+<p>∇f(0) = −e₁, nonzero in component 1 only. So x₁ is a multiple of e₁.</p>
+<p>Then Tx₁ is nonzero in components 1 and 2 (the tridiagonal band spreads support by exactly
+one position per multiplication). So ∇f(x₁) has support {1,2}, and x₂ has support {1,2}.</p>
+<p>By induction, <strong>x_k has support contained in the first k components</strong>, for <em>any</em> method
+whose iterates lie in the span of the gradients observed so far.</p>
+<p>The solution x* has <strong>all</strong> components nonzero. So ‖x_k − x*‖² is bounded below by the sum
+of squares of the last n − k components of x* — a quantity the algorithm has not been able
+to touch. Turning that into a bound on f(x_k) − f* gives the c/k² lower bound.</p>
+<p>The mechanism to remember: the <strong>band structure of the Hessian rations out information at
+one component per iteration</strong>. This is the "information revealed gradually" principle of
+§4.4 made completely concrete.</p>
+</details>
+<hr />
+<h2>10. What is actually useful to you</h2>
+<h3>10.1 PEP — turn tuning into a solvable min–max problem</h3>
+<p>The single most portable idea here. You do not have to invent a method and then analyze
+it. Write down</p>
+<blockquote>
+<p>min over algorithm parameters, of max over the problem class, of the worst-case
+performance over a horizon T</p>
+</blockquote>
+<p>and <strong>solve it</strong>. The trick that makes it finite is parameterizing the function by the
+iterates and gradients you would observe, then interpolating back to a real function.</p>
+<p>The reframe applies well beyond gradient methods: whenever you have a parameterized
+procedure and a characterized class of inputs, <em>worst-case-optimal parameters are
+computable, not guessable.</em> And there is now an AI workflow wrapping it.</p>
+<h3>10.2 Optimize over the horizon, not the step</h3>
+<p>Silver step sizes (§4.1) generalize past step-size schedules. The classical rule enforces
+improvement at <strong>every</strong> iteration. Altschuler and Parrilo showed that constraint is
+<strong>costly</strong>: allow an occasional step that goes uphill, and the horizon-level result
+improves provably — κ^{0.786} instead of κ.</p>
+<p>Any greedy per-step acceptance criterion is a candidate for this treatment. The question to
+ask is: <em>am I paying for monotonicity I never actually needed?</em></p>
+<h3>10.3 Point AI at counterexamples, not theorems</h3>
+<p>The concrete finding from §7: AI's successes in optimization this year are concentrated in
+<strong>lower bounds</strong> — that is, in constructing worst-case instances. Wright's explanation is
+that lower bounds are counterexample construction, and these systems are good at it.</p>
+<p>Actionable version: when you hand a model a specification or a claim, the higher-yield
+instruction is <strong>"construct the instance where this fails"</strong> rather than <strong>"show this
+holds."</strong> This is the same lesson Kontorovich reports from a different direction — the
+AlphaProof trick of searching for a statement <em>and its negation</em> caught his specification
+errors, not his mathematical ones.</p>
+<p>Two ICM plenary speakers, two fields, same finding: <strong>models are better adversaries than
+advocates.</strong> Use them that way.</p>
+<h3>10.4 A hypothesis whose conditions destroy your structure is not about your problem</h3>
+<p>The Bach–Huiberts result (§3.2) is the clean case. Classical smoothed analysis required
+perturbing A, which means replacing every structural zero with a Gaussian — annihilating
+the sparsity that the entire solver exists to exploit. The theorem was true and did not
+apply to any LP anyone solves. Getting the same conclusion while <strong>leaving A alone</strong> is what
+made it a result about real linear programs.</p>
+<p>Read your guarantees for this failure. The question is not whether the hypotheses hold, but
+whether anything you care about survives them.</p>
+<h3>10.5 The failed search that paid</h3>
+<p>Fifty years of hunting for a provably polynomial pivot rule produced no such rule. It
+produced better heuristics and steadily better commercial LP software (§3.1). Similarly,
+the new-generation interior point methods are <strong>not practical</strong> — large constants — yet they
+moved the frontier and are now the reason anyone knows LP sits a constant away from matrix
+multiplication in the exponent.</p>
+<p>Wright's framing is the useful one: <strong>practice does not wait for theory; theory certifies
+practice after the fact and occasionally illuminates a technique.</strong> Neither direction is
+the primary one.</p>
+<hr />
+<h2>11. Where to read next</h2>
+<ol>
+<li><strong>Wright, <em>Optimization in Theory and Practice</em>.</strong>
+   <a href="https://arxiv.org/abs/2510.15734">arXiv:2510.15734</a> — the written version of this talk.</li>
+<li><strong>Bach and Huiberts, <em>Optimal Smoothed Analysis of the Simplex Method</em>.</strong>
+   <a href="https://arxiv.org/abs/2504.04197">arXiv:2504.04197</a> — the σ^{−1/2} bound and matching
+   lower bound.</li>
+<li><strong>Bach, Huiberts et al., <em>Beyond Smoothed Analysis: Analyzing the Simplex Method by the
+   Book</em>.</strong> <a href="https://arxiv.org/abs/2510.21613">arXiv:2510.21613</a> — the perturb-b-and-c-only
+   result.</li>
+<li><strong>Nocedal and Wright, <em>Numerical Optimization</em></strong> — his own book; the reference for
+   everything in §2 and the §6.5 list.</li>
+</ol>
+<hr />
+<h2>12. Self-test</h2>
+<details>
+<summary>1. What is smoothed analysis, and what did the 2025 work change?</summary>
+<p>You supply a worst-case LP; the analyst adds small Gaussian perturbations of variance σ²
+and proves the expected pivot count is polynomial in the dimension and 1/σ (Spielman–Teng,
+2004). Bach–Huiberts reduced the 1/σ exponent — Wright says from about 30 to about 1.5 —
+reaching O(σ^{−1/2}d^{11/4}log(n)^{7/4}) with a matching lower bound. Then, crucially, they
+obtained the result perturbing <strong>only b and c</strong>, leaving the sparse matrix A intact.</p>
+</details>
+<details>
+<summary>2. Sketch a primal–dual interior point method in four lines.</summary>
+<p>Write the LP optimality conditions: Ax = b, Aᵀλ + s = c, x,s ≥ 0, xᵢsᵢ = 0. Relax the last
+to xᵢsᵢ = μ &gt; 0, which traces the central path. Fix μ, take two or three Newton steps on
+that nonlinear system, curtailing to keep x,s positive. Decrease μ and repeat. Classical
+complexity O(n^{3.5}) = O(√n) iterations × O(n³) per solve.</p>
+</details>
+<details>
+<summary>3. Why did first-order LP methods reach production so fast?</summary>
+<p>The min–max reformulation means the only per-iteration work is multiplication by A and Aᵀ.
+That is cheap for sparse A and extremely efficient on GPUs. They need many more iterations
+but are competitive with simplex and IPM on very large problems. Their theory, via the
+Hoffman constant, also tracks practice well.</p>
+</details>
+<details>
+<summary>4. What do silver step sizes give up, and what do they buy?</summary>
+<p>They give up monotone decrease — an occasional very long step may go uphill. They buy
+O(κ^{0.786} log(1/ε)) instead of O(κ log(1/ε)) in the strongly convex case, by optimizing
+the step sequence over a horizon rather than per iteration. They still lose to Nesterov's
+momentum, which they do not use.</p>
+</details>
+<details>
+<summary>5. What is PEP and what makes it finite?</summary>
+<p>Performance Estimation Problem: min over algorithm parameters of max over the function
+class of worst-case performance over a horizon T. It becomes finite because you
+parameterize f by the iterates x_k and gradients g_k rather than by the function itself,
+giving a matrix optimization problem; then you interpolate to recover an actual f in the
+class.</p>
+</details>
+<details>
+<summary>6. What is the structure shared by all worst-case functions for lower bounds?</summary>
+<p>Information about f is revealed only gradually. The canonical instance: a quadratic with
+tridiagonal positive-definite Hessian and linear term e₁, started at 0, so the band
+structure lets each iterate fill in exactly one more component. This gives
+f(x_k) − f* ≥ c/k², matching Nesterov's C/k² upper bound and proving his method optimal.</p>
+</details>
+<details>
+<summary>7. What does Muon do with the SVD, and why?</summary>
+<p>It reshapes weights into a matrix, forms a momentum-combined stochastic gradient estimate
+B_k, computes B_k = UΣVᵀ, <strong>discards Σ</strong>, and uses UVᵀ — the matrix sign — as the search
+direction. Justification: it is a trust region step under the spectral matrix norm. At
+scale the SVD is approximated iteratively on GPUs.</p>
+</details>
+<details>
+<summary>8. Name the three mechanisms behind benign non-convexity.</summary>
+<p>(1) All local minima are global. (2) Strict saddles — every saddle's Hessian has a strictly
+negative eigenvalue giving an escape direction. (3) The Polyak–Łojasiewicz condition — the
+gradient grows fast enough away from the minimizing set that a gradient step makes real
+progress. Wright stresses these are unrelated mechanisms, not one theorem.</p>
+</details>
+<details>
+<summary>9. Which widely used methods have no matching theory?</summary>
+<p>Newton, quasi-Newton, L-BFGS, and nonlinear conjugate gradient. Each has worst-case
+functions on which it is as slow as plain gradient descent. Also Adam, whose provable rates
+are generally no better than SGD despite dominating practice.</p>
+</details>
+<details>
+<summary>10. Where has AI actually succeeded in optimization theory, and why?</summary>
+<p>In <strong>lower bounds</strong> — constructing worst-case functions, which is counterexample
+construction. Wright attributes the fit to optimization's questions being precise, its
+techniques technical but highly repetitive. Examples: Ryu's last-iterate convergence for
+Nesterov's method (GPT Pro), the infinite-path-length result for Nesterov flow (ChatGPT),
+and sharp first-order lower bounds under higher-order smoothness.</p>
+</details>
+<hr />
+<h2>13. Note on the tutorial process</h2>
+<p><strong>Template adaptation for a Tier-0 talk.</strong> The standard template devotes its middle to
+building background. Here that section (§2) is a one-page calibration you can skip, and the
+length went to the post-2015 frontier instead. For talks in your own field, the tutorial's
+job is not the bridge — it is the delta.</p>
+<p><strong>Where the transcript failed and I repaired it.</strong> Auto-captions destroy proper nouns in
+this talk more than in Kontorovich's. Corrections made, all verified against the paper or
+the primary literature except where noted:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Danig</td>
+<td>Dantzig</td>
+</tr>
+<tr>
+<td>Borgart</td>
+<td>Borgwardt</td>
+</tr>
+<tr>
+<td>Spielman and Tang</td>
+<td>Spielman and Teng</td>
+</tr>
+<tr>
+<td>Elon Bach, Sophie Hibbitz</td>
+<td>Eleon Bach, Sophie Huiberts</td>
+</tr>
+<tr>
+<td>Kacion</td>
+<td>Khachiyan</td>
+</tr>
+<tr>
+<td>Kamakar</td>
+<td>Karmarkar</td>
+</tr>
+<tr>
+<td>Neestro / Nestrob</td>
+<td>Nesterov</td>
+</tr>
+<tr>
+<td>Nearoski and Uden</td>
+<td>Nemirovski and Yudin</td>
+</tr>
+<tr>
+<td>Grevak</td>
+<td>Griewank</td>
+</tr>
+<tr>
+<td>Robins and Monroe</td>
+<td>Robbins and Monro</td>
+</tr>
+<tr>
+<td>Yintatly</td>
+<td>Yin-Tat Lee</td>
+</tr>
+<tr>
+<td>Wayne and her</td>
+<td>Weinan E</td>
+</tr>
+<tr>
+<td>Chisard and Bach</td>
+<td>Chizat and Bach</td>
+</tr>
+<tr>
+<td>polyac</td>
+<td>Polyak (–Łojasiewicz)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Reconstructed, not verified:</strong> "and pillo" → <strong>Parrilo</strong> (consistent with the published
+silver-step-size work); "way Sue" → <strong>Weijie Su</strong>. The author of the recent higher-order
+lower-bound paper is rendered only as "Joe" and I have not guessed it.</p>
+<p><strong>One transcript error I corrected in substance,</strong> not just spelling: in §4.4 the captions
+say the iterate has its "last n−k components nonzero." That is backwards — they are zero,
+and that is precisely what makes the lower bound work. Corrected in the text and flagged
+there.</p>
+<p><strong>Tier check, applied this time before writing</strong> (the correction from talk 1): title and
+opening minutes read first. Wright's talk is what his field says it is, so the reputation
+and the content agreed here. That will not always hold.</p>
+</div>
+</body>
+</html>

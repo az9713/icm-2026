@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Round 2 — re-deriving every worked exercise solution</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Round 2 — re-deriving every worked exercise solution</h1>
+<p>Run 2026-08-18. The check <code>HANDOFF.md</code> listed as never run: <em>re-derive the worked exercise
+solutions.</em> Before this round, exactly <strong>one</strong> solution in the corpus had ever been
+re-derived — <code>mesh-generation-pdes-buffa.md:910</code> — and it was wrong.</p>
+<p>Method: read each exercise and its <code>&lt;details&gt;</code> solution, work it independently on paper, and
+compare. No papers needed for most of them; that is the point of the check. Every exercise in
+all 20 files is covered. Errors are listed here <strong>and</strong> in the per-file <code>verify/{slug}.md</code>.</p>
+<p>This file is written as the check runs. If it ends mid-list, the entries above the cut are
+still complete.</p>
+<h2>Score</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Files with a "Do this by hand" section</td>
+<td>20 of 20</td>
+</tr>
+<tr>
+<td>Worked solutions re-derived</td>
+<td><strong>44</strong></td>
+</tr>
+<tr>
+<td>Solutions whose <strong>conclusion</strong> is wrong</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>Defects found (wrong constant, dropped sign, shifted index, self-contradiction)</td>
+<td><strong>9</strong>, in 6 files</td>
+</tr>
+<tr>
+<td>Of those, already known before this round</td>
+<td>1 (<code>buffa</code> §8.1)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Full table at the end, under <strong>Total</strong>.</p>
+<hr />
+<h2>Errors found</h2>
+<h3>1. <code>summaries/random-matrices-localization-yau.md:964</code> — the constant c is wrong</h3>
+<p>Exercise 7.1 step 2 asks the reader to show <code>1 − |m|² = cη + O(η²)</code> and "identify c in terms
+of Im m_sc(E)". The solution answers:</p>
+<blockquote>
+<p><code>c = 2 Im m_sc(E)/√(4−E²) &gt; 0 in the bulk</code></p>
+</blockquote>
+<p>Since <code>Im m_sc(E) = √(4−E²)/2</code> — which the solution's own step 1 establishes — that expression
+is <strong>identically 1</strong>, for every E in the bulk. It is not "in terms of Im m_sc(E)" at all; the
+two factors cancel.</p>
+<p><strong>The correct value.</strong> Write <code>m = m_sc(E)</code>, so <code>|m| = 1</code> and <code>m = e^{iθ}</code> with
+<code>sin θ = Im m = √(4−E²)/2</code>. Expanding <code>m(E+iη) = m + iη m′ + O(η²)</code>,</p>
+<pre><code>1 − |m(E+iη)|² = 2η · Im( conj(m) m′ ) + O(η²).
+</code></pre>
+<p>From <code>m² + zm + 1 = 0</code> we get <code>m′ = −m/(2m+z)</code>, and <code>z = −m − 1/m</code>, so <code>2m + z = m − 1/m</code> and
+<code>m′ = −m²/(m²−1)</code>. Then <code>conj(m) m′ = −m/(m²−1)</code> at η = 0, and with <code>m = e^{iθ}</code>,
+<code>m² − 1 = e^{iθ}·2i sin θ</code>, so <code>conj(m) m′ = i/(2 sin θ)</code> and <code>Im(conj(m) m′) = 1/(2 sin θ)</code>.
+Hence</p>
+<pre><code>1 − |m|² = η / sin θ + O(η²),   i.e.   **c = 1/Im m_sc(E) = 2/√(4−E²)**.
+</code></pre>
+<p>The stated formula has <code>Im m_sc(E)</code> in the numerator where it belongs in the <strong>denominator</strong>,
+as a reciprocal.</p>
+<p><strong>Check the two against each other at E = 0:</strong> direct expansion of <code>m(iη)</code> gives
+<code>|m|² = 1 − η + O(η²)</code>, so c = 1 there. Both formulas give 1 at E = 0 — which is exactly why
+the error survives a spot check. At E = 1 the correct c is <code>2/√3 ≈ 1.155</code>; the file's is 1.</p>
+<p><strong>Impact: low, and the file says so.</strong> The next sentence reads "The only thing that matters
+downstream is that <strong>c &gt; 0 and the leading term is linear in η</strong>", and that is true and is all
+step 4 uses. But the exercise asked for c, and the answer given is wrong.</p>
+<h3>2. <code>summaries/random-matrices-localization-yau.md:963</code> — a dropped minus sign</h3>
+<p>Same solution, one line earlier:</p>
+<blockquote>
+<p><code>m′ = −m/(2m + z) = m/(m − 1/m)</code></p>
+</blockquote>
+<p>The first expression is right. The second drops the sign: with <code>2m + z = m − 1/m</code>, it must be
+<code>m′ = −m/(m − 1/m)</code>. The two displayed expressions contradict each other.</p>
+<h3>3. <code>summaries/random-matrices-localization-yau.md:1037-1041</code> — the Tracy–Widom tails are described backwards</h3>
+<p>The "sanity check worth doing" after exercise 7.2 says:</p>
+<blockquote>
+<p>"That asymmetry (83, not 50) is the <strong>left-skew</strong> of TW₁: the distribution has a <strong>thin tail
+to the right and a thicker one to the left</strong>, so the median sits above the centring point."</p>
+</blockquote>
+<p>All three clauses are wrong, and they are wrong together:</p>
+<ul>
+<li><strong>The tails are the other way round.</strong> For Tracy–Widom, <code>F_β(s) ≈ exp(−β|s|³/24)</code> as
+  <code>s → −∞</code> and <code>1 − F_β(s) ≈ exp(−(2β/3)s^{3/2})</code> as <code>s → +∞</code>. A cubic decay is far faster
+  than a 3/2-power decay, so the <strong>left</strong> tail is the thin one and the <strong>right</strong> tail is the
+  thicker one.</li>
+<li><strong>TW₁ is right-skewed, not left-skewed.</strong> Its skewness is about +0.29, which is the same
+  fact stated as a moment.</li>
+<li><strong>The median is below 0, not above.</strong> TW₁ has mean ≈ −1.21 and median ≈ −1.27.</li>
+</ul>
+<p>And the explanation is not needed anyway: <code>F₁(0) ≈ 0.83</code> because 0 sits about 0.95 standard
+deviations (sd ≈ 1.27) <strong>above</strong> a mean of ≈ −1.21. That is a location fact, not a skew fact.</p>
+<p><strong>Impact: low but real.</strong> It is a side remark in a solution the reader is invited to check,
+the numbers 0.83 and 0.69 are correct, and nothing downstream uses the skew. But a reader who
+takes the description at face value now believes the wrong thing about Tracy–Widom.</p>
+<h3>4. <code>summaries/arithmetic-patterns-ziegler.md:1035-1041</code> — two wording slips in an otherwise correct solution</h3>
+<p>Exercise 7.1(4). The solution correctly shows that of the 8 terms in the expansion, the all-δ
+term gives δ³ and the three single-f terms vanish. It then writes "Summing the <strong>at most 7</strong>
+nonzero mixed terms" — but it has just shown that at most <strong>4</strong> are nonzero. The bound still
+holds (4 ≤ 7, and the exercise statement's constant 7 is generous), so nothing is wrong; the
+sentence contradicts the one before it.</p>
+<p>In the same paragraph the Cauchy–Schwarz step is written
+<code>|Σ_r f̂(r)ĝ(−2r)ĥ(r)| ≤ ‖f̂‖_∞ Σ_r |f̂(r)||ĥ(r)|</code> — the middle factor should be <code>|ĝ(−2r)|</code>.
+An index typo; the conclusion is right.</p>
+<hr />
+<h2>Per-file results</h2>
+<h3><code>optimization-theory-practice-wright</code> — 2 exercises, both correct</h3>
+<ul>
+<li><strong>§9.1 min–max LP reformulation.</strong> <code>λ = t(b − Ax)</code> drives the inner objective to +∞ exactly
+  when <code>Ax ≠ b</code>; on the feasible set the λ term vanishes identically. Correct.</li>
+<li><strong>§9.2 tridiagonal lower bound.</strong> <code>∇f(0) = −e₁</code>, so <code>x₁ ∝ e₁</code>; <code>Tx₁ = α(2e₁ − e₂)</code>, so
+  <code>∇f(x₁)</code> has support {1,2}; induction gives <code>supp(x_k) ⊆ {1..k}</code>. And <code>x* = T⁻¹e₁</code> has
+  <code>(x*)ᵢ = (n+1−i)/(n+1)</code>, every component nonzero, so the discarded tail really is nonzero.
+  Correct.</li>
+</ul>
+<h3><code>shape-of-math-kontorovich</code> — 1 proof exercise + 1 lab, both correct</h3>
+<ul>
+<li><strong>§6.1 handshake lemma.</strong> <code>Σ_x d(x) = 2·(handshakes)</code> is even; the even-degree part of the
+  sum is even; so the odd-degree part is even; a sum of odd numbers is even exactly when the
+  number of terms is even. Correct.</li>
+<li><strong>§6.2 Lean demo.</strong> Traced by hand, not compiled. Step 2 ("change <code>use 1</code> to <code>use 0</code> — it
+  still works") is right: the hypothesis holds for every n, so the witness is irrelevant.</li>
+</ul>
+<h3><code>geometric-concepts-pde-otto</code> — 2 exercises, both correct</h3>
+<ul>
+<li><strong>§7.1 Fokker–Planck from JKO.</strong> <code>δE/δρ = log ρ + 1 + V</code>; <code>ρ∇(log ρ + V) = ∇ρ + ρ∇V</code>; so
+  <code>∂ₜρ = ∇·(∇ρ + ρ∇V) = Δρ + ∇·(ρ∇V)</code>. Correct, signs included. The closing contrast — flat
+  L² gives <code>∂ₜρ = −(log ρ + 1 + V)</code>, not a PDE — is also correct.</li>
+<li><strong>§7.2 exponent bookkeeping</strong>, all four parts. <code>α = 2 − d/2</code>; remainder order <code>α + d/2 − 2</code>;
+  coherence <code>α &gt; 1 − d/4</code>; the table (3/4, 1/2, 1/4, 0, negative) is right at every row; and
+  the bonus check — substituting <code>α = 2 − d/2</code> gives remainder order exactly 0 for every d —
+  is right. Correct.</li>
+</ul>
+<h3><code>modern-ml-methods-bartlett</code> — 2 exercises, both correct</h3>
+<ul>
+<li><strong>§7.1 self-boundedness.</strong> <code>ℓ″ = σ(1−σ) ≤ 1 − σ = 1/(1+eᶻ) ≤ e^{−z}</code> for z ≥ 0;
+  <code>ln(1+u) ≥ u ln 2</code> on [0,1] gives <code>ℓ(z) ≥ (ln 2)e^{−z}</code>; each <code>xᵢxᵢᵀ</code> is PSD of spectral
+  norm ≤ 1, so <code>λ_max(∇²L) ≤ L(w)/ln 2</code>; hence the threshold <code>L(w) &lt; 2 ln 2/η</code>, scaling as
+  1/η. Correct, and the hypothesis (all margins ≥ 0) is stated.</li>
+<li><strong>§7.2 interpolator as ridge.</strong> Push-through verified directly:
+  <code>Aᵀ(AAᵀ + γI) = AᵀAAᵀ + γAᵀ = (AᵀA + γI)Aᵀ</code>. Correct.</li>
+</ul>
+<h3><code>langlands-function-fields-gaitsgory</code> — 2 exercises (3 parts), all correct</h3>
+<ul>
+<li><strong>§6.1 the 𝔾_m case.</strong> <code>Funct_c(ℤ)</code> countable, <code>δ_n ↦ tⁿ</code> onto <code>ℚ̄_ℓ[t,t⁻¹] = 𝒪(𝔾_m)</code>,
+  <code>ℚ̄_ℓ^×</code> uncountable. Correct.</li>
+<li><strong>§6.2(a) basis-free trace.</strong> <code>1 ↦ Σᵢ eᵢ ⊗ eⁱ ↦ Σᵢ T(eᵢ) ⊗ eⁱ ↦ Σᵢ Tᵢᵢ</code>. Correct.</li>
+<li><strong>§6.2(b) Lang's theorem and its failure.</strong> Finite case: <code>h⁻¹g Frob(h) = g·h^{q−1}</code>,
+  <code>x ↦ x^{q−1}</code> surjective on <code>𝔽̄_q^×</code>, one orbit, stabilizer <code>μ_{q−1} = 𝔽_q^×</code>. Loop case:
+  Frobenius acts coefficientwise and fixes t, so the lowest nonzero coefficient <code>a_m</code> maps to
+  <code>a_m^q ≠ 0</code> and <code>v(Frob(h)) = v(h)</code>; hence v is constant on orbits and <code>v(t) = 1 ≠ 0 = v(1)</code>.
+  Correct — and this is the file's own reconstruction, not the talk's or the paper's.</li>
+</ul>
+<h3><code>arithmetic-patterns-ziegler</code> — 2 exercises (10 parts), mathematics correct; see Error 4</h3>
+<ul>
+<li><strong>§7.1(1)</strong> The four-fold expansion forces <code>a−b−c+d ≡ 0</code>, <code>b = d</code>, <code>c = d</code>, hence
+  <code>a = b = c = d</code> and <code>‖f‖⁴_{U²} = Σ_a |f̂(a)|⁴</code>. Correct.</li>
+<li><strong>§7.1(2)</strong> <code>Σ|f̂|⁴ ≤ ‖f̂‖²_∞ Σ|f̂|² ≤ ‖f̂‖²_∞</code> for 1-bounded f, so <code>‖f‖_{U²} ≥ η ⟹
+  ‖f̂‖_∞ ≥ η²</code>. Correct.</li>
+<li><strong>§7.1(3)</strong> Constraints <code>a+b+c ≡ 0</code> and <code>b+2c ≡ 0</code> give <code>b = −2c</code>, <code>a = c</code>, leaving
+  <code>Σ_c f̂(c)ĝ(−2c)ĥ(c)</code>. Correct.</li>
+<li><strong>§7.1(4)</strong> Conclusion correct; two wording slips, Error 4 above.</li>
+<li><strong>§7.1(5)</strong> Two constraints on four frequencies leave a two-parameter family. Correct.</li>
+<li><strong>§7.2(1)</strong> Induction verified: <code>T(z+nα, w+2nz+n²α) = (z+(n+1)α, w+2(n+1)z+(n+1)²α)</code>. Correct.</li>
+<li><strong>§7.2(2)</strong> Weights (1,−3,3,−1): w-coefficients <code>3−3+1 = 1</code>; z-coefficients <code>6−12+6 = 0</code>;
+  α-coefficients <code>3−12+9 = 0</code>; first coordinate <code>3−3+1 = 1</code> and <code>3−6+3 = 0</code>. Correct, and the
+  reading of it as the third finite difference annihilating quadratics is right.</li>
+<li><strong>§7.2(3)</strong> <code>φ(Ty) = e(2z+α)φ(y)</code>, and <code>ψ(Ty) = e(2α)ψ(y)</code>. Eigenvalue <code>e(2α)</code>. Correct.</li>
+<li><strong>§7.2(4)</strong> <code>∫₀¹ e(kw) dw = 0</code> for k ≠ 0. Correct.</li>
+<li><strong>§7.2(5)</strong> Verified directly: `φ³(Tⁿy)·φ^{−3}(T^{2n}y)·φ(T^{3n}y) = e(w(3−3+1) + nz(6−12+6)</li>
+<li>n²α(3−12+9)) = e(w) = φ(y)`, so the integrand is identically 1. Correct, and all four
+  functions are 1-bounded with zero Kronecker projection.</li>
+</ul>
+<h3><code>ramsey-numbers-morris</code> — 3 exercises, all correct</h3>
+<ul>
+<li><strong>§7.1 R(3,3) = 6.</strong> Pigeonhole on 5 edges at a vertex; C₅ and its complement (also C₅)
+  are both triangle-free. Correct, including <code>α(C₅) = 2</code>.</li>
+<li><strong>§7.2 first moment.</strong> <code>E[X] = C(n,k)2^{1−C(k,2)}</code>; with <code>C(n,k) ≤ (en/k)^k</code> this is
+  <code>2(en/(k·2^{(k−1)/2}))^k</code>, below 1 once <code>n &lt; (k/e)2^{(k−1)/2}</code>. Correct.</li>
+<li><strong>§7.3 triples.</strong> <code>E[X] = C(n,k)2^{1−C(k,3)}</code>; <code>C(k,3) ≈ k³/6</code> against
+  <code>log₂C(n,k) ≈ k log₂ n</code> gives <code>log₂ n ≈ k²/6</code>, i.e. <code>n ≈ 2^{k²/6}</code>. Correct, and the
+  contrast with the doubly-exponential upper bound <code>2^{2^{ck}}</code> is the right point. The file
+  labels this one a reconstruction.</li>
+</ul>
+<h3><code>random-interface-growth-quastel</code> — 2 exercises, both correct</h3>
+<ul>
+<li><strong>§7.1 the 1:2:3 scaling.</strong> <code>a = 1/2</code> from Brownian increments; <code>(ε⁻¹x̂)²/(ε^{−b}T) =
+  ε^{−2+b}x̂²/T</code>, and <code>ε^{−2+b}·ε^{1/2} = ε⁰</code> forces <code>b = 3/2</code>. Then <code>ε^{−1/2} = t^{1/3}</code> and
+  <code>ε^{−1} = t^{2/3}</code>. Correct.</li>
+<li><strong>§7.2 RG flow</strong>, all four parts. (a) <code>δ(ε^{−z}s) = ε^z δ(s)</code> gives <code>ε^{(z+1)/2}</code> for the
+  noise. (b) viscosity <code>ε^{2−z}</code>, nonlinearity <code>ε^{2−z−β}</code>, noise <code>ε^{β−(z−1)/2}</code> — each
+  re-derived. (c) at (β,z) = (1/2, 3/2): 1/2, 0, 1/4 — so <code>(λ,ν,σ) ↦ (λ, ε^{1/2}ν, ε^{1/4}σ)</code>.
+  (d) at (β,z) = (1/2, 2): 0, −1/2, 0 — the linear equation is invariant and the nonlinearity
+  is relevant. All correct, and "1:2:4" for the Edwards–Wilkinson scaling is right.</li>
+</ul>
+<h3><code>random-matrices-localization-yau</code> — 2 exercises; <strong>3 errors</strong>, see Errors 1-3</h3>
+<p>Correct parts: step 1 (<code>m² + zm + 1 = 0</code>, <code>|m_sc(E)| = 1</code> in the bulk — verified as
+<code>(E² + 4 − E²)/4 = 1</code>); step 3 (the second-moment expansion giving <code>1 − S ≈ −DΔ</code> with
+<code>D ~ W²</code>); step 4 (<code>(cη + D(−Δ))⁻¹ = ∫₀^∞ e^{−cηt}e^{tDΔ}dt</code>, cut off at <code>t ≈ 1/η</code>); step 5
+(<code>√(Dt) = W√N ≳ N ⟹ W ≳ √N</code> in d = 1); step 6 (<code>L = √N</code> in d = 2, so the condition collapses
+to <code>W ≳ 1</code>). Exercise 7.2 parts 1-5: <code>0.83² ≈ 0.69</code> correct, the concentration-inequality
+argument correct, and the correlation bounds correct — perfect correlation gives 0.83 and the
+Fréchet lower bound <code>max(0, 0.83 + 0.83 − 1) = 0.66</code> is exactly the figure quoted.</p>
+<h3>5. <code>summaries/uniformization-complex-geometry-mok.md:1461</code> — an off-by-one in the exponent, contradicted twice in its own solution</h3>
+<p>Exercise 6.2(a) expands <code>Σ_j (z_j + t w_j)^d</code> correctly:</p>
+<blockquote>
+<p><code>Σ_j z_j^d + t·d·Σ_j z_j^{d−1} w_j + t²·(d(d−1)/2)·Σ_j z_j^{d−2} w_j² + ⋯ + t^d·Σ_j w_j^d</code></p>
+</blockquote>
+<p>Then it states the resulting equations as</p>
+<blockquote>
+<p><code>Σ_j z_j^{d−k} w_j^{k+1} = 0 for k = 0, 1, …, d−1</code></p>
+</blockquote>
+<p>At k = 0 that reads <code>Σ_j z_j^{d} w_j = 0</code>, but the t¹ coefficient two lines above is
+<code>Σ_j z_j^{d−1} w_j</code>. The exponent on z is one too high throughout. The correct family is</p>
+<pre><code>Σ_j z_j^{d−m} w_j^m = 0   for m = 1, …, d,
+</code></pre>
+<p>equivalently <code>Σ_j z_j^{d−k−1} w_j^{k+1} = 0</code> for k = 0, …, d−1.</p>
+<p><strong>The solution's own part (c) uses the correct form</strong>, not the stated one: for d = 2 it writes
+the two equations as <code>Σ z_j w_j = 0</code> and <code>Σ w_j² = 0</code>, which are <code>m = 1</code> and <code>m = 2</code> of the
+corrected family. So the file contradicts itself twice — once above the formula and once below
+it — and both of those are right. Only the general formula is wrong.</p>
+<p><strong>Impact: low.</strong> The count of equations (d), the dimension <code>n − d</code>, the reconciliation with the
+slide's <code>(n+1) − (d+1) − 1 = n − d − 1</code>, and the <code>Q^{n−2}</code> answer for the quadric are all
+unaffected and all correct.</p>
+<h3>6. <code>summaries/ricci-flow-singularities-brendle.md:1252-1259</code> — the metric and its curvature differ by a factor of 4</h3>
+<p>Exercise 6.2(a) states the cigar at t = 0 as</p>
+<blockquote>
+<p><code>g = 4/(1+|x|²) δ_ij on ℝ²</code></p>
+</blockquote>
+<p>and derives, correctly for that metric, an asymptotic flat cylinder <code>ds² + 4dθ²</code> with
+cross-sectional radius 2 and <strong>circumference 4π</strong>. Part (b) then reuses the circumference 4π.</p>
+<p>But the same solution says the scalar curvature is <code>R ≈ 4/ρ² = 4e^{−s}</code>, and part (b) repeats
+it as <code>sup R ≈ 4e^{−(s−r)}</code>. <strong>That is the curvature of <code>δ/(1+ρ²)</code>, not of <code>4δ/(1+ρ²)</code>.</strong></p>
+<p>Scalar curvature scales inversely with the metric: <code>R(cg) = R(g)/c</code>. For a conformal metric
+<code>e^{2u}δ</code> in two dimensions, <code>K = −e^{−2u}Δu</code> and <code>R = 2K</code>; with <code>Δ log(1+ρ²) = 4/(1+ρ²)²</code> this
+gives</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>metric</th>
+<th>R</th>
+<th>asymptotic circumference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>δ/(1+ρ²)</code></td>
+<td><code>4/(1+ρ²) ≈ 4/ρ²</code></td>
+<td>2π</td>
+</tr>
+<tr>
+<td><code>4δ/(1+ρ²)</code> (as printed)</td>
+<td><code>1/(1+ρ²) ≈ 1/ρ²</code></td>
+<td>4π</td>
+</tr>
+</tbody>
+</table></div>
+<p>The file takes the circumference from the second row and the curvature from the first.</p>
+<p><strong>Impact: none for the conclusion, and the conclusion is what the exercise is for.</strong> R is
+exponentially small in arclength either way, so the hypothesis <code>sup R ≤ r⁻²</code> holds for every
+<code>r ≤ s/2</code> either way, and the collapsing verdict (<code>area/r² ≈ 8π/r → 0</code>) does not use R at all.
+But two displayed numbers in the same solution describe two different metrics.</p>
+<hr />
+<h2>Per-file results, continued</h2>
+<h3><code>hardy-spaces-explicit-formulae-gerard</code> — 3 exercises, all correct</h3>
+<p>Notable, because this is the corpus's one MAJOR file: its two known formula errors are at
+<code>:665</code> and <code>:399</code>, in the body, and <strong>its exercises are clean</strong>.</p>
+<ul>
+<li><strong>§6.1(a)</strong> <code>∫dx/((x+Re p)² + (Im p)²) = π/Im p</code>, so the normalization is right.</li>
+<li><strong>§6.1(b)</strong> <code>x/(x+p) = 1 − p/(x+p)</code>; renormalization removes the constant; <code>X*φ_p = −pφ_p</code>.</li>
+<li><strong>§6.1(c)</strong> Contour closed in the lower half-plane (correct for <code>e^{−iξx}</code>, ξ &gt; 0), the pole
+  <code>x = −p</code> is enclosed since <code>Im(−p) &lt; 0</code>, clockwise gives <code>−2πi·e^{iξp}</code>, so <code>I₊ = −2iπ</code> and
+  <code>|I₊(φ_p)|²/4π = 4π²(Im p/π)/4π = Im p</code>. Correct, every π included.</li>
+<li><strong>§6.1(d)</strong> <code>i/(y+p) − i/(y+p̄) = i(p̄−p)/|y+p|² = 2 Im p/|y+p|²</code>, using <code>(y+p)(y+p̄) = |y+p|²</code>
+  for real y. Correct.</li>
+<li><strong>§6.2(a)</strong> <code>X* − 2tL − (z − 2tλ_j) = X* − 2t(L−λ_j) − z</code>. Correct.</li>
+<li><strong>§6.2(c)</strong> <code>−2t(L−λ_j) = A_t − (X*−z)</code> gives
+  <code>A_t⁻¹(L−λ_j)χ = −(1/2t)[χ − A_t⁻¹(X*−z)χ]</code>, bounded, so O(1/t). Correct.</li>
+<li><strong>§6.3</strong> <code>∂_x|D|</code> acts as <code>iξ|ξ|</code>, which is <code>iξ²</code> on the Hardy component, so
+  <code>ŵ = e^{itξ²}ŵ₀</code>; <code>t^{−1/2}</code> decay and the Fresnel factor <code>√(π/t)e^{iπ/4}</code> follow. Correct.</li>
+</ul>
+<h3><code>knots-four-manifolds-manolescu</code> — 2 exercises, all correct</h3>
+<ul>
+<li><strong>§6.1 trefoil.</strong> Alexander: <code>Δ(H₊) = q^{1/2} − q^{−1/2}</code>, then
+  <code>Δ(T) = 1 + (q^{1/2}−q^{−1/2})² = q⁻¹ − 1 + q</code>. Jones: <code>V(unlink₂) = −(q^{1/2}+q^{−1/2})</code>,
+  <code>V(H₊) = −q^{1/2} − q^{5/2}</code>, <code>V(T) = q + q³ − q⁴</code>. Every step re-derived; all correct,
+  including the standard-normalization check. Fox–Milnor: <code>Δ(T)(−1) = −3</code>, not a square.</li>
+<li><strong>§6.2 Khovanov complex of the Hopf link.</strong> The sign rule, <code>d⁰(v) = (m(v), m(v))</code> and
+  <code>d¹(a,b) = −Δ(a) + Δ(b)</code>, <code>d¹d⁰ = 0</code>; <code>ker m = span{x⊗x, 1⊗x − x⊗1}</code>; <code>im d⁰ = {(w,w)}</code>;
+  <code>ker d¹ = {(a,a)}</code> since Δ is injective; <code>im d¹ = Δ(V)</code>. So H⁰ ≅ ℤ², H¹ = 0, H² ≅ ℤ², total
+  rank 4 — the right answer for the Hopf link — and the Euler characteristics match, 4 = 4.</li>
+</ul>
+<h3><code>learning-in-games-tardos</code> — 2 exercises, all correct</h3>
+<ul>
+<li><strong>§6.1 Braess.</strong> 1.5 before, 2 after, optimum still 1.5, PoA = 4/3. Correct.</li>
+<li><strong>§6.2 uniform vs round robin.</strong> The geometric sum re-derived in full:
+  <code>Σ_{i≥1}(1/k)(1−1/k)^{i−1}(1−1/n)^i = ((n−1)/(nk))/(1 − (1−1/k)(1−1/n))</code>, denominator
+  <code>(n+k−1)/(nk)</code>, so the second piece is <code>(n−1)/(n+k−1)</code> and
+  <code>Pr[accept] = k/(n+k−1)</code>. Then <code>k/(n+k−1) &gt; 1/2</code> iff <code>k &gt; n−1</code>. Round robin gives
+  <code>1 − (1−1/n)^k → 1 − 1/e ≈ 0.632</code> at k = n against <code>n/(2n−1) → 1/2</code>. All correct.</li>
+</ul>
+<h3><code>maestro-serre-sarnak</code> — 3 exercises, all correct</h3>
+<ul>
+<li><strong>§7.1 capacity.</strong> <code>‖T_n‖_{[−2,2]} = 2</code> for every n, so cap = 1; scaling gives ℓ/4. The
+  equilibrium measure <code>dx/(π√(4−x²))</code> is right (it integrates to 1 on [−2,2]).</li>
+<li><strong>§7.2 integrality.</strong> Coefficient bound <code>|c_k| ≤ C(d,k)a^{d−k}</code>; <code>cap([−a,a]) = a/2 &lt; 1</code> for
+  a &lt; 2. Correct, and the atomic-limit caveat is flagged.</li>
+<li><strong>§7.3 the energy of the uniform measure.</strong> Re-derived line by line:
+  <code>∫₀¹ log|u−v| dv = u log u + (1−u)log(1−u) − 1</code>, then <code>∫₀¹ u log u du = −1/4</code> twice, giving
+  <code>−1/4 − 1/4 − 1 = −3/2</code> and <code>I(ν_E) = log L − 3/2</code>. Correct. The threshold <code>e^{3/2} = 4.4817</code>
+  is right and the file's correction of Serre's printed "4,816" is right. The second refinement
+  is also right: for E centred at 0, <code>∫log|x|dν = log(L/2) − 1 ≥ 0</code> iff <code>L ≥ 2e = 5.4366</code>.</li>
+</ul>
+<h3><code>mesh-generation-pdes-buffa</code> — 2 exercises, 1 with the already-known error</h3>
+<ul>
+<li><strong>§8.1</strong> carries the defect already in <code>verify/README.md</code>: with <code>ρ = 1 + (a/δ)1_{s&gt;1−δ}</code>, the
+  integral over the layer must use <code>1 + a/δ</code>, not <code>a/δ</code>. <strong>Confirmed by re-derivation.</strong> The
+  correct inside slope is <code>δ(1+a)/(δ+a)</code>, as the roll-up says. Two consequences worth adding:
+  the node fraction <code>1 − ξ* = (a+δ)/(1+a)</code> and the 34% headline are <strong>independent of the error
+  and correct</strong>; but the stated moral — "the slope ratio is exactly the ratio of monitor
+  values" — is true only for the corrected slope. With the printed slope the ratio is <code>a/δ</code>,
+  and the monitor ratio is <code>1 + a/δ</code>. So the error propagates into the sentence that explains
+  the exercise.</li>
+<li><strong>§8.2</strong> correct: <code>ρ(x(ξ))det J(ξ) = σ</code> from arbitrary <code>ω̂</code>, then Brenier's <code>x = ∇φ</code> gives
+  <code>ρ(∇φ) det D²φ = σ</code>, and the d = 1 case reduces to §8.1's equation.</li>
+</ul>
+<h3><code>quantitative-rectifiability-harmonic-measure-tolsa</code> — 2 exercises, all correct</h3>
+<ul>
+<li><strong>§7.1</strong> <code>∇(|x|^{2−d}) = (2−d)x/|x|^d</code>, so <code>∇E = −(1/κ_d)x/|x|^d</code>, a constant multiple of the
+  codimension-one Riesz kernel <code>x/|x|^d</code>. Correct.</li>
+<li><strong>§7.2 four-corner Cantor set.</strong> <code>Σ diam = 4^k·√2·4^{−k} = √2</code>; the s-exponent test
+  <code>2^{s/2}4^{k(1−s)}</code> is right in both directions; <code>H¹(E∩Q) = √2ℓ</code>; the β estimate
+  <code>2·(√2ℓ/4)·(c/2)² = √2c²ℓ/8</code> and <code>β² ≥ √2c²/16</code> are arithmetically right; and
+  <code>Σ_k β₀² ∫_{4^{−k−1}}^{4^{−k}} dr/r = Σ_k β₀² log 4 = ∞</code>. Correct, and the constant-chasing
+  is labelled a reconstruction.</li>
+</ul>
+<h3><code>randomness-rotations-resonances-dolgopyat</code> — 3 exercises, all correct</h3>
+<ul>
+<li><strong>§9.1</strong> <code>q_{j+1} ≥ q_j + q_{j−1}</code> gives Fibonacci growth and <code>j ≲ log N/log φ</code>;
+  <code>q_{j+1} ≤ (A+1)q_j</code> gives <code>j ≳ log N/log(A+1)</code>. <code>ℙ(‖kα‖ ≤ δ) = 2δ</code>; <code>ℙ(k‖kα‖ ≤ ε) = 2ε/k</code>;
+  <code>Σ_{k≤N} 2ε/k ≈ 2ε log N = 1</code> gives <code>ε ≈ 1/(2 log N)</code> and a harmonic of size of order log N.
+  Correct, and the observation that only the <em>lower</em> bound needs bounded type is right.</li>
+<li><strong>§9.2</strong> correct, including <code>n^{−d/2} = o(n^{−(d−1)/2})</code>, which is the whole point of (d).</li>
+<li><strong>§9.3</strong> <code>z_n = 2V_n − n = 2(V_n − n/2) = 2D_n</code> since <code>|I| = 1/2</code>. Correct.</li>
+</ul>
+<h3><code>ricci-flow-singularities-brendle</code> — 2 exercises; see Error 6</h3>
+<p>Correct: 6.1 in full — <code>λ′ = −2(n−1)</code>, <code>λ(t) = r₀² − 2(n−1)t</code>, <code>T = r₀²/(2(n−1))</code>, checking
+against n = 2 and n = 3; the product-metric argument in (d); and the scaling symmetry in (e),
+where <code>ĝ(t) = c⁻¹g(ct)</code> with <code>c = λ⁻²</code> gives <code>∂ₜĝ = (∂_s g)(ct) = −2Ric_{g(ct)} = −2Ric_{ĝ}</code>.
+Also correct: all of 6.2 except the curvature constant — <code>area(B) ≈ 8πr</code> against <code>κr²</code> fails;
+<code>r ≈ √(s/c)</code>; <code>vol ≈ 4πs·2r = 8πr³</code> using <code>s = r²</code>, so κ ≈ 8π; and the (e) exponent argument
+<code>vol ≈ s^{a(n−1)}·s^a = s^{an}</code> versus <code>κr^n ≈ κs^{an}</code>.</p>
+<h3><code>uniformization-complex-geometry-mok</code> — 2 exercises; see Error 5</h3>
+<p>Correct: 6.1 in full. The Carathéodory sup-norm at 0, both bounds — the projections give
+<code>≥ max(|ξ₁|,|ξ₂|)</code>, and Schwarz along <code>t ↦ (tu₁,tu₂)</code> with phase optimization gives
+<code>|a|+|b| ≤ 1</code> and hence <code>≤ max(|ξ₁|,|ξ₂|)</code>. The parallelogram-law failure is right:
+<code>‖x+y‖ = ‖x−y‖ = 1</code> gives 2 against <code>2‖x‖² + 2‖y‖² = 4</code>. And the product-metric vanishing of
+the mixed bisectional curvature. Also correct in 6.2: the dimension count <code>n − d</code>, the
+reconciliation with the slide's own count, and the <code>Q^{n−2}</code> answer.</p>
+<h3><code>lens-of-circles-oh</code> — 3 exercises, all correct</h3>
+<ul>
+<li><strong>§6.1 Descartes.</strong> <code>d² − 2Sd + (2P − S²) = 0</code> and Vieta give <code>d′ = 2(a+b+c) − d</code>. Correct.
+  Part (d)'s two claims were both checked directly: the involution fixes <code>d = a+b+c</code>, and
+  <code>Q(a,b,c,2S−d) = 2P − S² − 2Sd + d² = Q(a,b,c,d)</code>. The signature claim is right too —
+  <code>Q = 2I − J</code> on ℝ⁴ has eigenvalues <code>2−4 = −2</code> once and <code>2</code> three times, so <strong>(3,1)</strong>.</li>
+<li><strong>§6.2</strong> <code>d((0,0,1),(0,0,r)) = |log r|</code> under <code>dy/y</code>, and <code>T = log(1/t)</code> turns <code>e^{δT}</code> into
+  <code>t^{−δ}</code>. Correct.</li>
+<li><strong>§6.3 cross-ratio.</strong> The inscribed-angle proof is correct, including the collinear
+  degenerate case.</li>
+</ul>
+<h3><code>prismatic-homotopy-lurie</code> — 2 exercises, all correct</h3>
+<ul>
+<li><strong>§7.1</strong> group completion of (ℕ,+) is ℤ; the non-cancellative witness <code>c</code> is needed; and the
+  Eilenberg swindle kills <code>M∞</code> because <code>ℂ^∞ ⊕ ℂ^n ≅ ℂ^∞</code>. Correct.</li>
+<li><strong>§7.2 formal group laws.</strong> <code>1 + βF_m(x,y) = (1+βx)(1+βy)</code> — the factorization the hint
+  points at, and it is right. <code>∂F_m/∂y = 1 + βx</code>, so <code>log_{F_m}(x) = (1/β)ln(1+βx) =
+  Σ_{n≥1}(−1)^{n−1}β^{n−1}x^n/n</code>, and the verification <code>log(F_m(x,y)) = log x + log y</code> follows
+  from the factorization. The denominator argument in (d) is right: the coefficient of <code>x^n</code> is
+  <code>±β^{n−1}/n</code>, so every prime appears. Correct.</li>
+</ul>
+<hr />
+<h2>Total</h2>
+<p><strong>Forty-four worked solutions across all 20 files.</strong> Nine defects, in six of them:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>Defect</th>
+<th>Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>random-matrices-localization-yau</code> §7.1</td>
+<td>the constant c is wrong (Error 1)</td>
+<td>wrong formula, no downstream effect</td>
+</tr>
+<tr>
+<td><code>random-matrices-localization-yau</code> §7.1</td>
+<td>dropped minus sign in m-prime (Error 2)</td>
+<td>self-contradictory display</td>
+</tr>
+<tr>
+<td><code>random-matrices-localization-yau</code> §7.2</td>
+<td>Tracy–Widom tails reversed (Error 3)</td>
+<td>wrong fact in a side remark</td>
+</tr>
+<tr>
+<td><code>arithmetic-patterns-ziegler</code> §7.1</td>
+<td>"at most 7" after showing 4; index typo (Error 4)</td>
+<td>wording only</td>
+</tr>
+<tr>
+<td><code>uniformization-complex-geometry-mok</code> §6.2</td>
+<td>exponent off by one (Error 5)</td>
+<td>wrong formula, contradicted twice in place</td>
+</tr>
+<tr>
+<td><code>ricci-flow-singularities-brendle</code> §6.2</td>
+<td>metric and curvature differ by a factor 4 (Error 6)</td>
+<td>inconsistent constants</td>
+</tr>
+<tr>
+<td><code>mesh-generation-pdes-buffa</code> §8.1</td>
+<td>already in <code>verify/README.md</code>; <strong>confirmed</strong>, plus the stated moral does not follow from the printed slope</td>
+<td>wrong formula</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What the numbers say.</strong> Before this round the sample was one exercise, and it was wrong, so
+nothing could be inferred. The real rate is about <strong>1 defect per 7 solutions</strong>, all but one of
+them local — a wrong constant, a dropped sign, a shifted index — and <strong>none of them changes an
+exercise's conclusion.</strong> No exercise reaches a false answer. That is a materially better result
+than the single earlier data point suggested, and it is the first time the corpus has had a
+measured error rate on mathematics anybody re-did rather than merely sourced.</p>
+<p><strong>Where the defects cluster is the useful part.</strong> Six of the nine are a <em>constant</em> or an
+<em>index</em> attached to an otherwise correct argument, and four of those six are contradicted
+somewhere else in the same solution. A cheap follow-up check exists and was never run: read
+each solution against itself.</p>
+</div>
+</body>
+</html>

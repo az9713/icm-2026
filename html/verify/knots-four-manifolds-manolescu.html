@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — knots-four-manifolds-manolescu</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — knots-four-manifolds-manolescu</h1>
+<p>verdict: MINOR
+uncited_external_claims: 21 (12 dated attributions in F1 + 1 named attribution in F2 + 3 items in F3 + 2 in F5 + 1 in F6 + 2 in F7. §4.14's ~15 unverifiable values (F4) are NOT counted here: they sit under an explicit section-level "Everything in this subsection is paper-only" label, which my counting policy treats as cited.)
+unsupported_speaker_claims: 0 — all 12 block quotations and all 11 inline "Manolescu:" quotations checked individually against the transcript; every one maps to spoken text, with only caption-level repairs (e.g. "I define by"→"I divide by", "spaghetti with midballs"→"meatballs").
+title_check: PASS — transcript: "The title of my lecture is from knots to four manifolds." The introducer announces the same. Front matter matches exactly. No repeat of the wrong-title failure.
+gap_honesty: PASS — all five declared gaps sit on real transcript silences, each on an explicit spoken refusal ("I won't get into that", "you don't have to worry about it"). No gap was silently filled. The speaker's own hedge "I think we have a full computation" is preserved verbatim rather than hardened.
+self_report_audit: HONEST, INCOMPLETE IN 4 PLACES — see "## Self-report audit" below.
+citation_density_flag: FALSE POSITIVE — 4 arXiv instances because one companion paper is declared as the global source at :48-57, not because material is unsourced.
+structural_language_flag: FALSE POSITIVE — the 3 hits are "structural differences", "structurally about", "structural match". No impact language.</p>
+<h2>Method</h2>
+<p>Transcript is a single-line auto-caption file, 44,824 chars, read in full (200-col fold, 230 lines).
+Tutorial is 1,772 lines / 102,830 bytes. Read section by section against the transcript.
+Quotation sweep: grep'd every <code>&gt; "</code> block quote (12) and every inline <code>Manolescu:</code> attribution (11)
+across the whole file, including sections I had only sampled, and checked each against the
+transcript. All matched.</p>
+<h2>Findings</h2>
+<p>(in progress)</p>
+<h2>Counting policy (stated up front, because it changes the numbers)</h2>
+<p>This file's citation model is <strong>one companion paper sourced globally</strong>, not inline arXiv ids.
+<code>summaries/...:48-57</code> declares it: "Every displayed formula below comes from the paper. So does
+every proper name." §10 repeats it. The paper is arXiv:2601.05425 and I cannot open it. So:</p>
+<ul>
+<li>A claim tied to the paper with a locator (a §, a figure, a bracketed reference number, or the
+  phrase "the paper says/states/notes") counts as <strong>cited</strong>. Those go to "What I could not check",
+  not to findings. This is why the "4 arXiv instances in 102 KB" density flag is a <strong>false
+  positive</strong> — the density is low because one source covers the whole document by declaration.</li>
+<li>§2–§3 (~lines 150–582) is a deliberately-built background bridge, ~430 lines of standard
+  textbook material that is not in the talk at all and is announced as such. I do <strong>not</strong> flag
+  each definition. I count named theorems, named attributions, specific dates, and specific
+  numeric values individually, and report generic bridge material as one class-level note.</li>
+<li>The 3 hits for "structural" (lines 60, 266, 1711) are "structural differences", "structurally
+  about", "structural match". None is impact language. That flag is also a false positive.</li>
+</ul>
+<h2>Findings</h2>
+<h3>F1 — MINOR, class-level. Precise dates attached to named theorems that the talk gave only by decade, with no locator.</h3>
+<p><code>summaries/knots-four-manifolds-manolescu.md:92, 127, 128, 355, 367, 433, 483, 598, 936, 1095, 1192</code>
+(12 dated attributions across 11 lines — <code>:127-128</code> carries two, Donaldson 1983 and Seiberg-Witten
+1994; <code>:483</code> carries two, Lickorish 1962 and Wallace 1960.)</p>
+<p>Each of these is a correct-sounding date the transcript does not contain and the file does not
+source to the paper:</p>
+<ul>
+<li><code>:92</code> "That is Taubes' theorem (1987)". The transcript states the fact ("in dimension four it
+  has uncountably many") but <strong>never names Taubes and never gives a year</strong>. This is the single
+  cleanest example of the class: a named theorem attribution invented from background knowledge.</li>
+<li><code>:127-128</code> "Donaldson did it ... in 1983. Seiberg and Witten wrote down a better equation in
+  1994." Transcript says only "in the 1980s" and "in the 90s".</li>
+<li><code>:355</code> "The Alexander polynomial, from 1928"; <code>:367</code> "The Jones polynomial, from 1984". No date
+  spoken for either.</li>
+<li><code>:433</code> "Freedman's 1982 theorem". Transcript names Freedman, gives no year and does not state
+  the classification theorem.</li>
+<li><code>:483</code> "Theorem (Lickorish 1962, Wallace 1960)". Names spoken ("licorice wallace theorem") and
+  §10 sources the names to "paper, Thm 4.1"; the two years are not sourced.</li>
+<li><code>:598</code> "Khovanov 2000"; <code>:936</code> "Morrison, Walker and Wedrich, 2019 (published 2022)" — 2019 is
+  spoken, "(published 2022)" is not.</li>
+<li><code>:1095</code> "the slice-ribbon conjecture, open since 1966"; <code>:1192</code> "Akbulut proved it in 1991".
+  Akbulut's name is spoken, the year is not.</li>
+</ul>
+<p><strong>Why it matters.</strong> These are the exact risk class the caller named: who proved what, and when.
+Every one of them is plausible and I believe most are right, but the file gives a reader no way to
+check any of them, and the reader is explicitly told the sourcing rule is "the paper". If these
+came from the paper's bibliography the file should say so; if they came from the writing agent's
+own knowledge they are unlabelled reconstruction.
+<strong>What would settle it:</strong> the bibliography of arXiv:2601.05425. If each year appears there, this
+collapses to a formatting complaint. If not, they are unsourced additions.</p>
+<h3>F2 — MINOR (worst single item). A named external attribution with no anchor in either source.</h3>
+<p><code>summaries/knots-four-manifolds-manolescu.md:866-868</code></p>
+<blockquote>
+<p>"A fourth application the talk omits: knot Floer homology was used by <strong>Juhász and Zemke</strong>
+to compute Ozsváth–Szabó invariants of manifolds built by 'concordance surgery' — a
+computation nobody knows how to do on the Seiberg–Witten side."</p>
+</blockquote>
+<p>"Juh" and "Zemke" appear <strong>nowhere in the transcript</strong> (checked). The sentence itself says the
+talk omits it, so it is by construction external. It carries <strong>no paper locator</strong> — no §, no
+figure, no bracketed reference number — unlike every neighbouring attribution in §4.10, which
+do carry them ("the paper's reference [52]"). And it is <strong>not listed anywhere in §10</strong>, neither
+in the name-correction table nor in the reconstruction list.
+This is the only place in 1,772 lines where a named result is attributed to named people with
+zero traceable source of any kind. It is almost certainly from the paper's §5.4 or similar, but
+the file does not say so.
+<strong>What would settle it:</strong> find Juhász–Zemke in the bibliography of arXiv:2601.05425.</p>
+<h3>F3 — MINOR. Mechanism and specific manifolds in §4.10 that are neither spoken nor located.</h3>
+<p><code>summaries/knots-four-manifolds-manolescu.md:843-861</code></p>
+<p>Three items in one paragraph, all absent from the transcript and none given a paper locator:</p>
+<ul>
+<li>"constructed a <strong>new</strong> exotic ℂP² # 9ℂP̄²". The talk never names the manifold; it says only
+  "new exotic examples". The "9" is supplied.</li>
+<li>"proving it exotic with the Ozsváth–Szabó invariant". Not spoken at that point.</li>
+<li>"<strong>Their manifold carries a free involution. Quotient by it</strong>, and you get a manifold with
+  fundamental group ℤ/2 and negative definite intersection form." This is a whole construction
+  — free involution, quotient — that appears nowhere in the transcript. It is the mechanism
+  that produces the section's headline theorem, and it is unsourced.</li>
+</ul>
+<p>Note the contrast within the same paragraph: the π₁ = ℤ/2 caveat and the [52] authorship
+correction <strong>are</strong> explicitly sourced to the paper. So the file knows how to cite here and did
+not for these three. That pattern suggests the involution/quotient account may be reconstruction
+rather than paper text.
+<strong>What would settle it:</strong> §5 of arXiv:2601.05425, or Levine–Lidman–Piccirillo directly.</p>
+<h3>F4 — MINOR. §4.14 is 65 lines of dense unverifiable numbers under a single section-level source label.</h3>
+<p><code>summaries/knots-four-manifolds-manolescu.md:1080-1141</code></p>
+<p>The section opens honestly — "<strong>Everything in this subsection is paper-only.</strong>" — and the claim
+is independently corroborated: I confirmed "slice", "ribbon", "Dunfield", "Gong", "Nakamura",
+"Marengon", "Gukov" are all <strong>absent from the transcript</strong>, exactly as the file states at
+<code>:64-66</code>. So the labelling is truthful.</p>
+<p>But this is the file's highest-risk block and I want it named as such. Under one blanket label
+it carries: 350 million prime knots, ≤19 crossings, 99.5% / 0.5% / 0.003%, ~11,400 undecided,
+smallest at 13 crossings, "five candidate pairs", "the right-handed trefoil is H-slice in</p>
+<h1>3ℂP² # 20ℂP̄² but not in K3 # ℂP̄²", the definitions of H-slice and k-slice, and the explicit</h1>
+<p>gluing W = (D⁴ ∖ nbhd(Δ)) ∪ X(K′,0). <strong>Not one of these has a transcript check available</strong>,
+because the section was never delivered. The internal arithmetic is consistent (100 − 0.003 =
+99.997%, matching <code>:1457</code>), which is a weak positive signal and nothing more.
+<strong>What would settle it:</strong> §7 of arXiv:2601.05425. Until then, treat §4.14 as single-sourced.</p>
+<h3>F5 — MINOR. §5's central numbers are quoted without an in-body source.</h3>
+<p><code>summaries/knots-four-manifolds-manolescu.md:1147-1177</code></p>
+<p>The knot names (K₁ = −5₂, K₂ = P(3,−3,−8)) and the full bigraded answer
+(𝒮_{0,q}(W₁;1)⊗ℚ = ℚ at q = 1,3; 𝒮_{0,q}(W₂;1)⊗ℚ = ℚ at q = −1,1) are <strong>not in the transcript</strong>.
+The speaker names neither knot and states only the q = −1 comparison, which the file quotes
+correctly. §10 concedes the derivation is impossible ("I can quote the answer but not derive
+it"), which implies the answer is quoted from the paper — but §5 itself never says so.
+Also <code>:1194</code> "the <strong>first analysis-free proof</strong> of the existence of an exotic pair of compact
+orientable four-manifolds" is a stronger claim than the transcript's "now we have an
+analysis-free proof that they are not diffeomorphic", and the word "first" is uncited.
+<strong>What would settle it:</strong> §6.5 of arXiv:2601.05425, or Ren–Willis arXiv directly.</p>
+<h3>F6 — MINOR. Two unflagged half-name expansions of the caption "Sabo".</h3>
+<p><code>summaries/knots-four-manifolds-manolescu.md:838</code></p>
+<p>The transcript: "an early example of this was in one of the earlier papers by <strong>Sabo</strong> — they
+computed the invariant of the K3 surface in this way by cutting it into handles."
+The tutorial: "<strong>Ozsváth and Szabó</strong> did exactly this for the K3 surface."</p>
+<p>This is the <em>same</em> correction §10 lists as substantive correction 3 (the surgery formula
+"proved by Szabó" → Ozsváth–Szabó), applied a second time at a different place, without being
+listed. Almost certainly right and almost certainly the same dropped-hyphenated-name caption
+error. But §10 says "<strong>Substantive corrections, not spellings. Three</strong>" and this is a fourth.</p>
+<h3>F7 — MINOR, class-level, low severity. Bridge elaborations beyond both sources.</h3>
+<p><code>summaries/knots-four-manifolds-manolescu.md:135-137, 830-833, and §3 generally</code></p>
+<p>Per my counting policy I do not itemise §3's textbook definitions. Two elaborations are worth
+one line because they add specificity the sources do not:
+- <code>:135-137</code> gauge-theory solutions "correspond to holomorphic bundles or to divisors" — the
+  transcript says only "there are some methods for studying these solutions".
+- <code>:830-833</code> bordered Floer "computer programs for <strong>the hat version</strong>" and "a parallel theory
+  for knots that decomposes a knot into <strong>tangles</strong>" — the transcript says "computer programs
+  for <strong>some version</strong>" and mentions no tangles.
+Both are plausible and neither changes any conclusion.</p>
+<h2>Self-report audit</h2>
+<p>The extra instruction: is §10 ("Note on the tutorial process", <code>:1621-1772</code>) honest and complete
+against what I actually found?</p>
+<p><strong>Verdict: substantially honest, and unusually so. Under-reported in four small places.</strong></p>
+<h3>What I verified as true</h3>
+<ol>
+<li><strong>The name-correction table is real, not decorative.</strong> I grep'd 15 of the 30 caption strings
+   against the transcript verbatim: <code>Rasm Muen</code>, <code>Kudluhani talps</code>, <code>Salivan Jang</code>, <code>Buer</code>,
+   <code>licorice wallace</code>, <code>Nate Halot</code>, <code>Ben Ren Willis</code>, <code>boner sphere</code>, <code>curvy diagram</code>,
+   <code>Abdulut</code>, <code>Frobinius</code>, <code>lipshit thirstston</code>, <code>kangi jini Honda</code>, <code>Sharkar</code>,
+   <code>Morrison Walker and Vedric</code>. <strong>All 15 present, exact.</strong> A fabricated table would not survive
+   this. This is the single strongest honesty signal in the file.</li>
+<li><strong>All three "substantive corrections" check out against the transcript.</strong>
+   - "proved by Sabo" — transcript verbatim: "for knots the surgery formula was proved by Sabo".
+   - The LLP/LP authorship split — transcript has both passages, exactly as quoted: "Lavin
+     Lidman and Pikilo had a paper" and "Lidman and Pikerillo and Levvin they they found new
+     examples".
+   - The π₁ = ℤ/2 omission — the transcript's definite-intersection-form passage genuinely says
+     nothing about the fundamental group. Confirmed absent.</li>
+<li><strong>All five declared gaps match real transcript silences.</strong> "There is a way of assigning
+   signs. I won't get into the details of that" (grid signs); "It is bgraded... I won't get into
+   that" (bigradings); "I wrote here the equations that you don't have to worry about it but
+   they involve a dro operator a spinner and the curvature" (Seiberg–Witten); no 1-handle skein
+   formula anywhere; and the S¹×S³ / S¹×D³ discrepancy is real — the transcript says "for S1
+   times S3 <strong>I think</strong> we have a full computation", and <code>:1050</code> preserves that "I think" hedge
+   verbatim rather than hardening it. Preserving a speaker's hedge is a deliberate honesty
+   choice and I want it recorded.</li>
+<li><strong>Every §10 pointer resolves.</strong> "Flagged in §3.3" → the writhe ½ warning is at <code>:399-408</code>.
+   "Flagged in §4.8" → present. "Corrected in §4.9" / "§4.10" → both present. "I quote both in
+   §4.13 and decide nothing" → <code>:1050-1064</code>, and it genuinely decides nothing. No dangling
+   pointer.</li>
+<li><strong>The "0 reconstructed labels" concern in my brief is a false alarm.</strong> The grep for the exact
+   word "(reconstructed)" returns nothing, but point-of-use labels exist in other wording:
+   <code>:185</code> "<strong>The second use, which is mine and which I am labelling as mine</strong>", the boxed
+   "<strong>Marked as my framing</strong> ... <strong>What would verify it</strong>" at <code>:207-216</code>, <code>:495</code> "described in
+   words since you cannot see Figure 7", <code>:949</code> same for Figures 13-14, and <code>:1376</code>
+   "<strong>Reconstructed:</strong> ... <strong>What would verify it:</strong>". §10's claim that "where the prose is my
+   reconstruction of a figure I have said so at the point of use" <strong>holds</strong>.</li>
+<li><strong>The 88! arithmetic is right.</strong> <code>:817</code> says "88! is about 1.85 × 10^134". Stirling gives
+   log₁₀(88!) ≈ 134.3. Correct, and it is the writer's own arithmetic on the speaker's own
+   spoken "88", which <code>:822-824</code> explicitly attributes to him and marks unverified.</li>
+</ol>
+<h3>What §10 under-reported</h3>
+<ul>
+<li><strong>U1 (matches F2). Juhász–Zemke.</strong> §10 lists 30 name corrections, 3 substantive corrections,
+  5 reconstructions, 5 gaps, 2 companion-document errors, 1 unverifiable item, and a dates note.
+  It does <strong>not</strong> mention that §4.10 introduces two mathematicians and a result that exist in
+  neither the transcript nor any cited locator. Given how granular the rest of §10 is, this
+  omission is the one real hole in it.</li>
+<li><strong>U2 (matches F6). "Three substantive corrections" is four.</strong> The second silent expansion of
+  "Sabo" → "Ozsváth and Szabó", at <code>:838</code> for the K3 computation, is the same class of change
+  §10 lists as correction 3 and is not listed.</li>
+<li><strong>U3 (matches F1). The dates are never mentioned.</strong> §10 has a whole subsection "On dates" —
+  but it is only about the arXiv stamp and the 2001/2003 preprint-vs-journal question. It says
+  nothing about the twelve dated attributions the file supplies that the talk gave only by decade or
+  not at all (Taubes 1987, Donaldson 1983, Seiberg–Witten 1994, Alexander 1928, Jones 1984,
+  Freedman 1982, Lickorish 1962, Wallace 1960, Khovanov 2000, MWW "published 2022", slice-ribbon
+  1966, Akbulut 1991). Under §10's own declared rule — "every displayed formula comes from the
+  paper, so does every proper name" — dates fall in the gap between the two, and the reader is
+  never told which of the two supplied them. <code>:92</code> "Taubes' theorem (1987)" is the clearest
+  case: the speaker states the fact and names nobody.</li>
+<li><strong>U4 (matches F3). The free-involution/quotient construction.</strong> §10's reconstruction list has
+  five entries and this is not one, even though it is the argument that produces §4.10's
+  headline theorem and appears in neither source I can read.</li>
+</ul>
+<h3>Net</h3>
+<p>§10 is a far more rigorous self-report than the risk profile predicted, and it is honest in the
+direction that matters — it volunteers two errors <em>in the companion paper</em>, refuses to name the
+introducer on thin evidence, declines to invent three objects it could easily have faked
+(<code>:1762-1767</code>), and preserves a spoken hedge it could have quietly hardened. The four
+under-reports are all of the same shape: <strong>material sourced from the paper's body or from
+general knowledge, presented without a locator, and not listed among the reconstructions.</strong> None
+is a fabrication. None changes a conclusion. But a reader taking §10 as a complete inventory of
+where the file goes beyond its sources would be missing F1, F2, F3 and F6.</p>
+<h2>What I could not check</h2>
+<ul>
+<li><strong>The companion paper, arXiv:2601.05425.</strong> Fetching it is outside this brief's scope and it is
+  not in the repo. One corroboration I do have: my tasking prompt independently named
+  arXiv:2601.05425 as Manolescu, <em>From knots to four-manifolds</em> — the same id, author and title
+  the file gives. That retires the worst residual risk here, a fabricated central citation. Every claim the file attributes to the paper — all displayed equations, the
+  bibliography numbers [3], [12], [21], [41], [45], [47], [49], [52], [53], [54], [56], [59],
+  [61], [62], [71], [82], [83], [84], [88], [90], [96], the §/Figure/Theorem/Question/Conjecture
+  locators, the two claimed errors in the paper (writhe ½, "horizontal" β curves), and the whole
+  of §4.14 — is unverifiable here. <strong>This is the dominant limitation of this report.</strong> Roughly
+  half the file's substance rests on a document I cannot open.</li>
+<li><strong>Whether the full citations are real.</strong> Manolescu–Ozsváth–Sarkar, <em>Annals</em> 169 (2009);
+  Manolescu–Ozsváth–Thurston, <em>Annals</em> 201 (2025); Floer, <em>Comm. Math. Phys.</em> 118 (1988)
+  215–240; Gompf–Stipsicz GSM 20 (1999); Ozsváth–Stipsicz–Szabó MSM 208 (2015). A fabricated
+  journal/volume/year would be MAJOR. I could not check any of them. They are internally
+  plausible and consistent with spoken hedges ("work with Obat and Sharkar from 20 years ago").</li>
+<li><strong>Whether the mathematics is true.</strong> Out of scope by the brief's hard rule. I did not test any
+  statement for correctness, only for provenance.</li>
+<li><strong>The slides.</strong> Nineteen figures carried the entire formula content. Both the file and I are
+  blind to them. Several open questions in this report (the "9" in ℂP² # 9ℂP̄², the S¹×S³ vs
+  S¹×D³ discrepancy, the 88) would be settled by one slide each.</li>
+<li><strong>The other 15 rows of the name table.</strong> I spot-checked 15 of 30; the remaining 15 are likely
+  fine given the hit rate but were not individually confirmed.</li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Tutorial spec — ICM 2026 plenary lectures</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="index.html">← all documents</a>
+<h1>Tutorial spec — ICM 2026 plenary lectures</h1>
+<p>You are writing one long-form tutorial for one ICM 2026 plenary lecture, for one specific
+reader. Read this whole file before you write anything.</p>
+<p>Two finished examples live in <code>summaries/</code>. Read <strong>both</strong> before starting — they are the
+ground truth for tone, depth, and length:</p>
+<ul>
+<li><code>summaries/shape-of-math-kontorovich.md</code> — a talk outside the speaker's famous field</li>
+<li><code>summaries/optimization-theory-practice-wright.md</code> — a talk inside the reader's own field</li>
+</ul>
+<hr />
+<h2>1. The reader</h2>
+<p>Everything you write is aimed at one person. Get this wrong and the tutorial is worthless.</p>
+<p><strong>The reader.</strong> Doctoral training in <strong>classical physics and applied mathematics</strong>.</p>
+<p>They have, deeply: real and complex analysis, ODEs and PDEs, linear algebra, probability,
+Fourier analysis, numerical methods, calculus of variations, classical mechanics,
+statistical mechanics, optimization, some functional analysis.</p>
+<p>They do <strong>not</strong> have: algebraic geometry, algebraic topology, number theory (analytic or
+algebraic), representation theory, category theory, geometric group theory,
+low-dimensional topology, derived algebraic geometry.</p>
+<p>Professionally they <strong>build and direct AI agent systems</strong>, rather than hand-writing code.</p>
+<p>They read everything. They want to <strong>learn something useful</strong> from each talk, not to be
+given trivia. Plain language, full technical substance. They would rather delete a file
+than add one.</p>
+<hr />
+<h2>2. The two rules that produced the first two tutorials</h2>
+<h3>Rule 1 — Read the talk before you judge it</h3>
+<p><strong>A plenary talk is often much narrower than the speaker's famous field, and sometimes has
+nothing to do with it at all.</strong></p>
+<p>The worked failure: Alex Kontorovich is famous for analytic number theory, Apollonian
+circle packings, and Zaremba's conjecture. He was filed as one of the hardest talks in the
+set. His actual talk was about <strong>AI, Lean, and formal verification</strong> — squarely in the
+reader's own professional domain, and one of the easiest in the set.</p>
+<p>Confirmed instances in this playlist: Simon Brendle's talk is <strong>"Hamilton's Ricci Flow"</strong>,
+not his recent scalar-curvature work. Patrick Gérard's is <strong>Hardy-space explicit
+formulae</strong>, not his field broadly. Robert Morris's is <strong>graph Ramsey numbers</strong>
+specifically.</p>
+<p>So: download the transcript, read all of it, and only then decide what the talk is about,
+how hard it is, and what to anchor it to. Never assign any of those from the speaker's
+reputation or from the lecture title alone.</p>
+<h3>Rule 2 — Anchor to something the reader already owns</h3>
+<p>For each talk find the <strong>anchor</strong>: a thing the reader already knows deeply that this talk is
+structurally about. Not a decorative analogy — a real correspondence.</p>
+<p>Real examples, to calibrate what counts:</p>
+<ul>
+<li>Optimal transport: the Fokker–Planck equation <strong>is</strong> the gradient flow of entropy in the
+  Wasserstein metric. That is their statistical mechanics.</li>
+<li>Arithmetic quantum chaos: the Selberg trace formula plays the role of the Gutzwiller
+  trace formula.</li>
+<li>Floer homology: Morse theory on an infinite-dimensional space of gauge fields; the
+  origin is Yang–Mills.</li>
+<li>Random matrices: Wigner invented them to model nuclear energy levels.</li>
+<li>KPZ: surface growth and a stochastic Burgers equation.</li>
+<li>Random graph thresholds: percolation and phase transitions.</li>
+<li>The Kontorovich talk: <strong>the reader's own agent-orchestration work</strong> — the anchor was not
+  physics at all.</li>
+</ul>
+<p>The anchor is chosen from the talk's actual content. If the honest anchor is weak, say so
+plainly rather than inflating it.</p>
+<p><strong>Best case: the speaker hands you the anchor.</strong> Gaitsgory says from the podium that the
+Langlands correspondence "should be seen as some sort of non-abelian Fourier transform".
+That is better than any anchor a search would produce. Look for it before inventing one.</p>
+<p><strong>Reject a suggested anchor that the talk does not support — including one your own brief
+suggested.</strong> The brief for the Gaitsgory tutorial proposed Kapustin–Witten
+electric–magnetic duality, which is a real and famous bridge into geometric Langlands. The
+talk never mentions it. The correct response, and the one taken, was to use the speaker's
+own framing and add one short paragraph naming the physics route <em>as absent</em>, so the reader
+knows it exists and knows it is not what the talk does. Decorating a talk with someone
+else's picture is a subtler form of the fabrication rule below.</p>
+<hr />
+<h2>3. Difficulty rating</h2>
+<p>Rate 1–5 against <strong>the reader's</strong> background, from the talk's content:</p>
+<ul>
+<li><strong>1</strong> — their own field. Optimization, numerical PDE, statistical mechanics, agent systems.</li>
+<li><strong>2</strong> — one step out. Needs a few new definitions they could absorb in an afternoon.</li>
+<li><strong>3</strong> — a real but crossable gap. Needs a genuine background section.</li>
+<li><strong>4</strong> — far. Multiple unfamiliar layers stacked.</li>
+<li><strong>5</strong> — frontier of abstraction. ∞-categories, geometric Langlands, derived AG.</li>
+</ul>
+<h3>Split the rating when the talk genuinely splits</h3>
+<p>A single number sometimes misdescribes a talk. Two cases seen already, both real:</p>
+<ul>
+<li><strong>Two half-talks.</strong> Otto's lecture is two disjoint vignettes joined by one method. Part
+  one is Otto calculus, difficulty 1. Part two is singular SPDE and renormalization,
+  difficulty 3. Rated <code>1/5 (part one) — 3/5 (part two)</code>, with the Tier-0 inversion applied
+  to part one only and a full bridge built for part two.</li>
+<li><strong>Maths easy, frame hard.</strong> Bartlett's lecture uses only objects the reader owns —
+  gradient flow, Hessian eigenvalues, KKT, the pseudoinverse — inside a statistical
+  vocabulary they do not: excess risk, effective rank, margin bounds. Rated
+  <code>2/5 (the mathematics) — 3/5 (the statistical frame)</code>, compressing the optimization
+  background and building a real bridge for the statistics.</li>
+</ul>
+<p>Split it when splitting is honest. Say in the header which half is which, and apply the
+inversion to whichever part earns it.</p>
+<h3>The Tier-0/1 inversion — important</h3>
+<p><strong>When the talk is at difficulty 1 or 2, invert the template.</strong> Do not spend the document
+teaching them things they already know.</p>
+<p>Compress the background into a <strong>one-page calibration section</strong> they can skip — just enough
+to fix vocabulary — and spend the length instead on <strong>what has changed recently</strong> in that
+field. The delta, not the bridge. See the Wright tutorial, which does exactly this.</p>
+<p>At difficulty 3–5, the bridge is the main event and gets the space.</p>
+<hr />
+<h2>4. Sources</h2>
+<h3>The transcript</h3>
+<p>Download and clean it with exactly this, substituting the video ID. All transcripts in this
+repo must be byte-identical in format.</p>
+<pre><code class="language-bash">cd /path/to/icm_2026
+yt-dlp --no-update --skip-download --write-auto-subs --sub-langs &quot;en&quot; --sub-format vtt \
+  -o &quot;transcripts/%(id)s.%(ext)s&quot; &quot;https://www.youtube.com/watch?v=VIDEO_ID&quot;
+</code></pre>
+<p>Then clean and delete the intermediate <code>.vtt</code>:</p>
+<pre><code class="language-python">import re, pathlib
+vid = &quot;VIDEO_ID&quot;
+src = pathlib.Path(f&quot;transcripts/{vid}.en.vtt&quot;).read_text(encoding=&quot;utf-8&quot;)
+out, seen = [], None
+for line in src.splitlines():
+    if &quot;--&gt;&quot; in line or line.startswith((&quot;WEBVTT&quot;,&quot;Kind:&quot;,&quot;Language:&quot;)) or not line.strip():
+        continue
+    t = re.sub(r&quot;&lt;[^&gt;]+&gt;&quot;, &quot;&quot;, line).strip()
+    if not t or t == seen:      # auto-captions repeat the previous line
+        continue
+    out.append(t); seen = t
+text = re.sub(r&quot;\s+&quot;, &quot; &quot;, &quot; &quot;.join(out))
+p = pathlib.Path(f&quot;transcripts/{vid}_transcript.txt&quot;)
+p.write_text(text, encoding=&quot;utf-8&quot;)
+pathlib.Path(f&quot;transcripts/{vid}.en.vtt&quot;).unlink()
+print(p, len(text.split()), &quot;words&quot;)
+</code></pre>
+<p><strong>Read the whole transcript.</strong> Not the first half.</p>
+<h3>The companion document</h3>
+<p>In order of preference:</p>
+<ol>
+<li><strong>The ICM 2026 proceedings paper</strong>, if you are given an arXiv ID. Use it. Fetch
+   <code>https://arxiv.org/abs/ID</code> and, if you need detail,
+   <code>https://arxiv.org/html/IDv1</code> (the PDF endpoint often exceeds the fetch size limit).</li>
+<li><strong>If there is no proceedings paper</strong> — and for most talks in this playlist there is
+   not — find the speaker's most recent <strong>survey or lecture notes on this specific talk
+   topic</strong>. Label it clearly in the front matter and in the source note as a <em>companion,
+   not the proceedings paper</em>. Do not silently present it as the ICM paper.</li>
+<li><strong>If neither exists</strong>, say so explicitly in the source note and work from the transcript
+   alone.</li>
+</ol>
+<p><strong>Listen for the speaker naming their own survey.</strong> The single most reliable way to find a
+companion is that speakers cite themselves from the podium. Bartlett names his Acta
+Numerica review aloud; that turned out to be the correct companion and no search would have
+ranked it first. Scan the transcript for "my survey", "our review", "the paper with", a
+journal name, or a book title before searching the web.</p>
+<p><strong>Restore from the primary literature, not only from the companion.</strong> When a talk presents
+published results, each rate, threshold and definition can be recovered from <em>its own</em>
+paper. That is how the Bartlett tutorial recovered almost all of its mathematics despite
+having no proceedings paper at all. Cite those inline by name, and keep them visibly
+distinct from the companion — they are primary literature for one theorem, not a substitute
+for the proceedings paper.</p>
+<p>Note the talk and the paper can genuinely differ — the Kontorovich talk named two concepts
+his paper does not, and the paper spelled out an architecture the talk only gestured at.
+Where they differ, say which one you are quoting.</p>
+<hr />
+<h2>5. Hard rules</h2>
+<p>These are not style preferences. Breaking any of them makes the document worse than nothing.</p>
+<p><strong>Never invent mathematics.</strong> Auto-captions carry no formulas — the mathematics lived on
+the board and the slides, invisible to the caption track. If the transcript and the
+companion document together do not support a statement, <strong>do not write it</strong>. Mark the gap
+in place:</p>
+<blockquote>
+<p><em>[Gap: the speaker states the main estimate here; the captions carry no formula and no
+companion paper exists. The result is described qualitatively below.]</em></p>
+</blockquote>
+<p>A tutorial with honest holes is useful. A tutorial with plausible fabrications is
+poison — the reader cannot tell which parts to trust, so they must distrust all of it.</p>
+<p><strong>Some things cannot be taught in a tutorial. Say so and stop.</strong> The Gaitsgory tutorial
+declines to teach two objects (AGCat, 2-IndCoh), presenting each as a fact with its
+motivation and its consequence and no more, and states in the process note that this was
+deliberate. That is correct. Faking depth produces exactly the smooth fabrication that is
+worse than an acknowledged hole.</p>
+<p><strong>Check the companion document too — it is not infallible.</strong> The Gaitsgory paper's
+bibliography carries an invalid arXiv identifier (<code>2020.02998</code>; there is no month 20, the
+real one is <code>2008.02998</code>). Also: an arXiv HTML title block often shows a date produced by
+LaTeX's <code>\today</code> at regeneration time, <strong>not</strong> the submission date — take the date from the
+arXiv stamp instead. And where the paper states a result more strongly than the speaker did
+from the podium, quote the paper and note the difference.</p>
+<p><strong>Rate each gap's impact</strong> in the process note — low, moderate, or structural — so the
+reader knows which holes cost them something. "The constants were on the slide; the shape
+carries the argument and is stated" is low impact. "This is the most consequential caveat
+in the talk and he gives one sentence" is moderate. Say which.</p>
+<p><strong>Cross-reference sibling tutorials rather than rewriting them.</strong> Several of these talks
+overlap — Wright, Bartlett and Otto all touch implicit bias and benign overfitting; several
+touch AI and verification. Where another tutorial in <code>summaries/</code> already covers shared
+material at length, cite it by filename and move on. Keep your own tutorial readable alone,
+but do not reproduce a neighbour's bridge section wholesale.</p>
+<p><strong>Mark reconstruction.</strong> Where you rebuild code, a diagram, or an equation from spoken
+narration, label it <strong>reconstructed</strong> and say what would verify it.</p>
+<p><strong>Verify every proper noun.</strong> Auto-captions destroy names — real examples already found:
+"Danig" → Dantzig, "Kacion" → Khachiyan, "Spielman and Tang" → Spielman and <strong>Teng</strong>,
+"Nearoski and Uden" → Nemirovski and Yudin, "Wayne and her" → Weinan E, "Sophie Hibbitz" →
+Sophie <strong>Huiberts</strong>. Check each against a primary source. Put the corrections in a table in
+the process note. If you cannot verify a name, write <em>(reconstructed)</em> or omit it — never
+guess silently.</p>
+<p><strong>Correct substantive caption errors too, not just spellings.</strong> One transcript said an
+iterate had its "last n−k components nonzero" when they are <strong>zero</strong> — the opposite, and
+the whole argument depends on it. Fix it in the text and flag it in the process note.</p>
+<p><strong>Full prose, not bullet digests.</strong> Long-form narrative paragraphs that walk through the
+argument. Light headings for navigation. Tables where a table genuinely helps. No
+LLM-slop openers.</p>
+<hr />
+<h2>6. Structure</h2>
+<p>Front matter:</p>
+<pre><code class="language-yaml">---
+title: &quot;&lt;the lecture's actual title&gt;&quot;
+speaker: Name (Institution)
+source: https://www.youtube.com/watch?v=VIDEO_ID
+video_id: VIDEO_ID
+channel: Simons Foundation
+event: ICM 2026 Plenary Lecture
+date: 2026-08-17
+paper: &lt;arXiv URL, or &quot;none — companion: &lt;URL&gt;&quot;, or &quot;none&quot;&gt;
+transcript: ../transcripts/VIDEO_ID_transcript.txt
+difficulty_for_you: N/5
+reading_time: ~N min
+---
+</code></pre>
+<p>Then, adapting freely where the talk demands it:</p>
+<ol>
+<li><strong>Header block</strong> — field, difficulty with one line of justification, what this tutorial
+   builds, and a short <strong>note on sources</strong> saying what exists and what does not.</li>
+<li><strong>What is at stake</strong> — the question and why it matters, in plain language, no jargon.</li>
+<li><strong>Your anchor</strong> — the thing they already know. At difficulty 1–2 this becomes
+   <em>Calibration: what you can skip</em>.</li>
+<li><strong>The bridge</strong> — the minimum new vocabulary, each concept defined by deforming
+   something they know, each with a small concrete example. The main event at difficulty
+   3–5; compressed to one page at 1–2.</li>
+<li><strong>The talk, rebuilt</strong> — a walkthrough in the speaker's own order, with the mathematics
+   restored from the companion document. Every symbol defined before use. Gaps marked.</li>
+<li><strong>The one argument</strong> — the central result or claim, stated precisely, with a proof
+   sketch at an honest depth. Rename it if "theorem" does not fit the talk.</li>
+<li><strong>Do this by hand</strong> — one or two small, concrete, checkable exercises with <code>&lt;details&gt;</code>
+   solutions. This is where the learning actually happens; do not skip it.</li>
+<li><strong>What is actually useful to you</strong> — the highest-value section. A transferable tool,
+   method, or reframe. Where the talk touches agent systems, verification, or how research
+   is done, make the connection to their work explicit and concrete.</li>
+<li><strong>Where to read next</strong> — three items maximum, ordered.</li>
+<li><strong>Self-test</strong> — 8 to 10 questions, each answer inside <code>&lt;details&gt;</code>.</li>
+<li><strong>Note on the tutorial process</strong> — the name-correction table, what you reconstructed,
+    what you could not verify, where the gaps are, and whether the difficulty matched what
+    the speaker's reputation would have predicted.</li>
+</ol>
+<p>Length: comparable to the two examples. Substantial. Do not pad, and do not truncate the
+walkthrough to save effort.</p>
+<hr />
+<h2>7. Filename</h2>
+<p><code>summaries/{short-slug}-{speaker-surname}.md</code> — lowercase, dashes only, no underscores.
+Keep the slug short; drop filler words.</p>
+<p>Examples: <code>shape-of-math-kontorovich.md</code>, <code>optimization-theory-practice-wright.md</code>.</p>
+<hr />
+<h2>8. What you must NOT do</h2>
+<ul>
+<li><strong>Do not touch <code>sources.txt</code>.</strong> The main session regenerates it from front matter.
+  Concurrent appends corrupt it.</li>
+<li><strong>Do not run any <code>git</code> command.</strong> Not <code>add</code>, not <code>commit</code>, not <code>status</code>. The main session
+  commits. Concurrent git collides on <code>index.lock</code>.</li>
+<li><strong>Do not write any file</strong> other than your own <code>summaries/{slug}.md</code> and
+  <code>transcripts/{video_id}_transcript.txt</code>.</li>
+<li><strong>Do not paste the tutorial back</strong> in your final report. Write the file; report briefly.</li>
+</ul>
+<h2>9. Your final report</h2>
+<p>Short. Six lines, not six paragraphs:</p>
+<ol>
+<li>The talk's <strong>actual</strong> subject, in one sentence, from the transcript.</li>
+<li>Difficulty assigned, and whether it matched the speaker's reputation.</li>
+<li>The anchor you chose.</li>
+<li>Companion document used, or none.</li>
+<li><strong>Gaps flagged</strong> — where the mathematics was unrecoverable, and how bad it is.</li>
+<li>Names you could not verify.</li>
+</ol>
+</div>
+</body>
+</html>

@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Learning in Games with Carryover Effects</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Éva Tardos (Cornell University)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=u-ssCmb8YBo">https://www.youtube.com/watch?v=u-ssCmb8YBo</a></div><div><b>Level:</b> 2/5 (the mathematics) — 3/5 (the game-theoretic frame)</div><div><b>Reading time:</b> ~50 min</div></div>
+<h1>Learning in Games with Carryover Effects — Éva Tardos</h1>
+<p><strong>Field:</strong> algorithmic game theory. Specifically: what happens to the quality of a shared
+system when every participant is running a learning algorithm, and the system has <em>state</em>
+that their past actions created.</p>
+<p><strong>Difficulty against your background: split.</strong> The mathematics is almost all yours
+already — a Lyapunov function with negative drift, a geometric series, a two-case
+counting argument, some Chernoff bounds. Call it <strong>2/5</strong>. The vocabulary is not yours:
+Nash equilibrium, price of anarchy, no-regret learning, coarse correlated equilibrium,
+smooth games. That is a real gap and it gets a real bridge section. Call it <strong>3/5</strong>.</p>
+<p><strong>What this tutorial builds:</strong> the price of anarchy in one page; no-regret learning as a
+<em>behavioural assumption</em> rather than an algorithm; why price-of-anarchy bounds survive
+being handed to learners; the strategic queuing model and its factor-of-2 stability
+theorem, with the drift proof sketched at honest depth; and the two ways no-regret
+learning is now known to be the wrong assumption.</p>
+<hr />
+<h2>A note on sources — read this one, it matters</h2>
+<p><strong>There is no ICM 2026 proceedings paper.</strong> A full arXiv author sweep back through 2025
+found nothing carrying an ICM comment.</p>
+<p><strong>The title above is mine, not hers.</strong> The official ICM 2026 title is not published on
+<code>icm2026.org</code>, on the IMU speaker list, or anywhere else I could reach, and the video is
+titled only "ICM 2026 Plenary Lecture - Eva Tardos". Nor does she announce a title from
+the podium.</p>
+<p>This is worth a paragraph, because there <em>is</em> a title circulating and it is wrong. Search
+the web for "Tardos" and "ICM" and you are told her lecture is <strong>"Strongly Polynomial and
+Combinatorial Algorithms in Optimization"</strong>. That is a real title of a real ICM lecture by
+Éva Tardos. It is her <strong>ICM 1990, Kyoto</strong> invited lecture, in the Combinatorics section.
+The Cornell mathematics department's page of "Cornellians at the International Congress of
+Mathematicians" lists it verbatim:</p>
+<blockquote>
+<p>"Eva Tardos (CS Faculty 1985–present) Strongly Polynomial and Combinatorial Algorithms
+in Optimization" — Kyoto 1990</p>
+</blockquote>
+<p>Thirty-six years of drift, and a search engine collapsed the two. If you came to this
+expecting minimum-cost circulation and the 1985/1986 strongly-polynomial results, none of
+that appears. Not once. The talk contains no polyhedra, no matroids, no flows in the
+combinatorial-optimization sense, and no bit-complexity. It is about learning agents.</p>
+<p><strong>What I used instead.</strong> The mathematics on her slides is invisible to auto-captions, and I
+restored it from the primary literature, cited inline and kept visibly separate from any
+claim of a proceedings paper:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://arxiv.org/abs/2003.07009">arXiv:2003.07009</a> — Gaitonde &amp; Tardos, <em>Stability and Learning in Strategic Queuing Systems</em>, EC 2020</td>
+<td><strong>the closest thing to a companion.</strong> The factor-of-2 theorem, the coordinated condition, the potential function, the Pemantle–Rosenthal application. Not the proceedings paper.</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2011.10205">arXiv:2011.10205</a> — Gaitonde &amp; Tardos, <em>Virtues of Patience in Strategic Queuing Systems</em>, EC 2021</td>
+<td>the e/(e−1) result at the end of the talk</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2502.08898">arXiv:2502.08898</a> — Abel, Kolumbus, Martin Duque, Palma Foster &amp; Tardos, <em>Learning in Strategic Queuing Systems with Small Buffers</em>, February 2025</td>
+<td>the buffered model, the factor of 3, the lower bound of 2</td>
+</tr>
+<tr>
+<td>Roughgarden, <em>Intrinsic Robustness of the Price of Anarchy</em>, STOC 2009 / JACM 2015</td>
+<td>the "one inequality" she describes but does not write down</td>
+</tr>
+<tr>
+<td>Roughgarden &amp; Tardos, <em>How Bad Is Selfish Routing?</em>, JACM 2002</td>
+<td>the bicriteria theorem she opens with</td>
+</tr>
+</tbody>
+</table></div>
+<p>A journal version exists — <em>The Price of Anarchy of Strategic Queuing Systems</em>, JACM 2023,
+<a href="https://dl.acm.org/doi/10.1145/3587250">doi:10.1145/3587250</a> — but the ACM page returned
+403 to me, so I cite it as existing and quote only the arXiv versions.</p>
+<p><strong>Names.</strong> The captions destroy nearly every proper noun, including the title of the field.
+Corrections are in §10.</p>
+<p><strong>Cross-links.</strong> Nothing else in <code>summaries/</code> covers game theory or online learning — I
+grepped. Stephen Wright's plenary
+(<code>summaries/optimization-theory-practice-wright.md</code>) is the nearest neighbour and it turns
+out to overlap this talk barely at all, which was not the prediction; see §10. Where this
+talk touches AI-assisted work, Kontorovich's
+(<code>summaries/shape-of-math-kontorovich.md</code>) is the sibling.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>Tardos opens by naming an agenda change, and it is worth taking literally because the whole
+hour is downstream of it.</p>
+<blockquote>
+<p>"Maybe early even in my life the agenda for computer science was that there is a problem,
+here's the input, and you're supposed to generate the best output you know how to
+generate. But I think that's not really a fair agenda anymore, because there's a lot of
+systems we share."</p>
+</blockquote>
+<p>The old agenda is the one you were trained in: a well-posed problem, an objective, an
+algorithm, a guarantee. The new agenda is that the input to your problem is being generated,
+right now, by other people solving <em>their</em> problems on the same shared resource — and
+increasingly not by people at all, but by their software.</p>
+<p>Her illustration is the <strong>tragedy of the commons</strong>: an English village where everyone may
+graze a cow on the common green. Each individual is correct that adding one more cow helps
+them. Collectively the grass runs out. The measure of the damage is what Christos
+Papadimitriou named the <strong>price of anarchy</strong>.</p>
+<p>Then the sentence that sets up the second half:</p>
+<blockquote>
+<p>"What I'm thinking about is learning in a setting when other people are also learning, and
+you're interacting with other learners — and what happens as a result of all of us using
+AI, which is what we're doing."</p>
+</blockquote>
+<p>So the talk has two movements. First: the classical price-of-anarchy programme, and the
+happy discovery that its bounds survive when you replace the equilibrium assumption with a
+much weaker assumption about learning. Second: that the discovery has a hidden hypothesis —
+<strong>the game must not evolve</strong> — and that most real systems violate it. The rest of the talk
+is about what happens when it does.</p>
+<hr />
+<h2>2. Your anchor</h2>
+<h3>2.1 The main one: this is a Lyapunov argument with the force law removed</h3>
+<p>The technical core of the talk — the queuing theorem — has exactly the shape you already
+use to prove a dynamical system does not blow up.</p>
+<p>You know the move. You have a system whose state you cannot integrate. You exhibit a
+non-negative function V of the state, you show that whenever V is large its time derivative
+is negative, and you conclude V stays bounded. Lyapunov for ODEs; Foster's criterion for
+Markov chains; free-energy decrease in statistical mechanics. Same instrument.</p>
+<p>Tardos's proof is precisely this. V is the total age of all undelivered packets. The
+theorem she borrows — Pemantle and Rosenthal, 1999 — is the stochastic version: a
+non-negative random sequence with <em>negative expected drift once it exceeds a threshold</em>, plus
+a moment-regularity condition, stays bounded in expectation forever.</p>
+<p>What makes it a <em>game</em> theory result rather than a queuing theory result is the one thing
+that is missing: <strong>there is no equation of motion.</strong> She does not know what algorithm any
+participant is running. Real routers use "much simpler algorithms than what we have good
+guarantees for". She refuses to specify them.</p>
+<p>So the negative-drift estimate cannot come from dynamics. It has to come from a <em>hypothesis
+about the agents</em> — an inequality they are assumed to satisfy, whatever they are actually
+doing. That inequality is the no-regret condition (§3.3). The entire architecture of the
+talk is:</p>
+<blockquote>
+<p><strong>Lyapunov function + behavioural inequality in place of a force law → boundedness.</strong></p>
+</blockquote>
+<p>And the factor of 2 in her theorem is not decoration. It is exactly the slack the drift
+computation needs in order to close. §5 shows where it enters.</p>
+<h3>2.2 The secondary one: a stationary point of the parts is not a stationary point of the whole</h3>
+<p>The price of anarchy measures a gap you already have a name for.</p>
+<p>Write down a system with n participants, each with their own objective u_i, all depending on
+the joint configuration a = (a_1, …, a_n). A <strong>Nash equilibrium</strong> is a configuration where
+each u_i is optimal in <em>its own coordinate block</em>, holding the others fixed. That is
+coordinate-wise optimality — a fixed point of the best-response map. The <strong>social optimum</strong>
+maximises Σ_i u_i over all a jointly.</p>
+<p>These are different variational problems. Coordinate-wise stationarity of the individual
+objectives is not stationarity of the sum, because ∂u_i/∂a_i = 0 for every i says nothing
+about ∂(Σ_j u_j)/∂a_i, which carries the cross terms ∂u_j/∂a_i — the externalities. The
+price of anarchy is the size of that discrepancy, in the worst case.</p>
+<p>If you want a one-line version: <strong>an equilibrium is where nobody's own gradient points
+anywhere; an optimum is where the total gradient vanishes. The externality is the
+difference.</strong></p>
+<h3>2.3 The one that should genuinely surprise you</h3>
+<p>Here is the fact I would put in front of any optimizer. In optimization, <strong>enlarging the
+feasible set cannot make the optimum worse.</strong> Add a variable, add an edge, relax a
+constraint: the value can only improve. It is the most reliable monotonicity you own.</p>
+<p>At equilibrium, it is false. Adding a free, instantaneous, zero-cost option to a network can
+make <em>every single participant strictly worse off</em>, with no way for any of them to
+individually recover. That is Braess's paradox (§4.1), and Tardos says it is the example
+that convinced her, and a generation, that something real was going on.</p>
+<p>The reason is that an equilibrium is not the optimum of anything. It is a fixed point. Fixed
+points have no monotonicity theorem.</p>
+<hr />
+<h2>3. The bridge</h2>
+<p>Five definitions. Each one deforms something you have.</p>
+<h3>3.1 Nash equilibrium</h3>
+<p>Notation, hers. There are n players. Player i chooses an action a_i. The vector
+a = (a_1, …, a_n) is the joint action. Player i's utility is u_i(a) — note that it depends
+on <em>everyone's</em> action, not just their own. Write a_{−i} for "everything except player i's
+component", so that (x, a_{−i}) means "player i plays x, everyone else plays what they play
+in a".</p>
+<p><strong>a is a Nash equilibrium if for every player i and every alternative action x:</strong></p>
+<p>\[u_i(a) \;\ge\; u_i(x,\, a_{-i}).\]</p>
+<p>In words: no one, acting alone, can improve by changing their mind. Tardos calls this
+inequality "a no-regret inequality" from the podium and it is the right way to read it —
+player i does not regret not having played x.</p>
+<p>That is all it is. It is a fixed point of the best-response correspondence. John Nash proved
+one always exists if you allow randomised (mixed) actions.</p>
+<h3>3.2 The price of anarchy</h3>
+<p>Koutsoupias and Papadimitriou, 1999; the name is Papadimitriou's.</p>
+<p>\[\text{PoA} \;=\; \frac{\text{cost at the worst Nash equilibrium}}{\text{cost at the social optimum}}.\]</p>
+<p>Tardos notes from the podium that she prefers to write it this way round — cost on top —
+so that the price of anarchy is always ≥ 1 and bigger is worse. If you are working with
+utilities instead of costs you flip it. Nothing deep, but you will see both in the
+literature.</p>
+<h3>3.3 No-regret learning — the definition to actually absorb</h3>
+<p>This is the pivot of the talk. Everything after it depends on it.</p>
+<p>The situation is now a <strong>repeated game</strong>: at each time step t = 1, …, T every player picks an
+action a_i^t, and the joint action a^t determines everyone's utility. Nobody knows who else
+is playing, or what they are doing.</p>
+<p>Player i satisfies the <strong>no-regret condition</strong> if</p>
+<p>\[\sum_{t=1}^{T} u_i\big(a^t\big) \;\ge\; \max_{x} \sum_{t=1}^{T} u_i\big(x,\, a^t_{-i}\big) \;-\; o(T).\]</p>
+<p>Read the two sides. On the left: what you actually got, summed over time. On the right: what
+you <em>would</em> have got had you played the single fixed action x at every step, against the
+same realised behaviour of everybody else, maximised over x — minus an error term that grows
+more slowly than T.</p>
+<p>Three things to notice, in order of importance.</p>
+<p><strong>First: this is the same inequality as Nash, with a time average in front of it.</strong> Put the
+Nash condition and this one side by side and the only differences are the sum over t and the
+slack term. That is not an accident and it is the engine of §4.7.</p>
+<p><strong>Second: it is a hypothesis about the agent, not an algorithm.</strong> Tardos is emphatic:</p>
+<blockquote>
+<p>"I want to think of this as what I like to call a <strong>behavioural assumption</strong>. I don't want
+to mandate that you use a particular learning algorithm, because for all those softwares I
+actually have some guesses but don't know what they do."</p>
+</blockquote>
+<p>Her justification for it being a <em>reasonable</em> assumption is a negative one, and it is a good
+one: if there was a single fixed action that would have done much better than what you did,
+and you never noticed, <strong>you did not learn</strong>. Anything worth calling a learning algorithm
+should clear that bar.</p>
+<p><strong>Third: why the o(T) is unavoidable.</strong> At the start you knew nothing. A guarantee with no
+slack would demand clairvoyance on step one. The achievable rate is o(T) — Tardos says
+"roughly square root of t over time t", i.e. regret O(√T), so <em>average</em> regret O(1/√T) → 0.
+Algorithms achieving it are simple and old: watch the past, randomise, and put more weight
+on actions that did well. Multiplicative weights, in the version you may know as Hedge; the
+bandit-feedback version EXP3.P is what the queuing papers actually invoke.</p>
+<p>Her illustration of what no-regret does and does not demand is worth keeping. You commute
+daily. One road is bad in sun, good in rain; the other the reverse. No-regret does not
+require you to learn the conditional rule — that would be a much stronger demand. It
+requires only that you do at least as well as the better of the two <em>fixed</em> choices. "If
+there's a single solution that's really good, I'm hoping that you'll learn to do this, or do
+even better by alternating in interesting ways."</p>
+<p><strong>Evidence that people and machines satisfy it.</strong> She reports data from Bing sponsored
+search bidding around 2012, from Google ad auctions, and from human subject experiments.
+(The Bing analysis is Nekipelov, Syrgkanis and Tardos, <em>Econometrics for Learning Agents</em>,
+EC 2015 — the whole point of that paper is to do inference on bidders assuming no-regret
+instead of assuming equilibrium.) But she is candid about why she likes it:</p>
+<blockquote>
+<p>"To be honest, because I'm more a mathematician and because this is a maths conference, I
+love it because it's a behavioural assumption that I can beautifully use in theory."</p>
+</blockquote>
+<h3>3.4 Smoothness, and "the proofs only use one inequality"</h3>
+<p>Tardos says from the podium that the price-of-anarchy proofs "really use only one
+inequality" — namely, that at equilibrium nobody wants to deviate <em>to the optimal solution</em>.
+Not to any of the other actions. Just that one.</p>
+<p>She does not write it down. The published form is Roughgarden's smoothness framework, and it
+is short enough to give in full, because it is the load-bearing structure of the entire first
+half.</p>
+<p>A cost-minimisation game is <strong>(λ, μ)-smooth</strong> if for all pairs of joint actions s and s*:</p>
+<p>\[\sum_{i=1}^{n} C_i\big(s^*_i,\, s_{-i}\big) \;\le\; \lambda \cdot \mathrm{cost}(s^*) \;+\; \mu \cdot \mathrm{cost}(s)\]</p>
+<p>where cost(·) is the social objective and satisfies cost(s) ≤ Σ_i C_i(s).</p>
+<p>The left-hand side is the strange entangled object: "what each player would pay if they
+alone switched to their part of s*, against everyone else still playing s". Smoothness says
+that entangled thing can be disentangled into the only two quantities anyone cares about.
+Note that this is a statement about <em>all</em> pairs s, s* — it is pure algebra about the game,
+with no equilibrium anywhere in it.</p>
+<p>Now the proof, in one line, that a Nash equilibrium s has cost at most λ/(1−μ) times
+optimal:</p>
+<p>\[\mathrm{cost}(s) \;\le\; \sum_i C_i(s) \;\overset{(\star)}{\le}\; \sum_i C_i(s^*_i, s_{-i}) \;\le\; \lambda\,\mathrm{cost}(s^*) + \mu\,\mathrm{cost}(s)\]</p>
+<p>and rearrange. Step (⋆) is the <em>only</em> place the equilibrium hypothesis is used, and it is
+used exactly once per player, with the deviation being that player's component of the
+optimum. That is Tardos's "one inequality", made precise.</p>
+<p><strong>Worked constant:</strong> atomic selfish routing with affine cost functions is (5/3, 1/3)-smooth,
+giving PoA ≤ (5/3)/(1 − 1/3) = 5/2.</p>
+<h3>3.5 Stability of a queuing system</h3>
+<p>You have the M/M/1 intuition already, and she uses it as the baseline: one queue, one
+server, packets arrive at rate λ, get served at rate μ. If λ &gt; μ you are lost. The classical
+theorem says λ &lt; μ is <em>enough</em>.</p>
+<p>"Stable" here will mean <strong>strongly stable</strong>: for every fixed r ≥ 0 there is a constant C_r,
+not depending on t, with E[(total queue size at time t)^r] ≤ C_r. Not just finite in
+expectation — all moments bounded, uniformly in time. That is the conclusion Pemantle–
+Rosenthal delivers.</p>
+<hr />
+<h2>4. The talk, rebuilt</h2>
+<h3>4.1 Braess's paradox</h3>
+<p><em>(Reconstructed figure. The network was on a slide and is invisible to the captions; every
+number below is spoken in the transcript and I checked that they are mutually consistent.
+Dietrich Braess, 1968.)</em></p>
+<p>One hundred cars want to get from A to B. Two routes:</p>
+<pre><code>                C
+              ↗   ↘
+   x/100 hrs ↗       ↘ 1 hr
+            ↗           ↘
+           A             B
+            ↘           ↗
+      1 hr   ↘         ↗ x/100 hrs
+              ↘       ↗
+                D
+</code></pre>
+<p>The edges A→C and D→B are <strong>congestion sensitive</strong>: if x cars use one, it takes x/100 hours.
+One car crosses almost instantly; a hundred cars take a full hour. The edges C→B and A→D take
+a flat 1 hour regardless.</p>
+<p><strong>Equilibrium without the tunnel.</strong> The two routes are symmetric, so the cars split 50/50.
+Each route costs 50/100 + 1 = <strong>1.5 hours</strong>. Nobody can improve by switching — switching
+would make their new route carry 51 cars, costing 0.51 + 1 = 1.51. Stable.</p>
+<p><strong>Now add a tunnel C→D that is free and instantaneous.</strong></p>
+<p>The new route A→C→D→B exists. At the old 50/50 flow, one driver who deviates onto it pays
+51/100 + 0 + 51/100 ≈ <strong>1.02 hours</strong> instead of 1.5. Strictly better. So they switch. So does
+everyone.</p>
+<p><strong>Equilibrium with the tunnel.</strong> All 100 cars on A→C→D→B: 100/100 + 0 + 100/100 =
+<strong>2 hours</strong>. Check that it is an equilibrium: deviating back to A→C→B costs 100/100 + 1 = 2
+hours as well. No improvement. Stable.</p>
+<p>Everyone was at 1.5 hours. A free improvement to the network was added. Everyone is now at
+2 hours, and no individual can escape.</p>
+<p>Tardos's reaction, which is the correct one:</p>
+<blockquote>
+<p>"The paradox is that we put in an extra option which in classical optimization can't
+possibly hurt. An extra option can only make life better. But here it made life worse."</p>
+</blockquote>
+<p>The social optimum on the augmented network is still 1.5 hours — just don't use the tunnel.
+So the price of anarchy of this instance is <strong>2 / 1.5 = 4/3</strong>, which is exactly the tight
+worst-case bound for nonatomic routing with affine latencies (Roughgarden &amp; Tardos, JACM
+2002). Braess is not merely an example; it is <em>the</em> extremal example.</p>
+<p><em>(One honesty note: the analysis above treats the 100 cars as a continuum — each car's own
+contribution to congestion is ignored when it computes its route. That is the standard
+nonatomic model and it is what the 4/3 bound refers to. Tardos says "100 cars" from the
+podium.)</em></p>
+<h3>4.2 The move that recurs all hour: measure the resource, not the damage</h3>
+<p>Her first theorem is joint with Tim Roughgarden, and she is careful to say it is <em>not</em> a
+price-of-anarchy statement. It is better, and the reason it is better is the through-line
+of the whole lecture.</p>
+<p><strong>Bicriteria theorem</strong> (Roughgarden &amp; Tardos, <em>How Bad Is Selfish Routing?</em>, JACM 2002). In
+any network with continuous non-decreasing latency functions, and for any set of
+source–sink pairs with any traffic rates — Boston to New York and everyone else at the same
+time — the total delay of the <strong>selfish equilibrium at traffic rate r</strong> is no worse than the
+total delay of the <strong>centrally designed optimum at traffic rate 2r</strong>.</p>
+<p>Read what that buys you. A price-of-anarchy number tells you how bad things are. This tells
+you what to <em>do</em>: you cannot make drivers take the routes you choose, and you could not
+compute the routes for the whole internet anyway — so <strong>stop trying to coordinate and buy
+capacity instead.</strong> Doubling gets you back to where central planning would have put you.</p>
+<blockquote>
+<p>"Certainly coordinating is of course painful. I can't tell drivers which way to drive. And
+maybe I could tell the internet which way to send the packets, but it's too complicated to
+do. So what the theorem says is: just up the capacities."</p>
+</blockquote>
+<p>Hold onto this. Every result in the talk has this shape:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Resource needed to buy off the lack of coordination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Selfish routing, any network (2002)</td>
+<td><strong>2×</strong> the traffic rate</td>
+</tr>
+<tr>
+<td>Strategic queuing, no buffers, no-regret learners (2020)</td>
+<td><strong>2×</strong> the server capacity</td>
+</tr>
+<tr>
+<td>Same, but players maximise long-run rate rather than being no-regret (2021)</td>
+<td><strong>e/(e−1) ≈ 1.58×</strong></td>
+</tr>
+<tr>
+<td>Strategic queuing, single-packet buffers, no-regret learners (2025)</td>
+<td><strong>3×</strong>, with a lower bound of 2×</td>
+</tr>
+</tbody>
+</table></div>
+<p>She never asks "how bad is it". She asks "what do I have to buy". That is the transferable
+reframe and §7 comes back to it.</p>
+<h3>4.3 Two objections to Nash equilibrium</h3>
+<p>Having set up the price of anarchy properly, she then undermines its foundation, on purpose.</p>
+<blockquote>
+<p>"In this Nash equilibrium they somehow magically found this stable solution. How did they
+find it?"</p>
+</blockquote>
+<p><strong>Objection 1 — computational.</strong> Computing a Nash equilibrium in a general game is
+PPAD-complete: hard, under the standard assumptions. She credits Constantinos Daskalakis,
+who won the prize for it at ICM 2018 in Rio — awarded then as the Rolf Nevanlinna Prize, and
+the award is now called the IMU Abacus Medal, which is the name Tardos uses. She adds, with
+evident pleasure, that she gave his laudation at that congress.</p>
+<p><strong>Objection 2 — informational, and she puts it in red on the slide.</strong> To play a best
+response you must know who else is in the game and what they are doing.</p>
+<blockquote>
+<p>"Good luck as you're driving home at the end of this conference from Philly to wherever you
+live — good luck in knowing who else is on the road and which way they are driving. You
+don't actually tend to know this."</p>
+</blockquote>
+<p>The second objection is the more damaging one and it is the one that motivates everything
+that follows. Even if you could compute a Nash equilibrium, you have no basis for assuming
+anyone is <em>at</em> one.</p>
+<h3>4.4 What people hoped would happen, and why it doesn't</h3>
+<p>The idea of learning in repeated games is older than the computer science of it. Brown
+(1951) and Julia Robinson (1951) studied <strong>fictitious play</strong>: look at the empirical
+distribution of everyone's past actions, and best-respond to it.</p>
+<p>Note the built-in incoherence: you change your strategy while assuming nobody else does.</p>
+<p>They were not modelling real life. They imagined it as <em>pre-play</em> — a practice run you
+perform before the real game, which delivers an equilibrium you then adopt. Robinson proved
+it converges in <strong>two-player zero-sum</strong> games (rock–paper–scissors, chess-like win/lose
+situations).</p>
+<p>And essentially nowhere else. Tardos: "unfortunately it almost always doesn't work. It works
+on those games, a couple other lucky games, but mostly this kind of thing is not good enough
+to find any stable solution."</p>
+<p>Then the empirical nail. She shows a plot of real advertiser bids on Bing search
+advertising, from around 2012. They do not converge. They oscillate, permanently — because
+the advertisers are running sophisticated optimisers, either the platform's own or
+third-party bid managers, and those optimisers keep moving.</p>
+<p>So: <strong>stop hoping for convergence.</strong> Assume only the no-regret inequality of §3.3, which is
+a statement about the whole trajectory rather than about where it ends up.</p>
+<h3>4.5 The lift: price-of-anarchy bounds survive learning, for free</h3>
+<p>Now the payoff, and it is elegant.</p>
+<p>Recall §3.4: the equilibrium hypothesis is used exactly once, per player, in the form
+"you don't want to deviate to your component of the optimum". No-regret gives you exactly
+that same inequality, in time-averaged form, with an o(T) slack.</p>
+<p>So you substitute. The price-of-anarchy proof does not care.</p>
+<blockquote>
+<p>"What's beautiful in the no-regret learning is that we have the analog: you don't want to
+deviate to this a* strategy. And all you have to do to extend the proofs is just substitute
+this inequality. It's pretty simple."</p>
+</blockquote>
+<p>That is Roughgarden's extension theorem (<em>Intrinsic Robustness of the Price of Anarchy</em>, STOC
+2009 / JACM 2015): <strong>every</strong> price-of-anarchy bound proved by a smoothness argument applies
+automatically to the time-average of any no-regret play sequence, and more generally to every
+<em>coarse correlated equilibrium</em> — a distribution σ over joint actions such that
+E_{s∼σ}[C_i(s)] ≤ E_{s∼σ}[C_i(s'<em _i="−i">i, s</em>)] for every i and every deviation s'_i. The proof
+is five lines of linearity of expectation applied to the chain in §3.4.</p>
+<p>She flags two details that matter:</p>
+<ul>
+<li><strong>There is a small error term.</strong> The o(T) regret slack survives into the bound, degrading
+  it gracefully. Fine.</li>
+<li><strong>You never need to know the optimum.</strong> This is the part worth pausing on. No-regret says
+  you do not regret <em>any</em> fixed action in hindsight. In particular you do not regret the
+  optimal one — even though nobody, least of all the learner, ever computed it. The
+  hypothesis is universally quantified, so the proof gets to instantiate it at whatever
+  comparison it needs.</li>
+</ul>
+<p>Tardos also notes an extension of her own: the guarantee survives a <strong>changing population</strong>
+of players — it is not the same drivers every day. That is Lykouris, Syrgkanis and Tardos,
+<em>Learning and Efficiency in Games with Dynamic Population</em>, SODA 2016, whose main technical
+tool is, surprisingly, differential privacy.</p>
+<p>This programme ran for roughly fifteen years and it worked. And then:</p>
+<h3>4.6 The cheat</h3>
+<blockquote>
+<p>"Unfortunately there is a cheat, or a critical assumption. It's basically assumed that the
+game you're talking about is like rock–paper–scissors. When we play rock–paper–scissors the
+game doesn't evolve as we're playing it. There's <strong>no carryover effect</strong>."</p>
+</blockquote>
+<p>Every result above assumes the rounds are independent — that the only thing crossing from
+round t to round t+1 is what the learners remember. The game itself resets.</p>
+<p>Whether that is reasonable is a question about <strong>time scale</strong>, and she answers it precisely:</p>
+<ul>
+<li>Morning rush hour, day to day: <strong>reasonable.</strong> However bad Monday was, by Tuesday morning
+  everyone has gone home. The board is cleared.</li>
+<li>Packet routing, millisecond to millisecond: <strong>not reasonable.</strong> If packets were jammed at a
+  router one millisecond ago, they are still sitting there now.</li>
+<li>Traffic, minute to minute: also not reasonable. The 5:00 jam is still the 5:05 jam.</li>
+</ul>
+<p>And her "killer example": <strong>budgeted auctions.</strong> You spend money; later you have less money.
+The game you are playing tomorrow is the game you spent your way into today. (That thread is
+its own literature — Balseiro &amp; Gur; Fikioris &amp; Tardos — and she does not pursue it here.)</p>
+<p>So the object of study becomes: <strong>repeated games in which the state carries over, and the
+state is the residue of everyone's past success and failure.</strong> She takes packet queues as the
+concrete case.</p>
+<h3>4.7 The queuing model</h3>
+<p>Joint work with <strong>Jason Gaitonde</strong>, now on the faculty at Duke.</p>
+<p>The physical story first. Packets arrive because someone sent an email. Data-centre servers
+try to handle them. When things get crowded the server <strong>drops</strong> the packet — in reality it
+simply never sends an acknowledgement, and the sender, seeing no acknowledgement, resends.
+Tardos phrases it as "the packet got returned to the sender", which is the right abstraction.</p>
+<p>The formal model (Gaitonde–Tardos, EC 2020):</p>
+<ol>
+<li>Discrete time steps t = 0, 1, 2, ….</li>
+<li><strong>n queues.</strong> At each step, queue i receives a new packet with probability λ_i
+   (Bernoulli, independent).</li>
+<li><strong>m servers.</strong> Server j succeeds at serving a packet with probability μ_j.</li>
+<li><strong>One send per step.</strong> Each queue may send <strong>one</strong> packet to <strong>one</strong> server per step. This
+   is a real constraint, not a modelling convenience — a router has one send head.</li>
+<li><strong>One accept per step.</strong> Each server can deal with at most one packet per step. If several
+   arrive, the others are dropped and returned to their senders.</li>
+<li><strong>Age priority.</strong> Packets carry a timestamp, and when a server must choose among several
+   arriving packets it serves the <strong>oldest</strong>. Tardos flags this as a fact about the modern
+   internet: "this wasn't true 20 years ago. They realised that trying to deal with older
+   packets makes things infinitely more efficient."</li>
+</ol>
+<p>Point 6 looks like a detail. It is load-bearing; see §4.11.</p>
+<p>The question is her usual one. Not <em>how bad is it</em> — but:</p>
+<blockquote>
+<p>"How much more capacity do I have to give the system to be able to handle it, even though
+these queues obviously don't coordinate, because it's too complicated?"</p>
+</blockquote>
+<h3>4.8 The coordinated baseline</h3>
+<p>Before you can price the lack of coordination you must know what coordination would buy.
+Sort both vectors in decreasing order: λ_1 ≥ λ_2 ≥ … and μ_1 ≥ μ_2 ≥ ….</p>
+<p><strong>Theorem</strong> (Gaitonde–Tardos, EC 2020, Theorem 2.1). The system is stable under <em>some</em>
+centralised scheduling policy <strong>if and only if</strong> for every k = 1, …, n:</p>
+<p>\[\sum_{i=1}^{k} \mu_i \;&gt;\; \sum_{i=1}^{k} \lambda_i.\]</p>
+<p><em>(The paper's statement carries a preprocessing step: delete a maximal equal prefix of 1's
+from both vectors first. That handles the degenerate case of rate-1 servers matched to
+rate-1 queues.)</em></p>
+<p>Tardos reads it aloud and the reading is the point. Take k = 1: the busiest queue must have
+<em>some</em> server that can handle it alone, because it can only send to one place at a time —
+so λ_1 &lt; μ_1, "otherwise even if he was alone he was hosed, there's nothing he can do". Take
+k = 2: the two busiest queues can between them occupy at most two servers per step, so the
+two fastest servers had better be able to absorb them. And so on for every k.</p>
+<p>This is the multi-server generalisation of the M/M/1 condition λ &lt; μ, and it is a Hall-type
+condition — n inequalities, one per prefix, because of the one-send-per-step bottleneck.
+When it holds she calls the system <strong>centrally feasible</strong>. It is not hard to prove; it is
+just nice to read.</p>
+<h3>4.9 The theorem</h3>
+<p><strong>Theorem</strong> (Gaitonde–Tardos, EC 2020, Theorem 3.1 with Assumption 3.1). Suppose the system
+would still be centrally feasible <strong>with all service rates halved</strong> — formally, that there is
+η &gt; 0 with</p>
+<p>\[\tfrac12 (1-\eta)\sum_{i=1}^{k}\mu_i \;\ge\; \sum_{i=1}^{k}\lambda_i \qquad \text{for all } k,\]</p>
+<p>and suppose every queue runs a learning algorithm satisfying the no-regret condition with
+high probability on long windows. Then the system is <strong>strongly stable</strong>: the expected number
+of packets in the system, and every moment of it, stays bounded for all time.</p>
+<p><strong>The price of decentralisation is a factor of 2 in capacity.</strong> Give the system twice what a
+knowledgeable central scheduler would need, let everyone learn selfishly, and it holds.</p>
+<p>Tardos draws the parallel to her 2002 theorem with Roughgarden herself — same factor of 2,
+same shape of conclusion — and immediately says the mechanism is completely different. That
+is worth trusting: the 2002 result is a static convexity-flavoured argument about flows; this
+one is a stochastic drift argument. The 2 arrives twice by coincidence of the arithmetic, not
+by a common cause.</p>
+<h3>4.10 The proof, at the depth she gave it</h3>
+<p>She gives about three slides. Here is the same argument with the pieces named.</p>
+<p><strong>Step 1 — the drift theorem.</strong> Pemantle and Rosenthal (1999). Let X_1, X_2, … be
+non-negative random variables such that:</p>
+<ol>
+<li><em>(Negative drift when large.)</em> There are constants α, β &gt; 0 with
+   E[X_{t+1} − X_t | ℱ_t, X_t ≥ β] &lt; −α.</li>
+<li><em>(Moment regularity.)</em> There is p &gt; 2 and θ &gt; 0 with E[|X_{t+1} − X_t|^p | ℱ_t] ≤ θ for
+   <strong>any</strong> history.</li>
+</ol>
+<p>Then for every 0 &lt; r &lt; p − 1 there is a constant M, independent of t, with E[X_t^r] ≤ M.</p>
+<p>Tardos describes it exactly as you would: numbers going up and down, sufficiently regular,
+and pushed downward whenever they get high. "Obviously these are non-negative integers, so
+when it's low, like at zero, it's going to grow — I know. But the property they need is that
+when it goes sufficiently high, in expectation it will come down." She notes it is "not even
+that easy to prove" and does not prove it.</p>
+<p><strong>Step 2 — the potential function.</strong> From the podium: Φ_τ is the number of packets of age τ
+or older, and the potential is Σ_τ Φ_τ. Since a packet of age a is counted in Φ_1, …, Φ_a,
+that sum is <strong>the total age of all packets in the system.</strong></p>
+<p><em>(What the paper actually uses is close but not identical, and the difference is worth
+knowing. Gaitonde–Tardos track only the age T^i_t of the </em><em>oldest</em><em> packet in each queue,
+via a coupling they call the "dual process" — instead of generating arrivals as a Bernoulli
+stream, the gap to the next packet is drawn as a Geometric(λ_i) at the moment the current one
+clears. The potential is Φ(T_t) = Σ_i λ_i T^i_t (T^i_t − 1), and Pemantle–Rosenthal is applied
+not to Φ but to</em> <strong>√Φ</strong> <em>sampled every w steps. The relation to the podium version is
+Q^i_t ≈ λ_i T^i_t, so λ_i (T^i)²/2 is roughly the total age of queue i's packets. Treat the
+podium version as the honest picture and the paper's as the version that survives contact
+with the moment condition — the square root is there because it is the aging of the whole
+system by one step per step that must have controlled increments.)</em></p>
+<p><strong>Step 3 — bounded moments.</strong> Technical, and she says so: "the sufficiently regular is a
+technical condition and it's easy to prove". Fine.</p>
+<p><strong>Step 4 — the negative drift. This is the whole content, and it is a two-case argument.</strong></p>
+<p>Fix a long window of w steps and a cutoff age τ. Let Q be the set of queues holding packets
+older than τ, and let S be the |Q| best servers. Now ask what those servers did during the
+window.</p>
+<blockquote>
+<p><strong>Case A — the old queues kept those servers busy at least half the time.</strong></p>
+<p>Then the number of old packets cleared is at least about half of Σ_{j∈S} μ_j per unit time.
+New packets arrive at rate Σ_{i∈Q} λ_i. And the hypothesis is precisely that
+½ Σμ &gt; Σλ <strong>with room to spare</strong> — that is what the factor of 2 was for. So more old
+packets leave than new ones arrive. The potential falls.</p>
+<p><strong>Case B — the old queues did not.</strong> Those servers sat idle (from the point of view of an
+old packet) at least half the time.</p>
+<p>Then <strong>no-regret fires.</strong> Those queues hold the oldest packets in the system, so they have
+<em>priority</em> at every server. Had any of them sent to one of the good servers, it would have
+been served — the slot was there. So the fixed strategy "always send to that server" would
+have cleared a great many packets. The no-regret condition says the queue did <em>at least
+that well</em>, minus o(w). So it cleared that many packets somewhere else. The potential falls
+anyway.</p>
+</blockquote>
+<p>In Tardos's words:</p>
+<blockquote>
+<p>"Either these queues are smart enough that half the time they're keeping these servers busy
+— that's cool, because I had a factor of two slack. Or they're too dumb: here are the best
+ones and they're not sending it there. Here is when no-regret comes in. Wait — these top
+ones were empty half of the time. Why didn't they send it there? They could have sent it
+there. They would have gotten served. If they have no regret, that means they're getting
+this much service someplace else. That's also cool with me."</p>
+</blockquote>
+<p>She adds the honest caveat: it must hold for every cutoff τ simultaneously, and "I have to be
+a little bit more careful with the error bands that I'm hiding under the rock here."</p>
+<p><strong>Why the 2 is exactly right.</strong> Look at the case split. It is "busy at least half the time"
+versus "idle at least half the time" — a partition that only works because the two halves
+cover everything. The 2 is the constant in that partition. She says so: "this suggests that
+the factor of two is tight here. Somehow I need it to be either busy half the time or open
+half the time." And it is: the paper's Theorem 3.3 constructs systems satisfying the
+feasibility condition with ½ + o(1) in place of ½ on which every queue has zero regret on all
+but finitely many windows and the system is nonetheless unstable.</p>
+<h3>4.11 The detail that is not a detail: age priority</h3>
+<p>Look back at model point 6 — servers serve the oldest arriving packet. Case B of the drift
+argument used it directly: the old queues <em>would have been served</em> had they sent to the idle
+server, precisely because their packets have priority.</p>
+<p>Remove it and the theorem does not merely lose constants. Gaitonde–Tardos Theorem 2.2: in the
+alternative model without timestamps, for large enough n there is a centrally feasible system
+of n queues and n servers that <strong>stays feasible even when λ is scaled up by Ω(n^{1/3})</strong>, in
+which all queues can be at a Nash equilibrium at every step — and the system is still
+unstable.</p>
+<p>So without age priority, <strong>no sub-polynomial capacity factor suffices at all.</strong> The factor of
+2 is not a property of no-regret learning; it is a property of no-regret learning <em>plus a
+scheduling discipline that rewards patience</em>. §7 comes back to this, because it is the single
+most directly actionable thing in the lecture.</p>
+<h3>4.12 Buffers change everything, and cost a factor of 3</h3>
+<p>Tardos then says she was cheating, and identifies the cheat herself: real servers are not
+memoryless. They have a small buffer — "usually very small, like three or four" — and a
+packet that arrives when the server is busy can wait rather than being dropped.</p>
+<p>The extension is a 2025 paper with, in her words, great collaborators: Ariana Abel, Yoav
+Kolumbus, Jeronimo Martin Duque, Cristian Palma Foster and Tardos,
+<a href="https://arxiv.org/abs/2502.08898">arXiv:2502.08898</a>. For mathematical tractability the
+buffer holds <strong>exactly one packet</strong>. A server rejects everything when its buffer is full;
+otherwise it accepts one arriving packet, chosen <strong>uniformly at random</strong> among those that
+arrived; then it processes with probability μ_j. Feedback reaches the sender when the packet
+is <em>accepted into the buffer</em>, not when it is processed.</p>
+<p>Three consequences, and she presents them in the right order.</p>
+<p><strong>(a) The coordinated baseline collapses — in the good direction.</strong> The prefix condition of
+§4.8 is no longer necessary. Her example: one queue with λ = 1/2, facing three servers each
+with μ = 1/4. The no-buffer condition demands λ_1 &lt; μ_1, i.e. 1/2 &lt; 1/4. Hopeless. With
+buffers, <strong>round-robin</strong> works: leave a packet in server 1's buffer, spend the next steps
+filling servers 2 and 3, and by the time you come back to server 1 it has probably finished.</p>
+<p><em>(Reconstructed arithmetic, my own, in her example's numbers: cycling over k servers each of
+rate μ, you return to a given server k steps later, and it is still busy with probability
+(1−μ)^k. So acceptance probability is 1 − (1−μ)^k = 1 − (3/4)³ = 37/64 ≈ 0.578 &gt; 1/2 = λ.
+Stable. What would verify this is the simulation section of the paper, which runs EXP3 on
+exactly this family.)</em></p>
+<p>She puts the size of the effect strongly: without buffers you needed the prefix condition;
+with even a single-packet buffer "the capacity of the system infinitely went up".</p>
+<p><strong>(b) But the buffered system is harder, not easier, and the clean condition is gone.</strong> The
+only necessary condition she is confident of is the crude one, Σ_i λ_i &lt; Σ_j μ_j — and it is
+<em>not</em> sufficient. The paper's Lemma 1 gives the counterexample: one queue and two servers
+each with μ = 1/2 needs λ &lt; 23/24 &lt; 1 even with full coordination. Buffers make the
+acceptance probability depend on the <em>state</em> of the buffers, so it is no longer just μ_j, and
+the elegant linear-programming-duality characterisation of the no-buffer case (Fu et al.
+2022) does not survive.</p>
+<p><strong>(c) The theorem.</strong> <em>(Abel–Kolumbus–Martin Duque–Palma Foster–Tardos, Theorem 1.)</em></p>
+<blockquote>
+<p>Assuming Σ_i λ_i &lt; ⅓ Σ_j μ_j, and λ_i &lt; ½ for all i, and all queues use learning
+guaranteeing low regret with high probability, the system remains stable.</p>
+</blockquote>
+<p><strong>Factor of 3</strong>, against a baseline of Σλ &lt; Σμ. The potential function is different and
+simpler than the no-buffer one — Φ = Σ_i (N_i − (½λ_i + 2δ)T)^+, where N_i is queue i's size
+at the start of the window — but the two-case structure of §4.10 is unchanged: their Lemma 2
+handles servers busy more than half the time, their Lemma 3 the servers idle more than half
+the time, where no-regret fires.</p>
+<p>Tardos is visibly unhappy about the 3 and says so: the worst example she can produce needs
+only a factor of 2, so the gap is open. Note the accounting though: you pay 3 against a much
+weaker baseline and you got an unbounded increase in what the system can handle. That is a
+good trade.</p>
+<h3>4.13 The lower bound, and why it is embarrassing</h3>
+<p>The example that proves you need at least 2 is short enough to state completely, and it is
+the sharpest single thing in the talk.</p>
+<p><em>(Abel et al., Theorem 3.)</em> One queue with arrival rate λ = 1/2. It faces k servers, each of
+capacity 1/n. Total service capacity is k/n. The queue picks a <strong>uniformly random</strong> server at
+each step — which trivially satisfies no-regret, since all servers are identical.</p>
+<p>Compute the acceptance probability. Conditioned on sending to a given server, the last time
+you sent there was i steps ago with probability (1/k)(1 − 1/k)^{i−1}. If you did send there
+then, it is still busy with probability (1 − 1/n)^i. So</p>
+<p>\[\Pr[\text{accepted}] \;=\; \sum_{i=1}^{\infty} \frac{1}{k}\Big(1-\frac{1}{k}\Big)^{i-1}\Big(1 - \big(1-\tfrac1n\big)^{i}\Big) \;=\; 1 - \frac{n-1}{n+k-1}.\]</p>
+<p>For stability you need this above λ = 1/2, so you need k &gt; n − 1. Total capacity k/n then
+exceeds (n−1)/n ≈ 1 — <strong>double the arrival rate of 1/2.</strong></p>
+<p>Now read what that says. There is only <em>one</em> player. There is no competition, no conflict, no
+externality. The factor of 2 is being paid entirely because the queue is running a sensible
+learning algorithm that treats identical-looking arms symmetrically and therefore randomises
+uniformly — and uniform randomisation keeps sending packets to servers it <em>just</em> sent packets
+to.</p>
+<p>Tardos:</p>
+<blockquote>
+<p>"What every self-respecting learning algorithm that I know of will do is uniformly random.
+You just send a packet to server one. You know what server one is doing — it's trying to
+serve your packet. <strong>Do not send him another one.</strong> Round robin works much, much better."</p>
+</blockquote>
+<p>Round robin has the same marginal distribution over servers. It differs only in being
+<em>negatively correlated across time</em>. And that is worth a factor of 2.</p>
+<h3>4.14 The first limitation: learning algorithms were designed for a world without memory</h3>
+<p>She generalises the lesson, and this is the first of her two closing critiques.</p>
+<p>No-regret algorithms were invented for two settings: <strong>Bayesian</strong> (each round is an i.i.d.
+draw) and <strong>worst-case adversarial</strong>. What those have in common is that <em>what happened in the
+past does not change what the future looks like</em>. In a carryover game it does — and the state
+was created by your own past actions.</p>
+<blockquote>
+<p>"If you actually have knowledge about how things evolved because of what happened in the
+recent past, then your learning algorithm should take this into account."</p>
+</blockquote>
+<p>There is work in this direction; she does not name it.</p>
+<h3>4.15 The second limitation: no-regret is myopic — the two-queue example</h3>
+<p>This one is deeper, and it is where the talk ends up.</p>
+<p>The setup, from the podium. Two queues. Two servers: one <strong>perfect</strong>, serving with
+probability 1; one <strong>bad</strong>, serving with probability 0.47.</p>
+<p><strong>The unique no-regret outcome:</strong> both queues send everything to the perfect server. They
+split it, so each succeeds with probability 1/2. Deviating to the bad server yields 0.47 &lt;
+0.50, so deviating <em>creates regret</em>. No-regret learning will find this and stay.</p>
+<p><strong>And it is a disaster.</strong> Total system throughput is 1 — only one server is ever used. If the
+two arrival rates sum to more than 1, both queues grow without bound. Forever.</p>
+<p><strong>The stabilising deviation.</strong> Suppose one queue moves permanently to the bad server. Total
+throughput is now 1 + 0.47 = 1.47. If the arrival rates sum to less than that, everything
+clears. Both queues are better off. The deviator is better off.</p>
+<p><strong>And no-regret forbids it,</strong> because measured one step at a time, 0.47 &lt; 0.50 and the move
+looks like a mistake.</p>
+<p>Tardos points out two ways the naive comparison is even wrong on its own terms. The deviating
+queue often finds the bad server <em>empty</em> — no competition there. And when it does occasionally
+use the perfect server, its packets are now older, so <strong>age priority</strong> works in its favour and
+its success rate there exceeds 50%. The 0.47 was never the real payoff of the deviation; it
+was the payoff of an instantaneous one-step probe.</p>
+<p>Which is the diagnosis:</p>
+<blockquote>
+<p>"No regret is too myopic. It's not looking at long-term effects. And in fact, to be honest,
+even the notation is wrong."</p>
+</blockquote>
+<p><strong>The notation is wrong.</strong> Her no-regret inequality wrote u_i(a^t) — utility at time t as a
+function of the actions at time t. In a carryover game the correct object is</p>
+<p>\[u_i^{\,t}\big(a^1, a^2, \ldots, a^t\big)\]</p>
+<p>— utility at time t as a function of the <em>entire history</em>. And once you write it that way,
+"the best single action in hindsight" is the wrong comparison class. The right one is
+something like "the best single strategy you commit to and stick with all the way through" —
+which she immediately says "is probably a bit too strong, but something like this."</p>
+<p>And she names the failure mode by its familiar name:</p>
+<blockquote>
+<p>"No-regret apparently does something sort of dumb, which I guess we usually call
+explore–exploit. That is the classical algorithmic strategy: you try something for a
+second, see how good it is, and then back off right away. Explore, exploit, explore,
+exploit. And if you don't see it good instantaneously, you back off. <strong>You're not watching
+for long-term strategy.</strong>"</p>
+</blockquote>
+<p>That is the sentence to take away from the whole lecture.</p>
+<h3>4.16 What patient players achieve</h3>
+<p>The vindication is a theorem, and it is the one place where dropping the no-regret assumption
+<em>improves</em> the guarantee.</p>
+<p><strong>Theorem</strong> (Gaitonde &amp; Tardos, <em>Virtues of Patience in Strategic Queuing Systems</em>, EC 2021,
+<a href="https://arxiv.org/abs/2011.10205">arXiv:2011.10205</a>). In the same no-buffer model, if
+<strong>patient</strong> queues choose strategies that selfishly maximise their <strong>long-run success rate</strong>
+— a Nash equilibrium of the long-run sending game, not a learning outcome — then stability is
+ensured with only</p>
+<p>\[\frac{e}{e-1} \;\approx\; 1.58\]</p>
+<p>times the centrally required capacity. Strictly better than the 2 that no-regret can
+guarantee.</p>
+<p>Tardos is scrupulous about what this is not:</p>
+<blockquote>
+<p>"What I'm asking is <strong>not learning</strong>. In fact, what's worse, <strong>I don't have a learning
+algorithm to do this.</strong> I ask everyone to find a sending pattern on which they don't want
+to revise the probabilities of sending, because it's a Nash equilibrium of the sending
+game."</p>
+</blockquote>
+<p>So the picture is now inverted from where the talk began. In §4.3 she attacked Nash
+equilibrium as uncomputable and uninformable, and replaced it with no-regret learning. Here
+the equilibrium concept gives the better bound and there is no algorithm that reaches it. The
+gap between 1.58 and 2 is exactly the cost of myopia.</p>
+<p>She skips the proof (I have not reconstructed it — see §10) and instead offers the two-queue
+example of §4.15 as the intuition, which is the right pedagogical choice.</p>
+<h3>4.17 Where she leaves it</h3>
+<p>Her closing ask, in her own terms:</p>
+<blockquote>
+<p>"Learning players in many interactions actually do reasonably well even with the minimal
+assumption of no-regret learning. But learning is a bit too simplistic. It would be
+important to have a better assumption, an alternate behaviour model."</p>
+</blockquote>
+<p>Three requirements for a replacement, and note that all three are hers:</p>
+<ol>
+<li><strong>Testable in data</strong> — you must be able to check whether real agents satisfy it.</li>
+<li><strong>Easy to achieve algorithmically</strong> — there must be simple algorithms that guarantee it.</li>
+<li><strong>Generates better outcomes</strong> — the resulting price of anarchy must be better than what
+   no-regret gives.</li>
+</ol>
+<p>No-regret satisfies (1) and (2) and fails (3) in stateful games. Long-run-rate maximisation
+satisfies (3) and fails (2). The gap is open.</p>
+<p>Her final honest note: even her lower-bound example for the e/(e−1) result relies on "a very
+artificial non-stable solution", so the true constant may be better still. She ran out of
+time before showing it.</p>
+<hr />
+<h2>5. The one argument, stated precisely</h2>
+<p><strong>Theorem</strong> (Gaitonde–Tardos, EC 2020). <em>Consider n queues with Bernoulli arrival rates
+λ_1 ≥ … ≥ λ_n and m servers with success probabilities μ_1 ≥ … ≥ μ_m. Each queue sends at
+most one packet per step to one server; each server serves at most one packet per step,
+choosing the oldest among those it receives; unserved packets return to their senders.
+Suppose there exists η &gt; 0 such that</em></p>
+<p>\[\tfrac{1}{2}(1-\eta)\sum_{i=1}^{k}\mu_i \;\ge\; \sum_{i=1}^{k}\lambda_i \qquad \text{for every } k,\]</p>
+<p><em>and suppose every queue uses a strategy whose regret over each window of w consecutive steps
+is at most φ_δ(w) = o(w) with probability at least 1 − δ, for suitable δ, w depending on η.
+Then the system is strongly stable: for every r ≥ 0 there is C_r independent of t with
+E[(Σ_i Q^i_t)^r] ≤ C_r.</em></p>
+<p><strong>Proof architecture.</strong></p>
+<ol>
+<li>Replace the process by the coupled <em>dual process</em> tracking only each queue's oldest
+   packet age T^i_t, with gaps between packets drawn as Geometric(λ_i). The two processes
+   have identical stability properties (their Lemma 3.1) and the dual one has the
+   conditional independence the moment bound needs.</li>
+<li>Set Φ(T_t) = Σ_i λ_i T^i_t (T^i_t − 1) and Z_ℓ = √(Φ(T_{w·ℓ})) — the potential sampled
+   every w steps.</li>
+<li>Verify condition 2 of Pemantle–Rosenthal (bounded p-th conditional moments, p &gt; 2) for
+   Z_ℓ. Straightforward once you are in the dual process.</li>
+<li>Verify condition 1 (negative drift once Z_ℓ exceeds a threshold) by the two-case argument
+   of §4.10: for each age cutoff, the best servers were either busy at least half the window
+   — in which case the factor-2 slack in the hypothesis makes clearing outrun arrivals — or
+   idle at least half the window, in which case the no-regret hypothesis, applied with the
+   deviation "always send to that server", forces the queue to have cleared comparably many
+   packets elsewhere. Age priority is what makes "would have been served" true in the second
+   case.</li>
+<li>Conclude E[Z^r_ℓ] ≤ C_r by Pemantle–Rosenthal, extend from the sampled times to all t,
+   and translate back through Q^i_t ≈ λ_i T^i_t.</li>
+</ol>
+<p><strong>What the factor of 2 is.</strong> Not an artifact of the analysis, and not a price of competition.
+It is the constant in the "busy half the time / idle half the time" dichotomy — and their
+Theorem 3.3 shows the theorem is false at ½ + o(1), so it cannot be improved for no-regret
+learners. Their Theorem 2.2 shows that removing age priority destroys the result entirely: no
+sub-polynomial factor suffices.</p>
+<hr />
+<h2>6. Do this by hand</h2>
+<h3>6.1 Braess, and the 4/3 (15 minutes, pen)</h3>
+<p>Take the network of §4.1: 100 cars from A to B. Edges A→C and D→B cost x/100 hours when
+carrying x cars; edges A→D and C→B cost 1 hour flat.</p>
+<p>(a) Confirm the 50/50 split is an equilibrium before the tunnel is added, and compute its
+cost per car.
+(b) Add a free instantaneous edge C→D. Show that "everyone takes A→C→D→B" is an equilibrium,
+and compute its cost.
+(c) Compute the social optimum on the augmented network, and hence the price of anarchy.
+(d) Now the point of the exercise. Name, in one sentence, which theorem of optimization
+Braess's paradox is a counterexample to — and say why it is not actually a counterexample.</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> With 50 on each route, each pays 50/100 + 1 = 1.5. A deviator to the other route makes
+it carry 51, paying 51/100 + 1 = 1.51 &gt; 1.5. Nobody deviates. Cost 1.5.</p>
+<p><strong>(b)</strong> With all 100 on A→C→D→B, each pays 100/100 + 0 + 100/100 = 2. Deviating to A→C→B
+costs 100/100 + 1 = 2 — no gain. Deviating to A→D→B costs 1 + 100/100 = 2 — no gain. It is an
+equilibrium. Cost 2.</p>
+<p><strong>(c)</strong> The optimum can simply not use the tunnel: split 50/50 for 1.5 per car. (Adding an
+edge cannot hurt the optimum, so 1.5 is still optimal.) PoA = 2 / 1.5 = <strong>4/3</strong>.</p>
+<p>That number is not a coincidence. 4/3 is the tight worst-case price of anarchy over <em>all</em>
+nonatomic routing instances with affine latency functions (Roughgarden &amp; Tardos, JACM 2002).
+This tiny network is extremal.</p>
+<p><strong>(d)</strong> It looks like a counterexample to <em>relaxation monotonicity</em>: enlarging the feasible
+set cannot worsen the optimal value. It is not one, because the equilibrium is not the
+optimum of any single objective. It is a <strong>fixed point of the best-response map</strong>, and fixed
+points of a parameterised map have no monotonicity guarantee under enlargement of the domain.
+The optimum did not get worse — it is still 1.5. The fixed point moved.</p>
+<p>The moral you can carry: <strong>any monotonicity you rely on in optimization needs re-derivation
+the moment "the solution" becomes "an equilibrium".</strong></p>
+</details>
+<h3>6.2 Uniform random versus round robin (20 minutes, pen)</h3>
+<p>This is Theorem 3 of the buffered paper, and it is a clean geometric-series computation. One
+queue, arrival rate λ = 1/2. It faces k servers, each with service probability 1/n and a
+single-packet buffer. At each step the queue sends one packet to a <strong>uniformly random</strong>
+server; the server accepts if its buffer is empty, and clears its buffered packet with
+probability 1/n each step.</p>
+<p>(a) Given that you send to a particular server now, what is the probability that the previous
+time you sent to that same server was exactly i steps ago?
+(b) Given that, what is the probability that the server is still busy with that earlier
+packet?
+(c) Assemble the acceptance probability as a sum over i and evaluate it in closed form.
+(d) Find the condition on k for the throughput to exceed λ = 1/2, and read off the total
+capacity k/n you had to buy.
+(e) Repeat (c) for a <strong>round-robin</strong> sender, which visits the servers in fixed cyclic order.
+Compare.</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> Each step you pick that server with probability 1/k independently, so the gap since
+the last visit is Geometric: Pr[gap = i] = (1/k)(1 − 1/k)^{i−1}.</p>
+<p><strong>(b)</strong> The buffer clears with probability 1/n per step, so after i steps it is still
+occupied with probability (1 − 1/n)^i. (Conservatively assuming it <em>was</em> occupied then; that
+is the bound the paper takes.)</p>
+<p><strong>(c)</strong></p>
+<p>\[\Pr[\text{accept}] = \sum_{i=1}^{\infty}\frac1k\Big(1-\frac1k\Big)^{i-1}\Big(1-\big(1-\tfrac1n\big)^{i}\Big).\]</p>
+<p>Split it. The first piece sums to 1. The second is</p>
+<p>\[\frac{n-1}{nk}\sum_{i=1}^{\infty}\Big[\big(1-\tfrac1k\big)\big(1-\tfrac1n\big)\Big]^{i-1} = \frac{n-1}{nk}\cdot\frac{1}{1-(1-\frac1k)(1-\frac1n)} = \frac{n-1}{n+k-1},\]</p>
+<p>using (1 − 1/k)(1 − 1/n) = 1 − 1/k − 1/n + 1/(nk), so the denominator is
+(n + k − 1)/(nk). Hence</p>
+<p>\[\Pr[\text{accept}] \;=\; 1 - \frac{n-1}{n+k-1}\;=\;\frac{k}{n+k-1}.\]</p>
+<p><strong>(d)</strong> Need k/(n + k − 1) &gt; 1/2, i.e. 2k &gt; n + k − 1, i.e. <strong>k &gt; n − 1</strong>. Total capacity is
+then k/n &gt; (n−1)/n ≈ 1, against an arrival rate of 1/2. <strong>A factor of 2, paid by a single
+player with no competition at all.</strong></p>
+<p><strong>(e)</strong> Round robin returns to a given server after exactly k steps, so the acceptance
+probability is 1 − (1 − 1/n)^k. For k = n this is 1 − (1 − 1/n)^n → 1 − 1/e ≈ <strong>0.632</strong>,
+against uniform random's k/(n + k − 1) = n/(2n − 1) → <strong>1/2</strong>. Round robin gets you comfortably
+above λ = 1/2 at total capacity k/n = 1; uniform random sits exactly at the boundary and
+fails.</p>
+<p>The whole difference is the <em>variance of the return time</em>. Same marginal distribution over
+servers, same expected gap of k steps — but uniform random keeps drawing short gaps and
+wasting sends on servers it has just loaded. Round robin's return time is deterministic.
+Nothing about "learning" distinguishes them; no-regret is blind to it.</p>
+<p>And notice where 1 − 1/e appears. It is not the same constant as the e/(e−1) of §4.16, but it
+is the same phenomenon wearing a different hat: the cost of independent randomisation where
+negative correlation was available.</p>
+</details>
+<hr />
+<h2>7. What is actually useful to you</h2>
+<p>You run fleets of agents that share rate-limited resources — API quotas, file locks, a
+database, a build machine, each other's output. Every one of those is a repeated game with
+carryover state. This is the closest a talk in this playlist has come to describing your
+day job in its own vocabulary, and it did not know it was doing so.</p>
+<h3>7.1 Replace an unverifiable equilibrium assumption with a checkable behavioural contract</h3>
+<p>The single most reusable move in the lecture is §3.3, and it generalises far past games.</p>
+<p>Tardos wanted to say something about a system of independent agents. The classical
+assumption — "they are at equilibrium" — was unusable on two counts: computing the
+equilibrium is hard, and no agent has the information needed to be at one. She replaced it
+with an inequality that is:</p>
+<ul>
+<li><strong>a property of the observed trajectory</strong>, not of an unobserved fixed point;</li>
+<li><strong>algorithm-agnostic</strong> — she never needs to know what any agent is running;</li>
+<li><strong>falsifiable from logs</strong> — you can check it after the fact, and she does, on real bidding
+  data.</li>
+</ul>
+<p>That is a design pattern for reasoning about any fleet you did not write all of. When you
+find yourself assuming your agents "converge", "agree", or "reach a consistent state", ask
+what weaker, trajectory-level, log-checkable inequality would carry the argument instead. The
+answer will usually be of the form: <em>no agent persistently did much worse than some fixed
+simple policy would have done.</em></p>
+<p>And the payoff structure is worth internalising too: the assumption was weaker, so it applied
+to more systems, and the theorem survived unchanged because the proof had only used the
+assumption once.</p>
+<h3>7.2 Price the resource, not the damage</h3>
+<p>§4.2. Every result in the talk is stated as "how much extra capacity buys off the lack of
+coordination", never as "how bad is it". 2× traffic, 2× servers, 3× servers with buffers,
+1.58× with patient players.</p>
+<p>This is the correct shape for a decision you actually have to make. "Our agents waste 40% of
+the quota through contention" is a complaint. "<strong>Provision 2× and you can stop building the
+coordinator</strong>" is a plan — and it is comparing against the real alternative, which is not a
+perfect world but a central scheduler you would have to write, deploy, and keep correct.</p>
+<p>When you next find contention in a fleet, compute the overprovisioning factor that makes the
+coordinator unnecessary, and compare <em>that</em> to the coordinator's cost. Often the multiplier
+is small and the coordinator is not.</p>
+<h3>7.3 The one to implement tomorrow: negative correlation beats independence</h3>
+<p>§4.13 and exercise 6.2. A single agent, no competition, choosing uniformly at random among
+identical-looking resources, pays a <strong>factor of 2</strong> in capacity against the same agent
+choosing round-robin. Same marginal distribution. The only difference is that round robin
+never revisits a resource it just loaded.</p>
+<p>Every retry-with-jitter, every random-backend selection, every "pick a random worker" in your
+harness is the uniform-random algorithm. If the resource has <em>memory of your last request</em> —
+a warmed cache, an in-flight job, a rate-limit window, a lock you just released — independent
+sampling is systematically wrong, and the loss is a constant factor, not an epsilon.</p>
+<p>Tardos's line is the mnemonic: <em>"You know what server one is doing — it's trying to serve your
+packet. Do not send him another one."</em></p>
+<h3>7.4 Explore–exploit is the wrong loop in a stateful environment</h3>
+<p>§4.15. The standard bandit loop — try it briefly, measure, back off if it does not look good
+immediately — is provably correct when the environment is i.i.d. or adversarial, and provably
+misleading when your own past actions created the state.</p>
+<p>The two-queue example is the clean failure: the alternative looks 3 percentage points worse
+on a one-step probe (0.47 versus 0.50), and taking it is the only thing that keeps the system
+from diverging. Both effects that make it actually better — reduced contention, and improved
+priority because your packets became older — only appear <em>after</em> you commit.</p>
+<p>The diagnostic to apply to your own harness: <strong>when you evaluate an option, does the
+evaluation destroy the state that would have made it good?</strong> If you probe a cold cache, a
+cold model, a fresh connection pool, or an under-warmed index for one call and revert, you
+have measured the transient and thrown away the steady state. Anywhere that is true,
+short-horizon A/B measurement is not conservative — it is biased, and biased in the direction
+of never switching.</p>
+<h3>7.5 A queue discipline can be worth more than any amount of intelligence</h3>
+<p>§4.11 is the most underrated fact in the lecture. Remove "serve the oldest packet" from the
+model and the theorem does not degrade — it dies. No sub-polynomial capacity factor suffices,
+even at Nash equilibrium.</p>
+<p>The reason is mechanical and it transfers directly. Age priority makes the <em>system</em> reward
+the agent that has been waiting, which is exactly the agent whose contribution to the
+potential is largest. It converts individual patience into individual advantage, so selfish
+learners are pulled toward the globally stabilising behaviour without being told anything.</p>
+<p>For your fleets: <strong>oldest-first is not a fairness nicety, it is the load-bearing element.</strong>
+If your task queue, retry policy, or scheduler serves whoever asks most recently or most
+often, no amount of agent sophistication recovers the loss. Change the discipline first, then
+worry about the agents.</p>
+<h3>7.6 The connection to the other talks</h3>
+<p>Wright's plenary (<code>summaries/optimization-theory-practice-wright.md</code>) closes on the theory–
+practice gap in machine learning: practice runs ahead, theory certifies afterwards. Tardos's
+lecture is the same gap seen from the other side. Her whole method is to <em>weaken the
+hypothesis until it describes what practitioners actually deploy</em> — real routers "use much
+simpler algorithms than what we have good guarantees for" — and then prove something anyway.
+Wright's answer to the gap is better theory of the practised algorithms; Tardos's is a weaker
+assumption that all of them satisfy. Both are worth having in the toolkit; the second is
+cheaper.</p>
+<p>And the meta-point she makes and Kontorovich (<code>summaries/shape-of-math-kontorovich.md</code>) makes
+independently: the interesting question about AI systems is no longer what one of them can do
+alone. It is what happens when there are many of them and they share something.</p>
+<hr />
+<h2>8. Where to read next</h2>
+<ol>
+<li><strong>Gaitonde &amp; Tardos, <em>Stability and Learning in Strategic Queuing Systems</em>.</strong>
+   <a href="https://arxiv.org/abs/2003.07009">arXiv:2003.07009</a> — the factor-of-2 theorem, the
+   coordinated condition, and the full drift proof. The closest thing to a written version of
+   the middle of this talk. Start at Section 3.</li>
+<li><strong>Roughgarden, <em>Intrinsic Robustness of the Price of Anarchy</em>.</strong> STOC 2009 / JACM 2015 —
+   the smoothness framework of §3.4 and the extension theorem that makes price-of-anarchy
+   bounds survive learning. The lecture-notes version
+   (<a href="https://timroughgarden.org/f13/l/l14.pdf">Roughgarden CS364A, Lecture 14</a>) is nine pages
+   and complete.</li>
+<li><strong>Abel, Kolumbus, Martin Duque, Palma Foster &amp; Tardos, <em>Learning in Strategic Queuing
+   Systems with Small Buffers</em>.</strong> <a href="https://arxiv.org/abs/2502.08898">arXiv:2502.08898</a> — the
+   2025 state of the art, the factor of 3, the uniform-versus-round-robin lower bound, and
+   simulations.</li>
+</ol>
+<hr />
+<h2>9. Self-test</h2>
+<details>
+<summary>1. State the no-regret condition and say precisely how it differs from Nash.</summary>
+<p>Nash: u_i(a) ≥ u_i(x, a_{−i}) for every player i and every alternative x — one configuration,
+no time.</p>
+<p>No-regret: Σ_{t≤T} u_i(a^t) ≥ max_x Σ_{t≤T} u_i(x, a^t_{−i}) − o(T) — the same inequality
+summed over a trajectory, with slack. It compares what you got to the best <em>fixed</em> action in
+hindsight against the realised play of everyone else.</p>
+<p>Differences that matter: no-regret is a property of a trajectory rather than a fixed point;
+it needs no knowledge of who else is playing; it is achievable by simple algorithms at
+O(√T) regret; and it is checkable from logs. Nash is none of those.</p>
+</details>
+<details>
+<summary>2. Why do price-of-anarchy bounds automatically apply to no-regret learners?</summary>
+<p>Because the canonical proof uses the equilibrium hypothesis exactly once, per player, in the
+single form "player i does not want to deviate to their component s*_i of the optimum". No
+other deviation is ever invoked. No-regret gives that same inequality in time-averaged form,
+so you substitute it and the rest of the proof — the "disentanglement" step, which is pure
+algebra about the game — is untouched. Formally: any (λ,μ)-smooth game has PoA ≤ λ/(1−μ) for
+Nash, and Roughgarden's extension theorem gives the same bound for all coarse correlated
+equilibria and hence for the time-average of any no-regret sequence.</p>
+<p>Bonus: the learner never needs to know what the optimum is. The no-regret guarantee is
+universally quantified over comparison actions, so the proof instantiates it wherever it
+likes.</p>
+</details>
+<details>
+<summary>3. What is the "cheat" in that whole programme?</summary>
+<p>It assumes <strong>no carryover</strong> — each round of the repeated game is the same game, unaffected by
+what happened before, like repeated rock–paper–scissors. Reasonable for morning rush hour day
+over day (everyone went home overnight). False for millisecond-scale packet routing, for
+minute-scale traffic, and for budgeted auctions, where spending money today changes the game
+tomorrow.</p>
+</details>
+<details>
+<summary>4. State the centralised feasibility condition for the queuing model, and explain the k = 1 case in words.</summary>
+<p>Sort λ_1 ≥ … ≥ λ_n and μ_1 ≥ … ≥ μ_m. Centrally feasible iff Σ_{i≤k} μ_i &gt; Σ_{i≤k} λ_i for
+every k.</p>
+<p>k = 1: the busiest queue can send only one packet per step to one server, so there must be a
+single server fast enough to absorb it alone — λ_1 &lt; μ_1. Otherwise no scheduling can save
+it. The general k is the same argument for the k busiest queues, which can occupy at most k
+servers per step. It is a Hall-type prefix condition, forced by the one-send-per-step
+constraint.</p>
+</details>
+<details>
+<summary>5. Sketch the negative-drift argument and say exactly where the factor of 2 enters.</summary>
+<p>Potential = total age of undelivered packets (paper: Φ = Σ_i λ_i T^i(T^i − 1), and
+Pemantle–Rosenthal applied to √Φ sampled every w steps). Fix an age cutoff, let Q be the
+queues holding packets older than it, and look at the |Q| fastest servers over a window.</p>
+<p>Case A: those servers were busy with old packets at least half the window. Then clearing runs
+at ≥ ½ Σμ while arrivals run at Σλ, and the hypothesis ½(1−η)Σμ ≥ Σλ makes clearing win.
+Case B: they were idle at least half the window. Then no-regret fires — those queues hold the
+oldest packets so they have priority, so "always send there" would have cleared many packets,
+so by no-regret they cleared comparably many elsewhere.</p>
+<p>Either way the potential drops. The 2 is the constant in the "busy half / idle half"
+dichotomy, and Gaitonde–Tardos Theorem 3.3 shows the result fails at ½ + o(1), so it is
+tight for no-regret learners.</p>
+</details>
+<details>
+<summary>6. Why is "serve the oldest packet" essential rather than cosmetic?</summary>
+<p>Case B of the drift argument needs "had the old queue sent there, it would have been served".
+That is true only because its packets outrank everyone else's. Without timestamps and age
+priority, Gaitonde–Tardos Theorem 2.2 constructs centrally feasible systems that stay feasible
+even with λ scaled up by Ω(n^{1/3}), where all queues are at Nash equilibrium every step and
+the system is still unstable. So <strong>no sub-polynomial capacity factor suffices</strong> without age
+priority. The factor 2 is a property of no-regret learning <em>plus</em> a discipline that rewards
+patience.</p>
+</details>
+<details>
+<summary>7. Why does uniform-random server choice cost a factor of 2 even with a single player?</summary>
+<p>With k servers each of rate 1/n and single-packet buffers, uniform random sending gives
+acceptance probability 1 − (n−1)/(n+k−1) = k/(n+k−1). Requiring this to exceed λ = 1/2 forces
+k &gt; n − 1, so total capacity k/n ≈ 1 against arrival rate 1/2.</p>
+<p>The loss is not competition — there is one player. It is that uniform random has high-variance
+return times and keeps re-sending to a server it just loaded. Round robin has the same
+marginal distribution but a deterministic return time, giving acceptance 1 − (1 − 1/n)^k,
+which for k = n is 1 − 1/e ≈ 0.632. No-regret cannot distinguish the two.</p>
+</details>
+<details>
+<summary>8. Explain the two-queue example and what it shows about no-regret.</summary>
+<p>Two queues, one server of rate 1 and one of rate 0.47. Both queues on the fast server, each
+succeeding 50% of the time; deviating to the slow server yields 0.47 &lt; 0.50, so no-regret
+learning locks this in. Total throughput 1, so if arrival rates sum above 1, both queues
+diverge forever.</p>
+<p>If one queue moves permanently to the slow server, throughput becomes 1.47 and the system
+clears — and the deviator does better than 0.47 in reality, because it often finds the slow
+server empty and because its aged packets get priority on the fast server when it does use it.</p>
+<p>Conclusion: no-regret's comparison class — the best <em>single-step-substitutable</em> fixed action
+measured against realised play — is the wrong one in a stateful game. The right comparison is
+a strategy you commit to. No-regret is explore–exploit, and explore–exploit backs off before
+the benefit materialises.</p>
+</details>
+<details>
+<summary>9. What do patient players buy, and what is the catch?</summary>
+<p>If queues maximise their long-run success rate rather than satisfying no-regret, stability
+needs only e/(e−1) ≈ 1.58 times the coordinated capacity, versus 2 for no-regret
+(Gaitonde–Tardos, EC 2021).</p>
+<p>The catch, stated by Tardos from the podium: this is a Nash-equilibrium analysis of the
+long-run sending game, not a learning result, and <strong>no learning algorithm is known that
+reaches it.</strong> The gap between 1.58 and 2 is precisely the price of myopia.</p>
+</details>
+<details>
+<summary>10. What three properties does she ask of a replacement for no-regret?</summary>
+<p>(1) Testable in data — checkable against what real agents actually do. (2) Easy to guarantee
+algorithmically — simple algorithms should achieve it. (3) Generates better outcomes — a
+better price of anarchy in stateful games.</p>
+<p>No-regret has (1) and (2), fails (3). Long-run-rate maximisation has (3), fails (2). Nobody
+has all three. That is the open problem she leaves.</p>
+</details>
+<hr />
+<h2>10. Note on the tutorial process</h2>
+<h3>The title, and Rule 1</h3>
+<p>This is the sharpest instance in the playlist so far of a lecture being nothing like its
+advertised subject, and the mechanism was novel: the advertised subject was correct, for the
+wrong congress.</p>
+<p>The brief I worked from carried the title "Strongly Polynomial and Combinatorial Algorithms
+in Optimization", synthesised from web search and flagged as weak provenance. It pointed at
+Tardos's 1985/1986 strongly polynomial algorithm for minimum-cost circulation. The tension
+the brief identified — recent fame in algorithmic game theory versus an announced title
+pointing at the earlier work — was real, and it resolved in a third direction: the title is
+her <strong>ICM 1990 Kyoto</strong> invited lecture, verified verbatim on the Cornell mathematics
+department's "Cornellians at the International Congress of Mathematicians" page. The 2026
+title is not published anywhere I could reach — not <code>icm2026.org</code>, not the IMU speaker
+listing, not the video metadata, and she does not announce one. The title on this document is
+descriptive and mine.</p>
+<p><strong>Verdict on difficulty versus reputation.</strong> Her <em>recent</em> reputation predicted the content
+correctly; the announced title did not. That is the exact inverse of the Kontorovich case,
+where reputation misled and the title was accurate. Neither is a reliable signal. Only the
+transcript is.</p>
+<h3>Name corrections</h3>
+<p>Every one verified against a primary source. The systematic one is the first, which the
+captions get wrong every single time it is spoken — perhaps twenty occurrences.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>price of energy</td>
+<td><strong>price of anarchy</strong></td>
+</tr>
+<tr>
+<td>brace paradox / brace</td>
+<td>Braess's paradox / Dietrich <strong>Braess</strong></td>
+</tr>
+<tr>
+<td>Tim Rav garden / Rubgarden / Ruffgarden</td>
+<td>Tim <strong>Roughgarden</strong></td>
+</tr>
+<tr>
+<td>ksupius and papa</td>
+<td><strong>Koutsoupias</strong> and <strong>Papadimitriou</strong></td>
+</tr>
+<tr>
+<td>Kostas Dascalis</td>
+<td>Constantinos <strong>Daskalakis</strong></td>
+</tr>
+<tr>
+<td>Jason Gayatunda</td>
+<td>Jason <strong>Gaitonde</strong></td>
+</tr>
+<tr>
+<td>P payment and Rosental</td>
+<td><strong>Pemantle</strong> and <strong>Rosenthal</strong></td>
+</tr>
+<tr>
+<td>Beijian</td>
+<td><strong>Bayesian</strong></td>
+</tr>
+<tr>
+<td>runro in / run robin</td>
+<td><strong>round robin</strong></td>
+</tr>
+<tr>
+<td>Guru Prize (in the introduction)</td>
+<td><strong>Gödel Prize</strong> (2012)</td>
+</tr>
+<tr>
+<td>phenomenon medal (in the introduction)</td>
+<td>IEEE John <strong>von Neumann</strong> Medal (2019)</td>
+</tr>
+<tr>
+<td>Professor Eva / Professor Tart</td>
+<td>Professor Éva <strong>Tardos</strong></td>
+</tr>
+<tr>
+<td>E minus one over E</td>
+<td><strong>e/(e−1) ≈ 1.58</strong> — see below</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Substantive caption error corrected in the text.</strong> The transcript renders the improved
+constant as "E minus one over E", i.e. (e−1)/e ≈ 0.63. That is the reciprocal and it is
+below 1, which cannot be a capacity <em>increase</em>. The published constant is <strong>e/(e−1) ≈ 1.58</strong>
+(Gaitonde &amp; Tardos, EC 2021, abstract, verbatim). Corrected throughout.</p>
+<p><strong>Not verified, and omitted rather than guessed.</strong> The session chair who introduces her is
+called "Yuri" by the captions; I have not identified him and have left him out. Her claim
+that Roughgarden gave a section talk at ICM 2006 is hers from the podium and I did not
+independently verify it; I have attributed it to her rather than asserting it. The collaborator
+list on the buffered paper is rendered as "great collators", which I read as "great
+collaborators" and replaced with the actual author list from the arXiv page.</p>
+<h3>Reconstructed</h3>
+<ul>
+<li><strong>The Braess network diagram and its edge labels.</strong> The picture was on a slide. Every
+  number in §4.1 is spoken in the transcript (x/100, 100 cars, 1.5 hours, 2 hours, half an
+  hour) and I checked that a single consistent network reproduces all of them; that network is
+  the standard Braess instance. What would verify it: any algorithmic game theory textbook's
+  Braess figure.</li>
+<li><strong>The round-robin arithmetic in §4.12(a)</strong> — 1 − (3/4)³ = 37/64 for her λ = 1/2, three
+  servers at 1/4 example. Her numbers, my computation. What would verify it: the simulation
+  section of arXiv:2502.08898, which runs exactly this family.</li>
+<li><strong>The k = n case of exercise 6.2(e)</strong>, 1 − 1/e for round robin, is my computation on the
+  paper's model; the uniform-random half is quoted from their Theorem 3 proof.</li>
+</ul>
+<h3>Gaps, with impact ratings</h3>
+<ul>
+<li><strong>The proof of the e/(e−1) theorem — moderate impact.</strong> She explicitly skips it and offers
+  the two-queue example instead. I did the same rather than reconstruct it from
+  arXiv:2011.10205, on the grounds that a reconstruction I could not check would be worse than
+  a clearly marked omission. The <em>statement</em> is verified verbatim from the abstract, and the
+  intuition — the two-queue example — is fully recovered. If you want the proof, the paper's
+  route is via explicit asymptotic behaviour of the system under fixed stationary policies.</li>
+<li><strong>The price-of-anarchy results she gestures at and does not state — low impact.</strong> She says
+  there is "a beautiful literature" of bounds for bandwidth sharing and auctions and declines
+  to discuss any of them. I restored the general mechanism (smoothness, §3.4) from
+  Roughgarden's published framework rather than guessing at specific constants, and gave the
+  one constant that is standard, 5/2 for atomic affine routing.</li>
+<li><strong>Her final skipped example — low impact.</strong> She says her lower-bound example for the
+  e/(e−1) bound is "a very artificial non-stable solution" and skips it for time. Nothing
+  downstream depends on it.</li>
+<li><strong>Slide-only mathematics generally — low impact.</strong> Everything load-bearing (the
+  feasibility condition, the factor-2 theorem, the Pemantle–Rosenthal statement, the
+  potential function, the factor-3 theorem, the lower bound) was recovered verbatim from the
+  primary papers, so the captions' inability to carry formulas cost almost nothing here.
+  This was a much better outcome than the source situation suggested.</li>
+</ul>
+<h3>On the predicted overlap with Wright</h3>
+<p>The brief expected this tutorial to touch linear-programming complexity and to cross-link
+<code>summaries/optimization-theory-practice-wright.md</code> heavily. That overlap evaporated with the
+topic: the talk contains no linear programming, no simplex, no interior point, and no
+complexity theory beyond one sentence naming PPAD. The only honest connections are
+methodological, and they are in §7.6. I did not manufacture more.</p>
+<h3>On the suggested anchors</h3>
+<p>The brief offered "strongly polynomial" as the likely anchor. The talk does not contain the
+concept, so it is absent here. The brief's fallback — the price of anarchy as a gap between
+local and global stationarity — is correct and is §2.2, but it is not the <em>main</em> anchor,
+because it explains only the first twenty minutes. The main anchor is §2.1: the technical
+core is a Lyapunov argument in which the equations of motion are replaced by a behavioural
+inequality. That is Tardos's own architecture, not an imported picture, and it is what makes
+the factor of 2 legible.</p>
+</div>
+</body>
+</html>

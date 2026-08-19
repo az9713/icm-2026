@@ -1,0 +1,1833 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Dynamics and Rigidity through the Lens of Circles</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Hee Oh (Yale)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=clMjIGdpVMw">https://www.youtube.com/watch?v=clMjIGdpVMw</a></div><div><b>Companion:</b> <a href="https://arxiv.org/abs/2510.10771">https://arxiv.org/abs/2510.10771</a></div><div><b>Level:</b> 3/5 (questions 1–2) — 4/5 (questions 3–4)</div><div><b>Reading time:</b> ~70 min</div></div>
+<h1>Dynamics and Rigidity through the Lens of Circles — Hee Oh</h1>
+<p><strong>Field:</strong> homogeneous dynamics in <em>infinite volume</em>. Concretely: what happens to counting,
+equidistribution and orbit-classification theorems when the invariant measure of the system
+is infinite, so that Poincaré recurrence and the Birkhoff ergodic theorem are both
+unavailable.</p>
+<p><strong>Difficulty against your background: split, 3 and 4.</strong></p>
+<ul>
+<li><strong>Questions 1 and 2 — circle counting and orbit closures — are a 3.</strong> Everything in them
+  is geometry you can draw plus ergodic theory you already own. There is exactly one
+  genuinely new object, the Patterson–Sullivan measure, and it is definable in one line in
+  language you have. This half is the main event of this tutorial and gets the space.</li>
+<li><strong>Questions 3 and 4 — representation rigidity and torus counting — are a 4.</strong> The
+  <em>statements</em> are elementary; question 3's final form is "a map that preserves the property
+  <em>this cross-ratio is real</em> must be a Möbius transformation", which you can read on sight.
+  The machinery underneath is not elementary: it runs on a rank-2 homogeneous space, where a
+  single growth exponent is replaced by a concave function on a cone of directions, and the
+  vocabulary (Weyl chamber, Cartan projection, limit cone, Anosov subgroup) is Lie theory you
+  have none of. I state those results, name the mechanism, and decline to teach the Lie
+  theory. That is deliberate; see §10.</li>
+</ul>
+<p>Note the difference from the Kontorovich case. <strong>This talk is squarely the speaker's famous
+field</strong>, and the reputation prediction was correct: Peter Sarnak's introduction says she
+"has shaped the modern subject" of infinite-volume homogeneous dynamics, and that is exactly
+the lecture she gives. Nothing inverted.</p>
+<p><strong>Prerequisites this tutorial builds:</strong> Möbius transformations as circle-preserving maps;
+Kleinian groups and limit sets; the upper half-space model of hyperbolic 3-space and the
+dictionary circle ↔ geodesic plane; quotient manifolds, convex cores, and the three
+size-classes (lattice / convex cocompact / geometrically finite); the critical exponent and
+why it equals a Hausdorff dimension; the Patterson–Sullivan measure as a Gibbs state; the
+geodesic, frame and unipotent flows as right translations on Γ\PSL₂(ℂ); the Bowen–Margulis–
+Sullivan and Burger–Roblin measures and what distinguishes them; <em>local mixing</em> as a
+renormalized correlation function; thick recurrence.</p>
+<p><strong>A note on sources.</strong> This is the good case, and then some.</p>
+<p>There is a genuine ICM proceedings paper: <a href="https://arxiv.org/abs/2510.10771">arXiv:2510.10771</a>,
+Hee Oh, <em>"Dynamics and Rigidity through the Lens of Circles"</em>, submitted 12 October 2025,
+revised 13 April 2026 (v2), whose arXiv comment reads "To appear in the Proceedings of the
+ICM 2026, 33 pages, 24 figures". Its abstract is almost verbatim the talk's opening
+paragraph. It follows the talk's order closely for the first six sections and then continues
+past where the talk stops.</p>
+<p><strong>The auto-captions carry not one formula.</strong> This was a slide talk, and an unusually visual
+one — 24 figures in the written version, most of them pictures of fractals. The caption track
+contains the narration and nothing else. Every displayed formula, every theorem statement,
+every constant and every exponent below comes from the paper. Where the talk and paper differ
+I say which one I am quoting; there are six such places and they are listed in §10.</p>
+<p>The talk also stops earlier than the paper. Sections 7 and 8 of the paper — the mixing
+machinery in rank one and higher rank — are the analytic engine underneath everything, and
+the talk gestures at them in about four sentences. I have compressed those two sections to
+what the talk actually used, with one clearly-labelled exception in §4.11 that is too good to
+leave out.</p>
+<p><strong>Cross-link, one line.</strong> Alex Kontorovich appears here as a collaborator: Theorem 2.1, the
+original Apollonian circle-counting theorem, is Kontorovich–Oh 2011. His own ICM talk was
+about AI and formal verification, so
+<a href="shape-of-math-kontorovich.html"><code>shape-of-math-kontorovich.md</code></a> will not help you with any of
+the mathematics below.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>Draw three circles in the plane, each tangent to the other two. Apollonius of Perga
+(262–190 BC) proved there are then exactly <strong>two</strong> more circles tangent to all three: one
+tucked into the curved triangle between them, one wrapped around the outside.</p>
+<p>That is a construction rule, so iterate it. Start with four mutually tangent circles. They
+leave four curvilinear triangles between them; drop the unique inscribed circle into each.
+Now you have more triangles; repeat. Forever. What you get is the <strong>Apollonian circle
+packing</strong> — one of the most-drawn objects in mathematics, and the first picture in Oh's talk
+after the sesame-oil photograph.</p>
+<blockquote>
+<p><em>[Figure 1.1 in the paper shows the first few generations, with each circle labelled by
+the reciprocal of its radius — its </em><em>curvature</em><em>. Those labels matter later: start from the
+right four circles and every curvature in the infinite packing is an integer.]</em></p>
+</blockquote>
+<p>She opens with a second picture that looks nothing like it: a <strong>Sierpiński-type circle
+packing</strong> (Figure 1.2), where the circles do <em>not</em> touch. Remove all the open white discs
+from the plane and the fractal that remains is homeomorphic to the Sierpiński carpet.</p>
+<p>Two pictures, no obvious relation, no obvious construction rule for the second one. The
+unifying fact is the first move of the talk:</p>
+<blockquote>
+<p><strong>Both are limit sets of Kleinian groups.</strong></p>
+</blockquote>
+<p>A <strong>Kleinian group</strong> Γ is a discrete group of Möbius transformations of the Riemann sphere
+Ĉ = ℂ ∪ {∞}. Möbius transformations send circles to circles (with lines counted as circles
+through ∞). Its <strong>limit set</strong> Λ is where the orbit Γ(z) of any point piles up — the set of
+accumulation points, independent of which z you started from. For each of her two packings
+there is a Kleinian group Γ with Γ𝒫 = 𝒫, and</p>
+<blockquote>
+<p><strong>closure of the union of all circles in 𝒫  =  Λ.</strong></p>
+</blockquote>
+<p>The packing has countably many circles; its closure is a fractal of non-integer Hausdorff
+dimension, because it contains the limit points of the ever-smaller circles.</p>
+<p>Now Oh asks four questions about circle packings. All four are stated in the language of a
+high-school geometry problem. All four turn out to be questions about the dynamics of flows
+on an infinite-volume space.</p>
+<blockquote>
+<p><strong>Q1 — Circle counting.</strong> How many circles in 𝒫 have radius at least t, as t → 0?</p>
+<p><strong>Q2 — Orbit closures.</strong> Take any circle C. Its Γ-translates ΓC are countably many circles.
+What is the closure of ΓC in the space of all circles? Dense? Closed? Something in between?</p>
+<p><strong>Q3 — Rigidity.</strong> Suppose f is a homeomorphism between the limit sets of two such
+packings. It need not send circles to circles — in her picture it sends a green circle to
+a circle but a yellow circle to a wobbly Jordan curve, so it is not Möbius. <strong>How many
+circles can such an f send to circles before it is forced to be Möbius?</strong></p>
+<p><strong>Q4 — Torus counting.</strong> When f <em>does</em> send some circle C to a circle f(C), the pair
+(C, f(C)) is a torus in ℂ², with volume rad(C)·rad(f(C)). How many such tori have volume
+at least t, as t → 0?</p>
+</blockquote>
+<p>Her closing sentence is the thesis:</p>
+<blockquote>
+<p>"So, I have discussed all these four questions... They were formulated in plain language
+in terms of circles in the plane, but they led us naturally to homogeneous spaces of
+infinite volume."</p>
+</blockquote>
+<p><strong>Why "infinite volume" is the whole difficulty.</strong> Here is the shape of the subject before
+any details. A Kleinian group Γ acts on hyperbolic 3-space ℍ³, and the quotient
+ℳ = Γ\ℍ³ is a hyperbolic 3-manifold. If ℳ has <em>finite</em> volume, everything above is known
+and has been for decades: counting is Duke–Rudnick–Sarnak and Eskin–McMullen, orbit closures
+are Ratner and Shah, rigidity is Mostow–Prasad. The paper says this explicitly in §1.2 and
+lists those four as the finite-volume ancestors of the four questions.</p>
+<p>But a Γ whose limit set is an interesting fractal is <em>never</em> a finite-volume group. A finite
+volume quotient forces Λ = Ĉ, the whole sphere — no fractal, no packing. So the moment the
+picture is interesting, <strong>the volume is infinite</strong>, and every finite-volume tool is gone.</p>
+<p>That is the entire subject, and it is also your way in.</p>
+<hr />
+<h2>2. Your anchor: this is statistical mechanics on an orbit, with the finite-measure hypothesis removed</h2>
+<p>You do not need a decorative analogy here. Two of them are structural, and the speaker hands
+you the second one from the podium.</p>
+<h3>2.1 The failure: no Poincaré recurrence</h3>
+<p>Take the most basic theorem in ergodic theory. If T preserves a measure μ on a space X and
+<strong>μ(X) &lt; ∞</strong>, then Poincaré recurrence holds: almost every point of any positive-measure set
+returns to that set, infinitely often. Birkhoff then gives you time averages = space
+averages. Every classification statement in dynamics is downstream of these two.</p>
+<p>Both need the <em>same</em> hypothesis, and it is a finiteness hypothesis. Delete it and both fail
+immediately. In infinite measure, a typical orbit spends <strong>zero fraction</strong> of its time in any
+fixed compact set, so time averages converge to zero and tell you nothing.</p>
+<p>Oh says exactly this, and gives the picture:</p>
+<blockquote>
+<p>"So, think of this traveler moving along a unipotent trajectory in infinite volume
+hyperbolic manifolds. So, she might come back to some compact subset, and then she goes
+out, and then she might come back to some compact subset, and then she goes out again. And
+in the end, in infinite volume, in any fixed compact subset, the time she spends in a
+compact subset will be 0%. So, this means that it is very hard to capture where the
+accumulation happens in infinite volume."</p>
+</blockquote>
+<p>To understand where an orbit accumulates you have to know where it comes back. In infinite
+volume nothing gives you that for free. <strong>The whole talk is: what you must build by hand to
+replace the finite-measure hypothesis.</strong> Two things get built, and you own the shape of both.</p>
+<h3>2.2 Repair one: the finite measure hiding inside the infinite one</h3>
+<p>The manifold ℳ has infinite Riemannian volume. But the interesting dynamics does not happen
+on all of ℳ. Consider the set of unit tangent vectors <em>both</em> of whose geodesic endpoints
+(forward and backward) lie in the limit set Λ. Those are exactly the directions along which
+the geodesic stays bounded forever, in both time directions. Everything else escapes to an
+end and never comes back.</p>
+<p>On that set there is a natural measure — the <strong>Bowen–Margulis–Sullivan measure</strong> m^BMS — and
+Sullivan proved (paper, [80]):</p>
+<blockquote>
+<p><strong>If Γ is geometrically finite, |m^BMS| &lt; ∞.</strong></p>
+</blockquote>
+<p>The paper's comment on this is the load-bearing sentence of the subject:</p>
+<blockquote>
+<p>"This finiteness is crucial: although ℳ has infinite Riemannian volume, the essential
+dynamics of flows is captured by this finite BMS measure. This explains why many central
+theorems in dynamics for hyperbolic manifolds are formulated for geometrically finite
+quotients."</p>
+</blockquote>
+<p>You know this move. An infinite phase space whose recurrent dynamics is confined to a
+finite-measure invariant set is the ordinary situation in dissipative mechanics: the
+attractor carries a finite invariant measure even though the ambient space does not. The
+technical content here is that the "attractor" is a fractal set of <em>directions</em>, and that its
+natural measure is finite exactly when the group is geometrically finite.</p>
+<h3>2.3 Repair two: renormalization — and the partition function</h3>
+<p>Here is the second half, and it is the one the speaker states out loud.</p>
+<p>Take a bounded set B in the quotient, push it forward by the geodesic flow for time t, and
+ask how much of it comes back to a fixed compact region. In finite volume, mixing says the
+answer converges to a nonzero constant. In infinite volume it converges to <strong>zero</strong>. Oh, on
+the equidistribution step of her own proof:</p>
+<blockquote>
+<p>"So, in any fixed compact region, the mass seen will go to zero as t goes to infinity. So,
+what do we do? So, we renormalize it by multiplying the inverse of the rate... It turns out
+the correct [rate] is e to the 2 minus delta t where delta is the Hausdorff dimension of
+the limit set."</p>
+</blockquote>
+<p>That is renormalization in the sense you use it. The raw quantity dies; you do not conclude
+"no signal", you find the exact exponential rate at which it dies and divide it out, and the
+limit is a genuine measure. Formally (paper, Theorem 7.2, specialised to ℍ³ so d = 3):</p>
+<blockquote>
+<p>lim_{t→∞} e^{(2−δ)t} ⟨a_t·f₁, f₂⟩ = (1/|m^BMS|) · m^BR(f₁) · m^BR*(f₂)</p>
+</blockquote>
+<p>Read the left side as a <strong>correlation function</strong> of two observables separated by time t under
+the geodesic flow a_t; read the right side as a product of two spatial averages against
+specific measures. In finite volume with δ = 2 this is exactly the usual statement "the
+correlation function tends to the product of the means", i.e. mixing. In infinite volume the
+correlation decays like e^{−(2−δ)t} and (2 − δ) is the decay exponent. The paper calls the
+renormalized version <strong>local mixing</strong>; the word <em>local</em> means only that you test against
+compactly supported observables, so the integrals against infinite measures make sense.</p>
+<p><strong>Now the anchor proper.</strong> The exponent δ, the measures, and the constants all come from one
+construction, and it is a Gibbs construction. Fix a base point o ∈ ℍ³ and form the series</p>
+<blockquote>
+<p><strong>P(s) = Σ_{γ ∈ Γ} e^{−s·d(o, γo)}</strong></p>
+</blockquote>
+<p><em>(This series is standard background that I am supplying; neither the talk nor the paper
+writes it down. The paper gives instead the quantity it controls — see below.)</em> This is a
+partition function: a sum over the states of a system (elements of the group), each weighted
+by e^{−β·energy}, with the energy of γ being the hyperbolic displacement d(o, γo) and s
+playing the role of inverse temperature. Then:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Statistical mechanics</th>
+<th>Here</th>
+<th>Where it is in the sources</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partition function</td>
+<td>Σ_γ e^{−s d(o,γo)}</td>
+<td>supplied by me</td>
+</tr>
+<tr>
+<td>Critical inverse temperature (abscissa of convergence)</td>
+<td><strong>the critical exponent δ</strong></td>
+<td>paper, Thm 2.6: δ = limsup_T (1/T) log #{x ∈ Γo : d(x,o) ≤ T}</td>
+</tr>
+<tr>
+<td>Free energy / entropy</td>
+<td>δ again — it <em>is</em> the exponential orbit growth rate</td>
+<td>Thm 2.6</td>
+</tr>
+<tr>
+<td>Gibbs state at the critical point</td>
+<td><strong>the Patterson–Sullivan measure ν_o</strong> on Λ</td>
+<td>paper, Thm 2.8</td>
+</tr>
+<tr>
+<td>DLR / Gibbs consistency condition</td>
+<td>dγ*ν/dν(ξ) = e^{sβ_ξ(o,γo)} — "Γ-conformal of dimension s"</td>
+<td>paper, eq. (2.2)</td>
+</tr>
+<tr>
+<td>Equilibrium state on phase space</td>
+<td><strong>the BMS measure</strong> on (past, future, time) coordinates</td>
+<td>paper, §2.4.1</td>
+</tr>
+</tbody>
+</table></div>
+<p>And the theorem tying it together, which is genuinely startling the first time (Patterson,
+Sullivan; paper Theorem 2.6):</p>
+<blockquote>
+<p><strong>δ = dim(Λ).</strong></p>
+</blockquote>
+<p>The exponential growth rate of the orbit <em>inside</em> hyperbolic space equals the Hausdorff
+dimension of where the orbit piles up <em>on the boundary</em>. A thermodynamic quantity equals a
+geometric one. The fractal, which lives on the sphere at infinity, remembers how fast the
+group grew in the interior.</p>
+<p><strong>Why this anchor keeps paying.</strong> Every constant in the talk is a ratio of masses of these
+Gibbs-type measures. The circle-counting constant is (paper, §2.4.2):</p>
+<blockquote>
+<p><strong>c_𝒫 = sk_Γ(𝒫) / |m^BMS|</strong></p>
+</blockquote>
+<p>— a "skinning" mass divided by the total equilibrium mass. And when the talk moves to the
+hard half (rank two, §4.10), the single number δ is replaced by Quint's <strong>growth indicator</strong>
+ψ_ρ, defined in the paper as an abscissa of convergence <em>computed separately in each
+direction</em> of a cone. That is a direction-dependent free energy. The anchor survives the
+transition intact; you just go from one thermodynamic variable to a concave function on a
+cone.</p>
+<h3>2.4 The KAM contrast — mine, and absent from the talk</h3>
+<p>You might expect the following comparison, and it is a fair one, so I am naming it and then
+setting it aside.</p>
+<p>The answer to Q2 is a <strong>dichotomy</strong>: an orbit is either closed or dense, with nothing in
+between. Your instinct from classical mechanics says this should be false. In a
+near-integrable Hamiltonian system, KAM theory says invariant tori and chaotic regions
+<em>coexist</em> in the same phase space at the same energy — the phase portrait is a mixture, and
+the mixture is the whole content of the theory. Nothing there is a dichotomy.</p>
+<p>The reason the dichotomy holds here and not there is that the flows in question are
+<strong>unipotent</strong> — algebraic, with polynomial rather than exponential divergence of nearby
+orbits — and unipotent flows on homogeneous spaces are rigid in a way generic Hamiltonian
+flows are not. That is Ratner's theorem, and its whole point is that the KAM picture does not
+occur.</p>
+<p><strong>The talk never mentions KAM, Hamiltonian mechanics, or integrability.</strong> This comparison is
+mine. I include it because it is the right calibration for you — it tells you that "closed or
+dense" is a surprising conclusion, not a boring one — and I am labelling it so you do not
+attribute it to her. The rigidity theorems below are also not universal: §4.6 gives her own
+counterexamples, geodesic planes with genuinely chaotic closures, which is as close as this
+subject comes to a KAM-like mixed picture.</p>
+<hr />
+<h2>3. The bridge</h2>
+<p>Eight ideas. Each defined by deforming something you have. Nothing else is needed.</p>
+<h3>3.1 Möbius transformations, and why circles are the right object</h3>
+<p>The group PSL₂(ℂ) acts on Ĉ = ℂ ∪ {∞} by</p>
+<blockquote>
+<p>[[a, b], [c, d]] · z = (az + b)/(cz + d),  ad − bc = 1.</p>
+</blockquote>
+<p>You know these as fractional linear transformations from complex analysis. The one property
+that runs the whole talk:</p>
+<blockquote>
+<p><strong>A Möbius transformation sends circles to circles</strong>, where a straight line counts as a
+circle through ∞.</p>
+</blockquote>
+<p>And the converse, which the paper states as a classical characterisation: a homeomorphism of
+Ĉ is Möbius <strong>if and only if</strong> it preserves the family of circles. That biconditional is why
+Q3 is a sensible question at all — "how many circles must f preserve before f is Möbius"
+interpolates between "none" and "all".</p>
+<p>The Möbius group is generated by <strong>inversions in circles</strong>: reflect each point through a
+circle, i.e. z ↦ centre + r²/(z̄ − centre‾). Hold that; it is the mechanism for §3.3.</p>
+<h3>3.2 Kleinian groups, limit sets, and the snow</h3>
+<p>A <strong>Kleinian group</strong> is a <em>discrete</em> subgroup Γ &lt; PSL₂(ℂ) — every point of Γ is isolated in
+the matrix topology, so Γ is countable. Discreteness is the entire hypothesis; everything
+interesting is a consequence of it.</p>
+<p>Fix z ∈ Ĉ and look at the orbit Γ(z), a countable set of points. The <strong>limit set</strong> Λ is the
+set of accumulation points of that orbit. It does not depend on z. Its complement
+Ω = Ĉ − Λ is the <strong>domain of discontinuity</strong>.</p>
+<p>Oh's picture for this is Figure 2.3 of the paper, and she narrates it:</p>
+<blockquote>
+<p>"Think of an orbit as snow falling in hyperbolic 3-space. Then, the snow does not
+accumulate in the air. It can only accumulate on the ground. And wherever it accumulates,
+it becomes the limit set."</p>
+</blockquote>
+<p>The snow falls in the interior of hyperbolic space; discreteness forbids it from piling up
+anywhere in the interior; so it can only pile up on the boundary sphere, and where it piles
+up <em>is</em> Λ. In the paper's own gloss: for a lattice "the snow covers the entire ground",
+Λ = Ĉ. For everything else you get fractals.</p>
+<p>Figure 2.4 shows four of them, and her narration names them: a <strong>Jordan curve</strong> (homeomorphic
+to a circle, though it does not look like one); the <strong>Sierpiński-type packing</strong>; the
+<strong>Apollonian packing</strong>; and <strong>Schottky dust</strong>, totally disconnected, homeomorphic to a Cantor
+set. All four have non-integer Hausdorff dimension, all four have dimension strictly less
+than 2.</p>
+<h3>3.3 Hyperbolic 3-space, and the dictionary circle ↔ geodesic plane</h3>
+<p>This is where the dynamics enters, and it is one page of Riemannian geometry you already own.</p>
+<p><strong>Upper half-space model.</strong> ℍ³ = {(x₁, x₂, y) : y &gt; 0} with the metric</p>
+<blockquote>
+<p>ds = √(dx₁² + dx₂² + dy²) / y</p>
+</blockquote>
+<p>— the Euclidean metric divided by the height. Constant curvature −1. Consequence you should
+feel: two points near the floor y = 0 are enormously far apart hyperbolically even when they
+are Euclidean-close, because the metric blows up like 1/y. The floor is infinitely far away.</p>
+<p><strong>Boundary.</strong> The geometric boundary of ℍ³ is the plane {y = 0} together with ∞ — which is
+exactly Ĉ. So the sphere where the circles live <em>is</em> the boundary at infinity of the
+hyperbolic space where the dynamics lives.</p>
+<p><strong>Geodesics and planes.</strong> Solve the geodesic equation for this metric and you get: geodesics
+are vertical lines, or semicircles meeting the boundary at right angles. Totally geodesic
+surfaces are vertical planes, or <strong>hemispheres meeting the boundary at right angles</strong>.</p>
+<blockquote>
+<p><strong>The dictionary.</strong> A circle C ⊂ Ĉ ⟷ the hemisphere C† standing over it.
+This is a bijection between circles in the boundary and geodesic planes in ℍ³.</p>
+</blockquote>
+<p><em>(Figure 2.2 of the paper is this picture: two hemispheres over two circles in the floor
+plane.)</em></p>
+<p>Every question about circles in the plane is therefore a question about totally geodesic
+planes in a hyperbolic 3-manifold. That single dictionary converts the whole talk.</p>
+<p><strong>How the action extends: the Poincaré extension theorem.</strong> Möbius transformations act on the
+boundary; do they act on the interior? Yes, and the geometric reason is the clean one Oh
+gives. Every Möbius transformation is a composition of inversions in circles (§3.1). Given a
+circle in the floor, extend its inversion to the <em>inversion in the hemisphere over it</em>.
+Because that hemisphere meets the floor orthogonally, the inversion preserves the upper half
+space; and inversion in a sphere is a conformal map, which for this metric means it is an
+isometry. Compose. So:</p>
+<blockquote>
+<p><strong>PSL₂(ℂ) = Isom⁺(ℍ³)</strong> (Poincaré extension theorem, paper §2.2).</p>
+</blockquote>
+<p>Discreteness of Γ in PSL₂(ℂ) is now equivalent to the action on ℍ³ being <strong>properly
+discontinuous</strong> — no orbit accumulates in the interior. Which is the snow statement again.</p>
+<h3>3.4 The quotient manifold, and the three size classes</h3>
+<p>Quotient by the group: ℳ = Γ\ℍ³. Assuming Γ is torsion-free (assumed throughout, both by
+her and by the paper), ℳ is a complete hyperbolic 3-manifold, and conversely every complete
+hyperbolic 3-manifold arises this way. So "Kleinian group" and "hyperbolic 3-manifold" are
+two names for the same data.</p>
+<p>The <strong>convex core</strong> is the part of ℳ that carries all of its topology:</p>
+<blockquote>
+<p>core ℳ := Γ\hull(Λ)</p>
+</blockquote>
+<p>— take the convex hull of the limit set inside ℍ³, and quotient. Her one-line version: "the
+smallest convex subset that carries all the topology of ℳ." Figure 2.5 shows a manifold with
+three flaring blue <strong>ends</strong> going off to infinity, carrying all the infinite volume, and a
+compact yellow convex core sitting in the middle.</p>
+<p>Three classes, in increasing generality:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Definition</th>
+<th>Limit set</th>
+<th>Volume of ℳ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lattice</strong></td>
+<td>vol(ℳ) &lt; ∞</td>
+<td>Λ = Ĉ, all of it</td>
+<td>finite</td>
+</tr>
+<tr>
+<td><strong>Convex cocompact</strong></td>
+<td>core ℳ is compact</td>
+<td>fractal, dim &lt; 2</td>
+<td>infinite</td>
+</tr>
+<tr>
+<td><strong>Geometrically finite</strong></td>
+<td>the <em>unit neighbourhood</em> of core ℳ has finite volume</td>
+<td>fractal, dim &lt; 2</td>
+<td>infinite</td>
+</tr>
+</tbody>
+</table></div>
+<p>Geometrically finite = convex cocompact plus finitely many <strong>cusps</strong> (thin tubes running off
+to infinity of finite volume). It is the working hypothesis for almost every theorem below.</p>
+<p>Two facts she stresses about why this is the right class:</p>
+<ol>
+<li><strong>Lattices are rare and rigid.</strong> By the local rigidity theorem of Selberg and Weil there
+   are only <em>countably many</em> lattices up to conjugation, and constructing them generally
+   needs number theory. Geometrically finite groups, by contrast, come in continuous
+   families.</li>
+<li><strong>Geometrically finite groups are everywhere.</strong> She says from the podium that every
+   finitely generated Kleinian group can be approximated by geometrically finite ones. The
+   paper names this: it is the <strong>Bers–Sullivan–Thurston density conjecture</strong>, now a theorem
+   (Namazi–Souto, Ohshika, building on many others), which says geometrically finite groups
+   form an <strong>open and dense</strong> subset of the space of all finitely generated Kleinian groups.
+   <em>(The captions render the attribution as "the Cannon conjecture"; that is a different
+   conjecture. See §10.)</em></li>
+</ol>
+<p><strong>Note the definitional subtlety.</strong> She says geometrically finite means the convex core has
+finite volume; the paper says the <em>unit neighbourhood</em> of the convex core has finite volume.
+For convex cocompact groups these agree. In the presence of cusps the paper's version is the
+correct one, and I use the paper's throughout.</p>
+<h3>3.5 δ: growth rate, dimension, and why they are equal</h3>
+<p>The <strong>critical exponent</strong> of Γ (paper, Theorem 2.6):</p>
+<blockquote>
+<p>δ := limsup_{T→∞} (1/T) · log #{ x ∈ Γ(o) : d(x, o) ≤ T }</p>
+</blockquote>
+<p>— the exponential growth rate of the orbit in the hyperbolic ball of radius T. Equivalently</p>
+<h1>(orbit in a ball of radius T) ≍ c·e^{δT}. And the theorem:</h1>
+<blockquote>
+<p><strong>δ = dim(Λ)</strong> (Patterson, Sullivan)</p>
+</blockquote>
+<p>The Hausdorff dimension of the fractal on the boundary is the exponential growth rate of the
+group in the interior. For the <strong>Apollonian</strong> packing the paper records the numerical value:</p>
+<blockquote>
+<p><strong>δ_A ≈ 1.3057</strong>, and it is the same for every Apollonian packing.</p>
+</blockquote>
+<p>For lattices δ = 2 and Λ = Ĉ. Among geometrically finite groups, lattices are exactly the
+ones with δ = 2; everything else has δ &lt; 2.</p>
+<h3>3.6 The Patterson–Sullivan measure: a Gibbs state on a fractal</h3>
+<p>Lebesgue measure on the plane gives Λ mass zero — it is a fractal of dimension &lt; 2. So you
+need a measure that sees it. Here is the one, and it is short.</p>
+<p>First, the transformation law you want to imitate. Let m_o be the rotation-invariant
+probability measure on the sphere Ĉ as seen from o = (0,0,1). Push it forward by g ∈ PSL₂(ℂ)
+and it stays absolutely continuous, with (paper, eq. 2.1):</p>
+<blockquote>
+<p>d(g_*m_o)/dm_o (ξ) = e^{2·β_ξ(o, go)}</p>
+</blockquote>
+<p>where β is the <strong>Busemann function</strong>: β_ξ(x, y) = lim_{t→∞} [d(ξ_t, x) − d(ξ_t, y)] along a
+geodesic ray heading to ξ. Read β_ξ(x,y) as "how much closer to ξ the point y is than x is" —
+a renormalized difference of two infinite distances, exactly the trick you use to define a
+potential relative to a reference point. The exponent 2 is the dimension of the sphere.</p>
+<p>Now change the 2. A measure ν on Ĉ is <strong>Γ-conformal of dimension s</strong> if (paper, eq. 2.2):</p>
+<blockquote>
+<p>dγ_*ν/dν (ξ) = e^{s·β_ξ(o, γo)}  for all γ ∈ Γ.</p>
+</blockquote>
+<p>This is a Gibbs/DLR condition: it prescribes exactly how the measure transforms under the
+symmetry group, in terms of an energy. And:</p>
+<blockquote>
+<p><strong>Theorem (Patterson, Sullivan; paper Thm 2.8).</strong> For any geometrically finite Γ there is a
+<strong>unique</strong> Γ-conformal probability measure ν_o of dimension <strong>δ</strong>, and it is supported on Λ.</p>
+</blockquote>
+<p>That is the <strong>Patterson–Sullivan measure</strong>. It exists only at the critical value s = δ —
+below it the construction diverges, above it converges to nothing. This is a phase transition
+at a critical inverse temperature, and ν_o is the critical Gibbs state. It is the natural
+fractal measure on Λ, and for convex cocompact groups and for the Apollonian symmetry group
+it coincides (up to scale) with δ-dimensional Hausdorff measure.</p>
+<p>One detail you will want when you read the counting theorem. The measure appearing there is
+not ν_o itself but</p>
+<blockquote>
+<p>dω_Γ(z) = (|z|² + 1)^δ · dν_o(z),  z ∈ Λ ∩ ℂ</p>
+</blockquote>
+<p>which is ν_o reweighted by the Jacobian factor converting the spherical metric on Ĉ to the
+Euclidean metric on ℂ. It is stereographic projection bookkeeping, nothing more.</p>
+<h3>3.7 The flows, as right translations</h3>
+<p>Everything dynamical happens on the <strong>frame bundle</strong></p>
+<blockquote>
+<p>F(ℳ) = Γ\PSL₂(ℂ)</p>
+</blockquote>
+<p>whose points are orthonormal frames on ℳ. Flows are right translations by one-parameter
+subgroups. Three of them:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Subgroup</th>
+<th>Matrix</th>
+<th>Flow</th>
+<th>Geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>diag(e^{t/2}, e^{−t/2})</td>
+<td>geodesic / frame flow</td>
+<td>move along a geodesic at unit speed</td>
+</tr>
+<tr>
+<td>U</td>
+<td>[[1, t],[0, 1]]</td>
+<td>horocyclic (unipotent) flow</td>
+<td>slide along a horosphere</td>
+</tr>
+<tr>
+<td>PSL₂(ℝ)</td>
+<td>real matrices</td>
+<td>—</td>
+<td>orbits project to <strong>geodesic planes</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>The two facts that matter:</p>
+<ol>
+<li><strong>Geodesic planes in ℳ = PSL₂(ℝ)-orbits in Γ\PSL₂(ℂ)</strong>, projected down. Combined with
+   §3.3, a circle in Ĉ gives a geodesic plane in ℍ³ gives a PSL₂(ℝ)-orbit upstairs. <strong>The
+   space of circles and the space of PSL₂(ℝ)-orbits are the same space.</strong> Q2 is now a
+   question in homogeneous dynamics.</li>
+<li><strong>PSL₂(ℝ) is generated by unipotent subgroups</strong> — the strictly upper and lower triangular
+   ones. This is why Ratner's theorem is the relevant tool, since Ratner's theorem is about
+   groups generated by unipotents.</li>
+</ol>
+<p>A <strong>unipotent</strong> matrix is one all of whose eigenvalues are 1. The distinguishing dynamical
+feature: nearby unipotent orbits separate <strong>polynomially</strong>, not exponentially. That
+polynomial control is the source of every rigidity theorem in the subject, and it is why the
+KAM picture (§2.4) does not apply.</p>
+<h3>3.8 Two measures: BMS and Burger–Roblin, and the one difference between them</h3>
+<p>You need both, and they differ in exactly one slot.</p>
+<p><strong>Hopf coordinates.</strong> A unit tangent vector v on ℍ³ is determined by three things: the forward
+endpoint v⁺ ∈ Ĉ of its geodesic, the backward endpoint v⁻ ∈ Ĉ, and where along that geodesic
+it sits. So</p>
+<blockquote>
+<p>T¹(ℍ³) = (Ĉ × Ĉ − diagonal) × ℝ.</p>
+</blockquote>
+<p>That is (future, past, time) — a phase-space parametrisation, and the geodesic flow is
+translation in the last coordinate. Now write down measures on it as products.</p>
+<blockquote>
+<p><strong>Bowen–Margulis–Sullivan.</strong> dm̃^BMS = e^{δβ_{v⁺}(o,v)} e^{δβ_{v⁻}(o,v)} dν_o(v⁺) dν_o(v⁻) dt</p>
+<p><strong>Burger–Roblin.</strong> dm̃^BR = e^{δβ_{v⁺}(o,v)} e^{2β_{v⁻}(o,v)} dν_o(v⁺) <strong>dm_o(v⁻)</strong> dt</p>
+</blockquote>
+<p>The only difference is the <strong>backward</strong> slot: BMS uses the fractal Patterson–Sullivan measure
+ν_o at both ends; BR uses the smooth spherical measure m_o at the backward end (and exponent
+2 = d − 1 to match). The consequences:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>BMS</th>
+<th>Burger–Roblin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Support</td>
+<td>vectors with <strong>both</strong> endpoints in Λ</td>
+<td>vectors with forward endpoint in Λ</td>
+</tr>
+<tr>
+<td>Projects into</td>
+<td>the convex core (compact-ish)</td>
+<td>all of ℳ</td>
+</tr>
+<tr>
+<td>Invariance</td>
+<td>geodesic flow A</td>
+<td>the <strong>horospherical</strong> subgroup N</td>
+</tr>
+<tr>
+<td>Total mass</td>
+<td><strong>finite</strong> for geometrically finite Γ</td>
+<td>infinite unless Γ is a lattice</td>
+</tr>
+<tr>
+<td>Role</td>
+<td>the equilibrium state; the denominator</td>
+<td>the answer measure; the numerator</td>
+</tr>
+</tbody>
+</table></div>
+<p>BMS is the finite invariant measure of §2.2 — the thing that replaces "vol(X) &lt; ∞". BR is
+what the renormalized correlation converges to, and it is what makes the equidistribution
+statements come out; the paper notes it is the <em>unique</em> ergodic N-invariant measure not
+supported on a single N-orbit. In the local mixing formula of §2.3 the BMS mass sits in the
+denominator and the BR measures sit in the numerator. That is the shape of every constant in
+the talk.</p>
+<hr />
+<h2>4. The talk, rebuilt</h2>
+<p>Her order, with the mathematics restored from the paper.</p>
+<h3>4.1 Q1: the circle-counting theorem</h3>
+<p>She states three versions, increasingly general. All are for a <strong>locally finite</strong> packing —
+meaning that for each ε &gt; 0 and each bounded region there are only finitely many circles of
+radius &gt; ε meeting it, which is precisely the condition making the counting question
+well-posed.</p>
+<p><strong>Version 1 — the Apollonian case</strong> (Kontorovich–Oh, <em>J. Amer. Math. Soc.</em> 24 (2011); paper
+Thm 2.1). For any bounded Apollonian packing 𝒫 there is c_𝒫 &gt; 0 with</p>
+<blockquote>
+<h1>{C ∈ 𝒫 : rad(C) ≥ t} ~ c_𝒫 · t^{−δ_A}  as t → 0,  δ_A ≈ 1.3057.</h1>
+</blockquote>
+<p><strong>Version 2 — equidistribution</strong> (Oh–Shah, <em>Invent. Math.</em> 187 (2012); paper Thm 2.2). The
+circles do not merely proliferate, they spread out according to a definite measure. For any
+region R bounded by a piecewise C¹ curve,</p>
+<blockquote>
+<h1>{C ∈ 𝒫 : rad(C) ≥ t, C ∩ R ≠ ∅} ~ c_A · ℋ^{δ_A}(R ∩ 𝒫̄) · t^{−δ_A}</h1>
+</blockquote>
+<p>with ℋ^{δ_A} the δ_A-dimensional Hausdorff measure. <strong>The small circles equidistribute with
+respect to the fractal measure on the limit set.</strong> Her example region is a pink flower shape.</p>
+<p><strong>Version 3 — the general theorem</strong> (Oh–Shah; paper Thm 2.7). Let 𝒫 be a locally finite
+circle packing invariant under a geometrically finite Kleinian group Γ, consisting of
+finitely many Γ-orbits. Then there are 0 &lt; c_𝒫 &lt; ∞ and a locally finite measure ω_Γ on
+Λ ∩ ℂ such that for any region R bounded by a piecewise algebraic curve,</p>
+<blockquote>
+<p><strong>#{C ∈ 𝒫 : rad(C) ≥ t, C ∩ R ≠ ∅} ~ c_𝒫 · ω_Γ(R) · t^{−δ}  as t → 0</strong></p>
+</blockquote>
+<p>with δ = dim Λ and ω_Γ the reweighted Patterson–Sullivan measure of §3.6.</p>
+<p><strong>Three points of care, all worth having.</strong></p>
+<ul>
+<li><em>The hypothesis about bouquets.</em> She states the theorem with a blanket assumption that 𝒫
+  contains no "infinite bouquet of tangent circles" (Figure 2.6: infinitely many circles all
+  tangent at one point). The <strong>paper imposes it only when δ ≤ 1</strong>. Its purpose is to make the
+  skinning constant finite, and the paper notes the constant is automatically finite when
+  δ &gt; 1. Since δ_A ≈ 1.3057 &gt; 1, the Apollonian case never needs it. I quote the paper.</li>
+<li><em>Contained versus meeting.</em> She says "circles contained in this region"; the paper counts
+  circles with C ∩ R ≠ ∅. I quote the paper.</li>
+<li><em>Which measure.</em> She says "Patterson–Sullivan measure of the region"; the paper's ω_Γ is
+  PS measure times (|z|²+1)^δ. Same object up to the stereographic Jacobian.</li>
+</ul>
+<h3>4.2 Decoding the constant: the skinning measure</h3>
+<p>She asks the right question about her own theorem:</p>
+<blockquote>
+<p>"Any asymptotic like this must explain the source of the multiplicative constant."</p>
+</blockquote>
+<p>The exponent δ is not surprising once you know δ is the orbit growth rate (Exercise 6.2
+below makes that precise). The constant is where the content is, and the answer is a
+geometric invariant of <em>how the plane sits inside the manifold</em>.</p>
+<p>Take a circle C in the packing, form the hemisphere C† over it, and push it down to ℳ. If
+the Γ-orbit of C is closed in the space of circles — equivalently (paper §2.4.2) if the map
+Stab_Γ(C†)\C† → ℳ is proper — this is a properly immersed geodesic surface S ⊂ ℳ. Take its
+<strong>unit normal bundle</strong>: at each point of S, the two unit vectors perpendicular to S. Now put
+Patterson–Sullivan weights on the endpoints of the geodesics shot off in those normal
+directions (paper §2.4.2):</p>
+<blockquote>
+<p>dμ^sk_{C†}(v) = e^{δβ_{v⁺}(o,v)} dν_o(v⁺) + e^{δβ_{v⁻}(o,v)} dν_o(v⁻)</p>
+</blockquote>
+<p>The normalisation makes it Stab_Γ(C†)-invariant, so it descends to a measure on the immersed
+surface. Its total mass is the <strong>skinning constant</strong></p>
+<blockquote>
+<p>0 &lt; sk(C) := μ^sk_{C†}( Stab_Γ(C†)\C† ) ≤ ∞</p>
+</blockquote>
+<p>and for a packing 𝒫 = ΓC₁ ∪ ⋯ ∪ ΓC_ℓ, sk_Γ(𝒫) = sk(C₁) + ⋯ + sk(C_ℓ). The paper's intuition
+in one line: "the skinning measure records how the geodesic plane C† intersects the limit set
+through its normal vectors."</p>
+<p>And then the punchline that the talk gives only qualitatively and the paper states exactly:</p>
+<blockquote>
+<p><strong>c_𝒫 = sk_Γ(𝒫) / |m^BMS|</strong></p>
+</blockquote>
+<p>The counting constant is a ratio: the mass of the surface's normal data, over the total mass
+of the equilibrium state. Both masses are finite exactly under the hypotheses of the theorem.
+Read against §2.3: this is the same numerator/denominator structure as the local mixing
+formula, because it is derived from it. §5 gives the derivation.</p>
+<h3>4.3 Q2: orbit closures, and the closed-or-dense dichotomy</h3>
+<p>Now the second question. Γ acts on the space of circles; restrict attention to circles that
+actually meet the limit set, since a circle disjoint from Λ has a closed orbit for a trivial
+reason. Write 𝒞_Λ for the circles meeting Λ, and 𝒞<em>_Λ for the </em><em>separating</em><em> circles — those
+with limit points both inside </em>and* outside. In her picture, a circle drawn across the carpet
+is separating; a circle drawn inside one of the white discs is not.</p>
+<p>She shows three orbits and this is the part of the talk where the pictures do real work:</p>
+<ol>
+<li><strong>Dense.</strong> A red circle, and its pink translates going everywhere — some so large you only
+   see an arc of them — approximating every circle that meets Λ.</li>
+<li><strong>Visibly closed.</strong> The red circle is one of the circles <em>of the packing</em>. Its translates
+   are other circles of the packing. Nothing new accumulates. Obvious.</li>
+<li><strong>Invisibly closed.</strong> A red circle that is <em>not</em> in the packing, whose translates
+   nonetheless never accumulate on anything new. Her comment: "it's not obvious at all why
+   this one must have a closed gamma orbit." These hidden closed orbits become the central
+   obstruction in higher dimensions (§4.5).</li>
+</ol>
+<p>Are there other possibilities? The answer depends on the shape of Λ.</p>
+<p><strong>Round Sierpiński carpets.</strong> Call Λ a <strong>round Sierpiński carpet</strong> if</p>
+<blockquote>
+<p>Ĉ − Λ = ⋃ B_i, with B_i infinitely many <strong>round</strong> open discs with <strong>mutually disjoint
+closures</strong>.</p>
+</blockquote>
+<p><em>(Figure 3.1: a black fractal with round white holes that do not touch.)</em></p>
+<p>The geometric meaning is exact and pretty: these are precisely the manifolds whose <strong>convex
+core has compact, totally geodesic boundary</strong>. Each Γ-orbit of a white disc corresponds to
+one boundary component of the convex core, and the disc being <em>round</em> is precisely the
+statement that that boundary surface is <em>totally geodesic</em>. In Figure 3.2 two compact
+geodesic surfaces S₁ and S₂ have been cut out of a closed hyperbolic 3-manifold; what remains
+has S₁ and S₂ as its convex core boundary. She narrates: "the geodesic planes above these
+white round open discs, they are exactly the coverings of these S₁ and S₂."</p>
+<blockquote>
+<p><strong>Theorem (McMullen–Mohammadi–Oh, <em>Invent. Math.</em> 209 (2017); extended to the geometrically
+finite case with Benoist, <em>ETDS</em> 42 (2022). Paper Thm 3.1.)</strong>
+Let Γ be geometrically finite with Λ a round Sierpiński carpet, and C ∈ 𝒞_Λ.
+- If C is <strong>separating</strong>, then ΓC is either <strong>closed</strong> or <strong>dense</strong> in 𝒞_Λ.
+- If C is not separating, ΓC‾ = {D ∈ 𝒞_Λ : D ⊂ ΓB‾} for the disc B whose closure contains C.</p>
+</blockquote>
+<p>Her summary of the second bullet: "for non-separating circles we have actually a third type
+of behaviour, which is neither closed nor dense, but they are easy to analyse."</p>
+<p><em>(The captions attribute the geometrically finite extension to "If Bou-Rabee". No such name
+appears anywhere in the paper's 85-entry bibliography and no such collaboration is findable;
+the paper attributes it to [3], </em><em>Yves Benoist</em><em> and Oh. See §10.)</em></p>
+<p><strong>General Sierpiński carpets: allow the discs to be wobbly.</strong> Now let the B_i be <strong>Jordan</strong>
+discs — topological discs bounded by simple closed curves — still with disjoint closures.
+Where do these come from? From <strong>deformations</strong>. She:</p>
+<blockquote>
+<p>"They arise from deformations of hyperbolic manifolds with Fuchsian ends... if the convex
+core has totally geodesic and compact boundaries, then for any deformation of this boundary
+surface, there is a new hyperbolic three-manifold realizing this deformation."</p>
+</blockquote>
+<p>That is the <strong>Ahlfors–Bers theorem</strong> <em>(captions: "alpha's first theory")</em>. The paper's precise
+version (Thm 3.2, Thurston and McMullen): every geometrically finite <strong>acylindrical</strong> Kleinian
+group is quasiconformally conjugate to a geometrically finite <strong>rigid</strong> one (rigid = totally
+geodesic convex-core boundary = round carpet), uniquely up to conjugation. The deformation
+space is ∏_i Teich(S_i), a product of Teichmüller spaces of the convex-core boundary surfaces.
+So these things exist in continuous families, which is the point of §3.4's remark that
+lattices are countable and these are not.</p>
+<p>A <strong>quasiconformal</strong> map is the standard definition and one you will recognise: a
+homeomorphism that sends infinitesimal circles to ellipses of bounded eccentricity ≤ κ
+(paper eq. 3.1). κ = 1 forces conformal, hence Möbius. So "quasiconformal" is "Möbius up to a
+bounded amount of distortion", and the entirety of Q3 is about how much distortion is
+detectable.</p>
+<blockquote>
+<p><strong>Theorem (McMullen–Mohammadi–Oh, <em>Duke</em> 171 (2022); with Benoist [3]. Paper Thm 3.3.)</strong>
+For Γ geometrically finite acylindrical: any Γ-invariant subset of 𝒞<em>_Λ is either a finite
+union of closed orbits, or dense in 𝒞</em>_Λ. There are at most countably many closed orbits in
+𝒞*_Λ. If Γ is rigid, the dense case is dense in the larger 𝒞_Λ.</p>
+</blockquote>
+<p><strong>Why the ambient space had to shrink.</strong> She flags this precisely: for non-rigid Γ, the right
+ambient space is the separating circles 𝒞<em>_Λ, not all of 𝒞_Λ, "because Yongquan Zhang
+constructed an example of an orbit ΓC which is closed in the space of separating circles but
+not closed in the space of all circles" (</em>Math. Res. Lett.<em> 30 (2023), "Existence of an exotic
+plane in an acylindrical 3-manifold"). The paper's explanation of the phenomenon is worth
+having: the </em>interior* of the convex core behaves like a homogeneous space, but the interior
+together with its boundary does not. So restrict to circles that see the interior.</p>
+<p>Translated back through the dictionary of §3.3, this is a statement about surfaces (paper
+Thm 3.7): <strong>any geodesic plane meeting the interior of the convex core is either closed or
+dense there</strong>, and there are at most countably many closed ones.</p>
+<h3>4.4 The mechanism: thick recurrence, built by hand</h3>
+<p>This is where the anchor of §2.1 gets cashed out, and it is the most instructive part of the
+talk.</p>
+<p>In finite volume, the classification is a special case of <strong>Ratner's theorem</strong> (paper Thm 4.1;
+Raghunathan's conjecture): for a connected Lie group G, a lattice Γ, and a subgroup U
+generated by unipotents, every orbit closure xU‾ is xL for a closed connected subgroup L.
+Since PSL₂(ℝ) is a maximal connected subgroup of PSL₂(ℂ), that gives closed-or-dense
+immediately. (Proved independently in this special case by Shah, following Margulis and
+Dani–Margulis on the Oppenheim conjecture.)</p>
+<p>The proof of Ratner's theorem uses recurrence, and recurrence comes from finite measure. Oh:</p>
+<blockquote>
+<p>"But we are in the infinite volume setting. And the main difficulty is the lack of
+recurrence."</p>
+</blockquote>
+<p>So build it. The key construction (paper §3.6) is an explicit compact set 𝓡 ⊂ Γ\G with a
+quantitative return guarantee:</p>
+<blockquote>
+<p><strong>Thick recurrence.</strong> There is κ &gt; 1 such that for every x ∈ 𝓡 and every s &gt; 0 there exists
+t with <strong>s &lt; |t| &lt; κs</strong> and x·u_t ∈ 𝓡.</p>
+</blockquote>
+<p>Read the quantifiers. Not "returns infinitely often" — that is what Poincaré gives you for
+free and it is not available. This says: <em>in every window of multiplicative width κ, at every
+scale, there is a return</em>. Returns at all scales, with a uniform bound. That is a genuinely
+stronger and more useful statement than recurrence, and it has to be constructed rather than
+invoked. Moreover the construction is arranged so that <strong>every</strong> PSL₂(ℝ)-orbit corresponding
+to a plane meeting the convex-core interior arises from some x ∈ 𝓡.</p>
+<p><strong>Where the returns come from: the fractal is fat enough.</strong> Oh's explanation is the heart of
+it:</p>
+<blockquote>
+<p>"For Sierpiński carpet limit sets, every separating circle meets the limit set in a
+uniformly thick Cantor type subset. So, for every point in the intersection of C with Λ,
+there is a corresponding return time of the unipotent flow to a compact region. And this
+uniform thickness of the circular slice C ∩ Λ gives us enough recurrence for the unipotent
+flows."</p>
+</blockquote>
+<p>Unpack the logic, because it is a beautiful chain:</p>
+<ol>
+<li>A <strong>circular slice</strong> is C ∩ Λ: what the limit set looks like along one circle.</li>
+<li>For a Sierpiński carpet, every separating circle cuts Λ in a Cantor set that is
+   <em>uniformly perfect</em> — "a Cantor set with no gaps that are disproportionately large at any
+   scale" (paper, footnote 5). No scale is empty.</li>
+<li>The <strong>visual image of a horocycle on Ĉ is a circle</strong> (paper §3.6). So travelling along the
+   unipotent flow is, seen from the boundary, sweeping along a circle.</li>
+<li>Therefore each point of C ∩ Λ contributes a <strong>return time</strong>, and the no-empty-scale
+   property of the Cantor set converts directly into no-empty-scale returns — thick
+   recurrence.</li>
+</ol>
+<p>The technical input making step 2 work is the <strong>positive modulus property</strong> of the limit set:
+inf_{ℓ≠k} mod(Ĉ − (T̄_ℓ ∪ T̄_k)) &gt; 0, where mod is the conformal modulus of an annulus. The
+white discs are uniformly separated in the conformal metric, so the black stuff between them
+is uniformly fat.</p>
+<blockquote>
+<p><strong>The recurrence hypothesis was replaced by a geometric fatness property of a fractal.</strong>
+That is the transferable idea, and §7.2 is about it.</p>
+</blockquote>
+<h3>4.5 Where the rigidity fails, and where it is conjectural</h3>
+<p>Two limits, both stated by her and both important for calibration.</p>
+<p><strong>Chaotic geodesic planes exist.</strong> The dichotomy is <em>not</em> a general theorem about
+geometrically finite manifolds. If the circular slices are too thin, it breaks. A
+<strong>quasi-Fuchsian</strong> group is a quasiconformal deformation of a Fuchsian lattice in PSL₂(ℝ);
+its limit set is a Jordan curve (Figure 2.4, first image). McMullen–Mohammadi–Oh showed that
+many quasi-Fuchsian manifolds built by <strong>bending</strong> contain geodesic planes whose closures are
+diffeomorphic to (closure of a geodesic on a closed hyperbolic surface) × ℝ. Geodesic
+closures on closed hyperbolic surfaces are chaotic, so these plane closures are chaotic. This
+is the closest thing in the subject to the mixed KAM picture of §2.4, and it is why the
+carpet hypothesis is not decoration.</p>
+<p><strong>The Apollonian case is open.</strong> She goes back to the Apollonian gasket and shows why her
+method dies:</p>
+<blockquote>
+<p>"In Apollonian circle packing, circular slices can be very thin... if you look at the
+circle connecting these three blue points [tangency points], it's very easy to see that its
+gamma orbit should be closed. But if I look at a nearby circle, then we expect this circle
+to have dense orbit. But as you can see visibly, the intersection of this red circle with
+the limit set is extremely small. So this thick recurrence method we used for Sierpiński
+carpet limit sets does not work anymore."</p>
+</blockquote>
+<p>The structural reason (paper §3.4): the Apollonian group's compact core is a genus-two
+handlebody, so its boundary is <strong>compressible</strong>, so it is not acylindrical. It sits just
+outside the framework.</p>
+<blockquote>
+<p><strong>Conjecture 3.6 (Oh).</strong> For an Apollonian circle packing with symmetry group Γ, and any
+separating circle C, the orbit ΓC is either closed or dense in 𝒞_Λ.</p>
+</blockquote>
+<p>Her reason for caring: "Apollonian circle packing is one of the most canonical circle
+packings. So this conjecture is really compelling."</p>
+<h3>4.6 Higher dimensions: intermediate spheres and the wild forest</h3>
+<p>Now go up. The boundary of ℍ^{d+1} is the sphere 𝕊^d. Higher-dimensional round Sierpiński
+carpets exist: Λ ⊂ 𝕊^d whose complement is infinitely many round open d-balls with disjoint
+closures. Take a circle in 𝕊^d and look at its Γ-orbit. What changes?</p>
+<p><strong>A new possibility appears, for a reason you can see immediately.</strong> In dimension 2 there is
+no sphere strictly between a circle and the whole 2-sphere, so "closed or dense" is forced by
+the lack of anything in between. In higher dimension there are proper sub-spheres. Suppose C
+sits inside a k-sphere Σ, and suppose ΓΣ is <em>closed</em> in the space of sub-spheres. Then ΓC‾ is
+trapped inside ΓΣ; it cannot get out. <strong>Intermediate orbit closures are possible.</strong></p>
+<p>The theorem says those are the only new possibilities:</p>
+<blockquote>
+<p><strong>Theorem (Minju Lee and Oh, <em>Geom. Topol.</em> 28 (2024); paper Cor. 4.7).</strong> Let ℳ be a convex
+cocompact hyperbolic d-manifold with <strong>Fuchsian ends</strong> (= totally geodesic convex-core
+boundary; for d = 3 this is the rigid acylindrical case). Let C be a circle meeting Λ in
+<strong>more than two points</strong>. Then there is a k-sphere S with</p>
+<p><strong>ΓC‾ = { D ∈ 𝒞_Λ : D ⊂ ΓS }.</strong></p>
+</blockquote>
+<p>If S = C, ΓC is closed. If S is the whole boundary sphere, ΓC is dense. Everything in between
+is an intermediate closure, and each one is accounted for by an intermediate sphere with a
+closed orbit.</p>
+<p><em>(She says "at least two points"; the paper says "more than two points". I quote the paper.)</em></p>
+<p>The underlying theorem (paper Thm 4.3) is a genuine Ratner analogue: for U any connected
+closed subgroup generated by unipotents and normalized by A, and any x in the <strong>renormalized
+frame bundle</strong> RF ℳ = {x : xA is bounded}, the closure xU‾ ∩ RF ℳ = xL ∩ RF ℳ for a closed
+subgroup U &lt; L &lt; G with xL closed. RF ℳ is exactly the set of §2.2 — frames whose geodesic
+stays bounded in both directions, the support of the BMS measure.</p>
+<p><strong>What is new in the proof, and her best passage.</strong> Thick recurrence is no longer enough,
+because the returns might all happen inside one of the intermediate closed orbits, in which
+case you learn nothing. You need an <strong>avoidance theorem</strong>: unless the orbit is already
+trapped in an intermediate closed orbit, you must find thick recurrence times that also stay
+a definite distance away from every compact piece of the singular set. This is the
+infinite-volume descendant of the <strong>Dani–Margulis avoidance principle</strong>.</p>
+<p>And the difficulty is that you do not know what you are avoiding:</p>
+<blockquote>
+<p>"So, remember this example about the closed orbit. So, there are visible obvious closed
+orbits, but there are invisible hidden closed intermediate orbits. So, the collection of
+all closed intermediate orbits — to me they're like wild forest that I cannot even draw...
+And now we need to find a time when this circular slice can get out of this wild forest.
+So, Minju and I, we got lost actually for a long time in this wild forest until we finally
+were able to get out."</p>
+</blockquote>
+<p>With avoidance in hand the proof runs an elaborate induction over all possible intermediate
+sub-spheres, indexed by the dimension of the maximal unipotent subgroup of the acting group.</p>
+<blockquote>
+<p><em>[Gap: the internals of the avoidance theorem and the inductive scheme are not recoverable.
+The talk gives the two paragraphs quoted above; the paper (§4.2) gives one paragraph
+naming Dani–Margulis and saying the induction incorporates unipotent dimension plus
+equidistribution statements, then cites [43] and [57]. I state the motivation and the
+consequence and do not attempt the proof. </em><em>Impact: low.</em><em> These are the technical core of
+a 100-page paper; nothing downstream in the talk depends on their internals.]</em></p>
+</blockquote>
+<p>A geometric corollary worth having because it is so concrete (paper Cor. 4.4): in such a
+manifold, <strong>any horocycle</strong> is either properly immersed and closed, or its closure is a
+properly immersed totally geodesic k-plane (k ≥ 2), up to tilting. The paper points to Oh's
+<em>Notices</em> article, where this is told as the journey of a traveller and compared to
+<strong>Kronecker's theorem</strong> on the closure of a line in a torus — rational slope closes up,
+irrational slope fills the torus, nothing else happens. That is the right one-line summary
+of the whole rigidity phenomenon, and it is the version to remember.</p>
+<h3>4.7 Q3: rigidity — how many circles force Möbius</h3>
+<p>Now the third question, and the point where the talk becomes a 4.</p>
+<p>Set-up. Given a Kleinian group Γ, let ℜ_disc(Γ) be its <strong>discrete faithful representations</strong>
+ρ : Γ → PSL₂(ℂ). Conjugation by a fixed Möbius g gives one, γ ↦ gγg⁻¹; call those
+<strong>algebraic</strong>. Question: when is a given ρ algebraic?</p>
+<ul>
+<li><strong>If Γ is a lattice: always.</strong> That is <strong>Mostow–Prasad strong rigidity</strong> (paper Thm 5.1).
+  So the question is entirely about the non-lattice, infinite-volume case.</li>
+<li><strong>If Λ = Ĉ but Γ is not a lattice: still yes</strong> for quasiconformal deformations. That is
+  <strong>Sullivan's</strong> quasiconformal rigidity theorem (paper Thm 5.3).</li>
+<li><strong>If Λ ≠ Ĉ: no.</strong> By the Ahlfors finiteness theorem the deformation space is as big as the
+  Teichmüller space of Γ\Ω. There are genuinely non-algebraic representations. So you need a
+  <em>criterion</em>.</li>
+</ul>
+<p><strong>Reformulate via the boundary map.</strong> ρ carries the Γ-orbit to the ρ(Γ)-orbit; limit points
+go to limit points. So there is a Γ-equivariant continuous embedding</p>
+<blockquote>
+<p>f : Λ → Ĉ,  the <strong>boundary map</strong> of ρ,</p>
+</blockquote>
+<p>unique when it exists (existence: Tukia, when Γ and ρ(Γ) are geometrically finite and ρ is
+type-preserving — loxodromics to loxodromics, parabolics to parabolics). And:</p>
+<blockquote>
+<p><strong>ρ is algebraic ⟺ f is the restriction to Λ of a Möbius transformation.</strong></p>
+</blockquote>
+<p><em>(Figure 5.3 in the paper is exactly this: two limit sets side by side with an arrow between
+them.)</em></p>
+<p><strong>Sullivan's theorem as the model.</strong> Sullivan proved: if f is Γ-equivariant quasiconformal
+and <strong>conformal on Ω</strong> (the domain of discontinuity), then f is Möbius. So conformality on
+the <em>complement</em> of the limit set forces rigidity. The natural question is whether
+conformality on the limit set <em>itself</em> does. The obstacle: Λ typically has Lebesgue measure
+zero (the <strong>Ahlfors measure conjecture</strong>, now a theorem via Thurston, Canary, Agol,
+Calegari–Gabai on tameness: for finitely generated Γ, either Λ = Ĉ or Leb(Λ) = 0), so the
+analytic definition of conformality is meaningless there.</p>
+<p><strong>The geometric substitute is the circular slice.</strong> Define f to be <em>conformal on Λ</em> if</p>
+<blockquote>
+<p>for every circle C, f(C ∩ Λ) is contained in a circle.</p>
+</blockquote>
+<p>Note what this does <em>not</em> ask. It does not ask f to map circles to circles — f is defined only
+on Λ. It asks only that the part of each circle that Λ actually sees goes into a circle.
+Oh underlines this twice from the podium.</p>
+<blockquote>
+<p><strong>Theorem (Dongryul M. Kim and Oh, <em>Invent. Math.</em> 234 (2023); paper Thm 5.4).</strong> Let Γ be a
+Kleinian group with Ω having <strong>at least two components</strong>, let f be a Γ-equivariant
+quasiconformal homeomorphism of Ĉ, and suppose neither Λ nor f(Λ) lies in a circle. If f is
+conformal on Λ in the above sense, then <strong>f is a Möbius transformation.</strong></p>
+</blockquote>
+<p>The hypothesis "Ω disconnected" is her spoken "the complement of the limit set is
+disconnected", and it is genuinely needed: her third example (a limit set with connected
+complement) is excluded. The paper notes the theorem applies to all geometrically finite
+groups with <strong>connected</strong> limit set — so all acylindrical and all quasi-Fuchsian groups — but
+not to Schottky groups.</p>
+<p><strong>The cross-ratio form, which is the version to remember.</strong> The cross-ratio of four points of
+Ĉ is a complex number, invariant under Möbius transformations. The elementary fact:</p>
+<blockquote>
+<p><strong>the cross-ratio of four points is real ⟺ the four points lie on a circle.</strong></p>
+</blockquote>
+<p>So "sends circular slices into circles" = "sends real-cross-ratio quadruples to
+real-cross-ratio quadruples", and (paper Cor. 5.6):</p>
+<blockquote>
+<p><strong>Cross-ratio rigidity.</strong> If f sends every quadruple of points of Λ with real cross-ratio to
+a quadruple with real cross-ratio, then f extends to a Möbius transformation.</p>
+</blockquote>
+<p>Her emphasis, and it is the sharpest sentence in the talk:</p>
+<blockquote>
+<p>"Again, I would like to emphasize we are not asking F to preserve <strong>values</strong> of cross
+ratios. We are only asking F to preserve the <strong>property</strong> that the cross ratio is a real
+number."</p>
+</blockquote>
+<p>Preserving values would be the whole Möbius invariant; that would be circular. Preserving a
+purely qualitative property — the imaginary part vanishes — is an enormously weaker
+hypothesis, and it forces the same conclusion. §7.4 is about why that is the interesting
+shape.</p>
+<p><strong>And it is a dichotomy, not just a criterion.</strong> Let Λ_f be the union of all circular slices
+that f sends into circles — her "conformal points" (paper eq. 5.1, Figure 5.2). Then (paper
+Thm 5.5, topological criterion):</p>
+<blockquote>
+<p><strong>Either Λ_f = Λ (and f is Möbius), or Λ_f has empty interior in Λ.</strong></p>
+</blockquote>
+<p>and (paper Thm 5.7, measure-theoretic criterion, for Γ geometrically finite and ρ
+type-preserving geometrically finite; <em>J. Topol.</em> 18 (2025)):</p>
+<blockquote>
+<p><strong>Either Λ_f = Λ, or ν(Λ_f) = 0</strong>, where ν is the Patterson–Sullivan measure of §3.6.</p>
+</blockquote>
+<p>Her spoken version: if f is not Möbius, the set of circular slices it straightens is "trivial
+both topologically and measure-theoretically" — a typical circular slice is <em>not</em> sent to a
+circle. <em>(The captions render the measure as "parabolic measure"; the paper's ν is the
+Patterson–Sullivan / geometric measure, and §5.1 says the set has zero δ-dimensional
+Hausdorff measure. I quote the paper.)</em></p>
+<h3>4.8 The mechanism for Q3: self-joinings, and going up in rank</h3>
+<p>How do you prove a rigidity statement like that? By a genuinely surprising move: <strong>make a
+new, bigger group out of the two you have, and study a flow on it.</strong></p>
+<blockquote>
+<p><strong>The self-joining.</strong> Γ_ρ := (id × ρ)(Γ) = {(γ, ρ(γ)) : γ ∈ Γ} &lt; PSL₂(ℂ) × PSL₂(ℂ)</p>
+</blockquote>
+<p>— the graph of ρ, embedded diagonally. It is a discrete subgroup of the <em>product</em>, so it acts
+on ℍ³ × ℍ³, and the quotient Γ_ρ(ℍ³ × ℍ³) "joins" the two hyperbolic manifolds Γ\ℍ³ and
+ρ(Γ)\ℍ³ into one object (Figure 5.4). Its limit set inside Ĉ × Ĉ is the graph of the boundary
+map:</p>
+<blockquote>
+<p>Λ_ρ = {(ξ, f(ξ)) : ξ ∈ Λ}.</p>
+</blockquote>
+<p>And the observation that makes the whole strategy work (paper eq. 5.4):</p>
+<blockquote>
+<p><strong>ρ is algebraic ⟺ Γ_ρ is NOT Zariski dense in PSL₂(ℂ) × PSL₂(ℂ).</strong></p>
+</blockquote>
+<p>Which is obvious once you see it: if ρ = conjugation by g, then Γ_ρ sits inside the graph of
+an automorphism, a proper algebraic subgroup. So <strong>rigidity becomes a Zariski-density
+question</strong>, and Zariski density is what makes dynamical theorems apply.</p>
+<p>The proof then shows that conformality of f on Λ <em>obstructs</em> Zariski density, using
+topological transitivity (for Thm 5.5) and ergodicity (for Thm 5.7) of a diagonal flow on the
+self-joining quotient.</p>
+<p><strong>And here is where the rank jumps.</strong> The product of two copies of PSL₂(ℂ) has a
+<strong>two-dimensional</strong> diagonal subgroup:</p>
+<blockquote>
+<p>A_u = { (diag(e^{u₁t/2}, e^{−u₁t/2}), diag(e^{u₂t/2}, e^{−u₂t/2})) : t ∈ ℝ },  u = (u₁, u₂)</p>
+</blockquote>
+<p>Instead of one geodesic flow there is now a <strong>family of flows, one per direction u</strong>, and — as
+Oh says — "the dynamics of A_u in rank two depend crucially on the direction u". That is the
+whole difference between rank one and higher rank, and it is why questions 3 and 4 are a
+harder tier than 1 and 2. Everything is now indexed by a direction in a cone.</p>
+<blockquote>
+<p><em>[Declining to teach: the Lie theory of higher rank. Positive Weyl chamber, Cartan
+projection μ(γ), limit cone ℒ_ρ, growth indicator ψ_ρ, tangent linear forms, Anosov and
+Borel Anosov subgroups. The paper defines all of them in §8; each definition is a paragraph
+and each is genuinely necessary for the proofs. You do not have the background and cannot
+get it from a tutorial. I state the results in words below and name the objects so you can
+recognise them, and no more. </em><em>Impact: moderate.</em><em> It costs you the ability to read §§8.1–8.5
+of the paper. It costs you nothing in the four questions.]</em></p>
+</blockquote>
+<p>The one piece of it worth internalising, because the anchor of §2.3 gives it to you free: the
+<strong>growth indicator</strong> ψ_ρ is Quint's replacement for δ. Where δ was one abscissa of
+convergence, ψ_ρ(u) is the abscissa of convergence of a Poincaré-type series computed within
+a narrow cone of directions around u. It is upper semicontinuous and <strong>concave</strong>, and the
+directions where it is ≥ 0 form the limit cone. A single free energy has become a concave
+free-energy <em>function</em> on a cone of directions. Figure 8.1 draws exactly this: a cone in the
+plane with a ray in its interior.</p>
+<h3>4.9 Q4: torus counting, and the exponent that depends on your ordering</h3>
+<p>A <strong>torus</strong> here is just a pair of circles T = (C₁, C₂) ⊂ ℂ², with</p>
+<blockquote>
+<p>vol(T) = rad(C₁) · rad(C₂).</p>
+</blockquote>
+<p><em>(She says "area"; the paper says "volume". Same formula.)</em> Where do torus packings come from?
+From Q3. If f is a non-algebraic quasiconformal deformation, then by the <em>combination</em> of the
+Q2 dichotomy and the Q3 rigidity theorem, the set of circles that f does straighten is a
+finite union of closed orbits — because if it were dense, continuity would make f straighten
+everything, and Thm 5.4 would force f Möbius, contradiction. That is the paper's Theorem 6.1
+and its half-page proof is the one place where the four questions visibly interlock.</p>
+<p>So take 𝒫 = {(C, f(C)) : #(C ∩ Λ) ≥ 2}, a locally finite torus packing invariant under the
+self-joining Γ_ρ. Then:</p>
+<blockquote>
+<p><strong>Theorem (Samuel Edwards, Minju Lee and Oh, <em>J. reine angew. Math.</em> 807 (2024); paper Thms
+6.2, 6.3).</strong> There are constants c_f &gt; 0, δ_f &gt; 0 and a locally finite measure ω_f on the
+graph {(ξ, f(ξ))} such that</p>
+<p><strong>#{T ∈ 𝒫 : vol(T) ≥ t, T ∩ R ≠ ∅} ~ c_f · ω_f(R) · t^{−δ_f}  as t → 0.</strong></p>
+</blockquote>
+<p>Same shape as circle counting: a power law, a constant, a measure controlling where the small
+tori go. The hypothesis in the general version (Thm 6.3) is that all the representations are
+<strong>convex cocompact</strong>, i.e. <strong>no cusps</strong> — Oh states this explicitly and explains why in §4.10.</p>
+<p><strong>The genuinely new phenomenon, and the best idea in the second half.</strong> In circle counting
+there was one exponent, δ, a property of Γ. In torus counting the exponent
+δ_{ρ,vol} <strong>is not the critical exponent of Γ_ρ</strong>. The paper, §6.3:</p>
+<blockquote>
+<p>"In higher rank, however, the exponent depends on how the tori are ordered in the counting
+problem."</p>
+</blockquote>
+<p>Concretely: if you replace vol(T) = ∏ rad(C_i) by the weighted version ∏ rad(C_i)^{κ_i} with
+weights κ_i &gt; 0, the exponent becomes</p>
+<blockquote>
+<p>limsup_{t→∞} (1/t) · log #{ γ ∈ Γ : Σ_i κ_i · d(ρ_i(γ)o, o) ≤ t }.</p>
+</blockquote>
+<p>Read that as a partition function again (§2.3), but now with a <strong>joint energy</strong>: each group
+element is charged by a weighted sum of its displacements in the several manifolds at once.
+Change the weights and you change which directions in the cone dominate, and you get a
+different exponent. The volume ordering is the case κ_i = 1.</p>
+<blockquote>
+<p><strong>The scaling exponent is a property of your cost function, not of the object.</strong> In rank one
+the cone is one-dimensional and there is nothing to choose, so the exponent looks intrinsic.
+It never was. §7.3.</p>
+</blockquote>
+<h3>4.10 What runs underneath: local mixing, and the cusp gap</h3>
+<p>Both counting theorems reduce to one analytic input. Oh names it in one sentence — "the main
+dynamical tool behind this torus counting theorem is a local mixing theorem" — and the paper
+spends two sections on it. Compressed to what she used:</p>
+<ul>
+<li><strong>Rank one</strong> (paper Thm 7.2, Roblin, Winter): the renormalized correlation formula of §2.3.
+  This is what drives circle counting.</li>
+<li><strong>Higher rank</strong> (paper Thm 8.1, Edwards–Lee–Oh, <em>Geom. Topol.</em> 27 (2023)): for each
+  direction u in the interior of the limit cone there is κ_u &gt; 0 with
+  lim t^{(n−1)/2} e^{t(σ−ψ_ρ)(u)} ⟨a_{tu}·f₁, f₂⟩ = κ_u · m^BR_u(f₁) m^BR*_u(f₂). Same shape:
+  find the exact decay rate, divide it out, get a product of two measures. The rate now
+  depends on the direction, via the growth indicator, and there is an extra polynomial factor
+  t^{(n−1)/2}.</li>
+<li><strong>The gap Oh names out loud.</strong> The counting theorem needs the self-joining Γ_ρ to be an
+  <strong>Anosov</strong> subgroup (higher-rank analogue of convex cocompact), and Γ_ρ is Anosov exactly
+  when every ρ_i is convex cocompact. With cusps you get a <em>relatively</em> Anosov group, and:</li>
+</ul>
+<blockquote>
+<p>"When there are cusps, this Γ_ρ is relatively Anosov, and this is why I had this hypothesis
+that the associated hyperbolic manifolds have no cusps — because higher rank local mixing
+is a missing input for relatively Anosov groups."</p>
+</blockquote>
+<p>That is the honest frontier statement of the talk: one missing analytic theorem is what stops
+Q4 from being known in the generality of Q1. The paper says the same in §6.4.</p>
+<h3>4.11 One paper-only result worth your time: the drunken bird</h3>
+<p><em>(This is not in the talk. It is paper §8.4, and I include it because it is Pólya's theorem,
+which you own cold.)</em></p>
+<p>The BMS measure in higher rank has a product structure: it is a rank-one BMS-type measure on
+a <em>compact</em> space, times Lebesgue measure on ℝ^{n−1}. So the phase space is homeomorphic to
+Ω_u × ℝ^{n−1} — a compact hyperbolic system times a Euclidean space of dimension n − 1. The
+paper draws the obvious conclusion:</p>
+<blockquote>
+<p>"This suggests an analogy with random walks on Euclidean spaces. In dimensions one and two,
+a random walk almost surely returns home (a 'drunken person'), while in higher dimensions,
+a 'drunken bird' tends to fly off to infinity."</p>
+<p><strong>Theorem (Burger, Landesberg, Lee, Oh, <em>J. Mod. Dyn.</em> 19 (2023); paper Thm 8.4).</strong> For u
+in the interior of the limit cone, the A_u-action on (Γ_ρ\G, m^BMS_u) is ergodic <strong>if and
+only if n ≤ 3.</strong></p>
+</blockquote>
+<p>Pólya's recurrence theorem, exactly: n − 1 ≤ 2 is recurrent, n − 1 ≥ 3 is transient, and
+transience kills ergodicity. For self-joinings of two Kleinian groups n = 2, so the flow is
+ergodic and Theorem 5.7 goes through. Join four or more and it does not. <strong>A rank threshold in
+a Lie-theoretic theorem is the dimension threshold of a random walk.</strong></p>
+<hr />
+<h2>5. The one argument: how circle counting actually works</h2>
+<p>Her proof of Q1, in her own order, with the pieces named. This is the argument to hold, and
+every step uses something built above.</p>
+<p><strong>Step 1 — turn circles into surfaces.</strong> Take a circle C in the locally finite packing 𝒫.
+Form the hemisphere C† over it (§3.3). Push down to ℳ = Γ\ℍ³. Because ΓC is closed in the
+space of circles, the image is a <strong>properly immersed closed geodesic surface</strong> S ⊂ ℳ. In her
+slide this is a green hemisphere upstairs and a green surface downstairs.</p>
+<p><strong>Step 2 — take the normal bundle and flow.</strong> Attach to S its unit normal bundle: at every
+point of S, the two unit vectors perpendicular to it, drawn as outward arrows all over the
+green surface. Now apply the geodesic flow for time t. What you get is the set of points at
+perpendicular distance t from S — the <strong>orthogonal translate</strong> of S. Upstairs, these are
+expanding balloons around the hemisphere (Figure 2.8). As t → ∞ the balloons in the universal
+cover swell and escape.</p>
+<p><strong>Step 3 — watch the mass die, and find the rate.</strong> Downstairs, the translates do come back
+into the compact part of ℳ, but less and less of them do:</p>
+<blockquote>
+<p>"As indicated in this picture, they do come back to a compact part. But however, lesser and
+lesser parts will come back to a compact part and more and more part will go toward
+infinity. So, in any fixed compact region, the mass seen will go to zero as t goes to
+infinity."</p>
+</blockquote>
+<p>This is the failure of §2.1, seen concretely. The repair is §2.3: renormalize by the exact
+rate, which is <strong>e^{(2−δ)t}</strong>.</p>
+<p><strong>Step 4 — the renormalized limit is a measure, and it is Burger–Roblin.</strong> After
+renormalization the orthogonal translates <strong>equidistribute</strong> with respect to the
+Burger–Roblin measure on the unit tangent bundle — the infinite fractal measure of §3.8,
+built from Patterson–Sullivan data on the boundary. This is Theorem 7.2 of the paper applied
+to this configuration; the mechanism is local mixing of the geodesic flow, plus Roblin's
+transversal intersection argument to move from the BMS-measure statement to a Haar-measure
+statement (Haar being the one you can change variables in).</p>
+<p><strong>Step 5 — the coefficient is the skinning mass, and the counting follows.</strong> The
+proportionality coefficient in that equidistribution statement is the total mass of the
+<strong>skinning measure</strong> of S (§4.2). Unwinding: each circle of radius ≥ t in 𝒫 corresponds to a
+group element moving the base plane a hyperbolic distance ≤ log(1/t), the number of such
+elements grows like e^{δT} with T = log(1/t) — giving t^{−δ} — and the constant of
+proportionality is the skinning mass divided by the total BMS mass:</p>
+<blockquote>
+<p><strong>#{C ∈ 𝒫 : rad(C) ≥ t} ~ (sk_Γ(𝒫)/|m^BMS|) · ω_Γ(ℂ) · t^{−δ}.</strong></p>
+</blockquote>
+<p><strong>Where each ingredient came from.</strong> The exponent came from orbit growth = Hausdorff
+dimension (§3.5). The measure came from Patterson–Sullivan (§3.6). The denominator came from
+the finiteness of the BMS measure (§2.2), which needs geometric finiteness. The numerator came
+from how the specific surface meets the limit set (§4.2). The renormalization exponent 2 − δ
+came from the decay rate of correlations (§2.3). Remove any one of the five and the theorem
+does not exist.</p>
+<p><strong>One footnote from the paper worth having</strong> (fn. 4): the <em>original</em> proof of the Apollonian
+case used the <strong>Descartes circle theorem</strong> to convert circle counting into counting points in
+the space of horospheres. That route is specific to Apollonian packings, and it is the reason
+the Apollonian case came first historically. Exercise 6.1 is that theorem.</p>
+<hr />
+<h2>6. Do this by hand</h2>
+<p>Three exercises. The first two are the ones that teach.</p>
+<h3>6.1 The Apollonian recursion, and why the curvatures stay integers</h3>
+<p>Define the <strong>curvature</strong> of a circle to be 1/radius. Descartes' circle theorem (Descartes
+1643; Soddy 1936) says that four mutually tangent circles with curvatures a, b, c, d satisfy</p>
+<blockquote>
+<p><strong>(a + b + c + d)² = 2(a² + b² + c² + d²).</strong></p>
+</blockquote>
+<p><em>(This identity is standard literature. Neither the talk nor the paper writes it out; the
+paper names "the Descartes circle theorem" in footnote 4, and Corollary 7.8 refers to
+"quadruples of curvatures of four mutually tangent circles" as points on "the zero locus of
+the Descartes quadratic form", with the footnote "this means that curvatures of all circles
+in 𝒫 are integers". So the object is in the source; the formula is mine.)</em></p>
+<p><strong>(a)</strong> Fix a, b, c. Treat the identity as a quadratic equation in d. Show it has two roots
+d and d′, and find d′ in terms of a, b, c, d.</p>
+<p><strong>(b)</strong> Explain what the two roots are, geometrically, in terms of Apollonius' theorem as
+stated in §1.</p>
+<p><strong>(c)</strong> Conclude: if you begin with four mutually tangent circles whose curvatures are all
+integers, every circle in the resulting Apollonian packing has integer curvature.</p>
+<p><strong>(d)</strong> Connect this to the talk. Oh says the symmetry group of an Apollonian packing "is
+generated by the inversions with respect to the four dual circles" (paper §2.1, Figure 2.1:
+four red circles, each orthogonal to three of the four mutually tangent ones). What does part
+(a) have to do with those four generators?</p>
+<details>
+<summary>Solution</summary>
+<p><strong>(a)</strong> Write S = a + b + c and P = a² + b² + c². The identity reads (S + d)² = 2(P + d²),
+i.e. S² + 2Sd + d² = 2P + 2d², i.e.</p>
+<blockquote>
+<p>d² − 2Sd + (2P − S²) = 0.</p>
+</blockquote>
+<p>A monic quadratic, so by Vieta the two roots satisfy d + d′ = 2S. Hence</p>
+<blockquote>
+<p><strong>d′ = 2(a + b + c) − d.</strong></p>
+</blockquote>
+<p><strong>(b)</strong> They are the two circles of Apollonius' theorem: given the three mutually tangent
+circles of curvature a, b, c, there are exactly two circles tangent to all three, and their
+curvatures are the two roots. One sits in the curvilinear triangle (large curvature, small
+circle), the other wraps around the outside (small or negative curvature — negative curvature
+means the circle contains the others, i.e. it is the outer bounding circle traversed the
+other way). Apollonius' theorem <em>is</em> the statement that this quadratic has two roots.</p>
+<p><strong>(c)</strong> Immediate induction. Every new circle is obtained from three existing ones plus the
+one it replaces, by d′ = 2(a + b + c) − d. If a, b, c, d ∈ ℤ then d′ ∈ ℤ. Start integral, stay
+integral, forever. This is why integral Apollonian packings exist at all, and why the paper
+can ask (Cor. 7.8) how many circles have <em>prime</em> curvature — a question that only makes sense
+because of this five-line computation.</p>
+<p><strong>(d)</strong> The map (a, b, c, d) ↦ (a, b, c, 2(a+b+c) − d) is an involution: apply it twice and
+you are back. It is a <strong>reflection</strong> of ℤ⁴ — it fixes the hyperplane d = a + b + c and negates
+the transverse direction — and it preserves the Descartes quadratic form
+Q = 2(a²+b²+c²+d²) − (a+b+c+d)². There are four such involutions, one for each choice of
+which coordinate to swap out. The group they generate is the <strong>Apollonian group</strong>, a discrete
+group of integral matrices preserving Q, and it is the arithmetic avatar of the group Oh
+describes as generated by inversions in the four dual circles. The quadratic form Q has
+signature (3,1), so its orthogonal group is Isom(ℍ³) — which is why this whole
+number-theoretic picture is <em>literally the same object</em> as the hyperbolic-geometry picture.
+That equivalence is the bridge Kontorovich and Oh used in 2011.</p>
+<p><em>Marked as reconstructed:</em> parts (a) and (d) are my computation. What would verify (d): check
+directly that Q(a,b,c,2(a+b+c)−d) = Q(a,b,c,d), and that the four reflections generate a group
+of index 24 in the automorphism group of Q (the extra factor being permutations of
+coordinates). The signature-(3,1) statement is standard; the paper states only that the
+curvature quadruples lie on the zero locus of Q.</p>
+</details>
+<h3>6.2 Why the exponent is δ — and why the constant is the hard part</h3>
+<p>Oh says of her own theorem: "perhaps it's less surprising that we see delta here, because
+delta is the exponential growth rate of a Γ orbit." Make that precise.</p>
+<p>Fix o = (0,0,1) ∈ ℍ³ and a base circle C₀ with hemisphere C₀†. The packing is 𝒫 = ΓC₀ (take
+one orbit for simplicity).</p>
+<p><strong>(a)</strong> Show that a circle of Euclidean radius r centred at the origin has its hemisphere's
+apex at hyperbolic distance |log r| from o. Conclude the heuristic: for g ∈ PSL₂(ℂ),</p>
+<blockquote>
+<p>rad(gC₀) ≈ e^{−d(o, gC₀†)}.</p>
+</blockquote>
+<p><strong>(b)</strong> Using #{γ ∈ Γ : d(o, γo) ≤ T} ≍ c·e^{δT} (§3.5), derive the shape of the counting
+asymptotic.</p>
+<p><strong>(c)</strong> Say exactly what this argument does <strong>not</strong> deliver, and why that missing piece is the
+subject of §4.2.</p>
+<details>
+<summary>Solution</summary>
+<p><strong>(a)</strong> The hemisphere over the circle of radius r centred at 0 has apex (0, 0, r). Along the
+vertical axis the metric is dy/y, so</p>
+<blockquote>
+<p>d((0,0,1), (0,0,r)) = |∫_r^1 dy/y| = |log r|.</p>
+</blockquote>
+<p>Hence r = e^{−d(o, apex)}. For a general small circle the apex is not the nearest point of the
+hemisphere to o, but the two differ by a bounded amount, so rad ≍ e^{−d(o, C†)} up to
+multiplicative constants depending on nothing that matters here.</p>
+<p><strong>(b)</strong> Set T = log(1/t). Then</p>
+<blockquote>
+<h1>{C ∈ 𝒫 : rad(C) ≥ t} ≈ #{γ ∈ Γ/Stab : d(o, γC₀†) ≤ T} ≍ e^{δT} = e^{δ log(1/t)} = <strong>t^{−δ}</strong>.</h1>
+</blockquote>
+<p>The exponent is forced, and it is forced by orbit growth alone. That is the whole content of
+her remark.</p>
+<p><strong>(c)</strong> It gives the exponent and nothing else. It does not give:</p>
+<ul>
+<li><strong>the constant</strong>, because ≍ hides a bounded multiplicative ambiguity, and the theorem claims
+  an <em>asymptotic</em> (~), not a bound. Getting from ≍ to ~ requires knowing that the translates
+  of the plane equidistribute, which is the whole of §5, and the constant that emerges is
+  sk_Γ(𝒫)/|m^BMS|;</li>
+<li><strong>the local statement</strong> — how many circles land in a given region R. That needs the measure
+  ω_Γ, i.e. Patterson–Sullivan theory;</li>
+<li><strong>the dependence on how the plane sits</strong>. Two different base circles C₀ with the same δ give
+  different constants. The exponent is a property of the group; <strong>the constant is a property
+  of the surface</strong>. That is why the skinning measure exists.</li>
+</ul>
+<p><em>Marked as reconstructed:</em> this heuristic is mine. Neither source writes it; Oh gestures at it
+in one sentence. What would verify it: Oh–Shah, <em>The asymptotic distribution of circles in the
+orbits of Kleinian groups</em>, Invent. Math. 187 (2012), where the relation between rad(gC) and
+the displacement is made exact.</p>
+</details>
+<h3>6.3 Real cross-ratio means concyclic</h3>
+<p>The identity behind cross-ratio rigidity (§4.7). For z₁, z₂, z₃, z₄ ∈ Ĉ the cross-ratio is
+(z₁,z₂;z₃,z₄) = ((z₁−z₃)(z₂−z₄)) / ((z₁−z₄)(z₂−z₃)). Show it is real if and only if the four
+points lie on a common circle or line.</p>
+<details>
+<summary>Solution</summary>
+<p>The cross-ratio is real ⟺ its argument is 0 or π (mod 2π). Now</p>
+<blockquote>
+<p>arg(z₁,z₂;z₃,z₄) = [arg(z₁−z₃) − arg(z₂−z₃)] − [arg(z₁−z₄) − arg(z₂−z₄)]</p>
+</blockquote>
+<p>which is the angle ∠z₁z₃z₂ minus the angle ∠z₁z₄z₂: the two angles subtended by the segment
+z₁z₂ at the points z₃ and z₄. So the cross-ratio is real exactly when those two subtended
+angles are equal (difference 0) or supplementary (difference π). The <strong>inscribed angle
+theorem</strong> says that is exactly the condition for z₃ and z₄ to lie on a circle through z₁ and
+z₂ — equal angles for the same arc, supplementary for opposite arcs. Degenerate case:
+difference 0 with all four collinear, i.e. the circle through ∞.</p>
+<p>Why this matters for the talk: it converts a <em>geometric</em> hypothesis ("f sends circular slices
+into circles") into a purely <em>algebraic</em> one ("f preserves the reality of cross-ratios"), with
+no geometry left in it. And "is real" is a codimension-one condition — a single equation,
+Im = 0 — which is what makes it a weak hypothesis with a strong conclusion.</p>
+<p><em>This is standard; the paper states the fact and does not prove it. The proof above is mine.</em></p>
+</details>
+<hr />
+<h2>7. What is actually useful to you</h2>
+<p>Five things. The first two are the ones I would actually reach for.</p>
+<h3>7.1 When the average dies, find the rate — do not conclude "no signal"</h3>
+<p>The single reusable move of the talk. The raw correlation ⟨a_t f₁, f₂⟩ → 0. Every naive
+statistic on this system returns zero. The response is not "the system is degenerate"; it is:</p>
+<blockquote>
+<p>find the exact exponential rate at which it dies, divide it out, and the limit is a real
+object.</p>
+</blockquote>
+<p>Here the rate is e^{−(2−δ)t}, the limit is a product of Burger–Roblin masses, and <em>the entire
+counting theory of the subject is downstream of it</em>. The renormalization exponent is not a
+nuisance parameter — it is δ, the most important invariant in sight, and it fell out of the
+requirement that the limit be finite and nonzero.</p>
+<p>Applied to what you do: metrics that decay toward zero as a system scales up — per-step
+success rates over long agent trajectories, per-token error rates as context grows, cache hit
+rates as a corpus grows — are usually reported as "it degrades" and then abandoned. The
+informative quantity is almost never the value; it is the exponent, and the exponent is often
+a stable property of the system while the value is not. Two configurations with the same
+decay exponent and different constants are the <em>same</em> system with different setups. Two with
+different exponents are different systems. You cannot see that distinction without dividing
+out the rate first.</p>
+<p>And note the structural bonus: once you have the right renormalization, the limit <em>factorises</em>
+into (a measure on where you started) × (a measure on where you ended) / (a normalising mass).
+Correctly renormalized quantities decouple. Badly renormalized ones do not.</p>
+<h3>7.2 When the free invariant is gone, construct it — and make it quantitative</h3>
+<p>Poincaré recurrence is free in finite measure. It is unavailable here, and the response is not
+to weaken the theorem. It is to build, explicitly, a compact set 𝓡 and prove a <strong>quantitative
+return guarantee</strong>: for every x ∈ 𝓡 and every scale s, there is a return at some time t with
+s &lt; |t| &lt; κs.</p>
+<p>Look at the form of that statement, because it is the engineering content. Not "returns
+infinitely often" (unfalsifiable in practice, and not what you need) but <strong>"in every window of
+fixed multiplicative width, at every scale, there is a return"</strong>. Uniform, scale-invariant,
+checkable.</p>
+<p>And where does it come from? Not from measure theory. From a <em>geometric fatness property of a
+fractal</em>: the limit set's circular slices contain uniformly perfect Cantor sets, which is a
+statement that no scale is empty, which converts into no scale being return-free.</p>
+<p>For agent systems the analogy is close enough to be operational. A long-running agent loop has
+no conserved quantity and no invariant measure; "it eventually recovers" is not a property you
+can build on. What you can build on is: a designated set of known-good states, plus a
+guarantee that from any reachable state the system re-enters that set within a bounded
+<em>multiple</em> of elapsed time — not a fixed timeout, a multiplicative window, so the guarantee
+survives scale changes. That is exactly thick recurrence, and it is exactly what makes
+otherwise-unprovable classification statements provable here.</p>
+<h3>7.3 Your scaling exponent is a property of your cost function</h3>
+<p>In rank one there is one exponent δ, and it looks like an intrinsic property of the group. In
+rank two it is not: order the tori by volume and you get one exponent; order them by
+∏ rad(C_i)^{κ_i} and you get</p>
+<blockquote>
+<p>limsup (1/t) log #{γ ∈ Γ : Σ_i κ_i d(ρ_i(γ)o, o) ≤ t},</p>
+</blockquote>
+<p>a different number for different weights. The single number δ was an artefact of a
+one-dimensional cone of directions, where there was nothing to choose.</p>
+<p>This is directly transferable to any scaling claim you read or make. "Performance scales as
+N^α" is a statement about the <em>ordering you sorted by</em>, not about the system, whenever the
+system has more than one cost dimension. Sort by wall-clock and you get one exponent; by token
+spend, by tool calls, by a weighted mixture — different exponents, all correct, all measuring
+the same object through different cost functionals. Whenever you see a scaling exponent
+reported without the cost functional stated, the exponent is underdetermined. The higher-rank
+lesson is that the honest object is not a number but a <strong>concave function on the cone of cost
+directions</strong>, and any single reported exponent is one tangent line to it.</p>
+<h3>7.4 Find the weakest qualitative invariant that forces the conclusion</h3>
+<p>Cross-ratio rigidity is the cleanest instance of a design pattern I keep wanting a name for.</p>
+<p>You want to certify that a map f is exactly a Möbius transformation. The naive certificate:
+check that f preserves cross-ratio <em>values</em>. That is circular — preserving all cross-ratios is
+essentially a restatement of being Möbius, so it is not a test, it is the definition.</p>
+<p>The theorem instead asks f to preserve only the <strong>property</strong> "this cross-ratio is real". That
+is a single-bit, codimension-one, purely qualitative condition. It does not pin down any
+value. And it still forces the full conclusion.</p>
+<p>Two things make it work, and both are checkable in your own settings: the property is
+<strong>closed under the structure you care about</strong> (real cross-ratio ⟺ concyclic, and Möbius maps
+preserve concyclicity), and the object being tested is <strong>rigid enough that a codimension-one
+condition on a large enough set has no slack</strong>. When both hold you get an enormous
+strengthening for free — you have replaced a measurement with a predicate.</p>
+<p>For verification of generated artefacts: the reflex is to check outputs against expected
+values, which is expensive, brittle, and usually circular (you needed the answer to write the
+test). The move here is to look for a <em>qualitative invariant</em> — a predicate with no
+parameters, preserved by every legitimate transformation and violated by every illegitimate
+one — and check that instead. Then add the second half of the theorem: the dichotomy. Oh does
+not merely prove "preserve it everywhere ⟹ rigid"; she proves <strong>either everywhere, or almost
+nowhere</strong> (Λ_f = Λ or ν(Λ_f) = 0). There is no middle. That is the property that makes a cheap
+predicate into a real test: a partial pass is impossible, so a partial pass means your
+assumptions are wrong.</p>
+<h3>7.5 The obstruction is rarely the chaos; it is the hidden intermediate structure</h3>
+<p>The higher-dimensional orbit-closure theorem was hard, and Oh is explicit about <em>why</em>, and it
+is not the reason you would guess. The dense case is fine. The closed case is fine. What cost
+her and Minju Lee a long time is the <strong>wild forest</strong>: a countable family of intermediate
+closed orbits, some visible, most invisible, that a trajectory can get trapped in and that you
+cannot enumerate or draw. The technical fix — the avoidance theorem — is specifically about
+staying away from a set you cannot describe.</p>
+<p>The general shape: when you classify the behaviours of a system, the enemy is not the chaotic
+regime and not the trivial regime. It is the <strong>countable family of partially-structured
+absorbing states between them</strong> — the modes where the system does something coherent but not
+the coherent thing you designed for. Those are the ones that are invisible in aggregate
+statistics (each is measure zero), impossible to enumerate in advance, and individually
+sticky. The design response is not to enumerate them; it is to prove a positive statement
+about escaping neighbourhoods of <em>all</em> of them at once.</p>
+<p>That is what "avoidance" means as a discipline: you do not need to know the failure modes if
+you can prove the system spends a definite fraction of its returns at a definite distance from
+every one of them.</p>
+<hr />
+<h2>8. Where to read next</h2>
+<p>Three, ordered. Read the first one even if you read nothing else.</p>
+<ol>
+<li><strong>Hee Oh, <em>Euclidean traveller in hyperbolic worlds</em>, Notices Amer. Math. Soc. 69 (2022),
+   1888–1897.</strong> Reference [56] of the paper. Written for a general mathematical audience, and
+   it tells the horocycle-closure story as the journey of a traveller, comparing the rigidity
+   theorem to Kronecker's theorem on lines in a torus (§4.6 above). It is the same mathematics
+   as questions 1 and 2 with none of the machinery and all of the pictures. This is your
+   fastest route to owning the geometry.</li>
+<li><strong>Hee Oh, <em>Dynamics and Rigidity through the Lens of Circles</em>,
+   <a href="https://arxiv.org/abs/2510.10771">arXiv:2510.10771</a>.</strong> The proceedings paper and the
+   source of every formula above. Sections 1–6 are the talk. §§2.4, 3.6 and 5.5 are the three
+   places where reading the paper genuinely adds something the talk could not fit. Sections 7
+   and 8 are for specialists.</li>
+<li><strong>Hee Oh, <em>Dynamics for discrete subgroups of SL₂(ℂ)</em>, in <em>Dynamics, geometry, number
+   theory — the impact of Margulis on modern mathematics</em>, Univ. Chicago Press, 2022,
+   pp. 506–566.</strong> Reference [57]. The long survey, with the proofs sketched at a level between
+   the Notices article and the research papers.</li>
+</ol>
+<p>If you want the original circle-counting theorem in its own words: Kontorovich and Oh,
+<em>Apollonian circle packings and closed horospheres on hyperbolic 3-manifolds</em>, J. Amer. Math.
+Soc. 24 (2011), 603–648 — the paper that started this line, and the one that uses the
+Descartes theorem of Exercise 6.1.</p>
+<hr />
+<h2>9. Self-test</h2>
+<details>
+<summary>1. Why is "infinite volume" the defining difficulty of this subject, rather than a technical hypothesis?</summary>
+<p>Because a Kleinian group whose limit set is an interesting fractal is never a lattice — a
+finite-volume quotient forces Λ = Ĉ, the whole sphere, with no fractal and no packing. So the
+moment the picture is interesting, vol(Γ\ℍ³) = ∞. And infinite invariant measure removes both
+Poincaré recurrence and the Birkhoff ergodic theorem, which are the hypotheses under which
+every finite-volume counting, equidistribution and orbit-closure theorem was proved. Both
+halves of the standard toolkit vanish at once.</p>
+</details>
+<details>
+<summary>2. What is the finite measure hiding inside the infinite one, and why does it exist?</summary>
+<p>The <strong>Bowen–Margulis–Sullivan measure</strong> on the frame bundle, supported on the vectors both of
+whose geodesic endpoints lie in the limit set — equivalently, the directions along which the
+geodesic stays bounded in both time directions. Its support projects into the convex core.
+Sullivan proved |m^BMS| &lt; ∞ for geometrically finite Γ; for convex cocompact groups this is
+immediate from compactness of the core, and with cusps it is a real theorem about cusp
+geometry. It is the object that replaces "vol(X) &lt; ∞" in every proof, and it appears in the
+denominator of every constant in the talk.</p>
+</details>
+<details>
+<summary>3. State the relation between δ, orbit growth, and Hausdorff dimension, and say why it is surprising.</summary>
+<p>δ is defined as the exponential growth rate of a Γ-orbit inside ℍ³:
+δ = limsup_T (1/T) log #{x ∈ Γo : d(x,o) ≤ T}. The theorem of Patterson and Sullivan is that
+<strong>δ = dim(Λ)</strong>, the Hausdorff dimension of the limit set on the boundary sphere. It is
+surprising because it equates a growth rate measured in the interior with a fractal dimension
+measured at infinity — a dynamical quantity with a geometric one. In thermodynamic terms it is
+"free energy = dimension". For Apollonian packings δ_A ≈ 1.3057, the same for every such
+packing.</p>
+</details>
+<details>
+<summary>4. What is the Patterson–Sullivan measure, in one line, and why does it exist only at s = δ?</summary>
+<p>It is the unique Γ-conformal probability measure of dimension δ: the unique ν on Ĉ with
+dγ_*ν/dν(ξ) = e^{δ·β_ξ(o,γo)} for all γ ∈ Γ, where β is the Busemann function. It is supported
+on Λ. It is a Gibbs state: the transformation law is a DLR condition prescribing how the
+measure responds to the symmetry group in terms of an energy. It exists only at the critical
+exponent because δ is exactly the abscissa of convergence of the associated Poincaré series —
+below it the construction diverges, above it collapses. This is a phase transition, and ν is
+the state at the critical point.</p>
+</details>
+<details>
+<summary>5. State the circle-counting theorem and say where each of its three pieces comes from.</summary>
+<p>For 𝒫 a locally finite circle packing invariant under a geometrically finite Γ with finitely
+many Γ-orbits (and no infinite bouquet of tangent circles when δ ≤ 1),</p>
+<h1>{C ∈ 𝒫 : rad(C) ≥ t, C ∩ R ≠ ∅} ~ c_𝒫 · ω_Γ(R) · t^{−δ} as t → 0.</h1>
+<p>The <strong>exponent</strong> δ = dim Λ comes from orbit growth alone. The <strong>measure</strong> ω_Γ is the
+Patterson–Sullivan measure reweighted by the stereographic factor (|z|²+1)^δ, and it says the
+small circles equidistribute on the fractal. The <strong>constant</strong> is c_𝒫 = sk_Γ(𝒫)/|m^BMS| — the
+total skinning mass of the planes over the packing, divided by the total BMS mass. The
+exponent is a property of the group; the constant is a property of how the specific planes sit.</p>
+</details>
+<details>
+<summary>6. What is a round Sierpiński carpet, what does it mean about the manifold, and what does the dichotomy say?</summary>
+<p>Λ is a round Sierpiński carpet if Ĉ − Λ is infinitely many <strong>round</strong> open discs with
+<strong>mutually disjoint closures</strong>. Geometrically, these are exactly the manifolds whose convex
+core has compact, <strong>totally geodesic</strong> boundary — each Γ-orbit of a disc is one boundary
+component, and roundness is precisely total geodesy. The dichotomy (McMullen–Mohammadi–Oh,
+extended with Benoist): for any <strong>separating</strong> circle C — one with limit points inside and
+outside — ΓC is either closed or dense in 𝒞_Λ. Non-separating circles have a third,
+easily-described behaviour. Equivalently: any geodesic plane meeting the interior of the
+convex core is either closed or dense there.</p>
+</details>
+<details>
+<summary>7. What is thick recurrence, and where do the returns come from?</summary>
+<p>A compact set 𝓡 ⊂ Γ\G together with κ &gt; 1 such that for every x ∈ 𝓡 and every s &gt; 0 there is
+t with <strong>s &lt; |t| &lt; κs</strong> and x·u_t ∈ 𝓡 — a return in every multiplicative window, at every
+scale, not merely infinitely often. It replaces Poincaré recurrence, which is unavailable.
+The returns come from the fractal: for a Sierpiński carpet limit set, every separating circle
+meets Λ in a uniformly perfect Cantor set (no disproportionately large gaps at any scale),
+and since the visual image of a horocycle on the boundary is a circle, each point of that
+Cantor set contributes a return time. No empty scale in the fractal ⟹ no empty scale in the
+return times. The technical input is the positive modulus property of the limit set.</p>
+</details>
+<details>
+<summary>8. Why does the closed-or-dense dichotomy break in higher dimensions, and what replaces it?</summary>
+<p>Because there are proper sub-spheres between a circle and the whole boundary sphere. If C ⊂ Σ
+for a k-sphere Σ with ΓΣ closed, then ΓC‾ is trapped inside ΓΣ and cannot be dense.
+Intermediate closures are genuinely possible. Lee–Oh prove these are the only new cases: for
+convex cocompact manifolds with Fuchsian ends and C meeting Λ in more than two points, there
+is a sphere S with ΓC‾ = {D ∈ 𝒞_Λ : D ⊂ ΓS}. S = C gives closed, S = the whole sphere gives
+dense. The new proof ingredient is an <strong>avoidance theorem</strong> — thick recurrence times that also
+stay away from every intermediate closed orbit — plus an induction over intermediate spheres.</p>
+</details>
+<details>
+<summary>9. State cross-ratio rigidity and explain why the hypothesis is much weaker than it looks.</summary>
+<p>If f is the boundary map of a discrete faithful representation (with Ω having at least two
+components and neither Λ nor f(Λ) contained in a circle) and f sends every quadruple of points
+of Λ with <strong>real</strong> cross-ratio to a quadruple with <strong>real</strong> cross-ratio, then f extends to a
+Möbius transformation — so the representation is a conjugation. The hypothesis is weak because
+(i) f is only defined on Λ, so nothing is asked about whole circles, only about the part of
+each circle that Λ sees; and (ii) it asks preservation of the <em>property</em> Im = 0, not of the
+<em>value</em> of the cross-ratio. Preserving values would essentially be the definition of Möbius;
+preserving a single-bit, codimension-one property is a genuine hypothesis. The accompanying
+dichotomy: either f straightens every circular slice, or the set it straightens has empty
+interior in Λ and Patterson–Sullivan measure zero.</p>
+</details>
+<details>
+<summary>10. What is a self-joining, and why does going up in rank help?</summary>
+<p>Γ_ρ = {(γ, ρ(γ)) : γ ∈ Γ}, the graph of the representation, a discrete subgroup of
+PSL₂(ℂ) × PSL₂(ℂ) acting on ℍ³ × ℍ³. Its limit set is the graph {(ξ, f(ξ))} of the boundary
+map. It helps because of one observation: <strong>ρ is algebraic ⟺ Γ_ρ is not Zariski dense in the
+product</strong>. So a rigidity question becomes a Zariski-density question, and Zariski density is
+the hypothesis under which the ergodic theory of diagonal flows applies. The cost is that the
+product has a two-dimensional diagonal subgroup, so there is a flow per direction, the
+dynamics depends on the direction, and the single exponent δ is replaced by Quint's concave
+growth indicator on a cone.</p>
+</details>
+<details>
+<summary>11. Why does the torus-counting exponent depend on the ordering, and why did this not arise for circles?</summary>
+<p>Because in higher rank the growth of the group is direction-dependent. Counting tori by
+volume ∏ rad(C_i) gives an exponent δ_{ρ,vol}; counting by ∏ rad(C_i)^{κ_i} gives
+limsup (1/t) log #{γ ∈ Γ : Σ κ_i d(ρ_i(γ)o,o) ≤ t}, a different number for different weights.
+Each choice of weights picks out a different direction in the limit cone as dominant. This did
+not arise for circles because rank one has a one-dimensional cone: there is only one direction,
+so only one exponent, and it looks intrinsic. It never was. The honest object is Quint's
+concave growth indicator on the cone; any single exponent is one tangent line to it.</p>
+</details>
+<hr />
+<h2>10. Note on the tutorial process</h2>
+<p><strong>Difficulty against reputation: matched, and the split is real.</strong> Sarnak's introduction says
+Oh's work "on homogeneous dynamics in the infinite volume setting have shaped the modern
+subject", and that is precisely the lecture. No Kontorovich-style inversion. The split I
+assigned tracks a real seam in the talk itself: everything before the self-joining
+construction lives on one hyperbolic manifold with one flow and one exponent; everything
+after lives on a product with a cone of flows and a growth-indicator function. The paper's own
+sections 7 versus 8 mirror the same seam exactly.</p>
+<p><strong>How much mathematics survived the captions: none.</strong> Not one formula, not one exponent, not
+one constant. This was a slide talk whose written version has 24 figures, and the caption
+track carries narration only. Everything displayed above is from arXiv:2510.10771v2. What the
+transcript supplied and the paper did not: the snow metaphor, the traveller spending 0% of her
+time in compact sets, the sesame-oil-in-soy-sauce photograph, the wild forest, the double
+emphasis on preserving the <em>property</em> rather than the <em>value</em> of the cross-ratio, and the
+statement of the cusp gap in §4.10. The two sources are close to complementary.</p>
+<p><strong>Name corrections.</strong> Verified against the paper's text or its 85-entry bibliography unless
+marked.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"If Bou-Rabee"</td>
+<td><strong>Yves Benoist</strong></td>
+<td>paper [3], Benoist–Oh, <em>ETDS</em> 42 (2022); see note below</td>
+</tr>
+<tr>
+<td>"Kurt McMullen"</td>
+<td><strong>Curtis (Curt) T. McMullen</strong></td>
+<td>paper [50]–[53]</td>
+</tr>
+<tr>
+<td>"Minji Li" / "Minju"</td>
+<td><strong>Minju Lee</strong></td>
+<td>paper [43], [19], [20]</td>
+</tr>
+<tr>
+<td>"Semyon"</td>
+<td><strong>Samuel (Sam) Edwards</strong></td>
+<td>paper [20], Edwards–Lee–Oh; moderate confidence</td>
+</tr>
+<tr>
+<td>"Dong Yeol Kim"</td>
+<td><strong>Dongryul M. Kim</strong></td>
+<td>paper [34], [35], [36]</td>
+</tr>
+<tr>
+<td>"Young-Chan Zeng"</td>
+<td><strong>Yongquan Zhang</strong></td>
+<td>paper [84], [85]</td>
+</tr>
+<tr>
+<td>"Burger-Rubel measure"</td>
+<td><strong>Burger–Roblin measure</strong></td>
+<td>paper §7.3, [7], [69]</td>
+</tr>
+<tr>
+<td>"alpha's first theory"</td>
+<td><strong>Ahlfors–Bers theorem</strong></td>
+<td>paper §3.2</td>
+</tr>
+<tr>
+<td>"Mostow's Prasad"</td>
+<td><strong>Mostow–Prasad</strong></td>
+<td>paper Thm 5.1, [55], [65]</td>
+</tr>
+<tr>
+<td>"Klein Young group" (throughout)</td>
+<td><strong>Kleinian group</strong></td>
+<td>paper §2.2</td>
+</tr>
+<tr>
+<td>"Nearoski"-style garbles absent here — but "Hong Wang's notation"</td>
+<td><strong>Hong Wang's lecture</strong> (reconstructed)</td>
+<td>not in paper</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>On "If Bou-Rabee".</strong> This is the one correction I want to justify, because it is not a
+spelling fix. Oh says the round-Sierpiński-carpet dichotomy was "first proved in joint work
+with Curt McMullen and Amir Mohammadi in the case when there's no cusp, and in this generality
+in joint work with If Bou-Rabee." The paper's Theorem 3.1 carries exactly that two-stage
+attribution: [52] = McMullen–Mohammadi–Oh (convex cocompact), [3] = <strong>Benoist</strong>–Oh (extended
+to all geometrically finite). No "Bou-Rabee" appears anywhere in the bibliography, and a web
+search for any Bou-Rabee/Oh collaboration on Kleinian orbit closures returns nothing. The
+talk postdates the paper's v2 by four months, so a brand-new collaborator was possible in
+principle; I checked and found none. The correction is by content match, and I have flagged
+it here rather than making it silently.</p>
+<p><strong>Substantive caption errors corrected in the text, not just spellings.</strong> Three, and all three
+change meaning:</p>
+<ul>
+<li><strong>"This was the Cannon Conjecture, which is now a theorem"</strong> — said of the statement that
+  every finitely generated Kleinian group can be approximated by geometrically finite ones.
+  That statement is the <strong>Bers–Sullivan–Thurston density conjecture</strong> (theorem: Namazi–Souto,
+  Ohshika, building on many others), which is what the paper names. The Cannon conjecture is a
+  different statement, about hyperbolic groups with 2-sphere boundary. Corrected in §3.4.</li>
+<li><strong>"its parabolic measure is zero"</strong> — of the set of circular slices a non-Möbius boundary map
+  straightens. The paper's Theorem 5.7 says ν(Λ_f) = 0 with ν the <strong>Patterson–Sullivan</strong>
+  (geometric) measure, and §5.1 says the set has zero δ-dimensional Hausdorff measure.
+  "Parabolic" is a live technical word in this subject (parabolic elements, parabolic fixed
+  points), so this one is actively misleading. Corrected in §4.7.</li>
+<li><strong>"round Sierpiński gasket"</strong> — used several times where the defined object is a round
+  Sierpiński <strong>carpet</strong>. The gasket is a different fractal, and "Apollonian gasket" is used
+  correctly elsewhere in the same talk, so the two coexist in the transcript. Corrected
+  throughout.</li>
+</ul>
+<p><strong>Six places where the talk and paper differ, all resolved in favour of the paper.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Talk</th>
+<th>Paper</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bouquet hypothesis</td>
+<td>assumed always</td>
+<td>assumed only when δ ≤ 1</td>
+<td>§4.1</td>
+</tr>
+<tr>
+<td>Circles counted in a region</td>
+<td>"contained in R"</td>
+<td>"C ∩ R ≠ ∅"</td>
+<td>§4.1</td>
+</tr>
+<tr>
+<td>The counting measure</td>
+<td>"Patterson–Sullivan measure"</td>
+<td>ω_Γ = (|z|²+1)^δ · ν_o</td>
+<td>§4.1</td>
+</tr>
+<tr>
+<td>Geometrically finite</td>
+<td>core has finite volume</td>
+<td><strong>unit neighbourhood</strong> of core has finite volume</td>
+<td>§3.4</td>
+</tr>
+<tr>
+<td>Higher-dim orbit closures</td>
+<td>C meets Λ in "at least two points"</td>
+<td>"<strong>more than</strong> two points"</td>
+<td>§4.6</td>
+</tr>
+<tr>
+<td>Torus size</td>
+<td>"area"</td>
+<td>"volume", vol(T) = ∏ rad(C_i)</td>
+<td>§4.9</td>
+</tr>
+</tbody>
+</table></div>
+<p>None is a slip by the speaker in a way that damages the talk; four of the six are the ordinary
+compression of a hypothesis for a live audience. The δ ≤ 1 one is worth knowing because it
+means the Apollonian case (δ_A ≈ 1.3057 &gt; 1) never needs the hypothesis at all.</p>
+<p><strong>Reconstructed, and what would verify each.</strong></p>
+<ul>
+<li><strong>The Poincaré series Σ_γ e^{−s d(o,γo)} as a partition function</strong> (§2.3). Neither source
+  writes the series. The paper gives δ as a limsup of log-counts and Quint's ψ_ρ as an
+  abscissa of convergence of an explicit series, which is the same object; the identification
+  of the series with a partition function and of ν_o with a Gibbs state is my framing.
+  Standard in the thermodynamic-formalism literature. Verify against any account of
+  Patterson's original construction, where ν_o is built as a weak limit of orbit sums
+  normalized by the series as s ↓ δ.</li>
+<li><strong>Exercise 6.1(a) and (d)</strong> — the Descartes recursion d′ = 2(a+b+c) − d and the identification
+  of the four reflections with the Apollonian group. My computation. The paper names the
+  Descartes circle theorem (fn. 4) and the Descartes quadratic form (Cor. 7.8) but writes
+  neither. Verify (d) by checking Q is invariant under the substitution directly.</li>
+<li><strong>Exercise 6.2</strong> — the heuristic rad(gC₀) ≈ e^{−d(o,gC₀†)} and the exponent derivation. Mine;
+  Oh gestures at it in one sentence. Verify against Oh–Shah, Invent. Math. 187 (2012).</li>
+<li><strong>Exercise 6.3</strong> — the inscribed-angle proof. Standard; the paper states the fact without
+  proof.</li>
+<li><strong>The comparison table in §2.3</strong> mapping statistical mechanics onto this subject. The
+  right-hand column is all sourced; the left-hand column is my labelling.</li>
+<li><strong>"Hong Wang's notation"</strong> (transcript) is almost certainly "Hong Wang's <strong>lecture</strong>" — Oh
+  says "we already heard about the terminology Hausdorff dimension from Hong Wang's
+  notation", which reads as a reference to an earlier ICM 2026 talk. Not load-bearing; I did
+  not use it.</li>
+</ul>
+<p><strong>Could not verify.</strong></p>
+<ul>
+<li><strong>"Semyon"</strong> for the torus-counting collaborator. The paper's [20] is Edwards–Lee–Oh, so the
+  person is <strong>Samuel Edwards</strong>, and the surname Lee in the same sentence matches. But "Semyon"
+  is not a plausible caption garble of "Sam Edwards" the way the other corrections are, and I
+  have no independent confirmation of what she said. Listed at moderate confidence.</li>
+<li><strong>"Laurie Sullivan"</strong>, credited with the sesame-oil-in-soy-sauce photograph and described as
+  "Sullivan's eldest daughter". Not in the paper, not findable. I kept the anecdote (it is
+  charming and it is hers) and have not asserted the name in the body.</li>
+<li><strong>The exact form of the Apollonian orbit-closure conjecture as spoken.</strong> She says "for any
+  separating circle for the Apollonian gasket, the orbit is either closed or dense"; the
+  paper's Conjecture 3.6 says closed or dense <strong>in 𝒞_Λ</strong>. I used the paper's ambient space.</li>
+</ul>
+<p><strong>Gaps marked in place, with impact ratings.</strong></p>
+<ol>
+<li><strong>The avoidance theorem and inductive scheme</strong> (§4.6). <strong>Impact: low.</strong> Both sources give
+   one paragraph of motivation and no internals. The consequence is fully stated; nothing else
+   in the talk depends on the mechanism.</li>
+<li><strong>The Lie theory of higher rank</strong> — Weyl chambers, Cartan projection, limit cone, growth
+   indicator, Anosov subgroups (§4.8). <strong>Impact: moderate.</strong> I state the results and name the
+   objects and decline to teach them. It costs the reader §§8.1–8.5 of the paper. It costs
+   nothing in the four questions, because every statement of the four questions is expressible
+   without them. This is the AGCat decision from the Gaitsgory tutorial applied again: faking
+   depth here would produce exactly the smooth fabrication that is worse than an acknowledged
+   hole.</li>
+<li><strong>Paper sections 7 and 8 generally</strong> — exponential mixing, Dolgopyat's method, Markov
+   sections, uniform exponential mixing over congruence covers, the affine sieve, temperedness
+   of L²(Γ\G). <strong>Impact: low for this talk, structural for the subject.</strong> The talk mentions
+   local mixing in four sentences and never gets to any of the rest. I compressed §§7–8 to
+   the local-mixing statement, the cusp gap, and one paper-only paragraph (§4.11) on the
+   drunken-bird dichotomy, which is Pólya recurrence and worth the space. A reader who wants
+   the affine sieve — including the theorem that an integral Apollonian packing has
+   ≪ T^{δ_A}/log T circles of prime curvature ≤ T — should go to paper §7.5.</li>
+</ol>
+<p><strong>Where the paper is stronger than the talk.</strong> Two places. First, the counting constant: the
+talk says only "this geometric invariant becomes the skinning constant"; the paper gives
+c_𝒫 = sk_Γ(𝒫)/|m^BMS| outright, and that formula is the single most illuminating line in
+either source. Second, the thick-recurrence statement: the talk describes it qualitatively,
+the paper gives the quantifiers (s &lt; |t| &lt; κs, all s &gt; 0), and the quantifiers are the content.
+Both are quoted above with the paper as source.</p>
+<p><strong>On the paper's version and date.</strong> The arXiv listing shows v1 submitted 12 October 2025 and
+v2 on 13 April 2026; the HTML title block shows no misleading <code>\today</code> artefact in this case,
+but the version stamp reads <code>arXiv:2510.10771v2 [math.DS] 13 Apr 2026</code> and that is the version
+I read and cite. I found no invalid identifiers or broken references in the bibliography.</p>
+<p><strong>One process note on infrastructure, not mathematics.</strong> My first download of the paper's HTML
+was silently overwritten by a concurrent agent writing a different paper to the same filename
+in the shared scratchpad directory, and a first pass of my text extraction also swallowed
+every formula containing a <code>&lt;</code> character — which is exactly the formulas stating constants and
+hypotheses (<code>0 &lt; c_𝒫 &lt; ∞</code>, <code>δ ≤ 1</code>). Both were caught before anything was written. Both are
+worth naming, because a silent truncation at a <code>&lt;</code> would have removed precisely the constants
+this tutorial is built around.</p>
+</div>
+</body>
+</html>

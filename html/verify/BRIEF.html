@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verifier brief — ICM 2026 tutorial provenance check</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verifier brief — ICM 2026 tutorial provenance check</h1>
+<p>You verify ONE tutorial. You do not rewrite it. You do not edit it. You never run git.</p>
+<h2>Your two files</h2>
+<ul>
+<li>Tutorial: <code>summaries/{SLUG}.md</code></li>
+<li>Transcript: path is in the tutorial's own front-matter <code>transcript:</code> key (relative to <code>summaries/</code>).</li>
+</ul>
+<h2>What you check — PROVENANCE, not peer review</h2>
+<p>You cannot check whether the mathematics is TRUE; you do not have the papers.
+You check whether each claim has a source. Four questions only:</p>
+<ol>
+<li><strong>Speaker-attributed claims.</strong> When the tutorial says the speaker said/showed/proved
+   something, does the transcript support it? Auto-captions destroy proper nouns and all
+   formulas — absence of a mangled name is NOT evidence. Absence of the whole IDEA is.</li>
+<li><strong>External claims.</strong> Every theorem, rate, constant, or definition NOT in the transcript
+   must carry a citation (arXiv id, DOI, or author+title+year). An uncited external claim
+   is the dangerous class. Flag every one.</li>
+<li><strong>Front-matter title vs transcript opening.</strong> Read the first ~80 lines of the transcript.
+   Does the announced subject match the title? (A previous tutorial had a wrong title from
+   the video listing; this check exists because of that.)</li>
+<li><strong>Honest gaps.</strong> The tutorial marks unrecoverable spots with <code>[Gap: ...]</code>. Are the gaps
+   where the transcript really is silent? Did it silently fill a gap instead of marking it?</li>
+</ol>
+<h2>Hard rule</h2>
+<p>Never invent mathematics to test mathematics. If you cannot tell, write "cannot determine"
+and say what would settle it.</p>
+<h2>How to write your report — WRITE AS YOU GO</h2>
+<p>Create <code>verify/{SLUG}.md</code> after you finish reading the FIRST major section, then APPEND to it
+as you read on. Do not hold the report in memory until the end. If your session dies, a
+partial file on disk is the whole point.</p>
+<p>Report format:</p>
+<pre><code># Verification — {SLUG}
+verdict: CLEAN | MINOR | MAJOR
+uncited_external_claims: N
+unsupported_speaker_claims: N
+title_check: PASS | FAIL — &lt;one line&gt;
+gap_honesty: PASS | CONCERN — &lt;one line&gt;
+
+## Findings
+(one block per finding: `summaries/{SLUG}.md:LINE`, what it claims, why it is a problem,
+ what would settle it. Most-severe first. Write "none" if none.)
+
+## What I could not check
+(list)
+</code></pre>
+<p>Verdicts: MAJOR = an invented theorem/formula, a wrong title, or a fabricated citation.
+MINOR = uncited-but-plausible claims, thin sections, small inconsistencies.
+CLEAN = every external claim cited, every speaker claim supported, title correct.</p>
+<p>When the report is complete, write the single word <code>done</code> into <code>verify/{SLUG}.DONE</code>.</p>
+<h2>What you return to the caller</h2>
+<p>At most 400 words: the verdict line, the counts, and the 3 worst findings. Nothing else.
+The full detail lives in your file, not in your reply.</p>
+</div>
+</body>
+</html>

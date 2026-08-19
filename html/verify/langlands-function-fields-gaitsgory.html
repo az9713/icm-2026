@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — langlands-function-fields-gaitsgory</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — langlands-function-fields-gaitsgory</h1>
+<p>verdict: MINOR
+uncited_external_claims: 1
+unsupported_speaker_claims: 0
+title_check: PASS — the introducer says "who will tell us about local and global Langlands conjectures over function fields", and the paper <code>arXiv:2509.24902</code> carries the same title.
+gap_honesty: PASS — 3 <code>[Gap:</code> / discrepancy blocks, and where the talk and the paper disagree the file quotes <strong>both</strong> rather than choosing.</p>
+<p>Round 2, 2026-08-18. Written and self-verified by the session that produced it; <strong>not</strong> in the
+15-file tier 3 run. First independent check. Method: full read of
+<code>summaries/langlands-function-fields-gaitsgory.md</code> against
+<code>transcripts/aeZ0TpVvM5w_transcript.txt</code>. Companion <code>arXiv:2509.24902</code> not fetched.</p>
+<p>This file is unusual in the corpus: the captions carry <strong>no formula at all</strong>, and the file
+says so at <code>:56</code> and then sources every displayed statement to a numbered paper section. That
+makes the provenance question sharper than usual and, on this reading, it is answered well.</p>
+<h2>Findings</h2>
+<h3>1. <code>summaries/langlands-function-fields-gaitsgory.md:1548</code> — the citation checker now fails on this file, and the failure is benign</h3>
+<p><code>python verify/check_citations.py</code> exits 1 with:</p>
+<pre><code>100 arXiv IDs, 4 DOIs; 1 unresolved
+  UNRESOLVED arXiv:2020.02998
+    cited at summaries\langlands-function-fields-gaitsgory.md:1548
+</code></pre>
+<p>That is <strong>not a defect in the tutorial</strong>. Lines <code>:1548-1550</code> read:</p>
+<blockquote>
+<p>"<strong>One error found in the paper.</strong> Its bibliography lists [Zhu1] as arXiv:2020.02998, not a
+valid identifier (there is no month 20). The correct one is <strong>arXiv:2008.02998</strong> — X. Zhu,
+<em>Coherent sheaves on the stack of Langlands parameters</em>, 7 August 2020."</p>
+</blockquote>
+<p>The file is quoting a bad identifier <strong>in order to correct it</strong>, and its reasoning is right:
+arXiv ids are YYMM and there is no month 20.</p>
+<p><strong>Consequence for the repo, and it matters after close-out.</strong> <code>HANDOFF.md</code> says "Exit 1 means
+a citation stopped resolving." That is now false — exit 1 is the steady state, and a future
+reader will either chase a non-bug or start ignoring the checker. Either the string needs an
+allowlist in <code>check_citations.py</code> with a comment pointing here, or the HANDOFF line needs to
+change. Recorded in <code>verify/INTERNAL-CONSISTENCY.md</code> and in the round-2 summary.</p>
+<h3>2. <code>summaries/langlands-function-fields-gaitsgory.md:487</code> — the file overrules the speaker on an attribution, correctly and in the open</h3>
+<p>The talk says, verbatim: "the idea to consider this category goes back to <strong>Jean-Pierre
+Serre 40 years ago</strong>, and then it came back to prominence 10 years ago in the work of David
+Ben-Zvi, David Nadler."</p>
+<p>The file keeps Ben-Zvi and Nadler and <strong>replaces Serre with G. Laumon</strong>, citing the paper's
+Remark 1.1.8 and a 1987 <em>Duke</em> paper, with the substitution flagged in place and again in the
+process note.</p>
+<p>I am recording this as a finding not because it is wrong — the paper outranks a caption
+track, and this is exactly what the file should do — but because it is the only place in the
+five files I checked in round 2 where a tutorial <strong>contradicts an audible, unmangled
+statement by the speaker</strong>. "Jean-Pierre Serre" is not a caption corruption; it is what the
+transcript says. A reader watching the video will hit the mismatch. The flag is there and it
+is honest; a one-clause note that the speaker <em>said</em> Serre would close it completely.</p>
+<h3>3. <code>summaries/langlands-function-fields-gaitsgory.md:1160-1163</code> — an uncited pointer</h3>
+<p>"The full classification of isocrystals (<strong>Dieudonné–Manin</strong> for GL_n, <strong>Kottwitz's B(G)</strong> in
+general) is not discussed in either the talk or the paper." Correct as far as I know, and
+explicitly labelled as outside both sources — but it is an external claim with no citation,
+in a file where everything else carries a locator.</p>
+<h2>What I checked and found supported</h2>
+<p>Every one of these is in the caption track, verbatim or near-verbatim:</p>
+<ul>
+<li>The opening self-deprecation: "It may be too technical the way I prepared it. So I'll go
+  twice as slow, three times as slow as planned and I might not be able to cover even the
+  third of what's in the slides."</li>
+<li><strong>The Fourier anchor</strong>, which the file makes its §2 and which is the speaker's own: "what's
+  relevant here is really ℤ and 𝔾_m … some algebraic version of Fourier transform. And in
+  general, the phenomenon of Langlands correspondence should be seen as some sort of
+  <strong>non-abelian Fourier transform</strong>."</li>
+<li>The epoch joke's best line: "as society progressed, humans realized that if some objects
+  can be organized in a family, they should."</li>
+<li>"It's not quite a scheme, it's not algebraic variety, it's what's called a <strong>stack</strong>."</li>
+<li>The étale fundamental group "as was defined by Grothendieck and Ray[naud] in the '60s" —
+  the file's Raynaud reconstruction is marked as such.</li>
+<li>The ℚ̄_ℓ passage, near-verbatim, including "we have to take coefficients to be something
+  that has something pro-finite inside".</li>
+<li><strong>Theorem 1 and the nine authors</strong>: "it's the result of this series of papers by nine
+  authors. I should say the names. I'm sure I'll omit somebody. Let me just not say the names
+  because <strong>I'm too jet-lagged</strong>." The file reports the jet lag and declines to guess a
+  nine-name list. That is the right call — AGKRRV has six authors and Gaitsgory–Raskin two,
+  overlapping, so nine cannot be reconstructed from the repo.</li>
+<li>The discoverers of LS^restr: "independently by <strong>Peter Scholze</strong>, <strong>Shen Wei Zhu</strong> [Xinwen
+  Zhu] and the authors of this paper. So, it's <strong>Arinkin, myself, Kazhdan, Raskin, Rosenblum,
+  Varshavsky</strong>" — the file's six-name list is the speaker's own.</li>
+<li>The Hecke refusal: "I'm not going to say what Hecke operators are in this talk because it
+  would take me just too long." The file's <code>[Gap:</code> at §4.6 is exactly this.</li>
+<li>For 𝔾_m, "this Bun G is just a Picard stack, and the subcategory consists of sheaves that
+  are locally constant."</li>
+<li>The isocrystal origin: "I first realized it discussing with <strong>Vincent Lafforgue</strong> and then
+  it was rediscovered by <strong>Fargues and Scholze</strong>, but in the analytic framework."</li>
+<li><strong>Arnaud Eteve</strong> ("Arnaud Etam") for the finite-dimensional analogue.</li>
+<li>The Conjecture 7 peroration, verbatim: "this conjecture seven in some sense is the ultimate
+  answer to the Langlands program over function fields. Langlands asked just describe the
+  space of automorphic functions in terms of the spectral side. We can't quite do this. We
+  performed a bunch of modifications, but at the end of the day we arrive at this conjecture
+  seven."</li>
+<li>Independent proposal by "Shin Won Joon" = <strong>Xinwen Zhu</strong>, and the closing line "<strong>And
+  miraculously I've covered all my material. I wasn't even intending to.</strong>" — both verbatim,
+  and both the last words on the tape.</li>
+<li>"Park Shultz conjecture" = <strong>Fargues–Scholze</strong>, which the file records in its caption note.</li>
+</ul>
+<p><strong>The talk-versus-paper discipline holds throughout.</strong> Where the paper says more than the
+podium — the characteristic-0 and GL_n cases of Theorem 1.4.6 (§4.4), the Chan–Kaletha–Zhu
+independent method (§4.12), the Bernstein-centre caveat of Remark 2.6.11 (§4.11 and §7.4) —
+the file says so in the sentence. Where the two constructions of Autom^enh differ, §4.13
+quotes <strong>both</strong> and states what would settle it. That is the correct handling of a
+discrepancy and it is rare in this corpus.</p>
+<h2>Exercises re-derived</h2>
+<p>Both worked solutions were re-derived by hand. <strong>Both correct.</strong></p>
+<ul>
+<li><strong>§6.1 the 𝔾_m case.</strong> Funct_c(ℤ) has basis {δ_n} and countable dimension; δ_n ↦ tⁿ is a
+  bijection onto ℚ̄_ℓ[t,t⁻¹] = 𝒪(𝔾_m); ℚ̄_ℓ^× is uncountable, so no isomorphism with a direct
+  sum indexed by it exists. All four parts correct, and the continuous-spectrum reading in
+  part (4) is a fair statement of the analogy rather than an overclaim.</li>
+<li><strong>§6.2(a) the basis-free trace.</strong> 1 ↦ Σᵢ eᵢ ⊗ eⁱ ↦ Σᵢ T(eᵢ) ⊗ eⁱ ↦ Σᵢ eⁱ(T(eᵢ)) = Σᵢ Tᵢᵢ.
+  Correct, and the list of ingredients it did <em>not</em> use is right.</li>
+<li><strong>§6.2(b) Lang's theorem and its failure.</strong> Correct in both halves, and this is the single
+  most valuable reconstruction in the file.
+  Finite case: for abelian H, h⁻¹ g Frob(h) = g·h^{q−1}; x ↦ x^{q−1} is surjective on 𝔽̄<em q_1="q−1">q^×
+  because the field is algebraically closed, so there is one orbit; the stabilizer is
+  μ</em> = 𝔽_q^×. Loop case: Frobenius acts coefficientwise and fixes t, so for
+  h = Σ aᵢtⁱ with lowest nonzero coefficient a_m, Frob(h) has lowest nonzero coefficient
+  a_m^q ≠ 0 — hence v(Frob(h)) = v(h) and v(Frob(h)/h) = 0. So v is constant on
+  twisted-conjugacy orbits, and v(t) = 1 ≠ 0 = v(1) gives more than one orbit. Lang fails.
+  The file marks the whole computation as its own — "neither the talk nor the paper works it
+  out; both simply assert that Lang's theorem fails" — and states the one step to check.
+  That is exactly right, and the step it names is the step that carries the argument.</li>
+</ul>
+<h2>What I could not check</h2>
+<ul>
+<li>The companion <code>arXiv:2509.24902</code> was not fetched. <strong>This is the heaviest such gap in the
+  corpus</strong>, because the file states outright that every displayed formula comes from the
+  paper. Specifically unverified here: Lemmas 1 and 2 (§1.5.2), Corollary 1.5.8, Theorem
+  1.2.3, Theorem 1.4.6, Conjecture 1.4.4, Remarks 1.5.4 / 1.5.9 / 2.6.11 / 3.5.10,
+  Proposition 1.5.6, the LS^restr definition at §1.3.1, and Conjectures 2.5.12 / 2.6.10 /
+  2.7.9 / 3.1.5 / 3.4.4 / 3.5.9.</li>
+<li><strong>The talk-to-paper numbering map</strong> in §4.15 is labelled a reconstruction, and I could not
+  test it: it is exactly the artefact that needs the paper.</li>
+<li>Whether the file's correction <code>arXiv:2008.02998</code> is the right identifier for Zhu's <em>Coherent
+  sheaves on the stack of Langlands parameters</em>. <code>check_citations.py</code> resolves that id
+  elsewhere in the corpus, which is weak supporting evidence, not proof.</li>
+<li>AGKRRV1 Theorems 1.4.5, 14.4.3 and 24.1.4, cited by number.</li>
+<li>Whether the mathematics is true. Unchanged: this is a provenance check, and this file is
+  the one where that limit bites hardest — it is 5/5 material stated almost entirely on the
+  authority of a paper nobody in the verification chain has opened.</li>
+</ul>
+</div>
+</body>
+</html>

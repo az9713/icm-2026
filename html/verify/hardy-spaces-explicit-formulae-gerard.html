@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — hardy-spaces-explicit-formulae-gerard</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — hardy-spaces-explicit-formulae-gerard</h1>
+<p>verdict: MAJOR
+uncited_external_claims: 4 (all biographical/historical; zero uncited external MATHEMATICAL claims)
+unsupported_speaker_claims: 0
+title_check: PASS — transcript intro announces "Hardy spaces of holomorphic functions and explicit formula for a class of integrable partial differential equations"; front matter matches (front matter pluralises "formula"-&gt;"formulae" and matches the Crossref DOI title).
+gap_honesty: CONCERN - gaps are real and marked, but one declared-unrecoverable constant (F3) was recoverable from the tutorial's own HTML route, and the B_u error (F2) is absent from the talk-vs-paper list.</p>
+<h2>Findings</h2>
+<p>Most severe first. F1 and F2 are misstated formulae; F1 drives the MAJOR verdict.</p>
+<h3>F1 — MAJOR. Misstated distorted Plancherel identity.</h3>
+<p><code>summaries/hardy-spaces-explicit-formulae-gerard.md:665</code> (§5.3)</p>
+<p>Tutorial displays, attributed to "arXiv:2601.10488, eq. (2.7)":</p>
+<pre><code>sum_{j=1}^N |&lt;f,phi_j&gt;|^2 + int_0^inf |f~^pm(lam)|^2 dlam  =  2*pi * int_R |f(x)|^2 dx
+</code></pre>
+<p>Actual (2.7), read from ar5iv HTML of 2601.10488:</p>
+<pre><code>sum_{j=1}^N |&lt;f,phi_j&gt;|^2 + int_0^inf |f~^pm(lam)|^2 dlam/(2*pi)  =  int_R |f(x)|^2 dx
+</code></pre>
+<p>The tutorial moved the 1/(2<em>pi) off the continuous integral and onto the right-hand
+side, but did NOT apply the same factor to the discrete sum. Multiplying the paper's
+identity through by 2</em>pi gives
+<code>2*pi*sum |&lt;f,phi_j&gt;|^2 + int |f~|^2 dlam = 2*pi*int |f|^2</code>.
+The tutorial's version is therefore FALSE as written: the discrete term is off by 2*pi.
+This is exactly the class of defect the tutorial's own §10 says it defended against
+(pdftotext deleting every pi). Independent cross-check: (2.2) <code>|&lt;phi_j,Pi u_0&gt;|^2 =
+-2*pi*lam_j</code> is on the paper's scale, and the tutorial reproduces (2.2) unrescaled, so
+the two displays in §5.2/§5.3 are mutually inconsistent.
+Settles it: the ar5iv HTML of 2601.10488, eq. (2.7).</p>
+<h3>F2 — Misstated Lax-pair operator B_u.</h3>
+<p><code>summaries/hardy-spaces-explicit-formulae-gerard.md:399</code> (§4.1)</p>
+<p>Tutorial: <code>B_u = i(T_{|D|u} - T_{u^2})</code> — Toeplitz operator with symbol u^2.
+Source (arXiv:2212.03139, ar5iv HTML): <code>B_u = i(T_{|D|u} - T_u^2)</code> — the SQUARE of the
+Toeplitz operator T_u. These are different operators (T_{u^2} != (T_u)^2 in general).
+The transcript agrees with the paper, not with the tutorial: Gerard says "minus the
+square of TU". So the tutorial contradicts BOTH of its sources on this display.
+Consistent with the tutorial's own account of a lossy PDF extraction; but it is not
+flagged, and §10 does not list it.</p>
+<h3>F3 — A "refused" constant that the tutorial's own stated source supplies.</h3>
+<p><code>summaries/hardy-spaces-explicit-formulae-gerard.md:557-560</code> (§4.5)</p>
+<p>Tutorial: "The underlying lemma — that [X<em>,T_b] is a rank-one operator, proportional to
+I_+(f)</em>b ... I describe rather than display that lemma: its numerical constant did not
+survive my PDF text extraction, and §13 explains why I refuse to display constants I
+could not close."
+arXiv:2212.03139, Lemma 3, in the ar5iv HTML: <code>[G,T_b]f = (i/2*pi) I_+(f) Pi b</code>.
+So (a) the constant was retrievable from HTML — the same rescue route §10 says was used
+for the other paper — and (b) the tutorial's prose says the operator is proportional to
+<code>b</code>, where the lemma has <code>Pi b</code> (the Szego projection of b). The refusal is honest in
+form but the gap was avoidable, and the prose version is imprecise.</p>
+<p><strong>F1 hole closed.</strong> The paper's own definition of the distorted Fourier transform,
+eq. (2.5), is <code>f~^pm(lam) = int_R f(x) conj(m_pm(x,lam)) dx</code> — NO prefactor — which is
+character-for-character what the tutorial gives at line 660. So the tutorial cannot be
+using a different normalization; its (2.7) is simply wrong on the discrete term.</p>
+<h3>F4 — MINOR. Silent symbol rename in Remark 2.3.</h3>
+<p><code>summaries/...:722</code> — tutorial: "the paper's Remark 2.3 gives a unimodular
+\(\beta(\lambda)\) with u^+_inf-hat = beta(lam) u^-_inf-hat". The paper writes
+<code>u^+_inf-hat(lam) = l(lam) u^-_inf-hat(lam)</code>, |l(lam)|=1. Content correct; symbol renamed
+without saying so, inside a sentence that reads as a quotation of the paper.</p>
+<h3>F5 — MINOR (deviation, not an error). Inner-product argument in the Wu identities.</h3>
+<p><code>summaries/...:629</code> — tutorial writes <code>|&lt;phi_j, u_0&gt;|^2 = -2*pi*lam_j</code> and
+<code>lam_j I_+(phi_j) = -&lt;phi_j, u_0&gt;</code>. Paper (2.2) writes <code>Pi u_0</code> in both slots. These are
+equal, because phi_j is in L^2_+ and conj(Pi u_0) is in L^2_-, which is orthogonal to it.
+Not a mathematical error; a silent deviation from a display carrying an equation number.</p>
+<h3>F6 — MINOR. Dropped provenance for X*.</h3>
+<p>The transcript sources X<em> explicitly: "this operator already appears in another paper by
+Peter Lax, which is less known, which was published in 1959 in Acta Mathematica, which is
+called translation invariance of spaces, and which characterized ... the famous Burling
+theorem". The tutorial calls X</em> "the one genuinely new operator" / "The one new object"
+(§3 heading, lines 240, 328) and never mentions Lax 1959 anywhere, including §10. The
+tutorial's framing is defensible as "new to the reader", but a speaker-given attribution
+was dropped and not listed as a cut.</p>
+<h3>F7 — MINOR. Four uncited external claims, all biographical/historical.</h3>
+<p>None mathematical. All in §10 or §2:
+- <code>:786</code> "half-wave maps ... classical continuum limit of <strong>Haldane-Shastry</strong> quantum spin
+  chains" — this replaces the caption's "Alday-Destri-Heisenberg" and is a substantive
+  identification, not a spelling fix. No source given.
+- <code>:1219</code> John Scott Russell's observation redated from the talk's 1864 to <strong>1834</strong>, Union
+  Canal near Edinburgh. Correct redating is asserted, uncited.
+- <code>:219</code> / <code>:1206</code> Claude Bardos dates "(4 April 1940 - 16 June 2026)". Precise, uncited;
+  the transcript says only "he passed away last uh in June".
+- <code>:1197</code> Alama Bronsard given as "McGill, Montreal". Transcript says only "from Quebec".
+  (Her CNRS/Nantes affiliation IS in the transcript; the McGill part is not.)</p>
+<h3>Speaker-attributed claims: 0 unsupported.</h3>
+<p>Every quotation I spot-checked appears in the transcript, lightly cleaned of disfluency
+only: "the opposite of the group photo"; "I will require all your attention because this
+is something new"; "if I renormalize by the constant, then it is"; "the constant in which
+the whole dynamics of Benjamin-Ono is hidden"; "I called it Cauchy-like because it starts
+with 1 over 2 I pi"; "Exercise. So let's do this exercise"; "we know everything in terms
+of the data"; "a crucial operator identity which expresses some compatibility between the
+shift structure of the Hardy space and the Lax pair"; "It takes several pages ...
+oscillatory integrals"; the numerics quote (verbatim); the closing-slide quote (verbatim);
+"This is the crucial condition"; "Patrick, you should apply your techniques to
+Benjamin-Ono"; "For the moment, this is completely open". The two on-slide typos Gerard
+flags ("y should be x", "I forgot the Fourier transform") are in the transcript and §10
+correctly reports suppressing them.
+Talk-vs-paper flags at :450 (H^inf vs H^1) and :409 ("if and only if") are both accurate
+against the transcript.</p>
+<h3>Verified clean against arXiv:2601.10488 (the "read in full" test)</h3>
+<ul>
+<li>Theorem 1.1 (§4.3, :441-448): hypotheses <code>u_0 in H^1</code>, <code>xu_0 in H^1</code>,
+  <code>x^2 u_0 = c_0 + v_0</code>, conclusion in H^1, AND the ordering <code>Im(p_1)&lt;...&lt;Im(p_N)</code> — all
+  match verbatim.</li>
+<li>(2.3) <code>Im p_j = |I_+(phi_j)|^2/(4pi) = 1/(2|lam_j|) &gt; 0</code> — matches exactly, every pi.</li>
+<li>(2.6) <code>u^pm_inf-hat(lam) = Pi u_0~^mp(lam)</code> — index flip correctly preserved.</li>
+<li>(3.2) soliton limit <code>i/(z - &lt;X* phi_j, phi_j&gt;)</code> — matches.</li>
+<li>(3.3) radiation limit <code>(2t)^{1/2} e^{it lam^2} Pi u(t, z-2t lam) -&gt; e^{i pi/4}/sqrt(2pi)
+  e^{i lam z} Pi u_0~(lam)</code>, weakly in L^2(0,inf) — matches, both constants.</li>
+<li>Corollary 2.2 (both iff's) — matches §5.4.</li>
+<li>The "non-trivial scattering map relates the soliton parameters" quote and the "p_j are
+  the same as t-&gt;+inf and t-&gt;-inf" claim — verbatim in the paper's §1. §5.4 accurate.</li>
+<li>The §1 quote at :118-119 ("lacks a justified inverse-scattering transform formulated as
+  any kind of Riemann-Hilbert problem, making the large-time asymptotics inaccessible to
+  the Deift-Zhou method") — CONFIRMED verbatim in the paper's Introduction.</li>
+<li>Against arXiv:2212.03139: Theorem 4 (line, :470) and Theorem 3 (torus, :502) match
+  character for character; Lemma 2 <code>[G,B_u] = -2L_u + i[L_u^2,G]</code> matches §4.5 (:544).</li>
+<li>Against arXiv:2412.13480 (§5.5): authors Yvonne Alama Bronsard, Xi Chen, Matthieu
+  Dolbeault CONFIRMED (all three caption corrections correct); title correct; abstract
+  confirms "error constant depending linearly on the final time instead of exponentially"
+  and "computational cost of the method is independent of the final time".</li>
+<li>Amick-Toland, Acta Math. 167 (1991) 107-126 CONFIRMED in the paper's bibliography.</li>
+</ul>
+<p>So the "read in full" claim holds for COVERAGE. It fails only on FORMULA FIDELITY, and at
+exactly one place: eq. (2.7).</p>
+<h3>§6 (exercises) — checked transitively, clean.</h3>
+<p>6.1 derives <code>I_+(phi_p) = -2i pi sqrt(Im p / pi)</code> and <code>|I_+|^2/4pi = Im p</code>, which closes
+against the verified (2.3). 6.2 reproduces the verified (3.2). 6.3's Fresnel factor
+<code>sqrt(pi/t) e^{i pi/4}</code> is consistent with the verified constants in (3.3). No defect.</p>
+<h2>Self-report audit</h2>
+<p>The writing agent's §10 "Note on the tutorial process" is <strong>honest in method and
+substantially complete on scope, but it under-reports in exactly the zone that failed.</strong></p>
+<p><strong>What it got right, and deserves credit for.</strong>
+- The two-paper sourcing, the DOI 403, and the unread EMS survey are all reported
+  accurately and the unread survey is explicitly not used as a source.
+- The four unresolvable names ("Sichan, Hanada, Sredin, Ola Melon") are named as
+  unresolved and omitted from the body rather than guessed. That is the right call and it
+  is visible in the transcript.
+- "Jiao He" is marked <em>(reconstructed)</em> with its anchor stated.
+- The H^inf-vs-H^1 and "if and only if" talk/paper divergences are flagged accurately.
+- The two labelled reconstructions (the O(1/t) identity, the resolvent bound) are labelled
+  in place, as claimed.
+- The 1834/1864 and 1911/1915 corrections are real corrections of real transcript errors.
+- The claim that the captions carry no mathematics is TRUE — I confirmed it; the
+  transcript has zero formulas.</p>
+<p><strong>Where it under-reports.</strong></p>
+<ol>
+<li>
+<p><strong>The headline defence is narrower than it reads.</strong> §10 says "Formulas in this document
+   are cross-checked, not transcribed once" and then that it "re-fetched the arXiv HTML of
+   arXiv:2601.10488v2 ... and confirmed <strong>the explicit formula, the soliton limit and the
+   radiation limit</strong> character by character." That is three displays. The distorted
+   Plancherel identity (2.7) and the Lax-pair operator B_u are NOT in that set, and both
+   are wrong (F1, F2). The report does not say which displays were left outside the check,
+   so a reader reasonably reads the assurance as global. <strong>This is the material
+   under-report.</strong> F1 in particular is exactly the failure mode §10 claims to have
+   defended against — a lost 2*pi — and it survived.</p>
+</li>
+<li>
+<p><strong>"Talk versus paper, where they differ. Three places" omits B_u.</strong> At §4.1 the
+   tutorial differs from the talk AND from the paper, both of which say (T_u)^2. That is a
+   fourth divergence and it is not in the list, nor anywhere in §10.</p>
+</li>
+<li>
+<p><strong>The refused constant was not actually unrecoverable.</strong> §10 says "Where a constant
+   could not be closed either way — specifically the commutator identity
+   [X*,T_b]f ~ I_+(f) b — I describe the identity and refuse to display it." But Lemma 3
+   of arXiv:2212.03139 gives it in plain HTML: <code>[G,T_b]f = (i/2pi) I_+(f) Pi b</code>. The
+   writing agent demonstrably knew the HTML rescue route (it used it on the other paper)
+   and did not apply it here. The refusal is honest about the outcome, and reporting a gap
+   is better than inventing a constant — but the report frames the gap as forced when it
+   was avoidable, and the prose paraphrase also drops the projector (b vs Pi b).</p>
+</li>
+<li>
+<p><strong>Lax 1959 is dropped silently.</strong> The transcript sources X<em> to Peter Lax, </em>Translation
+   invariant spaces<em>, Acta Math. 1959, in the same breath as introducing it. §3 presents
+   X</em> as "the one genuinely new operator" and §10's gap list does not mention the omission.</p>
+</li>
+<li>
+<p><strong>The name table's Haldane-Shastry correction is a substantive external claim, not a
+   spelling fix,</strong> and §10's own rule ("substantive caption errors ... corrected in text
+   and listed here") is applied to the 1834 and 1911 fixes but not to this one, which is
+   left in the spelling table uncited.</p>
+</li>
+</ol>
+<p><strong>Verdict on the self-report: HONEST but INCOMPLETE.</strong> No misrepresentation, no invented
+verification. But the cross-check assurance in §10 is broader than the check it describes,
+and the two formula defects (F1, F2) both fall in the untested margin — the reader is
+given no way to see that margin exists.</p>
+<h2>What I could not check</h2>
+<ul>
+<li>The ICM proceedings chapter, DOI 10.1137/25M1805497 (SIAM, HTTP 403). I confirm the
+  tutorial's account of the gap; I cannot confirm its contents, so the zero-dispersion-limit
+  remark is unverifiable beyond the transcript (which does support it).</li>
+<li>The EMS survey <em>Lectures on integrable equations of Benjamin-Ono type</em> — paywalled, no
+  arXiv version. Its existence and the 7 January 2026 date are unverified by me.</li>
+<li>Non-arXiv journal citations. My WebSearch budget for this session was exhausted, and the
+  ar5iv/HTML bibliography extraction proved unreliable (one call returned a plainly
+  fabricated Wu entry that a second call contradicted). So these remain UNVERIFIED, not
+  disputed: Wu, SIAM J. Math. Anal. 48 (2016); Sun, Comm. Math. Phys. 383 (2021);
+  Killip-Laurens-Vian, Invent. Math. 236 (2024); Gerard-Grellier, Trans. Amer. Math. Soc.
+  367 (2015) 2979-2995; Gerard-Kappeler, Comm. Pure Appl. Math. 74 (2021) 1685-1747;
+  Gerard-Lenzmann, Comm. Pure Appl. Math. 77 (2024) 4008-4062; Saut 1979; Toeplitz, Math.
+  Ann. 70 (1911); Ablowitz-Fokas, Stud. Appl. Math. 68 (1983). What would settle them: one
+  Crossref or MathSciNet lookup each.
+  (Amick-Toland, Acta Math. 167 (1991) 107-126 IS verified, from the GGM bibliography.)</li>
+<li>Whether §5.1's reconstructed O(1/t) identity is the paper's own algebra. The tutorial
+  labels it as a reconstruction and argues it is forced; I did not locate the paper's
+  §3/§6 version to compare. It is at least self-consistent and matches (3.2).</li>
+<li>Whether the tutorial's Fourier convention in §2 is Gerard's. The captions carry no
+  formulas, so the convention is unattributable either way; nothing downstream contradicts
+  it.</li>
+</ul>
+</div>
+</body>
+</html>

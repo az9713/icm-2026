@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — learning-in-games-tardos</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — learning-in-games-tardos</h1>
+<p>verdict: MINOR
+uncited_external_claims: 10 (findings 2, 3, 4 = 3; finding 5 = 4; finding 6 = 3. Of these, 4 matter: :311, :262, :524, :741.)
+unsupported_speaker_claims: 1
+title_check: PASS — the tutorial's own title is disclosed as the writing agent's invention; "carryover effect" is spoken verbatim in the transcript and the subject matches.
+gap_honesty: PASS — no inline <code>[Gap:]</code> markers, but §10 carries an explicit "Gaps, with impact ratings" list (4 items) plus a "Reconstructed" list (3 items). Different convention, not a missing one.</p>
+<h2>Method</h2>
+<p>Transcript <code>transcripts/u-ssCmb8YBo_transcript.txt</code> is a single unwrapped line, 42,870
+bytes (~440 lines wrapped at 100 cols). I read all of it, and all 1,444 lines of the
+tutorial. I re-derived every piece of arithmetic in the tutorial that the transcript does
+not carry, and I fetched all three arXiv abstracts.</p>
+<p><strong>The specific hunt — filled-in mathematics with no citation — came up largely empty.</strong>
+Every formula in the tutorial falls into one of four buckets: (a) spoken in the transcript;
+(b) arithmetic I re-derived and confirmed self-consistent; (c) attributed to a named paper
+and theorem/lemma number; (d) standard textbook material. I found no theorem statement or
+constant that is both absent from the transcript and unattributed <em>and</em> load-bearing.</p>
+<p><strong>Citation-fabrication gate: PASSED.</strong> All three arXiv ids resolve with exactly the titles
+and author lists the tutorial gives:
+- 2003.07009 — Gaitonde &amp; Tardos, <em>Stability and Learning in Strategic Queuing Systems</em>. ✔
+- 2011.10205 — Gaitonde &amp; Tardos, <em>Virtues of Patience in Strategic Queuing Systems</em>. ✔
+  Abstract contains <code>\frac{e}{e-1}\approx 1.58</code> verbatim, as §10 claims.
+- 2502.08898 — Abel, Kolumbus, Martin Duque, Palma Foster &amp; Tardos, <em>Learning in Strategic
+  Queuing Systems with Small Buffers</em>. ✔ Author list matches exactly.</p>
+<p>The 2502.08898 abstract also independently corroborates two things: the JACM 2023 journal
+version exists ("EC 2020 and JACM 2023"), and the qualitative content of §4.11 ("ensuring
+that the system is stable requires the use of timestamps and priority for older packets").</p>
+<h2>Findings</h2>
+<h3>1. §4.11 / §5 / §7.5 — a theorem that is not in the lecture is presented as lecture content</h3>
+<p><code>summaries/learning-in-games-tardos.md:694</code>, <code>:952</code>, <code>:1145</code>, <code>:1273</code></p>
+<p>Claims: "Gaitonde–Tardos Theorem 2.2: in the alternative model without timestamps, for large
+enough n there is a centrally feasible system of n queues and n servers that stays feasible
+even when λ is scaled up by Ω(n^{1/3}) ... and the system is still unstable."</p>
+<p>The transcript contains nothing of the kind. Tardos says only that timestamps make the
+internet "infinitely more efficient" (one sentence, model point 6). She never states, hints
+at, or numbers a theorem about removing age priority. Yet §4.11 sits inside "§4. The talk,
+rebuilt", and §7.5 opens "§4.11 is the most underrated fact <strong>in the lecture</strong>".</p>
+<p>It <em>is</em> attributed to a paper and theorem number, and the small-buffers abstract corroborates
+the direction qualitatively. So this is a framing problem, not a fabrication. Severity:
+moderate — it is the sole support for §7.5, one of six "what is useful to you" items.</p>
+<p>What would settle it: read Theorem 2.2 of arXiv:2003.07009 and confirm the Ω(n^{1/3}) exponent.</p>
+<h3>2. §3.4 — a hard constant with no citation on the line</h3>
+<p><code>summaries/learning-in-games-tardos.md:311</code></p>
+<p>"atomic selfish routing with affine cost functions is (5/3, 1/3)-smooth, giving
+PoA ≤ (5/3)/(1 − 1/3) = 5/2."</p>
+<p>Not spoken (she declines to give any constant from that literature). The algebra checks:
+(5/3)/(2/3) = 5/2. The result is real and standard (Christodoulou–Koutsoupias 2005;
+Awerbuch–Azar–Epstein 2005; the smoothness parameters are Roughgarden's). No citation at the
+line; §10:1418 discloses that the constant was supplied, but names no source for it.</p>
+<h3>3. §3.5 vs §4.10 — "strongly stable" is stated more strongly than the theorem it rests on</h3>
+<p><code>summaries/learning-in-games-tardos.md:320</code>, <code>:595</code>, <code>:926</code> vs <code>:619</code></p>
+<p>§3.5 and §5 both assert stability means "for every fixed r ≥ 0 there is C_r ... E[Q^r] ≤ C_r",
+and §3.5 says "That is the conclusion Pemantle–Rosenthal delivers". But the tutorial's own
+statement of Pemantle–Rosenthal at :619 gives moments only "for every 0 &lt; r &lt; p − 1". The
+transcript says merely "guaranteed to stay bounded in expectation", and the arXiv:2003.07009
+abstract likewise says only "the expected number of packets ... will remain bounded".</p>
+<p>Internal inconsistency plus a strengthening over both the podium and the abstract. Cannot
+determine whether the paper body proves all-moments; that would settle it.</p>
+<h3>4. §4.10 — the moment condition silently contradicts the speaker</h3>
+<p><code>summaries/learning-in-games-tardos.md:616</code></p>
+<p>Tutorial: "There is p &gt; 2 and θ &gt; 0 with E[|X_{t+1} − X_t|^p | ℱ_t] ≤ θ."
+Transcript: "one property is that it's sufficiently regular — concretely I think the second
+moment is bounded is good enough."</p>
+<p>p &gt; 2 is strictly stronger than "second moment". The published Pemantle–Rosenthal condition
+does require p &gt; 2, so the tutorial is almost certainly right and Tardos was loose from the
+podium. But this is a correction <em>of the speaker</em>, and §10's name-correction table and gap
+list do not mention it. Also note the citation here is "Pemantle and Rosenthal (1999)" —
+author + year, no title or journal.</p>
+<h3>5. Four bare or missing citations</h3>
+<ul>
+<li><code>:262</code> — "the bandit-feedback version EXP3.P is what the queuing papers actually invoke."
+  Not spoken; no id. The named algorithms Hedge/multiplicative-weights/EXP3.P are all absent
+  from the transcript (she says only "watch the past, randomise, weight what did well").</li>
+<li><code>:524</code> — "Balseiro &amp; Gur; Fikioris &amp; Tardos" for the budgeted-auctions literature. Surnames
+  only; no title, year, or id. Not spoken.</li>
+<li><code>:741</code> — "the elegant linear-programming-duality characterisation of the no-buffer case
+  (Fu et al. 2022)". Author + year only. Not spoken.</li>
+<li><code>:739</code> — "The paper's Lemma 1 gives the counterexample: one queue and two servers each with
+  μ = 1/2 needs λ &lt; 23/24 &lt; 1 even with full coordination." 23/24 is a precise constant the
+  transcript does not carry (she says "I have an example I'm going to skip here"). Cited by
+  lemma number only; unverifiable without the PDF.</li>
+</ul>
+<h3>6. Lower-severity uncited-but-textbook</h3>
+<p><code>:210</code> Nash's existence theorem; <code>:445</code> Brown (1951) / Julia Robinson (1951) dates;
+<code>:426–428</code> PPAD-completeness, ICM 2018 Rio, and the Rolf Nevanlinna Prize → IMU Abacus Medal
+renaming. All standard public record; none spoken with those specifics. Listed for
+completeness, not as a concern.</p>
+<h3>7. Arithmetic I re-derived and confirmed correct (no finding)</h3>
+<ul>
+<li>§4.1 / §6.1 Braess: 50/100+1 = 1.5, deviator 1.02, all-tunnel 2, PoA 4/3. Every input
+  number is spoken; the 4/3 itself is not spoken but is cited inline (Roughgarden &amp; Tardos,
+  JACM 2002) at both :377 and :986. Correct handling.</li>
+<li>§4.12(a): 1 − (3/4)³ = 37/64 ≈ 0.578 &gt; 1/2. ✔ Labelled "Reconstructed arithmetic, my own".</li>
+<li>§4.13 / §6.2: Σ_{i≥1} (1/k)(1−1/k)^{i−1}(1 − (1−1/n)^i) = 1 − (n−1)/(n+k−1) = k/(n+k−1).
+  I evaluated the geometric series independently and it is exactly right. The threshold
+  k &gt; n−1 and the resulting capacity k/n ≈ 1 = 2λ follow. ✔</li>
+<li>§6.2(e): round robin 1 − (1−1/n)^n → 1 − 1/e ≈ 0.632 vs n/(2n−1) → 1/2. ✔</li>
+</ul>
+<p>Note on §4.13: the transcript's own arithmetic is muddled — "n servers with service rate one
+in n ... the total service rate is a factor of two and the arrival rate is a half" (n × 1/n = 1,
+which is 2 × 0.5). The tutorial silently generalises to a two-parameter (k, n) family and
+cleans the arithmetic up. That is a real reconstruction and §10 does not list it.</p>
+<h2>Self-report audit</h2>
+<p><strong>Overall: honest, unusually thorough, and it under-reports four things.</strong></p>
+<p>What §10 gets right, and these are not small:
+- It discloses at line 40, in bold, that the title is the writing agent's own, and explains
+  the ICM-1990-Kyoto confusion at length. This is the opposite of the failure the brief's
+  check exists for.
+- <strong>It discloses the one genuine substantive correction to the mathematics.</strong> §10:1379–1384
+  states that the captions render the constant as "E minus one over E" = (e−1)/e ≈ 0.63,
+  observes that a capacity <em>increase</em> cannot be below 1, and gives the published value
+  e/(e−1) ≈ 1.58. I verified this against the arXiv:2011.10205 abstract, which contains
+  <code>\frac{e}{e-1}\approx 1.58</code> verbatim. The correction is right and the disclosure is exact.
+  This was the single most likely place for a silent fill-in and the agent flagged it itself.
+- The "Reconstructed" list (Braess figure, §4.12(a) arithmetic, §6.2(e) k=n case) matches
+  what I independently identified as reconstruction.
+- The "Not verified, and omitted rather than guessed" paragraph (:1386–1391) is a genuine
+  restraint note: it leaves the chair "Yuri" unidentified and attributes the ICM 2006
+  Roughgarden claim to her rather than asserting it.
+- It records a <em>negative</em> result honestly (:1428–1434): the predicted Wright overlap
+  evaporated and it says so rather than manufacturing links.</p>
+<p>What it under-reports:
+1. <strong>The §4.11 / Theorem 2.2 material is not flagged as absent from the talk.</strong> §10 has no
+   entry saying "this section is entirely from the paper, she never said it". Given §7.5
+   calls it "the most underrated fact in the lecture", this is the meaningful omission.
+2. <strong>The p &gt; 2 vs "second moment" correction is not listed.</strong> §10:1422–1425 asserts the
+   Pemantle–Rosenthal statement was "recovered verbatim from the primary papers", which
+   quietly covers it, but it is a correction of the speaker and belongs in the corrections
+   table alongside the e/(e−1) entry.
+3. <strong>The strong-stability strengthening is not listed</strong>, and it is inconsistent with the
+   tutorial's own theorem statement (finding 3).
+4. <strong>The (k, n) generalisation and cleaned-up arithmetic of the §4.13 lower bound is not in
+   the "Reconstructed" list</strong>, even though §10 does list the two smaller reconstructions
+   around it. §10:1424 puts "the lower bound" in the "recovered verbatim" bucket instead.</p>
+<p>Minor: the EXP3.P/Hedge naming (:262) and the bare "Balseiro &amp; Gur; Fikioris &amp; Tardos" and
+"Fu et al. 2022" citations are not mentioned anywhere in §10.</p>
+<p><strong>Answer to the question that sent me:</strong> the talk was genuinely clean. It is narrative-heavy
+and formula-light — Tardos states almost every number she uses out loud (100 cars, x/100,
+1.5, 2, factor 2, factor 3, 0.47, 50/50, 1/2 arrival, 1/n servers, three servers at 1/4), and
+the one constant the captions garbled is the one §10 explicitly corrects. The writing agent
+did not silently fill gaps with invented mathematics. What it did instead is import a
+substantial amount of <em>published</em> material (theorem numbers, the dual-process potential
+Φ = Σ λ_i T^i(T^i − 1), the √Φ sampling, Lemma numbers, 23/24, Ω(n^{1/3})) and weave it into
+the "talk, rebuilt" narrative without always marking the seam. That is a provenance-labelling
+weakness, not fabrication.</p>
+<h2>What I could not check</h2>
+<ul>
+<li>Whether the mathematics is <strong>true</strong>. Out of scope per the brief; I have no papers.</li>
+<li><strong>Every theorem/lemma number</strong> cited to the papers: Gaitonde–Tardos Theorems 2.1, 2.2, 3.1,
+  3.3, Assumption 3.1, Lemma 3.1; Abel et al. Theorem 1, Theorem 3, Lemmas 1, 2, 3. I
+  verified the papers exist with the stated titles and authors; I did not open the PDFs. Any
+  of these numbers could be wrong. Fetching the three PDFs would settle all of it at once.</li>
+<li>The <strong>Ω(n^{1/3})</strong> exponent (§4.11), the <strong>23/24</strong> constant (§4.12b), the potential
+  <strong>Φ = Σ_i λ_i T^i(T^i − 1)</strong> and the <strong>√Φ</strong> sampling (§4.10, §5), and the buffered
+  potential <strong>Φ = Σ_i (N_i − (½λ_i + 2δ)T)^+</strong> (§4.12c). All are internal to the papers.</li>
+<li><strong>JACM 2023, doi:10.1145/3587250.</strong> The tutorial says the ACM page returned 403; I did not
+  retry. The arXiv:2502.08898 abstract does reference "Gaitonde and Tardos (EC 2020 and JACM
+  2023)", which is independent corroboration that the journal version exists.</li>
+<li><strong>Name-correction ground truth</strong> (Gödel Prize 2012, IEEE von Neumann Medal 2019, Nevanlinna
+  → Abacus). Out of scope per the brief; I checked that each is <em>disclosed</em> in §10:1365–1379,
+  not that each is <em>accurate</em>. Cannot determine on accuracy.</li>
+<li>Whether <strong>anything on the slides</strong> contradicts the reconstruction. The video was not viewed.</li>
+<li>Two cross-links asserted at :79–84 (<code>optimization-theory-practice-wright.md</code>,
+  <code>shape-of-math-kontorovich.md</code>) — I did not open those files.</li>
+</ul>
+<hr />
+<h1>Round 2 — companion formula check, 2026-08-18</h1>
+<p>Round 1 was a transcript-and-citation-list check. This round fetched the companion —
+Gaitonde and Tardos, <em>Stability and Learning in Strategic Queuing Systems</em>, <code>arXiv:2003.07009</code>
+(EC 2020), via ar5iv — and compared every statement the tutorial attributes to it, by theorem
+number.</p>
+<p><strong>Result: every companion-attributed statement is correct, theorem numbers included.</strong> No
+change to the verdict.</p>
+<h2>Checked against <code>arXiv:2003.07009</code></h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tutorial</th>
+<th>Companion</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:566-570</code> <strong>Theorem 2.1</strong>: centrally schedulable iff <code>Σ_{i≤k} μ_i &gt; Σ_{i≤k} λ_i</code> for every k</td>
+<td>Theorem 2.1, same inequality, strict</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:571-573</code> the preprocessing caveat — "delete a maximal equal prefix of 1's from both vectors first"</td>
+<td>Theorem 2.1's own opening clause, "preprocessed so that a maximal, equal prefix of 1's is deleted from both"</td>
+<td><strong>correct</strong>, and the tutorial is the only place this caveat is recorded at all</td>
+</tr>
+<tr>
+<td><code>:588-594</code> <strong>Assumption 3.1</strong>: <code>½(1−η) Σ_{i≤k} μ_i ≥ Σ_{i≤k} λ_i</code> for all k</td>
+<td>Assumption 3.1 (Feasibility), identical</td>
+<td><strong>correct</strong>, including the direction of the inequality and the non-strictness</td>
+</tr>
+<tr>
+<td><code>:588</code> <strong>Theorem 3.1</strong>: no-regret on long windows with high probability implies strong stability</td>
+<td>Theorem 3.1</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:694-698</code> <strong>Theorem 2.2</strong>: without timestamps, for large enough n a centrally feasible system stays feasible with λ scaled up by <strong>Ω(n^{1/3})</strong>, all queues can be at Nash equilibrium every step, and the system is still unstable</td>
+<td>Theorem 2.2, verbatim including the exponent</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:698</code> "no sub-polynomial capacity factor suffices at all"</td>
+<td>"this shows that in this model, <strong>no sub-polynomial factor is possible in general</strong>"</td>
+<td><strong>correct</strong>, near-verbatim</td>
+</tr>
+<tr>
+<td><code>:1264</code> <strong>Theorem 3.3</strong> shows the result fails at <strong>½ + o(1)</strong></td>
+<td>Theorem 3.3, "satisfying Assumption 3.1 with ½ + o_n(1) in place of ½ … the system is not strongly stable"</td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:916-926</code> strong stability as <code>E[(Σ_i Q^i_t)^r] ≤ C_r</code> for every r ≥ 0, C_r independent of t</td>
+<td>Definition 2.1, with <code>Q_t := Σ_{i=1}^n Q^i_t</code></td>
+<td><strong>correct</strong></td>
+</tr>
+<tr>
+<td><code>:920-923</code> the model: one packet per queue per step, one packet per server per step, <strong>oldest timestamp</strong> served, unserved packets returned, bandit feedback</td>
+<td>§2 model, points 1-4</td>
+<td><strong>correct</strong> in every clause</td>
+</tr>
+</tbody>
+</table></div>
+<h2>One simplification the tutorial makes silently, and it is legitimate</h2>
+<p>The companion's Theorem 3.1 begins "Suppose that Assumption 3.1 holds for the <strong>dual</strong> queuing
+system". The tutorial's §4.9 and §5 drop the word <em>dual</em> and state the hypothesis directly
+about the system.</p>
+<p>That is safe, and the companion says why: the dual system tracks the <strong>age of each queue's
+oldest packet</strong> rather than its length, the two are explicitly coupled, and "strong stability
+in the standard system is <strong>equivalent</strong> to strong stability in the dual system." The tutorial
+even explains the age-tracking device on its own at <code>:632</code> ("Gaitonde–Tardos track only the age
+T^i_t of the oldest packet in each queue"). So the object is present; only the word is dropped.
+Recording it because a reader comparing the tutorial's Theorem 3.1 with the paper's will find
+the statements textually different.</p>
+<h2>What this round confirms about the round-1 finding</h2>
+<p>Round 1 flagged that the Gaitonde–Tardos result called "the most underrated fact in the
+lecture" (<code>:694</code>, <code>:952</code>, <code>:1145</code>) <strong>is not in the lecture</strong>, though it is correctly attributed
+to the paper. This round confirms the second half exactly: it is Theorem 2.2 of
+<code>arXiv:2003.07009</code>, and the tutorial states it correctly, exponent and all. The defect is
+placement, not content — the fix is one word, not a rewrite.</p>
+<h2>What this round did not check</h2>
+<ul>
+<li><code>arXiv:2011.10205</code> (Gaitonde–Tardos, <em>Virtues of Patience</em>, EC 2021), the source of the
+  <strong>e/(e−1)</strong> result at <code>:864</code> and <code>:1316</code>. Not fetched.</li>
+<li><code>arXiv:2502.08898</code>, cited inline.</li>
+<li>The Pemantle–Rosenthal moment bound. It is named in the companion at the point the tutorial
+  says it is (immediately after Theorem 3.1, "The technical tool we use to establish the
+  stability of our system in Theorem 3.1 is the following result of Pemantle and Rosenthal"),
+  so the <em>placement</em> is verified; the statement itself is not.</li>
+<li>The drift argument's Case A / Case B split, which is the tutorial's own exposition of the
+  proof rather than a quotation.</li>
+</ul>
+</div>
+</body>
+</html>

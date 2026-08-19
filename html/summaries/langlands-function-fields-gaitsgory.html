@@ -1,0 +1,1553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Local and global Langlands conjecture(s) over function fields</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Dennis Gaitsgory (Max Planck Institute for Mathematics, Bonn)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=aeZ0TpVvM5w">https://www.youtube.com/watch?v=aeZ0TpVvM5w</a></div><div><b>Companion:</b> <a href="https://arxiv.org/abs/2509.24902">https://arxiv.org/abs/2509.24902</a></div><div><b>Level:</b> 5/5 (the local half) — 4/5 (the global half)</div><div><b>Reading time:</b> ~75 min</div></div>
+<h1>Local and global Langlands conjecture(s) over function fields — Dennis Gaitsgory</h1>
+<p><strong>Field:</strong> geometric Langlands, over function fields. Algebraic geometry, derived algebraic
+geometry, and higher category theory, aimed at one very old and very concrete question in
+number theory.</p>
+<p><strong>Difficulty against your background: 5 out of 5, split.</strong> The first half — the global
+unramified story — is a hard but crossable 4. The speaker deliberately slowed down for it,
+and its skeleton is four statements you can hold in your head at once. The second half —
+the local theory — is the full 5: it runs in 2-categories, and the objects there have no
+counterpart anywhere in your training. This is the hardest talk in the playlist, and unlike
+Kontorovich it is hard for exactly the reason its reputation predicts.</p>
+<p>The speaker says so himself, twice. At the opening:</p>
+<blockquote>
+<p>"It may be too technical the way I prepared it. So I'll go twice as slow, three times as
+slow as planned and I might not be able to cover even the third of what's in the slides."</p>
+</blockquote>
+<p>And at the half-hour mark:</p>
+<blockquote>
+<p>"If you understood some parts of it, I'm already very happy… don't feel bad if you don't
+understand the sequel."</p>
+</blockquote>
+<p>That is a plenary speaker telling a room full of professional mathematicians not to expect
+to follow. Calibrate accordingly. The goal of this tutorial is not to make you able to do
+this mathematics. It is to make you able to read the shape of it — what the question is,
+what the answer looks like, and what the three-step method is that gets from one to the
+other. That method is the transferable part, and it is genuinely good.</p>
+<p><strong>Prerequisites this tutorial builds:</strong> counting points over a finite field; what a local
+system is (monodromy of a linear ODE, in the algebraic setting); Grothendieck's
+functions–sheaves dictionary; the categorification ladder and why the categorical trace
+walks down it; singular support as a wavefront set; the nilpotent cone; the difference
+between functions and densities on a singular space; what a stack is, in one paragraph.</p>
+<p><strong>A note on sources.</strong> This is the good case. There is a genuine ICM proceedings paper —
+<a href="https://arxiv.org/abs/2509.24902">arXiv:2509.24902</a>, "Local and global Langlands
+conjecture(s) over function fields", Dennis Gaitsgory, posted 29 September 2025, whose
+abstract opens "This is a write-up for the plenary ICM talk, 2026". The paper is three
+sections plus an appendix and follows the talk's order almost exactly.</p>
+<p>That matters more here than in any other talk in this set, because <strong>the auto-captions
+carry not a single formula.</strong> This was a slide talk with dense notation, and the caption
+track contains none of it. Every displayed formula, every conjecture statement, and every
+numbered result below comes from the paper. Where the talk says something the paper does
+not, or says it differently, I say which one I am quoting. Where I could restore nothing, I
+mark the gap in place.</p>
+<p>The talk numbers its results Conjecture 1 through Conjecture 7. The paper numbers them by
+section. <strong>The mapping between the two is my reconstruction</strong>, made from the order of
+presentation and the content of each statement; the speaker never reads a paper section
+number aloud. It is given in full in §4.15 and I use it throughout.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>Robert Langlands asked one question. It has a one-line statement and no known answer.</p>
+<p>You have a space of <strong>automorphic functions</strong> — a concrete, down-to-earth vector space of
+functions on a set. Acting on it is a commuting family of operators, the <strong>Hecke
+operators</strong>. Separately, and apparently unrelatedly, you have the <strong>spectral side</strong>: a
+collection of algebraic gadgets called Langlands parameters, which in this setting are
+<strong>local systems</strong> — representations of a fundamental group into a group Ǧ.</p>
+<p>Langlands' question: <strong>describe the space of automorphic functions in terms of the spectral
+side.</strong></p>
+<p>The paper's opening sentence is exactly this:</p>
+<blockquote>
+<p>"The goal of this paper is to propose a set of conjectures whose aim is to answer the
+basic question of the Langlands program (over function fields): how to describe the space
+of automorphic functions in terms of the spectral side (i.e., Langlands parameters)?"</p>
+</blockquote>
+<p>Note the word <em>propose</em>. This is not a talk announcing a proof. It is a talk announcing
+what the correct <strong>statement</strong> is — and the whole drama is that finding the correct
+statement took fifty years, three failed attempts, and the invention of several new
+branches of algebraic geometry. The obvious guess is false. The second guess is false. The
+third guess is false. The fourth guess is Conjecture 7, and it is false-looking too until
+you see what each of the three corrections was fixing.</p>
+<p>Gaitsgory has a running joke that organizes the whole hour, and it is the best teaching
+device in the talk. Each successive guess gets an epoch:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Epoch</th>
+<th>What it proposes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stone Age</strong></td>
+<td>Automorphic functions = a direct sum of one-dimensional eigenspaces, one per parameter</td>
+</tr>
+<tr>
+<td><strong>Early agricultural</strong></td>
+<td>Automorphic functions = regular <em>functions</em> on the parameter space</td>
+</tr>
+<tr>
+<td><strong>Industrial</strong></td>
+<td>Sheaves get a singular-support restriction; QCoh becomes IndCoh</td>
+</tr>
+<tr>
+<td><strong>Post-industrial</strong></td>
+<td>The same corrections, one categorical level up, for the local theory</td>
+</tr>
+</tbody>
+</table></div>
+<p>Everything below is the story of why each epoch had to end.</p>
+<p><strong>One thing to fix before you start: "function fields".</strong> In classical number theory you work
+over ℚ and its rings of integers. There is a second world that behaves almost identically
+and is far more tractable: instead of ℚ, take the field of rational functions on an
+algebraic curve <em>X</em> over a finite field 𝔽_q. Primes become points of the curve. The whole
+Langlands program has a mirror image there, and — crucially — that mirror image has
+<em>geometry</em>, because a curve is a geometric object and ℚ is not. The talk lives entirely in
+that mirror. That is what "over function fields" means, and it is why algebraic geometry is
+allowed in the room at all.</p>
+<hr />
+<h2>2. Your anchor: this is a Fourier transform</h2>
+<p>You do not need to reach for an analogy. The speaker hands you one, and it is exactly the
+right one:</p>
+<blockquote>
+<p>"So, what's relevant here is really ℤ and 𝔾_m, and we talk about some algebraic version
+of Fourier transform. And in general, the phenomenon of Langlands correspondence should
+be seen as some sort of non-abelian Fourier transform."</p>
+</blockquote>
+<p>That is the anchor, in his words, from the podium. The Langlands correspondence is a
+spectral decomposition. You have a vector space with a commuting family of operators acting
+on it (Hecke operators), and you want to diagonalize. The space of joint eigenvalues is the
+"frequency domain". Langlands' insight was that the frequency domain is not some
+featureless index set — it is a space of <strong>Galois representations</strong>, an object from an
+entirely different subject.</p>
+<p>You know this move cold — Fourier series, the spectral theorem, Plancherel. The Langlands
+correspondence is that statement for a wildly non-abelian group, where the frequency domain
+has to be discovered rather than written down.</p>
+<p><strong>Three things go wrong relative to your Fourier intuition, and the whole talk is about
+fixing them.</strong></p>
+<ol>
+<li><strong>The frequency domain was not known.</strong> For fifty years nobody knew what algebro-geometric
+   object should carry the Langlands parameters. §4.2 is where it gets defined.</li>
+<li><strong>You cannot decompose into a direct sum of eigenlines.</strong> This is the Stone-Age failure,
+   and its cause is one you have met: a continuous spectrum has no eigenbasis. §4.1.</li>
+<li><strong>"Functions on the frequency domain" is the wrong recipient.</strong> The right one is
+   <em>densities</em>, not functions — sections of the dualizing sheaf ω rather than of the
+   structure sheaf 𝒪. On a smooth space with a chosen volume form those agree. The
+   parameter space here is not smooth. §3.7 and §4.4.</li>
+</ol>
+<p><strong>One thing to set aside.</strong> You might expect the physics route in — Kapustin–Witten,
+electric–magnetic duality, S-duality of N=4 super Yang–Mills, which is a genuine and famous
+bridge into geometric Langlands. <strong>The talk never mentions it, not once.</strong> No gauge theory,
+no branes, no mirror symmetry. Using it here would be decorating the talk with someone
+else's picture. I am naming it only so you know it exists and know it is absent.</p>
+<p>A second, quieter anchor is worth flagging now because it becomes the engine of the whole
+argument in §5: the <strong>trace</strong>. Gaitsgory's central technical device is the categorical trace
+of Frobenius, and it is a direct categorification of two things you own — the ordinary trace
+of a matrix, and the <strong>Lefschetz fixed-point formula</strong>, which says that a trace on
+cohomology counts fixed points. Grothendieck's whole point-counting machine over finite
+fields is the Lefschetz formula. So is Selberg's trace formula, which you met as the
+analogue of Gutzwiller's. Keep "trace = sum over fixed points" in your hand; you will need
+it in §3.5.</p>
+<hr />
+<h2>3. The bridge</h2>
+<p>Seven ideas. Each is defined by deforming something you already have. Everything else in
+the talk gets one sentence at the point of use, because you cannot learn it in an afternoon
+and you do not need to.</p>
+<h3>3.1 Counting solutions over a finite field, and the functions that result</h3>
+<p>Fix a finite field 𝔽_q with q elements. Take some system of polynomial equations. The set of
+solutions with coordinates in 𝔽_q is <em>finite</em>, and counting it is the basic act of the
+subject.</p>
+<p>To get at more, you also look at solutions over the algebraic closure 𝔽̄_q — an infinite
+set. There is a distinguished symmetry of 𝔽̄_q that fixes 𝔽_q pointwise: the map
+x ↦ x^q, the <strong>Frobenius</strong>. It generates (topologically) the Galois group of 𝔽̄_q over 𝔽_q.
+And an element of 𝔽̄_q lies in 𝔽_q exactly when Frobenius fixes it.</p>
+<p>So: <strong>the 𝔽_q-points are the fixed points of Frobenius on the 𝔽̄_q-points.</strong> Every
+"counting" statement becomes a "fixed point" statement, and that is why traces appear
+everywhere. Hold this; it is the hinge of the entire talk.</p>
+<p>The talk's first move is exactly this. Take <em>X</em> a smooth complete curve and <em>G</em> a reductive
+group (the speaker says immediately: "think about GL_n, the group of matrices"; you should
+too, everywhere below). Form the moduli object <strong>Bun_G</strong> classifying G-bundles on X — for
+GL_n, rank-n vector bundles on the curve. Take its 𝔽_q-points: this is the set of
+isomorphism classes of such bundles defined over 𝔽_q. It is infinite but countable, and
+completely discrete.</p>
+<p><strong>Then take the vector space of finitely-supported functions on that set.</strong> That is the
+space of automorphic functions:</p>
+<blockquote>
+<p>Autom(X, G) := Funct_c( Bun_G(𝔽_q) )</p>
+</blockquote>
+<p>That is it. The central object of the entire subject is "functions with finite support on a
+countable set". Everything hard is in the structure on it, not in the object.</p>
+<h3>3.2 What a stack is, in one paragraph</h3>
+<p>Bun_G is not a variety and not a scheme. It is a <strong>stack</strong>, and here is the whole content of
+that word for your purposes: a moduli object whose points have automorphisms, and which
+remembers them.</p>
+<p>Concretely: a vector bundle on a curve has a nontrivial automorphism group (at minimum,
+scaling). If you form the naive set of isomorphism classes you throw that away, and the
+resulting object has bad geometric properties — it is not a variety, families over it do not
+glue. A stack keeps the automorphism groups as part of the data. The simplest example, and
+one the talk uses constantly, is <strong>pt/H</strong>: a single point with a group H worth of
+automorphisms. Sheaves on pt/H are exactly <strong>representations of H</strong>. You will see
+<code>pt/L(G)(𝔽_q)</code> several times below; it means nothing more than "the place where
+representations of that group live".</p>
+<p>If you want a picture from your own training: an orbifold is a manifold that remembers the
+finite stabilizers of a group action. A stack is that idea, without the finiteness and
+without the manifold.</p>
+<p>The speaker's own version: "It's not quite a scheme, it's not algebraic variety, it's what's
+called a stack. Slightly fancier version of schemes."</p>
+<h3>3.3 Local systems: monodromy, and why the coefficients must change</h3>
+<p>A <strong>local system</strong> on a space is a locally constant sheaf of vector spaces — equivalently, a
+vector bundle with a flat connection, equivalently a representation of the fundamental
+group. You already own the analytic version: take a linear ODE with periodic or
+multiply-connected domain, carry a solution basis around a loop, and you come back to a
+different basis. The matrix relating them is the <strong>monodromy</strong>. The assignment
+loop ↦ monodromy matrix is a homomorphism π₁ → GL_n. That homomorphism <em>is</em> the local
+system. Floquet theory is this in one dimension.</p>
+<p>Algebraic geometry has its own fundamental group — the <strong>étale</strong> fundamental group, built by
+Grothendieck in the 1960s from finite covering spaces rather than loops. (The transcript
+credits "Grothendieck and Ray"; this is almost certainly Grothendieck and Raynaud, SGA 1 —
+see the process note. The paper does not name anyone here.) It is a <strong>profinite</strong> group: an
+inverse limit of finite groups, and therefore compact and totally disconnected, like the
+p-adic integers.</p>
+<p>The spectral side of Langlands is the set of continuous homomorphisms</p>
+<blockquote>
+<p>π₁^arith(X) → Ǧ(coefficients)</p>
+</blockquote>
+<p>where <strong>Ǧ is the Langlands dual group</strong> of G. You can treat that as a black box: the talk
+tells you to, and gives the only case you need — <em>if G is GL_n, then Ǧ is also GL_n.</em> So for
+your purposes, the spectral side is "n-dimensional representations of the fundamental group
+of the curve".</p>
+<p><strong>Now: why ℚ̄_ℓ and not ℚ.</strong> This is a genuine detail with a clean reason, and the talk gives
+it. The source of the homomorphism is profinite. If you want <em>continuous</em> homomorphisms to
+mean anything, the target must have a compatible topology. ℚ with the discrete topology
+gives you almost nothing. So you replace the coefficient field ℚ by ℚ̄_ℓ — the algebraic
+closure of the ℓ-adic numbers, for a prime ℓ different from the characteristic. ℚ_ℓ is the
+completion of ℚ in the ℓ-adic metric, exactly parallel to how ℝ is the completion in the
+usual one; it carries a profinite-compatible topology, so continuity has content. The whole
+subject is built over ℚ̄_ℓ for this one reason and no other. The talk:</p>
+<blockquote>
+<p>"We want to give the target also pro-finite topology. And for that reason, we have to take
+coefficients to be, well, something that has something pro-finite inside. And this is
+ℚ̄_ℓ or ℚ_ℓ. So that's why this change is necessary."</p>
+</blockquote>
+<p>The automorphic side changes coefficients to match: functions valued in ℚ̄_ℓ rather than ℚ.</p>
+<h3>3.4 Grothendieck's dictionary: how a sheaf becomes a function</h3>
+<p>This is the single most important piece of machinery in the talk, and it is beautiful.</p>
+<p>A <strong>sheaf</strong> on a space, for present purposes, is a rule that assigns a vector space (really a
+complex of vector spaces) to each point, varying algebraically. If your space is defined over
+𝔽_q, Frobenius acts on the whole picture, and in particular acts on the vector space sitting
+over each 𝔽_q-point.</p>
+<p>Now do the obvious thing: <strong>at each 𝔽_q-point, take the trace of Frobenius acting on that
+point's vector space.</strong> You get a number. Ranging over all 𝔽_q-points, you get a <em>function</em>
+on the finite (or countable) set of 𝔽_q-points.</p>
+<p>That is the <strong>functions–sheaves dictionary</strong>. It converts a geometric object (a sheaf, which
+lives over 𝔽̄<em>q and has actual geometry) into an arithmetic object (a function on a discrete
+set of 𝔽_q-points). In the paper it is the map ℱ ↦ funct(ℱ, α), where α : ℱ → Frob</em>*(ℱ) is
+the extra structure that lets Frobenius act (a "weak Weil structure").</p>
+<p>The talk calls this "another main contribution of Grothendieck", which is fair.</p>
+<p><strong>Why it matters strategically:</strong> the automorphic side is functions, which is a poor object
+with little structure. The category of sheaves is rich — it has functors, adjoints, duality,
+gluing. So the plan is: prove the theorem upstairs, in sheaves, then push it down the
+dictionary to get the statement about functions. That plan is the entire architecture of
+this talk.</p>
+<h3>3.5 The categorification ladder, and trace as the down-arrow</h3>
+<p>Here is the structural spine. There is a hierarchy:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Object</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>a number</td>
+<td>7</td>
+</tr>
+<tr>
+<td>1</td>
+<td>a vector space</td>
+<td>ℚ̄_ℓ^7</td>
+</tr>
+<tr>
+<td>2</td>
+<td>a category</td>
+<td>the category of vector spaces</td>
+</tr>
+<tr>
+<td>3</td>
+<td>a 2-category</td>
+<td>the category of categories</td>
+</tr>
+</tbody>
+</table></div>
+<p>Going <em>up</em> is called categorification: replace numbers by vector spaces whose dimensions are
+those numbers, replace vector spaces by categories whose objects are those vectors, and so
+on. Going <em>down</em> needs an operation. <strong>The operation is the trace.</strong></p>
+<p>Start with what you know. Let V be a finite-dimensional vector space and T : V → V linear.
+The trace is Σ T_ii. But there is a definition with no basis in it, and the talk gives
+exactly this one:</p>
+<blockquote>
+<p>ℚ̄_ℓ --unit--&gt; V ⊗ V<em> --T ⊗ id--&gt; V ⊗ V</em> --evaluation--&gt; ℚ̄_ℓ</p>
+</blockquote>
+<p>The composite is a linear map from the ground field to itself, i.e. multiplication by a
+scalar. <strong>That scalar is the trace.</strong> (Exercise 6.2 asks you to verify it.)</p>
+<p>Now notice what that definition used. It used a tensor product, a unit object, an object
+with a dual, and evaluation maps. It never used numbers, bases, or finite dimension. So it
+runs verbatim in <strong>any symmetric monoidal category</strong> — any setting where you can tensor
+things together. Feed it a <em>category</em> with an endofunctor instead of a vector space with an
+endomorphism, and you get out a <em>vector space</em>. Feed it a 2-category with an endofunctor and
+you get out a category.</p>
+<blockquote>
+<p><strong>The trace walks one rung down the ladder.</strong></p>
+</blockquote>
+<p>The talk states this and then names the classical shadow: for a category of modules, this
+trace is <strong>Hochschild homology</strong>. And when the endofunctor is Frobenius, the trace is the
+categorified Lefschetz fixed-point formula. The paper's Lemma-level computations make this
+completely explicit and they are the two facts you actually need:</p>
+<blockquote>
+<p><strong>(Lemma 1, paper §1.5.2)</strong> For a prestack 𝒴 with an endomorphism φ:
+Tr(φ_<em>, QCoh(𝒴)) ≅ Γ(𝒴^φ, 𝒪) — </em>the ring of functions on the fixed-point locus.*</p>
+<p><strong>(Lemma 2, paper §1.5.2)</strong> Tr(φ_<em>, IndCoh(𝒴)) ≅ Γ(𝒴^φ, ω) — </em>sections of the dualizing
+sheaf on the fixed-point locus.*</p>
+</blockquote>
+<p>Read Lemma 1 in plain English: <strong>the trace of an endomorphism, taken on the category of
+sheaves, is the functions on the fixed points.</strong> That is the Lefschetz formula with the
+words rearranged, and it is the engine of everything below.</p>
+<h3>3.6 Singular support is a wavefront set</h3>
+<p>The talk refuses to define this ("I'm not going to define what it is. Again, it's too
+technical"), but you have the right background for it and the paper gives the definition, so
+here it is.</p>
+<p>You know wavefront sets. Given a distribution on a manifold, its singular support tells you
+<em>where</em> it fails to be smooth; Hörmander's wavefront set refines this to tell you <em>in which
+codirections</em> it fails, and therefore lives in the cotangent bundle T*M, not in M. It is
+conical: scaling a covector does not change whether you are singular in that direction.</p>
+<p>Sheaves have exactly the same invariant. Following Beilinson, to a constructible sheaf ℱ on
+a stack 𝒴 one assigns a conical subset</p>
+<blockquote>
+<p>SingSupp(ℱ) ⊂ T*(𝒴)</p>
+</blockquote>
+<p>measuring the codirections in which ℱ fails to be locally constant. Run it backwards:
+given a conical subset 𝒩 ⊂ T*(𝒴), let Shv_𝒩(𝒴) be the full subcategory of sheaves whose
+singular support lies inside 𝒩. You are selecting sheaves by a microlocal condition,
+exactly as you would select distributions with wavefront set in a given cone.</p>
+<p>Now the specific choice. Take 𝒴 = Bun_G. <strong>Its cotangent bundle is the moduli space of Higgs
+bundles</strong> — that is a real theorem, not an analogy, and it is where Hitchin's integrable
+system lives. Inside it sits the <strong>global nilpotent cone</strong> Nilp: roughly, the Higgs fields
+whose "eigenvalues" all vanish, i.e. the nilpotent ones. It is the zero fibre of the Hitchin
+map, and it is Lagrangian.</p>
+<p>Then:</p>
+<blockquote>
+<p><strong>Shv_Nilp(Bun_G) ⊂ Shv(Bun_G)</strong> — the sheaves on Bun_G whose wavefront set lies in the
+nilpotent cone.</p>
+</blockquote>
+<p>This subcategory is the automorphic side of everything that follows. The talk records its
+history: the relevance was noticed long ago, and it returned to prominence about ten years
+ago through the work of <strong>David Ben-Zvi and David Nadler</strong>. (The captions attribute the
+original observation to "Jean-Pierre Serre… 40 years ago"; the paper's Remark 1.1.8
+attributes it to <strong>G. Laumon's</strong> 1987 <em>Duke</em> paper. I follow the paper — see the process
+note.)</p>
+<p>There is a second, equivalent description that the talk skips and the paper gives, and it is
+the one actually used in the proofs. Call a sheaf <strong>Hecke-lisse</strong> if applying any Hecke
+functor H_V produces something that is lisse (locally constant) in the curve direction.
+Theorem 14.4.3 of AGKRRV1 says:</p>
+<blockquote>
+<p>Shv_Nilp(Bun_G) = Shv_HL(Bun_G)</p>
+</blockquote>
+<p>A microlocal condition and a condition about Hecke operators define the same subcategory.
+That is a real theorem and it is the technical foundation of the whole programme.</p>
+<h3>3.7 Functions versus densities: 𝒪 against ω</h3>
+<p>The last piece, and the one that carries the punchline of Conjecture 1.</p>
+<p>On a manifold you learn to distinguish <strong>functions</strong> from <strong>densities</strong>. A function is what
+you evaluate; a density is what you integrate. They are sections of different line bundles,
+and if you pick a nowhere-vanishing volume form you can identify them — but the
+identification is a choice, not canonical.</p>
+<p>Algebraic geometry has the same distinction. Functions are sections of the <strong>structure
+sheaf</strong> 𝒪. The integrable objects are sections of the <strong>dualizing sheaf</strong> ω, introduced by
+Grothendieck in the 1960s; it is the object that makes duality theorems (Serre duality,
+Poincaré duality) come out right. On a smooth space of dimension d, ω is the sheaf of top
+differential forms — literally the densities. On a singular space it is a derived object and
+it is <em>not</em> isomorphic to 𝒪.</p>
+<p>Two categories of sheaves ride on the same distinction:</p>
+<ul>
+<li><strong>QCoh(𝒴)</strong> — quasi-coherent sheaves. The default. Behaves well when 𝒴 is smooth.</li>
+<li><strong>IndCoh(𝒴)</strong> — ind-coherent sheaves. A variant that differs from QCoh precisely when 𝒴 is
+  singular, and is built to see the singularities. The talk's gloss: "this modification has
+  to do with the fact that this object is not smooth, it's singular, and this modification
+  takes into account the singularities. Technically, compact objects are no longer perfect,
+  but coherent."</li>
+</ul>
+<p>Compare Lemma 1 and Lemma 2 in §3.5 and you see the whole point. QCoh gives you <strong>functions</strong>
+on the fixed points. IndCoh gives you <strong>densities</strong>. When the fixed-point space is smooth
+these agree. When it is not, they do not, and the difference is the correction that takes
+you from the early-agricultural conjecture to the correct one.</p>
+<p>One more technical fact from the paper (Remark 1.5.4), because it is the precise reason the
+correction is unavoidable here: the arithmetic parameter space LS^arithm is <strong>quasi-quasi-
+smooth</strong> — its cotangent fibres have cohomological amplitude [−2, 1] — and it is not
+eventually coconnective. Translation: it is singular in a way that goes beyond the mildest
+kind, and no choice of volume form is going to save you.</p>
+<p>And a fact worth keeping (Remark 1.5.9): as a fixed-point stack, LS^arithm is canonically
+<strong>Calabi–Yau</strong>, so over the well-behaved locus ω <em>does</em> equal 𝒪 — the two conjectures agree
+there. The discrepancy is concentrated on the bad locus, and Gaitsgory says that discrepancy
+is a source of <strong>non-temperedness</strong>, which is the classical Langlands word for automorphic
+representations that fail the expected size bounds. The correction is not a technicality; it
+is where a known classical phenomenon lives.</p>
+<hr />
+<h2>4. The talk, rebuilt</h2>
+<p>The speaker's order, with the mathematics restored from the paper. I flag every place the
+two differ.</p>
+<h3>4.1 The Stone-Age conjecture, and how it dies</h3>
+<p>Start with the naive spectral decomposition. You have a vector space Autom with commuting
+Hecke operators. Diagonalize it:</p>
+<blockquote>
+<p><strong>Stone Age.</strong> Autom(X, G) ≅ ⊕_σ (a one-dimensional space), one summand for each Langlands
+parameter σ.</p>
+</blockquote>
+<p>"And this is completely false even in the simplest case."</p>
+<p>The simplest case: G = 𝔾_m (the multiplicative group, i.e. GL_1) and X = ℙ¹.</p>
+<ul>
+<li><strong>Left side.</strong> Bun_{𝔾_m} classifies line bundles. On ℙ¹ every line bundle is 𝒪(n), so the
+  set of isomorphism classes of 𝔽_q-points is <strong>ℤ</strong>, indexed by degree. So
+  Autom = Funct_c(ℤ) — finitely supported functions on the integers. Its dimension is
+  countably infinite; a basis is the delta functions δ_n.</li>
+<li><strong>Right side.</strong> The parameters here are one-dimensional local systems, and the talk says
+  the index set is the ℚ̄_ℓ-points of 𝔾_m, i.e. ℚ̄_ℓ^×. (Unpacking why, which the talk leaves
+  implicit: ℙ¹ is simply connected, so the arithmetic fundamental group is generated by
+  Frobenius alone, and a one-dimensional representation is nothing but the eigenvalue of
+  Frobenius — an arbitrary nonzero scalar.) So the proposed right side is a direct sum of
+  one-dimensional spaces indexed by ℚ̄_ℓ^×.</li>
+</ul>
+<p>Now count. ℚ̄_ℓ^× is <strong>uncountable</strong>, so a direct sum over it has uncountable dimension.
+Funct_c(ℤ) has countable dimension. They cannot be isomorphic. The speaker's phrasing: "it's
+really unreasonable to take this infinite direct sum."</p>
+<p><strong>Here is the version of that failure you already know</strong>, and it is not decoration — it is
+the same phenomenon. A self-adjoint operator with <strong>continuous spectrum has no
+eigenbasis</strong>. The position operator on L²(ℝ) has no eigenvectors in the space at all. You do
+not decompose L²(ℝ) as a direct sum of eigenlines; you decompose it as a <strong>direct integral</strong>
+over the spectrum, which is to say, you replace "sum over eigenvalues" with "functions on
+the spectrum". The Stone-Age conjecture is trying to write a direct sum where the spectrum
+is continuous.</p>
+<p>And the fix is the fix you would make. The talk:</p>
+<blockquote>
+<p>"This space of compactly supported functions on ℤ is the same as the space of regular
+functions on 𝔾_m."</p>
+</blockquote>
+<p>Funct_c(ℤ) ≅ ℚ̄_ℓ[t, t^{-1}], by δ_n ↦ t^n. Laurent polynomials. <strong>This is Fourier series.</strong>
+ℤ is the character group of the circle; functions on ℤ are Fourier coefficients; Laurent
+polynomials are the finite Fourier series. Exercise 6.1 makes you do it.</p>
+<p>So the correct shape is not a direct sum over the parameter space. It is <strong>the ring of
+functions on the parameter space</strong> — which is precisely the direct-integral answer, written
+algebraically.</p>
+<h3>4.2 The frequency domain had to be built: LocSys with restricted variation</h3>
+<p>To write "functions on the parameter space" you need the parameter space to be a space. It
+was not. The paper is blunt about it (§1.1.5): "We do not know what the relevant
+algebro-geometric object should be that can reasonably be thought of as the moduli stack of
+Ǧ-local systems."</p>
+<p>The talk's framing is the funniest line in the hour:</p>
+<blockquote>
+<p>"As society progressed, humans realized that if some objects can be organized in a family,
+they should."</p>
+</blockquote>
+<p>The object that resolves it is the <strong>stack of local systems with restricted variation</strong>,
+written LS^restr_Ǧ(X). The talk says it was discovered relatively recently and
+independently by <strong>Peter Scholze</strong>, <strong>Xinwen Zhu</strong>, and the authors of the AGKRRV series —
+<strong>D. Arinkin, D. Gaitsgory, D. Kazhdan, S. Raskin, N. Rozenblyum, Y. Varshavsky</strong>.</p>
+<p>The definition is not a formula but a representability statement, and here it is from the
+paper (§1.3.1), because it is the sort of definition that is clearer than it looks. The
+prestack LS^restr_Ǧ(X) is defined by what it does to test algebras: for a connective
+commutative ℚ̄_ℓ-algebra R, its R-points are the space of</p>
+<blockquote>
+<p>right t-exact symmetric monoidal functors  Rep(Ǧ) → R-mod(Shv(X))</p>
+</blockquote>
+<p>Read that as: <em>a local system is exactly a rule that turns every representation of Ǧ into a
+sheaf on X, compatibly with tensor products.</em> That is Tannakian thinking — you recover a
+group homomorphism from what it does to representations. It is the same move as recovering a
+group from its character table, done properly.</p>
+<p>Two facts from the paper you should carry:</p>
+<ul>
+<li>LS^restr_Ǧ(X) is a <strong>formal algebraic stack</strong>, locally almost of finite type, and it is
+  <strong>quasi-smooth</strong> (AGKRRV1, Theorem 1.4.5). Quasi-smooth means "derived complete
+  intersection" — cut out by equations whose number is right but whose Jacobian may drop
+  rank. It is the mildest failure of smoothness, and it is exactly what triggers the QCoh →
+  IndCoh correction.</li>
+<li>"Restricted variation" is what makes the object <em>algebraic</em> rather than a wild
+  moduli-of-representations mess: essentially it is a disjoint union of formal completions
+  at semisimple parameters, rather than the whole naive representation variety.</li>
+</ul>
+<p>Then the <strong>arithmetic</strong> version is obtained by taking Frobenius fixed points:</p>
+<blockquote>
+<p>LS^arithm_Ǧ(X) := ( LS^restr_Ǧ(X) )^Frob</p>
+</blockquote>
+<p>and its ℚ̄_ℓ-points are local systems equipped with a Weil structure. It is quasi-compact
+(AGKRRV1, Theorem 24.1.4).</p>
+<h3>4.3 Conjecture 1: the answer, with ω</h3>
+<p>The early-agricultural conjecture would be Autom ≅ Γ(LS^arithm, 𝒪) — regular functions on
+the parameter space. For 𝔾_m that gives exactly the right answer, as §4.1 showed. In general
+it is still false.</p>
+<p>The correct statement, the talk's <strong>Conjecture 1</strong> and the paper's Corollary 1.5.8:</p>
+<blockquote>
+<p><strong>Autom(X, G) ≅ Γ( LS^arithm_Ǧ(X), ω )</strong></p>
+</blockquote>
+<p>Automorphic functions are the <strong>global sections of the dualizing sheaf</strong> on the stack of
+arithmetic Langlands parameters. Not functions on it — densities on it.</p>
+<p>Read against §3.7: the parameter space is singular, so functions and densities differ; the
+right recipient of a Fourier-type isomorphism is the densities; and where the space is
+well-behaved the two agree, so the classical picture is recovered on the tempered part.</p>
+<h3>4.4 Theorem 1: what is actually proved</h3>
+<blockquote>
+<p><strong>Theorem 1 (talk).</strong> Conjecture 1 holds after replacing LS^arithm by the union of <em>some</em>
+of its connected components. Conjecturally that is all of them; at present it is known to
+be only some.</p>
+</blockquote>
+<p>The paper is more precise, and here the paper says more than the talk did. Its Theorem 1.4.6
+(from <strong>Gaitsgory–Raskin</strong>, <a href="https://arxiv.org/abs/2508.02237">arXiv:2508.02237</a>) gives the
+component-restricted equivalence in general — and §1.4.3 records that the full statement, with
+no restriction on components, <strong>is a theorem when the ground field has characteristic 0, and
+when G = GL_n over any ground field.</strong> The talk does not mention the characteristic-0 and
+GL_n cases. If you take one thing from the talk-versus-paper comparison, take this: the
+result is stronger than the talk lets on.</p>
+<p>The talk also attributes the theorem to "a series of papers by nine authors" and then
+declines to name them, citing jet lag. The AGKRRV series has six authors; Gaitsgory–Raskin
+has two. I could not reconcile the number nine and have not guessed at a list.</p>
+<h3>4.5 Going upstairs: the category of sheaves on Bun_G</h3>
+<p>Now the actual strategy. Autom is a poor object. So access it through a rich one: the
+category of ℓ-adic <strong>sheaves</strong> on Bun_G, and come back down via the functions–sheaves
+dictionary of §3.4.</p>
+<p>The possibility of relating that category directly to local systems was envisaged by
+<strong>Beilinson and Drinfeld</strong> — the categorical geometric Langlands program. But their setting
+was D-modules, and in the ℓ-adic setting the whole category of sheaves is too big. You must
+pass to the subcategory with <strong>nilpotent singular support</strong>, Shv_Nilp(Bun_G), as built in
+§3.6.</p>
+<p>The talk gives the one case where you can see what the condition means concretely: for
+G = 𝔾_m, Bun_G is a Picard stack and the subcategory consists exactly of the <strong>locally
+constant</strong> sheaves. That is a real check — locally constant is wavefront-set-zero, and for a
+torus the nilpotent cone is the zero section.</p>
+<h3>4.6 Conjecture 2: geometric Langlands, restricted</h3>
+<blockquote>
+<p><strong>Conjecture 2 (talk) = Conjecture 1.4.4 (paper).</strong>
+Shv_Nilp(Bun_G) ≃ IndCoh_Nilp( LS^restr_Ǧ(X) ), compatibly with the QCoh(LS^restr)-action.</p>
+</blockquote>
+<p>The early-agricultural version would have said QCoh on the right. The industrial version says
+IndCoh_Nilp — ind-coherent sheaves with their own singular-support condition, because
+LS^restr is quasi-smooth. Note the pleasing symmetry: <strong>a singular-support condition on each
+side.</strong> On the automorphic side it is a condition on sheaves over a smooth-ish stack; on the
+spectral side it is the coherent-sheaf analogue developed by Arinkin–Gaitsgory.</p>
+<p>The known status is Theorem 1.4.6 as in §4.4.</p>
+<p>An important structural fact, Theorem 1.4.2 of the paper: <strong>QCoh(LS^restr_Ǧ(X)) acts on
+Shv_Nilp(Bun_G)</strong>, and under that action the Hecke functor H_V is tensoring by a tautological
+object ℰ_V. This is the precise sense in which "Hecke eigenvalues are Langlands parameters" —
+the parameter space acts, and the Hecke operators are the action of specific elements.</p>
+<blockquote>
+<p><em>[Gap: the talk explicitly declines to define Hecke operators — "I'm not going to say what
+Hecke operators are in this talk because it would take me just too long." The paper gives
+only their shape: for each V ∈ Rep(Ǧ), a functor H_V : Shv(Bun_G) → Shv(Bun_G × X), coming
+from the geometric Satake construction. The construction itself (modifications of bundles
+at a point, the affine Grassmannian, the Satake equivalence) is in neither source. If you
+want it you must go to AGKRRV1. Everything below uses only the shape.]</em></p>
+</blockquote>
+<h3>4.7 The trace machine: how Conjecture 2 implies Conjecture 1</h3>
+<p>This is the part the speaker stops to underline:</p>
+<blockquote>
+<p>"So, let me just rewind it for a second. So, it may be the most important point in this
+talk."</p>
+</blockquote>
+<p>Three ingredients.</p>
+<p><strong>Ingredient A — the geometric side descends to automorphic functions.</strong> The talk's
+<strong>Theorem 3</strong>, the paper's Theorem 1.2.3 (from AGKRRV3, Theorems 0.2.6 and 0.6.8):</p>
+<blockquote>
+<p>Tr( Frob_<em>, Shv_Nilp(Bun_G) ) → Tr( Frob_</em>, Shv(Bun_G) ) --LT^true--&gt; Funct_c(Bun_G(𝔽_q))</p>
+<p><strong>is an isomorphism.</strong></p>
+</blockquote>
+<p>Read it slowly. Take the category of automorphic sheaves. Take the categorical trace of
+Frobenius on it — which by §3.5 produces a vector space. <strong>That vector space is the space of
+automorphic functions.</strong> Nothing lost, nothing added.</p>
+<p>The subtlety, and it is the reason the singular-support condition exists at all: the map
+LT^true out of Tr(Frob_<em>, Shv(𝒴)) to functions is </em>almost never* an isomorphism for a general
+stack 𝒴. It becomes one after you cut down to nilpotent singular support. The talk says
+exactly this. The paper explains the mechanism in §2.2.8: the failure traces back to the
+failure of a Künneth formula, and can be repaired by taking the trace in a bigger ambient
+2-category (see §4.10 below).</p>
+<p><strong>Ingredient B — the spectral side descends too.</strong> Lemma 1 and Lemma 2 of §3.5, applied to
+𝒴 = LS^restr and φ = Frob, whose fixed points are LS^arithm by definition. Plus one fact the
+talk omits and the paper supplies (Proposition 1.5.6, from Gaitsgory–Raskin citing
+Beraldo–Lin–Reeves): the inclusion IndCoh_Nilp ↪ IndCoh <strong>induces an isomorphism on traces</strong>,
+so the Nilp condition costs nothing at this step.</p>
+<p><strong>Ingredient C — Conjecture 2 says the two categories in A and B are the same</strong>, so their
+traces are the same, so the two vector spaces are the same. That is Conjecture 1. Three
+isomorphisms in a row; the full derivation is §5.</p>
+<p>Notice what just happened, because it is the reusable idea: the hard statement (Conjecture 2)
+was proved one level up, in categories, where there is enough structure to state an
+equivalence. The statement people actually care about (Conjecture 1) is its <strong>shadow</strong>,
+obtained by applying a functorial operation. You never prove the shadow directly.</p>
+<h3>4.8 The half-hour mark: ramification</h3>
+<p>Everything so far is the <strong>unramified</strong> case. Now the harder half.</p>
+<p>Fix a point x on the curve (or a finite set of them). Instead of Bun_G, consider
+<strong>Bun_G^{level_x}</strong>: G-bundles together with a <strong>trivialization of their restriction to the
+formal disc around x</strong>. Adding that rigidification is what "level structure" means, and it is
+the direct analogue of level structures in classical modular forms — Γ₀(N) and friends.</p>
+<p>Two things change.</p>
+<ol>
+<li>Bun_G^{level_x} is no longer just a stack; with x nonempty it is a <em>scheme</em>, of infinite
+   type.</li>
+<li>It carries an action of the <strong>loop group</strong> 𝔏(G) := G((t)), where t is a local coordinate
+   at x. Concretely G with entries in formal Laurent series.</li>
+</ol>
+<p>So the space of automorphic functions with level structure —</p>
+<blockquote>
+<p>Autom(X,G)^{level_x} := compactly supported locally constant functions on
+Bun_G^{level_x}(𝔽_q)</p>
+</blockquote>
+<p>— is not merely a vector space. It is a <strong>representation of the group 𝔏(G)(𝔽_q) = G(𝔽_q((t)))</strong>,
+a locally compact group. (The captions render the last phrase as "the slow local field"; it is
+the local field 𝔽_q((t)).)</p>
+<p>And that changes the question. You cannot ask for an isomorphism of vector spaces any more,
+because one side has a group acting and the other does not. The talk:</p>
+<blockquote>
+<p>"We do not expect that this space is the space of functions or sections of the dualizing
+sheaf on this object, just because it would be comparing apples and oranges."</p>
+</blockquote>
+<p>So: build a representation of that same group <strong>out of the spectral side</strong>, then compare.
+Doing that is what the <strong>local Langlands program</strong> is.</p>
+<h3>4.9 The local theory, and the third main point: isocrystals</h3>
+<p>The local side works over the <strong>formal punctured disc</strong> 𝒟̊ around x rather than the whole
+curve, and the naive guess follows the same epochs: representations of the p-adic group
+should be equivalent to QCoh, then (industrial correction) <strong>IndCoh</strong>, of the space of local
+systems on 𝒟̊.</p>
+<p>But something new goes wrong, and the speaker calls it the third main point of the talk.</p>
+<blockquote>
+<p><strong>Rep(𝔏(G)(𝔽_q)) is not the right category.</strong></p>
+</blockquote>
+<p>It is a <em>full subcategory</em> of a bigger one, and it is the bigger one that matches the spectral
+side. The paper (footnote 13) dates the idea: it occurred to <strong>V. Lafforgue and the author
+around 2013</strong>; the talk says "I first realized it discussing with Vincent Lafforgue and then
+it was rediscovered by Fargues and Scholze, but in the analytic framework."</p>
+<p>The bigger category is sheaves on the space of <strong>isocrystals</strong>:</p>
+<blockquote>
+<p>Isoc_G := 𝔏(G) / Ad_Frob(𝔏(G))</p>
+</blockquote>
+<p>the quotient of the loop group by <strong>Frobenius-twisted conjugation</strong>, g ↦ h^{-1} g Frob(h).</p>
+<p><strong>Why this object, and why it is bigger.</strong> This is the cleanest piece of reasoning in the
+talk and you can check every step.</p>
+<p>Start with <strong>Lang's theorem</strong>. Let H be a <em>connected</em> algebraic group over 𝔽_q. Then</p>
+<blockquote>
+<p>H / Ad_Frob(H) ≅ pt / H(𝔽_q)</p>
+</blockquote>
+<p>In words: twisted conjugation has exactly one orbit, and the stabilizer is the finite group
+of 𝔽_q-points. Consequently sheaves on H/Ad_Frob(H) are exactly <strong>Rep(H(𝔽_q))</strong> — see §3.2 on
+what pt/H means. So for a connected finite-dimensional group, the isocrystal picture and the
+representation picture agree, and nothing is gained.</p>
+<p><strong>But the loop group is not a connected algebraic group.</strong> It is an ind-scheme of infinite
+type, and <strong>Lang's theorem fails for it.</strong> The point pt/𝔏(G)(𝔽_q) is still there — it sits
+inside Isoc_G as a closed subfunctor — but it is not everything. Hence a pair of adjoint
+functors</p>
+<blockquote>
+<p>ι_! : Rep(𝔏(G)(𝔽_q)) ⇄ Shv(Isoc_G) : ι^!</p>
+</blockquote>
+<p>with Rep sitting inside Shv(Isoc_G) as a full subcategory, properly.</p>
+<p>Exercise 6.2(b) makes you verify the failure of Lang for the loop group of 𝔾_m in about ten
+lines. Do it; it is the one place in this talk where you can touch the mathematics directly.</p>
+<p>The talk also gives the <em>conceptual</em> reason isocrystals appear, and it is the trace again.
+The paper's equation (2.18):</p>
+<blockquote>
+<p>Tr( Frob, 𝔏(G)-Cat ) ≅ Shv(Isoc_G)</p>
+<p>"This isomorphism may be viewed as an explanation of why isocrystals appear. They appear
+naturally as the recipient of the trace."</p>
+</blockquote>
+<p>That is the talk's best single sentence. The object was not chosen; it was computed.</p>
+<p>The paper adds credits the talk does not: a comprehensive study of Isoc_G is due to <strong>X. Zhu</strong>
+(<em>Tame categorical local Langlands correspondence</em>,
+<a href="https://arxiv.org/abs/2504.07482">arXiv:2504.07482</a>), including the facts that Isoc_G is
+"restricted" and that Shv(Isoc_G) is dualizable and self-dual — both of which get used later.</p>
+<h3>4.10 Conjecture 3: the classical local Langlands conjecture</h3>
+<blockquote>
+<p><strong>Conjecture 3 (talk) = Corollary-of-Conjecture 2.7.9 (paper).</strong>
+Shv(Isoc_G) ≃ IndCoh( LS^arithm_Ǧ(𝒟̊) )</p>
+</blockquote>
+<p>Note the structural difference from the global case, which the speaker points out: globally,
+the classical statement was an isomorphism of <em>vector spaces</em>. Locally, the classical
+statement is an equivalence of <em>categories</em>. Local is one rung up the ladder from global.</p>
+<p>The paper is careful about attribution here and the talk is not:</p>
+<ul>
+<li>This conjecture was <strong>first proposed by X. Zhu</strong>, as Conjecture 4.6.4 of <em>Coherent sheaves
+  on the stack of Langlands parameters</em>. (Zhu's tame/depth-0 part of it is established in
+  the <em>Tame categorical</em> paper above.)</li>
+<li>It is <strong>closely related to the Fargues–Scholze conjecture</strong>,
+  <a href="https://arxiv.org/abs/2102.13459">arXiv:2102.13459</a>, Conjecture I.10.2, which states
+  D(Bun^local_G) ≃ IndCoh(Param_Ǧ) with Bun^local_G the analytic stack of G-bundles on the
+  Fargues–Fontaine curve.</li>
+<li>The two are <strong>equivalent</strong> given two inputs: one can show Param_Ǧ ≅ LS^arithm_Ǧ(𝒟̊), and the
+  ongoing work of Gleason–Ivanov–João–Hamann–Zou aims to establish
+  D(Bun^local_G) ≃ Shv(Isoc_G). <strong>The second of those is not yet done.</strong> The talk states the
+  equivalence flatly; the paper flags that half of it rests on work in progress.</li>
+</ul>
+<p><em>(The captions render Fargues–Scholze variously as "Fargues-Scholten", "Fargues-Fontaine",
+and "Park Shultz". See the process note.)</em></p>
+<h3>4.11 Conjecture 4: the local geometric conjecture, in 2-categories</h3>
+<p>Now the geometric counterpart, one level up again. This is where the talk becomes genuinely
+inaccessible without the field, and I will not pretend otherwise. What follows is the shape,
+which is all you need.</p>
+<p><strong>The automorphic side</strong> is the 2-category of <strong>categorical representations of the loop
+group</strong>: objects are DG categories equipped with an action of 𝔏(G). Notation 𝔏(G)-Cat.
+Just as Shv_Nilp(Bun_G) was the global geometric object, this is its local counterpart.</p>
+<p>Two corrections are needed, both parallel to corrections you have already seen.</p>
+<p><strong>Correction one: the ambient 2-category has to be rebuilt.</strong> For D-modules there is a
+<em>categorical Künneth formula</em>: D-mod(Y) ⊗ D-mod(Y′) ≅ D-mod(Y × Y′). That equivalence is
+what lets you define a group acting on a category (you need it to make sheaves on the group
+into a Hopf object). <strong>For ℓ-adic sheaves it fails.</strong> The paper is emphatic: the analogous
+map Shv(Y) ⊗ Shv(Y′) → Shv(Y × Y′) is fully faithful but "is never an equivalence if both Y
+and Y′ are positive-dimensional schemes of finite type."</p>
+<p>So the entire ambient framework gets replaced. Gaitsgory, Rozenblyum and Varshavsky build a
+2-category called <strong>AGCat</strong>, whose objects are not categories but <em>families of categories over
+all affine schemes S</em> with pullback and pushforward and base change. AGCat is designed to have
+exactly the tensor property that failed: Shv(S₁) ⊗ Shv(S₂) = Shv(S₁ × S₂). The paper credits
+the idea to <strong>V. Drinfeld, "some 20 years" ago</strong>.</p>
+<p>And AGCat is what repairs the trace map of §4.7: the failure of
+Tr(Frob, Shv(𝒴)) → Funct(𝒴(𝔽_q)) to be an isomorphism is <em>precisely</em> the failure of that
+Künneth map, and taking the trace in AGCat instead makes it an isomorphism.</p>
+<blockquote>
+<p><strong>One broken tensor identity forced the reconstruction of the entire ambient framework.</strong>
+Keep that; §7.3 is about it.</p>
+</blockquote>
+<p><strong>Correction two: trim to "restricted".</strong> 𝔏(G)-Cat is tensored over AGCat, but any spectral
+counterpart will only be tensored over DGCat. So it is <em>too big</em>, and one cuts down to a full
+subcategory <strong>𝔏(G)-Cat_restr</strong>. The paper is explicit that this is "loosely analogous" to the
+passage Shv(Bun_G) ↝ Shv_Nilp(Bun_G) — the same move, one level up.</p>
+<blockquote>
+<p><em>[Gap: the definition of "restricted" for the loop group is given in the paper only as
+provisional (§2.4.6), by requiring certain 𝔏(N)-invariants to be restricted objects of
+AGCat. The definition the field will actually use comes from the forthcoming work of
+G. Dhillon, Y. Varshavsky and D. Yang using </em><em>refined categorical Moy–Prasad theory</em><em>, which
+is not yet public. The talk names it; neither talk nor paper states it. Both note it needs
+char(k) &gt; |W|.]</em></p>
+</blockquote>
+<p><strong>The spectral side</strong> needs a 2-categorical version of the QCoh → IndCoh correction. That
+theory is due to <strong>D. Arinkin</strong> (about fifteen years ago, per the talk), with an alternative
+approach later by <strong>G. Stefanich</strong>. Write 2-QCoh(S) for categories with an action of QCoh(S);
+the corrected object is <strong>2-IndCoh_𝒩(S)</strong>, built from a resolution S̃ → S and defined as
+modules over a localization of IndCoh(S̃ ×_S S̃).</p>
+<p>One technical point worth having, because it explains why the local case is <em>easier</em> here than
+the global one: the local parameter space LS^restr_Ǧ(𝒟̊) is <strong>formally smooth</strong>, not merely
+quasi-smooth, because the relevant sheaf theory on the punctured disc has cohomological
+dimension 1. Nilp sits inside its cotangent bundle as a Lagrangian, and the correction is
+applied relative to that.</p>
+<blockquote>
+<p><strong>Conjecture 4 (talk) = Conjecture 2.6.10 (paper).</strong>
+𝔏(G)-Cat_restr ≃ 2-IndCoh_Nilp( LS^restr_Ǧ(𝒟̊) )</p>
+</blockquote>
+<p>Very significant progress towards it is the Dhillon–Varshavsky–Yang work.</p>
+<p>And then the caveat the talk does not give but the paper does (Remark 2.6.11), which is the
+sharpest thing in the paper for your purposes: <strong>DVY establish an equivalence of the two
+sides as abstract 2-categories, but both sides carry an extra structure — an action of
+QCoh(LS^restr) via the Bernstein centre — and it is not yet known that the equivalence is
+compatible with it.</strong> An equivalence that does not respect the structure you care about is not
+yet the theorem you wanted. Hold that thought for §7.4.</p>
+<h3>4.12 Conjecture 5: the local trace</h3>
+<p>The same descent as §4.7, one level up.</p>
+<blockquote>
+<p><strong>Conjecture 5 (talk) = Conjecture 2.5.12 (paper).</strong> The natural map
+Tr(Frob, 𝔏(G)-Cat_restr) → Tr(Frob, 𝔏(G)-Cat) ≅ Shv(Isoc_G)
+<strong>is an isomorphism.</strong></p>
+</blockquote>
+<p>Compare Theorem 3 in §4.7 line by line: cutting down to the restricted subcategory does not
+change the trace, and the trace is the classical object. Identical statement, one rung up.</p>
+<p>Two status notes from the paper that the talk gives only partially:</p>
+<ul>
+<li>The <strong>finite-dimensional analogue is a theorem</strong>, equivalent to Theorem 6.1.1 of
+  <strong>A. Eteve</strong>: Tr(Frob, G-Cat_restr) ≅ Rep(G(𝔽_q)). The talk names this ("a counterpart of
+  this conjecture, when instead of the loop group you consider finite dimensional reductive
+  group, it's a theorem of Arnaud Eteve").</li>
+<li>Substantial progress on the loop-group case is joint work of <strong>Dhillon, Eteve, Gaitsgory,
+  Raskin, Varshavsky and Yang</strong>, and <strong>independently by C. Chan, T. Kaletha and X. Zhu by a
+  different method</strong>. <em>(That last credit is in the paper, §2.5.13; the talk says only "a lot of
+  progress has been made toward this conjecture recently".)</em> The paper adds a nice aside:
+  "(un)surprisingly, this statement ended up being much simpler than its global counterpart."</li>
+</ul>
+<p>The paper also has an example the talk omits, and it is the best evidence that the machinery
+is doing something real rather than shuffling definitions: in the finite-dimensional case, the
+"class" construction applied to Shv(G/B)^χ with a Weyl-group twist produces exactly the
+<strong>Deligne–Lusztig representation</strong> attached to (χ, w). One of the central constructions of
+finite-group representation theory falls out as a special case.</p>
+<h3>4.13 The global ramified case: shtukas, and the enhanced automorphic space</h3>
+<p>Now combine. Take the category of sheaves on Bun_G^{level_x}, with its 𝔏(G)-action, and cut
+down by a condition that plays the role of nilpotent singular support. The talk calls it
+"Hecke finite"; the paper's condition is <strong>Shv_HL</strong> — "Hecke-lisse" — recall §3.6: the
+sheaves whose Hecke transforms are lisse along the curve. I use the paper's definition
+throughout; see the process note on the naming.</p>
+<blockquote>
+<p><strong>Conjecture 3.1.5 (paper).</strong> Shv_HL(Bun_G^{level_x}) is a <em>restricted</em> object of
+𝔏(G)_x-Cat, i.e. it lands where Conjecture 4 can be applied to it.</p>
+<p><strong>The global ramified geometric conjecture — Conjecture 6 (talk) = Conjecture 3.4.4
+(paper).</strong> Under the local geometric equivalence of Conjecture 4,</p>
+<p>Shv_HL(Bun_G^{level_x})  corresponds to  IndCoh_Nilp( LS^restr_Ǧ(X̊) | LS^restr_Ǧ(𝒟̊_x) )</p>
+</blockquote>
+<p>where X̊ is the curve with the points removed, and the bar notation means "the object of the
+2-category attached to the restriction map LS(X̊) → LS(𝒟̊)". The geometry is exactly what you
+would hope: <strong>restricting a local system from the punctured curve to the punctured disc.</strong>
+That single map carries all the global information into the local picture.</p>
+<p>Now the classical consequence, and here comes the last correction.</p>
+<p>The object you would want to describe is Autom^{level_x}, a representation of 𝔏(G)_x(𝔽_q). But
+§4.9 said that category is the wrong one. So <strong>enhance the object</strong>: define</p>
+<blockquote>
+<p>Autom(X,G)^{enh_x} ∈ Shv(Isoc_{G,x})</p>
+</blockquote>
+<p>from which the ordinary Autom^{level_x} is recovered by applying ι^! — the right adjoint of the
+embedding in §4.9. You do not lose the object you started with; you place it inside a larger
+one where the answer is clean.</p>
+<p><strong>How the enhanced object is built: shtukas.</strong> Define</p>
+<blockquote>
+<p>Sht_x := Bun_G ×_{(Bun_G × Bun_G)} ℋ_x,   with the map (Id, Frob)</p>
+</blockquote>
+<p>where ℋ_x is the Hecke groupoid at x. A shtuka is a bundle together with a modification at x
+relating it to its own Frobenius twist — the function-field replacement for a Shimura variety,
+and the object Vincent Lafforgue used to construct global Langlands parameters. The paper's
+Remark 3.2.4 gives the slogan: Sht̊_x is (Bun_G(X̊))^Frob. <strong>Fixed points again.</strong></p>
+<p>There is a map π : Sht̊<em G_x="G,x">x → Isoc</em>, given by restricting from X to the disc around x, and
+the enhanced automorphic object is built from it.</p>
+<blockquote>
+<p><em>[Discrepancy, both sources quoted. The </em><em>talk</em><em> says: "we take the constant sheaf on the
+space of shtukas and we take its direct image with compact supports" along π. The </em><em>paper</em><em>
+(§3.2.5) defines it dually: using the self-duality of Shv(Isoc), it specifies the functor
+ℱ ↦ C_c(Sht̊_x, π^!(ℱ)), and Autom^{enh} is the object corresponding to that functor. I have
+not verified that the talk's phrasing is literally the paper's construction rather than its
+dual, so I give both. What would settle it: unwinding the self-duality of Shv(Isoc_G) from
+Zhu's Proposition 3.82.]</em></p>
+</blockquote>
+<p>The paper does verify the compatibility you care about (§3.2.6): pairing Autom^{enh} against
+the delta-function object at the identity recovers Autom^{level} exactly, by base change along
+a Cartesian square. So the enhancement is a genuine enlargement, not a replacement.</p>
+<blockquote>
+<p><strong>Conjecture 7 (talk) = Corollary-of-Conjecture 3.5.9 (paper).</strong> Under the local equivalence
+Shv(Isoc_{G,x}) ≃ IndCoh(LS^arithm_Ǧ(𝒟̊_x)), the object</p>
+<p>Autom(X,G)^{enh_x}   corresponds to   (𝔯^arithm)<em LS_arithm_Ǧ_X̊_="LS^arithm_Ǧ(X̊)">* ω</em></p>
+<p>where 𝔯^arithm : LS^arithm_Ǧ(X̊) → LS^arithm_Ǧ(𝒟̊_x) is restriction from the punctured curve
+to the punctured disc, and the pushforward is the IndCoh one.</p>
+</blockquote>
+<p>The speaker:</p>
+<blockquote>
+<p>"This conjecture seven in some sense is the ultimate answer to the Langlands program over
+function fields. Langlands asked just describe the space of automorphic functions in terms
+of the spectral side. We can't quite do this. We performed a bunch of modifications, but at
+the end of the day we arrive at this conjecture seven."</p>
+</blockquote>
+<p><strong>Read the answer in plain language.</strong> Automorphic functions are the pushforward of the
+dualizing sheaf, along the map that restricts a Langlands parameter from the punctured curve
+to a punctured disc around the ramification point. In Fourier language: the automorphic
+spectrum, as seen from the local place x, is obtained by <em>integrating the global parameter
+space over the fibres of the restriction map</em>. Pushforward is integration along fibres, and
+ω is what you are allowed to integrate. That reading is honest — it is exactly what the
+formula says.</p>
+<p>The talk notes the statement was <strong>independently proposed by Xinwen Zhu</strong>; the paper's
+footnote 19 puts it more precisely: "The statement of Corollary 3.5.9 was inspired by a
+seminar talk by X. Zhu in 2020."</p>
+<p>A last item, in the paper only (Remark 3.5.10), and worth knowing because it links back to a
+Fields-Medal-winning theorem: Lafforgue's work equips Autom^{level} with an action of the
+<strong>excursion algebra</strong>, which the paper reinterprets as Γ(LS^arithm(X̊), 𝒪) — the <em>functions</em> on
+the global parameter space. Work in progress with Genestier, Eteve and Lafforgue extends that
+action to the enhanced object, where it should become the tautological action of functions on
+sections of ω. Functions act on densities. Of course they do.</p>
+<h3>4.14 The ladder, in one picture</h3>
+<p><strong>Reconstructed diagram.</strong> The layout is mine; every cell and every arrow is stated in the
+talk or the paper.</p>
+<pre><code>                   AUTOMORPHIC side                       SPECTRAL side          level
+LOCAL              𝔏(G)-Cat_restr        ≃ Conj 4 ≃    2-IndCoh_Nilp(LS^restr(𝒟̊))    2
+geometric                │                                     │
+                         │ Tr(Frob) — Conj 5                   │ Tr(Frob) — Cor 2.7.7
+                         ▼                                     ▼
+LOCAL              Shv(Isoc_G)           ≃ Conj 3 ≃    IndCoh(LS^arithm(𝒟̊))          1
+classical
+
+GLOBAL             Shv_Nilp(Bun_G)       ≃ Conj 2 ≃    IndCoh_Nilp(LS^restr(X))       1
+geometric                │                                     │
+                         │ Tr(Frob) — Thm 3                    │ Tr(Frob) — Lemma 2
+                         ▼                                     ▼
+GLOBAL             Autom(X,G)            ≃ Conj 1 ≃    Γ(LS^arithm(X), ω)             0
+classical
+</code></pre>
+<p>The two rules, both stated by the speaker:</p>
+<ul>
+<li><strong>Geometric ⇒ classical lowers the categorical level by one</strong>, and the operation that does
+  it is Tr(Frob).</li>
+<li><strong>Global ⇒ local raises it by one.</strong> Globally, classical is a vector space; locally,
+  classical is a category.</li>
+</ul>
+<p>The horizontal arrows are the Langlands equivalences. The vertical arrows are traces. Every
+statement in this talk is one arrow in this diagram, and the method of proof is always the
+same: <strong>establish the top arrow, then take traces to get the bottom one.</strong></p>
+<h3>4.15 Status, and the numbering map</h3>
+<p>The talk's numbering against the paper's, with what is proved. The mapping is my
+reconstruction from order and content; the paper's own numbers and status claims are quoted.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Talk</th>
+<th>Paper</th>
+<th>Statement</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conjecture 1</td>
+<td>Corollary 1.5.8</td>
+<td>Autom(X,G) ≅ Γ(LS^arithm(X), ω)</td>
+<td>Consequence of Conj 1.4.4</td>
+</tr>
+<tr>
+<td>Theorem 1</td>
+<td>via Thm 1.4.6</td>
+<td>The same, over a union of some connected components</td>
+<td><strong>Theorem</strong></td>
+</tr>
+<tr>
+<td>Conjecture 2</td>
+<td>Conjecture 1.4.4</td>
+<td>Shv_Nilp(Bun_G) ≃ IndCoh_Nilp(LS^restr(X))</td>
+<td><strong>Theorem</strong> in char 0, and for GL_n over any field; else up to components</td>
+</tr>
+<tr>
+<td>Theorem 2</td>
+<td>Theorem 1.4.6</td>
+<td>Conj 2 up to connected components</td>
+<td><strong>Theorem</strong> [GR]</td>
+</tr>
+<tr>
+<td>Theorem 3</td>
+<td>Theorem 1.2.3</td>
+<td>Tr(Frob, Shv_Nilp(Bun_G)) ≅ Autom</td>
+<td><strong>Theorem</strong> [AGKRRV3]</td>
+</tr>
+<tr>
+<td>Lemma 1</td>
+<td>§1.5.2</td>
+<td>Tr(φ, QCoh(𝒴)) ≅ Γ(𝒴^φ, 𝒪)</td>
+<td><strong>Theorem</strong></td>
+</tr>
+<tr>
+<td>Lemma 2</td>
+<td>§1.5.2</td>
+<td>Tr(φ, IndCoh(𝒴)) ≅ Γ(𝒴^φ, ω)</td>
+<td><strong>Theorem</strong></td>
+</tr>
+<tr>
+<td>Conjecture 3</td>
+<td>Cor-of-Conj 2.7.9</td>
+<td>Shv(Isoc_G) ≃ IndCoh(LS^arithm(𝒟̊))</td>
+<td>Conjecture; first proposed by Zhu; tame/depth-0 case done</td>
+</tr>
+<tr>
+<td>Conjecture 4</td>
+<td>Conjecture 2.6.10</td>
+<td>𝔏(G)-Cat_restr ≃ 2-IndCoh_Nilp(LS^restr(𝒟̊))</td>
+<td>Conjecture; major progress [DVY], modulo Bernstein-centre compatibility</td>
+</tr>
+<tr>
+<td>Conjecture 5</td>
+<td>Conjecture 2.5.12</td>
+<td>The local trace isomorphism</td>
+<td>Conjecture; finite-dim case is a theorem [Eteve]; two independent partial results</td>
+</tr>
+<tr>
+<td>Conjecture 6</td>
+<td>Conjecture 3.4.4</td>
+<td>The global ramified geometric conjecture</td>
+<td>Conjecture</td>
+</tr>
+<tr>
+<td>Conjecture 7</td>
+<td>Cor-of-Conj 3.5.9</td>
+<td>The spectral description of Autom^enh</td>
+<td>Conjecture; "the ultimate answer"</td>
+</tr>
+</tbody>
+</table></div>
+<p>The line the talk draws is clean: "from now on it'll be just conjectures, no theorems"
+arrives exactly at the ramified case. Everything global and unramified is proved or nearly
+proved. Everything local is conjectural and moving fast.</p>
+<p>He ends: "And miraculously I've covered all my material. I wasn't even intending to."</p>
+<hr />
+<h2>5. The one argument, stated precisely</h2>
+<p>Strip away the vocabulary and one derivation carries the whole talk. Here it is with every
+symbol defined.</p>
+<p><strong>Setup.</strong> X a smooth complete curve over 𝔽_q, G reductive (think GL_n), Ǧ its Langlands
+dual (for GL_n, again GL_n). Coefficients ℚ̄_ℓ throughout. Bun_G is the moduli stack of
+G-bundles on X. Autom(X,G) := Funct_c(Bun_G(𝔽_q)), the finitely-supported ℚ̄_ℓ-valued
+functions on the set of 𝔽_q-points. Shv_Nilp(Bun_G) is the category of ℓ-adic sheaves on
+Bun_G whose singular support lies in the global nilpotent cone. LS^restr_Ǧ(X) is the stack
+of Ǧ-local systems with restricted variation; LS^arithm_Ǧ(X) is its Frobenius fixed-point
+locus. Frob is the geometric Frobenius; Tr(Frob, −) is the categorical trace of §3.5; ω is
+the dualizing sheaf.</p>
+<p><strong>Step 1 — descend the automorphic side (Theorem 1.2.3, proved).</strong></p>
+<blockquote>
+<p>Tr( Frob, Shv_Nilp(Bun_G) ) ≅ Autom(X, G)</p>
+</blockquote>
+<p>The categorical trace of Frobenius on automorphic sheaves <em>is</em> the space of automorphic
+functions. The composite is the trace map into Tr(Frob, Shv(Bun_G)) followed by
+Grothendieck's local-term map LT^true. Neither factor is an isomorphism on its own; the
+composite is.</p>
+<p><strong>Step 2 — the Langlands equivalence one level up (Conjecture 1.4.4).</strong></p>
+<blockquote>
+<p>Shv_Nilp(Bun_G) ≃ IndCoh_Nilp( LS^restr_Ǧ(X) )</p>
+</blockquote>
+<p>compatibly with the QCoh(LS^restr)-action on both sides, and — this is what makes Step 3
+legal — compatibly with Frobenius, since the construction is canonical and therefore
+commutes with base change along Frobenius.</p>
+<p><strong>Step 3 — descend the spectral side (§1.5.2 plus Proposition 1.5.6, proved).</strong></p>
+<blockquote>
+<p>Tr( Frob, IndCoh_Nilp(LS^restr_Ǧ(X)) ) ≅ Tr( Frob, IndCoh(LS^restr_Ǧ(X)) )
+                                       ≅ Γ( LS^arithm_Ǧ(X), ω )</p>
+</blockquote>
+<p>The first isomorphism is Proposition 1.5.6 (the Nilp condition is invisible to the trace).
+The second is the IndCoh trace formula: the trace of pushforward along φ on IndCoh is the
+ω-sections of the fixed-point locus, and the fixed-point locus of Frobenius on LS^restr is
+LS^arithm by definition.</p>
+<p><strong>Conclusion (Corollary 1.5.8).</strong></p>
+<blockquote>
+<p><strong>Autom(X, G) ≅ Γ( LS^arithm_Ǧ(X), ω )</strong></p>
+</blockquote>
+<p>Apply Tr(Frob, −) to Step 2 and splice Steps 1 and 3 onto the two ends. That is the proof.
+It is three lines because all the work is in the objects.</p>
+<p><strong>The proof-sketch honesty check.</strong> Steps 1 and 3 are theorems. Step 2 is a theorem in
+characteristic 0 and for GL_n over any field, and in general is known after restricting to a
+union of connected components. So the conclusion is a theorem in exactly those cases and in
+general holds over a union of components.</p>
+<p><strong>And the shape of the whole talk is this derivation, twice more.</strong> Replace (global,
+unramified) by (local) and every object goes up one categorical level: Steps 1 and 3 become
+Conjecture 2.5.12 and Corollary 2.7.7, Step 2 becomes Conjecture 2.6.10, and the conclusion
+becomes Corollary 2.7.9. Replace it by (global, ramified) and you get Conjecture 3.3.3,
+Conjecture 3.5.5, Conjecture 3.4.4, and Corollary 3.5.9. <strong>One argument, three times.</strong></p>
+<hr />
+<h2>6. Do this by hand</h2>
+<p>Two exercises. Between them they touch the two ideas that carry the talk — the Fourier
+anchor, and the trace. Both are elementary; neither needs anything from algebraic geometry.</p>
+<h3>6.1 The 𝔾_m case: watch the Stone-Age conjecture die (20 minutes, pen)</h3>
+<p>Take G = 𝔾_m (so Bun_G classifies line bundles) and X = ℙ¹ over 𝔽_q. Take as given that the
+set of isomorphism classes of line bundles on ℙ¹ over 𝔽_q is ℤ, indexed by degree.</p>
+<ol>
+<li>Write down Autom = Funct_c(ℤ) explicitly, and give a basis.</li>
+<li>Show Funct_c(ℤ) ≅ ℚ̄_ℓ[t, t^{-1}], the ring of Laurent polynomials, which is the ring of
+   regular functions on 𝔾_m. Say what this is in Fourier language.</li>
+<li>The Stone-Age conjecture proposes ⊕_{σ ∈ 𝔾_m(ℚ̄_ℓ)} ℚ̄_ℓ instead. Give a one-line reason it
+   cannot be isomorphic to the answer in (1).</li>
+<li>State, in your own words, which classical fact from spectral theory this is.</li>
+</ol>
+<details>
+<summary>Solutions</summary>
+<p><strong>(1)</strong> Funct_c(ℤ) = finitely supported functions ℤ → ℚ̄_ℓ. A basis is {δ_n : n ∈ ℤ}, where
+δ_n(m) = 1 if m = n and 0 otherwise. Dimension: countably infinite.</p>
+<p><strong>(2)</strong> Send δ_n ↦ t^n. This is a linear bijection onto the span of {t^n : n ∈ ℤ} =
+ℚ̄_ℓ[t, t^{-1}] = 𝒪(𝔾_m), since 𝔾_m = Spec ℚ̄_ℓ[t, t^{-1}]. A finitely supported function on ℤ
+is exactly a finite Fourier series: <strong>ℤ is the character group of the circle</strong>, and
+"coefficients indexed by ℤ" ↔ "a function on the dual group". This is the discrete Fourier
+transform in its cleanest algebraic form, and it is the whole content of the speaker's
+remark that "what's relevant here is really ℤ and 𝔾_m."</p>
+<p><strong>(3)</strong> 𝔾_m(ℚ̄_ℓ) = ℚ̄_ℓ^× is <strong>uncountable</strong>. A direct sum of one-dimensional spaces indexed by
+an uncountable set has uncountable dimension. Funct_c(ℤ) has countable dimension. No
+isomorphism of vector spaces exists. Done.</p>
+<p><strong>(4)</strong> An operator with <strong>continuous spectrum has no eigenbasis</strong>. You cannot write
+L²(ℝ) as a direct sum of eigenlines of the position operator — there are no eigenvectors in
+the space. The correct decomposition is a <strong>direct integral over the spectrum</strong>, i.e. you
+replace "sum over eigenvalues" with "functions on the spectrum". The Stone-Age conjecture
+writes ⊕ where the parameter space is a continuum; the early-agricultural fix, 𝒪(parameter
+space), is the direct-integral version written algebraically.</p>
+<p><strong>The point of the exercise.</strong> The Hecke eigenvalue for the parameter σ ∈ 𝔾_m is a genuine
+continuous parameter. Every subsequent correction in the talk — 𝒪 to ω, QCoh to IndCoh — is a
+further refinement of "what exactly do you take on the spectrum". Getting from ⊕ to 𝒪 was the
+easy one, and it still took an epoch.</p>
+</details>
+<h3>6.2 The trace, and why Lang's theorem fails upstairs (30 minutes, pen)</h3>
+<p><strong>(a) The basis-free trace.</strong> Let V be a finite-dimensional vector space over a field k with
+dual V*, and T : V → V linear. Consider the composite</p>
+<blockquote>
+<p>k --unit--&gt; V ⊗ V<em> --T ⊗ id--&gt; V ⊗ V</em> --ev--&gt; k</p>
+</blockquote>
+<p>where unit(1) = Σ_i e_i ⊗ e^i for a basis {e_i} and dual basis {e^i}, and
+ev(v ⊗ f) = f(v). Compute the composite and confirm it is multiplication by tr(T). Then say
+which ingredients of the computation would still make sense if V were a <em>category</em> and T a
+functor.</p>
+<p><strong>(b) Lang's theorem, and its failure for the loop group.</strong> Frobenius-twisted conjugation on
+a group H is the action h · g := h^{-1} g Frob(h).</p>
+<ul>
+<li>Take H = 𝔾_m over 𝔽̄_q, so H(𝔽̄_q) = 𝔽̄_q^× and Frob(x) = x^q. Compute the twisted-conjugacy
+  orbits. How many are there, and what is the stabilizer of a point?</li>
+<li>Now take the loop group 𝔏(𝔾_m), whose points are 𝔽̄_q((t))^×, with Frobenius acting on
+  coefficients (Frob(Σ a_i t^i) = Σ a_i^q t^i). Find one invariant of twisted conjugacy that
+  is not constant, and conclude that Lang's theorem fails.</li>
+</ul>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> Track the element 1 ∈ k. unit sends it to Σ_i e_i ⊗ e^i. Applying T ⊗ id gives
+Σ_i T(e_i) ⊗ e^i. Applying ev gives Σ_i e^i( T(e_i) ) = Σ_i T_ii = tr(T). Since a linear map
+k → k is multiplication by a scalar, the composite is multiplication by tr(T). ∎</p>
+<p>What the computation used: a tensor product, a unit object, an object with a dual, and unit
+and evaluation maps satisfying the obvious compatibilities. It did <strong>not</strong> use a basis, the
+dimension, or the fact that the entries are numbers. So the same string of arrows defines a
+trace in any symmetric monoidal category, for any dualizable object with an endomorphism.
+Feed it (category, endofunctor) and out comes a vector space — Hochschild homology. That is
+§3.5, and it is exactly what the speaker does from the podium.</p>
+<p><strong>(b) Finite-dimensional case.</strong> For H abelian, h^{-1} g Frob(h) = g · h^{q-1}. So the orbit of
+g is g · {h^{q-1} : h ∈ 𝔽̄<em q-1="q-1">q^×}. Since 𝔽̄_q is algebraically closed, x ↦ x^{q-1} is
+<strong>surjective</strong> on 𝔽̄_q^×, so the orbit of g is everything: there is exactly <strong>one</strong> orbit. The
+stabilizer of g = 1 is {h : h^{q-1} = 1} = μ</em> = 𝔽_q^× = H(𝔽_q). Hence
+H / Ad_Frob(H) ≅ pt / H(𝔽_q). <strong>That is Lang's theorem</strong> in the simplest case, and it says
+sheaves on the twisted-conjugation quotient are just representations of the finite group
+H(𝔽_q).</p>
+<p><strong>Loop group case.</strong> Now g ∈ 𝔽̄_q((t))^× and the orbit is g · {Frob(h)/h : h ∈ 𝔽̄_q((t))^×}.
+Key observation: <strong>Frobenius acts on coefficients and does not touch t</strong>, so it preserves the
+t-adic valuation: v(Frob(h)) = v(h). Therefore</p>
+<blockquote>
+<p>v( Frob(h)/h ) = v(Frob(h)) − v(h) = 0   for every h.</p>
+</blockquote>
+<p>So every element of the acting set has valuation 0, and the valuation v(g) ∈ ℤ is
+<strong>constant on twisted-conjugacy orbits</strong>. It is a non-constant invariant — v(t) = 1 while
+v(1) = 0 — so there is more than one orbit. <strong>Lang's theorem fails.</strong> In fact the valuation
+gives a surjection Isoc_{𝔾_m} ↠ ℤ.</p>
+<p><strong>What this shows and what it does not.</strong> It shows exactly the point Gaitsgory makes: the
+loop group is not a connected algebraic group, Lang fails, and therefore Isoc_G is strictly
+bigger than pt/𝔏(G)(𝔽_q) — so Shv(Isoc_G) is strictly bigger than Rep(𝔏(G)(𝔽_q)). It does
+<strong>not</strong> compute Isoc_G. The full classification of isocrystals (Dieudonné–Manin for GL_n,
+Kottwitz's B(G) in general) is not discussed in either the talk or the paper.</p>
+<p><strong>Marked as reconstructed:</strong> this computation is mine. Neither the talk nor the paper works
+it out; both simply assert that Lang's theorem fails for the loop group. What would verify
+it: the assertion v(Frob(h)) = v(h) — check it directly on Σ a_i t^i, whose lowest nonzero
+coefficient a_m maps to a_m^q ≠ 0.</p>
+</details>
+<hr />
+<h2>7. What is actually useful to you</h2>
+<p>The mathematics here will not transfer to your work. The <strong>method</strong> will, and it is unusually
+crisp because Gaitsgory states it as a method rather than leaving it implicit.</p>
+<h3>7.1 When the theorem is false, the object is wrong — not the theorem</h3>
+<p>This is the strongest transferable idea in the talk, and it is repeated four times without
+variation.</p>
+<p>Every time a statement fails, Gaitsgory does <strong>not</strong> add an error term, a correction factor,
+or a hypothesis. He identifies which object in the statement was the wrong object, and
+replaces it:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Statement fails because…</th>
+<th>The object replaced</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Continuous spectrum, no eigenbasis</td>
+<td>⊕ over parameters ↝ 𝒪(parameter space)</td>
+</tr>
+<tr>
+<td>Parameter space is singular</td>
+<td>𝒪 ↝ ω, QCoh ↝ IndCoh</td>
+</tr>
+<tr>
+<td>Trace map isn't an isomorphism</td>
+<td>Shv(Bun_G) ↝ Shv_Nilp(Bun_G)</td>
+</tr>
+<tr>
+<td>Nothing on the spectral side can carry a loop-group action</td>
+<td>Rep(𝔏(G)(𝔽_q)) ↝ Shv(Isoc_G)</td>
+</tr>
+<tr>
+<td>The 2-category is too big for its spectral partner</td>
+<td>𝔏(G)-Cat ↝ 𝔏(G)-Cat_restr</td>
+</tr>
+</tbody>
+</table></div>
+<p>And the method for finding the replacement is always the same: <strong>take the smallest example
+where the statement is false, and read the correct object off the failure.</strong> 𝔾_m on ℙ¹ is a
+two-line computation, and it dictates the shape of every conjecture in a sixty-page paper.</p>
+<p>Applied to your work: when an agent's output does not match its spec, the reflex is to patch
+the prompt. The move here is different — find the smallest input where the spec is wrong, and
+ask what object the spec should have been written about. The epoch joke is a methodology:
+state the naive version, break it deliberately on a toy case, name what the breakage tells
+you, then write the next version. Four rounds of that is the process working, not failing.</p>
+<h3>7.2 Prove it one level up, then descend by a functorial operation</h3>
+<p>The architectural idea, and it is stated as a three-step recipe in the paper's very first
+substantive paragraph:</p>
+<blockquote>
+<p>"Formulate (a higher-categorical) geometric statement; apply the operation of
+(higher-categorical) trace of Frobenius, and identify the result with the classical object
+of interest; deduce the sought-for description for the classical object."</p>
+</blockquote>
+<p>Nobody proves the statement about automorphic functions. They prove the statement about
+categories of sheaves, where there is enough structure to state an <em>equivalence</em> rather than a
+coincidence of dimensions — and then apply an operation that is functorial by construction,
+so the equivalence descends automatically.</p>
+<p>Why the upstairs statement is easier despite being bigger: <strong>more structure means more
+rigidity</strong>. An equivalence of categories has to commute with everything; there are far fewer
+candidate equivalences than there are candidate linear isomorphisms. The constraints are the
+help.</p>
+<p>For agent systems: this is the difference between verifying outputs and verifying the
+generator. A property proved about the schema, the type, or the constructor descends to every
+output for free, and you never test outputs one at a time. Gaitsgory's Theorem 3 is precisely
+a statement that "trace of the generator = the thing I care about" — a soundness theorem for
+a compiler, not a test of a program.</p>
+<h3>7.3 One broken compositionality law can force you to rebuild the framework</h3>
+<p>The sharpest engineering lesson here, buried in §2.1–2.2 of the paper. For D-modules there is
+a Künneth formula: sheaves on a product = tensor product of sheaves. For ℓ-adic sheaves it
+<strong>fails</strong>, and not marginally — "it is never an equivalence if both Y and Y′ are
+positive-dimensional schemes of finite type."</p>
+<p>That single failure is why you cannot define "a group acting on a category" the obvious way,
+why the trace map from geometry to functions is not an isomorphism, why AGCat had to be
+constructed, and why "restricted" exists as a notion at all. Nobody patched around it: the
+compositionality law is what everything else is built out of, so when it fails, no local fix
+helps and you change the ambient category.</p>
+<p>You compose things for a living — skills, subagents, MCP servers. The transferable question
+is: <strong>which of my composition laws actually holds, and which am I quietly patching around at
+every call site?</strong> A law that holds only approximately is not a law, and every downstream
+abstraction is paying for it.</p>
+<h3>7.4 An equivalence that does not respect the structure is not the theorem</h3>
+<p>Remark 2.6.11 of the paper is the sharpest caveat in either document, and the talk omits it
+entirely.</p>
+<p>Dhillon–Varshavsky–Yang have made very significant progress on Conjecture 2.6.10 — but what
+they establish is an equivalence <strong>of abstract 2-categories</strong>. Both sides carry more: an
+action of QCoh(LS^restr) via the Bernstein centre. And, in the paper's words: "What we do not
+know yet is why the equivalence of [DVY] is compatible with the maps from QCoh to the
+Bernstein centres of the two sides."</p>
+<p>So: the objects match, and it is not yet known that the match respects the operators that make
+the objects mean anything. The Hecke action is the entire point of Langlands; an equivalence
+that ignores it is a coincidence of size.</p>
+<p>This is the same finding Kontorovich reaches from the other direction, with his Vulcan joke —
+a Lean file that compiles is a file that compiles, and meaning is on the human side. Two ICM
+plenary speakers, two fields, same lesson: <strong>a passing check on the object is not a check on
+the structure you cared about.</strong> For you: an agent that produces a well-typed artefact
+satisfying the schema has satisfied the schema. Whether it respects the invariant the schema
+was written to protect is a separate theorem and usually an unproved one.</p>
+<h3>7.5 When the quantity has no clean answer, enlarge it until it does</h3>
+<p>The final move of the talk (§4.13) is worth isolating because it is counterintuitive and
+generally useful.</p>
+<p>Autom^{level}, the object people have cared about for fifty years, has <strong>no clean spectral
+description</strong> — the paper says flatly, "we do not know how to translate the category
+Rep(𝔏(G)(𝔽_q))". The response is not to give up and not to approximate. It is to construct a
+<em>larger</em> object, Autom^{enh}, living in a bigger category, which <strong>does</strong> have a clean
+description — and from which the original is recovered by a right adjoint, ι^!. Nothing is
+lost; a projection gets you back.</p>
+<p>You know this shape. Distributions are worse-behaved than functions in every naive sense, and
+you enlarge to them because differentiation becomes total. Complex numbers are an enlargement
+that makes root-finding total. Adding auxiliary variables to close a recursion is the same
+move.</p>
+<p>The operational version: when a quantity resists a clean formula, ask whether it is the
+<em>shadow</em> of something larger that has one. The test that you have found the right enlargement
+is the one the paper performs in §3.2.6 — check that the projection back really does recover
+the original object, on the nose.</p>
+<hr />
+<h2>8. Where to read next</h2>
+<p>Ordered. All three are hard; the first is the only one written for a general audience.</p>
+<ol>
+<li><strong>Gaitsgory, <em>Local and global Langlands conjecture(s) over function fields</em>.</strong>
+   <a href="https://arxiv.org/abs/2509.24902">arXiv:2509.24902</a> — the written version of this talk, and
+   the source of every formula above. §0.1 and §1 are readable with this tutorial beside you;
+   §1.5 is the derivation in §5 of this document. Sections 2 and 3 are for specialists.</li>
+<li><strong>Arinkin, Gaitsgory, Kazhdan, Raskin, Rozenblyum, Varshavsky, <em>The stack of local systems
+   with restricted variation and geometric Langlands theory with nilpotent singular support</em>.</strong>
+   <a href="https://arxiv.org/abs/2010.01906">arXiv:2010.01906</a> — where LS^restr is defined and where
+   Shv_Nilp = Shv_HL is proved. This is the foundational paper for the whole global half.</li>
+<li><strong>Gaitsgory and Raskin, <em>Geometric Langlands in positive characteristic from characteristic
+   zero</em>.</strong> <a href="https://arxiv.org/abs/2508.02237">arXiv:2508.02237</a> — the source of Theorem 1.4.6,
+   i.e. of everything the talk is able to call a theorem.</li>
+</ol>
+<p>If you want the neighbouring conjecture in its own words rather than through this paper's
+translation: Fargues and Scholze, <em>Geometrization of the local Langlands correspondence</em>,
+<a href="https://arxiv.org/abs/2102.13459">arXiv:2102.13459</a>.</p>
+<hr />
+<h2>9. Self-test</h2>
+<details>
+<summary>1. State Langlands' question in one sentence, and say what "over function fields" changes.</summary>
+<p>Describe the space of automorphic functions in terms of the spectral side — the Langlands
+parameters. "Over function fields" means you replace ℚ by the field of rational functions on a
+curve X over a finite field 𝔽_q; primes become points of the curve. The gain is that the
+setting now has <em>geometry</em>, so algebraic geometry and sheaf theory become available. That is
+the only reason any of this machinery applies.</p>
+</details>
+<details>
+<summary>2. What is the space of automorphic functions, concretely?</summary>
+<p>Autom(X,G) = Funct_c(Bun_G(𝔽_q)): the finitely supported ℚ̄_ℓ-valued functions on the set of
+isomorphism classes of G-bundles on X defined over 𝔽_q. For G = GL_n that is rank-n vector
+bundles. The set is discrete, infinite, and countable. The object is elementary; all the
+structure is in the Hecke operators acting on it.</p>
+</details>
+<details>
+<summary>3. Why is the Stone-Age conjecture false, and what is the classical analogue of the failure?</summary>
+<p>For G = 𝔾_m, X = ℙ¹: the left side is Funct_c(ℤ), of countable dimension; the proposed right
+side is a direct sum of lines indexed by 𝔾_m(ℚ̄_ℓ) = ℚ̄_ℓ^×, which is uncountable. Classical
+analogue: an operator with continuous spectrum has no eigenbasis, so you must use a direct
+integral over the spectrum rather than a direct sum of eigenlines. The fix — replace ⊕ over
+parameters by 𝒪(parameter space) — is that direct integral, written algebraically. For 𝔾_m it
+is literally Fourier series: Funct_c(ℤ) ≅ ℚ̄_ℓ[t,t^{-1}] = 𝒪(𝔾_m).</p>
+</details>
+<details>
+<summary>4. Why does the coefficient field have to change from ℚ to ℚ̄_ℓ?</summary>
+<p>The spectral side consists of <em>continuous</em> homomorphisms out of the étale fundamental group,
+which is profinite. For continuity to have content the target group must carry a compatible
+topology. ℚ̄_ℓ — the algebraic closure of the ℓ-adic numbers, ℓ ≠ char — has one; ℚ does not.
+That is the entire reason, and it is the only reason.</p>
+</details>
+<details>
+<summary>5. Why is the answer ω and not 𝒪?</summary>
+<p>Because the arithmetic parameter space LS^arithm is singular — the paper says
+quasi-quasi-smooth, cotangent fibres of amplitude [−2,1], not eventually coconnective — and on
+a singular space functions and densities are genuinely different objects. The trace formula
+supplies the mechanism directly: Tr(φ, QCoh) = Γ(fixed points, 𝒪) but Tr(φ, IndCoh) =
+Γ(fixed points, ω), and the correct automorphic category corresponds to IndCoh, not QCoh.
+Where the space is well-behaved they agree (the stack is Calabi–Yau); the discrepancy on the
+bad locus is a source of non-temperedness.</p>
+</details>
+<details>
+<summary>6. What is singular support, and which condition is imposed on Bun_G?</summary>
+<p>Singular support is the sheaf-theoretic wavefront set: a conical subset of T<em>(𝒴) recording the
+codirections in which a sheaf fails to be locally constant. For 𝒴 = Bun_G, the cotangent
+bundle is the moduli of Higgs bundles, and one imposes that the singular support lie in the
+</em><em>global nilpotent cone</em>* Nilp, giving Shv_Nilp(Bun_G). Equivalent characterisation
+(AGKRRV1, Thm 14.4.3): the same subcategory is Shv_HL(Bun_G), the sheaves whose Hecke
+transforms are lisse along the curve.</p>
+</details>
+<details>
+<summary>7. Explain the categorical trace, and what it does to the categorical level.</summary>
+<p>Take the basis-free definition of the ordinary trace — unit into V ⊗ V<em>, apply the
+endomorphism, evaluate — and observe it uses only a tensor product, a unit, a dual, and
+evaluation. So it runs in any symmetric monoidal category. Applied to a dualizable </em>category<em>
+with an endofunctor it produces a </em>vector space<em> (Hochschild homology); applied to a
+2-category it produces a category. </em><em>The trace walks one rung down the categorification
+ladder</em>*, and taking the trace of Frobenius is the operation that converts geometric
+statements into classical ones.</p>
+</details>
+<details>
+<summary>8. Give the three-step derivation of Conjecture 1 from Conjecture 2.</summary>
+<p>(1) Theorem 1.2.3: Tr(Frob, Shv_Nilp(Bun_G)) ≅ Autom(X,G). (2) Conjecture 1.4.4:
+Shv_Nilp(Bun_G) ≃ IndCoh_Nilp(LS^restr(X)), Frobenius-compatibly, so the traces agree.
+(3) The IndCoh trace formula plus Proposition 1.5.6:
+Tr(Frob, IndCoh_Nilp(LS^restr(X))) ≅ Γ(LS^arithm(X), ω). Splice: Autom ≅ Γ(LS^arithm, ω).
+Steps 1 and 3 are theorems; step 2 is a theorem in characteristic 0 and for GL_n, and in
+general holds over a union of connected components.</p>
+</details>
+<details>
+<summary>9. Why do isocrystals appear, and what is Lang's theorem doing?</summary>
+<p>Isoc_G := 𝔏(G)/Ad_Frob(𝔏(G)), the loop group modulo Frobenius-twisted conjugation. For a
+<em>connected</em> algebraic group H, Lang's theorem says H/Ad_Frob(H) ≅ pt/H(𝔽_q), so sheaves there
+are just Rep(H(𝔽_q)) and nothing is gained. The loop group is an ind-scheme and <strong>Lang fails</strong>
+for it — e.g. for 𝔏(𝔾_m) the t-adic valuation is a nonconstant twisted-conjugacy invariant. So
+Isoc_G properly contains pt/𝔏(G)(𝔽_q), and Shv(Isoc_G) properly contains Rep(𝔏(G)(𝔽_q)). The
+conceptual reason it is the <em>right</em> enlargement: it is what Tr(Frob, 𝔏(G)-Cat) computes — "they
+appear naturally as the recipient of the trace."</p>
+</details>
+<details>
+<summary>10. What does Conjecture 7 say, and in what sense is it the answer?</summary>
+<p>Under the local equivalence Shv(Isoc_{G,x}) ≃ IndCoh(LS^arithm(𝒟̊<em>x)), the enhanced automorphic
+object Autom^{enh_x} corresponds to (𝔯^arithm)</em>* ω, the IndCoh pushforward of the dualizing
+sheaf along restriction from the punctured curve to the punctured disc. It is "the answer"
+because it finally does what Langlands asked — describes automorphic functions purely in
+spectral terms — at the cost of three modifications: the parameter space had to be constructed,
+𝒪 had to become ω, and the automorphic object itself had to be enlarged from Autom^{level} to
+Autom^{enh} (with the original recovered by the right adjoint ι^!).</p>
+</details>
+<hr />
+<h2>10. Note on the tutorial process</h2>
+<p><strong>Difficulty against reputation: matched, for once.</strong> Gaitsgory is known for geometric
+Langlands and the talk is geometric Langlands at its frontier, so the Rule-1 inversion that
+caught Kontorovich did not apply. What the transcript <em>did</em> settle is the split: the global
+unramified half is a hard 4 — four statements and one argument, delivered deliberately
+slowly — and the local half is a 5 and is not learnable from a talk.</p>
+<p><strong>How much mathematics survived the captions: none.</strong> This was a slide talk with dense
+notation, and auto-captions carry no formulas at all. Every displayed formula, conjecture
+statement, and numbered result here comes from arXiv:2509.24902. The transcript supplied the
+narrative, the epoch joke, the motivations, the attributions, and the two "main point of this
+talk" markers — all absent from the paper. The two sources are nearly complementary, which is
+lucky and unusual.</p>
+<p><strong>Length note.</strong> This runs longer than the two model tutorials. At difficulty 5 the bridge is
+the deliverable, and §3 plus the walkthrough carry twelve numbered statements across two
+settings. I trimmed rather than truncated; nothing in the walkthrough was dropped.</p>
+<p><strong>Name corrections.</strong> Every one verified against the paper's own text or bibliography unless
+marked.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rosenblum</td>
+<td><strong>Rozenblyum</strong></td>
+<td>paper, [AGKRRV1]</td>
+</tr>
+<tr>
+<td>Shen Wei Zhu / Shin Won Joon</td>
+<td><strong>Xinwen Zhu</strong></td>
+<td>paper, [Zhu1], [Zhu2], fn. 19</td>
+</tr>
+<tr>
+<td>Fargues-Scholten / Fargues-Fontaine / Park Shultz</td>
+<td><strong>Fargues–Scholze</strong></td>
+<td>paper, [FS]</td>
+</tr>
+<tr>
+<td>Erinkin</td>
+<td><strong>Arinkin</strong></td>
+<td>paper, §2.6.2, [AG]</td>
+</tr>
+<tr>
+<td>Herman Stefanich</td>
+<td><strong>German Stefanich</strong></td>
+<td>paper, [Ste]</td>
+</tr>
+<tr>
+<td>Gurpreet Dhillon</td>
+<td><strong>Gurbir Dhillon</strong></td>
+<td>paper, [DVY]; confirmed by search</td>
+</tr>
+<tr>
+<td>Dylan Yang</td>
+<td><strong>D. (David) Yang</strong></td>
+<td>paper, [DVY]</td>
+</tr>
+<tr>
+<td>Arnaud Etam</td>
+<td><strong>Arnaud Eteve</strong></td>
+<td>paper, [Ete]</td>
+</tr>
+<tr>
+<td>Moy Prasad</td>
+<td><strong>Moy–Prasad</strong></td>
+<td>paper, [DVY] title</td>
+</tr>
+<tr>
+<td>Jean-Pierre Serre (for nilpotent singular support, "40 years ago")</td>
+<td><strong>G. Laumon</strong>, 1987</td>
+<td>paper, Remark 1.1.8, [Laum]</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Substantive caption errors corrected in the text, not just spellings.</strong> Four, and all four
+change the meaning:</p>
+<ul>
+<li>"representations of this Picard group" → <strong>p-adic group</strong>. The speaker says "p-adic group"
+  correctly moments later. This one is actively misleading, because "Picard" is a real object
+  in this talk — Bun_{𝔾_m} <em>is</em> a Picard stack.</li>
+<li>"nilpotent <strong>single</strong> support" throughout → <strong>singular support</strong>.</li>
+<li>"G with coefficients in the <strong>slow</strong> local field" → <strong>the local field</strong> 𝔽_q((t)).</li>
+<li>"incoherent" / "into coherent" / "integral coherent" throughout → <strong>ind-coherent</strong> (IndCoh).</li>
+</ul>
+<p><strong>Reconstructed, and what would verify each:</strong></p>
+<ul>
+<li><strong>The talk-number ↔ paper-number map</strong> (§4.15). Built from order and content; the speaker
+  never reads a paper section number aloud. All twelve rows match on content. The slides would
+  settle it and are not public.</li>
+<li><strong>The ladder diagram</strong> (§4.14). Layout mine; every cell and arrow is stated in a source, and
+  the two rules beneath it are the speaker's own words.</li>
+<li><strong>Exercise 6.2(b)</strong>, the failure of Lang's theorem for 𝔏(𝔾_m). My computation; both sources
+  merely assert the failure. Verify in one line: Frobenius acts on coefficients, so it
+  preserves the t-adic valuation.</li>
+<li><strong>The 𝔾_m/ℙ¹ parameter count</strong> in §4.1 — the parenthetical explaining why the index set is
+  ℚ̄_ℓ^×. Standard, but mine; the talk asserts the index set without justification.</li>
+<li><strong>"Grothendieck and Ray"</strong> → almost certainly <strong>Grothendieck and Raynaud</strong> (SGA 1). Not in
+  the paper, so flagged in §3.3 and not relied on.</li>
+<li><strong>"the functional zeta conjecture"</strong> should, from context, be the <strong>Fargues–Scholze
+  conjecture</strong>. I did not write that reconstruction into the body; the sentence is paraphrased
+  without a name.</li>
+</ul>
+<p><strong>Could not verify:</strong></p>
+<ul>
+<li><strong>"a series of papers by nine authors"</strong> (talk, §4.4). The AGKRRV series has six authors;
+  Gaitsgory–Raskin has two. The speaker then declines to name them ("I'm too jet-lagged"). I
+  could not reconcile the number and have not guessed a list.</li>
+<li><strong>"Hecke finite" versus "Hecke-lisse"</strong> (§4.13). Captions say "hecke finite"; the paper's
+  condition is Shv_HL, expanded in its footnote 3 as "Hecke-lisse". But <em>Hecke-finiteness</em> is
+  also a real term in this literature (it appears in Lafforgue's shtuka work), so this is
+  <strong>not</strong> safely a caption mangle. I used the paper's definition and flagged it in place.
+  Unresolved.</li>
+<li><strong>The direction of the shtuka construction</strong> (§4.13). The talk says "direct image with
+  compact supports of the constant sheaf"; the paper defines the object dually via
+  ℱ ↦ C_c(Sht̊, π^!ℱ). Both quoted; I did not assert they are the same construction.</li>
+</ul>
+<p><strong>Gaps marked in place, and how bad they are.</strong> Two, both mild:</p>
+<ol>
+<li><strong>Hecke operators are never defined</strong> (§4.6). The speaker refuses on time grounds; the paper
+   gives only the functor's shape and cites geometric Satake. It is the most important
+   undefined object in the talk, but survivable, because every statement below uses only the
+   shape.</li>
+<li><strong>"Restricted" for the loop group is only provisionally defined</strong> (§4.11). The definition
+   the field will use is in Dhillon–Varshavsky–Yang, listed as <em>forthcoming</em>. Not recoverable
+   from any public source.</li>
+</ol>
+<p>Beyond those two I did <strong>not</strong> attempt to teach AGCat or 2-IndCoh: both appear as facts with
+their motivation and their consequence, and no more. Deliberate. They are not learnable in a
+tutorial, and faking it would produce exactly the smooth fabrication that is worse than a gap.</p>
+<p><strong>One error found in the paper.</strong> Its bibliography lists [Zhu1] as arXiv:2020.02998, not a
+valid identifier (there is no month 20). The correct one is <strong>arXiv:2008.02998</strong> — X. Zhu,
+<em>Coherent sheaves on the stack of Langlands parameters</em>, 7 August 2020. Verified by search;
+corrected in §4.10.</p>
+<p><strong>One place the paper beats the talk.</strong> The talk presents Conjecture 2 as known only up to a
+union of connected components. The paper (§1.4.3) records that Gaitsgory–Raskin establish it
+<strong>in full in characteristic 0, and for G = GL_n over any ground field</strong>. Where a speaker
+undersells and the paper does not, quote the paper.</p>
+<p><strong>On the paper's date line.</strong> The arXiv HTML shows "11 August 2026" in the title block. That
+is LaTeX's <code>\today</code> at HTML regeneration, not a submission date; the arXiv stamp on the same
+page reads <strong>arXiv:2509.24902v1 [math.AG] 29 Sep 2025</strong>, which is the date in the front matter.</p>
+</div>
+</body>
+</html>

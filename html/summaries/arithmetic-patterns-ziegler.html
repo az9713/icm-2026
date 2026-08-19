@@ -1,0 +1,1482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Structure of sets with an unexpected number of arithmetic patterns</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Tamar Ziegler (Hebrew University of Jerusalem)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=czHiX0pYTDg">https://www.youtube.com/watch?v=czHiX0pYTDg</a></div><div><b>Level:</b> 3/5</div><div><b>Reading time:</b> ~65 min</div></div>
+<h1>Structure of sets with an unexpected number of arithmetic patterns — Tamar Ziegler</h1>
+<p><strong>Field:</strong> additive combinatorics, ergodic theory and analytic number theory, braided
+together. The specific subject is <strong>higher-order Fourier analysis</strong>: what you do when the
+Fourier transform stops seeing the thing you are trying to count.</p>
+<p><strong>Difficulty against your background: 3 out of 5.</strong> A real gap, and a crossable one. Every
+object in this talk is built by deforming something you already own — the Fourier
+transform, a measure-preserving flow, an eigenfunction, a finite difference, an entropy.
+Nothing here needs algebraic geometry, representation theory, or category theory. What it
+needs is a willingness to follow one idea ("a wrong count means hidden structure") through
+four increasingly refined incarnations. I did not split the rating: the talk is one
+continuous argument, and the second half is not harder than the first, only newer.</p>
+<p>The reason it is a 3 and not a 2 is vocabulary density. In fifty minutes she uses
+Kronecker factors, characteristic factors, nilmanifolds, nilsequences, Gowers norms,
+inverse theorems, the Liouville function, topological entropy, and logarithmic averaging.
+Each is a small idea. There are nine of them and they stack.</p>
+<p><strong>Prerequisites this tutorial builds:</strong> the balanced function and what a "random count"
+means; Roth's dichotomy and the density-increment loop; the Furstenberg correspondence
+principle; characteristic factors and why the Kronecker factor is the spectral theorem in
+disguise; the skew shift and the finite-difference identity that kills linear Fourier
+analysis; nilsystems and nilsequences in one paragraph each; Gowers norms as iterated
+multiplicative derivatives; the two inverse theorems; the Liouville function; topological
+entropy as block growth.</p>
+<p><strong>A note on sources.</strong> There is <strong>no ICM 2026 proceedings paper.</strong> No arXiv preprint flagged
+as an ICM write-up exists, and no chapter for this talk was found in the deposit for the
+plenary volume. The lecture title above is the one the chair reads from the podium and the
+one Ziegler repeats in her second sentence, so it is confirmed from the talk itself, not
+from the announcement.</p>
+<p>The <strong>companion</strong> — clearly labelled as a companion, not the proceedings paper — is her
+<strong>ICM 2014 sectional-lecture survey</strong>, <a href="https://arxiv.org/abs/1404.0775"><em>Linear equations in primes and dynamics of
+nilmanifolds</em>, arXiv:1404.0775</a>, submitted 3 April 2014.
+It is the right choice for an unusual reason: it follows the first two-thirds of the 2026
+talk almost beat for beat — Roth, Szemerédi, Furstenberg, characteristic factors, the skew
+shift, the Heisenberg nilsystem, Gowers norms, both inverse theorems, linear equations in
+primes — and it carries the formulas that the auto-captions destroyed. Her other candidate,
+the 2013 EMS Lecture Series notes, is older and covers the same ground.</p>
+<p>The companion <strong>stops in 2014</strong>. Everything in the talk's last third — Chowla, Sarnak,
+logarithmic averaging, the Liouville subshift, sign patterns, the multidimensional frontier
+— postdates it entirely. That material is restored here from the <strong>primary papers for each
+result</strong>, cited inline by name and arXiv number, and kept visibly separate from the
+companion. Where the talk and a paper differ, I say which one I am quoting.</p>
+<p><strong>On formulas.</strong> As always in this playlist, the auto-captions carry none. Every displayed
+equation below comes from the companion or from a named primary paper, or is marked
+<strong>reconstructed</strong> with a one-line check you can run yourself.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>Take a set. Count the patterns in it. Compare the count to what you would get from a coin
+flip. If the two agree, the set is boring in the only sense that matters here. If they
+disagree — in either direction — <strong>something is generating that discrepancy, and the
+discrepancy tells you what.</strong></p>
+<p>That is the whole talk, and Ziegler states it as a slogan two minutes in:</p>
+<blockquote>
+<p>"Our guiding principle will be that if we have an uncommon count or an unexpected count
+then this should reveal some structure on the set E."</p>
+</blockquote>
+<p>Concretely. Fix an ambient structured set <em>X</em> — a vector space over 𝔽₃, or ℤ/Nℤ, or the
+integers. Fix a subset <em>E</em> ⊆ <em>X</em> of density δ, meaning |<em>E</em>| = δ|<em>X</em>|. An <strong>arithmetic
+pattern</strong> is a small configuration that inherits the ambient structure: a line inside a
+vector space, an arithmetic progression inside the integers. Ask two questions:</p>
+<ol>
+<li>Does <em>E</em> contain any such patterns?</li>
+<li><strong>How many?</strong></li>
+</ol>
+<p>Question 1 is the famous one — Roth, Szemerédi, Green–Tao. Question 2 is the one this talk
+is actually about, and it is strictly harder and strictly more useful. Question 1 gives a
+lower bound; question 2 gives an asymptotic, and asymptotics are what let you do number
+theory.</p>
+<p>The baseline is easy to compute. Build a random <em>E</em> by flipping a δ-biased coin at every
+element of <em>X</em>. In a vector space <em>V</em> over 𝔽₃, a line is exactly a 3-term arithmetic
+progression <em>x</em>, <em>x</em>+<em>d</em>, <em>x</em>+2<em>d</em>. There are |<em>V</em>|² pairs (<em>x</em>, <em>d</em>), and for <em>d</em> ≠ 0 the
+three membership events are independent, so the expected count is</p>
+<blockquote>
+<p><strong>δ³ · |V|²</strong></p>
+</blockquote>
+<p>That number is the yardstick. Everything else in the talk is a theory of what it means to
+miss it.</p>
+<p>And you cannot dismiss the possibility of missing it, because the simplest structured set
+misses it badly. Let <em>E</em> be a <strong>subspace</strong> of density δ. Now if <em>x</em> and <em>x</em>+<em>d</em> are both in
+<em>E</em>, then <em>x</em>+2<em>d</em> = 2(<em>x</em>+<em>d</em>) − <em>x</em> is automatically in <em>E</em>. So instead of paying δ three
+times you pay it twice:</p>
+<blockquote>
+<p><strong>δ² · |V|²</strong>  — which for small δ is enormously more than δ³|V|².</p>
+</blockquote>
+<p>So structure inflates the count. The content of the subject is the converse: <strong>inflation
+(or deflation) implies structure</strong>, and you can say which structure.</p>
+<p>Why anyone should care beyond the aesthetics: this machinery is what produces the
+asymptotic count of <em>k</em>-term arithmetic progressions among the primes, and — twenty years
+later, and to the speaker's visible delight — what produces a theorem about the sign
+patterns of the Liouville function, a negative answer to Hilbert's tenth problem for
+finitely generated rings, and the construction of infinitely many rank-two elliptic curves
+over ℚ. None of it was designed for those.</p>
+<hr />
+<h2>2. Your anchor: this is precisely where the Fourier transform goes blind</h2>
+<p>The anchor is not an analogy. It is the literal subject of the talk, and Ziegler hands it to
+you from the podium in two sentences that bracket the whole hour.</p>
+<p>At the start, on how to detect an unexpected count of 3-term progressions:</p>
+<blockquote>
+<p>"The way to detect this is using Fourier analysis. … If you start with a function <em>f</em>
+which is 1_E minus delta — this is called the balanced function — then if I deviate from
+random count, this formula coming from the Fourier transform will tell me that this
+function will have a large Fourier coefficient."</p>
+</blockquote>
+<p>And later, introducing the Gowers norms, on what the family of norms measures:</p>
+<blockquote>
+<p>"For <em>k</em> equals 1 this number is just the absolute value of the average of <em>f</em>. And for
+<em>k</em> equals 2 you can do kind of a short Fourier argument [which] will tell you that this
+is associated to the largest Fourier coefficient. And we want to think of general <em>k</em> as
+kind of saying something about <em>k</em>-th order structure."</p>
+</blockquote>
+<p>That is the anchor, in her words: <strong>the Gowers norm U^k is the k-th member of a family
+whose second member is the sup of the Fourier coefficients.</strong> U¹ is the mean. U² is the
+Fourier transform. U³, U⁴, … are the things that see what the Fourier transform cannot.</p>
+<p>You own the U² rung completely. Here is the whole of it, and you can verify it in ten
+minutes (I put it in §7 as an exercise). For <em>f</em> : ℤ/Nℤ → ℂ with
+<em>f̂</em>(<em>r</em>) = 𝔼ₓ <em>f</em>(<em>x</em>) e(−<em>xr</em>/N):</p>
+<blockquote>
+<p>‖<em>f</em>‖⁴_{U²} = Σ_r |<em>f̂</em>(<em>r</em>)|⁴ = ‖<em>f̂</em>‖⁴_4,  and  ‖<em>f̂</em>‖⁴_4 ≤ ‖<em>f̂</em>‖²_∞ · ‖<em>f̂</em>‖²_2.</p>
+</blockquote>
+<p>So for a 1-bounded <em>f</em>, ‖<em>f</em>‖<em>{U²} ≥ η forces ‖<em>f̂</em>‖</em>∞ ≥ η². (Companion, §5, immediately
+after Definition 5.1.) A large U² norm <em>is</em> a large Fourier coefficient. Nothing more.</p>
+<p><strong>Now the failure.</strong> Fourier analysis counts 3-term progressions because the trilinear form
+diagonalizes:</p>
+<blockquote>
+<p>𝔼_{x,d} <em>f</em>(<em>x</em>) <em>g</em>(<em>x</em>+<em>d</em>) <em>h</em>(<em>x</em>+2<em>d</em>) = Σ_r <em>f̂</em>(<em>r</em>) <em>ĝ</em>(−2<em>r</em>) <em>ĥ</em>(<em>r</em>)</p>
+</blockquote>
+<p><em>(reconstructed — this is the standard three-line computation; expand each function in
+characters and read off the two constraints a+b+c ≡ 0 and b+2c ≡ 0. The companion asserts
+the consequence without displaying the identity.)</em></p>
+<p>The right-hand side is a single sum over one frequency, so one large Fourier coefficient
+controls it. Try the same for <strong>four</strong>-term progressions and the character orthogonality
+gives you a <em>two</em>-parameter family of surviving frequencies; the form does not collapse to a
+single sum, and no bound on ‖<em>f̂</em>‖_∞ controls it. This is not a technical annoyance. There
+are explicit 1-bounded functions with <strong>vanishing</strong> Fourier coefficients and a <strong>maximally
+wrong</strong> 4-term count. §4.5 builds one for you in four lines.</p>
+<p>The reason is one you can state in your own vocabulary: the Fourier transform expands in
+<strong>linear</strong> phases e(αx). A 4-term progression is sensitive to <strong>quadratic</strong> phases e(αx²),
+and a quadratic phase is spread evenly across all linear frequencies. Your tool has a
+blind spot with a name, and higher-order Fourier analysis is the theory of what lives in it.</p>
+<p><strong>Two more things you already own, both load-bearing.</strong></p>
+<p><strong>The spectral theorem.</strong> The first ergodic-theoretic object in the talk, the <em>Kronecker
+factor</em>, is built out of eigenfunctions of the Koopman operator: functions with
+ψ(<em>Tx</em>) = λψ(<em>x</em>). The companion (§3) constructs it exactly that way. When Ziegler says
+"the obstruction comes from an abelian dynamical system", she means: the point spectrum of
+the shift operator is nontrivial, and that spectrum is a compact abelian group, and rotation
+on that group is the obstruction. This is your spectral decomposition of a unitary operator,
+read as dynamics.</p>
+<p><strong>Entropy as block growth.</strong> In the last third she needs topological entropy. She defines it
+for subshifts exactly as you would want: count the number <em>S</em>(<em>k</em>) of distinct length-<em>k</em>
+blocks that occur, and take the exponential growth rate, lim (1/<em>k</em>) log <em>S</em>(<em>k</em>). The full
+shift on {±1} gives log 2. A periodic sequence gives 0. Zero entropy means subexponential
+block growth. This is the same counting-of-microstates that gives you the Boltzmann entropy;
+the "microstates" are the words you can see through a window of width <em>k</em>.</p>
+<hr />
+<h2>3. The bridge</h2>
+<p>Nine ideas. Each one is defined by deforming something you have. Read this section slowly;
+§4 assumes all of it.</p>
+<h3>3.1 The balanced function, and what "unexpected" means</h3>
+<p>Let <em>E</em> ⊆ <em>X</em> have density δ. The <strong>balanced function</strong> is</p>
+<blockquote>
+<p><em>f</em> = 1_E − δ.</p>
+</blockquote>
+<p>It has mean zero by construction. Every count of a pattern in <em>E</em> is a multilinear form in
+1_E = δ + <em>f</em>; expanding, you get the pure-δ term (which is the random prediction) plus a
+pile of terms each containing at least one <em>f</em>. So "<em>E</em> has an unexpected count" is exactly
+"some multilinear form in <em>f</em> is large", and the entire subject is a theory of when
+multilinear forms in a mean-zero function can be large.</p>
+<p>Small but useful observation: the terms containing <strong>exactly one</strong> <em>f</em> vanish outright,
+because 𝔼<em>f</em> = 0 and the other slots are constants. The action starts at two.</p>
+<h3>3.2 Roth's dichotomy, and the loop that it powers</h3>
+<p>Ziegler gives two versions, one in each ambient group.</p>
+<p><strong>In a vector space over 𝔽₃</strong> — the <em>Roth–Meshulam</em> dichotomy (Roth 1953; R. Meshulam,
+<em>On subsets of finite abelian groups with no 3-term arithmetic progressions</em>, J. Combin.
+Theory Ser. A 71 (1995), 168–172). For <em>E</em> ⊆ <em>V</em> of density δ, <strong>either</strong> <em>E</em> has
+essentially the random number δ³|<em>V</em>|² of lines, <strong>or</strong> <em>E</em> has density at least δ + <em>c</em>(δ)
+on an affine hyperplane.</p>
+<p><strong>In ℤ/Nℤ</strong> — Roth's original. <strong>Either</strong> <em>E</em> has essentially δ³N² three-term progressions,
+<strong>or</strong> <em>E</em> has density at least δ + <em>c</em>(δ) on an arithmetic progression of length about
+N^{1/3}. (Companion §2, which also records <em>c</em> as a decreasing positive function and notes
+Sanders' subsequent improvement of the density threshold to 1/(log N)^{1−o(1)}.)</p>
+<p><strong>The loop.</strong> This is the part worth internalizing, because it is a control structure and
+not a theorem. Suppose you want to prove that every dense set contains <em>some</em> progression.
+Run the dichotomy. If the first branch fires, you are done — you have many progressions. If
+the second fires, restrict to the sub-object and repeat: your density has gone up by <em>c</em>(δ),
+and a hyperplane is again a vector space, a long progression is again "a bit like a cyclic
+group". Density is bounded by 1, so the loop <strong>cannot run more than about 1/c(δ) times</strong>. It
+must exit through the first branch, or bottom out at density 1 where progressions are free.</p>
+<p>Ziegler: <em>"we can't — our density can't go beyond one. So at the end of the day … we end up
+with a subspace which definitely contains lines."</em> This is a termination argument with a
+monotone bounded potential. Hold onto it; §8 comes back to it.</p>
+<p><strong>Where the Fourier transform enters.</strong> The second branch is produced, not assumed. If the
+count is wrong, the balanced function has a large Fourier coefficient (§2). A large
+coefficient means <em>f</em> correlates with a character e(α·<em>x</em>). Over 𝔽₃ⁿ a character is the
+exponential of a <strong>linear form</strong>, so its level sets are literally affine hyperplanes and you
+read the hyperplane straight off the correlation. Over ℤ/Nℤ it takes one extra step:
+equidistribution of {<em>xr</em>/N} mod 1 gives you a progression of length ~N^{1/3} on which the
+phase is nearly constant. Ziegler flags the difference explicitly — in the vector space
+"we can really easily see which is the hyperplane from this correlation."</p>
+<p><strong>Vocabulary:</strong> call this <strong>first-order</strong> or <strong>linear</strong> structure. It is the only kind
+ordinary Fourier analysis can see.</p>
+<h3>3.3 Szemerédi, and the accident that started ergodic Ramsey theory</h3>
+<p>Roth is 1953 and covers three terms. The general statement — every set of positive upper
+density in ℤ contains arbitrarily long arithmetic progressions — is <strong>Szemerédi's theorem</strong>,
+1975 (Acta Arith. 27, 299–345), and it took twenty years.</p>
+<p>Ziegler skips the proof and tells the story instead, because the story is the pivot of the
+talk. In 1975–76 the newly formed Israel Institute for Advanced Studies ran a special year
+on ergodic theory, organised by <strong>Benjamin Weiss</strong>, <strong>Hillel Furstenberg</strong> and <strong>Yitzhak
+Katznelson</strong>. A visitor, the German mathematician <strong>Konrad Jacobs</strong>, offered an off-topic
+talk on a combinatorics theorem he had heard about. Furstenberg, sitting in the audience,
+realised he might have a dynamical proof. He did, and the field it opened is now called
+<strong>ergodic Ramsey theory</strong>.</p>
+<p>The mathematical content of that realisation is the next item.</p>
+<h3>3.4 The Furstenberg correspondence principle: change the category</h3>
+<p>This is a genuine change of subject, and it is the kind of move you should enjoy.</p>
+<blockquote>
+<p><strong>Theorem (Furstenberg correspondence principle).</strong> Let <em>E</em> ⊆ ℕ have positive upper
+density. There exists a probability measure-preserving system (<em>X</em>, ℬ, μ, <em>T</em>) and a
+measurable set <em>A</em> with μ(<em>A</em>) &gt; 0 such that for any integers <em>n</em>₁, …, <em>n</em>_k,</p>
+<blockquote>
+<p>μ(<em>A</em> ∩ <em>T</em>^{−n₁}<em>A</em> ∩ … ∩ <em>T</em>^{−n_k}<em>A</em>) &gt; 0</p>
+</blockquote>
+<p>implies d̄(<em>E</em> ∩ (<em>E</em>−<em>n</em>₁) ∩ … ∩ (<em>E</em>−<em>n</em>_k)) &gt; 0; in particular there is an integer <em>x</em>
+with <em>x</em>, <em>x</em>+<em>n</em>₁, …, <em>x</em>+<em>n</em>_k ∈ <em>E</em>.</p>
+</blockquote>
+<p><em>(Companion, Theorem 3.1. A measure-preserving system is a probability space with an
+invertible measurable T pushing μ to itself.)</em></p>
+<p>The dictionary is worth writing out, because it is the whole trick:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>combinatorics, in ℤ</th>
+<th>dynamics, in (<em>X</em>, ℬ, μ, <em>T</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a subset <em>E</em> of positive density</td>
+<td>a set <em>A</em> of positive measure</td>
+</tr>
+<tr>
+<td>translating by <em>n</em></td>
+<td>applying <em>T</em>ⁿ</td>
+</tr>
+<tr>
+<td>a pattern <em>x</em>, <em>x</em>+<em>n</em>, …, <em>x</em>+<em>kn</em> inside <em>E</em></td>
+<td>multiple recurrence: returning to <em>A</em> at times <em>n</em>, 2<em>n</em>, …, <em>kn</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Ziegler's example: take <em>E</em> = the even numbers. The correspondence produces the two-point
+system {0,1} with <em>T</em> = "add 1 mod 2", uniform measure, and <em>A</em> = {0}. Start with an
+arbitrary <em>E</em> and you get an arbitrary <em>A</em> of positive measure — no free lunch, the system is
+as unknown as the set was.</p>
+<p><strong>So why is this progress?</strong> Because in a measure-preserving system you can prove and use
+<strong>structure theorems</strong>, and there is nothing analogous available for an arbitrary set of
+integers. The rest of the ergodic half of the talk consists of structure theorems.</p>
+<p>What Furstenberg then proves:</p>
+<blockquote>
+<p><strong>Furstenberg multiple recurrence theorem (1977).</strong> For any measure-preserving system,
+any <em>A</em> with μ(<em>A</em>) &gt; 0 and any <em>k</em> &gt; 0,</p>
+<blockquote>
+<p>liminf_{N→∞} (1/N) Σ_{n ≤ N} μ(<em>A</em> ∩ <em>T</em>^{−n}<em>A</em> ∩ … ∩ <em>T</em>^{−kn}<em>A</em>) &gt; 0.</p>
+</blockquote>
+</blockquote>
+<p><em>(Companion, Theorem 3.2, from Furstenberg, J. Analyse Math. 31 (1977), 204–256. From the
+podium Ziegler states the weaker form "there exists n &gt; 0 with the intersection of positive
+measure" — enough for Szemerédi. The averaged form is the one that generalizes, and the one
+the rest of the talk uses.)</em></p>
+<p>She also flags the right way to see it: <strong>k = 1 is the Poincaré recurrence theorem.</strong> So
+Szemerédi's theorem is Poincaré recurrence for a whole orbit-arithmetic progression at once.
+That reframing is the reason the ergodic route exists.</p>
+<h3>3.5 Characteristic factors: the smallest quotient that knows the answer</h3>
+<p>Here is the central technical device, and it is a compression idea.</p>
+<p>A <strong>factor</strong> of a system <em>X</em> is the image of a morphism of systems — a measure-preserving
+map that intertwines the two transformations. Think: a quotient that forgets some
+information but stays dynamical.</p>
+<p>You want to evaluate</p>
+<blockquote>
+<p>(1/N) Σ_{n≤N} ∫ <em>f</em>₀(<em>x</em>) <em>f</em>₁(<em>T</em>ⁿ<em>x</em>) ⋯ <em>f</em>_k(<em>T</em>^{kn}<em>x</em>) dμ  … (★)</p>
+</blockquote>
+<p>in a system you know nothing about. Say a factor π : <em>X</em> → <em>Y</em> is <strong>k-characteristic</strong> if
+(★) is asymptotically unchanged when you replace each <em>f</em>_i by its projection π*<em>f</em>_i and
+compute in <em>Y</em> instead. <em>(Companion, Definition 3.3.)</em> Two trivial remarks fix the idea:
+<em>X</em> is <em>k</em>-characteristic for every <em>k</em> (project onto yourself), and the one-point system is
+1-characteristic (that is the mean ergodic theorem). The content is in finding the
+<strong>smallest</strong> one, and — crucially — in it being <strong>universal</strong>: a factor of every other
+characteristic factor, hence canonical.</p>
+<p><strong>Conventions, fixed once for the whole document.</strong> The caption track drifts between two
+indexings; I use one throughout:</p>
+<blockquote>
+<p><strong>(k+1)-term progressions ⟷ the average (★) with k+1 functions ⟷ the U^k norm ⟷
+(k−1)-step nilsystems.</strong></p>
+</blockquote>
+<p>Sanity check at the bottom rung: 3-term progressions ⟷ U² ⟷ 1-step = abelian rotation ⟷
+linear phases. That is §3.2, and everything above it is the same statement one order up.</p>
+<h3>3.6 The Kronecker factor is the point spectrum</h3>
+<p>For 3-term progressions (<em>k</em> = 2), Furstenberg's answer:</p>
+<blockquote>
+<p>The <strong>Kronecker factor</strong> <em>Z</em>(<em>X</em>) — a compact abelian group <em>Z</em> with Haar measure and the
+rotation <em>T_Z</em>(<em>z</em>) = <em>z</em> + α — is the universal 2-characteristic factor.</p>
+</blockquote>
+<p>To evaluate the 3-term average in an arbitrary system, project everything to a <strong>group
+rotation</strong> and compute there. And in a group rotation the computation is trivial for exactly
+the reason the subspace example was easy: <em>z</em> + 2<em>nα</em> is determined by <em>z</em> and <em>z</em> + <em>nα</em>.
+Two points fix the third.</p>
+<p><strong>Why this is your spectral theorem.</strong> The companion constructs <em>Z</em>(<em>X</em>) from
+<strong>eigenfunctions</strong>. If ψ(<em>Tx</em>) = λψ(<em>x</em>), then |ψ| is <em>T</em>-invariant, hence constant by
+ergodicity, hence ψ can be normalised to the unit circle — and a normalised eigenfunction
+<em>is</em> a morphism from <em>X</em> to a circle rotation by λ. Assemble all of them and you get
+<em>Z</em>(<em>X</em>). So:</p>
+<blockquote>
+<p><strong>Kronecker factor = the point spectrum of the Koopman operator, packaged as a group
+rotation.</strong></p>
+</blockquote>
+<p>If there are no nontrivial eigenfunctions the factor is a point, the system is called
+<strong>weakly mixing</strong>, projection is just integration, and</p>
+<blockquote>
+<p>(1/N) Σ_{n≤N} ∫ <em>f</em>(<em>x</em>)<em>f</em>(<em>T</em>ⁿ<em>x</em>)<em>f</em>(<em>T</em>^{2n}<em>x</em>) dμ → (∫<em>f</em> dμ)³ = μ(<em>A</em>)³,</p>
+</blockquote>
+<p>the random answer. <em>(Companion §3.)</em> Compare this with the δ³|V|² of §1. It is the same
+statement in the other category. That correspondence — δ³ on the combinatorial side, μ(<em>A</em>)³
+on the dynamical side — is the reason the two halves of the talk are one talk.</p>
+<h3>3.7 The skew shift: your first quadratic obstruction, in four lines</h3>
+<p>Now the failure, made concrete. Take the two-dimensional torus with</p>
+<blockquote>
+<p><em>T</em>(<em>z</em>, <em>w</em>) = (<em>z</em> + α, <em>w</em> + 2<em>z</em> + α),  α irrational.</p>
+</blockquote>
+<p>Iterate and you get, by an induction you should actually do (it is Exercise 7.2):</p>
+<blockquote>
+<p><em>T</em>ⁿ(<em>z</em>, <em>w</em>) = (<em>z</em> + <em>n</em>α, <em>w</em> + 2<em>n z</em> + <em>n</em>²α).</p>
+</blockquote>
+<p>The <strong>n² is the entire story.</strong> Now verify, in the additive notation of the torus:</p>
+<blockquote>
+<p><em>y</em> = 3<em>T</em>ⁿ<em>y</em> − 3<em>T</em>^{2n}<em>y</em> + <em>T</em>^{3n}<em>y</em></p>
+</blockquote>
+<p><em>(Companion §4. The identity is the vanishing of the third finite difference of a quadratic:
+Σ_{j=0}^{3} (−1)^j C(3,j) T^{jn} y = 0. You know this operator.)</em></p>
+<p>So in this system <strong>three points of a four-term progression determine the fourth</strong>, exactly
+as two determined the third in a group rotation — but one order up, and by a relation that
+no linear structure can express.</p>
+<p>The witness is explicit. Let φ(<em>z</em>, <em>w</em>) = e^{2πi w}. Then</p>
+<blockquote>
+<p>φ(<em>Ty</em>) = e^{2πi(w + 2z + α)} = ψ(<em>y</em>) φ(<em>y</em>),  where ψ(<em>z</em>,<em>w</em>) = e^{2πi(2z+α)},</p>
+</blockquote>
+<p>and ψ is an <em>ordinary</em> eigenfunction (ψ(<em>Ty</em>) = e^{4πiα} ψ(<em>y</em>)). A function whose
+multiplier is itself an eigenfunction is called a <strong>second-order eigenfunction</strong>. From the
+finite-difference identity,</p>
+<blockquote>
+<p>φ(<em>y</em>) = φ³(<em>T</em>ⁿ<em>y</em>) · φ^{−3}(<em>T</em>^{2n}<em>y</em>) · φ(<em>T</em>^{3n}<em>y</em>),</p>
+</blockquote>
+<p>so choosing <em>f</em>₀ = φ̄, <em>f</em>₁ = φ³, <em>f</em>₂ = φ̄³, <em>f</em>₃ = φ makes the four-term average
+<strong>identically 1</strong> for every <em>n</em>. And yet each <em>f</em>_i <strong>projects to zero on the Kronecker
+factor</strong>, because ∫ e^{2πi k w} d<em>w</em> = 0 for <em>k</em> ≠ 0. <em>(Companion §4.)</em></p>
+<p>Read that again in Fourier language: a function with no first-order content at all, whose
+four-term count is maximally non-random. That is the blind spot of §2, exhibited.</p>
+<h3>3.8 Nilsystems and nilsequences</h3>
+<p>Second-order eigenfunctions are not the end of it. The companion gives the system that has
+the same rigidity with <strong>no</strong> nontrivial second-order eigenfunctions: the <strong>Heisenberg
+nilsystem</strong>. Take</p>
+<blockquote>
+<p><em>G</em> = upper unitriangular real 3×3 matrices, Γ = the same with integer entries,
+<em>Y</em> = <em>G</em>/Γ,</p>
+</blockquote>
+<p>Haar measure, and <em>T</em>(<em>g</em>Γ) = <em>a g</em>Γ for a fixed <em>a</em> ∈ <em>G</em> (Ziegler's <em>a</em> has α and β in the
+two super-diagonal slots). Topologically <em>Y</em> is a circle bundle over a 2-torus. Again
+<em>g</em>Γ is determined by <em>aⁿg</em>Γ, <em>a</em>^{2n}<em>g</em>Γ, <em>a</em>^{3n}<em>g</em>Γ — but not by any equation you can
+write down as simply as the skew shift's. <em>(Companion §4, including the remark that the
+absence of second-order eigenfunctions follows from Leibman's equidistribution theorem for
+polynomial orbits on nilmanifolds.)</em></p>
+<p><strong>General definition.</strong> A <strong><em>s</em>-step nilsystem</strong> is (<em>G</em>/Γ, Haar, <em>g</em>Γ ↦ <em>ag</em>Γ) where <em>G</em>
+is an <em>s</em>-step nilpotent Lie group and Γ a lattice. A <strong>pro-nilsystem</strong> is an inverse limit
+of these. "<em>s</em>-step nilpotent" means the lower central series terminates: [<em>G</em>,[<em>G</em>,…]] = 1
+after <em>s</em> brackets. Abelian is <em>s</em> = 1, so a group rotation is a 1-step nilsystem, and the
+whole hierarchy is one deformation of the Kronecker factor.</p>
+<p>A <strong><em>s</em>-step nilsequence</strong> is what you get by sampling: fix <em>x</em> ∈ <em>G</em>/Γ, <em>a</em> ∈ <em>G</em>, and a
+continuous (Lipschitz) <em>F</em> : <em>G</em>/Γ → ℂ, and take</p>
+<blockquote>
+<p><em>n</em> ↦ <em>F</em>(<em>aⁿ x</em> Γ).</p>
+</blockquote>
+<p>For <em>s</em> = 1 this is <em>F</em>(<em>x</em> + <em>n</em>α) on a circle — a linear phase, dressed. For <em>s</em> = 2 you
+get things behaving like e(α<em>n</em>²). Nilsequences are the higher-order analogue of characters,
+and that is the only sentence you need about them.</p>
+<h3>3.9 The Gowers norms</h3>
+<p>Now the combinatorial detector. Let <em>G</em> be a finite abelian group and <em>f</em> : <em>G</em> → ℂ. Define
+the <strong>multiplicative discrete derivative</strong> in direction <em>h</em>:</p>
+<blockquote>
+<p>Δ_h <em>f</em>(<em>x</em>) = <em>f</em>(<em>x</em>+<em>h</em>) · conj(<em>f</em>(<em>x</em>)).</p>
+</blockquote>
+<p>Differentiate in <em>k</em> directions and average everything:</p>
+<blockquote>
+<p>‖<em>f</em>‖^{2^k}<em h₁_h_k="h₁,…,h_k" x_="x,">{U^k} = 𝔼</em> } Δ_{h₁} ⋯ Δ_{h_k<em>f</em>(<em>x</em>).</p>
+</blockquote>
+<p><em>(Companion, Definition 5.1. The exponent is 2^k because each derivative doubles the number
+of copies of f in the product.)</em> Three calibration facts, all in the companion:</p>
+<ul>
+<li>For 1-bounded <em>f</em>, ‖<em>f</em>‖_{U^k} = 1 <strong>iff</strong> <em>f</em>(<em>x</em>) = e^{2πi q(x)} with <em>q</em> a polynomial
+  of degree &lt; <em>k</em>. The norm is exactly a polynomial-phase test: differentiating a degree-<em>d</em>
+  polynomial phase <em>d</em>+1 times kills it.</li>
+<li>If <em>f</em> correlates with such a phase, ‖<em>f</em>‖_{U^k} is large. (Repeated Cauchy–Schwarz.)</li>
+<li>A random ±1 function has ‖<em>f</em>‖_{U^k} = o(1).</li>
+</ul>
+<p><strong>Why the norm is the right detector.</strong> Two statements, both from the companion §5:</p>
+<blockquote>
+<p>|AP_k(<em>f</em>) − AP_k(<em>g</em>)| ≪<em U_k_N_="U^k[N]">k ‖<em>f</em> − <em>g</em>‖</em>,  where AP_k(<em>f</em>) = 𝔼_{x,d} <em>f</em>(<em>x</em>)<em>f</em>(<em>x</em>+<em>d</em>)⋯<em>f</em>(<em>x</em>+<em>kd</em>)</p>
+</blockquote>
+<p>and, far more generally,</p>
+<blockquote>
+<p><strong>Proposition.</strong> For 1-bounded <em>f</em>₁,…,<em>f</em>_m and affine linear forms <em>L</em>₁,…,<em>L</em>_m in <em>d</em>
+variables with integer coefficients, no two affinely dependent, there is a <em>k</em> with</p>
+<blockquote>
+<p>|𝔼_{<strong>x</strong> ∈ [N]^d} <em>f</em>₁(<em>L</em>₁(<strong>x</strong>)) ⋯ <em>f</em><em U_k_N_="U^k[N]">m(<em>L</em>_m(<strong>x</strong>))| ≪ min_j ‖<em>f</em>_j‖</em>.</p>
+</blockquote>
+</blockquote>
+<p>This is the <em>generalized von Neumann inequality</em>, proved by repeated Cauchy–Schwarz, and it
+is where the technical hypothesis "no two forms affinely dependent" is born. Ziegler's
+framing from the podium is the one to keep:</p>
+<blockquote>
+<p>"This norm is kind of an analytic detector of an uncommon count of patterns — in this case
+arithmetic progressions, but as I said, many more patterns."</p>
+</blockquote>
+<p><strong>One detector, an entire family of patterns.</strong> That is the design property, and §8 argues it
+is the transferable one.</p>
+<p>So the combinatorial chain is now: <em>unexpected count of (k+1)-term progressions</em> ⟹ <em>the
+balanced function has large U^k norm</em>. And the remaining question is the one you would ask:
+<strong>what does a large U^k norm actually mean?</strong></p>
+<h3>3.10 The two inverse theorems</h3>
+<p>Motivated by the ergodic-theoretic answer — pro-nilsystems — Green and Tao conjectured in
+2006 that the combinatorial answer should be algebraic in the same way. It is.</p>
+<p><strong>Over 𝔽_pⁿ.</strong> If ‖<em>f</em>‖_{U^{s+1}} ≥ δ for 1-bounded <em>f</em>, then <em>f</em> correlates with a
+polynomial phase of degree ≤ <em>s</em>. For <em>s</em> = 1 this is the Fourier statement of §2.</p>
+<blockquote>
+<p><strong>Caveat, and this is where the companion beats the talk.</strong> The naive form of this
+conjecture is <strong>false</strong>: a counterexample for U⁴(𝔽₂ⁿ) was found independently by Green–Tao
+and by Lovett–Meshulam–Samorodnitsky (STOC 2008). The correct statement, proved by
+<strong>Bergelson–Tao–Ziegler (GAFA 19 (2010), 1539–1596)</strong> and <strong>Tao–Ziegler (Anal. PDE 3
+(2010); Ann. Comb. 16 (2012))</strong>, replaces "polynomial" with <strong>non-classical polynomial</strong> —
+the companion's word is "non-standard" — meaning any <em>P</em> with Δ_{h₁}⋯Δ_{h_s}<em>P</em> ≡ 1. When
+the characteristic exceeds <em>s</em> the two classes coincide; in low characteristic the
+non-classical class is strictly larger. From the podium Ziegler says "polynomial phase
+function" without the caveat. <em>(Companion, Theorem 8.3 and the discussion before it.)</em></p>
+</blockquote>
+<p><strong>Over ℤ (the U^{s+1}[N] norm).</strong> If ‖<em>f</em>‖_{U^{s+1}[N]} ≥ δ for 1-bounded <em>f</em> : [N] → ℂ,
+then there is an <em>s</em>-step nilmanifold <em>G</em>/Γ from a finite list depending only on (<em>s</em>, δ), a
+<em>g</em> ∈ <em>G</em>, and a Lipschitz <em>F</em> with</p>
+<blockquote>
+<p>|𝔼_{n ∈ [N]} <em>f</em>(<em>n</em>) · conj(<em>F</em>(<em>gⁿ x</em>Γ))| ≥ <em>c</em>(<em>s</em>, δ).</p>
+</blockquote>
+<p><strong>Theorem (Green–Tao–Ziegler, Ann. of Math. 176 (2012), 1231–1372; arXiv:1009.3998).</strong> This
+holds. <em>(Companion, Conjecture 8.1 and Theorem 8.4.)</em> The converse direction is the easy one
+and follows from Cauchy–Schwarz.</p>
+<p>Ziegler's slogan, verbatim:</p>
+<blockquote>
+<p>"If you have large U^{k+1} norm then you correlate with some <em>k</em>-th order structure. Over
+finite fields this is polynomial phases; over the integers this is nilsequences. And this
+is kind of the additive combinatorial analogue of what happens in the ergodic world."</p>
+</blockquote>
+<p>Two footnotes worth having. Gowers' original proof of Szemerédi's theorem gave a <strong>local</strong>
+inverse theorem: large U^k gives correlation with a degree-(<em>k</em>−1) polynomial phase on a
+progression of length N^t, <em>t</em> &lt; 1, not on all of [N]. Global structure needed nilsequences,
+which is exactly the gap the ergodic theory predicted. And both inverse theorems are
+<strong>qualitative</strong>: making them quantitative is, in the companion's words, "a major open
+question".</p>
+<hr />
+<h2>4. The talk, rebuilt</h2>
+<p>Her order, not the companion's.</p>
+<h3>4.1 The frame (00:00–08:00)</h3>
+<p>Arithmetic pattern = a subset inheriting the ambient structure: a line in a variety, a
+progression in ℤ. Question: given <em>E</em> ⊆ <em>X</em> of density δ, does <em>E</em> contain patterns, and how
+many? Random baseline by δ-coin flip: δ³|<em>V</em>|² lines in 𝔽₃ⁿ. Guiding principle: <strong>an
+unexpected count reveals structure.</strong> §1 above.</p>
+<h3>4.2 First obstruction: linear structure (08:00–15:00)</h3>
+<p>Subspaces overshoot at δ²|<em>V</em>|². Roth–Meshulam says that is the only mechanism: either the
+random count, or density increment on a hyperplane. Roth in ℤ/Nℤ: either the random count,
+or density increment on a progression of length ~N^{1/3}. Both branches produced by the
+Fourier transform on the balanced function. Both iterate into a terminating loop. §3.2.</p>
+<h3>4.3 Szemerédi, and the corridor conversation (15:00–20:00)</h3>
+<p>Twenty years from Roth to Szemerédi 1975. Ziegler skips the proof — "although it was very
+influential and introduced many important tools in graph theory" — because for her story
+what mattered was the <em>statement</em>: Konrad Jacobs' off-topic talk at the 1975–76 Israel IAS
+special year, and Furstenberg realising mid-lecture that dynamics could do it. §3.3.</p>
+<h3>4.4 The correspondence principle and multiple recurrence (20:00–25:00)</h3>
+<p>Sets become measure spaces, translations become iterates, patterns become multiple
+recurrence. <em>k</em> = 1 is Poincaré. §3.4.</p>
+<h3>4.5 k = 2: the Kronecker factor is the complete obstruction (25:00–30:00)</h3>
+<p>"If my points were asymptotically independent on average, I would expect the limit to be
+μ(<em>A</em>)³. If this doesn't happen, the obstruction comes from a nontrivial morphism to an
+abelian dynamical system." The Kronecker factor is <strong>characteristic</strong> (project, then compute)
+and <strong>universal</strong> (a factor of any other characteristic factor). If it is trivial, you get
+μ(<em>A</em>)³ — the random answer. §3.6.</p>
+<h3>4.6 k = 3: new obstructions, and the two-level picture (30:00–36:00)</h3>
+<p>For four-term progressions, Furstenberg–Weiss in the 1980s found obstructions from <strong>2-step
+nilpotent</strong> systems. Ziegler shows the Heisenberg example, then makes a point the slides
+carried and the captions nearly lost: the picture has <strong>two levels</strong>, not one.</p>
+<p>There is a natural map <em>G</em>/Γ → 𝕋², the <strong>abelianization</strong>, landing on the off-diagonal
+entries. Four points upstairs map to <em>z</em>, <em>z</em>+<em>n</em>(α,β), <em>z</em>+2<em>n</em>(α,β), <em>z</em>+3<em>n</em>(α,β)
+downstairs — a genuine progression on the torus, giving the constraints you already knew
+about. <strong>On top of that</strong> there is an extra constraint living purely at the nilmanifold
+level, invisible downstairs. That layering is the geometric content of "second order".</p>
+<p>Then the classification for four terms:</p>
+<blockquote>
+<p><strong>Theorem (Conze–Lesigne; Furstenberg–Weiss).</strong> The universal characteristic factor for
+four-term progressions is a <strong>2-step pro-nilsystem</strong> — an inverse limit of 2-step
+nilsystems. Single nilsystems are not enough.</p>
+</blockquote>
+<p><em>(Companion, Theorem 4.1.)</em> Ziegler is explicit from the podium that the inverse limit is
+necessary; the captions render it as "nil systems is not enough, you need to take inverse
+limits of those."</p>
+<h3>4.7 General k: Host–Kra and Ziegler (36:00–39:00)</h3>
+<blockquote>
+<p><strong>Theorem (Host–Kra 2005; Ziegler 2007).</strong> For an ergodic measure-preserving system, the
+universal <em>k</em>-characteristic factor is a <strong>(k−1)-step pro-nilsystem</strong>.</p>
+</blockquote>
+<p><em>(Companion, Theorem 6.1, citing Host–Kra, Ann. of Math. 161 (2005), 397–488, and Ziegler,
+J. Amer. Math. Soc. 20 (2007), 53–97, the latter growing out of her 2003 Hebrew University
+thesis.)</em></p>
+<p>The companion also records what this buys: an actual <strong>limit formula</strong> for the averages, as
+an integral over a sub-nilmanifold <em>H</em>Γ^{k+1}/Γ^{k+1} of (<em>G</em>/Γ)^{k+1} where <em>H</em> is an
+explicit subgroup built from the derived series <em>(Companion, Theorem 6.2, Ziegler 2005)</em>.
+That is the difference between "the count is positive" and "here is the count".</p>
+<p>Ziegler stops here to say the thing worth hearing:</p>
+<blockquote>
+<p>"If you take a step back and think about it, it's rather surprising that for these very
+general averages what really determines the behaviour is this very rigid structure of
+nilsystems."</p>
+</blockquote>
+<p>Two remarks she does not make and the companion does. First, the Furstenberg–Zimmer
+structure theorem already gave a tower of factors <em>Z</em>_k(<em>X</em>) that are characteristic; they
+are simply <strong>not universal</strong> for <em>k</em> &gt; 1, and universality is what makes classification
+possible at all. Second, the proofs go through a functional equation — the <strong>Conze–Lesigne
+equation</strong></p>
+<blockquote>
+<p>σ(<em>z</em>+<em>b</em>) − σ(<em>z</em>) = <em>c</em>(<em>b</em>) + <em>F_b</em>(<em>z</em>+α) − <em>F_b</em>(<em>z</em>)</p>
+</blockquote>
+<p>— whose solvability is where 2-step nilpotency literally appears: the condition says a
+certain commutator [(α,σ),(<em>b</em>,<em>F_b</em>)] is central. <em>(Companion §4.)</em></p>
+<h3>4.8 Crossing to combinatorics: the Gowers norms (39:00–44:00)</h3>
+<p>The detector, the control of linear forms, the two inverse theorems. §3.9 and §3.10.</p>
+<p>Her framing of the crossing is worth quoting because it is the architecture of the whole
+subject: the ergodic theory <em>predicted</em> the answer, and the combinatorics then had to prove
+it independently. "Motivated by the results in ergodic theory that I described before, Green
+and Tao conjectured that the underlying reason should be algebraic."</p>
+<h3>4.9 First application: counting progressions in the primes (44:00–48:00)</h3>
+<p>Green–Tao says the primes contain arbitrarily long progressions. This machinery <strong>counts</strong>
+them:</p>
+<blockquote>
+<p>The number of <em>k</em>-term arithmetic progressions in a box of size <em>N</em> is asymptotically
+<strong>σ_k · N² / (log N)^k</strong>, with σ_k an explicit constant (an Euler product, the singular
+series).</p>
+</blockquote>
+<p>This is a special case of Green–Tao–Ziegler's theorem on affine linear forms: for <em>k</em> affine
+linear forms ψ₁,…,ψ_k in <em>m</em> variables with integer coefficients, no two affinely dependent,</p>
+<blockquote>
+<p>|{<strong>x</strong> ∈ [0,N]^m : ψ₁(<strong>x</strong>), …, ψ_k(<strong>x</strong>) all prime}| ~ 𝔖(<strong>ψ</strong>) · N^m / (log N)^k.</p>
+</blockquote>
+<p><em>(Companion, Theorem 1.1, from Green–Tao, Ann. of Math. 171 (2010), 1753–1850; Green–Tao,
+Ann. of Math. 175 (2012), 541–566; Green–Tao–Ziegler, Ann. of Math. 176 (2012), 1231–1372.
+Arithmetic progressions are the case m = 2, variables x and d.)</em></p>
+<p>Ziegler insists on a specific reading of this theorem, and it is the right one:</p>
+<blockquote>
+<p>"The way I want you to think of this theorem is: this tells us that the <strong>primes are
+unstructured for this question</strong>."</p>
+</blockquote>
+<p>Because the primes have density 1/log N, a random set of that density would produce exactly
+N²/(log N)^k progressions. There are obvious local obstructions — <em>x</em> prime makes <em>x</em>+1
+almost never prime — and those are absorbed into the constant σ_k. Once you have divided
+them out, the primes behave like a random set.</p>
+<p><strong>The proof strategy, in her words and in three steps:</strong></p>
+<ol>
+<li>An unexpected count implies a large Gowers norm.</li>
+<li>A large Gowers norm implies correlation with a nilsequence (the inverse theorem).</li>
+<li>So it suffices to show that the primes <strong>do not correlate with nilsequences</strong>.</li>
+</ol>
+<p>She then flags her own oversimplification, out loud: <em>"it's a bit of a cheat — the whole
+theory is done for positive density, not for density 1/log N which is approximately zero.
+But there is a technology developed by Green and Tao that allows you to push these theorems
+to this context as well."</em> That technology is the transference/decomposition machinery: you
+write the weighted prime indicator as <em>g</em> + <em>h</em> with <em>g</em> bounded and <em>h</em> Gowers-uniform, and
+run the positive-density theory on <em>g</em>. <em>(Companion §7 and §8, which also names the
+W-trick — pre-sieving by W = Π_{p&lt;w} p to remove the periodic contributions before you
+start.)</em></p>
+<h3>4.10 The pivot: "I could have told this story fifteen years ago" (48:00)</h3>
+<p>Explicit turn in the talk. Everything so far dates to 2012 or earlier. What follows was not
+designed for this machinery.</p>
+<h3>4.11 The Liouville function (48:00–52:00)</h3>
+<blockquote>
+<p>λ(<em>n</em>) = (−1)^{Ω(n)}, where Ω(<em>n</em>) is the number of prime factors of <em>n</em> <strong>with
+multiplicity</strong>.</p>
+</blockquote>
+<p>Example from the podium: 12 = 2·2·3 has Ω = 3, so λ(12) = −1. It is <strong>completely
+multiplicative</strong>: λ(<em>mn</em>) = λ(<em>m</em>)λ(<em>n</em>), so it is determined by its value −1 on each prime.</p>
+<p>Why it matters, in two lines she gives and you should keep:</p>
+<ul>
+<li>Σ_{n≤N} λ(<em>n</em>) = <em>o</em>(N) <strong>is equivalent to the prime number theorem</strong>. The trivial bound is
+  N, since λ = ±1; any cancellation at all is already the PNT.</li>
+<li>Σ_{n≤N} λ(<em>n</em>) = <em>O</em>(N^{1/2+ε}) <strong>is equivalent to the Riemann hypothesis</strong>. Ziegler's
+  gloss: RH says the cancellation is what you would get from a <strong>random walk</strong>. Square-root
+  cancellation, exactly as in your CLT.</li>
+</ul>
+<p>So λ is the canonical object for the vague principle that <em>the Möbius/Liouville function
+should not correlate with anything structured</em>. The trouble with that principle is that
+"structured" is undefined. Ziegler: <em>"you could say, show me a sequence, I'll tell you if
+it's structured."</em></p>
+<h3>4.12 Sarnak's conjecture: a definition of "structured" (52:00–56:00)</h3>
+<p>Sarnak's 2010 proposal formalises it with <strong>zero topological entropy</strong>.</p>
+<p>A <strong>topological dynamical system</strong> is a compact space <em>X</em> with a continuous <em>T</em> : <em>X</em> → <em>X</em>.
+A sequence <em>arising from</em> the system is <em>a</em>(<em>n</em>) = <em>F</em>(<em>T</em>ⁿ<em>x</em>) for a fixed point <em>x</em> and
+continuous <em>F</em>.</p>
+<blockquote>
+<p><strong>Sarnak's conjecture (2010).</strong> For every topological dynamical system of <strong>zero
+topological entropy</strong>, every <em>x</em> and every continuous <em>F</em>,</p>
+<blockquote>
+<p>(1/N) Σ_{n ≤ N} λ(<em>n</em>) <em>F</em>(<em>T</em>ⁿ<em>x</em>) = <em>o</em>(1).</p>
+</blockquote>
+</blockquote>
+<p><strong>Entropy, defined the way she defines it.</strong> Work in the sequence space {±1}^ℕ with the
+left shift (drop the first coordinate). Take a closed shift-invariant subset <em>X</em>. Count
+<em>S</em>_X(<em>k</em>), the number of distinct length-<em>k</em> blocks appearing in points of <em>X</em>. Topological
+entropy is the exponential growth rate of <em>S</em>_X(<em>k</em>). The full shift gives log 2; a periodic
+sequence gives boundedly many blocks and entropy 0. <strong>Zero entropy = subexponential block
+growth = low complexity.</strong></p>
+<p>Ziegler's reaction on first seeing it, which is a useful calibration for the reader:</p>
+<blockquote>
+<p>"I remember seeing this conjecture in 2010, and I thought it looked great, but very
+surprising. Why would you think that something like this would be true?"</p>
+</blockquote>
+<p>The answer: it follows from <strong>Chowla's conjecture</strong>, a much older and widely believed
+statement about self-correlations of λ:</p>
+<blockquote>
+<p>For distinct integers <em>a</em>₁, …, <em>a</em><em n_N="n≤N">m, (1/N) Σ</em> λ(<em>n</em>+<em>a</em>₁) ⋯ λ(<em>n</em>+<em>a</em>_m) = <em>o</em>(1).</p>
+</blockquote>
+<p>Sarnak proved Chowla ⟹ Sarnak.</p>
+<h3>4.13 The trap: Sarnak forces the Liouville system to have positive entropy (56:00–59:00)</h3>
+<p>This is the prettiest self-contained argument in the talk, and it needs nothing beyond the
+last two paragraphs. It gets its own box in §6.</p>
+<p>Build the <strong>Liouville subshift</strong>: regard λ ∈ {±1}^ℕ as a single point, take its shift-orbit
+closure <em>X</em>_λ. Let <em>S</em>_λ(<em>k</em>) be the number of length-<em>k</em> sign patterns occurring in it. Let
+<em>f</em>₀ be the continuous function "read coordinate zero". Then <em>f</em>₀(<em>T</em>ⁿλ) = λ(<em>n</em>) — the
+Liouville sequence exhibits <em>itself</em> as an orbit observable. But then</p>
+<blockquote>
+<p>Σ_{n≤N} λ(<em>n</em>) <em>f</em>₀(<em>T</em>ⁿ λ) = Σ_{n≤N} λ(<em>n</em>)² = N,</p>
+</blockquote>
+<p>no cancellation whatsoever. So if <em>X</em>_λ had zero entropy, Sarnak's conjecture would be
+false. <strong>Hence, if Sarnak is true, the Liouville subshift has positive entropy</strong> — its sign
+patterns must grow exponentially. Chowla would say more: all 2^k patterns occur, with the
+correct frequencies.</p>
+<p>An open conjecture, applied to a system nobody chose, forces an unconditional-looking
+structural prediction about the primes. That is worth sitting with.</p>
+<h3>4.14 Logarithmic averaging, and why it helps (59:00–61:00)</h3>
+<p>The <strong>logarithmic</strong> version weights the <em>n</em>-th term by 1/<em>n</em>. The trivial bound is then
+log N rather than N, so the assertion becomes <em>o</em>(log N).</p>
+<blockquote>
+<p><strong>Theorem (Tao 2016).</strong> The logarithmically averaged Chowla and Sarnak conjectures are
+<strong>equivalent</strong> to each other, and to the "local Gowers uniformity" of λ.
+<em>(T. Tao, "Equivalence of the logarithmically averaged Chowla and Sarnak conjectures",
+arXiv:1605.04628, 16 May 2016. The proof uses the entropy decrement argument together with
+the Green–Tao–Ziegler inverse theorem — this machinery, again.)</em></p>
+</blockquote>
+<p>Ziegler's caution, which is exactly right and easy to miss: the logarithmic version could be
+true while the unaveraged one is false. But for the entropy application it does not matter,
+because only the block-growth rate is at stake.</p>
+<h3>4.15 Progress, and a corollary you can feel (61:00–65:00)</h3>
+<blockquote>
+<p><strong>Theorem (Frantzikinakis–Host, Ann. of Math. 187 (2018), 869–931; arXiv:1708.00677).</strong>
+The logarithmic Sarnak conjecture holds for a large class of zero-entropy systems,
+including <strong>all uniquely ergodic</strong> ones. (Uniquely ergodic = exactly one invariant
+probability measure.)</p>
+</blockquote>
+<p>What it is built on, in Ziegler's own accounting: the first half of her talk — higher-order
+Fourier analysis and the nilstructure of characteristic factors — plus two genuinely new
+ingredients:</p>
+<ul>
+<li><strong>Matomäki–Radziwiłł</strong> (Ann. of Math. 183 (2016); arXiv:1501.04585), on multiplicative
+  functions in <strong>short intervals</strong> — new hard data about λ, not about dynamics.</li>
+<li><strong>Tao's entropy decrement argument.</strong></li>
+</ul>
+<p>And the corollary, by the trap of §4.13 run in reverse: if <em>S</em>_λ(<em>k</em>) grew slower than
+linearly, the Liouville subshift would satisfy the theorem's hypotheses, and you would get
+the same contradiction. So</p>
+<blockquote>
+<p><strong>Corollary.</strong> <em>S</em>_λ(<em>k</em>) grows <strong>superlinearly</strong>.</p>
+</blockquote>
+<p>Ziegler pauses on this, and the pause is the honest measure of the difficulty:</p>
+<blockquote>
+<p>"Think about how ignorant we were until, I don't know, ten years ago. We didn't know that
+the number of sign patterns even grows faster than linear."</p>
+</blockquote>
+<p>Then her own recent work pushes it further:</p>
+<blockquote>
+<p><strong>Theorem (Matomäki, Radziwiłł, Tao, Teräväinen, Ziegler, Ann. of Math. 197 (2023),
+739–857; arXiv:2007.15644).</strong> <em>S</em>_λ(<em>k</em>) grows <strong>superpolynomially</strong> — faster than <em>k^A</em>
+for every fixed <em>A</em>.</p>
+</blockquote>
+<p><em>(The paper's own framing: it establishes higher-order uniformity of bounded multiplicative
+functions in short intervals on average, extending the previously known linear-phase case to
+degree-k nilsequences for every fixed k, and deduces the superpolynomial sign-pattern bound
+plus an averaged form of Chowla along polynomial progressions.)</em></p>
+<h3>4.16 The method for the sign-pattern theorem (65:00–68:00)</h3>
+<p>Ziegler walks the argument, and it is the three-step strategy of §4.9 with one new
+ingredient bolted on. The point of the walk is that you should recognise every step.</p>
+<p>Chowla predicts cancellation in Σ_n λ(<em>n</em>+<em>a</em>₁)⋯λ(<em>n</em>+<em>a</em>_m) for a <strong>fixed</strong> shift tuple.
+That is out of reach. So relax it: put an <strong>extra average over shifts</strong>, letting the shift
+range over an interval of length N^θ for a small fixed θ. Now:</p>
+<ol>
+<li>If those sums are large, then many <strong>local Gowers norms at scale N^θ</strong> are large.</li>
+<li>Throw higher-order Fourier analysis at them: many correlations, on many short intervals,
+   with nilsequences.</li>
+<li><strong>New ingredient required.</strong> You now need input about λ <em>as a multiplicative function</em> to
+   contradict step 2. The base case is Matomäki–Radziwiłł on short intervals.</li>
+</ol>
+<p><strong>How far is this from the real thing?</strong> She is precise about the gap, and this is the most
+useful minute of the last third:</p>
+<blockquote>
+<p><strong>Theorem (Walsh; M. N. Walsh, "Stability under scaling in the local phases of
+multiplicative functions", arXiv:2310.07873, 11 October 2023; Invent. Math. 2025).</strong>
+<strong>Assuming GRH</strong>, the Fourier uniformity conjecture (the <em>m</em> = 2, linear-phase case) holds
+for intervals of length at least (log X)^{ψ(X)}, with ψ(X) → ∞ arbitrarily slowly.</p>
+</blockquote>
+<p><em>(From the podium Ziegler says "conditioned on the Riemann hypothesis … reduce to log n to
+some large power." The paper says GRH, and (log X)^{ψ(X)} with ψ growing arbitrarily slowly,
+which is slightly stronger than "a large power". I am quoting the paper.)</em></p>
+<p>And the target: pushing the interval length down to (log X)^ε for <strong>every</strong> ε &gt; 0, and doing
+it for <strong>every</strong> <em>m</em> rather than only <em>m</em> = 2, would give the logarithmic Chowla conjecture
+outright. Doing it for every <em>m</em> is precisely the step that needs higher-order Fourier
+analysis in place of ordinary Fourier analysis — nilsequences instead of linear phases.</p>
+<blockquote>
+<p>"So we're almost there — except the hypothesis, and the gap."</p>
+</blockquote>
+<p>Two named obstacles, neither hidden.</p>
+<h3>4.17 The unexpected applications (68:00–70:00)</h3>
+<p>Three, named quickly from the podium as evidence that the technology has escaped its
+original purpose:</p>
+<ul>
+<li><strong>Hilbert's tenth problem</strong> — decidability of Diophantine equations. <em>(Koymans–Pagano,
+  "Hilbert's tenth problem via additive combinatorics", arXiv:2412.01768, give a negative
+  answer for all infinite finitely generated rings, combining additive combinatorics with
+  2-descent on elliptic curves with full rational 2-torsion.)</em></li>
+<li><strong>Infinitely many rank-two elliptic curves over ℚ</strong> — <em>(Zywina, "There are infinitely many
+  elliptic curves over the rationals of rank 2", arXiv:2502.01957. He proves a family all
+  has rank exactly 2 by 2-descent, and gets infinitude by applying the </em><em>Tao–Ziegler</em><em>
+  polynomial Szemerédi theorem for primes — that is, her own theorem, Acta Math. 201 (2008),
+  213–305.)</em></li>
+<li><strong>PTE</strong> — from context, the Prouhet–Tarry–Escott problem.<blockquote>
+<p><em>[Gap: she names PTE in three words and moves on. I could not identify the paper, and I
+will not guess one. Impact: low — it is one item in a list of three, and the other two
+are verified.]</em></p>
+</blockquote>
+</li>
+</ul>
+<h3>4.18 The multidimensional frontier (70:00–end)</h3>
+<p>Everything above is one-dimensional: an abelian group, patterns inside it. The proposal for
+the next decade is <strong>G^m</strong>.</p>
+<p>The simplest open example she gives is the <strong>square</strong> in <em>G</em>²: the four points
+(<em>x</em>,<em>y</em>), (<em>x</em>+<em>d</em>,<em>y</em>), (<em>x</em>,<em>y</em>+<em>d</em>), (<em>x</em>+<em>d</em>,<em>y</em>+<em>d</em>). Corners and some other
+configurations are understood; <em>"even the square we don't know."</em></p>
+<blockquote>
+<p><em>[My reading, marked as such: bare existence of squares in a dense subset of ℤ² is not the
+open part — the multidimensional Szemerédi theorem of Furstenberg–Katznelson already gives
+a homothetic copy of any finite configuration. What is open, and what the talk's whole
+framing points at, is the </em><em>inverse theory</em><em>: which structures explain an unexpected
+count. She does not say this sentence; I am supplying the reading because without it the
+claim sounds wrong.]</em></p>
+</blockquote>
+<p>The tools are the expected deformations:</p>
+<ul>
+<li><strong>Directional Gowers norms</strong> — differentiate along various subgroups instead of along all
+  of <em>G</em>. Then ask the inverse question: large directional norm ⟹ what structure?</li>
+<li><strong>Dynamical cubes</strong> — the same question with two commuting transformations <em>T</em> and <em>S</em>,
+  studying limits of averages along <em>T</em>ⁿ and <em>S</em>ⁿ.</li>
+<li>And, she notes, "today we know many times to go back and forth between these questions
+  using versions of the correspondence principle." The bridge of §3.4 is now routine
+  infrastructure in both directions.</li>
+</ul>
+<p>Her closing sentence is the talk's thesis restated at one level of generality up: <em>"in
+several dimensions, what structures will appear, and where will they lead? This is for us to
+see in the next ICMs."</em></p>
+<hr />
+<h2>5. The one argument</h2>
+<p>Strip the vocabulary and one derivation carries the talk, in two settings. Here it is with
+every symbol defined.</p>
+<p><strong>Setup.</strong> <em>E</em> ⊆ [N] with balanced function <em>f</em> = 1_E − δ, or λ the Liouville function.
+AP_k(<em>f</em>) = 𝔼_{x,d ∈ [N]} <em>f</em>(<em>x</em>)<em>f</em>(<em>x</em>+<em>d</em>)⋯<em>f</em>(<em>x</em>+<em>kd</em>), the normalised count of
+(<em>k</em>+1)-term progressions. ‖·‖_{U^k[N]} the Gowers norm of §3.9. A <em>s</em>-step nilsequence is
+<em>n</em> ↦ <em>F</em>(<em>aⁿx</em>Γ) on an <em>s</em>-step nilmanifold <em>G</em>/Γ.</p>
+<p><strong>Step 1 — a wrong count forces a large norm.</strong></p>
+<blockquote>
+<p>|AP_k(<em>f</em>) − AP_k(<em>g</em>)| ≪<em U_k_N_="U^k[N]">k ‖<em>f</em> − <em>g</em>‖</em></p>
+</blockquote>
+<p>with the generalized von Neumann inequality behind it (§3.9). Contrapositive: if the count
+deviates from the random prediction by more than <em>c</em>(δ), then ‖<em>f</em>‖_{U^k[N]} ≫ <em>c</em>(δ)^{O(1)}.
+This step is Cauchy–Schwarz, repeated <em>k</em> times. Nothing deep, and it is why the norm was
+defined that way in the first place.</p>
+<p><strong>Step 2 — a large norm forces algebraic structure (the inverse theorem).</strong></p>
+<blockquote>
+<p>‖<em>f</em>‖<em n_N_="n∈[N]">{U^{s+1}[N]} ≥ δ ⟹ |𝔼</em> <em>f</em>(<em>n</em>) conj(<em>F</em>(<em>gⁿx</em>Γ))| ≥ <em>c</em>(<em>s</em>,δ)
+for some <em>s</em>-step nilsequence of complexity bounded in terms of (<em>s</em>, δ).</p>
+</blockquote>
+<p><strong>Green–Tao–Ziegler, Ann. of Math. 176 (2012).</strong> Over 𝔽_pⁿ the corresponding statement is
+Bergelson–Tao–Ziegler / Tao–Ziegler, with <em>non-classical</em> polynomial phases. This step is the
+hard one: it is where fifteen years of work sits, and it is qualitative — no effective
+bounds.</p>
+<p><strong>Step 3 — the arithmetic input: the object of interest does not correlate.</strong></p>
+<blockquote>
+<p>For the primes: after the W-trick, 𝔼(1̃_{W,b,P}(<em>n</em>) − 1) <em>F</em>(<em>gⁿx</em>Γ) = <em>o</em>(1) for every
+bounded-complexity nilsequence. <strong>Green–Tao, Ann. of Math. 175 (2012), 541–566</strong> ("the
+Möbius function is strongly orthogonal to nilsequences").</p>
+<p>For λ in short intervals: the corresponding non-correlation statement, at scale N^θ,
+<strong>Matomäki–Radziwiłł–Tao–Teräväinen–Ziegler, Ann. of Math. 197 (2023)</strong>.</p>
+</blockquote>
+<p><strong>Conclusion.</strong> Steps 1 and 3 contradict each other unless the count is the random one. So
+the count is the random one, and you have an asymptotic:</p>
+<blockquote>
+<p><strong>primes in [1,N] contain ~ σ_k N²/(log N)^k arithmetic progressions of length k</strong></p>
+<p><strong>λ has no unexpected local correlations at scale N^θ, hence <em>S</em>_λ(<em>k</em>) grows
+superpolynomially</strong></p>
+</blockquote>
+<p><strong>The shape, which is the part to remember.</strong> The argument is a <strong>three-link chain</strong>:</p>
+<blockquote>
+<p><em>statistical anomaly</em> → <em>analytic certificate</em> → <em>algebraic structure</em> → <em>contradiction
+with an arithmetic fact</em></p>
+</blockquote>
+<p>Link 1 is soft (Cauchy–Schwarz). Link 2 is the inverse theorem and is where all the
+mathematics lives. Link 3 is arithmetic input specific to the object you care about. Change
+the object — primes, Liouville, polynomial progressions, Gaussian primes — and <strong>only link 3
+changes.</strong> That modularity is why one machine produced results in 2012 and 2023 for
+questions that look nothing alike, and it is the reason Ziegler could say the applications
+were not designed for.</p>
+<p><strong>Honesty check.</strong> Every step above is a theorem. What is <em>not</em> known: quantitative forms of
+step 2; step 3 for λ at intervals shorter than N^θ (that is the Walsh/Pilatte frontier of
+§4.16); and anything at all in the multidimensional setting of §4.18.</p>
+<hr />
+<h2>6. The boxed derivation: Sarnak ⟹ the Liouville sequence is complex</h2>
+<p>This one is fully restorable from the transcript alone, needs nothing from §5, and is the
+best short argument in the talk.</p>
+<blockquote>
+<p><strong>Claim.</strong> If Sarnak's conjecture holds, then the Liouville subshift <em>X</em>_λ has <strong>positive</strong>
+topological entropy: the number <em>S</em>_λ(<em>k</em>) of length-<em>k</em> sign patterns of λ grows
+exponentially in <em>k</em>.</p>
+<p><strong>Proof.</strong> Regard λ as a point of the compact space {±1}^ℕ with the left shift <em>T</em>. Let
+<em>X</em>_λ be the closure of {<em>T</em>ⁿλ : <em>n</em> ≥ 0}. It is compact, shift-invariant, and <em>T</em> is
+continuous, so (<em>X</em>_λ, <em>T</em>) is a topological dynamical system.</p>
+<p>Let <em>f</em>₀ : {±1}^ℕ → ℝ read off the zeroth coordinate. It is continuous. Then
+<em>f</em>₀(<em>T</em>ⁿλ) = λ(<em>n</em>) up to an index shift.</p>
+<p>Suppose <em>X</em>_λ had zero topological entropy. Sarnak's conjecture would apply to the point λ
+and the function <em>f</em>₀, giving</p>
+<blockquote>
+<p>(1/N) Σ_{n≤N} λ(<em>n</em>) <em>f</em>₀(<em>T</em>ⁿλ) = <em>o</em>(1).</p>
+</blockquote>
+<p>But λ(<em>n</em>)² = 1 for every <em>n</em>, so that average is exactly 1. Contradiction. Hence <em>X</em>_λ
+has positive entropy, i.e. lim (1/<em>k</em>) log <em>S</em>_λ(<em>k</em>) &gt; 0. ∎</p>
+</blockquote>
+<p>Two remarks Ziegler makes and you should keep.</p>
+<p><strong>Chowla says more.</strong> It would give all 2^k patterns, each with the correct frequency — the
+Liouville sequence would look exactly like a fair coin at every finite window.</p>
+<p><strong>Unconditionally, this is now a theorem twice over, in weaker form.</strong> Frantzikinakis–Host
+give superlinear growth; Matomäki–Radziwiłł–Tao–Teräväinen–Ziegler give superpolynomial. The
+argument in both cases is the same contradiction run against a <em>proved</em> fragment of Sarnak
+rather than the full conjecture: assume slow growth, deduce that <em>X</em>_λ satisfies the
+hypotheses of the theorem you have, apply it, and hit λ² = 1 again.</p>
+<hr />
+<h2>7. Do this by hand</h2>
+<p>Two exercises. The first lands exactly on the anchor. The second shows you, by arithmetic
+you can do in your head, why the anchor's tool breaks.</p>
+<h3>7.1 The U² norm is the Fourier transform (25 minutes, pen)</h3>
+<p>Work on ℤ/Nℤ. Convention: e(<em>t</em>) = e^{2πi t}, <em>f̂</em>(<em>r</em>) = 𝔼_{x} <em>f</em>(<em>x</em>) e(−<em>xr</em>/N), so
+<em>f</em>(<em>x</em>) = Σ_r <em>f̂</em>(<em>r</em>) e(<em>xr</em>/N) and Parseval reads Σ_r |<em>f̂</em>(<em>r</em>)|² = 𝔼_x |<em>f</em>(<em>x</em>)|².</p>
+<ol>
+<li>Write out ‖<em>f</em>‖⁴_{U²} from Definition §3.9 as a four-fold average, and show
+   ‖<em>f</em>‖⁴_{U²} = Σ_r |<em>f̂</em>(<em>r</em>)|⁴.</li>
+<li>Deduce that for a 1-bounded <em>f</em>, ‖<em>f</em>‖<em>{U²} ≥ η implies ‖<em>f̂</em>‖</em>∞ ≥ η².</li>
+<li>Show 𝔼_{x,d} <em>f</em>(<em>x</em>)<em>g</em>(<em>x</em>+<em>d</em>)<em>h</em>(<em>x</em>+2<em>d</em>) = Σ_r <em>f̂</em>(<em>r</em>) <em>ĝ</em>(−2<em>r</em>) <em>ĥ</em>(<em>r</em>).</li>
+<li>Let <em>E</em> ⊆ ℤ/Nℤ have density δ and put <em>f</em> = 1_E − δ. Show that the 3-term progression
+   count of 1_E differs from δ³ by at most 7‖<em>f̂</em>‖_∞ · δ, and conclude the quantitative form
+   of the first branch of Roth's dichotomy.</li>
+<li>Now try to run step 3 for <strong>four</strong>-term progressions. Where exactly does it fail?</li>
+</ol>
+<details>
+<summary>Solutions</summary>
+<p><strong>(1)</strong> By definition
+‖<em>f</em>‖⁴_{U²} = 𝔼_{x,h₁,h₂} <em>f</em>(<em>x</em>) conj(<em>f</em>(<em>x</em>+<em>h</em>₁)) conj(<em>f</em>(<em>x</em>+<em>h</em>₂)) <em>f</em>(<em>x</em>+<em>h</em>₁+<em>h</em>₂).
+Substitute <em>f</em>(<em>x</em>) = Σ_a <em>f̂</em>(<em>a</em>) e(<em>ax</em>/N) in all four slots. The <em>x</em>-average forces
+<em>a</em> − <em>b</em> − <em>c</em> + <em>d</em> ≡ 0; the <em>h</em>₁-average forces <em>b</em> = <em>d</em>; the <em>h</em>₂-average forces
+<em>c</em> = <em>d</em>. Hence <em>a</em> = <em>b</em> = <em>c</em> = <em>d</em> and the whole thing collapses to
+Σ_a <em>f̂</em>(<em>a</em>) conj(<em>f̂</em>(<em>a</em>)) conj(<em>f̂</em>(<em>a</em>)) <em>f̂</em>(<em>a</em>) = Σ_a |<em>f̂</em>(<em>a</em>)|⁴. ∎</p>
+<p><strong>(2)</strong> Σ_r |<em>f̂</em>(<em>r</em>)|⁴ ≤ (sup_r |<em>f̂</em>(<em>r</em>)|)² · Σ_r |<em>f̂</em>(<em>r</em>)|² = ‖<em>f̂</em>‖²_∞ · 𝔼|<em>f</em>|² by
+Parseval. For 1-bounded <em>f</em> the last factor is ≤ 1. So η⁴ ≤ ‖<em>f</em>‖⁴_{U²} ≤ ‖<em>f̂</em>‖²_∞, giving
+‖<em>f̂</em>‖<em U_="U²">∞ ≥ η². This is the companion's inequality chain ‖<em>f</em>‖⁴</em> = ‖<em>f̂</em>‖⁴_4 ≤
+‖<em>f̂</em>‖²_∞‖<em>f̂</em>‖²_2 written out. ∎</p>
+<p><strong>(3)</strong> Expand all three in characters. The <em>x</em>-average forces <em>a</em>+<em>b</em>+<em>c</em> ≡ 0; the
+<em>d</em>-average forces <em>b</em>+2<em>c</em> ≡ 0. Solve: <em>b</em> = −2<em>c</em>, <em>a</em> = −<em>b</em>−<em>c</em> = <em>c</em>. So the sum is
+Σ_c <em>f̂</em>(<em>c</em>) <em>ĝ</em>(−2<em>c</em>) <em>ĥ</em>(<em>c</em>). ∎</p>
+<p><strong>(4)</strong> Write 1_E = δ + <em>f</em> and expand the trilinear form into 2³ = 8 terms. The all-δ term
+is δ³. The three terms with <em>f</em> in <strong>exactly one</strong> slot vanish, since the other two slots are
+constants and 𝔼<em>f</em> = 0. Each remaining term has <em>f</em> in at least two slots; apply (3) with
+<em>f</em> in the first and third slots and bound
+|Σ_r <em>f̂</em>(<em>r</em>)<em>ĝ</em>(−2<em>r</em>)<em>ĥ</em>(<em>r</em>)| ≤ ‖<em>f̂</em>‖<em>∞ Σ_r |<em>f̂</em>(<em>r</em>)||<em>ĥ</em>(<em>r</em>)| ≤ ‖<em>f̂</em>‖</em>∞ ‖<em>f</em>‖₂‖<em>h</em>‖₂
+by Cauchy–Schwarz and Parseval, with ‖<em>f</em>‖₂² = δ(1−δ) ≤ δ. Summing the at most 7 nonzero
+mixed terms gives the stated bound. Hence a deviation of <em>c</em>(δ) from δ³ forces
+‖<em>f̂</em>‖_∞ ≫ <em>c</em>(δ)/δ: <strong>a large Fourier coefficient</strong>. Feed that into equidistribution of
+{<em>xr</em>/N} and you get the density increment on a progression of length ~N^{1/3}.</p>
+<p><strong>(5)</strong> Repeat the character expansion for 𝔼_{x,d} <em>f</em>₁(<em>x</em>)<em>f</em>₂(<em>x</em>+<em>d</em>)<em>f</em>₃(<em>x</em>+2<em>d</em>)<em>f</em>₄(<em>x</em>+3<em>d</em>).
+The two averages give <strong>two</strong> linear constraints on <strong>four</strong> frequencies, so the surviving
+set is a <strong>two-parameter</strong> family, not a one-parameter one. The identity becomes a double
+sum, and no bound on a single sup of |<em>f̂</em>| controls a double sum. There is no diagonal to
+collapse to. That is the failure, and §7.2 turns it from "the proof does not work" into "the
+statement is false".</p>
+</details>
+<h3>7.2 The skew shift kills linear Fourier analysis (25 minutes, pen)</h3>
+<p>On the 2-torus 𝕋² (write it additively, coordinates mod 1), let</p>
+<blockquote>
+<p><em>T</em>(<em>z</em>, <em>w</em>) = (<em>z</em> + α, <em>w</em> + 2<em>z</em> + α),  α irrational.</p>
+</blockquote>
+<ol>
+<li>Prove by induction that <em>T</em>ⁿ(<em>z</em>,<em>w</em>) = (<em>z</em> + <em>n</em>α, <em>w</em> + 2<em>nz</em> + <em>n</em>²α).</li>
+<li>Verify <em>y</em> − 3<em>T</em>ⁿ<em>y</em> + 3<em>T</em>^{2n}<em>y</em> − <em>T</em>^{3n}<em>y</em> = 0 for all <em>n</em> and all <em>y</em>. Say which
+   classical operator this is and why the answer is zero.</li>
+<li>Let φ(<em>z</em>,<em>w</em>) = e(<em>w</em>). Show φ(<em>Ty</em>) = ψ(<em>y</em>)φ(<em>y</em>) with ψ an ordinary eigenfunction, and
+   give ψ's eigenvalue.</li>
+<li>Show that φ and all its nonzero powers have <strong>zero</strong> projection onto the Kronecker factor
+   of this system. (Take as given that the Kronecker factor is the base circle rotation
+   <em>z</em> ↦ <em>z</em>+α.)</li>
+<li>Exhibit four functions <em>f</em>₀,…,<em>f</em>₃, each 1-bounded, each with vanishing Kronecker
+   projection, whose four-term average
+   (1/N)Σ_n ∫ <em>f</em>₀(<em>y</em>)<em>f</em>₁(<em>T</em>ⁿ<em>y</em>)<em>f</em>₂(<em>T</em>^{2n}<em>y</em>)<em>f</em>₃(<em>T</em>^{3n}<em>y</em>) d<em>y</em> equals 1, not 0.
+   Say in one sentence what this proves about the U² norm.</li>
+</ol>
+<details>
+<summary>Solutions</summary>
+<p><strong>(1)</strong> <em>n</em> = 1: the formula gives (<em>z</em>+α, <em>w</em>+2<em>z</em>+α) ✓. Inductive step:
+<em>T</em>(<em>z</em>+<em>n</em>α, <em>w</em>+2<em>nz</em>+<em>n</em>²α) = (<em>z</em>+(<em>n</em>+1)α, <em>w</em>+2<em>nz</em>+<em>n</em>²α + 2(<em>z</em>+<em>n</em>α) + α)
+= (<em>z</em>+(<em>n</em>+1)α, <em>w</em> + 2(<em>n</em>+1)<em>z</em> + (<em>n</em>²+2<em>n</em>+1)α) ✓. ∎</p>
+<p><strong>(2)</strong> Second coordinate: 3−3+1 = 1 for <em>w</em>; for <em>z</em>, 6−12+6 = 0; for α,
+3·1 − 3·4 + 9 = 0. First coordinate: 3−3+1 = 1 for <em>z</em>, and 3−6+3 = 0 for <em>n</em>α. So the
+combination returns <em>y</em> exactly.</p>
+<p>The operator is the <strong>third finite difference</strong> Δ³ with weights (1, −3, 3, −1) applied along
+the orbit at step <em>n</em>. It vanishes because every coordinate of <em>T</em>^{jn}<em>y</em> is a <strong>quadratic
+polynomial in j</strong>, and the third difference annihilates polynomials of degree ≤ 2. That is
+the whole content of "second-order structure". ∎</p>
+<p><strong>(3)</strong> φ(<em>Ty</em>) = e(<em>w</em> + 2<em>z</em> + α) = e(2<em>z</em>+α) · e(<em>w</em>) = ψ(<em>y</em>)φ(<em>y</em>) with
+ψ(<em>z</em>,<em>w</em>) = e(2<em>z</em>+α). And ψ(<em>Ty</em>) = e(2(<em>z</em>+α)+α) = e(2α) ψ(<em>y</em>), so ψ is an ordinary
+eigenfunction with eigenvalue e(2α). ∎</p>
+<p><strong>(4)</strong> The Kronecker factor is functions of <em>z</em> alone; the projection is the conditional
+expectation, i.e. integration over <em>w</em>. For <em>k</em> ≠ 0, ∫₀¹ e(<em>kw</em>) d<em>w</em> = 0. So φ^k projects
+to 0 for every <em>k</em> ≠ 0. ∎</p>
+<p><strong>(5)</strong> From (2), the same weights (1, −3, 3, −1) applied to the multiplicative
+eigenfunction give φ(<em>y</em>) = φ³(<em>T</em>ⁿ<em>y</em>) φ^{−3}(<em>T</em>^{2n}<em>y</em>) φ(<em>T</em>^{3n}<em>y</em>). Take
+<em>f</em>₀ = conj(φ), <em>f</em>₁ = φ³, <em>f</em>₂ = conj(φ)³, <em>f</em>₃ = φ. Then the integrand is
+conj(φ(<em>y</em>)) · φ³(<em>T</em>ⁿ<em>y</em>) φ^{−3}(<em>T</em>^{2n}<em>y</em>) φ(<em>T</em>^{3n}<em>y</em>) = conj(φ(<em>y</em>)) · φ(<em>y</em>) = 1
+pointwise, for every <em>n</em>. So the average is 1.</p>
+<p><strong>What it proves.</strong> Each <em>f</em>_i is a 1-bounded function invisible to first-order analysis —
+zero Kronecker projection, and in the combinatorial mirror, zero Fourier coefficients — yet
+the four-term correlation is as far from the random value 0 as it can possibly be. <strong>A small
+U² norm does not control four-term progressions.</strong> You need a norm that survives one more
+differentiation, and that is U³. This is the exact point where Ziegler's hierarchy becomes
+necessary rather than decorative. <em>(The identity, the eigenfunction, and the orthogonality
+are all in the companion, §4; the induction in (1) and the arithmetic in (2) are mine, and
+you have just checked them.)</em></p>
+</details>
+<hr />
+<h2>8. What is actually useful to you</h2>
+<p>The number theory will not transfer. Four things will, and one of them is a control
+structure you already write.</p>
+<h3>8.1 The density-increment loop is a termination proof, and you write these</h3>
+<p>Read §3.2 again as pseudocode:</p>
+<pre><code>loop:
+    if count(E) ≈ random_count(E):   return SUCCESS
+    else:                            E ← restrict(E)   # density(E) += c(δ)
+</code></pre>
+<p>The proof of termination is that the potential (density) is monotone increasing by a
+<strong>definite amount</strong> and <strong>bounded above</strong> by 1. Therefore the loop runs at most 1/<em>c</em>(δ)
+times. That is the entire argument, and it is exactly the discipline missing from most agent
+loops: a retry loop that "tries again with more context" has no monotone bounded potential,
+so it has no termination proof, so it runs until a timeout kills it.</p>
+<p>The transferable design rule: <strong>when you build a loop that reacts to failure by narrowing
+scope, name the potential it improves and its bound.</strong> If you cannot name them, the loop is
+a while-true with extra steps. Roth's argument is a hundred-line proof whose entire content
+is that the potential exists.</p>
+<p>Note also <em>what</em> the dichotomy buys: it converts "I failed" into "I made measurable
+progress". Every iteration of the loop is either a success or a <em>strictly better starting
+position</em>. That is a much stronger contract than "retry".</p>
+<h3>8.2 One detector, a whole family of failures</h3>
+<p>The Gowers norm is not a test for arithmetic progressions. It is a single scalar whose
+largeness certifies deviation for <strong>every</strong> system of affine linear forms of bounded
+complexity at once (§3.9, the generalized von Neumann inequality). One quantity, and the
+class of patterns it controls is characterized rather than enumerated.</p>
+<p>Contrast the usual eval design: one metric per behaviour, twenty metrics, no statement
+relating them. The Gowers design says — find the quantity such that <em>bounding it bounds
+everything in a stated class</em>, and then prove the class. The proof obligation is real work;
+the payoff is that you stop adding metrics.</p>
+<p>The corollary matters too: when your detector <em>does</em> fire, you want it to tell you <strong>what</strong>
+went wrong, not merely <strong>that</strong> it did. That is the inverse theorem, and it is the expensive
+half. A norm without an inverse theorem is an alarm without a diagnosis.</p>
+<h3>8.3 The hierarchy move: when the tool is blind, go up an order — do not patch</h3>
+<p>The instinctive response to "Fourier analysis misses quadratic patterns" is to add epicycles
+to Fourier analysis. What actually worked was to identify the <strong>exact structural reason</strong> for
+the blindness (the trilinear form diagonalizes; the quadrilinear one does not), and then
+build a <strong>new object at the next order</strong> — U³ from U², nilsystems from group rotations,
+nilsequences from characters — with the old theory sitting inside as the bottom rung.</p>
+<p>The tell that you are in this situation: your tool fails on a class of inputs you can
+<strong>characterize</strong>, not merely enumerate. If you can characterize it, the failure is structural
+and deserves a new level, not a patch. If you can only enumerate it, you have a bug list.</p>
+<p>Everything in this talk is one deformation of the rung below it. That is what makes the
+hierarchy learnable at all, and it is a design property, not an accident: each new level was
+constructed so the old one was its <em>s</em> = 1 case.</p>
+<h3>8.4 A correspondence principle is a change of category to get better theorems</h3>
+<p>Furstenberg's move (§3.4) is: the objects on side A admit no structure theory; the objects on
+side B do; find a functor. The set <em>E</em> was arbitrary and so is <em>A</em>, but <em>A</em> sits in a
+category where you can prove decomposition theorems, and <em>E</em> does not.</p>
+<p>The operational version, for your work: when a property is stated over an object with no
+useful invariants, look for a faithful translation into a category that <em>has</em> invariants,
+even if the translation loses information — as long as it preserves the property you care
+about. The correspondence principle loses almost everything about <em>E</em>; it preserves exactly
+the pattern-containment statements, which is all that was needed.</p>
+<p>Ziegler's closing remark on this is the mature version: by now the field moves "back and
+forth between these questions using versions of the correspondence principle" routinely, in
+<strong>both</strong> directions. A translation that only runs one way is a lossy export; one that runs
+both ways is an equivalence you can compute in.</p>
+<h3>8.5 And the meta-observation she makes explicitly</h3>
+<p>She spends the last five minutes on the fact that this machinery, built to count arithmetic
+progressions, produced results on Hilbert's tenth problem, elliptic curve ranks, and the sign
+patterns of the Liouville function — <em>"applications this was not designed for."</em></p>
+<p>The structural reason, from §5: the argument is a chain in which only <strong>link 3</strong> is
+domain-specific. Links 1 and 2 are a general-purpose engine converting statistical anomalies
+into algebraic structure. New application = new arithmetic input for link 3, everything else
+reused.</p>
+<p>If you are building tooling that you want to outlive its first use case, that is the
+factorization to aim at: a generic core with exactly one clearly-marked slot for
+domain-specific input. It is also a decent test of whether you have understood your own
+system — can you say which link is which?</p>
+<hr />
+<h2>9. Where to read next</h2>
+<p>Ordered. The first is by far the best entry point.</p>
+<ol>
+<li><strong>Ziegler, <em>Linear equations in primes and dynamics of nilmanifolds</em>.</strong>
+   <a href="https://arxiv.org/abs/1404.0775">arXiv:1404.0775</a> — her ICM 2014 survey, 23 pages, and
+   the companion for this tutorial. It covers §§3.1–3.10 and §4.1–4.9 with all the formulas,
+   including the skew-shift computation, the Heisenberg nilsystem, and both inverse theorems.
+   Read it with this document open; it stops in 2014.</li>
+<li><strong>Matomäki, Radziwiłł, Tao, Teräväinen, Ziegler, <em>Higher uniformity of bounded
+   multiplicative functions in short intervals on average</em>.</strong>
+   <a href="https://arxiv.org/abs/2007.15644">arXiv:2007.15644</a>, Ann. of Math. 197 (2023), 739–857 —
+   the last third of the talk. The introduction alone is worth it: it states the local
+   uniformity conjecture, the relation to Chowla and Sarnak, and the superpolynomial
+   sign-pattern corollary.</li>
+<li><strong>Tao, <em>Higher order Fourier analysis</em>.</strong> AMS Graduate Studies in Mathematics 142, 2012,
+   available free from Tao's blog — the textbook treatment of §§3.9–3.10, from a 2010
+   graduate course. This is the one to read if you want to be able to <em>use</em> the machinery
+   rather than follow it.</li>
+</ol>
+<p>If you want the conceptual half rather than the analytic half: Frantzikinakis and Host,
+<em>The logarithmic Sarnak conjecture for ergodic weights</em>,
+<a href="https://arxiv.org/abs/1708.00677">arXiv:1708.00677</a>, Ann. of Math. 187 (2018), 869–931.</p>
+<hr />
+<h2>10. Self-test</h2>
+<details>
+<summary>1. State the guiding principle of the talk in one sentence, and give the two numbers that make it concrete.</summary>
+<p>An unexpected count of arithmetic patterns in a set reveals structure in that set. Concretely
+in a vector space <em>V</em> over 𝔽₃: a random set of density δ contains about δ³|<em>V</em>|² lines; a
+<strong>subspace</strong> of density δ contains about δ²|<em>V</em>|², because if <em>x</em> and <em>x</em>+<em>d</em> are in it then
+<em>x</em>+2<em>d</em> automatically is. The Roth–Meshulam dichotomy says that mechanism — increased
+density on a hyperplane — is the <em>only</em> one.</p>
+</details>
+<details>
+<summary>2. What is the balanced function, and why is it the right object?</summary>
+<p><em>f</em> = 1_E − δ, which has mean zero. Every pattern count is a multilinear form in
+1_E = δ + <em>f</em>; expanding, the pure-δ term is the random prediction and every other term
+contains at least one <em>f</em>. The terms with exactly one <em>f</em> vanish because 𝔼<em>f</em> = 0. So
+"unexpected count" is precisely "some multilinear form in the balanced function is large".</p>
+</details>
+<details>
+<summary>3. In what precise sense is the U² norm the Fourier transform, and what breaks at U³?</summary>
+<p>‖<em>f</em>‖⁴_{U²} = Σ_r |<em>f̂</em>(<em>r</em>)|⁴, and by ‖<em>f̂</em>‖⁴_4 ≤ ‖<em>f̂</em>‖²_∞‖<em>f̂</em>‖²_2 plus Parseval, a
+1-bounded <em>f</em> with ‖<em>f</em>‖_{U²} ≥ η has a Fourier coefficient of size ≥ η². Three-term
+progression counts are controlled because the trilinear form diagonalizes to a <strong>single</strong>
+sum Σ_r <em>f̂</em>(<em>r</em>)<em>ĝ</em>(−2<em>r</em>)<em>ĥ</em>(<em>r</em>). For four terms the character expansion leaves a
+<strong>two-parameter</strong> family of surviving frequencies, so no bound on a single Fourier
+coefficient suffices — and the skew shift gives a function with vanishing first-order content
+and a maximally wrong four-term count. You need a norm that survives one more
+differentiation.</p>
+</details>
+<details>
+<summary>4. State the Furstenberg correspondence principle and give the three-line dictionary.</summary>
+<p>For <em>E</em> ⊆ ℕ of positive upper density there is a measure-preserving system (<em>X</em>,ℬ,μ,<em>T</em>) and
+<em>A</em> with μ(<em>A</em>) &gt; 0 such that μ(<em>A</em> ∩ <em>T</em>^{−n₁}<em>A</em> ∩ … ∩ <em>T</em>^{−n_k}<em>A</em>) &gt; 0 implies
+d̄(<em>E</em> ∩ (<em>E</em>−<em>n</em>₁) ∩ … ∩ (<em>E</em>−<em>n</em>_k)) &gt; 0. Dictionary: positive density ↔ positive measure;
+translation by <em>n</em> ↔ <em>T</em>ⁿ; a pattern <em>x</em>, <em>x</em>+<em>n</em>, …, <em>x</em>+<em>kn</em> in <em>E</em> ↔ multiple recurrence
+to <em>A</em> at times <em>n</em>, 2<em>n</em>, …, <em>kn</em>. The payoff is that measure-preserving systems admit
+structure theorems and arbitrary sets of integers do not.</p>
+</details>
+<details>
+<summary>5. What is a characteristic factor, and why does universality matter?</summary>
+<p>A factor π : <em>X</em> → <em>Y</em> is <em>k</em>-characteristic if the multiple average with <em>k</em>+1 functions is
+asymptotically unchanged when you project all functions to <em>Y</em> and compute there — a
+compression with a correctness guarantee. <em>X</em> itself is always characteristic, so the content
+is finding the smallest. Universality (being a factor of every characteristic factor) makes
+it canonical and therefore classifiable: Furstenberg's tower <em>Z</em>_k(<em>X</em>) is characteristic but
+not universal for <em>k</em> &gt; 1, which is why classification had to wait.</p>
+</details>
+<details>
+<summary>6. Give the classification of universal characteristic factors, with the convention.</summary>
+<p>Convention: (<em>k</em>+1)-term progressions ↔ the average with <em>k</em>+1 functions ↔ the U^k norm ↔
+(<em>k</em>−1)-step nilsystems. Then: <em>k</em> = 2 (three-term) is the <strong>Kronecker factor</strong>, a compact
+abelian group rotation, i.e. 1-step — Furstenberg. <em>k</em> = 3 (four-term) is a <strong>2-step
+pro-nilsystem</strong> — Conze–Lesigne and Furstenberg–Weiss; single nilsystems do not suffice, you
+need inverse limits. General <em>k</em> is a <strong>(k−1)-step pro-nilsystem</strong> — Host–Kra (2005) and
+Ziegler (2007).</p>
+</details>
+<details>
+<summary>7. State both inverse theorems, and the caveat the talk omits.</summary>
+<p>Over ℤ: if ‖<em>f</em>‖_{U^{s+1}[N]} ≥ δ for 1-bounded <em>f</em>, then <em>f</em> correlates (at level <em>c</em>(<em>s</em>,δ))
+with an <em>s</em>-step <strong>nilsequence</strong> <em>n</em> ↦ <em>F</em>(<em>gⁿx</em>Γ) of bounded complexity — Green–Tao–Ziegler,
+Ann. of Math. 176 (2012). Over 𝔽_pⁿ: correlation with a polynomial phase of degree ≤ <em>s</em>.
+<strong>Caveat:</strong> the naive finite-field statement is <em>false</em> — a counterexample for U⁴(𝔽₂ⁿ) is due
+independently to Green–Tao and to Lovett–Meshulam–Samorodnitsky. The correct statement uses
+<strong>non-classical</strong> polynomials (Bergelson–Tao–Ziegler; Tao–Ziegler), which coincide with
+ordinary ones only when the characteristic exceeds <em>s</em>. Ziegler says "polynomial phase" from
+the podium without the caveat; the companion's Theorem 8.3 has it.</p>
+</details>
+<details>
+<summary>8. Give the three-step strategy for counting progressions in the primes, and say which step is domain-specific.</summary>
+<p>(1) An unexpected count forces a large Gowers norm — generalized von Neumann, i.e. repeated
+Cauchy–Schwarz. (2) A large Gowers norm forces correlation with a nilsequence — the inverse
+theorem, where all the difficulty lives. (3) Show the object does <strong>not</strong> correlate with
+nilsequences — for the primes this is Green–Tao's "the Möbius function is strongly orthogonal
+to nilsequences", after the W-trick removes periodic obstructions. Only step 3 is
+domain-specific; that is why the same engine later produced the Liouville sign-pattern
+theorem. Result: ~σ_k N²/(log N)^k progressions of length <em>k</em> in [1,N], which says the primes
+are <em>unstructured</em> for this question.</p>
+</details>
+<details>
+<summary>9. Why does Sarnak's conjecture force the Liouville sequence to be complex?</summary>
+<p>Take the orbit closure <em>X</em>_λ of λ inside {±1}^ℕ under the shift, and the continuous function
+<em>f</em>₀ reading coordinate zero, so <em>f</em>₀(<em>T</em>ⁿλ) = λ(<em>n</em>). If <em>X</em>_λ had zero topological entropy,
+Sarnak would give (1/N)Σ λ(<em>n</em>)<em>f</em>₀(<em>T</em>ⁿλ) = <em>o</em>(1); but that sum is Σ λ(<em>n</em>)² = N. So
+Sarnak implies <em>X</em>_λ has positive entropy — sign patterns growing exponentially. Chowla would
+give all 2^k patterns with correct frequencies. Unconditionally: superlinear growth
+(Frantzikinakis–Host 2018), improved to superpolynomial (Matomäki–Radziwiłł–Tao–Teräväinen–Ziegler
+2023).</p>
+</details>
+<details>
+<summary>10. What exactly separates the current results from the logarithmic Chowla conjecture?</summary>
+<p>Two gaps. <strong>Interval length:</strong> the sign-pattern results work with an extra average over
+shifts in an interval of length N^θ for fixed θ &gt; 0; you need to push down to (log X)^ε for
+every ε &gt; 0. <strong>Order:</strong> Walsh gets close to the target length — under <strong>GRH</strong>, intervals of
+length (log X)^{ψ(X)} with ψ → ∞ arbitrarily slowly — but only in the <em>m</em> = 2, linear-phase
+case. Doing it for every <em>m</em> is what requires higher-order Fourier analysis, nilsequences in
+place of linear phases. Both together would give logarithmic Chowla, hence logarithmic Sarnak
+by Tao's 2016 equivalence. Ziegler: "we're almost there, except the hypothesis and the gap."</p>
+</details>
+<details>
+<summary>11. What is the multidimensional frontier, and what is the simplest open case?</summary>
+<p>Patterns in <em>G</em>^m rather than <em>G</em>. The simplest example she names is the <strong>square</strong> in <em>G</em>²:
+(<em>x</em>,<em>y</em>), (<em>x</em>+<em>d</em>,<em>y</em>), (<em>x</em>,<em>y</em>+<em>d</em>), (<em>x</em>+<em>d</em>,<em>y</em>+<em>d</em>). Corners and some other
+configurations are understood; the square is not. The tools are <strong>directional Gowers norms</strong>
+(differentiate along subgroups rather than the whole group) with their own inverse question,
+and, on the dynamical side, <strong>cubes</strong> for two commuting transformations <em>T</em> and <em>S</em> — with
+correspondence principles now moving results in both directions.</p>
+</details>
+<hr />
+<h2>11. Note on the tutorial process</h2>
+<p><strong>Difficulty against reputation: matched, roughly.</strong> Ziegler is known for exactly this —
+higher-order Fourier analysis, the inverse theorem, linear equations in primes — and the talk
+is that subject, delivered at survey level with the recent Liouville work appended. Rule 1
+did not fire. What the transcript <em>did</em> settle is that the difficulty is a 3 and not a 4: the
+talk contains no object that cannot be reached by deforming something in a standard graduate
+analysis or probability course, and she consistently chose the concrete illustration (the
+δ²|<em>V</em>|² subspace count, the two-point system for the even numbers, λ(12) = −1) over the
+general statement.</p>
+<p><strong>Companion status.</strong> No ICM 2026 proceedings paper exists, and I looked for one. The
+companion is her <strong>ICM 2014 sectional survey</strong>, arXiv:1404.0775 (3 April 2014), clearly
+labelled as such throughout and never presented as the proceedings paper. It is unusually
+good for this purpose because it tracks the talk's first two-thirds in order. It <strong>does not
+cover</strong> the Chowla/Sarnak/Liouville third, which is 2016–2023 material; that section is
+restored from primary papers, each cited by name and arXiv number at the point of use. Her
+2013 EMS Lecture Series notes are older than the companion and cover the same ground, so I
+did not use them. <strong>arXiv:2512.00697</strong> ("Polynomial bounds for Birch's theorem", Lampert–
+Snowden–Ziegler) is recent work of hers but the talk never touches it, so it does not appear
+above.</p>
+<p><strong>She does not name a survey from the podium.</strong> I scanned for it, per the usual heuristic —
+she cites collaborators by name repeatedly but never a paper title or journal. So the
+companion came from search, not from the talk.</p>
+<p><strong>Name corrections.</strong> Auto-captions destroyed almost every proper noun. Each correction below
+is verified against the companion, a primary paper, or a search; the two I could not verify
+are listed separately.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Tamar Ziggler"</td>
+<td><strong>Tamar Ziegler</strong></td>
+<td>speaker</td>
+</tr>
+<tr>
+<td>"Hail Fenberg", "fenberg", "first shows"</td>
+<td><strong>Hillel Furstenberg</strong></td>
+<td>companion, acknowledgements; her thesis advisor</td>
+</tr>
+<tr>
+<td>"sami", "sarity", "seed theorem"</td>
+<td><strong>Szemerédi</strong>, Szemerédi's theorem</td>
+<td>companion [44]</td>
+</tr>
+<tr>
+<td>"Roth Mishulan dichotomy"</td>
+<td><strong>Roth–Meshulam</strong></td>
+<td>R. Meshulam, JCTA 71 (1995), 168–172</td>
+</tr>
+<tr>
+<td>"Benji Vice", "advice"</td>
+<td><strong>Benjamin Weiss</strong> (Furstenberg–Weiss)</td>
+<td>companion [16]</td>
+</tr>
+<tr>
+<td>"Izzy Katenerstone"</td>
+<td><strong>Yitzhak Katznelson</strong></td>
+<td>search; 1975–76 Israel IAS organiser</td>
+</tr>
+<tr>
+<td>"Conrad Jacobs"</td>
+<td><strong>Konrad Jacobs</strong></td>
+<td>search; German ergodic theorist</td>
+</tr>
+<tr>
+<td>"chronicer factor", "chronograph factor"</td>
+<td><strong>Kronecker factor</strong></td>
+<td>companion §3</td>
+</tr>
+<tr>
+<td>"kwansine"</td>
+<td><strong>Conze–Lesigne</strong></td>
+<td>companion [10,11,12], Theorem 4.1</td>
+</tr>
+<tr>
+<td>"host Cryan myself"</td>
+<td><strong>Host, Kra and Ziegler</strong></td>
+<td>companion Theorem 6.1</td>
+</tr>
+<tr>
+<td>"gow's norms", "gowowers"</td>
+<td><strong>Gowers norms</strong></td>
+<td>companion Definition 5.1</td>
+</tr>
+<tr>
+<td>"green and conjecture"</td>
+<td><strong>Green and Tao conjectured</strong></td>
+<td>companion Conjecture 8.1</td>
+</tr>
+<tr>
+<td>"childless conjecture", "trialless", "chala", "cha"</td>
+<td><strong>Chowla</strong></td>
+<td>Tao arXiv:1605.04628</td>
+</tr>
+<tr>
+<td>"sirenx", "sarnac", "sx conjecture", "song conjecture"</td>
+<td><strong>Sarnak</strong></td>
+<td>Tao arXiv:1605.04628</td>
+</tr>
+<tr>
+<td>"Leoville", "leavville"</td>
+<td><strong>Liouville</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"franchikinakis and host"</td>
+<td><strong>Frantzikinakis and Host</strong></td>
+<td>arXiv:1708.00677</td>
+</tr>
+<tr>
+<td>"Matumaki Razil", "mataki radi"</td>
+<td><strong>Matomäki and Radziwiłł</strong></td>
+<td>arXiv:1501.04585</td>
+</tr>
+<tr>
+<td>"Terodina"</td>
+<td><strong>Teräväinen</strong></td>
+<td>arXiv:2007.15644</td>
+</tr>
+<tr>
+<td>"toao", "tow", "tao"</td>
+<td><strong>Tao</strong></td>
+<td>arXiv:1605.04628, 2007.15644</td>
+</tr>
+<tr>
+<td>"Walsh"</td>
+<td><strong>Miguel N. Walsh</strong></td>
+<td>arXiv:2310.07873</td>
+</tr>
+<tr>
+<td>"reman hypothesis"</td>
+<td><strong>Riemann hypothesis</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"ponare", "panker recurrence"</td>
+<td><strong>Poincaré recurrence</strong></td>
+<td>companion §3</td>
+</tr>
+<tr>
+<td>"diapanta equations"</td>
+<td><strong>Diophantine equations</strong></td>
+<td>context</td>
+</tr>
+<tr>
+<td>"Jordi Williamson"</td>
+<td><strong>Geordie Williamson</strong></td>
+<td>search; ICM 2026 Structure Committee</td>
+</tr>
+<tr>
+<td>"erotic / argotic / orotic theory"</td>
+<td><strong>ergodic theory</strong></td>
+<td>throughout</td>
+</tr>
+<tr>
+<td>"aelion", "abilionization"</td>
+<td><strong>abelian</strong>, <strong>abelianization</strong></td>
+<td>companion §4</td>
+</tr>
+<tr>
+<td>"foyer / 4year / fyear / fa analysis"</td>
+<td><strong>Fourier analysis</strong></td>
+<td>throughout</td>
+</tr>
+<tr>
+<td>"nil po twostep nil potent le group"</td>
+<td><strong>2-step nilpotent Lie group</strong></td>
+<td>companion §4</td>
+</tr>
+<tr>
+<td>"Erdor Prize"</td>
+<td><strong>Erdős Prize</strong> (Israel Mathematical Union, 2011)</td>
+<td>search</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Could not verify — not guessed.</strong> Two of the three slide-advancing volunteers Ziegler
+thanks at the start: the captions give <strong>"Cecile Gashon"</strong> and <strong>"Danny Castle"</strong>. The third
+is Geordie Williamson, confirmed. I found no reliable match for the other two and have
+deliberately not guessed; plausible-looking guesses were available and would have been
+exactly the failure mode the brief warns against. Impact: nil, they are acknowledgements.</p>
+<p><strong>Substantive caption issues corrected in the text, not just spellings.</strong> Four:</p>
+<ol>
+<li><strong>The indexing convention drifts.</strong> At one point she says "let's start with the case
+   <em>k</em> = 4 … for four-term progressions"; elsewhere the same talk uses "<em>k</em>+1-term
+   progressions ↔ <em>k</em>−1 step nilsystems", which requires <em>k</em> = 3 for four terms. I fixed a
+   single convention in §3.5 and used it throughout, and flagged the drift here. The
+   companion is internally consistent and I followed it.</li>
+<li><strong>"Fenberg shows that for any subset A there exists an n &gt; 0 so that …"</strong> — the transcript's
+   version of the multiple recurrence theorem is the plain-existence form. The companion's
+   Theorem 3.2 is the stronger averaged form with a positive liminf. I state the averaged
+   form and note the difference in §3.4, because everything downstream is about the averages.</li>
+<li><strong>"correlate with a polynomial phase function"</strong> over 𝔽_pⁿ — as stated, false in low
+   characteristic. The companion's Theorem 8.3 requires <strong>non-classical</strong> polynomials
+   (its word: "non-standard"), with an explicit counterexample for U⁴(𝔽₂ⁿ). Corrected in
+   §3.10 with the caveat marked as coming from the companion.</li>
+<li><strong>Walsh's hypothesis.</strong> The talk says "conditioned on the Riemann hypothesis" and "log n to
+   some large power". The paper (arXiv:2310.07873) says <strong>GRH</strong> and (log X)^{ψ(X)} with ψ → ∞
+   arbitrarily slowly. I quote the paper and note the difference in §4.16.</li>
+</ol>
+<p><strong>Reconstructed, with what would verify each:</strong></p>
+<ul>
+<li><strong>The three-term counting identity</strong> 𝔼 <em>f</em>(<em>x</em>)<em>g</em>(<em>x</em>+<em>d</em>)<em>h</em>(<em>x</em>+2<em>d</em>) = Σ_r <em>f̂</em>(<em>r</em>)<em>ĝ</em>(−2<em>r</em>)<em>ĥ</em>(<em>r</em>)
+  (§2, §7.1(3)). Standard, but the companion asserts only the consequence. Verify by expanding
+  in characters: the two averages force <em>a</em>+<em>b</em>+<em>c</em> ≡ 0 and <em>b</em>+2<em>c</em> ≡ 0.</li>
+<li><strong>The failure at four terms</strong> as a two-parameter frequency family (§2, §7.1(5)). Mine; the
+  talk says only that new obstructions appear. Verify by the same expansion with four
+  functions.</li>
+<li><strong>The induction</strong> <em>T</em>ⁿ(<em>z</em>,<em>w</em>) = (<em>z</em>+<em>n</em>α, <em>w</em>+2<em>nz</em>+<em>n</em>²α) (§7.2(1)) is stated in the
+  companion §4; the induction itself is mine and is one line.</li>
+<li><strong>The identification of the third-difference operator</strong> behind the skew-shift identity
+  (§3.7, §7.2(2)). The companion gives the identity, not the reading. Verify: every coordinate
+  of <em>T</em>^{jn}<em>y</em> is quadratic in <em>j</em>, and Δ³ annihilates degree ≤ 2.</li>
+<li><strong>The reading of the multidimensional open problem</strong> (§4.18) — that existence of squares is
+  not the open part, the inverse theory is. Marked in place as my inference, with the reason
+  (Furstenberg–Katznelson multidimensional Szemerédi). She does not say it.</li>
+<li><strong>The pseudocode framing of the density increment</strong> (§8.1). Mine entirely; the mathematics
+  is the companion's §2.</li>
+</ul>
+<p><strong>Gaps, and how bad each is.</strong></p>
+<ol>
+<li><strong>PTE (§4.17) — low impact.</strong> She names it in three words as one of three surprising
+   applications. I could not identify the paper and did not guess. The other two applications
+   (Koymans–Pagano arXiv:2412.01768; Zywina arXiv:2502.01957) are verified, and Zywina's
+   explicitly uses her own Tao–Ziegler theorem, which is the point she was making.</li>
+<li><strong>The multidimensional section (§4.18) — low impact.</strong> Roughly five minutes of a
+   seventy-minute talk, delivered as an outlook. No theorem is stated precisely enough to
+   restore, and no companion covers it. The directional-Gowers-norm framing is recorded as she
+   gave it.</li>
+<li><strong>All slides — moderate impact, and unavoidable.</strong> Every displayed formula in the talk lived
+   on the slides. The companion recovers the first two-thirds essentially completely, which is
+   the best outcome available for a talk with no proceedings paper. For the last third I have
+   the primary papers, which state the theorems but of course not her chosen presentation of
+   them. Where a slide clearly carried a picture I could not reconstruct — the two-level
+   nilmanifold/torus diagram of §4.6 — I described it in words from her narration and said so.</li>
+<li><strong>The Conze–Lesigne equation is stated, not explained (§4.7).</strong> The companion says
+   explicitly that solving it "is beyond the scope of this paper", and it is beyond the scope
+   of this tutorial too. I give the equation, its interpretation as a centrality condition,
+   and stop. Deliberate: this is the Gaitsgory rule — present the object with its motivation
+   and its consequence rather than faking depth.</li>
+</ol>
+<p><strong>Where the companion beats the talk.</strong> Three places, all recorded above: the non-classical
+polynomial caveat (§3.10), the averaged form of multiple recurrence (§3.4), and the
+Furstenberg–Zimmer tower plus the explicit limit formula of Ziegler (2005), which is the
+statement that turns "there are many progressions" into "here is how many" (§4.7). None of
+the three fit in a fifty-minute talk; all three matter for reading the literature.</p>
+<p><strong>Cross-references.</strong> No sibling tutorial in <code>summaries/</code> overlaps this one materially. The
+nearest structural relative is <code>langlands-function-fields-gaitsgory.md</code>, whose central
+argument is also a three-link chain that runs unchanged in several settings, and whose anchor
+is also "this is a Fourier transform, one level up" — a coincidence worth noticing, since the
+two talks share no mathematics whatsoever.</p>
+</div>
+</body>
+</html>

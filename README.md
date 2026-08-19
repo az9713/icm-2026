@@ -66,6 +66,8 @@ for the probability and 4/5 for the space of lattices, Manolescu 4/5 for the top
 | `verify/check_citations.py` | resolves every arXiv ID and DOI in the corpus; ~2 minutes, no API key |
 | `TEMPLATE.md` | the specification the tutorials were written against |
 | `DEVELOPMENT-JOURNEY.html` | how they were written and checked, and what was *not* checked |
+| `html/` | every Markdown file rendered with MathJax, dark theme — start at `html/index.html` |
+| `tools/build_html.py` | the renderer that produces `html/` (`pip install markdown`, then run it) |
 
 Each tutorial's front matter points at `../transcripts/<video_id>_transcript.txt`. **The caption
 transcripts are not published here** — they are the speakers' words, not this project's. `TEMPLATE.md`
@@ -100,6 +102,11 @@ What they do not establish:
   against what a tutorial *prints*. That is not peer review.
 
 ## Rendering
+
+**Pre-rendered pages live in `html/`** — one per Markdown file, 48 of them, with a contents page at
+`html/index.html`. They are self-contained apart from MathJax, which loads from a CDN, so open them
+from disk or serve the directory. GitHub does not render HTML from a repository page; GitHub Pages
+would.
 
 The tutorials are Markdown with LaTeX — **367 `$$` display blocks and about 1,340 inline `$…$` spans**.
 Six files use no LaTeX at all. A renderer without MathJax or KaTeX will produce two visibly

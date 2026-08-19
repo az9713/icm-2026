@@ -1,0 +1,2041 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Uniformization theorems and related results in higher dimensional complex geometry</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Ngaiming Mok (University of Hong Kong)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=TYOQ2l6m4gM">https://www.youtube.com/watch?v=TYOQ2l6m4gM</a></div><div><b>Level:</b> 4/5</div><div><b>Reading time:</b> ~90 min</div></div>
+<h1>Uniformization theorems and related results in higher dimensional complex geometry — Ngaiming Mok</h1>
+<p><strong>Field:</strong> complex differential geometry, several complex variables, and algebraic geometry,
+braided together. Bounded symmetric domains, their quotients, and uniruled projective
+manifolds.</p>
+<p><strong>Difficulty against your background: 4 out of 5, and not split.</strong> This is one theme in four
+movements, not two half-talks, so a single number is honest. The reason it is a 4 rather
+than a 3 is that the unfamiliar layers stack: you need bounded symmetric domains (several
+complex variables), their arithmetic quotients (Lie theory and lattices), curvature of
+Hermitian <em>bundles</em> rather than of Riemannian manifolds, and then a second, entirely
+separate machine — varieties of minimal rational tangents — that lives in algebraic
+geometry. Each layer alone would be a 3. The talk uses all four and assumes all four.</p>
+<p>What makes it crossable is that the <em>shape</em> of every argument is one you own. Mok integrates
+a nonnegative quantity over a bundle and concludes it vanishes pointwise — that is the
+Bochner method, and you have done it. He propagates a local structure along a distinguished
+family of curves to reach a bad set — that is analytic continuation with a codimension
+count. He uses an ergodic theorem to promote "one instance exists" into "everything". None
+of the moves are foreign. Only the objects are.</p>
+<p><strong>Prerequisites this tutorial builds:</strong> what a bounded symmetric domain is and why the unit
+disc is the rank-one case; rank, and why rank ≥ 2 is the entire source of rigidity;
+holomorphic bisectional curvature and Griffiths seminegativity; the Carathéodory metric and
+why it is Finsler rather than Hermitian; lattices and finite-volume quotients; uniruled
+manifolds, minimal rational curves and the variety of minimal rational tangents (VMRT);
+Moore's ergodicity theorem in the one form the talk uses it.</p>
+<p><strong>A note on sources — read this before anything else.</strong></p>
+<p>There is <strong>no ICM proceedings paper</strong>. Mok's entire arXiv listing is twelve papers, the most
+recent posted 29 January 2024, and none of them is a write-up of this lecture. He does not
+name a survey from the podium either — I scanned the transcript for "my survey", "our
+review", journal names and book titles, and he cites only theorems, never a place to read
+them.</p>
+<p>So I used <strong>two companions, and neither is the proceedings paper</strong>:</p>
+<ul>
+<li><strong>C1</strong> — Mok, <em>"Ergodicity, bounded holomorphic functions and geometric structures in
+  rigidity results on bounded symmetric domains"</em>, lecture slides, ICCM Hangzhou,
+  17–22 December 2007
+  (<a href="https://hkumath.hku.hk/~nmok/ICCM2007.pdf">PDF</a>; published version in <em>Proceedings of
+  the ICCM, Hangzhou 2007</em>, Vol. II, Higher Education Press, Beijing, pp. 464–505). This is
+  a 72-slide deck and it covers movements two and four of the talk almost statement for
+  statement. It is nineteen years old, which matters: it stops short of the newest results.</li>
+<li><strong>C2</strong> — Mok, <em>"Geometric structures and substructures on uniruled projective manifolds"</em>,
+  in <em>Foliation Theory in Algebraic Geometry</em> (Simons Symposia), Springer 2016, pp. 103–148
+  (<a href="http://hkumath.hku.hk/~imr/IMRPreprintSeries/2015/IMR2015-9.pdf">preprint PDF</a>). This is
+  a proper 36-page survey and it covers movement three and most of movement four.</li>
+</ul>
+<p>Everything else in this document that is stated precisely comes from the <strong>primary paper for
+that one theorem</strong>, cited inline by name and journal. That is the method the spec calls for
+and it worked well here: between C1, C2 and about fifteen primary papers I was able to
+restore roughly 80% of the mathematics that the captions destroyed.</p>
+<p><strong>A note on the title.</strong> The lecture's YouTube title is generic — the oEmbed record returns
+exactly <code>"ICM 2026 Plenary Lecture - Ngaiming Mok"</code> and nothing more. The title in the front
+matter above is the one <strong>spoken in the room</strong>: the introducer says Mok "will speak about
+uniformization theorems and related results in higher dimensional complex geometry", and Mok
+opens with "the title of my talk addresses uniformization theorems". My brief supplied a
+different title — <em>"Starting with the Gauss–Bonnet formula: rigidity phenomena on bounded
+symmetric domains"</em>. <strong>That title has no support anywhere in this recording.</strong> The
+Gauss–Bonnet formula is never mentioned, not once, in ninety minutes. See §10.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>In one complex dimension there is a complete answer to a very ambitious question, and you
+already know it.</p>
+<p>Take any Riemann surface — any one-complex-dimensional complex manifold, connected, however
+exotic. Pass to its universal cover. The <strong>uniformization theorem</strong> says that the universal
+cover is one of exactly three things: the Riemann sphere, the complex plane, or the unit
+disc. Nothing else. Every Riemann surface in existence is a quotient of one of those three
+by a group acting freely and properly discontinuously.</p>
+<p>That is a shocking amount of control. An arbitrary object, described by almost no data, is
+forced into one of three boxes. And the three boxes line up with curvature: positive, zero,
+negative. Give the surface its natural metric and the sphere has curvature +1, the plane 0,
+the disc −1. So a <strong>topological</strong> classification and a <strong>curvature</strong> classification agree
+exactly. Mok says this in his first minute: "in the case of one dimension there are two main
+themes, one is topology, the other is geometry, especially curvature."</p>
+<p>Now ask for the same thing in complex dimension two, three, <em>n</em>. It fails immediately and
+completely. There is no list of three model spaces. There is not even a list. Universal
+covers of compact complex manifolds are wild — for a long time it was not known whether they
+are even Stein in reasonable cases.</p>
+<p><strong>The entire talk is about what survives.</strong> Mok's answer, developed over about forty years,
+is that you give up on classifying everything and instead do four narrower things:</p>
+<ol>
+<li><strong>Characterize the model spaces by curvature.</strong> If a compact Kähler manifold has
+   nonnegative holomorphic bisectional curvature, what is it? (Answer: essentially forced.)</li>
+<li><strong>Prove that quotients of the negatively curved models cannot be deformed.</strong> If a
+   manifold merely has the <em>fundamental group</em> of a quotient of a bounded symmetric domain,
+   is it that quotient? (Answer: yes, under hypotheses, and the proof runs on bounded
+   holomorphic functions and an ergodic theorem.)</li>
+<li><strong>Characterize the models by an algebro-geometric invariant instead of curvature</strong> — the
+   variety of minimal rational tangents. This works where curvature is unavailable.</li>
+<li><strong>Do all of the above for subspaces</strong>, not just for whole manifolds.</li>
+</ol>
+<p>Those are the four sections of the lecture, and he colour-codes them on his slides: "light
+green is what is the emphasis of this talk, and yellow indicates where the questions arise."</p>
+<p>The word that runs through all four is <strong>rigidity</strong>. Rigidity means: a weak hypothesis
+forces a strong conclusion, so the object cannot be deformed. You know the shape from
+physics — a symmetry assumption that leaves exactly one solution, or a conserved quantity
+that pins down a trajectory you thought had a family. Here the hypotheses are astonishingly
+weak (a fundamental group; a curvature sign; the tangent directions to one family of
+curves at one point) and the conclusions are astonishingly strong (the manifold is <em>this</em>
+manifold, biholomorphically).</p>
+<hr />
+<h2>2. Your anchor</h2>
+<h3>2.1 The anchor is the uniformization theorem itself</h3>
+<p>You do not need an analogy for this talk. You need the one-variable theorem you already own,
+held up as a template, with each of its parts asked about separately.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>One variable, which you have</th>
+<th>The talk's higher-dimensional replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sphere ℙ¹ — positive curvature</td>
+<td>ℙⁿ and the compact Hermitian symmetric spaces (§4.1)</td>
+</tr>
+<tr>
+<td>Plane ℂ — flat</td>
+<td>flat factors ℂᵏ, which survive in Mok's structure theorem</td>
+</tr>
+<tr>
+<td>Disc Δ — negative curvature</td>
+<td><strong>bounded symmetric domains</strong> Ω, of which Δ is the rank-one case (§3.1)</td>
+</tr>
+<tr>
+<td>Quotient Δ/Γ by a Fuchsian group</td>
+<td>Ω/Γ for Γ a lattice — the objects of §4.2</td>
+</tr>
+<tr>
+<td>"Which surface is it?" answered by genus</td>
+<td>answered by curvature, by π₁, or by the VMRT</td>
+</tr>
+</tbody>
+</table></div>
+<p>The disc with the Poincaré metric is the base case you can hold onto concretely, and the
+talk supports that reading: every bounded symmetric domain contains totally geodesic
+polydiscs Δ^r, and its <strong>rank</strong> is r, the largest such. Rank one means the disc (or its
+higher-dimensional cousin the ball). Rank ≥ 2 means there is genuinely more than one
+independent disc direction, and that turns out to be where all the rigidity comes from.</p>
+<h3>2.2 The anchor Mok hands you from the podium</h3>
+<p>The best anchor in a talk is one the speaker gives you, and Mok gives a very good one for
+the hardest machinery in the lecture — the VMRT theory of §4.3. He says:</p>
+<blockquote>
+<p>"An important principle is that I want to think about the minimal rational curves as some
+kind of special geodesics. <strong>They are carriers of information.</strong> So the idea is to carry
+the information at a general point to a bad point, and thereby you can start with local
+properties, propagate properties across the manifold, in order to prove rigidity theorems."</p>
+</blockquote>
+<p>And near the end he puts the whole dictionary on a slide:</p>
+<blockquote>
+<p>"So there's parallelism. You have the uniruled projective manifold as [the] Riemannian
+manifold here. Here you look at the 𝒞(X), the VMRTs, [as the] analogue of the sphere
+bundle. And here you look at minimal rational curves as [the] analogue of geodesic curves,
+but only in certain directions you have them. And you look at the [tautological] foliation
+as a kind of geodesic flow, heuristically. And then the sub[-VMRT] structure is the
+Riemannian submanifolds. The analogues [of] totally geodesic subsets are more ample here.
+These are the projective uniruled subvarieties."</p>
+</blockquote>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Riemannian geometry (yours)</th>
+<th>VMRT geometry (his)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Riemannian manifold</td>
+<td>uniruled projective manifold (X, 𝒦)</td>
+</tr>
+<tr>
+<td>unit sphere bundle</td>
+<td>the VMRT structure 𝒞(X) ⊂ ℙT(X)</td>
+</tr>
+<tr>
+<td>geodesics</td>
+<td>minimal rational curves — but only in <em>some</em> directions</td>
+</tr>
+<tr>
+<td>geodesic flow</td>
+<td>the tautological foliation on 𝒞(X)</td>
+</tr>
+<tr>
+<td>Riemannian submanifold</td>
+<td>sub-VMRT structure 𝒞(S) ⊂ ℙT(S)</td>
+</tr>
+<tr>
+<td>totally geodesic submanifold</td>
+<td>uniruled projective subvariety</td>
+</tr>
+</tbody>
+</table></div>
+<p>That table is the single most useful thing in the lecture for someone with your background,
+and it is his, not mine. Hold it. Every theorem in §4.3 and §4.4 is a theorem about that
+dictionary.</p>
+<p>The one place the dictionary genuinely breaks — and he flags it — is that in Riemannian
+geometry there is a geodesic in <em>every</em> direction, whereas here the minimal rational curves
+exist only in the directions that lie in the VMRT. The VMRT is a proper subvariety of the
+projectivized tangent space, and its shape is the whole invariant.</p>
+<h3>2.3 A word on a formula that is not here</h3>
+<p>Gauss–Bonnet — curvature integrated over a surface equalling a topological invariant — is
+the natural anchor you would reach for if someone told you this talk was about "curvature
+forcing topology". It is a perfectly good anchor for a different lecture. <strong>It is not in
+this one.</strong> Mok never says the words. The closest the captions come is the phrase "one wants
+a Gauss formula" in the proof sketch of Hermitian metric rigidity, and that is the <em>Gauss
+equation</em> relating curvature of a submanifold to curvature of the ambient space — a
+different classical result with the same surname on it.</p>
+<p>What Mok does use, repeatedly, is an integral identity over a bundle whose integrand has a
+sign, forcing pointwise vanishing (§4.2.3). That is a <strong>Bochner</strong> argument, not a
+Gauss–Bonnet argument. The difference matters: Gauss–Bonnet computes a number; Bochner
+proves a vanishing theorem. Mok wants vanishing theorems.</p>
+<p>I am naming this only so you know the formula exists and know it is absent. Decorating the
+talk with it would be inventing content.</p>
+<hr />
+<h2>3. The bridge</h2>
+<p>Seven ideas. Each is defined by deforming something you already have, and each gets a small
+concrete example. Everything else in the talk gets one sentence at the point of use.</p>
+<h3>3.1 Bounded symmetric domains: the disc, promoted</h3>
+<p>Start with what you know. The unit disc Δ ⊂ ℂ carries the Poincaré metric, and its
+automorphism group (Möbius transformations preserving Δ) acts transitively: any point can be
+moved to any other. More than that, at every point there is a holomorphic involution fixing
+that point and reversing directions — for the origin it is z ↦ −z. A domain with that
+property is called <strong>symmetric</strong>.</p>
+<p>A <strong>bounded symmetric domain</strong> is a bounded domain Ω ⊂ ℂⁿ, biholomorphic to a bounded
+domain, such that every point has such a holomorphic symmetry. That is the complex analogue
+of a Riemannian symmetric space of noncompact type — the same definition with "holomorphic"
+inserted.</p>
+<p>Élie Cartan classified them. There are four infinite classical series plus two exceptional
+ones. The three easiest to hold are matrix domains — this is the concrete version, and you
+should carry it:</p>
+<ul>
+<li><strong>Type I</strong>: Ω = { Z ∈ M(p, q; ℂ) : I_q − Z̄ᵗZ &gt; 0 }, i.e. all p×q complex matrices of
+  operator norm &lt; 1. Taking p = q = 1 gives exactly the unit disc. Taking q = 1 gives the
+  unit ball in ℂᵖ.</li>
+<li><strong>Type II</strong>: the same, restricted to antisymmetric matrices.</li>
+<li><strong>Type III</strong>: the same, restricted to symmetric matrices. Its unbounded realization, via a
+  Cayley transform, is the <strong>Siegel upper half-plane</strong>
+  ℍ_n = { τ ∈ M(n,n;ℂ) : τᵗ = τ, Im τ &gt; 0 }, which parametrizes polarized abelian varieties.
+  Mok flags this in the last section of the talk and it is why type III matters.</li>
+<li><strong>Type IV</strong>: the "Lie ball", a quadric-type domain, always of rank 2.</li>
+<li>Two exceptional domains, of complex dimensions <strong>16 and 27</strong>, attached to E₆ and E₇.</li>
+</ul>
+<p>Every bounded symmetric domain has a canonical realization as a <em>convex</em> bounded domain,
+the <strong>Harish-Chandra realization</strong>; for the classical types these are Cartan's matrix
+realizations above. (Mok and I-Hsun Tsai proved in <em>J. reine angew. Math.</em> <strong>431</strong> (1992),
+91–122 that for rank ≥ 2 this convex realization is unique up to an affine transformation —
+a rigidity result about the <em>picture</em> itself.)</p>
+<h3>3.2 Rank, and why it is the whole story</h3>
+<p><strong>Rank</strong> is the one number that governs everything in movements two and four.</p>
+<p>Definition, in the form you want: Ω contains totally geodesic <strong>polydiscs</strong> Δ^r — products of
+r copies of the unit disc, embedded so that the ambient metric restricts to the product of
+Poincaré metrics. The <strong>rank</strong> r of Ω is the largest such. The <strong>Polydisc Theorem</strong> says
+more: fixing a maximal polydisc P ⊂ Ω and the isotropy group K at a base point,
+⋃_{k ∈ K} kP = Ω. Every point of Ω lies on some maximal polydisc. (C1, slide 4.)</p>
+<p>For type I with p×q matrices, rank = min(p, q). So the disc, the ball, and type IV in one
+sense are the low-rank cases; big square matrix domains have big rank.</p>
+<p><strong>Why rank ≥ 2 creates rigidity.</strong> Here is the mechanism in one sentence, and it is worth
+slowing down for. In the polydisc Δ × Δ with the product metric, consider the holomorphic
+bisectional curvature between a direction along the first factor and a direction along the
+second. For a <em>product</em> metric that curvature is <strong>zero</strong> — curvature does not mix factors.
+So as soon as r ≥ 2, the curvature tensor of Ω has genuine null directions. Those null
+directions form a distinguished subbundle, and <em>integrating over exactly that subbundle</em> is
+what makes the rigidity proofs work. Rank one — the disc and the ball — has no such null
+directions, and correspondingly <strong>all the rigidity theorems in this talk are false for the
+ball.</strong> Mok states the rank ≥ 2 hypothesis in every single theorem of movements two and four.</p>
+<p>You will see this in §4.2.3: the integral is not over the whole projectivized tangent
+bundle, it is over a sub-bundle picked out by the zeros of the bisectional curvature, and
+one of the technical points Mok mentions explicitly is checking that the null vectors are
+tangent to that sub-bundle.</p>
+<p>A <strong>characteristic vector</strong> at x ∈ Ω is a tangent vector tangent to a <em>minimal disc</em> — a
+totally geodesic disc of the smallest kind, corresponding to a single factor of a maximal
+polydisc. The <strong>minimal characteristic bundle</strong> 𝒮 ⊂ ℙT(X) is the set of all characteristic
+directions. (C1, slide 4.) This is the bundle everything is integrated over. Keep the name.</p>
+<h3>3.3 Lattices and quotients: the objects that are actually studied</h3>
+<p>Ω itself is contractible and boring. The interesting objects are its quotients.</p>
+<p>Let G = Aut₀(Ω) be the identity component of the automorphism group — a semisimple real Lie
+group. A <strong>lattice</strong> Γ ⊂ G is a discrete subgroup of finite covolume. If Γ is torsion-free it
+acts freely and X_Γ := Ω/Γ is a complex manifold. Two cases:</p>
+<ul>
+<li><strong>cocompact</strong> (Γ\G compact): X_Γ is a compact complex manifold;</li>
+<li><strong>non-uniform</strong> but finite volume: X_Γ is noncompact but has finite volume in the canonical
+  metric. These are the <em>arithmetic varieties</em> — the higher-rank cousins of a non-compact
+  finite-area hyperbolic Riemann surface.</li>
+</ul>
+<p>Γ is <strong>irreducible</strong> if it does not split as a product along a splitting of Ω. Irreducibility
+is a hypothesis in almost every theorem below, and it is what lets Moore's ergodicity
+theorem (§3.7) bite.</p>
+<p>Note π₁(X_Γ) = Γ. So the sentence "a map inducing an isomorphism on fundamental groups" means
+"a map inducing an isomorphism of lattices", and that is a purely group-theoretic hypothesis
+with no analysis in it at all. The astonishing content of movement two is that this
+group-theoretic hypothesis forces a biholomorphism.</p>
+<h3>3.4 Curvature, the complex version</h3>
+<p>You know sectional curvature: pick a real 2-plane, get a number. In complex geometry the
+useful notion is finer.</p>
+<p>For a Kähler manifold and two holomorphic tangent directions ξ, η, the <strong>holomorphic
+bisectional curvature</strong> is R(ξ, ξ̄, η, η̄). Setting η = ξ recovers the <strong>holomorphic
+sectional curvature</strong>, which is the ordinary sectional curvature of the real 2-plane spanned
+by ξ and iξ. Bisectional curvature is stronger data than sectional curvature and weaker than
+the full curvature tensor. Concretely:</p>
+<ul>
+<li>ℙⁿ with Fubini–Study: bisectional curvature &gt; 0 everywhere.</li>
+<li>Δ, or any bounded symmetric domain, with its canonical metric: bisectional curvature ≤ 0,
+  with equality exactly in the directions described in §3.2.</li>
+<li>A product: bisectional curvature between the factors is 0.</li>
+</ul>
+<p>For a Hermitian <em>vector bundle</em> (E, h) — not just a manifold — the analogous condition is
+<strong>seminegativity in the sense of Griffiths</strong>: the curvature form Θ(h) satisfies
+Θ(h)(ξ, ξ̄; v, v̄) ≤ 0 for every tangent direction ξ and every section direction v. When
+E = T_X this is precisely "all holomorphic bisectional curvatures ≤ 0". Griffiths
+seminegativity is the hypothesis in Mok's metric rigidity theorem, and it is deliberately
+weaker than requiring the metric to be Kähler.</p>
+<p>Finally, each X_Γ carries a <strong>canonical Kähler–Einstein metric</strong> g of negative Ricci
+curvature, unique up to scale, descended from Ω. That is the reference metric against which
+every other metric is compared.</p>
+<h3>3.5 The Carathéodory metric: a metric built out of bounded functions</h3>
+<p>This is the most important new object for movement two, and it is completely elementary.
+Build it now.</p>
+<p>Let M be a complex manifold and let H(M) be the set of holomorphic maps f : M → Δ into the
+unit disc. For a tangent vector ξ ∈ T_x(M) define</p>
+<p>‖ξ‖<em H_M_="H(M)" _="∈" f="f">κ := sup</em>.} ‖df(ξ)‖_{Poincaré</p>
+<p>That is the <strong>Carathéodory pseudometric</strong>. In words: <em>measure a tangent vector by how fast
+the best bounded holomorphic function can move in that direction.</em> (C1, slide 13.)</p>
+<p>Three facts you should verify or accept:</p>
+<ol>
+<li>On Δ itself, κ <em>is</em> the Poincaré metric — this is the Schwarz–Pick lemma, which you know.</li>
+<li>On a bounded domain in ℂⁿ it is nondegenerate — because coordinate functions, rescaled,
+   are bounded holomorphic functions that move in every direction.</li>
+<li>On the ball Bⁿ it agrees with the Bergman metric up to a constant.</li>
+</ol>
+<p>And now the point. On the polydisc Δⁿ, for ξ = (ξ₁,…,ξₙ),</p>
+<p>‖ξ‖<em Poincaré="Poincaré">κ = max_k ‖ξ_k‖</em>.</p>
+<p>That is a <strong>sup-norm</strong>. It does not come from an inner product. So the Carathéodory metric is
+in general a <strong>complex Finsler metric</strong> — a norm on each tangent space, varying
+holomorphically, not necessarily Hermitian — and this is why Mok has to prove a Finsler
+version of his rigidity theorem, not just a Hermitian one. You will do this computation by
+hand in §6.1.</p>
+<p>Why bother? Mok gives the reason directly from the podium, and it is a design decision worth
+naming:</p>
+<blockquote>
+<p>"Although the theorem of rigidity of maps and so on is very nice, it is very difficult to
+construct a manifold with that curvature condition… but then there are complex Finsler
+metrics that exist for any bounded domain, and this is the Carathéodory metric, and they
+are constructed from bounded holomorphic functions."</p>
+</blockquote>
+<p>Hermitian metrics of seminegative curvature are rare and hard to produce. Carathéodory
+metrics are <em>automatic</em> — every bounded domain has one, for free, because every bounded
+domain has bounded holomorphic functions. Mok trades a strong hypothesis you cannot verify
+for a weak one you get for nothing, and then works harder. Remember this move; it recurs in
+§7.1.</p>
+<p>One more fact, needed in §4.2.4: for a maximal polydisc P ⊂ Ω, the Carathéodory metric of P
+equals the restriction of the Carathéodory metric of Ω. Maximal polydiscs are
+Carathéodory-isometrically embedded. (C1, slide 14.)</p>
+<h3>3.6 Rational curves, uniruled manifolds, and the VMRT</h3>
+<p>Now switch worlds entirely. Movements three and four live in algebraic geometry, and
+curvature is not available there. This subsection builds the replacement.</p>
+<p>A <strong>rational curve</strong> on a projective manifold X is a nonconstant holomorphic map
+f : ℙ¹ → X, taken up to reparametrization. X is <strong>uniruled</strong> if it is covered by them —
+Mok's phrase is that X "is filled up by Riemann spheres". Uniruledness is the algebraic
+analogue of "positively curved": rational curves exist as soon as the canonical bundle fails
+to be nef (Mori 1979), and any Fano manifold is uniruled (Miyaoka–Mori, <em>Ann. Math.</em> <strong>124</strong>
+(1986), 65–69). In the Kodaira
+classification uniruledness is what κ(X) = −∞ means (proved for surfaces classically,
+for threefolds, and <strong>still open from dimension four onward</strong> — Mok says so explicitly).</p>
+<p>A rational curve is <strong>free</strong> if f*T_X is semipositive, i.e. a direct sum of line bundles of
+degree ≥ 0. Freeness is exactly the condition that guarantees the curve can be deformed to
+move in every direction, so that deformation theory works. X is uniruled if and only if it
+carries a free rational curve.</p>
+<p>Now minimize. Fix a polarization, take free rational curves of the smallest possible degree —
+Mok's image is that you deform a rational curve "until it cannot break up anymore" — and
+collect them into a <strong>minimal rational component</strong> 𝒦, an irreducible component of the Chow
+space. This gives a <strong>double fibration</strong></p>
+<p>𝒦 ←^π 𝒰 →^μ X,</p>
+<p>where 𝒰 is the universal family (fibres of π are the curves) and μ is evaluation. For a
+general point x ∈ X, the fibre 𝒰_x parametrizes minimal rational curves through x with a
+marking at x.</p>
+<p><strong>The tangent map</strong> τ_x : 𝒰_x → ℙT_x(X) sends a curve to its tangent direction at x:
+τ([C]) = [T_x(C)]. Its image (strict transform) is</p>
+<p><strong>𝒞_x(X) ⊂ ℙT_x(X) — the variety of minimal rational tangents (VMRT) at x.</strong></p>
+<p>In the dictionary of §2.2, 𝒞_x(X) is the unit sphere at x. But unlike a sphere it is a
+proper, and usually small, subvariety, and <em>its projective geometry is the invariant that
+carries all the information.</em></p>
+<p>Two theorems make the definition usable:</p>
+<ul>
+<li><strong>(Kebekus, J. Algebraic Geom. 11 (2002), 245–256.)</strong> At a general point x, the tangent map
+  τ_x is a morphism — i.e. every minimal rational curve through a general point is free and
+  immersed there. Mok says this in the talk and dates it correctly to 2002.</li>
+<li><strong>(Hwang–Mok, Asian J. Math. 8 (2004), 51–63.)</strong> At a general point, τ_x : 𝒰_x → 𝒞_x(X) is
+  a <em>birational</em> morphism, in fact generically finite. Mok remarks from the podium that he
+  and Hwang initially expected it to be an isomorphism, that counterexamples were later
+  found, but that for the spaces they cared about (hypersurfaces, and the model spaces) it
+  is one.</li>
+</ul>
+<p><strong>The bad set.</strong> For a general uniruled X there is a subvariety B ⊂ X — the (enhanced) bad
+locus — over which minimal rational curves fail to be free, deformation theory fails, and
+none of the above holds. Mok is emphatic that dealing with the bad set is "usually the
+difficulty of a problem", and the codimension of the bad set is the running quantity in §4.3.</p>
+<p><strong>The VMRT table</strong> you actually need — the compact Hermitian symmetric spaces and their
+VMRTs, all classical (C1, slide 53):</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>S (compact Hermitian symmetric space)</th>
+<th>VMRT 𝒞_x(S)</th>
+<th>embedded by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grassmannian G(p,q)</td>
+<td>ℙ^{p−1} × ℙ^{q−1}</td>
+<td><strong>Segre</strong></td>
+</tr>
+<tr>
+<td>orthogonal Grassmannian G^{II}(n,n)</td>
+<td>G(2, n−2)</td>
+<td><strong>Plücker</strong></td>
+</tr>
+<tr>
+<td>Lagrangian Grassmannian G^{III}(n,n)</td>
+<td>ℙ^{n−1}</td>
+<td><strong>Veronese</strong></td>
+</tr>
+<tr>
+<td>hyperquadric Qⁿ</td>
+<td>Q^{n−2}</td>
+<td>by 𝒪(1)</td>
+</tr>
+<tr>
+<td>exceptional (E₆, dim 16)</td>
+<td>G^{II}(5,5)</td>
+<td>by 𝒪(1)</td>
+</tr>
+<tr>
+<td>exceptional (E₇, dim 27)</td>
+<td>(E₆ case)</td>
+<td><strong>Severi</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Mok notes on the podium that all of these VMRTs are themselves Hermitian symmetric of rank
+≤ 2, and all are irreducible except the Grassmannian's — a small observation that turns out
+to control which inductions are available.</p>
+<p><strong>Picard number one.</strong> The last piece of vocabulary. The Picard number is the rank of the
+group of divisors modulo numerical equivalence; ρ(X) = 1 means there is essentially one
+divisor class, so <em>no fibration structure to exploit</em>. Mori theory works by producing
+extremal rays and contractions; when ρ = 1 there is nothing to contract. Mok's opening
+motivation for the whole VMRT theory is exactly this: "especially in the case where you have
+Picard number one, there was at that point no other way to study the geometry of uniruled
+projective manifolds of Picard number one."</p>
+<h3>3.7 Ergodicity, in the one form the talk uses</h3>
+<p>The engine of movement two is an ergodic theorem, and you need only its statement.</p>
+<p><strong>Moore's ergodicity theorem.</strong> Let G be a semisimple real Lie group, Γ ⊂ G an irreducible
+lattice, and H ⊂ G a closed <strong>noncompact</strong> subgroup. Then Γ acts ergodically on G/H —
+every Γ-invariant measurable subset has measure zero or full measure. (C1, slide 8.)</p>
+<p>The corollary used in practice: <strong>for almost every point gH ∈ G/H, the orbit Γ·gH is dense
+in G/H.</strong> There is a null set E off which density holds. (C1, slide 8, "Lemma".)</p>
+<p>That "almost every" is not a technicality; it is the source of the talk's hardest technical
+work. A specific maximal polydisc may lie in the bad null set, in which case the density
+argument fails there and Mok must recover it by a limiting argument with uniform constants.
+He says so: "there may in fact be a maximal polydisc P such that its orbit under Γ gives a
+discrete set of maximal polydiscs" (C1, slide 37).</p>
+<p>For the anchor: this is the same logical shape as an ergodic-hypothesis argument in
+statistical mechanics. A single trajectory, run long enough, visits everything; therefore a
+quantity constant along the trajectory is constant everywhere. Mok's version: a bounded
+holomorphic function invariant under a flow, plus density of a lattice orbit, is constant on
+a whole homogeneous space.</p>
+<hr />
+<h2>4. The talk, rebuilt</h2>
+<p>Mok's own division: "I will divide the talk into four sections." I follow it exactly.</p>
+<h3>4.1 Movement one — positive curvature, and the generalized Frankel conjecture</h3>
+<p>He opens with old work of his own, and says why: it is the piece that shows his method.</p>
+<p><strong>The setting.</strong> In one variable, positive curvature meant the sphere. In several variables
+the question is: which compact Kähler manifolds have positive holomorphic bisectional
+curvature? The expected answer — that they are all ℙⁿ — is the <strong>Frankel conjecture</strong>.</p>
+<p>Two solutions arrived within a year of each other, from opposite directions:</p>
+<ul>
+<li><strong>Mori</strong> (<em>Ann. of Math.</em> <strong>110</strong> (1979), 593–606) proved the <strong>Hartshorne conjecture</strong>: a
+  projective manifold with <strong>ample tangent bundle</strong> is biholomorphic to ℙⁿ. This is
+  algebro-geometric, and it is the paper that introduced bend-and-break and rational curves in
+  characteristic p — the technique that founds all of §4.3.</li>
+<li><strong>Siu and Yau</strong> (1980) proved the Frankel conjecture itself, by <strong>analytic</strong> methods, using
+  stable harmonic maps. Mok's phrasing: "this was established in the positive by Siu–Yau by
+  methods of analytic methods involving especially stable harmonic maps."</li>
+</ul>
+<p><strong>The generalized Frankel conjecture</strong> relaxes the hypothesis from positive to
+<strong>semipositive</strong> (nonnegative) holomorphic bisectional curvature. That is a much harder
+problem, because now degenerate cases are allowed in and the answer is a structure theorem
+rather than a single space: flat factors, compact Hermitian symmetric spaces, and
+ℙⁿ-like factors can all occur. Mok solved it completely:</p>
+<blockquote>
+<p><strong>Mok, "The uniformization theorem for compact Kähler manifolds of nonnegative holomorphic
+bisectional curvature", <em>J. Differential Geom.</em> 27 (1988), 179–214.</strong></p>
+<p><em>[Gap: Mok does not read the statement of his own theorem aloud, and it was on the slide.
+The precise structure theorem — the exact list of factors of the universal cover and the
+normalization conventions — is not recoverable from the captions and is not restated in
+either companion. Impact: </em><em>low</em><em>. The shape (semipositive bisectional curvature forces a
+product decomposition into flat, Hermitian symmetric, and positively curved pieces) is what
+the rest of the talk uses, and that is stated. Read the 1988 paper for the statement.]</em></p>
+</blockquote>
+<p><strong>What matters here is the method, and he says so.</strong> Three ingredients, from three different
+subjects:</p>
+<ol>
+<li><strong>Kähler–Ricci flow.</strong> He proves that semipositivity of holomorphic bisectional curvature
+   is <em>preserved under the flow</em> — a maximum-principle statement about a nonlinear parabolic
+   PDE, and exactly the kind of thing you have done. Running the flow improves the geometry
+   without leaving the class.</li>
+<li><strong>Deformation of rational curves.</strong> Once a rational curve exists you deform it "until it
+   cannot break up anymore", producing minimal rational curves. This is Mori's machine, used
+   inside a differential-geometric proof, and it is the seed of everything in §4.3.</li>
+<li><strong>Berger's holonomy theorem</strong> in Riemannian geometry, to finish. <em>(This attribution is a
+   caption reconstruction — see §10.)</em></li>
+</ol>
+<p>Then the methodological remark, which is the most quotable line in the lecture:</p>
+<blockquote>
+<p>"It illustrated my approach to solving such problems. I'm — this is <strong>problem-based</strong>. Once
+a problem is formulated, even though it's a problem in Kähler geometry, I make use of a
+collection of methods ranging from nonlinear PDE, algebraic geometry, [several complex
+variables], and then Riemannian geometry."</p>
+</blockquote>
+<p>He returns to this in his overview slide, listing the fields that enter his work over forty
+years: nonlinear PDE, algebraic geometry and Riemannian geometry at the start; several
+complex variables, harmonic analysis and ergodic theory in the recent work. That trajectory —
+same problems, steadily more distant tools — is the shape of the whole talk.</p>
+<h3>4.2 Movement two — negative curvature, and rigidity from the fundamental group alone</h3>
+<p>This is the emphasis of the lecture (his light-green colour) and where the newest results
+are. He states the destination first, then spends thirty minutes building up to it.</p>
+<h4>4.2.1 The destination</h4>
+<blockquote>
+<p><strong>Isomorphism Theorem (recent; Mok, and Mok with Kwok-Kin Wong).</strong> Let Ω be a bounded
+symmetric domain of rank ≥ 2, Γ ⊂ Aut(Ω) an irreducible torsion-free lattice, and
+X_Γ = Ω/Γ. Let the target be a quotient D/Γ′ of a bounded domain D. If a holomorphic map
+f : X_Γ → D/Γ′ <strong>induces an isomorphism on fundamental groups</strong>, then f is a
+biholomorphism.</p>
+</blockquote>
+<p>Mok emphasises the point: "the important thing is that only [the] fundamental group is
+concerning the hypothesis". A purely group-theoretic input; a complex-analytic conclusion.
+He immediately adds that this cannot be true in general — one needs <em>something</em> about the
+target — and says what he assumes instead of higher homotopy: "I impose conditions of the
+existence of bounded holomorphic functions, essentially on the [universal cover] of the
+target manifold."</p>
+<p>The precise statement I can restore is the 2007 version from C1 (slide 46), which needs
+extra hypotheses that the 2026 version apparently removes:</p>
+<blockquote>
+<p><strong>Isomorphism Theorem (C1, slide 46).</strong> Ω ⊂ ℂⁿ a bounded symmetric domain of rank ≥ 2,
+X = Ω/Γ. Let M be a Stein manifold, D ⋐ M, Γ′ a torsion-free discrete group of
+automorphisms of D, N := D/Γ′, and μ the Kobayashi–Royden measure. Suppose μ(N) &lt; ∞ and
+f_* : Γ ≅ Γ′. Then f : X → N is biholomorphic.</p>
+<p><em>[Gap: the exact hypotheses of the 2026 version. The talk describes the target as
+"quasi-projective" and later says the theorem "is actually stated in general for D" an
+arbitrary bounded domain, but the captions do not give the full statement, and the relevant
+paper — Mok–Wong, "Extension of inverses of Γ-equivariant holomorphic embeddings of bounded
+symmetric domains of rank ≥ 2 and applications to rigidity problems", </em>Algebraic Geometry
+and Physics<em> </em><em>2</em><em> (2025), 197–269 — is not on arXiv and I could not obtain it. Impact:
+</em><em>moderate.</em><em> The whole point of the new work is that the hypotheses got weaker, and I
+cannot tell you by how much.]</em></p>
+</blockquote>
+<h4>4.2.2 The prehistory: Siu's strong rigidity, and the two differences</h4>
+<p>Before his own result Mok recalls the founding theorem of the subject:</p>
+<p><strong>Siu (1980).</strong> Let X_Γ = Ω/Γ be a <strong>compact</strong> quotient of an <em>irreducible</em> bounded
+symmetric domain, of any rank, of complex dimension ≥ 2. Let Y be a compact Kähler manifold
+homotopy-equivalent to X_Γ. Then Y is biholomorphic or anti-biholomorphic to X_Γ.</p>
+<p>The method is the one you would guess from Riemannian geometry: take the homotopy
+equivalence, smooth it, run the <strong>heat flow</strong> to get a harmonic map, then prove — via a
+∂∂̄-Kodaira-type Bochner identity, under a rank condition — that the harmonic map is
+holomorphic or anti-holomorphic. Mok's phrasing: "one starts with a [homotopy equivalence],
+slightly modifies it to give a smooth map, and deforms it using the heat flow, and in the
+final analysis you get a harmonic map, which Siu proved to verify some very interesting
+∂∂̄-Kodaira formula."</p>
+<p>Mok then names the two differences between Siu's theorem and his own, and both are worth
+holding:</p>
+<ol>
+<li><strong>Direction.</strong> Siu maps <em>Y → X_Γ</em>, from the unknown manifold into the model. Mok maps
+   <em>X_Γ → Y</em>, out of the model into the unknown. The second is harder: you have no
+   structure at the target to pull back.</li>
+<li><strong>Compactness.</strong> Siu is restricted to the compact case. Mok works in the finite-volume
+   case, which includes non-compact arithmetic quotients.</li>
+</ol>
+<h4>4.2.3 Hermitian metric rigidity, and the integral identity</h4>
+<p>Now the theorem the whole machine is built on, and the one place a Bochner-type argument is
+visible.</p>
+<blockquote>
+<p><strong>Hermitian Metric Rigidity (Mok 1987; hypothesis weakened by To 1989).</strong> Let Ω be an
+<strong>irreducible</strong> bounded symmetric domain of <strong>rank ≥ 2</strong>, Γ ⊂ Aut(Ω) a torsion-free
+lattice, X = Ω/Γ, and g the canonical Kähler–Einstein metric. Let h be <em>any</em> Hermitian
+metric on X whose curvature Θ(h) is <strong>seminegative in the sense of Griffiths</strong>. Then
+h ≡ c·g for a constant c &gt; 0.</p>
+</blockquote>
+<p>Primary source: <strong>Mok, "Uniqueness theorems of Hermitian metrics of seminegative curvature on
+locally symmetric spaces of negative Ricci curvature", <em>Ann. of Math.</em> 125 (1987),
+105–152</strong>, and the book-length treatment <strong>Mok, <em>Metric Rigidity Theorems on Hermitian
+Locally Symmetric Manifolds</em>, Series in Pure Mathematics 6, World Scientific, 1989</strong> — the
+monograph. Mok's original theorem assumed in addition that h is <strong>dominated by</strong> the
+canonical metric; he says from the podium that "this condition of domination was removed by
+To in 1989", and C1 records the attribution as "Mok 87, To 89".</p>
+<p>Read what this says. A Hermitian metric is an enormous amount of freedom — a positive-definite
+Hermitian form at every point, varying smoothly. The only constraint imposed is a <strong>sign on
+its curvature</strong>. And that sign collapses the entire infinite-dimensional space of choices to
+a single one-parameter family. That is rigidity in its purest form, and it is false for the
+disc: on a hyperbolic Riemann surface there are many metrics of nonpositive curvature. Rank
+≥ 2 is doing all the work.</p>
+<p><strong>The immediate corollary, which is what gets used:</strong></p>
+<blockquote>
+<p>If (N, h) is any Hermitian manifold of nonpositive curvature in the sense of Griffiths, and
+f : X → N is a nonconstant holomorphic map, then f is an <strong>immersion</strong>; and if (N, h) is
+Kähler, f is <strong>totally geodesic</strong>. In particular, if N = Ω/Γ′ is itself Hermitian locally
+symmetric, then f lifts to a totally geodesic — hence injective — map F : Ω → Ω′.
+(C1, slides 2–3.)</p>
+</blockquote>
+<p>Mok explains the deduction on the podium in one sentence: "if you have a map you can pull
+back a Hermitian metric and then add to it and still get a metric of seminegative curvature,
+and then you make use of the uniqueness." Pull back the target metric along f, add the
+canonical metric to keep it nondegenerate, observe the sum still has seminegative curvature,
+apply the uniqueness theorem, and read off that the pullback contributed nothing degenerate —
+i.e. df has no kernel.</p>
+<p><strong>The proof, at honest depth.</strong> It is an integral identity, and here is the shape.</p>
+<p>Work on the <strong>minimal characteristic bundle</strong> 𝒮 ⊂ ℙT_X (§3.2) — <em>not</em> on X, and <em>not</em> on the
+whole projectivized tangent bundle. Let (L, ĝ) → ℙT_X be the tautological line bundle with the
+metric induced by the canonical metric g, and write Θ = −c₁(L, ĝ) ≥ 0. Because 𝒮 is picked
+out by the zeros of the bisectional curvature, Θ is degenerate along 𝒮, of some constant
+rank; let q be the dimension of its kernel. Let ρ : ℙT_X → X be the projection and
+σ := ρ<em>ω − c₁(L, ĝ) &gt; 0, where ω is the Kähler form of g. Then (C1, slide 9) for </em><em>any</em>*
+Hermitian metric h on L,</p>
+<p>0 = ∫_𝒮 [−c₁(L, ĝ)]^{2n−2q} ∧ σ^{q−1} = ∫_𝒮 [−c₁(L, h)] ∧ [−c₁(L, ĝ)]^{2n−2q−1} ∧ σ^{q−1}.</p>
+<p>The first equality is a degree/type vanishing on 𝒮. The second rewrites it with an arbitrary
+h. Now if h has seminegative curvature the integrand of the right-hand integral is <strong>≥ 0
+pointwise</strong>. An integral of a nonnegative quantity that vanishes forces the integrand to
+vanish identically — and pointwise vanishing of that integrand is exactly the statement that
+h agrees with g in the characteristic directions.</p>
+<p>That last step is the Bochner move, and it is the reason this talk is reachable for you. The
+whole difficulty is arranging the geometry so that a signed integrand appears at all.</p>
+<p>Mok flags the one technical point that makes the setup legitimate:</p>
+<blockquote>
+<p>"One thing one has to check is that you integrate over some subset — you don't integrate
+over the whole projective tangent bundle — and so you have to prove that although this has
+zero eigenvalues, the zero vectors are actually tangent to the subspace, and this can be
+checked geometrically."</p>
+</blockquote>
+<p>In other words: the kernel of the degenerate form must be tangent to 𝒮, or the integration
+by parts is meaningless. It is, and the verification is geometric.</p>
+<h4>4.2.4 From Hermitian to Finsler: buying existence with weaker conclusions</h4>
+<p>Now the design decision from §3.5, executed.</p>
+<p>Hermitian metrics of Griffiths-seminegative curvature are hard to construct. Carathéodory
+metrics exist on every bounded domain for free but are Finsler, not Hermitian. So Mok proves
+the Finsler version — and pays for it by getting a weaker conclusion.</p>
+<blockquote>
+<p><strong>Complex Finsler Metric Rigidity (Mok 2002).</strong> Ω a bounded symmetric domain of rank ≥ 2,
+Γ a torsion-free lattice, X = Ω/Γ, g the canonical Kähler–Einstein metric. Let h be a
+<strong>continuous complex Finsler metric of nonpositive curvature</strong> on X, and let
+Ω = Ω₁ × ⋯ × Ω_m be the decomposition into irreducible factors. Then there are constants
+c₁, …, c_m &gt; 0 such that ‖α‖_h = c_k ‖α‖_g for every <strong>minimal characteristic</strong> vector α
+whose lift belongs to the k-th factor.</p>
+</blockquote>
+<p>Note what is <em>not</em> claimed: nothing at all about non-characteristic directions. Mok is
+explicit and cheerful about this:</p>
+<blockquote>
+<p>"Of course you can always perturb the metric outside of the zeros and that gives you also
+still seminegativity. So the rigidity here is just along the [characteristic bundle], which
+I could call the VMRT bundle… the statement therefore is just that you have uniqueness of
+metric along minimal directions. But that was good enough to have interesting
+consequences."</p>
+</blockquote>
+<p><em>(The version of this statement on C1 slide 15 is phrased for all vectors lifting into the
+k-th factor, without the word "characteristic". The talk is unambiguous that the conclusion
+holds only along minimal directions, and the surrounding slides of C1 agree with the talk. I
+have followed the talk. See §10.)</em></p>
+<p>He also notes in passing why "the VMRT bundle" is a fair name for the characteristic bundle:
+embed Ω into its compact dual by the Borel embedding; minimal rational curves on the compact
+dual meet Ω in minimal discs; so the characteristic directions on Ω are literally the VMRT
+directions of the compact dual. That is the bridge between movements two and three, and it is
+his sentence, not mine.</p>
+<p>Note also the <em>rewards</em> of Finsler weakness. Mok remarks that Hermitian metrics of
+seminegative curvature, when they do exist, come from interesting places — families of
+abelian varieties, and more generally spaces parametrizing Hodge decompositions — but that
+this is "not the emphasis of this talk".</p>
+<h4>4.2.5 The embedding theorem (2004)</h4>
+<p>With Finsler rigidity in hand, the first big payoff.</p>
+<blockquote>
+<p><strong>Embedding Theorem (Mok, "Extremal bounded holomorphic functions and an embedding theorem
+for arithmetic varieties of rank ≥ 2", <em>Invent. Math.</em> 158 (2004), 1–31).</strong> Two forms,
+both from C1:</p>
+<p><em>(Theorem 1, C1 slide 16.)</em> Ω irreducible of rank ≥ 2, Γ a torsion-free lattice,
+X = Ω/Γ, N a complex manifold, f : X → N holomorphic with lift F : Ω → Ñ. Suppose there
+exists a bounded holomorphic function h on Ñ with F<em>h ≢ constant. Then F : Ω → Ñ is an
+</em><em>embedding</em>*; in particular f is an immersion.</p>
+<p><em>(Theorem 2, C1 slide 18.)</em> Ω of rank ≥ 2, Γ a torsion-free <strong>irreducible</strong> lattice,
+X = Ω/Γ, D an arbitrary bounded domain, Γ′ ⊂ Aut(D) torsion-free discrete, N = D/Γ′,
+f : X → N nonconstant holomorphic with lift F : Ω → D. Then F : Ω → D is an <strong>embedding</strong>.</p>
+</blockquote>
+<p>The talk states the second form, in equivariant language: "an assumption of a map from Ω into
+some [bounded] domain, this is equivariant and the representation is one which has infinite
+image on the fundamental [group]. Then when you lift to universal covers, F is actually an
+embedding."</p>
+<p>The hypothesis is almost nothing — a single nonconstant bounded holomorphic function pulled
+back. The conclusion is injectivity of a map between n-dimensional manifolds. Mok's own
+reaction, from the podium: "well, this was a little surprising to me when I proved it."</p>
+<p><strong>How Finsler rigidity enters.</strong> In the minimal (characteristic) directions, the
+Carathéodory-type metric constructed from the available bounded holomorphic functions is
+pinned to the canonical metric by Finsler rigidity, so it is nondegenerate there and F is an
+immersion along those directions. Extending to <em>all</em> directions takes more work. Separating
+<em>points</em> — injectivity — is harder still, and this is where the <strong>averaging technique</strong> comes
+in: one averages extremal bounded holomorphic functions over geodesic circles, then uses
+Moore ergodicity plus a density argument to promote the conclusion from one polydisc to all.
+The rough sketch: if F(x) = F(y) then every pulled-back bounded holomorphic function takes
+the same value at x and y; the density lemma then forces the function to be constant on a
+whole circle; contradiction with a lower bound on its derivative. (C1, slides 25–26, 36–38.)</p>
+<h4>4.2.6 The extension problem, and the retraction map</h4>
+<p>Mok then says he guessed the embedding theorem was hiding something stronger, and states the
+question that organizes the rest of movement two:</p>
+<blockquote>
+<p>"An embedding doesn't have to have closed image a priori, in the sense I define it, but I
+raised the following question — <strong>the extension problem</strong>. I have Ω going into D. Can I go
+back from D to Ω? But first, can I go back from D to ℂⁿ? If I can go back from D to ℂⁿ and
+get a sort of <strong>retraction map</strong> such that [the] composition is equal to [the] identity,
+then this already implies the embedding theorem — but then maybe one can draw [a] strong
+conclusion from this."</p>
+</blockquote>
+<p>This is a good research move to notice: he replaces "F is injective" with "F has a
+left inverse", which is formally stronger, and then finds that the stronger statement is
+<em>more</em> provable because it is constructive. The restored 2007 form:</p>
+<blockquote>
+<p><strong>Theorem on the Extension Problem (C1, slide 39).</strong> Ω ⊂ ℂⁿ in its Harish-Chandra
+realization, of rank ≥ 2; Γ an irreducible lattice; X = Ω/Γ. Let N be <em>quasi-compact</em>
+(Zariski-open in a compact complex manifold), f : X → N holomorphic with lift F : Ω → Ñ,
+and assume a non-degeneracy condition (†). Then there is a <strong>bounded vector-valued
+holomorphic map ℛ : Ñ → ℂⁿ with ℛ ∘ F = id</strong>.</p>
+</blockquote>
+<p>And then the two consequences (C1, slides 45–46): the <strong>Fibration Theorem</strong> (if
+f_<em> : Γ ≅ π₁(N) then f is an embedding and there is a holomorphic fibration ρ : N → X with
+connected fibres and ρ ∘ f = id_X), and the </em><em>Isomorphism Theorem</em>* of §4.2.1.</p>
+<p>The 2026 version of the extension theorem is the joint work with <strong>Kwok-Kin Wong</strong> cited
+above. Mok describes what has to be added for the arithmetic (non-cocompact) case: first get
+the map to descend to the quotient, which "involves some Riemann extension theorem argument";
+then prove the retraction has <strong>zero-dimensional fibres</strong>. The second is the interesting one,
+and the argument is a small gem:</p>
+<blockquote>
+<p>Suppose the fibres were positive-dimensional. Restrict the bounded holomorphic functions to
+a fibre. The fibres carry complete Kähler metrics of finite volume, generically. But a
+bounded plurisubharmonic function on a complete Kähler manifold of finite volume is
+constant. Contradiction.</p>
+</blockquote>
+<p>C1 records the lemma that does this exactly (slide 47): <em>let (Z, ω) be a complete Kähler
+manifold of finite volume and u a uniformly Lipschitz bounded plurisubharmonic function on Z;
+then u is constant.</em> Zero-dimensional fibres plus the embedding gives an open map, hence an
+isomorphism.</p>
+<h4>4.2.7 The last hypothesis: dropping Kähler–Einstein on the target</h4>
+<p>The final refinement in movement two. The argument above wanted a canonical complete
+Kähler–Einstein metric on the target's universal cover D. Not every bounded domain has one —
+but every <strong>domain of holomorphy</strong> does:</p>
+<blockquote>
+<p>"By the old work of <strong>Cheng and Yau</strong>, and <strong>Yau and myself</strong>, we prove that on a bounded
+domain of holomorphy there always exists a canonical complete Kähler–Einstein [metric]."</p>
+</blockquote>
+<p>So: replace D by its <strong>hull of holomorphy</strong> D̂, which is a domain of holomorphy and therefore
+has the metric. In general the hull can be enormously bigger than D, which would ruin
+everything — but Mok proves that in this situation <strong>the complement D̂ ∖ D has zero Lebesgue
+measure</strong>, so the volume estimates survive the enlargement. Prove the isomorphism upstairs
+with D̂, then descend.</p>
+<p><em>(The primary references, reconstructed from "chu and yao and yao and myself": Cheng–Yau on
+complete Kähler–Einstein metrics on non-compact complex manifolds, and Mok–Yau,
+"Completeness of the Kähler–Einstein metric on bounded domains and the characterization of
+domains of holomorphy by curvature conditions", 1983. See §10.)</em></p>
+<h3>4.3 Movement three — varieties of minimal rational tangents</h3>
+<p>Now the second machine. Curvature is gone; the VMRT replaces it.</p>
+<h4>4.3.1 Why the theory exists</h4>
+<p>Mok gives the motivation twice. First from Kodaira's classification: for surfaces the picture
+is clean, with the Kodaira dimension κ(X) as the birational invariant measuring growth of
+spaces of pluricanonical sections, and κ(X) = −∞ characterized by uniruledness. That
+characterization is proven for surfaces, proven in dimension three, and <strong>open from dimension
+four</strong> — his words: "still well open starting with dimension four." Second, from Picard
+number one, where Mori theory has nothing to contract (§3.6).</p>
+<p>His own path in was the generalized Frankel conjecture: "from my side one motivation of
+course was coming from [the] generalized Frankel conjecture — I wanted to look at the
+algebro-geometric analogues."</p>
+<p>The theory is joint with <strong>Jun-Muk Hwang</strong>, beginning with Hwang–Mok 1998.</p>
+<h4>4.3.2 The central idea: minimal rational curves as carriers of information</h4>
+<p>Everything in this movement is the sentence quoted in §2.2. The pattern is always:</p>
+<ol>
+<li>At a <strong>general</strong> point x, the VMRT 𝒞_x(X) is known — it is congruent to the model's.</li>
+<li>At a <strong>bad</strong> point y ∈ B, nothing is known.</li>
+<li>Take a minimal rational curve through y coming from a good point, lift it to the universal
+   family, and <strong>transport the invariant along it</strong>.</li>
+<li>Conclude the invariant survives at y, so the bad set was not bad after all — or at least
+   is smaller than you feared.</li>
+</ol>
+<p>Mok is explicit that this is analytic continuation with a <strong>codimension budget</strong>. Reducing
+the bad set from codimension 1 to codimension 2 is decisive, because a holomorphic object
+defined off a codimension-2 set extends by <strong>Hartogs</strong>. That single fact is the hinge of the
+whole method.</p>
+<h4>4.3.3 Deformation rigidity, and the one exception</h4>
+<p>The first family of results:</p>
+<blockquote>
+<p><strong>Deformation rigidity (Hwang–Mok, 1998–2005).</strong> Let S = G/P be a rational homogeneous
+space of Picard number 1. Let 𝒳 → Δ be a regular family of projective manifolds over the
+disc whose fibres 𝒳_t are biholomorphic to S for t ≠ 0. Then the central fibre 𝒳₀ is also
+biholomorphic to S — <strong>with exactly one exception</strong>, the 7-dimensional Fano homogeneous
+contact manifold F₅.</p>
+</blockquote>
+<p>(C2, Theorem 3.3.2. The series: Hwang–Mok, <em>Invent. Math.</em> <strong>131</strong> (1998), 393–418 — the
+irreducible Hermitian symmetric spaces of compact type, which Mok says on the podium "were
+the first that we studied in 1998"; <em>Ann. Sci. ÉNS</em> <strong>35</strong> (2002), 173–184 — the long-root
+case; and <em>Invent. Math.</em> <strong>160</strong> (2005), 591–645 — the general case, via prolongations of
+infinitesimal linear automorphisms.)</p>
+<p><strong>The exception.</strong> F₅ is the space of lines on the 5-dimensional hyperquadric Q⁵ — equivalently
+the orthogonal Grassmannian of isotropic 2-planes in ℂ⁷, the adjoint variety of SO(7),
+7-dimensional and contact. <strong>Pasquier and Perrin</strong> (<em>Math. Z.</em> <strong>265</strong> (2010), 589–600,
+"Local rigidity of quasi-regular varieties") produced the deformation that breaks it: F₅
+degenerates to a <strong>G₂-horospherical variety</strong>, an almost-homogeneous (two-orbit) variety with
+non-reductive automorphism group. <strong>Hwang</strong> later showed these are the only two possibilities:
+the central fibre is either F₅ or that horospherical variety (C2, Theorem 3.3.3).</p>
+<p>Mok explains the mechanism in one line — and this is the part I could only half recover:</p>
+<blockquote>
+<p>"the explanation of that is also the storytelling, because it is due to the fact that the
+VMRT can jump — it can jump from a ℙ¹ × ℙ¹ to [a] hypersurface of genus 2."</p>
+<p><em>[Gap: the target of the jump. The VMRT of F₅ is the quadric surface ℙ¹ × ℙ¹; the captions
+render what it jumps to as "hypersurface of genus 2", which is not a well-formed
+description of a surface, and neither companion states it. Impact: </em><em>low</em><em> — the point,
+that deformation rigidity fails precisely because the VMRT is not itself rigid, survives
+intact. The Pasquier–Perrin paper would settle it.]</em></p>
+</blockquote>
+<p>He generalizes forward: since the obstruction is VMRT-jumping, the same method should apply
+"to many more situations even in high Picard number situations… for instance horospherical
+varieties and even wonderful compactifications", and notes work in that direction by
+<strong>Fu, Hwang and Li</strong> <em>(names reconstructed — see §10)</em>.</p>
+<h4>4.3.4 The Recognition Problem</h4>
+<p>The deformation results all have the same two-step structure, and Mok isolates the second
+step as a problem in its own right:</p>
+<blockquote>
+<p><strong>The Recognition Problem.</strong> Let S = G/P be a model — a rational homogeneous space of
+Picard number 1. Let X be a uniruled projective manifold of Picard number 1 with a minimal
+rational component, whose VMRT <strong>at a general point</strong> is projectively congruent to that of
+S. Is X biholomorphic to S?</p>
+</blockquote>
+<p>An affirmative answer would give a uniform proof of deformation rigidity (with the F₅
+exception), because deformation always gives you the model VMRT in the limit; the work is
+getting from the VMRT back to the manifold.</p>
+<p>The baseline case is classical: if 𝒞_x(X) = ℙT_x(X) — the VMRT is everything — then X ≅ ℙⁿ.
+The problem is about models where the VMRT is a <em>proper</em> subvariety.</p>
+<blockquote>
+<p><strong>Theorem (Mok 2008; Hong–Hwang 2008).</strong> For S = G/P with P corresponding to a <strong>long
+simple root</strong>, the Recognition Problem is solved in the affirmative.</p>
+</blockquote>
+<p>(C2, Theorem 3.2.1. Mok, "Recognizing certain rational homogeneous manifolds of Picard number
+1 from their varieties of minimal rational tangents", <em>AMS/IP Stud. Adv. Math.</em> <strong>42</strong> (2008),
+41–61, which does the Hermitian symmetric and contact homogeneous cases; Hong–Hwang,
+"Characterization of the rational homogeneous manifold associated to a long simple root by
+its variety of minimal rational tangents", <em>Adv. Stud. Pure Math.</em> <strong>50</strong> (2008), 217–236,
+for the remaining long-root cases.)</p>
+<h4>4.3.5 The flat-bundle trick: holonomy without a metric</h4>
+<p>This is the most beautiful idea in movement three, and Mok tells it as a story about giving
+something up.</p>
+<p>His starting instinct came from movement one: "since I was working on the generalized Frankel
+conjecture, I take holonomy as a very important ingredient — but holonomy was defined in
+terms of Riemannian geometry. So I have [a] Riemannian metric in the background, in that case
+a Kähler metric."</p>
+<p>But uniruled projective manifolds of Picard number 1 carry no canonical metric. So: <strong>how do
+you do parallel transport with no connection?</strong></p>
+<blockquote>
+<p>"I was asking in what way one can do parallel transport, holonomy, in the context of
+uniruled projective manifolds, and it came to me that there's only one canonical way that
+one can do. <strong>If in some geometric problems I can identify a flat vector bundle, then I can
+do Euclidean geometry</strong> — [it's] like a Gauss–Manin connection: you can move from one point
+to another by using the flat connection."</p>
+</blockquote>
+<p>Then the observation that makes it work. Take a minimal rational curve ℓ through a bad point,
+lift it to the embedded universal family, and look at the family of VMRTs along the lift. Each
+VMRT is a projective subvariety of a projective space, so it has a <strong>projective second
+fundamental form</strong> — the classical invariant measuring how a submanifold of projective space
+curves away from its embedded tangent space, a section of</p>
+<p>Sym²T* ⊗ N (symmetric square of the cotangent bundle, valued in the normal bundle).</p>
+<p>Compute what bundle the <em>relative</em> second fundamental form is a section of along ℓ. By
+Grothendieck's splitting of vector bundles on ℙ¹ the answer is a direct sum of line bundles,
+and Mok's calculation is that <strong>this particular bundle is flat</strong> — trivial. A section of a
+flat bundle is determined by its value at one point. So the second fundamental form at a good
+point <em>determines</em> the second fundamental form at the bad point.</p>
+<p>Consequence: if the fibre at the bad point were degenerate, the second fundamental form would
+degenerate too — but it cannot, because it is transported from a good point. So a
+codimension-1 bad set is impossible; the bad set has codimension ≥ 2; Hartogs extends the
+geometric structure across it; and a theorem of Hwang–Mok (<em>J. reine angew. Math.</em> <strong>490</strong>
+(1997), 55–64: a uniruled projective manifold with an irreducible reductive G-structure is an
+irreducible Hermitian symmetric space of compact type of rank ≥ 2) finishes.</p>
+<p>In the contact case Mok says the same trick works one order higher — "miraculously" — with the
+<strong>third</strong> fundamental form, again landing in a flat bundle. C2 (§3.2, discussion after Theorem
+3.2.1) confirms both, and records the precise splitting type of the corank-1 distribution
+along a minimal rational curve that makes the third-order version go through.</p>
+<p><strong>This is the transferable idea of movement three.</strong> You cannot transport an invariant unless
+you have a connection. If no metric is available, look for a bundle in which your invariant
+naturally lives, and check whether <em>that</em> bundle happens to be flat. Flatness is a much
+cheaper hypothesis than a metric, and it buys exactly the same thing: a canonical
+identification between fibres over different points.</p>
+<h4>4.3.6 Short roots, and where it is still hard</h4>
+<p>Mok flags where the method strains. For long roots, the space of minimal rational curves
+through a point is homogeneous. For <strong>short</strong> roots it need not be — for the symplectic
+Grassmannian there are two genuinely different types of minimal rational curve, "which can be
+defined simply by using linear algebra". Non-homogeneity breaks the induction.</p>
+<p>The short-root Recognition Problem stayed open for years and was solved recently:</p>
+<blockquote>
+<p><strong>Hwang and Qifeng Li, "Characterizing symplectic Grassmannians by varieties of minimal
+rational tangents", <em>J. Differential Geom.</em> 119 (2021), 309–381.</strong></p>
+</blockquote>
+<p>Mok reports the shape of their answer, which is <em>not</em> a clean "yes": from a good VMRT
+structure at a good point one gets a neighbourhood on which the VMRT structure determines the
+geometric structure <strong>up to a finite number of possibilities</strong>, indexed by the <strong>rank of a
+bilinear form</strong> ("and this bilinear form I would not explain further"). Adding a
+non-degeneracy condition — maximal rank — picks out the symplectic Grassmannian. C2 (§3.3)
+independently describes the same phenomenon from the deformation side: local models for
+isotrivial VMRTs on a symplectic Grassmannian depend on the rank of a skew-symmetric bilinear
+form determined by the Frobenius form, and the smoothness of the central fibre forces maximal
+rank.</p>
+<p>Mok says this "turns out to be important for the last section of this talk". Hold onto it; it
+is the load-bearing input in §4.4.4.</p>
+<h3>4.4 Movement four — uniformization for <em>subspaces</em></h3>
+<p>The final move: run the whole programme one dimension down, for subvarieties rather than
+manifolds.</p>
+<h4>4.4.1 Schubert rigidity</h4>
+<p>Take a rational homogeneous space S = G/P of Picard number 1 and a <strong>Schubert variety</strong> S₀
+inside it. Its homology class generates an extremal ray. Obvious representatives of multiples
+of that class: sums of translates γ(S₀) by γ ∈ Aut(S). Question: <strong>are those all of them?</strong></p>
+<ul>
+<li><strong>(S, S₀) is homologically rigid</strong> if any subvariety with homology class exactly [S₀] is a
+  translate of S₀.</li>
+<li><strong>(S, S₀) is Schur rigid</strong> if any subvariety with class a <em>multiple</em> of [S₀] is a <em>sum of
+  translates</em> of S₀.</li>
+</ul>
+<p>The motivation Mok gives is a 1961 question of <strong>Borel and Haefliger</strong> on the <strong>smoothability
+of singular cycles</strong> <em>(names reconstructed — see §10)</em>: if a pair is Schur rigid and S₀ is
+singular, then no multiple of [S₀] can be represented by a smooth subvariety, because the only
+representatives are sums of translates of a singular thing.</p>
+<p>The history, all verified against the Hong–Mok bibliography:</p>
+<ul>
+<li><strong>M. Walters</strong> (Ph.D. thesis, University of Michigan, 1997) and <strong>Robert Bryant</strong>
+  ("Rigidity and quasi-rigidity of extremal cycles in compact Hermitian symmetric spaces",
+  math.DG/0006186) opened the problem using <strong>exterior differential systems</strong>: one compares
+  the <em>Schur</em> differential system (tangent planes annihilating certain Kostant forms) with
+  the <em>Schubert</em> differential system (tangent planes to translates), and rigidity reduces to
+  (1) equality of the two systems and (2) uniqueness of integral varieties.</li>
+<li><strong>Colleen Robles and Dennis The</strong> ("Rigid Schubert varieties in compact Hermitian symmetric
+  spaces", <em>Selecta Math.</em> <strong>18</strong> (2012), 717–777) settled the Hermitian symmetric case
+  completely by Lie-algebra-cohomology methods. Mok's phrasing: "settled by algebraic
+  Lie-theoretic methods".</li>
+<li><strong>Hong and Mok</strong>, using VMRT geometry instead, extended it beyond the Hermitian symmetric
+  case: <strong>"Schur rigidity of Schubert varieties in rational homogeneous manifolds of Picard
+  number one", <em>Selecta Math.</em> 26 (2020), no. 41</strong>, whose Theorem 1.1 reads: <em>let S = G/P have
+  Picard number one and let S₀ be a </em><em>non-linear smooth</em><em> Schubert variety of S; then (S, S₀)
+  is Schur rigid.</em> Mok's summary from the podium: "applying VMRT geometry, Hong and myself
+  solved the problem for smooth Schubert cycles on G/P."</li>
+</ul>
+<h4>4.4.2 Sub-VMRT structures</h4>
+<p>Now the general machine. Let X be uniruled of Picard number 1 with VMRT structure
+𝒞(X) → X, and let S ⊂ X be a complex submanifold (possibly only a <em>germ</em>, possibly only
+locally defined, possibly transcendental). Define</p>
+<p><strong>𝒞(S) := 𝒞(X) ∩ ℙT(S)</strong> — the <strong>sub-VMRT structure</strong>.</p>
+<p>Mok's own description is exactly this: "you take a point and you take the VMRT of the ambient
+manifold, you intersect with [the] tangent space, and then you get a subspace." It might be
+empty; one assumes it is not, and that it dominates S.</p>
+<p>The question — the <strong>Recognition Problem for a pair</strong> — is: <em>does the sub-VMRT structure
+determine S?</em></p>
+<p><strong>In general, no</strong>, and Mok gives the counterexample immediately: take a hyperquadric and any
+hypersurface inside it; the hypersurface inherits a quadric structure, "but this is not
+integrable". Some extra condition is needed. And the condition that works is, in his framing,
+a form of <strong>unlikely intersection</strong>:</p>
+<blockquote>
+<p>Look at a Grassmannian, its Segre-embedded VMRT, and intersect with a sub-Grassmannian. You
+get the Segre embedding of a lower-dimensional product of projective spaces — and if you
+count dimensions, that intersection is <strong>far larger than a generic intersection of those
+dimensions would be</strong>. "So you have intersection at the level of projective tangent space
+of a dimension that is bigger than what you expect, but in a very specific way — so you can
+study that."</p>
+</blockquote>
+<p>The intersection is unexpectedly big, and the fact that it is big <em>in a controlled way</em> is
+exactly the extra structure that makes recognition possible.</p>
+<h4>4.4.3 The Mok–Zhang theorems: from a transcendental germ to an algebraic variety</h4>
+<p>The general theory is joint with <strong>Y. Zhang</strong> <em>(first name unverified — see §10)</em>:
+<strong>Mok–Zhang, "Rigidity of pairs of rational homogeneous spaces of Picard number 1 and
+analytic continuation of geometric substructures on uniruled projective manifolds",
+<em>J. Differential Geom.</em> 112 (2019), 263–345.</strong> C2 states the results; I quote them from there.</p>
+<p>Two hypotheses, both of which Mok names on the podium:</p>
+<ul>
+<li><strong>Condition (T)</strong>, a technical condition on the intersection 𝒞(X) ∩ ℙT(S), automatic for
+  the model pairs;</li>
+<li><strong>non-degeneracy for substructures</strong>, defined via the projective <strong>second fundamental
+  form</strong> — Mok: "this can be defined in terms of the second fundamental form".</li>
+</ul>
+<blockquote>
+<p><strong>Rational saturation (C2, Theorem 4.5.1 = Mok–Zhang Thm 1.4).</strong> Under Condition (T) and
+non-degeneracy for substructures at general points, the submanifold S is <strong>rationally
+saturated</strong>: S is uniruled by open subsets of minimal rational curves belonging to 𝒦.</p>
+</blockquote>
+<p>That is the first miracle. You start with an arbitrary complex submanifold germ whose only
+property is how its tangent spaces meet the VMRTs — and you conclude that it is <em>swept out by
+pieces of minimal rational curves</em>. Mok: "if you have something tangent to this germ, which
+is transcendental analytic a priori, then actually you can pass a whole line inside."</p>
+<blockquote>
+<p><strong>Algebraicity (C2, Theorem 4.5.2 = Mok–Zhang Main Theorem 2).</strong> Suppose in addition that X
+has Picard number 1 and is <strong>uniruled by lines</strong> (minimal rational curves of degree one),
+and that the distribution D on S spanned pointwise by 𝒞_x(S) is <strong>bracket generating</strong>.
+Then there is an irreducible subvariety Z ⊂ X with S ⊂ Z and dim Z = dim S.</p>
+</blockquote>
+<p>That is the second miracle, and it is the one Mok highlights: <em>"this is a kind of theorem
+passing from analyticity to algebraicity."</em> A transcendental germ, satisfying an infinitesimal
+condition, is forced to be an open piece of a projective-algebraic variety.</p>
+<p>The technical heart, which he names: the <strong>Thickening Lemma</strong>. To propagate the sub-VMRT
+structure along a chain of minimal rational curves you need not just the curve but a
+neighbourhood of it. Mok: "the thickening lemma tells you that you take this line, and then
+you can construct a smooth neighbourhood — more properly an immersed neighbourhood — where
+you can then do deformation theory inside this neighbourhood, and that's very important."
+C2 (Theorem 4.5.3) states it: given a suitable point of 𝒞(S) and the minimal rational curve ℓ
+in that direction, there is an s-dimensional complex manifold E containing ℙ¹ and an
+immersion F : E → X restricting to the normalization of ℓ and whose image contains a
+neighbourhood of x in S.</p>
+<p>C2 also names the obstruction that has to be beaten: in the inductive propagation along chains
+of rational curves, the obstruction lies on subvarieties of <strong>codimension ≥ 2</strong> in certain
+universal families of chains — and codimension ≥ 2 is, again, where Hartogs-type extension
+lives.</p>
+<p>Then the dictionary of §2.2 goes on the screen, and the movement ends with the observation
+that this framework tolerates singular subvarieties better than Riemannian geometry does:
+"normally when you have singularity it's very difficult to study deformation, but if you have
+an ambient space which [is] smooth you can still study it."</p>
+<h4>4.4.4 The final theorem: semi-rigidity of proper holomorphic maps</h4>
+<p>The last twelve minutes, and the newest result.</p>
+<p><strong>Why proper maps.</strong> Mok gives the link that motivates the whole question, and it ties movement
+four back to movement two: if you have cocompact lattices and an injective homomorphism
+between them, the lifted map between the domains is <strong>proper</strong>. So proper holomorphic maps are
+the natural generalization of the maps studied in §4.2 — you keep the boundary behaviour but
+drop the equivariance.</p>
+<p><strong>Step one, equal rank.</strong> Mok made a conjecture in 1989; his student <strong>I-Hsun Tsai</strong> proved it:</p>
+<blockquote>
+<p><strong>(Tsai, "Rigidity of proper holomorphic maps between symmetric domains", <em>J. Differential
+Geom.</em> 37 (1993), 123–160.)</strong> Let F : D → D′ be a proper holomorphic map between bounded
+symmetric domains with rank(D) ≥ 2 and rank(D′) ≤ rank(D). Then rank(D) = rank(D′) and F is
+<strong>totally geodesic</strong>.</p>
+</blockquote>
+<p>(C1, slide 58, which also records the 1989 attribution of the conjecture. The talk states a
+slightly weaker version — same rank, rank ≥ 2 — and C1's version is stronger; I quote C1.)</p>
+<p>The method is the one to remember, because it recurs: <strong>look at what the map does to the
+boundary.</strong> A bounded symmetric domain of rank r has a boundary stratified by <strong>boundary
+components</strong> (faces), each of which is itself a bounded symmetric domain of lower rank; the
+maximal ones have rank r − 1. The moduli space of maximal boundary components is an open
+subset of a rational homogeneous space G/P — the compact dual's Grassmannian. So a proper map
+Ω → Ω′ induces a <strong>moduli map between rational homogeneous spaces</strong>, and now all of movement
+three is available. Mok: "then one studies associated maps on G/P — that's the basic
+philosophy."</p>
+<p>C1 (slides 59–60) gives the analytic mechanism concretely: writing Ω ⊃ Δ × Ω″ with Ω″ of rank
+r − 1, one takes non-tangential limits F<em>(w) := lim_{z→ξ} F(w, z) for almost every ξ in the
+boundary circle. Properness forces F</em> to map into ∂Ω′. Then a Poisson-type integral
+representation recovers F from its boundary values, and <em>that</em> forces algebraic constraints on
+the images of the totally geodesic subdomains. Non-tangential limits plus integrals of
+boundary values equals algebraic constraints — that is the sentence.</p>
+<p><strong>Step two, unequal rank — semi-rigidity.</strong> When rank(Ω′) &gt; rank(Ω) total geodesy is simply
+false, and the reason is easy: given any bounded holomorphic function g on Ω, the <strong>graph</strong>
+map z ↦ (F₀(z), g(z)) is still proper into a bigger domain but is certainly not totally
+geodesic. The best you can hope for is that this is the <em>only</em> way to be non-rigid. That is
+<strong>semi-rigidity</strong>: every proper map is a standard embedding composed with a graph.</p>
+<p>Mok's conjecture, and the theorem:</p>
+<blockquote>
+<p><strong>Theorem (Sung-Yeon Kim, Ngaiming Mok, Aeryeong Seo, "Proper holomorphic maps between
+bounded symmetric domains with small rank differences", <em>J. Differential Geom.</em> 131 (2025),
+551–631; arXiv:2307.03390, posted 7 July 2023, revised 13 January 2025).</strong></p>
+<p>Let Ω, Ω′ be irreducible bounded symmetric domains with
+<strong>2 ≤ rank(Ω′) &lt; 2·rank(Ω) − 1</strong>, and suppose either Ω and Ω′ have the same type, or Ω is of
+<strong>type III</strong> and Ω′ is of <strong>type I</strong>. Then any proper holomorphic map f : Ω → Ω′ is, up to
+automorphisms, of the form f = ι ∘ F where F = F₁ × F₂ : Ω → Ω′₁ × Ω′₂, F₁ is a <strong>standard
+embedding</strong>, F₂ is arbitrary holomorphic, and ι : Ω′₁ × Ω′₂ → Ω′ is a totally geodesic
+holomorphic isometric embedding.</p>
+<p>Moreover, under the same rank condition, <strong>no proper holomorphic map exists at all</strong> if Ω is
+of type I and Ω′ of type III, or if Ω is of type II and Ω′ is of type I or III.</p>
+</blockquote>
+<p>The rank condition rank(Ω′) &lt; 2·rank(Ω) − 1 is exactly the talk's "r′ ≤ 2r − 2", which the
+captions render correctly — I verified it against the paper's abstract. Type III to type I is
+the case Mok singles out as hardest, and it is why the Siegel upper half-plane appears: type
+III domains are the ones biholomorphic to Siegel upper half-planes parametrizing polarized
+abelian varieties.</p>
+<p><strong>The example that shows the theorem is sharp.</strong> Mok credits <strong>Aeryeong Seo</strong> ("New examples
+of proper holomorphic maps among symmetric domains", <em>Michigan Math. J.</em> <strong>64</strong> (2015),
+435–448) with generalized <strong>Whitney maps</strong> in this setting. The classical Whitney map is the
+proper map Bⁿ → B^{2n−1} between balls, which is proper and non-linear; Mok points out why it
+turns up here — balls really are embedded inside these domains, as the fibres of the boundary
+projections he described earlier, so ball-to-ball proper maps are automatically available as
+building blocks.</p>
+<p><strong>The proof scheme</strong>, in his own order, and it is a beautiful chain that uses every previous
+movement:</p>
+<ol>
+<li>Pass from the proper map to <strong>moduli maps</strong> between spaces of boundary components. These
+   are now maps between Grassmannians — and, crucially, not only between the maximal ones:
+   "one can study moduli spaces not just those which are maximal boundary components but also
+   other spaces, and in this case one can induce maps on Grassmannians of different types."</li>
+<li>What you get is a <strong>germ of a map</strong> between domains in the compact duals. Study it with
+   <strong>CR geometry</strong> — the methods of <strong>Sung-Yeon Kim</strong>, and of <strong>Kim with Dmitri Zaitsev</strong>
+   (<em>Invent. Math.</em> <strong>193</strong> (2013), 409–437, on CR maps between Shilov boundaries;
+   <em>Math. Ann.</em> <strong>362</strong> (2015), 639–677, on proper holomorphic maps between bounded symmetric
+   domains). The properness produces <strong>CR-maps between CR-hypersurfaces of mixed signature</strong>
+   (the paper's own phrase), and those satisfy strong local differential-geometric
+   constraints.</li>
+<li>Conclude that the germ is <strong>VMRT-respecting</strong> and <strong>line-preserving</strong> — it sends germs of
+   lines to germs of lines, and sends the VMRT not merely into the target VMRT but onto a
+   <strong>linear section</strong> of it. Mok is careful about this: "VMRT-respecting means that it sends
+   VMRT — it's a subset of the VMRTs — but it's better than that: it's actually sending this
+   to a linear section of the VMRT of the target." A linear section of a VMRT is precisely a
+   sub-VMRT structure (§4.4.2).</li>
+<li><strong>Same type:</strong> apply the rigidity results for VMRT-respecting maps from §4.3–4.4 (Mok's
+   own, and Hong–Mok). Done.</li>
+<li><strong>Type III into type I — the hard case:</strong> the moduli spaces you meet on the type III side
+   are <strong>symplectic Grassmannians</strong>, so you need maps from a symplectic Grassmannian into an
+   ordinary Grassmannian. This is where <strong>Hwang–Li (2021)</strong> enters: their solution of the
+   short-root Recognition Problem applies, and — because of where the problem came from — one
+   can prove the relevant bilinear form has <strong>maximal rank</strong>, which is exactly the extra
+   condition their theorem needs. That gives the symplectic Grassmannian structure.</li>
+<li>Finally solve the <strong>Recognition Problem for a pair</strong> in that setting — which Mok had solved
+   for the Lagrangian Grassmannian, and which was then extended to the symplectic case. "And
+   then by the generalization of this argument one can solve the problem totally."</li>
+</ol>
+<p>Then: "Thank you." The talk ends there, with no summary.</p>
+<hr />
+<h2>5. The one argument</h2>
+<p>The talk's stated emphasis is movement two, and its engine is the piece with no analogue
+anywhere else in the lecture: <strong>an ergodic theorem used to manufacture holomorphic functions.</strong>
+Here it is, as precisely as the sources allow.</p>
+<p><strong>The goal.</strong> Given F : Ω → Ñ (the lift of f : X_Γ → N), produce a holomorphic retraction
+ℛ : Ñ → ℂⁿ with ℛ ∘ F = id. Equivalently: produce n bounded holomorphic functions on Ñ whose
+pullbacks under F are the <strong>coordinate functions</strong> z₁, …, zₙ of the Harish-Chandra realization
+of Ω.</p>
+<p><strong>The obstacle.</strong> You have no control over F. Pull back a bounded holomorphic function h from
+Ñ and you get some bounded holomorphic function F*h on Ω about which you know nothing. Mok:
+"the map capital F is rather arbitrary a priori; when you pull it back, actually what you get
+is functions which might be rather chaotic on the boundary."</p>
+<p><strong>The object to work with.</strong> Define</p>
+<p>ℱ := F<em>H(Ñ) = { F</em>h : h a bounded holomorphic function on Ñ } ,</p>
+<p>the space of pullbacks. It has exactly three properties, and Mok lists them from the podium:</p>
+<ol>
+<li><strong>Γ-invariance.</strong> ℱ is a Γ-invariant complex vector space: s ∈ ℱ and γ ∈ Γ imply
+   s ∘ γ ∈ ℱ. (Because F is Γ-equivariant.)</li>
+<li><strong>Normality.</strong> A uniformly bounded sequence in ℱ has a subsequence converging uniformly on
+   compact subsets, and the limit is again in ℱ.</li>
+<li><strong>Closure under averaging.</strong> One can integrate members of ℱ against a measure and stay in
+   ℱ.</li>
+</ol>
+<p>Those three properties are the whole toolkit. Property 2 lets you take limits; property 3 lets
+you average; property 1 lets Γ act. Nothing else is used.</p>
+<p><strong>Step 1 — a flow, and a projection.</strong> Because Ω is irreducible of rank r ≥ 2, it contains
+totally geodesic products Δ × Ω″ with Ω″ of rank r − 1. Take the <strong>hyperbolic flow</strong> along a
+geodesic in the Δ factor — the one-parameter group of transvections z ↦ (z + t)/(1 + tz),
+−1 &lt; t &lt; 1 — and extend it to a flow on all of Ω. Associated to it is a <strong>projection onto a
+maximal boundary component</strong>, i.e. onto a boundary face of rank r − 1.</p>
+<blockquote>
+<p><em>[Gap: the name of this projection. The captions render it "ka projection" / "KD
+projection" and I could not identify it against any source; C1 writes it as π_Φ, the
+projection onto a rank-1 boundary component Φ, without a person's name attached. Impact:
+</em><em>low</em><em> — the object is unambiguous, only its name is lost. I call it "the projection onto a
+boundary face" throughout.]</em></p>
+</blockquote>
+<p>Mok adds a counterintuitive fact about which faces are connected by such flows: "counter to
+what one might think, when you have a hyperbolic flow, actually the two faces flowing from one
+to the other are rather arbitrary. In fact if you take any two maximal faces whose closures do
+not intersect, you have a flow." So the right parameter space is the space of <strong>regular pairs
+of faces</strong>, which is explicit and carries a G₀-action, G₀ = Aut₀(Ω).</p>
+<p><strong>Step 2 — boundary values, from real analysis.</strong> Now you need the pulled-back functions to
+have boundary values. For the <strong>ball</strong> there is a classical theory of <strong>admissible (Korányi)
+limits</strong>: instead of non-tangential approach along a cone you approach through wider,
+anisotropic regions, and a bounded holomorphic function has an admissible limit at almost
+every boundary point. The relevant refinement here — non-tangential convergence to a <em>boundary
+component</em>, not to the Shilov boundary — is due to <strong>Korányi (1976)</strong>. C1 (slide 44) states
+exactly this and cites it.</p>
+<p>But you need boundary values on a <em>face</em>, not at a point, so you must choose a face on which
+almost every point has an admissible limit. Mok:</p>
+<blockquote>
+<p>"I have to choose a boundary face where almost every point has an admissible boundary limit,
+and this one can do carefully by making use of the [Fubini theorem]. So this is where some
+real analysis enters into the picture."</p>
+</blockquote>
+<p>A Fubini argument on the fibration of the boundary by faces: if the bad set has measure zero
+in the boundary, then for almost every face it has measure zero in that face. Standard, and
+decisive.</p>
+<p>He also notes the compatibility that makes the whole thing consistent: when you flow along a
+geodesic, "actually it stays inside the admissible region" — the hyperbolic flow approaches
+the boundary admissibly, which is precisely the approach mode for which the limits exist.</p>
+<p><strong>Step 3 — the "one of the two" proposition.</strong> Here is where the ergodic theorem enters, and
+where Mok is candid about the cost.</p>
+<blockquote>
+<p><strong>Proposition (as stated in the talk).</strong> Let (Φ, Φ′) be a regular pair of faces such that
+both relevant pullbacks have admissible boundary values. Then <strong>one of the two</strong> functions —
+the pullback along the projection to Φ, or the pullback along the projection to Φ′ —
+belongs to ℱ.</p>
+</blockquote>
+<p>Why only one of the two? Because Moore's ergodicity theorem gives you density of a lattice
+orbit but tells you nothing about <em>direction</em>. Mok:</p>
+<blockquote>
+<p>"Why one of the two? Because when I apply the Moore ergodicity theorem, actually I don't
+know where I can take the limit, so it's only one of the two possible directions. So this
+introduces some complexity into the problem."</p>
+</blockquote>
+<p><strong>Step 4 — one is enough.</strong> The saving observation, and the reason the whole thing works:</p>
+<blockquote>
+<p>"The idea is that one can do this carefully, and in fact there exist such a function.
+<strong>[The] existence of one single such function is good enough.</strong>"</p>
+</blockquote>
+<p>Because such a function is invariant under the flow, and each fibre of the boundary projection
+is (a ball, hence) connected and swept by the flow, the function is constant on whole fibres:
+"this would be [flow]-invariant, and so the whole ball will take the same value."</p>
+<p><strong>Step 5 — density upgrades one to all.</strong> Now ℱ contains a subspace V that is invariant not
+just under Γ but under the whole group G₀ — because elements of G₀ can be approximated by
+products γ·h with γ ∈ Γ and h in the hyperbolic flow, <strong>assuming ΓH is dense in G₀</strong>, which
+Mok says "can always be assumed". That is Moore ergodicity doing its job: a lattice orbit is
+dense off a null set, and the null set is handled by the uniform-constant limiting argument of
+C1 slides 37–38.</p>
+<p><strong>Step 6 — the vanishing theorem for invariant subspaces.</strong></p>
+<blockquote>
+<p><strong>Theorem (as stated in the talk).</strong> Let Ω be an irreducible bounded symmetric domain of
+rank ≥ 2. If V is a G₀-invariant vector subspace of bounded holomorphic functions that
+<strong>properly contains the constants</strong>, then V is the <strong>entire space</strong>.</p>
+</blockquote>
+<p>There is no room between "more than the constants" and "everything". This is the rigidity
+statement that ends the argument.</p>
+<p><strong>Step 7 — from functions to coordinates.</strong> V being everything means in particular that the
+<strong>identity map</strong> is realized: you obtain functions on Ñ pulling back to z₁, …, zₙ. Those are
+the components of the retraction ℛ. Mok makes one further remark that is worth pausing on:</p>
+<blockquote>
+<p>"If you have the coordinates, if you can multiply, you would get the whole Taylor expansion.
+The point here is that <strong>you don't need to assume that it's an algebra</strong>. It is possible to
+generate the other functions by making use of Lie algebras."</p>
+</blockquote>
+<p>ℱ is only a vector space — closed under addition and limits, not under multiplication. Getting
+higher-order functions from linear ones would be trivial in an algebra and is not available
+here; the Lie algebra of G₀ supplies the missing generation. That is a genuine technical
+subtlety and he flags it as one.</p>
+<p><strong>Step 8 — descend, and finish.</strong> With ℛ ∘ F = id: prove ℛ is Γ-equivariant (by the maximum
+principle, C1 slide 45) so it descends to ρ : N → X with ρ ∘ f = id; prove the fibres of ρ are
+<strong>zero-dimensional</strong> by the plurisubharmonic-function-on-a-finite-volume-complete-Kähler-manifold
+lemma of §4.2.6; conclude f is an open injective map between manifolds of the same dimension,
+hence a biholomorphism.</p>
+<p><strong>What to take away.</strong> The argument's spine is: <em>build a space of functions with three closure
+properties; use a dynamical system to produce one element with a special invariance; use
+density to promote invariance under a discrete group to invariance under a continuous one; use
+a rigidity theorem to jump from "more than trivial" to "everything".</em> Steps 4 and 5 are the
+interesting ones. Existence of a single object plus a density argument gives you the entire
+object. That pattern is worth stealing (§7.3).</p>
+<hr />
+<h2>6. Do this by hand</h2>
+<p>Two exercises. The first makes the Finsler/Hermitian distinction concrete and shows you where
+rank ≥ 2 lives. The second computes a VMRT from scratch. Neither needs anything you do not
+already have.</p>
+<h3>6.1 The bidisc: a metric that is not Hermitian, and a curvature that vanishes (30 minutes, pen)</h3>
+<p>Let Ω = Δ × Δ ⊂ ℂ², the bidisc — the simplest bounded symmetric domain of rank 2, and a
+maximal polydisc in itself.</p>
+<p><strong>(a)</strong> Recall the Carathéodory metric of §3.5: ‖ξ‖_κ = sup over holomorphic f : Ω → Δ of
+‖df(ξ)‖_Poincaré. Show that at the origin, for ξ = (ξ₁, ξ₂) ∈ T₀(Ω) ≅ ℂ²,</p>
+<p>‖ξ‖_κ = max( |ξ₁|, |ξ₂| ).</p>
+<p><strong>(b)</strong> Show that this norm does <strong>not</strong> come from any Hermitian inner product on ℂ².</p>
+<p><strong>(c)</strong> Give Ω the product Poincaré metric. Compute the holomorphic bisectional curvature
+R(ξ, ξ̄, η, η̄) where ξ = (1,0) and η = (0,1) at the origin. Then say, in one sentence, what
+this has to do with the statement "rigidity requires rank ≥ 2".</p>
+<details>
+<summary>Solution</summary>
+<p><strong>(a)</strong> <em>Lower bound.</em> The coordinate projections p₁(z₁,z₂) = z₁ and p₂(z₁,z₂) = z₂ are
+holomorphic maps Ω → Δ. At the origin the Poincaré metric on Δ is ds² = |dw|²/(1−|w|²)², so
+‖dw‖_Poincaré = |w| at 0 (with the normalization ‖·‖ = |·|/(1−|·|²) evaluated at 0). Hence
+dp_k(ξ) = ξ_k gives ‖ξ‖_κ ≥ max(|ξ₁|, |ξ₂|).</p>
+<p><em>Upper bound.</em> Let f : Ω → Δ be holomorphic with f(0) = 0 (compose with an automorphism of Δ
+if not; that does not change the Poincaré norm of the differential). Write
+df₀(ξ) = a ξ₁ + b ξ₂. Restrict f to the disc t ↦ (t·u₁, t·u₂) for a unit vector u in the
+<em>polydisc</em> sense, i.e. max(|u₁|,|u₂|) = 1 — this really is a holomorphic map Δ → Ω. The
+composite Δ → Δ fixes 0, so Schwarz gives |a u₁ + b u₂| ≤ 1 for all such u. Taking
+u = (e^{iθ₁}, e^{iθ₂}) and optimizing the phases gives |a| + |b| ≤ 1. Then
+|df₀(ξ)| = |aξ₁ + bξ₂| ≤ (|a|+|b|)·max(|ξ₁|,|ξ₂|) ≤ max(|ξ₁|,|ξ₂|).</p>
+<p>So ‖ξ‖_κ = max(|ξ₁|, |ξ₂|) — the <strong>sup norm</strong>, exactly as C1 slide 14 asserts for Δⁿ.</p>
+<p><strong>(b)</strong> A norm comes from an inner product if and only if it satisfies the parallelogram law
+‖x+y‖² + ‖x−y‖² = 2‖x‖² + 2‖y‖². Take x = (1,0), y = (0,1). Then
+‖x+y‖ = ‖x−y‖ = 1, so the left side is 2; but 2‖x‖² + 2‖y‖² = 4. Fails. So the Carathéodory
+metric of the bidisc is genuinely <strong>Finsler and not Hermitian</strong>.</p>
+<p>This is the entire reason Mok needs a Finsler rigidity theorem: the metric he can always
+construct is not of the type his 1987 theorem handles.</p>
+<p><strong>(c)</strong> For a <strong>product</strong> metric the curvature tensor is block-diagonal: any curvature
+component mixing the two factors vanishes. So R(ξ, ξ̄, η, η̄) = <strong>0</strong> for ξ tangent to the
+first factor and η tangent to the second. (Meanwhile R(ξ,ξ̄,ξ,ξ̄) &lt; 0 — each factor is a
+hyperbolic disc.)</p>
+<p>The connection to rank: those null directions of the bisectional curvature are exactly what
+the rigidity proofs integrate over. The <strong>minimal characteristic bundle</strong> 𝒮 (§3.2) is built
+from them, and the integral identity of §4.2.3 lives on 𝒮 and has a degenerate 2-form with a
+q-dimensional kernel — q being the dimension coming from these zeros. In rank 1 (the disc, the
+ball) the bisectional curvature has no zeros, 𝒮 is everything, the identity degenerates, and
+<strong>every theorem in movement two is false</strong>. Rank ≥ 2 is not a technical convenience; it is the
+hypothesis that creates the object being integrated over.</p>
+</details>
+<h3>6.2 Compute a VMRT (25 minutes, pen)</h3>
+<p>Let X ⊂ ℙ^{n+1} be the <strong>Fermat hypersurface</strong> of degree d,</p>
+<p>X = { Z₀^d + Z₁^d + ⋯ + Z_{n+1}^d = 0 },</p>
+<p>and assume 1 ≤ d ≤ n. Its minimal rational curves are the <strong>lines</strong> contained in X (this is
+given; you do not have to prove it). Fix a point z = [z₀, …, z_{n+1}] ∈ X.</p>
+<p><strong>(a)</strong> Write down the conditions on a direction w = (w₀, …, w_{n+1}) for the line
+t ↦ [z + tw] to lie entirely in X, and count them.</p>
+<p><strong>(b)</strong> Deduce the dimension of the VMRT 𝒞_z(X) ⊂ ℙT_z(X).</p>
+<p><strong>(c)</strong> Specialize to d = 2 — the smooth quadric Qⁿ — and check your answer against the table
+in §3.6.</p>
+<details>
+<summary>Solution</summary>
+<p><strong>(a)</strong> Substitute and expand in t:</p>
+<p>Σ_j (z_j + t w_j)^d = Σ_j z_j^d + t·d·Σ_j z_j^{d−1} w_j + t²·(d(d−1)/2)·Σ_j z_j^{d−2} w_j²
+    + ⋯ + t^d·Σ_j w_j^d.</p>
+<p>For the whole line to lie in X this polynomial in t must vanish identically, so <strong>every
+coefficient</strong> must vanish. The t⁰ coefficient vanishes because z ∈ X. That leaves the
+coefficients of t¹, t², …, t^d: exactly <strong>d equations</strong>, namely</p>
+<p>Σ_j z_j^{d−k} w_j^{k+1} = 0 for k = 0, 1, …, d−1.</p>
+<p>(C1 slide 52 does this computation and counts "d+1 equations" including the one automatically
+satisfied at t⁰.)</p>
+<p><strong>(b)</strong> The directions w live in ℂ^{n+2}. Imposing the d conditions cuts that down to
+n + 2 − d; then subtract 1 because w and w + λz span the same line, and 1 more for
+projectivizing. So</p>
+<p><strong>dim 𝒞_z(X) = (n+2) − d − 1 − 1 = n − d.</strong></p>
+<p>(C1 slide 52 does the same count and writes (n+1) − (d+1) − 1 = n − d − 1, because <em>its</em>
+Fermat hypersurface sits in ℙ^n with n+1 coordinates rather than in ℙ^{n+1} with n+2. Shift n
+by one and the two agree.)</p>
+<p>The condition d ≤ n is what makes this nonnegative — i.e. what makes X uniruled by lines at
+all. When d gets large relative to n the hypersurface stops containing lines through a general
+point, and indeed stops being Fano.</p>
+<p><strong>(c)</strong> d = 2: the equations are Σ z_j w_j = 0 (the tangent hyperplane) and Σ w_j² = 0 (the
+quadric itself). So the lines through z in Qⁿ are cut out by intersecting the tangent
+hyperplane section with the quadric — and the VMRT is a <strong>quadric of dimension n − 2</strong>, i.e.
+<strong>Q^{n−2}</strong>. That is exactly the row for Qⁿ in the table of §3.6.</p>
+<p><strong>What you have just seen.</strong> The VMRT of a quadric is a smaller quadric; the VMRT of ℙⁿ is all
+of ℙ^{n−1}; the VMRT of a Grassmannian is a Segre variety. In each case a <em>global</em> object is
+encoded in a <em>projective subvariety of one tangent space</em>. The Recognition Problem (§4.3.4)
+asks whether the encoding is injective — whether that one subvariety at one general point
+determines the manifold. For long roots the answer is yes.</p>
+</details>
+<hr />
+<h2>7. What is actually useful to you</h2>
+<p>This talk is a long way from agent systems, and I am not going to pretend otherwise. But five
+of its moves are method, not content, and each one is a thing you can actually do.</p>
+<h3>7.1 Choose the invariant that always exists, then weaken the conclusion to match</h3>
+<p>The cleanest decision in the lecture. Mok's 1987 theorem needs a Hermitian metric of
+Griffiths-seminegative curvature, and he says plainly that such things are "very difficult to
+construct". So he switches to the <strong>Carathéodory metric</strong>, which exists on every bounded
+domain for free — because bounded holomorphic functions exist on every bounded domain for
+free — and which is Finsler rather than Hermitian. The price is a weaker theorem: uniqueness
+only along minimal characteristic directions, with the metric free to be perturbed elsewhere.
+He pays it and says "that was good enough to have interesting consequences."</p>
+<p>The general form: <strong>when your strong hypothesis is unverifiable in practice, find the weakest
+structure that is automatically present, and see how much of the conclusion survives.</strong> A
+partial conclusion on a distinguished sub-bundle beat a total conclusion you could never
+invoke. In your own work this is the difference between an invariant you can only assert and
+one a system can always compute — the second is worth a weaker theorem.</p>
+<h3>7.2 Replace "injective" with "has a left inverse"</h3>
+<p>Mok had an embedding theorem. He noticed that the <em>stronger</em> statement — the existence of a
+retraction ℛ with ℛ ∘ F = id — was actually the more tractable one, because a retraction is a
+thing you can try to <strong>build</strong>, whereas injectivity is a thing you can only try to <strong>verify</strong>.
+He says so: "if I can go back from D to ℂⁿ and get a sort of retraction map such that the
+composition is equal to identity, then this already implies the embedding theorem — but then
+maybe one can draw a strong conclusion from this."</p>
+<p>Constructive strengthenings are often easier than the non-constructive statements they imply.
+Worth remembering the next time a property is stated as a negation ("no two inputs collide")
+rather than as a construction ("here is the decoder").</p>
+<h3>7.3 One instance, plus density, equals everything</h3>
+<p>The engine of §5, and the most transferable pattern in the talk.</p>
+<p>Mok cannot control which of two limits an ergodic argument delivers, so he proves that
+<strong>one of the two</strong> always lands in his function space ℱ — and then observes that the
+<strong>existence of a single such function is enough</strong>, because it is invariant under a flow, and
+because a lattice orbit is dense, so invariance under the discrete group upgrades to
+invariance under the whole continuous group, at which point a rigidity theorem says the
+invariant subspace must be everything.</p>
+<p>Structurally: <em>weak existence + a symmetry + a density statement ⟹ full generality.</em> You
+already know this shape from ergodic arguments in statistical mechanics. It is worth naming
+because it is a way to make progress when your procedure is non-deterministic in a direction
+you cannot control. Do not fight for a canonical choice; prove that either choice suffices,
+get one instance, and let the group action do the rest.</p>
+<p>The honest caveat, which Mok also names, is that ergodicity gives density <strong>off a null set</strong>,
+and the null set is real: there are maximal polydiscs whose orbit is discrete. His fix is a
+<strong>uniform lower bound</strong> on a derivative, independent of the polydisc, which lets him take
+limits to reach the exceptional cases (C1, slide 38). If you use this pattern, the exceptional
+set is where the actual work is.</p>
+<h3>7.4 If you have no connection, look for a flat bundle</h3>
+<p>The most elegant idea in the lecture (§4.3.5). Mok wants to transport a local invariant from a
+good point to a bad point. In Riemannian geometry you would use the metric connection. He has
+no metric. So he asks which bundle his invariant naturally lives in — for the second
+fundamental form, Sym²T<em> ⊗ N restricted to a rational curve — and computes that </em><em>that bundle
+is flat</em>*. A section of a flat bundle is determined by its value at one point. Transport for
+free.</p>
+<p>The generalizable claim: <em>parallel transport is not about metrics, it is about trivializable
+bundles.</em> When you need to compare a quantity at two different states of a system and there is
+no canonical way to identify the state spaces, do not build a metric; look for a
+representation in which the quantity is literally the same object at both states.</p>
+<p>The companion piece is the <strong>codimension budget</strong>. Mok's whole method is bookkeeping on how
+big the bad set is: codimension 1 is fatal, codimension 2 is fine because Hartogs extends
+across it. Having an explicit "how much of the domain can I fail to control and still win"
+threshold is a good discipline, and it is exactly the question you should ask of any
+propagation or repair procedure.</p>
+<h3>7.5 Characterize a global object by a pointwise invariant — and expect it to almost work</h3>
+<p>The Recognition Problem (§4.3.4) is: <em>does the VMRT at one general point determine the whole
+manifold?</em> This is the same question as "does the type signature determine the
+implementation?", and the answers are instructive because they are not clean.</p>
+<ul>
+<li>For long roots: <strong>yes</strong>, cleanly (Mok 2008, Hong–Hwang 2008).</li>
+<li>For short roots: <strong>no</strong> — Hwang–Li get the structure only up to a <strong>finite</strong> list of
+  candidates, indexed by the rank of a bilinear form, and need one extra non-degeneracy
+  condition to single out the right one.</li>
+<li>For the <em>pair</em> version (sub-VMRT structures, §4.4.2): <strong>no in general</strong> — the hyperquadric
+  counterexample — but yes under Condition (T) plus non-degeneracy for substructures.</li>
+</ul>
+<p>That pattern — a pointwise invariant that determines the object up to finitely many choices,
+with a separate non-degeneracy condition breaking the tie — is what a realistic
+"specification determines implementation" claim actually looks like. When a characterization
+theorem gets a "finite number of possibilities" clause, that is not a failure of the theorem;
+it is the theorem telling you which extra bit of data you forgot to specify.</p>
+<h3>7.6 The one about research practice</h3>
+<p>Mok's own summary of his method is worth quoting for its own sake:</p>
+<blockquote>
+<p>"This is <strong>problem-based</strong>. Once a problem is formulated, even though it's a problem in
+Kähler geometry, I make use of a collection of methods ranging from nonlinear PDE, algebraic
+geometry, [several complex variables], and then Riemannian geometry."</p>
+</blockquote>
+<p>His 1988 proof used the Kähler–Ricci flow (PDE), deformation of rational curves (algebraic
+geometry) and Berger's holonomy theorem (Riemannian geometry) in a single argument. His 2025
+work uses ergodic theory, harmonic analysis on symmetric spaces, CR geometry, and the VMRT
+machinery, in a single argument. Forty years of increasing methodological distance, all aimed
+at the same handful of questions.</p>
+<p>The pointed observation: the <em>problems</em> stayed fixed and the <em>tools</em> were imported as needed.
+That is the opposite of the more common pattern — pick a technique, then look for problems it
+fits. It is also the harder discipline, because it requires learning a subject you do not
+already know in order to finish something you started years ago.</p>
+<hr />
+<h2>8. Where to read next</h2>
+<ol>
+<li>
+<p><strong>Mok, "Geometric structures and substructures on uniruled projective manifolds"</strong>, in
+   <em>Foliation Theory in Algebraic Geometry</em> (Simons Symposia), Springer 2016, pp. 103–148 —
+   <a href="http://hkumath.hku.hk/~imr/IMRPreprintSeries/2015/IMR2015-9.pdf">preprint PDF</a>. Start
+   here. It is a real survey with real statements, it covers movements three and four, and it
+   is the closest thing to a companion paper that exists for this talk. §§2.1–2.2 (Ochiai,
+   Cartan–Fubini) and §§4.4–4.5 (sub-VMRT structures, rational saturation, the Thickening
+   Lemma) are the load-bearing sections.</p>
+</li>
+<li>
+<p><strong>Mok, "Ergodicity, bounded holomorphic functions and geometric structures in rigidity
+   results on bounded symmetric domains"</strong>, ICCM Hangzhou 2007 —
+   <a href="https://hkumath.hku.hk/~nmok/ICCM2007.pdf">slides PDF</a>. Seventy-two slides, mostly
+   statements, covering movement two end to end: Hermitian metric rigidity, the integral
+   curvature identity, the Carathéodory metric, Finsler rigidity, the 2004 embedding theorem,
+   the extension problem, the fibration and isomorphism theorems, and the proper-map material.
+   Dense but very fast to read because it is a slide deck.</p>
+</li>
+<li>
+<p><strong>Kim, Mok and Seo, "Proper holomorphic maps between bounded symmetric domains with small
+   rank differences"</strong>, <em>J. Differential Geom.</em> <strong>131</strong> (2025), 551–631 —
+   <a href="https://arxiv.org/abs/2307.03390">arXiv:2307.03390</a>. The talk's final theorem, with the
+   full statement and the CR-geometry machinery. Read the abstract and the introduction even
+   if you read nothing else; the abstract alone confirms the rank condition and names the
+   whole proof strategy.</p>
+</li>
+</ol>
+<p>If you want the monograph rather than the surveys: <strong>Mok, <em>Metric Rigidity Theorems on
+Hermitian Locally Symmetric Manifolds</em>, Series in Pure Mathematics 6, World Scientific,
+1989</strong> — the book behind §4.2.3.</p>
+<hr />
+<h2>9. Self-test</h2>
+<details>
+<summary>1. State the uniformization theorem in one variable, and say precisely which of its features Mok's four movements are trying to recover in higher dimensions.</summary>
+<p>Every Riemann surface has universal cover the sphere, the plane, or the disc — three models,
+matching curvature +, 0, −. Two features are recovered separately: <strong>characterization of the
+models by curvature</strong> (movement one: nonnegative holomorphic bisectional curvature forces the
+manifold; movement two: quotients of bounded symmetric domains cannot be deformed), and
+<strong>characterization by a discrete invariant</strong> — genus in one variable, replaced in movement two
+by the fundamental group and in movement three by the variety of minimal rational tangents.
+Movement four does the same for subvarieties rather than manifolds. What is <em>not</em> recovered is
+a finite list of models; there is none in higher dimension.</p>
+</details>
+<details>
+<summary>2. What is the rank of a bounded symmetric domain, and why does every rigidity theorem in movements two and four assume rank ≥ 2?</summary>
+<p>The rank is the largest r with a totally geodesic polydisc Δ^r ⊂ Ω; equivalently
+min(p,q) for the type I matrix domain of p×q matrices. Rank ≥ 2 matters because in a product
+the holomorphic bisectional curvature <em>between the factors vanishes</em>. Those zeros define the
+minimal characteristic bundle 𝒮, and every rigidity proof is an integral identity over 𝒮 with
+a degenerate curvature form whose kernel has to be tangent to 𝒮. Rank 1 — disc, ball — has no
+zeros, no 𝒮, and no theorems: all of the rigidity statements are false there.</p>
+</details>
+<details>
+<summary>3. Define the Carathéodory metric, compute it on the polydisc, and say why Mok needs a Finsler rigidity theorem and not just a Hermitian one.</summary>
+<p>‖ξ‖_κ = sup over holomorphic f : M → Δ of ‖df(ξ)‖ in the Poincaré metric. On Δⁿ it is
+max_k |ξ_k| — a sup norm, which fails the parallelogram law, hence is not induced by any
+Hermitian inner product. Mok needs the Finsler theorem because Hermitian metrics of
+Griffiths-seminegative curvature are hard to construct, whereas the Carathéodory metric exists
+on every bounded domain automatically — built out of bounded holomorphic functions, which
+every bounded domain has. He trades an unverifiable hypothesis for a free one, and pays with a
+weaker conclusion: uniqueness only along minimal characteristic directions.</p>
+</details>
+<details>
+<summary>4. State Hermitian metric rigidity, and describe its proof in the terms you already own.</summary>
+<p>Ω irreducible bounded symmetric of rank ≥ 2, Γ a torsion-free lattice, X = Ω/Γ, g the
+canonical Kähler–Einstein metric. If h is any Hermitian metric on X with curvature
+seminegative in the sense of Griffiths, then h ≡ c·g. (Mok, <em>Ann. of Math.</em> 125 (1987); the
+domination hypothesis removed by To in 1989.) The proof is a <strong>Bochner argument</strong>: on the
+minimal characteristic bundle 𝒮 an integral of a top-degree curvature form vanishes for
+degree/type reasons; rewriting it with an arbitrary metric h gives an integral whose integrand
+is pointwise ≥ 0 when h has seminegative curvature; a nonnegative integrand with vanishing
+integral vanishes identically; and pointwise vanishing is exactly h = cg on characteristic
+directions. The technical point is that the integration is over 𝒮 and not over all of ℙT_X,
+and that the null vectors of the degenerate form are tangent to 𝒮.</p>
+</details>
+<details>
+<summary>5. What is the hypothesis of the Isomorphism Theorem, and why is it startling?</summary>
+<p>That a holomorphic map f : Ω/Γ → D/Γ′ induces an <strong>isomorphism on fundamental groups</strong> — i.e.
+of lattices. The conclusion is that f is a biholomorphism. It is startling because the
+hypothesis is purely group-theoretic and carries no analytic information at all, and because
+in general it cannot be true: Mok replaces conditions on higher homotopy groups with the
+assumption that the target's universal cover carries enough <strong>bounded holomorphic functions</strong>.
+Ω must have rank ≥ 2 and Γ must be irreducible.</p>
+</details>
+<details>
+<summary>6. Define the VMRT, and give Mok's dictionary between VMRT geometry and Riemannian geometry.</summary>
+<p>For X uniruled with a minimal rational component 𝒦, at a general point x the tangent map sends
+each minimal rational curve through x to its tangent direction; the image
+𝒞_x(X) ⊂ ℙT_x(X) is the variety of minimal rational tangents. Mok's dictionary: uniruled
+projective manifold ↔ Riemannian manifold; 𝒞(X) ↔ unit sphere bundle; minimal rational curves
+↔ geodesics (but only in the directions lying in the VMRT); the tautological foliation ↔ the
+geodesic flow; sub-VMRT structure ↔ Riemannian submanifold; uniruled projective subvariety ↔
+totally geodesic submanifold. The dictionary's one genuine break: geodesics exist in every
+direction, minimal rational curves do not.</p>
+</details>
+<details>
+<summary>7. What is the Recognition Problem, what is known, and what does its short-root answer look like?</summary>
+<p>Given a model S = G/P of Picard number 1, and a uniruled projective manifold X of Picard
+number 1 whose VMRT at a <em>general</em> point is projectively congruent to that of S — is X ≅ S?
+Solved affirmatively for P corresponding to a <strong>long simple root</strong> (Mok 2008 for the Hermitian
+symmetric and contact cases; Hong–Hwang 2008 for the rest). For <strong>short</strong> roots the space of
+minimal rational curves through a point need not be homogeneous — the symplectic Grassmannian
+has two types of minimal rational curve — and Hwang–Li (<em>JDG</em> 119, 2021) get the structure only
+up to a <strong>finite</strong> list of candidates indexed by the rank of a bilinear form; a maximal-rank
+non-degeneracy condition then picks out the symplectic Grassmannian.</p>
+</details>
+<details>
+<summary>8. Explain the flat-bundle trick, and what problem it solves.</summary>
+<p>Problem: transport a local invariant from a general point to a bad point on a uniruled
+projective manifold of Picard number 1, where no canonical metric — hence no metric connection
+— exists. Solution: identify the bundle in which the invariant lives. Mok takes the projective
+second fundamental form of the VMRTs along a minimal rational curve, a section of
+Sym²T<em> ⊗ N, and computes that this bundle is </em><em>flat</em><em>. A section of a flat bundle is
+determined by its value at one point, so the invariant transports for free. Consequence: the
+bad set cannot have codimension 1; it has codimension ≥ 2; </em><em>Hartogs</em>* then extends the
+geometric structure across it. In the contact case the same works one order up, with the third
+fundamental form.</p>
+</details>
+<details>
+<summary>9. Why does the ergodic argument give only "one of the two", and why is that enough?</summary>
+<p>Moore's ergodicity theorem gives density of a lattice orbit in G/H for H closed noncompact,
+but says nothing about <em>which</em> direction a limit can be taken in — so for a regular pair of
+boundary faces, only one of the two pulled-back functions is known to lie in the function
+space ℱ. It is enough because a <em>single</em> such function suffices: it is invariant under the
+hyperbolic flow, hence constant on the fibres of the boundary projection; ℱ then contains a
+subspace invariant not just under Γ but under all of G₀ (density of ΓH in G₀); and a
+G₀-invariant subspace of bounded holomorphic functions that properly contains the constants
+must be everything. Existence of one object plus density plus a rigidity theorem gives full
+generality.</p>
+</details>
+<details>
+<summary>10. State the talk's final theorem and name the three earlier results its proof consumes.</summary>
+<p>Kim–Mok–Seo (<em>JDG</em> 131, 2025): for irreducible bounded symmetric domains with
+2 ≤ rank(Ω′) &lt; 2·rank(Ω) − 1, and either Ω, Ω′ of the same type or Ω of type III and Ω′ of
+type I, every proper holomorphic map is <strong>semi-rigid</strong> — up to automorphisms it is
+ι ∘ (F₁ × F₂) with F₁ a standard embedding, F₂ arbitrary, ι totally geodesic isometric; and no
+proper map exists at all in the type I → III and type II → I or III cases. The proof consumes
+(i) the boundary-component/moduli-map technique going back to Tsai's 1993 theorem, (ii) the CR
+rigidity results of Kim and of Kim–Zaitsev, and (iii) Hwang–Li's 2021 solution of the
+Recognition Problem for symplectic Grassmannians, plus Mok's own recognition results for
+<em>pairs</em> (sub-VMRT structures).</p>
+</details>
+<hr />
+<h2>10. Note on the tutorial process</h2>
+<p><strong>The title, and how the brief got it wrong.</strong> My brief supplied the title <em>"Starting with the
+Gauss–Bonnet formula: rigidity phenomena on bounded symmetric domains"</em>, described as taken
+from the recorded lecture's own video title and therefore of reasonable provenance. It is not.
+The YouTube oEmbed record for <code>TYOQ2l6m4gM</code> returns the title <code>"ICM 2026 Plenary Lecture -
+Ngaiming Mok"</code> and nothing else — there is no descriptive video title to take. The title in my
+front matter is the one spoken twice in the room, once by the introducer ("uniformization
+theorems and related results in higher dimensional complex geometry") and once by Mok ("the
+title of my talk addresses uniformization theorems"). Gauss–Bonnet does not occur in the
+transcript. <strong>Impact: structural, and caught before writing.</strong> Had I built the tutorial around
+Gauss–Bonnet and bounded symmetric domains as the announced frame, three of the four movements
+would have been misdescribed — movements one, three and four are not about bounded symmetric
+domains at all. I rejected the suggested anchor for the same reason, and said so in §2.3.</p>
+<p><strong>Difficulty against reputation: matched, and then some.</strong> Mok is known for complex
+differential geometry and rigidity, and that is exactly what the talk is. Unlike Kontorovich
+there was no inversion. If anything the reputation <em>understates</em> it: the lecture is a
+retrospective spanning four sub-fields and forty years, and it moves fast because he is
+covering four programmes rather than one result.</p>
+<p><strong>No proceedings paper, and no self-citation from the podium.</strong> Mok's arXiv listing is twelve
+papers, most recent 29 January 2024, none of them a write-up of this lecture. I scanned the
+transcript for "my survey", "our review", "the paper with", journal names and book titles: he
+names collaborators and dates constantly but never once names a place to read the work. The
+Bartlett trick — the speaker citing his own review aloud — does not apply here. The two
+companions were found by going to his own publication page at <code>hkumath.hku.hk/~nmok/</code>, which
+lists 62 papers plus four sets of lecture notes with PDFs, and picking the two whose scope
+matched the talk's halves. That page, not a search engine, is the thing that made this
+tutorial possible.</p>
+<p><strong>How much mathematics survived the captions: formulas 0%, spoken statements about 20%.</strong> This
+was a slide talk in a large hall, and the caption track carries <strong>not one equation and not one
+displayed statement</strong> — everything symbolic lived on the slides. Of the theorems Mok states
+aloud, roughly a fifth arrive with enough hypotheses attached to be usable as stated; the rest
+are gestured at by name. What did survive is narrative, attribution, dates, and Mok's own
+explanations of <em>why</em> he did things — which is the genuinely valuable part, and is absent from
+the written sources. Every precise statement in §§3–5 above comes from C1, C2, or a named
+primary paper. The two source types are close to complementary.</p>
+<p><strong>Length note.</strong> This runs to about twenty thousand words — longer than the Gaitsgory
+tutorial's fourteen thousand, and much longer than the two short model tutorials. The reason
+is structural, not padding: Gaitsgory's lecture is one research programme presented twice
+(global, then local), whereas Mok's is <strong>four largely disjoint programmes</strong> — Kähler–Ricci
+flow and positive curvature, bounded symmetric domains and ergodic theory, VMRT geometry, and
+subvariety rigidity — each with its own vocabulary, its own bridge section, and its own set of
+theorems. §3 has to build two independent toolkits (complex-analytic and algebro-geometric)
+because §4 uses both. I trimmed rather than truncated; nothing in the walkthrough was dropped,
+and no movement was compressed to save effort.</p>
+<p><strong>Name corrections.</strong> Verified against C1, C2, the Hong–Mok <em>Selecta</em> bibliography, the
+Kim–Mok–Seo bibliography, Mok's own publication page, or arXiv, unless marked otherwise.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Naming Mock" / "Professor Mark"</td>
+<td><strong>Ngaiming Mok</strong></td>
+<td>speaker</td>
+</tr>
+<tr>
+<td>"Reman, Klene, Pankare, Kerber"</td>
+<td><strong>Riemann, Klein, Poincaré, Koebe</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"federico and ease"</td>
+<td><strong>Federigo Enriques</strong> (the classification is Castelnuovo–Enriques)</td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"kunhiko or kodara", "kodara dimension"</td>
+<td><strong>Kunihiko Kodaira</strong>, <strong>Kodaira dimension</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"Franco conjecture" / "generalized triangle conjecture"</td>
+<td><strong>Frankel conjecture</strong> / <strong>generalized Frankel conjecture</strong></td>
+<td>C2, [Mk88]</td>
+</tr>
+<tr>
+<td>"cartoon conjecture"</td>
+<td><strong>Hartshorne conjecture</strong></td>
+<td>C2, [Mr79]</td>
+</tr>
+<tr>
+<td>"empess of the tangent bundle"</td>
+<td><strong>ampleness of the tangent bundle</strong></td>
+<td>Mori 1979 title</td>
+</tr>
+<tr>
+<td>"Mori", 1979</td>
+<td><strong>Shigefumi Mori</strong>, <em>Ann. Math.</em> 110 (1979) 593–606</td>
+<td>C2, [Mr79]</td>
+</tr>
+<tr>
+<td>"su yao", 1980</td>
+<td><strong>Siu–Yau</strong> (Yum-Tong Siu, Shing-Tung Yau)</td>
+<td>talk + standard</td>
+</tr>
+<tr>
+<td>"Yamong Su"</td>
+<td><strong>Yum-Tong Siu</strong></td>
+<td>talk context</td>
+</tr>
+<tr>
+<td>"kala rich flow"</td>
+<td><strong>Kähler–Ricci flow</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"bees theorem on hologamy"</td>
+<td><strong>Berger's theorem on holonomy</strong> <em>(reconstructed)</em></td>
+<td>—</td>
+</tr>
+<tr>
+<td>"toll in 1989"</td>
+<td><strong>To</strong>, 1989</td>
+<td>C1 slide 1 ("Mok 87, To 89")</td>
+</tr>
+<tr>
+<td>"in the sense of griffith"</td>
+<td><strong>in the sense of Griffiths</strong></td>
+<td>C1 slide 1</td>
+</tr>
+<tr>
+<td>"car matrix", "cartial dorometric"</td>
+<td><strong>Carathéodory metric</strong></td>
+<td>C1 slides 13–14</td>
+</tr>
+<tr>
+<td>"Modicity theorem", "more aodicity"</td>
+<td><strong>Moore's ergodicity theorem</strong></td>
+<td>C1 slide 8</td>
+</tr>
+<tr>
+<td>"Kurani and Fenbach"</td>
+<td><strong>Korányi</strong> (1976) + one unidentified name</td>
+<td>C1 slide 44</td>
+</tr>
+<tr>
+<td>"chu and yao and yao and myself"</td>
+<td><strong>Cheng–Yau</strong>, and <strong>Mok–Yau</strong> <em>(reconstructed)</em></td>
+<td>—</td>
+</tr>
+<tr>
+<td>"reman extension theorem"</td>
+<td><strong>Riemann extension theorem</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"quinong"</td>
+<td><strong>Kwok-Kin Wong</strong></td>
+<td>Mok's publication page, "Mok, N. &amp; Wong, K.-K."</td>
+</tr>
+<tr>
+<td>"crazy projective" / "quite projective"</td>
+<td><strong>quasi-projective</strong></td>
+<td>context</td>
+</tr>
+<tr>
+<td>"Quebec has proved… in 2002"</td>
+<td><strong>Stefan Kebekus</strong>, <em>J. Alg. Geom.</em> 11 (2002)</td>
+<td>C2, [Ke02]</td>
+</tr>
+<tr>
+<td>"Jim Huang" / "Jim Muang" / "Jim Hua"</td>
+<td><strong>Jun-Muk Hwang</strong></td>
+<td>C2, all [HM] entries</td>
+</tr>
+<tr>
+<td>"GMAP P", "gimm", "GM of P"</td>
+<td><strong>G/P</strong></td>
+<td>C2</td>
+</tr>
+<tr>
+<td>"pick / pean / picon number"</td>
+<td><strong>Picard number</strong></td>
+<td>C2</td>
+</tr>
+<tr>
+<td>"sac batting"</td>
+<td><strong>Segre embedding</strong></td>
+<td>C1 slide 53</td>
+</tr>
+<tr>
+<td>"plug embedding"</td>
+<td><strong>Plücker embedding</strong></td>
+<td>C1 slide 53</td>
+</tr>
+<tr>
+<td>"renesian embedding"</td>
+<td><strong>Veronese embedding</strong></td>
+<td>C1 slide 53</td>
+</tr>
+<tr>
+<td>"lranging / lranjen grasman"</td>
+<td><strong>Lagrangian Grassmannian</strong></td>
+<td>C1 slide 53</td>
+</tr>
+<tr>
+<td>"of hard extension"</td>
+<td><strong>Hartogs extension</strong></td>
+<td>C2 §3.2</td>
+</tr>
+<tr>
+<td>"long route in the dinken diagram"</td>
+<td><strong>long simple root in the Dynkin diagram</strong></td>
+<td>C2, Thm 3.2.1</td>
+</tr>
+<tr>
+<td>"Hong and Huang" (long-root recognition)</td>
+<td><strong>Hong and Hwang</strong>, 2008</td>
+<td>C2, [HH08]</td>
+</tr>
+<tr>
+<td>"horosphere / horoscopical varieties"</td>
+<td><strong>horospherical varieties</strong></td>
+<td>C2, [PP10]</td>
+</tr>
+<tr>
+<td>"wonderful comparifications"</td>
+<td><strong>wonderful compactifications</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"Hang and Lee Chief Lee", 2021</td>
+<td><strong>Hwang and Qifeng Li</strong>, <em>JDG</em> 119 (2021)</td>
+<td>Kim–Mok–Seo, [HwL21]</td>
+</tr>
+<tr>
+<td>"Maria Waters and Robert Bryan"</td>
+<td><strong>M. Walters</strong> (thesis, Michigan 1997) and <strong>Robert Bryant</strong></td>
+<td>Hong–Mok refs [37], [5]</td>
+</tr>
+<tr>
+<td>"Boral and Havla in 1961"</td>
+<td><strong>Borel and Haefliger</strong>, 1961 <em>(reconstructed)</em></td>
+<td>—</td>
+</tr>
+<tr>
+<td>"Robless and Tay in 2012"</td>
+<td><strong>Robles and The</strong>, <em>Selecta Math.</em> 18 (2012)</td>
+<td>Hong–Mok ref [34]</td>
+</tr>
+<tr>
+<td>"yunin jang"</td>
+<td><strong>Y. Zhang</strong> (Mok–Zhang, <em>JDG</em> 112 (2019))</td>
+<td>C2, [MZ15]</td>
+</tr>
+<tr>
+<td>"thickening lammer"</td>
+<td><strong>Thickening Lemma</strong></td>
+<td>C2, Thm 4.5.3</td>
+</tr>
+<tr>
+<td>"eastern tai" / "the time u tai"</td>
+<td><strong>I-Hsun Tsai</strong>, <em>JDG</em> 37 (1993)</td>
+<td>C1 slide 58</td>
+</tr>
+<tr>
+<td>"Kim and size", "Kim with Zaitf"</td>
+<td><strong>Sung-Yeon Kim</strong> and <strong>Dmitri Zaitsev</strong></td>
+<td>Kim–Mok–Seo, [KZ13], [KZ15]</td>
+</tr>
+<tr>
+<td>"Saul in 2015"</td>
+<td><strong>Aeryeong Seo</strong>, <em>Michigan Math. J.</em> 64 (2015)</td>
+<td>Kim–Mok–Seo, [S15]</td>
+</tr>
+<tr>
+<td>"adakdong" (classification of BSDs)</td>
+<td><strong>É. Cartan</strong> <em>(reconstructed)</em></td>
+<td>C1 slide 56</td>
+</tr>
+<tr>
+<td>"ziggo upper half plane"</td>
+<td><strong>Siegel upper half-plane</strong></td>
+<td>C1 slide 57</td>
+</tr>
+<tr>
+<td>"billion varieties"</td>
+<td><strong>abelian varieties</strong></td>
+<td>context</td>
+</tr>
+<tr>
+<td>"kala geometry"</td>
+<td><strong>Kähler geometry</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"le algebbras"</td>
+<td><strong>Lie algebras</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"bound holoic / boundomoric functions"</td>
+<td><strong>bounded holomorphic functions</strong></td>
+<td>C1 throughout</td>
+</tr>
+<tr>
+<td>"erodic / erodically / latis"</td>
+<td><strong>ergodic / ergodically / lattice</strong></td>
+<td>standard</td>
+</tr>
+<tr>
+<td>"Fahua and Jim Hua and Liy"</td>
+<td><strong>Fu, Hwang and Li</strong> <em>(reconstructed, unverified)</em></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Substantive caption errors corrected in the text, not just spellings.</strong> Four:</p>
+<ul>
+<li><strong>"locally reducible of rank at least equal to two"</strong> in the statement of the corollary to
+  Hermitian metric rigidity → the hypothesis is <strong>irreducible</strong> (C1 slides 1–3 and every
+  published version). The caption states the opposite of the hypothesis, and the theorem is
+  false as captioned.</li>
+<li><strong>"C0s"</strong> throughout movement three → <strong>𝒞_x</strong>, the VMRT. Not a name, a symbol.</li>
+<li><strong>"of hard extension"</strong> → <strong>Hartogs extension</strong>. This is not cosmetic: the whole
+  codimension-1-to-codimension-2 argument of §4.3.5 exists in order to invoke Hartogs, and
+  without the correct word the argument has no punchline.</li>
+<li><strong>"the sig betting"</strong> occurs twice with two different meanings. The first is the <strong>Segre
+  embedding</strong> (the VMRT of a Grassmannian). The second, in "this is a question that I raised
+  and which is called the sig betting", is a garble of what he names in his very next sentence:
+  <strong>the Recognition Problem</strong>. I used his next sentence rather than guessing at the garble.</li>
+</ul>
+<p><strong>Reconstructed, and what would verify each:</strong></p>
+<ul>
+<li><strong>Berger's holonomy theorem</strong> as the third ingredient of the 1988 proof. The captions say
+  "bees theorem on hologamy in Riemannian geometry" and neither companion discusses the 1988
+  proof's internals. Verify by reading §§5–6 of <em>J. Differential Geom.</em> 27 (1988), 179–214.</li>
+<li><strong>Cheng–Yau and Mok–Yau</strong> for complete Kähler–Einstein metrics on bounded domains of
+  holomorphy. Captions: "chu and yao and yao and myself". The attribution is standard and Mok
+  says "yao and myself", so Mok–Yau is certain; Cheng–Yau is the natural reading of "chu and
+  yao". Verify against Mok–Yau 1983, <em>Proc. Symp. Pure Math.</em> 39.</li>
+<li><strong>Borel–Haefliger 1961</strong> as the source of the smoothability question. Captions: "Boral and
+  Havla in 1961". The year and subject match "La classe d'homologie fondamentale d'un espace
+  analytique", Bull. SMF 89 (1961) exactly; it is not in either companion's bibliography, so
+  it is an identification from context, not a citation I checked.</li>
+<li><strong>É. Cartan</strong> for the classification of bounded symmetric domains. Captions: "adakdong". C1
+  slide 56 says "E. Cartan's realizations in the classical case", which supports the
+  identification but is not the same sentence.</li>
+<li><strong>Fu, Hwang and Li</strong> for recent work on horospherical varieties and wonderful
+  compactifications. Captions: "work of Fahua and Jim Hua and Liy". Jun-Muk Hwang is certain
+  from context; Baohua Fu and Qifeng Li are the natural reading and both work in this exact
+  area, but I did not verify a joint paper. Treat as unverified.</li>
+<li><strong>The table in §2.2</strong> (the Riemannian/VMRT dictionary). Layout mine; every row is spoken
+  aloud by Mok in the passage quoted immediately above it, and every row is independently
+  supported by C2's opening paragraphs.</li>
+<li><strong>Exercise 6.1(a)–(b)</strong>. My computation. C1 slide 14 asserts the sup-norm formula for Δⁿ; the
+  Schwarz-lemma derivation and the parallelogram-law argument are mine and are checkable in
+  ten lines.</li>
+</ul>
+<p><strong>Could not verify:</strong></p>
+<ul>
+<li><strong>The second name in "Korányi and Fenbach"</strong> (§5, step 2). Korányi is certain and C1 slide 44
+  cites "Koranyi 1976" alone for exactly this result. The second name is not recoverable from
+  the captions and I would not guess: Korányi has standard joint work with Vági (Hardy spaces
+  on bounded symmetric domains) and with Wolf (Cayley transforms), and either would be a
+  plausible pairing, which is precisely why I have not asserted one.</li>
+<li><strong>Mok's endowed chair.</strong> The introducer names it and the captions render it "the Edmund and
+  Peggy C professor in mathematics". I could not confirm the full name from any source I could
+  reach, so I have omitted it rather than complete it.</li>
+<li><strong>The 2012 attribution for the ball-embedding result.</strong> Mok says "I prove in 2012 that this
+  is a holomorphic isometric embedding of the ball", referring to the union of minimal rational
+  curves through a regular boundary point intersected with Ω. His 2012 paper is "Extension of
+  germs of holomorphic isometries up to normalizing constants with respect to the Bergman
+  metric", <em>J. Eur. Math. Soc.</em> 14 (2012), 1617–1656, and the closely related statement appears
+  in his 2018 <em>Contemp. Math.</em> paper "Full cones swept out by minimal rational curves on
+  irreducible Hermitian symmetric spaces…". I did not confirm which paper contains the exact
+  statement, so I described the result without pinning it to a reference.</li>
+<li><strong>The name of the projection onto a boundary face</strong> ("ka projection" / "KD projection"). See
+  the gap note in §5.</li>
+<li><strong>The precise hypotheses of the 2026 Isomorphism Theorem.</strong> The Mok–Wong paper is not on
+  arXiv; only the 2007 version is restorable. See the gap note in §4.2.1.</li>
+<li><strong>"recently elected to the Chinese Academy of Sciences"</strong> (the introducer). Public sources
+  give 2015 for the election, and 2009 for the Stefan Bergman Prize, which the introducer also
+  mentions. The word "recently" is the introducer's, not Mok's, and I have not repeated it.</li>
+</ul>
+<p><strong>Gaps marked in place, and how bad they are.</strong> Four, rated:</p>
+<ol>
+<li><strong>The statement of Mok's 1988 structure theorem</strong> (§4.1). <strong>Low impact.</strong> The theorem's
+   shape is stated and is all the rest of the talk uses; the precise list of factors is in the
+   1988 paper.</li>
+<li><strong>The precise hypotheses of the 2026 Isomorphism Theorem</strong> (§4.2.1). <strong>Moderate impact.</strong>
+   The novelty of the new work is exactly the weakening of hypotheses, and I can only give you
+   the 2007 version plus a qualitative account of what changed.</li>
+<li><strong>What the VMRT of F₅ jumps to</strong> (§4.3.3). <strong>Low impact.</strong> The mechanism — deformation
+   rigidity fails because the VMRT is not rigid — is intact.</li>
+<li><strong>The name of the boundary-face projection</strong> (§5). <strong>Low impact.</strong> The object is
+   unambiguous.</li>
+</ol>
+<p>Beyond these I did <strong>not</strong> attempt to teach three things, and the omissions are deliberate:
+Ochiai's theorem on G-structures and the theory of G-structures generally; the exterior
+differential systems formulation of Schubert rigidity (Kostant forms, the Schur versus
+Schubert differential systems); and the Lie-theoretic classification machinery — marked Dynkin
+diagrams, sub-diagram type, admissible pairs — that indexes most of movements three and four.
+Each appears as a fact with its motivation and its consequence and no more. They are not
+learnable in a tutorial, and faking them would produce exactly the smooth fabrication that is
+worse than an acknowledged hole.</p>
+<p><strong>One place a companion beats the talk.</strong> Mok states Tsai's theorem from the podium for
+domains "of the same rank"; C1 slide 58 states it in the stronger form Tsai actually proved —
+rank(D′) ≤ rank(D) as a <em>hypothesis</em>, with rank(D) = rank(D′) part of the <em>conclusion</em>. I
+quoted C1. Similarly the talk states the 2004 embedding theorem in its equivariant form only;
+C1 gives both forms, and I gave both.</p>
+<p><strong>One place the talk beats the companions.</strong> Everything about <em>why</em>. The problem-based
+methodology, the flat-bundle insight told as a story about giving up on holonomy, "minimal
+rational curves as carriers of information", "the existence of one single such function is
+good enough", and the Riemannian/VMRT dictionary are all in the transcript and in neither
+written source. That is the material that makes the mathematics comprehensible, and it exists
+nowhere but on this recording.</p>
+</div>
+</body>
+</html>

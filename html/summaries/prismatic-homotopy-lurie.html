@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Prismatic Stable Homotopy Theory</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<div class="meta"><div><b>Speaker:</b> Jacob Lurie (Institute for Advanced Study)</div><div><b>Talk:</b> ICM 2026 Plenary Lecture — 2026-08-17</div><div><b>Video:</b> <a href="https://www.youtube.com/watch?v=wkUJoGqYFN4">https://www.youtube.com/watch?v=wkUJoGqYFN4</a></div><div><b>Level:</b> 5/5 (the objects) — 3/5 (the narrative as delivered)</div><div><b>Reading time:</b> ~65 min</div></div>
+<h1>Prismatic Stable Homotopy Theory — Jacob Lurie</h1>
+<p><strong>Field:</strong> the meeting point of algebraic topology and algebraic geometry — his own opening
+words. Concretely: algebraic K-theory, topological cyclic homology, prismatic and syntomic
+cohomology, and a conjectural framework proposed to contain all of them.</p>
+<p><strong>Difficulty against your background: split, 5 out of 5 for the objects, 3 out of 5 for the
+narrative as delivered.</strong> The objects in this talk sit at the top of the abstraction ladder —
+cyclotomic spectra, prismatic F-gauges, a stable homotopy category for p-adic geometry that
+does not yet exist. None of them is in your training and none is learnable in an afternoon.
+But <strong>the speaker black-boxes them himself, twice, out loud</strong>, and builds his whole hour on
+two properties that survive the black box: "it is a tensor category, so you can talk about
+algebras and modules" and "it is a triangulated category, so you can talk about Ext groups."
+That is a deliberate teaching decision by a speaker who wrote the standard references on the
+machinery he is refusing to explain, and it makes the <em>story</em> followable at difficulty 3
+while the <em>objects</em> stay at 5.</p>
+<p>His own framing of the black-box move, which you should take at face value:</p>
+<blockquote>
+<p>"Now in this lecture I'm going to treat that as a black box. I'm not going to tell you what
+a cyclotomic spectrum is, but let me just tell you a few things about them."</p>
+</blockquote>
+<p>and, forty minutes later, on the thing he is actually proposing:</p>
+<blockquote>
+<p>"So unfortunately, I didn't tell you what any of these things are… And what I'm proposing
+is these two well-defined black boxes should actually be fit into a larger black box that I
+do not have a precise definition of."</p>
+</blockquote>
+<p>That sentence is the talk. He is asking for an object he cannot define, specified entirely by
+the properties it must have and by one calculation it must reproduce.</p>
+<p><strong>Prerequisites this tutorial builds:</strong> what a generalized cohomology theory is and why
+dropping one axiom matters; the Grothendieck group construction; Bott periodicity as a
+statement, not a proof; what the stable homotopy category is, via Brown representability;
+Chern classes, complex orientation, and formal group laws (with the Baker–Campbell–Hausdorff
+formula as the bridge); complex cobordism and Quillen's theorem; Hochschild homology and the
+HKR theorem as a differential-forms machine; what p-completion and étale descent buy you;
+spectral sequences read as perturbation series.</p>
+<p><strong>A note on sources.</strong> This is the hard case, and it is the case the spec anticipates in
+option 3.</p>
+<ul>
+<li><strong>There is no ICM proceedings paper.</strong> Lurie has posted nothing to arXiv since January 2022.</li>
+<li><strong>There is no companion on his own website.</strong> I checked <code>math.ias.edu/~lurie/</code>. The listed
+  papers stop at <em>Ultracategories</em> and <em>Revisiting the de Rham–Witt Complex</em> (December 2019);
+  the books are <em>Higher Topos Theory</em> (2017), <em>Higher Algebra</em> (2017), and <em>Spectral Algebraic
+  Geometry</em> (2018, incomplete). <strong>Nothing on prismatic anything.</strong> The talk covers material
+  from none of the three books, so none of them is a legitimate companion.</li>
+<li><strong>He names no survey of his own from the podium.</strong> I scanned the transcript for it.</li>
+</ul>
+<p>What does exist, and what I used:</p>
+<ol>
+<li><strong>A second recording of the same lecture, by the same speaker, seventeen months earlier</strong>:
+   <em>Prismatic Stable Homotopy Theory</em>, Simons Collaboration on Perfection in Algebra, Geometry
+   and Topology annual meeting, 14 March 2025,
+   <a href="https://www.youtube.com/watch?v=1fSd7FxEA3w">youtube.com/watch?v=1fSd7FxEA3w</a>. Same title,
+   same conjecture, same acceptance test, but aimed at specialists and therefore far more
+   explicit. It is <strong>not a paper and not lecture notes</strong> — it is a second set of auto-captions,
+   with the same formula-blindness. I use it as a labelled cross-check and I mark every place
+   I draw on it, because material in the 2025 talk that is not in the ICM talk is <em>not what he
+   said at the ICM</em>.</li>
+<li><strong>Primary literature for the individual results he cites.</strong> Where the talk names a theorem,
+   I recovered its statement from the paper that proved it and cite that paper by name. Those
+   are primary sources for one theorem each; they are not a substitute for a proceedings paper
+   and I do not present them as one.</li>
+</ol>
+<p><strong>The consequence for you: every formula below is either spoken aloud in one of the two
+recordings, or recovered from a named paper, or marked reconstructed, or marked as a gap.</strong>
+More survived than you might expect, for one specific reason — <strong>this is a talk of spoken
+formulas.</strong> Lurie says "TC of R can be defined as extensions from the unit object into THH of
+R" out loud, in words, and the caption track catches it. The mathematics that died on the
+slides is the <em>indexing</em>: which degree, which twist, which page of which spectral sequence.
+The shapes survived. The subscripts did not.</p>
+<hr />
+<h2>1. What is at stake</h2>
+<p>Here is the question, with no jargon in it.</p>
+<p>You have a mathematical object — a ring, or a space. You want to attach numbers to it that are
+invariant, computable, and informative. Over the last century, topologists built an enormous
+catalogue of ways to do that: ordinary cohomology, K-theory, cobordism, elliptic cohomology,
+and hundreds more. Algebraic geometers have a much shorter catalogue, and the shortness hurts.</p>
+<p>Lurie's opening moral, stated twice:</p>
+<blockquote>
+<p>"It's useful to have a lot of tools. That is, problems that can be quite difficult using a
+limited set of tools can become much easier if you bring the right tool for the job."</p>
+</blockquote>
+<p>His evidence is a specific, famous, checkable story. In the 1930s Hopf built some remarkable
+maps between spheres out of the real division algebras — the complex numbers, the quaternions,
+the octonions. They have a numerical property no other map between spheres seemed to have.
+<em>Are there others, in other dimensions?</em> The question stood for thirty years. Adams answered
+it — no — in 1960, in an 85-page paper using secondary cohomology operations. Then Adams and
+Atiyah reproved it using complex K-theory in <strong>eight pages, with the main argument in a single
+paragraph</strong>. Lurie calls it a proof from the Book, in Erdős's sense, and he is right.</p>
+<p>So: a tool that did not exist in 1955 turned a thirty-year problem into one paragraph. That is
+what a new cohomology theory is worth.</p>
+<p><strong>The p-adic world is short of tools.</strong> And the last decade has produced a spectacular set of
+new ones — prismatic cohomology, syntomic cohomology, the modern theory of topological cyclic
+homology — which have already cracked problems that stood for decades. Lurie's question is:
+<em>why did that work, and is there a general reason?</em></p>
+<p>His answer is a conjecture with a very precise shape. In topology, all cohomology theories live
+in one place: the <strong>stable homotopy category</strong>. That single category organizes the whole
+catalogue, and it is the reason topologists have hundreds of tools rather than three. Lurie
+conjectures that <strong>p-adic geometry has its own stable homotopy category</strong> — he calls it the
+<em>prismatic stable homotopy category</em>, written SH_prism — and that the recent p-adic invariants
+are the first few objects in it, the way ordinary cohomology and K-theory are the first two
+objects in the classical one.</p>
+<p>He cannot define it. He states what it must do, and he states one calculation that any correct
+definition must reproduce. And he tells you why he wants it, in the most honest sentence in the
+hour:</p>
+<blockquote>
+<p>"There are some invariants that I can compute without being able to define, and I'm searching
+for the definition of what it is that I am computing."</p>
+</blockquote>
+<p>You know that shape. It is the path integral. It is the delta function before Schwartz. It is
+renormalization before Wilson. Physicists computed with all three for decades before anyone
+could say what the object was. Lurie is describing exactly that position, from an ICM podium,
+about his own work.</p>
+<hr />
+<h2>2. Your anchor</h2>
+<p>Three things in this talk are structurally something you already own. The first is the
+strongest, and it is the talk's actual engine.</p>
+<h3>2.1 Künneth is "independent subsystems factorize"</h3>
+<p>Watch how often the following appears: <strong>the invariant of a product should be the product of
+the invariants.</strong> Lurie returns to it five separate times, and every single design decision in
+the talk is made to protect it.</p>
+<p>You have owned this since your first statistical mechanics course. Two non-interacting
+subsystems: the Hamiltonian is a sum, so the partition function is a product,
+Z(A ⊔ B) = Z(A)·Z(B). Two independent random variables: the characteristic function of the sum
+is the product of the characteristic functions. Convolution in one domain, multiplication in
+the other — that is Fourier's whole point. A separable PDE: the solution factorizes over the
+directions.</p>
+<p>In topology, the same principle is called the <strong>Künneth formula</strong>. For a cohomology theory E
+and spaces X, Y, you want</p>
+<blockquote>
+<p>E(X × Y) ≅ E(X) ⊗_{E(pt)} E(Y)</p>
+</blockquote>
+<p>and Lurie's first observation is that <strong>complex K-theory satisfies it</strong> (exactly when things
+are torsion-free, with a small correction otherwise), which is a large part of why K-theory is
+so usable. His second observation is that <strong>algebraic K-theory does not</strong>, and neither does its
+computable surrogate TC, and neither does motivic cohomology, and neither does syntomic
+cohomology.</p>
+<p>Now the move that makes the talk. When factorization fails, he does not add a correction term.
+He asks: <strong>where in the pipeline did it break?</strong> And each time, the answer is the same. The
+invariant is computed in two steps:</p>
+<ol>
+<li>Turn the geometric object X into an algebraic coefficient object M(X) — a "motive".</li>
+<li>Take Ext groups out of the unit object into M(X).</li>
+</ol>
+<p><strong>Step 1 factorizes. Step 2 destroys the factorization.</strong> So back up: do not work with the
+invariant, work with the coefficient object M(X), where Künneth still holds, and take the Ext
+only at the very end. That is what topological Hochschild homology THH is for K-theory, and it
+is what prismatic F-gauges are for syntomic cohomology. Both objects exist for exactly this
+reason and he says so in both cases.</p>
+<blockquote>
+<p><strong>Hold this one sentence and the talk decodes: the failure of factorization is never in the
+object, it is in the last step of the pipeline, so move the last step later.</strong></p>
+</blockquote>
+<p>This is also the point at which this talk touches a sibling in this set. Gaitsgory's ICM
+lecture has the <em>same disease with the same cure shape</em>: ℓ-adic sheaves fail a Künneth formula,
+and that single failure forces the reconstruction of the entire ambient 2-category (AGCat).
+See <code>summaries/langlands-function-fields-gaitsgory.md</code> §7.3 — it is written up at length there
+and I will not repeat it. Two plenary speakers in different fields, both spending their hour on
+what one broken compositionality law costs.</p>
+<h3>2.2 A surrogate with a certificate, not just an approximation</h3>
+<p>The second anchor is Lurie's own methodological remark:</p>
+<blockquote>
+<p>"Someone gives you a math problem and the math problem is too hard. What you might try to do
+is to try to solve an easier version of that problem."</p>
+</blockquote>
+<p>That is not interesting by itself. What <em>is</em> interesting is the standard he holds the
+approximation to. Algebraic K-theory K(R) is very hard. Topological cyclic homology TC(R) is
+much easier and there is a trace map K(R) → TC(R). Every applied mathematician has built
+surrogates like that: a preconditioner, a reduced-order model, a coarse-grained Hamiltonian.
+The question is always the same — <em>how wrong is it?</em></p>
+<p>The answer here is not a bound. It is an exact characterization. Lurie lists three specific
+ways TC fails to behave like K-theory, and then states that a theorem of Clausen, Mathew and
+Morrow says <strong>those three are the entire difference</strong>: on p-complete rings, TC is precisely
+what you get from K-theory by forcing those three properties on it, and nothing else is lost.</p>
+<p>That is the difference between "an approximation" and a <strong>surrogate with a certificate</strong> —
+a cheap model together with a theorem saying exactly on what domain, and modulo exactly what,
+it is the real thing. It is the analogue of a spectral-equivalence proof for a preconditioner
+rather than a numerical experiment that it seems to work. §8 comes back to this; it is the
+most transferable idea in the lecture.</p>
+<h3>2.3 Spectral sequences are perturbation series</h3>
+<p>Lurie uses the phrase "a good first approximation" for the E₂ page of a spectral sequence, and
+you should read it exactly that way. The pattern in the talk is:</p>
+<blockquote>
+<p>hard invariant ≈ easy invariant ⊗ (invariant of a point), plus corrections</p>
+</blockquote>
+<p>which is a perturbation series: leading term, then corrections organized by order. The
+differentials are the corrections. Convergence is resummation.</p>
+<p><strong>One honest caveat, because it matters when you read the results:</strong> a spectral sequence does
+not hand you the answer. It hands you the associated graded of a filtration on the answer, and
+you still have extension problems — knowing the pieces of a group is not knowing the group.
+That is exactly why computing K-theory stayed hard even after the spectral sequences existed,
+and why the recent computation of the K-theory of ℤ/4 was news.</p>
+<h3>2.4 One thing to set aside: ∞-categories</h3>
+<p>You might expect this talk to be about ∞-categories. Lurie is the person who wrote <em>Higher
+Topos Theory</em> and <em>Higher Algebra</em>; the anchor briefed for this tutorial was homotopy — "equal"
+replaced by "connected by a path", paths between paths, forever, the way gauge-equivalent field
+configurations are different but physically identical.</p>
+<p><strong>The talk never says "∞-category". It never says "higher category". It never says "homotopy"
+in that sense.</strong> I checked the whole transcript. What he says instead, twice, is "it's a tensor
+category" and "it's a triangulated category, so it makes sense to talk about Ext groups."</p>
+<p>That is a deliberate choice and you should respect it. Everything in this lecture is <em>built</em> on
+higher-categorical foundations — "triangulated category" is the flattened shadow of a stable
+∞-category, and the objects he calls black boxes are ∞-categorical objects. But teaching you
+∞-categories here would be decorating his talk with someone else's picture, and it would be
+teaching you machinery the talk deliberately does not use. <strong>I am naming it so you know it is
+there and know it is absent, and then leaving it alone.</strong> If you ever want it, it is <em>Higher
+Topos Theory</em>, it is a thousand pages, and this talk is not the on-ramp.</p>
+<p>What you need instead is much smaller, and it is genuinely just two rules:</p>
+<ul>
+<li><strong>"tensor category"</strong> — there is a way to multiply two objects, written ⊗, with a unit object
+  (a "1"). Because there is a ⊗ and a 1, the words <em>algebra</em> and <em>module</em> make sense.</li>
+<li><strong>"triangulated category, so Ext groups make sense"</strong> — there is a notion of one object
+  mapping to another, in a graded family indexed by an integer n, written Ext^n(A, B), and
+  these fit into long exact sequences. Read Ext^n(A, B) as "the degree-n maps from A to B", and
+  read "the E-cohomology of X is Ext^n(motive of X, E)" as a <strong>pairing</strong>: the invariant is what
+  you get when you test the object against the theory.</li>
+</ul>
+<p>That is the whole categorical prerequisite. Everything else he black-boxes and so do I.</p>
+<hr />
+<h2>3. The bridge</h2>
+<p>Eight ideas. Each is defined by deforming something you have. Read §3.1 to §3.5 carefully; they
+are the load-bearing ones.</p>
+<h3>3.1 A generalized cohomology theory is cohomology with one axiom deleted</h3>
+<p>You know de Rham cohomology: differential forms, d² = 0, closed modulo exact, and the payoff is
+that it is computable by cutting the manifold into pieces (Mayer–Vietoris) and gluing the
+answers.</p>
+<p>That computability is not an accident of differential forms. It is a short list of formal
+properties, and in the 1940s Eilenberg and Steenrod isolated them: homotopy invariance, long
+exact sequences of a pair, excision, Mayer–Vietoris, additivity — plus one more, the
+<strong>dimension axiom</strong>, which says that the cohomology of a single point is ℤ in degree 0 and zero
+in every other degree.</p>
+<p>A <strong>generalized cohomology theory</strong> is a functor satisfying everything on that list <em>except the
+dimension axiom</em>. Lurie's phrasing:</p>
+<blockquote>
+<p>"If you make a list of the properties that cohomology has that make it convenient to work
+with — like long exact sequences, or excision, or Mayer–Vietoris, etc. — then K-theory has
+almost all of those features. The only exception is that unlike cohomology the K-theory of a
+point is not concentrated in a single degree."</p>
+</blockquote>
+<p>Why that deletion is the whole game: the bookkeeping axioms are what make an invariant
+<em>computable</em>. The dimension axiom is what makes it <em>unique</em>. Delete it and you keep all the
+computability and you get a whole catalogue instead of one theory. Every object in this talk is
+downstream of that one deletion.</p>
+<h3>3.2 K-theory is what happens when you insist on subtraction</h3>
+<p>This one is elementary and completely concrete, and it is where the talk starts.</p>
+<p>Take X a nice space — a compact manifold. Consider complex vector bundles on X: at each point
+of X, a copy of ℂ^k, varying continuously. You can add two of them by taking the direct sum
+fibrewise. Isomorphism classes of bundles under ⊕ form a <strong>commutative monoid</strong>: you can add,
+there is a zero, but <strong>you cannot subtract</strong>.</p>
+<p>Now do to that monoid exactly what you did to ℕ in primary school to get ℤ: formally adjoin
+inverses. Elements become formal differences [E] − [F], with [E] − [F] = [E′] − [F′] whenever
+they differ by adding the same thing to both sides. The result is a genuine abelian group.</p>
+<blockquote>
+<p><strong>KU⁰(X)</strong> := the group completion of (isomorphism classes of complex vector bundles on X, ⊕).</p>
+</blockquote>
+<p>Atiyah and Hirzebruch, around 1960. Sanity check, and Lurie gives exactly this one: if X is a
+single point, a vector bundle is just a vector space, classified up to isomorphism by its
+dimension, so the monoid is ℕ; group-complete and you get <strong>ℤ</strong>.</p>
+<p>The same construction runs verbatim in algebra. Replace "complex vector bundle on X" by
+"finitely generated projective module over a ring R" — the algebraic analogue, and Lurie says
+so explicitly — take ⊕, group-complete, and you get <strong>K₀(R)</strong>, the Grothendieck group. Lurie
+notes that this came <em>first</em>: "this definition goes back to Grothendieck and it actually
+predates the definition of [K-theory in topology]… they were imitating Grothendieck." Sanity
+check again: R a field, projective modules are vector spaces, classified by dimension, so
+K₀(field) = ℤ.</p>
+<p><strong>Both of the two columns in this talk begin at exactly this construction.</strong> That is worth
+noticing now, because the parallel between the columns is the whole lecture.</p>
+<h3>3.3 Bott periodicity, stated and not proved</h3>
+<p>KU⁰ extends to a family KU^n(X), one for every integer n. The dimension axiom fails, and it
+fails in a very specific and beautiful way:</p>
+<blockquote>
+<p><strong>KU^n(pt) = ℤ for every even n, and 0 for every odd n.</strong></p>
+</blockquote>
+<p>Equivalently KU^n ≅ KU^{n+2}: complex K-theory is <strong>2-periodic</strong>. This is Bott's periodicity
+theorem, and Lurie states it and moves on. So do I — it is a real theorem with a real proof and
+neither belongs here. Take it as a fact about the object.</p>
+<p>Keep the <em>shape</em> though, because it comes back: <strong>an infinite periodic pattern where ordinary
+cohomology has a single ℤ.</strong> When Bökstedt later computes THH(𝔽_p) and gets a polynomial ring
+on one generator in degree 2, Lurie says out loud that you should read it as "some incarnation
+of Bott periodicity but in an algebraic world". He is telling you the pattern repeats.</p>
+<h3>3.4 The stable homotopy category, via Brown representability</h3>
+<p>Here is the object that organizes the topological catalogue, and here is the honest way in.</p>
+<p>You have a whole zoo of generalized cohomology theories. Is there a single mathematical object
+whose <em>elements</em> are cohomology theories? Yes:</p>
+<blockquote>
+<p><strong>The stable homotopy category SH.</strong> It is a tensor category with unit object <strong>S</strong>, the
+<em>sphere spectrum</em>. It is triangulated, so Ext groups make sense. Every topological space X
+has an incarnation S[X] ∈ SH called its suspension spectrum. And every object E ∈ SH defines
+a cohomology theory by</p>
+<p><strong>E^n(X) := Ext^n( S[X], E ).</strong></p>
+</blockquote>
+<p>And then the theorem that makes it worth having, which Lurie attributes to Brown in the 1960s:</p>
+<blockquote>
+<p><strong>Every generalized cohomology theory arises this way, from an essentially unique object E.</strong></p>
+</blockquote>
+<p><strong>The anchor for this is the Riesz representation theorem</strong>, and the analogy is tight, not
+decorative. A cohomology theory is a rule that eats a space and returns graded groups, subject
+to compatibility axioms — a "functional on spaces". Brown representability says every such
+functional is represented by pairing against a fixed object, exactly as every bounded linear
+functional on a Hilbert space is ⟨·, v⟩ for a unique v. Once you know that, you stop studying
+functionals and start studying the representing objects — because the objects can be added,
+multiplied, and resolved, and functionals cannot.</p>
+<p>Two objects you need by name:</p>
+<ul>
+<li><strong>Hℤ</strong>, the <em>Eilenberg–MacLane spectrum</em>, representing ordinary cohomology.</li>
+<li><strong>KU</strong>, representing complex K-theory.</li>
+</ul>
+<p>And the structural slogan Lurie uses, which is worth memorizing because the entire conjecture is
+a copy of it: <strong>modules over Hℤ in SH are the same thing as chain complexes of abelian groups.</strong>
+(This is stated in the March 2025 recording, not at the ICM. The ICM talk states only the
+corresponding prismatic version.) Ordinary homological algebra sits inside stable homotopy
+theory as the module category over one particular object. Everything else in SH is, in a precise
+sense, <em>less linear</em> than chain complexes.</p>
+<h3>3.5 Chern classes, complex orientation, and formal group laws</h3>
+<p>This is the one piece of real technical content the talk both needs and can teach you, and it is
+much closer to your training than it looks.</p>
+<p>A complex line bundle L on X has a first Chern class c₁(L), an element of E²(X) for a suitable
+cohomology theory E. Saying that E <em>has</em> a sensible theory of Chern classes for all complex
+vector bundles is the condition called <strong>complex orientability</strong>. Ordinary cohomology is complex
+orientable. So is K-theory. So are a great many others — Lurie: "there's a huge number of
+complex-oriented cohomology theories."</p>
+<p>Now the sharp question. Given two line bundles L₁, L₂, what is c₁(L₁ ⊗ L₂)?</p>
+<p>For ordinary cohomology, the answer is what you would guess: <strong>c₁(L₁ ⊗ L₂) = c₁(L₁) + c₁(L₂)</strong>.
+Chern classes add.</p>
+<p>For a general complex-oriented theory, <strong>they do not.</strong> Instead there is a power series in two
+variables,</p>
+<blockquote>
+<p>c₁(L₁ ⊗ L₂) = F( c₁(L₁), c₁(L₂) ),</p>
+</blockquote>
+<p>and the axioms of tensor product force F to satisfy</p>
+<blockquote>
+<p>F(x, 0) = x,  F(x, y) = F(y, x),  F( F(x,y), z ) = F( x, F(y,z) ).</p>
+</blockquote>
+<p>A power series satisfying those three is called a <strong>one-dimensional formal group law</strong>. It is
+an associative, commutative group operation written as a formal power series with no convergence
+requirement.</p>
+<p><strong>Your anchor here is the Baker–Campbell–Hausdorff formula.</strong> For a Lie group, multiplication
+near the identity in exponential coordinates is
+exp(X)exp(Y) = exp(X + Y + ½[X,Y] + …) — an associative product written as a formal power
+series in the coordinates. That <em>is</em> a formal group law, in higher dimension. A one-dimensional
+formal group law is the germ of a one-dimensional group at its identity, remembered as a power
+series and nothing else.</p>
+<p>Two examples you should carry:</p>
+<ul>
+<li><strong>Additive:</strong> F(x,y) = x + y. This is ordinary cohomology.</li>
+<li><strong>Multiplicative:</strong> F(x,y) = x + y + βxy. This is complex K-theory.
+  <em>(Reconstructed from standard literature — the talk states the additive case only, and names
+  the multiplicative one nowhere. It is the standard fact and Exercise 7.2 makes you check it
+  is a legitimate formal group law; take the identification with K-theory itself on trust.)</em></li>
+</ul>
+<p>And the punchline of the exercise in §7.2, which is the punchline of the whole subject:
+<strong>over ℚ these are isomorphic and over ℤ_p they are not.</strong> Every one-dimensional formal group
+law over a ℚ-algebra can be straightened into the additive one by a formal logarithm, and the
+logarithm has denominators. Kill the denominators — work p-adically — and a rich classification
+appears. <strong>The whole catalogue of cohomology theories lives in those denominators.</strong> That is why
+this talk is about p-adic geometry and not about characteristic zero.</p>
+<h3>3.6 Complex cobordism MU, and Quillen's theorem</h3>
+<p>Among complex-orientable theories there is a universal one — richest, mapping to all others.</p>
+<blockquote>
+<p><strong>MU</strong>, complex cobordism.</p>
+</blockquote>
+<p>Its name is literal. Two closed manifolds are <strong>cobordant</strong> if together they bound a compact
+manifold of one dimension higher. Cobordism classes form a ring: addition is disjoint union,
+multiplication is product. (If you have met bordism in topological field theory, this is that.)
+MU uses manifolds with an almost complex structure on the stable normal bundle, and its
+coefficient ring MU^*(pt) is exactly the ring of such manifolds up to compatible cobordism.</p>
+<p><strong>Milnor computed it, around 1960:</strong> MU^<em>(pt) is a </em><em>polynomial ring on an infinite sequence of
+generators, one in each even degree.</em>* Write them t₁, t₂, t₃, …. And Milnor's calculation has a
+second reading, which Lurie gives:</p>
+<blockquote>
+<p><strong>Mod out MU by Milnor's generators and you get Hℤ.</strong></p>
+</blockquote>
+<p>Then Quillen's reinterpretation, which is the theorem this talk is organized around. That
+polynomial ring is not just abstractly a polynomial ring — it is <em>the</em> ring that classifies
+one-dimensional formal group laws (the Lazard ring), and under that identification:</p>
+<blockquote>
+<p><strong>Quillen's theorem. The formal group law carried by MU is the universal one.</strong> MU is the
+universal complex-oriented cohomology theory <em>and</em> it carries the universal formal group law,
+and those two universal properties are the same statement.</p>
+</blockquote>
+<p>Read against §3.5, Quillen's theorem answers "what is special about ordinary cohomology?" with:
+it is complex-orientable, <strong>and</strong> its formal group law is the additive one. And the two-step
+factorization it gives is the exact template for the conjecture:</p>
+<blockquote>
+<p><strong>S → MU → Hℤ</strong>: first make the theory complex-oriented (pass to MU), then kill the Milnor
+generators (to get Hℤ).</p>
+</blockquote>
+<p>Lurie's heuristic gloss, which is the sentence to remember:</p>
+<blockquote>
+<p>"There are roughly as many cohomology theories in the world of topology as there are formal
+groups."</p>
+</blockquote>
+<h3>3.7 THH and TC: what survives the black box</h3>
+<p>Now the K-theory column's machinery. Lurie declines to define a cyclotomic spectrum and so do I.
+Here is everything he gives you and everything you need.</p>
+<p><strong>Hochschild homology HH(R)</strong> is old and concrete: an explicit chain complex built from R,
+computable by hand from generators and relations. Its content, and the reason it matters here,
+is the <strong>HKR theorem</strong>: for R a smooth algebra, HH_n(R) is the module of algebraic differential
+n-forms Ω^n_R. Lurie says exactly this for 𝔽_p-algebras — "if R is a smooth algebra over 𝔽_p
+then its Hochschild homology groups are just the groups of algebraic differential forms for the
+ring R… If you have a presentation of R by generators and relations, then you can write these
+things down very explicitly."</p>
+<p><strong>That is the anchor for the entire construction: Hochschild homology manufactures differential
+forms out of a ring, with no manifold anywhere in sight.</strong> You own differential forms. This is
+how they get into a subject that has no smooth structure.</p>
+<p><strong>Topological Hochschild homology THH(R)</strong> is the refinement of HH in which the ground ring is
+not ℤ but the sphere spectrum S. It is a <strong>cyclotomic spectrum</strong> — black box, declined. Two
+facts survive and are all that get used:</p>
+<ul>
+<li>Cyclotomic spectra form a tensor category (so algebras and modules make sense) and a
+  triangulated category (so Ext makes sense).</li>
+<li>Every ring R is a ℤ-algebra, so <strong>THH(R) is a module over THH(ℤ)</strong>.</li>
+</ul>
+<p><strong>Bökstedt's calculation</strong>, from the 1980s, is the one number in the talk:</p>
+<blockquote>
+<p><strong>THH(𝔽_p) = a polynomial ring on a single generator of degree 2.</strong></p>
+</blockquote>
+<p>Lurie: "you can think about this as some incarnation of Bott periodicity but in an algebraic
+world." And it is what connects THH to the concrete: for R an 𝔽_p-algebra, THH(R) is a module
+over THH(𝔽_p); reduce modulo that degree-2 generator and you land in ordinary Hochschild
+homology, hence in differential forms. His conclusion:</p>
+<blockquote>
+<p>"Computing things about THH of R, it's one spectral sequence away from just understanding
+algebraic differential forms."</p>
+</blockquote>
+<p><strong>Topological cyclic homology TC(R)</strong> is then defined <em>inside</em> that world:</p>
+<blockquote>
+<p><strong>TC(R) = Ext( unit object, THH(R) )</strong>, computed in the category of cyclotomic
+THH(ℤ)-modules.</p>
+</blockquote>
+<p>Spoken aloud, verbatim: "TC of R can be defined as just extensions from the unit object into
+THH of R." (This is the Nikolaus–Scholze formulation; Lurie names them in the March 2025
+recording, not at the ICM.) TC was introduced by <strong>Bökstedt, Hsiang and Madsen</strong> around 1990,
+and — the fine print he flags and I will hold to — <strong>throughout, "TC" means the p-adically
+completed version, for one fixed prime p.</strong> For the K-theory of ℤ/4, the interesting prime is
+p = 2.</p>
+<h3>3.8 p-completion and étale descent, in one paragraph each</h3>
+<p>Two operations get applied over and over, always as a pair. Both are simplifications, and both
+throw information away on purpose.</p>
+<p><strong>p-completion.</strong> Fix a prime p and remember only p-power torsion information — formally, take
+the limit of the reductions mod p^n. You already own the analogy: ℤ_p is to ℤ as ℝ is to ℚ, a
+completion in a different metric. The cost is stated by Lurie as a genuine defect: <strong>TC(R)
+depends only on the p-adic completion of R</strong>, so it cannot see anything about R away from p.
+K-theory has no such blindness.</p>
+<p><strong>Étale descent.</strong> A local-to-global principle: compute the invariant of a small ring from the
+invariant of covers of it, glued. It is exactly a sheaf condition — the same shape as
+reconstructing a function on a manifold from its values on a good cover, with the étale
+topology in place of the ordinary one. Lurie's gloss: "it satisfies what's called étale descent,
+which lets you compute the invariant for small rings in terms of the invariant for enlargements
+of those rings." Again a defect <em>and</em> the source of the computability: K-theory does not satisfy
+it, TC does, and that is a large part of why TC is tractable.</p>
+<hr />
+<h2>4. The talk, rebuilt</h2>
+<p>His order, with the mathematics restored where I could restore it and marked where I could not.</p>
+<h3>4.1 Story one: from complex K-theory down to differential forms</h3>
+<p>He builds a chain of four objects, and the shape of that chain is the whole point.</p>
+<p><strong>Step 1: complex K-theory KU</strong> (§3.2, §3.3). A generalized cohomology theory on topological
+spaces. Useful enough to turn a thirty-year problem into eight pages.</p>
+<p><strong>Step 2: its algebro-geometric avatar, algebraic K-theory.</strong> K₀(R) by group completion
+(§3.2), extended by <strong>Quillen in the 1970s</strong> to higher K-groups K_n(R). Lurie lists three
+constituencies who want these groups, and they are genuinely unrelated to each other:</p>
+<ul>
+<li><strong>Algebraic geometry</strong> — Grothendieck's original motivation, generalizations of
+  Riemann–Roch.</li>
+<li><strong>Number theory</strong> — "the K-groups of number fields are conjecturally related to special
+  values of L-functions."</li>
+<li><strong>Geometric topology</strong> — "if you're interested in questions related to the surgery
+  classification of manifolds, you often run into obstructions that live in certain K-theory
+  groups."</li>
+</ul>
+<p><strong>And the problem: they are almost impossible to compute.</strong> His example is deliberately
+humiliating in its simplicity — <em>the algebraic K-theory of ℤ/4 is still not completely known.</em>
+Not a variety, not a scheme, not a number field. The integers mod four.</p>
+<p>He then says that very recently we know much more: in degrees greater than zero the K-groups of
+ℤ/4 are finite abelian groups <strong>and we now know how big they are</strong>.</p>
+<blockquote>
+<p><em>[Attribution restored, and the talk does not name the authors. This is Antieau, Krause and
+Nikolaus, "On the K-theory of ℤ/p^n", <a href="https://arxiv.org/abs/2405.04329">arXiv:2405.04329</a>,
+which gives an explicit prismatic-cohomology description of the K-groups of 𝒪_K/I and an
+algorithm that computes them — ℤ/4 included. Their methods are exactly the ones this talk is
+about, which is presumably why he raised the example.]</em></p>
+</blockquote>
+<p>He splits the difficulty honestly: these are finite groups, so they split into an odd part and a
+2-torsion part; <strong>the odd part has been understood since Quillen in the 1970s</strong>, and it is the
+p-adic part that is hard.</p>
+<p><strong>Step 3: the surrogate, TC</strong> (§3.7, §2.2). Trace map K(R) → TC(R). Two virtues: a good
+approximation, and computable. And then the certificate. The three ways TC is <em>not</em> K-theory:</p>
+<ol>
+<li>It is p-adically complete by fiat.</li>
+<li>Consequently TC(R) depends only on the p-adic completion of R — a property K-theory does
+   not have.</li>
+<li>It satisfies étale descent, a stronger local-to-global principle than K-theory has.</li>
+</ol>
+<p>And the theorem that makes those three exhaustive, which he attributes to <strong>Clausen, Mathew and
+Morrow</strong>:</p>
+<blockquote>
+<p>"There's a recent result of Clausen and Mathew and Morrow that says if you stick to p-complete
+rings then this trace map, it exhibits topological cyclic homology as what you get from
+K-theory by forcing it to have the properties on the previous slide — to force it to be
+p-adically complete and to satisfy this strong local-to-global principle."</p>
+</blockquote>
+<p><em>(I quote his phrasing rather than sharpening it. The precise statements in the Clausen–Mathew–
+Morrow literature carry hypotheses that the captions do not carry, and I am not going to
+manufacture them. What is safe, and is what he uses: on p-complete rings the difference between
+K and TC is exactly those three properties and nothing more.)</em></p>
+<p><strong>Step 4: under the hood, THH</strong> (§3.7). TC(R) = Ext(unit, THH(R)) in cyclotomic THH(ℤ)-modules;
+THH is one spectral sequence from differential forms; and — the property that motivates its
+existence —</p>
+<blockquote>
+<p><strong>THH satisfies the Künneth formula, in the naive sense, in cyclotomic spectra:</strong>
+THH(R ⊗<em THH_k_="THH(k)">k S) ≅ THH(R) ⊗</em> THH(S).</p>
+</blockquote>
+<p>Contrast, in his own words, with what fails: complex K-theory "essentially satisfies a Künneth
+formula" and this is "a very valuable thing if you want to actually compute with it"; algebraic
+K-theory "has no obvious Künneth formula"; and TC does not either. THH does. <strong>The Künneth is
+recovered by backing up one step in the pipeline</strong> — exactly §2.1.</p>
+<blockquote>
+<p><em>[Gap: the correction term in the K-theory Künneth formula. He says that when KU(X) is
+torsion-free the map KU(X) ⊗_{KU(pt)} KU(Y) → KU(X × Y) is an isomorphism, and "if it's not
+torsion-free, there's some slight correction". The correction is a Tor term and was, if
+anywhere, on the slide. </em><em>Impact: low.</em><em> Nothing downstream uses it; only the existence of a
+Künneth formula is used.]</em></p>
+</blockquote>
+<h3>4.2 Story two: from ordinary cohomology down to prismatic F-gauges</h3>
+<p>Now the same four steps, for the other most basic cohomology theory, and the parallel is exact.</p>
+<p><strong>Step 1: ordinary cohomology.</strong></p>
+<p><strong>Step 2: its avatar in algebraic geometry, motivic cohomology.</strong> He introduces it through the
+spectral sequence that relates it to K-theory. In topology there is the <strong>Atiyah–Hirzebruch
+spectral sequence</strong>: take the ordinary cohomology of X, tensor with the K-theory of a point,
+and that is the first page of a spectral sequence converging to KU(X) — "that's not what
+K-theory is. If that was what K-theory is, there would be no point in having K-theory. But it's
+a good first approximation."</p>
+<blockquote>
+<p><em>[Reconstructed from standard literature: the E₂ page is E₂^{s,t} = H^s(X; KU^t(pt)),
+converging to KU^{s+t}(X). He states the shape in words; the indices were on the slide.
+Verified by: any algebraic topology text; the statement is standard. </em><em>Impact: low.</em><em>]</em></p>
+</blockquote>
+<p>The algebro-geometric counterpart, which he dates to <strong>around 2000</strong> and attributes to
+<strong>Levine and to Friedlander–Suslin</strong>: for the coordinate ring of a smooth algebraic variety,
+there is a spectral sequence computing algebraic K-theory from the <strong>motivic cohomology</strong> groups
+of the variety. He notes the case of a field was done earlier, and that the result has recently
+been extended to completely general situations.</p>
+<blockquote>
+<p><em>[Attribution as the speaker gave it. He does not name the earlier field case and I have not
+supplied a name for it. </em><em>Impact: low</em><em> — the attribution is not load-bearing; the parallel
+is.]</em></p>
+</blockquote>
+<p><strong>Step 3: the simplified version, syntomic cohomology.</strong> He immediately says motivic cohomology
+is not what he wants to talk about — he wants the analogue of the story for TC, not for K.</p>
+<blockquote>
+<p><strong>Bhatt–Morrow–Scholze</strong>, over the last decade: for a p-complete ring R there is a spectral
+sequence starting from the <strong>syntomic cohomology</strong> groups of Spec R and converging to
+<strong>TC(R)</strong>.</p>
+</blockquote>
+<p>Syntomic cohomology has a long history: <strong>Fontaine and Messing</strong> in the 1980s defined it in
+good cases with rational coefficients; Bhatt–Morrow–Scholze give an <em>integral</em> version in all
+weights. Note the direction of construction, because it is unusual and he flags it: they built
+syntomic cohomology <strong>using topological methods</strong> — they used topological cyclic homology to
+define it. The topology came first.</p>
+<blockquote>
+<p><em>[From the March 2025 recording, not the ICM talk — the cleanest one-line description of what
+syntomic cohomology is for: if p is invertible on a scheme you can talk about its p-adic étale
+cohomology with a Tate twist, and the Tate twist a priori only makes sense when p is
+invertible; syntomic cohomology is the extension of that invariant to all schemes, including
+those where p = 0. That sentence is not in the ICM talk and I flag it as a cross-check, not
+as something he said at the ICM.]</em></p>
+</blockquote>
+<p><strong>Bhatt and Scholze</strong> then reinterpreted it through <strong>prismatic cohomology</strong>, and here Lurie
+gives a one-line slogan:</p>
+<blockquote>
+<p>"This syntomic cohomology, you can think of it as the part of prismatic cohomology where the
+Frobenius acts by the identity."</p>
+</blockquote>
+<p><em>(Take that as the heuristic he offers it as. He does not state the precise form, and the
+precise form has a Nygaard-completion in it. </em><em>Impact: low</em><em> — nothing below depends on the
+precise form.)</em></p>
+<p><strong>Step 4: the coefficient category, prismatic F-gauges.</strong> Black box number two, declined
+exactly as cyclotomic spectra were, with exactly the same two survivals: tensor category,
+triangulated category. And then the same formula shape:</p>
+<blockquote>
+<p><strong>Syntomic cohomology groups = Ext( unit object, or a twist of it, ℤ_prism^X )</strong>
+in the category of prismatic F-gauges,</p>
+</blockquote>
+<p>where ℤ_prism^X is the coefficient object attached to the p-adic formal scheme X — its
+"cohomological motive". And then the reason for the whole construction, which is again Künneth,
+stated by him in as many words:</p>
+<blockquote>
+<p>"You might ask what is the point of having a formula like this? And the way that I think about
+it, the point of having a formula like this is so that you can think about the Künneth
+formula."</p>
+</blockquote>
+<p>Motivic cohomology has no obvious Künneth. Syntomic cohomology has no obvious Künneth. <strong>But the
+motives do:</strong></p>
+<blockquote>
+<p><strong>ℤ_prism^{X × Y} ≅ ℤ_prism^X ⊗ ℤ_prism^Y</strong> (under a mild assumption).</p>
+</blockquote>
+<p>And therefore there <em>is</em> a Künneth formula for syntomic cohomology — stated in the language of
+F-gauges. "That's the price that you pay for being able to write down a Künneth formula."</p>
+<blockquote>
+<p><em>[</em><em>Gap, and this is the most consequential one in the talk.</em><em> He says: "There is a formula
+written here that tells you what the syntomic cohomology of a product X × Y looks like." The
+formula was on the slide. The captions carry nothing — no indices, no twists, no Tor or Ext
+correction terms. What survives is: the motives tensor, and therefore a Künneth formula for
+syntomic cohomology exists and is expressible only in F-gauge language. </em><em>Impact: moderate.</em><em>
+The </em>shape<em> is what the argument uses, and the shape is intact; but this is the single
+concrete payoff he offers for introducing F-gauges at all, and I cannot show it to you.]</em></p>
+</blockquote>
+<h3>4.3 The chart — the centre of the lecture</h3>
+<p>He now lays the two stories side by side, and this table is the object the rest of the hour
+manipulates.</p>
+<p><strong>Reconstructed as a table; the layout is mine, every cell is stated aloud in the talk.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>K-theory column</strong></th>
+<th><strong>ordinary-cohomology column</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Classical topology</strong></td>
+<td>complex K-theory, <strong>KU</strong></td>
+<td>ordinary cohomology, <strong>Hℤ</strong></td>
+</tr>
+<tr>
+<td><strong>Avatar in algebraic geometry</strong></td>
+<td>algebraic K-theory</td>
+<td>motivic cohomology</td>
+</tr>
+<tr>
+<td><strong>Simplified</strong> (p-complete + étale descent)</td>
+<td><strong>TC</strong></td>
+<td><strong>syntomic cohomology</strong></td>
+</tr>
+<tr>
+<td><strong>Expressed as Ext in a category</strong></td>
+<td>cyclotomic modules over THH(ℤ)</td>
+<td>prismatic F-gauges</td>
+</tr>
+<tr>
+<td><strong>Coefficient object attached to X</strong></td>
+<td><strong>THH(X)</strong></td>
+<td><strong>ℤ_prism^X</strong></td>
+</tr>
+<tr>
+<td><strong>Künneth holds at the level of</strong></td>
+<td>THH</td>
+<td>the motives ℤ_prism^X</td>
+</tr>
+</tbody>
+</table></div>
+<p>Read the rows, then read the columns, then read his conjecture:</p>
+<blockquote>
+<p>"The conjecture that I want to make in some vague form is that actually we could extend this
+chart to the right as far as we wanted. There are many, many stories like this, and I could
+tell you as many as you had the patience to listen to."</p>
+</blockquote>
+<p><strong>That is the thesis of the lecture in one sentence.</strong> Two columns are not a coincidence. There
+should be infinitely many, and there should be a single object that contains them all.</p>
+<p>He then says the thing that makes it a talk and not a list: rather than telling you a third
+story, he jumps to <strong>the universal one</strong>.</p>
+<h3>4.4 The classical model: what SH does, restated as a specification</h3>
+<p>Before proposing the new object he restates the old one as a list of demands, which is the
+cleanest structural move in the hour. From §3.4: SH is a tensor category with unit S; it is
+triangulated; every space X gives S[X]; every object E gives a cohomology theory
+E^n(X) = Ext^n(S[X], E); and by Brown representability <em>every</em> generalized cohomology theory
+arises this way, essentially uniquely. Hℤ and KU are two of its objects.</p>
+<p>That is now a <strong>specification</strong>, not a description. And the conjecture is: build the same thing
+for p-adic geometry.</p>
+<h3>4.5 The conjecture: SH_prism</h3>
+<blockquote>
+<p><strong>Conjecture (vague form).</strong> There is a category <strong>SH_prism</strong>, the <em>prismatic stable homotopy
+category</em>, playing the role in p-adic geometry that SH plays in topology.</p>
+</blockquote>
+<p>The demands, in his order:</p>
+<p><strong>(a)</strong> It is a tensor category, with a unit object <strong>S_prism</strong> — "the prismatic version of the
+sphere spectrum".</p>
+<p><strong>(b)</strong> Every p-adic formal scheme X has an associated object <strong>S_prism^X ∈ SH_prism</strong>, "some
+kind of cohomological motive of X". Note the variance: it is <em>contravariant</em> in X — the dual of
+the suspension spectrum, cohomology rather than homology.</p>
+<p><strong>(c)</strong> Every object E ∈ SH_prism defines a cohomology theory on p-adic formal schemes:</p>
+<blockquote>
+<p><strong>E-cohomology of X := Ext( unit object, E ⊗ S_prism^X )</strong>.</p>
+</blockquote>
+<p><strong>(d)</strong> The motives satisfy a <strong>Künneth formula</strong>: S_prism^{X × Y} ≅ S_prism^X ⊗ S_prism^Y,
+under mild assumptions.</p>
+<p>Then the compatibility demands that tie it to §4.3:</p>
+<p><strong>(e)</strong> TC and syntomic cohomology are representable in SH_prism, by algebras he names
+<strong>KU_prism</strong> and <strong>Hℤ_prism</strong> — "the avatars of the Eilenberg–MacLane spectrum and the K-theory
+spectrum in this prismatic stable homotopy category".</p>
+<p><strong>(f)</strong> And — he insists on this, it is not just about groups — the representability holds <strong>at
+the level of the coefficient categories</strong>:</p>
+<blockquote>
+<p><strong>modules over KU_prism  =  cyclotomic THH(ℤ)-modules</strong>
+<strong>modules over Hℤ_prism  =  prismatic F-gauges</strong></p>
+</blockquote>
+<p><strong>(g)</strong> Compatibly with the coefficient objects:</p>
+<blockquote>
+<p><strong>S_prism^X ⊗ KU_prism  ↔  THH(X)</strong>
+<strong>S_prism^X ⊗ Hℤ_prism  ↔  ℤ_prism^X</strong></p>
+</blockquote>
+<p>And then the sentence quoted at the top of this tutorial: the two well-defined black boxes
+should fit inside one larger black box that he does not have a definition of.</p>
+<p><strong>What (f) is really saying, and why it is the strong form.</strong> Recall from §3.4 that in classical
+topology, modules over Hℤ are chain complexes. So demand (f) reads: <em>prismatic F-gauges are to
+SH_prism as chain complexes are to SH.</em> He states the analogy in exactly that form later:</p>
+<blockquote>
+<p>"The prismatic stable homotopy category should be to the classical stable homotopy category
+as prismatic F-gauges are to the theory of chain complexes."</p>
+</blockquote>
+<h3>4.6 Minimal versus maximal: why he wants a big answer</h3>
+<p>He immediately concedes that the demands so far are badly underdetermined. There is a <strong>minimal
+solution</strong>, where the only cohomology theories living in SH_prism are the ones already known —
+the ones related to K-theory and syntomic cohomology. That solution is not interesting; it is
+the two-column chart with a box drawn around it.</p>
+<blockquote>
+<p>"Instead I would like to propose that we search for a <strong>maximal</strong> solution."</p>
+</blockquote>
+<p>Maximal meaning: SH_prism should be as rich as SH is. Concretely, the map from the unit S_prism
+to Hℤ_prism should behave the same way as the classical map S → Hℤ. And that is where the
+specification becomes testable, because there is a classical theorem describing exactly how
+that map behaves.</p>
+<h3>4.7 The acceptance test: a prismatic Quillen theorem</h3>
+<p>The question becomes: <strong>what distinguishes ordinary cohomology from all other cohomology
+theories?</strong></p>
+<p>One answer he gives and immediately discards: the cohomology of a point is concentrated in
+degree zero. True, but useless as a guide — it is a statement about the dimension axiom, and the
+p-adic world gives him no handle on it.</p>
+<p>The better answer is §3.5–§3.6: ordinary cohomology is complex-oriented, and its formal group
+law is the additive one. Equivalently, via Milnor and Quillen: <strong>kill the Milnor generators in
+MU and you get Hℤ.</strong></p>
+<p>Now transport that. MU is built out of smooth projective varieties over ℂ — Grassmannians —
+and that construction is available in algebraic geometry. So inside any candidate SH_prism you
+can build:</p>
+<blockquote>
+<p><strong>MU_prism</strong> — assembled from the motives of Grassmannians, "in a way that parallels what you
+do in classical topology". It is the universal example of a p-adic cohomology theory with
+Chern classes for <strong>algebraic</strong> vector bundles.</p>
+<p><em>[Gap, by the speaker's own choice: "let me not get into details… the details of the
+construction are not the thing to focus on." No construction is given in either recording.
+</em><em>Impact: low</em><em> — he tells you explicitly that the role, not the construction, is the point.]</em></p>
+</blockquote>
+<p>And then the test:</p>
+<blockquote>
+<p><strong>The acceptance test.</strong> Take MU_prism and mod out by the same sequence of Milnor generators.
+<strong>Do you get Hℤ_prism?</strong></p>
+<p>"This I want to say is <em>the test that you have to pass to prove the conjecture</em>. You have to
+give a definition of a prismatic stable homotopy category with the properties that I've laid
+out so far. And this calculation has to work out."</p>
+</blockquote>
+<p>Why this test and not another: because the demand was that S_prism → Hℤ_prism behave like
+S → Hℤ, and classically that map factors in two steps — make it complex-oriented, then kill the
+generators. Reproducing the factorization is reproducing the behaviour.</p>
+<p><strong>The precedent, and the reason it is a conjecture and not a theorem.</strong> In motivic homotopy
+theory, a statement of this form is known — the <strong>Hopkins–Morel theorem</strong> — but for p-complete
+coefficients over fields of characteristic <strong>different from p</strong>. Lurie is explicit that this is
+not his setting: "I'm talking about things that are more like p-adic coefficients, but the
+geometric objects are varieties in characteristic p."</p>
+<p>And then the cleanest conditional in the talk:</p>
+<blockquote>
+<p>"It may be that somebody knows how to prove the Hopkins–Morel theorem in that context. And if
+they do, then everything in this talk that I'm describing as a conjecture can instead be
+described as a construction."</p>
+</blockquote>
+<p><em>(In the March 2025 recording he adds that Marc Hoyois extended Hopkins–Morel to the mod-p
+statement when p is invertible in the ground field, and adds a hedge: "I don't know if you
+should believe the Hopkins–Morel theorem in equal characteristic p, but I believe that even if
+it's false these theories still exist — you just can't necessarily construct them that way."
+That hedge is </em><em>not</em><em> in the ICM talk.)</em></p>
+<h3>4.8 Why you would want it — payoff one: Steenrod operations</h3>
+<p>Two payoffs. The first is concrete and already cashed.</p>
+<p>Quillen's theorem, he says, is essentially a repackaging of an earlier calculation: <strong>Cartan and
+Serre's determination of the Steenrod algebra.</strong> The Steenrod algebra is Ext from Hℤ to itself
+in SH — the operations that ordinary mod-p cohomology carries beyond being a graded ring. And it
+matters structurally, not decoratively:</p>
+<blockquote>
+<p>"Those Eilenberg–MacLane objects are like the basic building blocks, and so knowing how those
+basic building blocks map to each other is something that really controls the structure of the
+entire category."</p>
+</blockquote>
+<p>So a prismatic Quillen theorem would deliver <strong>Steenrod operations on syntomic cohomology and on
+prismatic cohomology.</strong> He stresses this is not an arbitrary test: "I took the important
+structural theorem in algebraic topology and asked for something that would really control the
+whole structure of SH_prism if it were true." <em>(That last sentence is from the March 2025
+recording; the ICM version is the "basic building blocks" quote above.)</em></p>
+<p><strong>And this part is already done, in a case.</strong> Recent work of <strong>Shachar Carmeli and Tony Feng</strong>
+constructs these operations for algebraic varieties over fields of characteristic p, and applies
+them:</p>
+<blockquote>
+<p><strong>Carmeli–Feng, "Prismatic Steenrod operations and arithmetic duality on Brauer groups",
+<a href="https://arxiv.org/abs/2507.13471">arXiv:2507.13471</a>, submitted 17 July 2025.</strong> From the
+abstract: they construct and analyse "the syntomic Steenrod algebra, which acts on the mod p
+syntomic cohomology (also known as étale-motivic cohomology) of algebraic varieties in
+characteristic p", and apply it "to resolve the last open cases of a 1966 Conjecture of Tate,
+concerning the existence of a symplectic form on the Brauer groups of smooth proper surfaces
+over finite fields." They also organise their theories "into a category of <em>spectral prismatic
+F-gauges</em>, generalizing the prismatic F-gauges of Drinfeld and Bhatt–Lurie."</p>
+</blockquote>
+<p>The ICM talk says they proved Tate's conjecture "in, well, in the trickiest cases let's say";
+the March 2025 talk says "some concrete statements about Brauer groups of surfaces in
+characteristic two". The paper's own abstract says "the last open cases". <strong>I quote the paper.</strong></p>
+<p>Lurie's verdict: "I think of this as kind of a proof of concept."</p>
+<h3>4.9 Why you would want it — payoff two: a bigger catalogue</h3>
+<p>The second payoff is the one he says was his actual motivation, and it is the §3.5 punchline
+transported.</p>
+<p>The heuristic content of Quillen's theorem: <em>there are roughly as many cohomology theories in
+topology as there are formal groups.</em> A prismatic Quillen theorem would say: <strong>there are roughly
+as many cohomology theories in p-adic geometry as there are formal groups.</strong></p>
+<p>And therefore there is a translation rule:</p>
+<blockquote>
+<p><strong>A huge number of cohomology theories on ordinary topological spaces would have counterparts
+in p-adic geometry. Namely: look for a p-adic cohomology theory where the formal groups match
+up.</strong></p>
+</blockquote>
+<p>And each of those counterparts would come with its own version of the story in §4.1 — its own
+TC, its own THH, its own spectral sequence down to something differential-form-like. The whole
+K-theory column would be one instance of an infinite family.</p>
+<p>Then the closing motivation, already quoted, and worth reading once more slowly:</p>
+<blockquote>
+<p>"This was my original motivation. There are some invariants that I can compute without being
+able to define, and I'm searching for the definition of what it is that I am computing."</p>
+</blockquote>
+<h3>4.10 The evidence: a relative version that actually exists</h3>
+<p>He closes with one piece of hard evidence, and it is a genuine construction rather than a
+conjecture.</p>
+<p>Let R be a p-complete ring and X = Spec R. Define the <strong>relative</strong> prismatic stable homotopy
+category:</p>
+<blockquote>
+<p><strong>SH_prism(R) := modules over S_prism^X inside SH_prism.</strong></p>
+</blockquote>
+<p>Since S_prism^X is an algebra, its modules form a category, and just as SH_prism was supposed to
+be a world of cohomology theories on <em>all</em> p-adic formal schemes, this relative version is a
+world of cohomology theories on p-adic formal schemes <strong>living over X</strong>.</p>
+<p>He is careful: "I'm calling this a definition, but that's maybe a little bit misleading. It's a
+provisional definition. It's a conditional definition, because I don't have a definition of this
+prismatic stable homotopy category."</p>
+<p><strong>But the relative version can be defined outright in a real case:</strong></p>
+<blockquote>
+<p>If R is any p-complete ring carrying a <strong>compatible system of p^n-th roots of unity</strong>, then
+there is a definition you can write down that has all of the expected properties.</p>
+<p>"And in particular, that is true when R is a ring in which p is equal to zero. For example,
+ℤ mod p. And in that case, the construction was essentially written down in this work of
+Carmeli and Feng that I mentioned earlier."</p>
+<p><em>[Reconstruction, flagged: why does p = 0 in R make the roots-of-unity condition automatic? In
+characteristic p, x^{p^n} = 1 forces (x−1)^{p^n} = 0, so the only p-power root of unity is 1
+and the constant system 1, 1, 1, … is a compatible system. The condition is satisfied
+trivially. </em><em>Neither recording says this</em><em>; it is my explanation of his aside. The March 2025
+recording gives the mechanism differently and more precisely: Carmeli–Feng construct the theory
+over the cyclotomic base ring ℤ_p[ζ_{p^∞}]^∧, and 𝔽_p is an algebra over that base, so the
+theory descends to 𝔽_p. That is the route, and it is his own account of it — from the 2025
+talk, not the ICM one.]</em></p>
+<p><em>[Gap: no definition is given, in either recording, of the relative construction. "There's a
+definition that you can write down that has all of the expected properties" is the entire
+content. </em><em>Impact: moderate.</em><em> This is the only unconditional mathematics in the last third of
+the talk and it is a pointer, not a statement. To recover it you must go to arXiv:2507.13471.]</em></p>
+</blockquote>
+<p>And that is where he stops. "All right, I think that is all I have to say."</p>
+<hr />
+<h2>5. The one conjecture, stated precisely</h2>
+<p>Strip the narrative and one specification carries the lecture. Here it is with every symbol
+defined, exactly at the depth the sources support and no deeper.</p>
+<p><strong>Setup.</strong> p is a fixed prime. All rings are p-complete; all invariants are p-adically
+completed. SH is the classical stable homotopy category, with unit S, Eilenberg–MacLane object
+Hℤ, complex K-theory object KU, and complex cobordism object MU. THH is topological Hochschild
+homology; TC is topological cyclic homology, p-completed. "Syntomic cohomology" is the
+Bhatt–Morrow–Scholze integral theory. "Prismatic F-gauges" and "cyclotomic spectra" are treated
+as black boxes with two properties each: tensor category, and triangulated so Ext exists.</p>
+<p><strong>The conjecture.</strong> There exists a symmetric monoidal, triangulated category <strong>SH_prism</strong> with
+unit <strong>S_prism</strong>, together with, for each p-adic formal scheme X, an object <strong>S_prism^X</strong>
+contravariant in X, such that:</p>
+<ol>
+<li><strong>(Cohomology theories)</strong> Each E ∈ SH_prism defines a cohomology theory on p-adic formal
+   schemes by X ↦ Ext(S_prism, E ⊗ S_prism^X).</li>
+<li><strong>(Künneth)</strong> S_prism^{X × Y} ≅ S_prism^X ⊗ S_prism^Y, under mild hypotheses.</li>
+<li><strong>(K-theory)</strong> There is an algebra KU_prism ∈ SH_prism representing TC, whose module
+   category is the category of cyclotomic THH(ℤ)-modules, with
+   S_prism^X ⊗ KU_prism ↔ THH(X).</li>
+<li><strong>(Ordinary cohomology)</strong> There is an algebra Hℤ_prism ∈ SH_prism representing syntomic
+   cohomology, whose module category is the category of prismatic F-gauges, with
+   S_prism^X ⊗ Hℤ_prism ↔ ℤ_prism^X.</li>
+<li><strong>(Maximality)</strong> SH_prism is to SH as prismatic F-gauges are to chain complexes. Precisely
+   enough to test: the unit map S_prism → Hℤ_prism factors as S_prism → MU_prism → Hℤ_prism,
+   where MU_prism is built from the motives of Grassmannians, and the second map is the quotient
+   by Milnor's generators.</li>
+</ol>
+<p><strong>The acceptance test.</strong> Any proposed definition of SH_prism must satisfy 1–4, and must satisfy
+the <strong>prismatic Quillen theorem</strong>: MU_prism modulo Milnor's generators is Hℤ_prism.</p>
+<p><strong>Status, honestly.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SH_prism in general</td>
+<td><strong>No definition exists.</strong> This is the point of the talk.</td>
+</tr>
+<tr>
+<td>Prismatic Quillen theorem</td>
+<td><strong>Open</strong>, and it is the stated acceptance test.</td>
+</tr>
+<tr>
+<td>Analogue in motivic homotopy theory</td>
+<td><strong>Known</strong> (Hopkins–Morel) for p-complete coefficients over fields of characteristic ≠ p — <strong>not</strong> this setting.</td>
+</tr>
+<tr>
+<td>Steenrod operations on syntomic cohomology in char p</td>
+<td><strong>Constructed</strong> (Carmeli–Feng, arXiv:2507.13471), with a proof of Tate's 1966 conjecture as application.</td>
+</tr>
+<tr>
+<td>Relative SH_prism(R), R with p-power roots of unity</td>
+<td><strong>Constructible</strong>, "with all of the expected properties"; over 𝔽_p, essentially in Carmeli–Feng. No definition given in either recording.</td>
+</tr>
+<tr>
+<td>The conditional</td>
+<td>If someone proves Hopkins–Morel in this context, <strong>the conjectures become constructions.</strong> His words.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>What I will not pretend to.</strong> I have not told you what a cyclotomic spectrum is, what a
+prismatic F-gauge is, or what the higher-categorical substrate of SH_prism would be. Neither did
+he — he declined the first two explicitly from the podium and never raised the third. Each
+appears here as a fact with its motivation and its consequence, and no more. That is deliberate,
+and it follows the same decision made in <code>summaries/langlands-function-fields-gaitsgory.md</code> for
+AGCat and 2-IndCoh. These objects are not learnable from a lecture, and a smooth account of them
+would be a fabrication you could not detect.</p>
+<hr />
+<h2>6. What the chart is really claiming</h2>
+<p>One short section, because it is the piece most likely to be misread.</p>
+<p>Look again at §4.3. It is tempting to read it as an analogy table — "K-theory is like ordinary
+cohomology in the following ways". It is not. <strong>Rows two through five are constructions, not
+resemblances</strong>: each row is produced from the row above it by a specific operation, and the
+operations are the same in both columns.</p>
+<ul>
+<li>Row 1 → Row 2: find the algebro-geometric analogue of a topological cohomology theory.</li>
+<li>Row 2 → Row 3: <strong>p-complete, and force étale descent.</strong> Same operation in both columns, and by
+  Clausen–Mathew–Morrow it is the <em>only</em> difference in the left column.</li>
+<li>Row 3 → Row 4: express the invariant as Ext out of a unit object in a suitable coefficient
+  category. Same shape in both columns.</li>
+<li>Row 4 → Row 5: the coefficient object attached to X — the "motive".</li>
+<li>Row 5: <strong>Künneth holds here, and only here.</strong></li>
+</ul>
+<p>So the conjecture "extend the chart to the right" is not "find more analogies". It is: <em>the
+operations that build the chart do not depend on which cohomology theory you start with, so
+starting from any object of SH you should get a column, and all the columns should live in one
+category.</em> That is exactly the relation between SH and the classical catalogue — Brown
+representability says the catalogue <em>is</em> the objects of one category — and it is why he goes
+straight to SH_prism instead of telling a third story.</p>
+<p>And read row 5 once more against §2.1. <strong>Every column ends at the place where factorization
+holds.</strong> The last row is not the bottom of the construction; it is the level at which the
+pipeline is still compositional. Everything above it has already destroyed the Künneth formula by
+taking Ext too early.</p>
+<hr />
+<h2>7. Do this by hand</h2>
+<p>Two exercises. The first takes twenty minutes and shows you what K-theory is by breaking it. The
+second is straight calculus and delivers the punchline of the whole lecture.</p>
+<h3>7.1 Group completion, and why "finitely generated" is not a technicality</h3>
+<p>Recall §3.2: K-theory is the group completion of a monoid of objects under ⊕.</p>
+<p><strong>(a)</strong> Let M be the monoid of isomorphism classes of finite-dimensional complex vector spaces
+under ⊕. Identify M, and compute its group completion. Confirm it is ℤ.</p>
+<p><strong>(b)</strong> State the group completion abstractly: for a commutative monoid (M, +), the group
+completion is the set of formal differences a − b with a, b ∈ M, modulo the relation a − b ~
+a′ − b′ iff a + b′ + c = a′ + b + c for some c ∈ M. Explain in one sentence why that extra "+ c"
+is needed — i.e. give a monoid where dropping it fails to give an equivalence relation, or at
+least fails to give the right answer.</p>
+<p><strong>(c)</strong> Now break it. Let M∞ be the monoid of isomorphism classes of complex vector spaces of
+<strong>countable</strong> dimension (so ℂ^0, ℂ^1, ℂ^2, …, and ℂ^∞), under ⊕. Compute the group completion of
+M∞. Then say, in one sentence, why algebraic K-theory is defined using <strong>finitely generated</strong>
+projective modules and not arbitrary ones.</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> A finite-dimensional complex vector space is determined up to isomorphism by its
+dimension, and ⊕ adds dimensions. So M ≅ (ℕ, +). The group completion of (ℕ, +) is (ℤ, +): the
+formal difference a − b is the integer a − b, and every integer arises. This is literally the
+construction of the integers from the natural numbers, and it is literally the definition of
+KU⁰(pt) = ℤ. Lurie gives exactly this example.</p>
+<p><strong>(b)</strong> Without the "+ c", the putative relation need not be transitive in a monoid that is not
+cancellative. Concretely, take M = {0, 1, 2, …} ∪ {∞} with ∞ + n = ∞. Then 1 + ∞ = 0 + ∞, so we
+would want 1 − 0 ~ 0 − 0, i.e. 1 ~ 0 — which is only visible if you are allowed to add a witness
+c = ∞. The correct definition builds that witness in. (In (ℕ,+), which is cancellative, you never
+need c, which is why the construction of ℤ looks simpler than it is.)</p>
+<p><strong>(c)</strong> In M∞ we have ℂ^∞ ⊕ ℂ^n ≅ ℂ^∞ for every n, including n = ∞. So in the group completion,
+[ℂ^∞] + [ℂ^n] = [ℂ^∞], and subtracting [ℂ^∞] — which is now legal, since we have inverses —
+gives <strong>[ℂ^n] = 0 for every n</strong>. The group completion is the <strong>trivial group</strong>. Everything
+collapses.</p>
+<p>This is the <strong>Eilenberg swindle</strong>, and it is the whole reason for the finiteness hypothesis.
+An object that absorbs copies of itself has no interesting K-theory: allow infinite direct sums
+and the invariant is zero. So "finitely generated projective" is not bureaucratic hedging — drop
+it and the subject evaporates. Equivalently: K-theory measures how objects fail to be
+cancellable, and infinite objects cancel everything.</p>
+<p><em>(The swindle is standard and is not in either recording; the exercise is mine.)</em></p>
+</details>
+<h3>7.2 Formal group laws, the logarithm, and where the denominators go</h3>
+<p>This is the exercise. It is calculus, it takes forty minutes, and at the end you will understand
+why this talk is about p-adic geometry.</p>
+<p>Recall §3.5: a <strong>one-dimensional formal group law</strong> over a commutative ring A is a power series
+F(x, y) ∈ A[[x, y]] with</p>
+<blockquote>
+<p>F(x, 0) = x,  F(x, y) = F(y, x),  F(F(x, y), z) = F(x, F(y, z)).</p>
+</blockquote>
+<p><strong>(a)</strong> Check that <strong>F_a(x, y) = x + y</strong> (the <em>additive</em> law) satisfies all three.</p>
+<p><strong>(b)</strong> Check that <strong>F_m(x, y) = x + y + βxy</strong> (the <em>multiplicative</em> law), for β any element of
+A, satisfies all three. Hint for associativity: factor 1 + βF_m(x,y).</p>
+<p><strong>(c)</strong> An <strong>isomorphism</strong> from F to G is a power series f(x) = x + (higher terms) with
+f(F(x,y)) = G(f(x), f(y)). Suppose A is a ℚ-algebra. Define</p>
+<blockquote>
+<p><strong>log_F(x) := ∫₀^x dt / F_y(t, 0)</strong>,  where F_y(x, y) := ∂F/∂y.</p>
+</blockquote>
+<p>Compute log_F for F_a and for F_m. Then verify directly, for F_m, that
+log(F_m(x,y)) = log(x) + log(y) — i.e. that log_{F_m} is an isomorphism from the multiplicative
+law to the additive one.</p>
+<p><strong>(d)</strong> Look at the coefficients of log_{F_m}. Which primes appear in the denominators? Conclude:
+over ℚ, how many one-dimensional formal group laws are there up to isomorphism? Over ℤ_p, is the
+same argument available?</p>
+<p><strong>(e)</strong> Now connect it back. Ordinary cohomology has the additive formal group law and complex
+K-theory has the multiplicative one (§3.5). Using (d), say in one sentence why Lurie's slogan
+"there are roughly as many cohomology theories as there are formal groups" would be <em>empty</em> if
+the coefficients were rational — and therefore why the whole talk lives p-adically.</p>
+<details>
+<summary>Solutions</summary>
+<p><strong>(a)</strong> F_a(x,0) = x ✓. Symmetry ✓. F_a(F_a(x,y),z) = (x+y)+z = x+(y+z) = F_a(x,F_a(y,z)) ✓.</p>
+<p><strong>(b)</strong> F_m(x,0) = x + 0 + 0 = x ✓. Symmetry is clear ✓. For associativity, note
+1 + βF_m(x,y) = 1 + βx + βy + β²xy = (1 + βx)(1 + βy). So if we write u = 1 + βx, v = 1 + βy,
+w = 1 + βz, then 1 + βF_m(a,b) is multiplicative in exactly this sense, and
+1 + βF_m(F_m(x,y), z) = (1 + βF_m(x,y))·w = uvw, which is symmetric in u, v, w. Hence
+F_m(F_m(x,y),z) = F_m(x,F_m(y,z)) ✓. <strong>That factorization is the reason it is called
+multiplicative</strong>: it is the group law on 1 + βx, i.e. on the multiplicative group, written in
+the coordinate x = (u − 1)/β.</p>
+<p><strong>(c)</strong> For F_a: F_y(x,y) = 1, so F_y(t,0) = 1 and <strong>log_{F_a}(x) = x</strong>. The additive law is
+already additive.</p>
+<p>For F_m: F_m = x + y + βxy, so ∂F/∂y = 1 + βx, hence F_y(t,0) = 1 + βt and</p>
+<blockquote>
+<p><strong>log_{F_m}(x) = ∫₀^x dt/(1 + βt) = (1/β)·ln(1 + βx) = Σ_{n ≥ 1} (−1)^{n−1} β^{n−1} x^n / n</strong>
+= x − βx²/2 + β²x³/3 − β³x⁴/4 + …</p>
+</blockquote>
+<p>Verification: log(F_m(x,y)) = (1/β)ln(1 + β(x + y + βxy)) = (1/β)ln((1 + βx)(1 + βy))
+= (1/β)ln(1 + βx) + (1/β)ln(1 + βy) = log(x) + log(y). ✓ Exactly the additive law in the new
+coordinate.</p>
+<p><strong>(d)</strong> The coefficient of x^n is ±β^{n−1}/n. <strong>Every prime appears in the denominators</strong>, since
+every integer n appears. So the argument needs 1/n for all n — i.e. it needs A to be a
+ℚ-algebra. Over a ℚ-algebra, this construction generalizes: <strong>every</strong> one-dimensional formal
+group law is isomorphic to the additive one via its logarithm, so <strong>there is exactly one, up to
+isomorphism</strong>.</p>
+<p>Over ℤ_p the argument is unavailable: 1/p does not exist, so the term ±β^{p−1}x^p/p is not
+integral, and the logarithm is not a power series over ℤ_p. And indeed the classification over
+ℤ_p (or over 𝔽_p) is rich — formal group laws are graded by an invariant called <em>height</em>, with
+the additive law at height ∞ and the multiplicative law at height 1, and they are genuinely
+non-isomorphic.</p>
+<p><strong>(e)</strong> If the coefficients were rational, there would be <strong>one</strong> formal group law up to
+isomorphism, so "as many cohomology theories as formal groups" would say there is essentially
+one cohomology theory — which is false and useless. <strong>The entire catalogue lives in the failure
+of the logarithm to be integral.</strong> Since that failure is prime-by-prime, the catalogue is
+inherently p-adic. That is why Lurie's conjecture is about <em>p-adic</em> geometry and about
+<em>p</em>-complete invariants, and it is why the Hopkins–Morel precedent (characteristic ≠ p) does not
+settle his case: it is proved exactly where the p-adic difficulty is not.</p>
+<p><strong>Marked as reconstructed:</strong> this exercise is mine end to end. The talk states that MU carries
+the universal formal group law and gives the additive law for ordinary cohomology; it never
+writes down the multiplicative law, the logarithm, or the denominators. What would verify it: the
+identity 1 + βF_m(x,y) = (1+βx)(1+βy), checkable in one line, plus term-by-term integration of
+1/(1+βt).</p>
+</details>
+<hr />
+<h2>8. What is actually useful to you</h2>
+<p>The mathematics will not transfer. Four things will, and two of them are unusually sharp because
+Lurie states them as method rather than leaving them implicit.</p>
+<h3>8.1 A surrogate is worth having only when you can say exactly what it loses</h3>
+<p>This is the strongest transferable idea in the talk (§2.2, §4.1).</p>
+<p>K-theory is intractable. TC is tractable. Everyone builds surrogates like that. What makes this
+one a research programme rather than a heuristic is the <strong>certificate</strong>: Clausen–Mathew–Morrow
+identify <em>exactly three</em> properties by which TC differs from K, and prove that on p-complete
+rings those three are the whole difference — TC is K-theory with those three properties forced
+on it, and nothing else changed.</p>
+<p>Note the form of the certificate. It is not an error bound. It is a <strong>universal property</strong>: TC
+is the closest object to K that satisfies the three constraints. You get an exact statement of
+what was traded away, so you know precisely when the surrogate is safe to use and when it is
+not — and the two known blind spots (it only sees the p-adic completion of R; it satisfies étale
+descent whether or not you wanted that) are <em>stated in advance</em>, not discovered by failure.</p>
+<p>For your work: this is the difference between "the cheap evaluator agrees with the expensive one
+on my test set" and "the cheap evaluator is the expensive one with these three specific
+invariances imposed, and here is the proof." The first tells you nothing about inputs you have
+not tried. The second tells you the full set of failure modes up front — they are exactly the
+distinctions the imposed invariances collapse. <strong>When you build a cheap stand-in for an expensive
+check, the deliverable is not the stand-in, it is the characterization of what it cannot see.</strong></p>
+<h3>8.2 When composition breaks, move the collapse later in the pipeline</h3>
+<p>§2.1, and it is the design principle behind every object he introduces.</p>
+<p>The pattern, three times over: the invariant you want is computed as <em>(build a coefficient
+object)</em> then <em>(take Ext out of the unit)</em>. The first step respects products. The second does
+not. So the composition law fails for the invariant, and it is unfixable <strong>at the level of the
+invariant</strong> — because the damage was already done by the time you looked.</p>
+<p>The fix is never a correction term. It is: <strong>stop working with the output, work with the
+intermediate object, and defer the collapsing step to the very end.</strong> THH exists because K-theory
+and TC lose Künneth and THH does not. Prismatic F-gauges exist because syntomic cohomology loses
+Künneth and the motives do not. Both objects are, in effect, "the last stage of the pipeline
+before compositionality dies".</p>
+<p>You compose for a living — skills, subagents, MCP servers, tool chains. The transferable
+question: <strong>at which stage of my pipeline does composability die, and am I doing that stage
+earlier than I need to?</strong> If your agents exchange rendered text when they could exchange the
+structured object the text was rendered from, you have taken the Ext early. Everything downstream
+then needs a special case, and the special cases are the corrections you are paying instead of
+just moving the render to the end.</p>
+<p>The cross-reference is not decorative: Gaitsgory's plenary spends its hour on the same failure
+with the same cure — see <code>summaries/langlands-function-fields-gaitsgory.md</code> §7.3, where one
+broken Künneth formula forces the reconstruction of an entire ambient 2-category. Two fields, two
+speakers, one lesson about compositionality laws.</p>
+<h3>8.3 Publish the specification and the acceptance test, before the implementation</h3>
+<p>This talk is a <strong>spec</strong>, delivered from a plenary podium, for an object that does not exist.</p>
+<p>Look at the structure of §4.5 to §4.7 with engineering eyes. He gives a list of required
+properties (1–4), a statement of the desired <em>richness</em> rather than mere correctness (5, the
+maximal-versus-minimal discussion — a minimal implementation would satisfy the interface and be
+worthless), and then <strong>one concrete acceptance test that any implementation must pass</strong>: the
+prismatic Quillen theorem. Not a vague "it should be useful". A specific calculation with a
+specific expected answer.</p>
+<p>And then the conditional that makes the whole thing falsifiable and hand-offable: <em>if someone
+proves Hopkins–Morel in this context, everything I have called a conjecture becomes a
+construction.</em> He has told the audience precisely which external result would convert his
+speculation into mathematics.</p>
+<p>That is spec-first development, and the parts worth stealing are the two that people usually
+skip: <strong>the anti-degenerate clause</strong> (state why the minimal implementation satisfying your
+interface would be useless, so nobody builds it), and <strong>the single acceptance test</strong> (one
+concrete case with a known expected answer, chosen because it controls the structure rather than
+because it is easy). For agent systems: an eval that a trivial implementation passes is not an
+eval, and "it should behave sensibly" is not a spec.</p>
+<h3>8.4 It is legitimate to compute with something you cannot define</h3>
+<p>The closing motivation — "there are some invariants that I can compute without being able to
+define, and I'm searching for the definition of what it is that I am computing" — is worth
+sitting with, because the instinct in engineering runs the other way.</p>
+<p>He has a working procedure that produces answers he trusts, and no account of what object the
+procedure is computing. He does not stop using the procedure. He treats the missing definition as
+the research problem and keeps computing in the meantime. And he does something more useful than
+waiting: he writes down what the object would have to satisfy, which is what makes the search
+finite.</p>
+<p>This is the healthy version of a pattern you will recognize from working with systems whose
+behaviour outruns their specification. The mistake is not using the thing you cannot fully
+characterize. The mistake is <strong>not writing down what you are assuming about it</strong> — because then
+when it fails you have no way to tell whether the assumption or the implementation broke. Lurie's
+list of demands is exactly that document.</p>
+<hr />
+<h2>9. Where to read next</h2>
+<p>Three, ordered. None is easy; the first is the only one that is really an on-ramp.</p>
+<ol>
+<li><strong>The March 2025 recording of this same lecture</strong> —
+   <a href="https://www.youtube.com/watch?v=1fSd7FxEA3w">youtube.com/watch?v=1fSd7FxEA3w</a>, Simons
+   Foundation, 49 minutes. Same title, same conjecture, same acceptance test, but for
+   specialists: it names Nikolaus–Scholze, lays out the Drinfeld/Bhatt syntomic stack ℤ_p^syn
+   and the specific loci on it that give de Rham, crystalline, Hodge–Tate, prismatic and
+   q-de Rham cohomology, and gives the parallel list of what those loci give when you use
+   KU_prism instead (TP, TC⁻, THH, periodic Hochschild homology). If the ICM talk left you
+   wanting the <em>contents</em> of the black boxes, this is where the extra half-inch is.</li>
+<li><strong>Bhargav Bhatt, <em>Prismatic F-gauges</em>, Princeton MAT 549, Fall 2022 lecture notes</strong> —
+   <a href="https://www.math.ias.edu/~bhatt/teaching/mat549f22/lectures.pdf">math.ias.edu/~bhatt/teaching/mat549f22/lectures.pdf</a>.
+   The standard written reference for the second black box, by the person who built much of it.
+   This is where "prismatic F-gauge" stops being a black box, at real cost in prerequisites.</li>
+<li><strong>Carmeli and Feng, <em>Prismatic Steenrod operations and arithmetic duality on Brauer groups</em></strong> —
+   <a href="https://arxiv.org/abs/2507.13471">arXiv:2507.13471</a>. The one place where the picture in this
+   talk is a construction rather than a conjecture: the syntomic Steenrod algebra, the category
+   of spectral prismatic F-gauges, and the resolution of Tate's 1966 conjecture. Read the
+   introduction; it is written to be read.</li>
+</ol>
+<p>For the K-theory computation he uses as his motivating example, and does not attribute:
+Antieau, Krause and Nikolaus, <em>On the K-theory of ℤ/p^n</em>,
+<a href="https://arxiv.org/abs/2405.04329">arXiv:2405.04329</a>.</p>
+<hr />
+<h2>10. Self-test</h2>
+<details>
+<summary>1. What is a generalized cohomology theory, and which single axiom is dropped?</summary>
+<p>A functor from spaces to graded abelian groups satisfying the Eilenberg–Steenrod package —
+homotopy invariance, long exact sequences, excision, Mayer–Vietoris, additivity — but <strong>not</strong> the
+<strong>dimension axiom</strong>, which requires the cohomology of a point to be concentrated in degree 0.
+Dropping it costs uniqueness and keeps computability, which is why there is a catalogue of
+theories rather than one. Complex K-theory is the basic example: KU^n(pt) = ℤ in every even
+degree (Bott periodicity), not just in degree 0.</p>
+</details>
+<details>
+<summary>2. Define K⁰ of a space and K₀ of a ring, in the same sentence.</summary>
+<p>Take a commutative monoid under direct sum — complex vector bundles on X in the topological
+case, finitely generated projective modules over R in the algebraic case — and <strong>group-complete
+it</strong>, formally adjoining inverses exactly as ℕ becomes ℤ. Both give ℤ on the simplest example (a
+point; a field). Atiyah–Hirzebruch ~1960 for the topological version; Grothendieck earlier for
+the algebraic one, which the topological definition was imitating.</p>
+</details>
+<details>
+<summary>3. What is TC, why does anyone use it, and what does it cost?</summary>
+<p>TC is topological cyclic homology, p-adically completed, introduced by Bökstedt–Hsiang–Madsen
+around 1990. There is a trace map K(R) → TC(R); TC is far more computable than K. The cost is
+three specific defects: it is p-complete by fiat, it therefore depends only on the p-adic
+completion of R, and it satisfies étale descent — none of which K-theory does. The point is that
+by a theorem of Clausen–Mathew–Morrow those three are the <strong>entire</strong> difference on p-complete
+rings: TC is K-theory with exactly those properties forced on it.</p>
+</details>
+<details>
+<summary>4. Why does THH exist, if TC is the thing you wanted?</summary>
+<p>Two reasons, both stated in the talk. <strong>Computability:</strong> THH is one spectral sequence away from
+algebraic differential forms — for R smooth over 𝔽_p, reducing THH(R) modulo Bökstedt's degree-2
+generator in THH(𝔽_p) gives Hochschild homology, which by HKR is the algebraic differential
+forms of R. <strong>Künneth:</strong> THH(R ⊗<em THH_k_="THH(k)">k S) ≅ THH(R) ⊗</em> THH(S), naively, in cyclotomic
+spectra — whereas neither algebraic K-theory nor TC has any obvious Künneth formula. TC is
+recovered as Ext(unit, THH(R)) in cyclotomic THH(ℤ)-modules, and it is precisely that last Ext
+step that destroys the Künneth property.</p>
+</details>
+<details>
+<summary>5. State the two-column chart from memory, and say what the conjecture does to it.</summary>
+<p>Left column: complex K-theory KU → algebraic K-theory → TC → Ext in cyclotomic THH(ℤ)-modules,
+with coefficient object THH(X). Right column: ordinary cohomology Hℤ → motivic cohomology →
+syntomic cohomology → Ext in prismatic F-gauges, with coefficient object ℤ_prism^X. Row 2 to row
+3 is "p-complete and force étale descent" in both columns. Künneth holds only in the last row.
+The conjecture is that the chart extends <strong>rightward</strong> indefinitely, and that all the columns are
+objects of one category, SH_prism — exactly as Brown representability makes the classical
+catalogue the objects of SH.</p>
+</details>
+<details>
+<summary>6. What must SH_prism satisfy, and what is the single test?</summary>
+<p>A tensor category with unit S_prism; a contravariant motive S_prism^X for each p-adic formal
+scheme X; cohomology theories as Ext(unit, E ⊗ S_prism^X); a Künneth formula for the motives; an
+algebra KU_prism whose modules are cyclotomic THH(ℤ)-modules and which represents TC; an algebra
+Hℤ_prism whose modules are prismatic F-gauges and which represents syntomic cohomology; and
+maximality — SH_prism should be to SH as F-gauges are to chain complexes. <strong>The test:</strong> build
+MU_prism from the motives of Grassmannians, mod out by Milnor's generators, and check you get
+Hℤ_prism. That is the prismatic Quillen theorem, and Lurie says it is the test any proof must
+pass.</p>
+</details>
+<details>
+<summary>7. What is a formal group law, and what is Quillen's theorem?</summary>
+<p>A power series F(x,y) with F(x,0) = x, commutative and associative — the group law of a
+one-dimensional group written as a formal power series, the way BCH writes Lie group
+multiplication near the identity. It arises from a complex-oriented cohomology theory as the
+rule for c₁(L₁ ⊗ L₂) in terms of c₁(L₁) and c₁(L₂); ordinary cohomology gives the additive law.
+Milnor computed MU^<em>(pt) to be a polynomial ring on generators in each even degree; Quillen
+identified that ring as the one classifying formal group laws, so MU carries the </em><em>universal</em>*
+formal group law. Heuristic consequence: there are roughly as many cohomology theories as there
+are formal groups.</p>
+</details>
+<details>
+<summary>8. Why must this story be p-adic rather than rational?</summary>
+<p>Because over a ℚ-algebra every one-dimensional formal group law is isomorphic to the additive
+one, via the logarithm log_F(x) = ∫₀^x dt/F_y(t,0) — whose coefficients have every integer in the
+denominator. One formal group law up to isomorphism means, by Quillen's heuristic, essentially
+one cohomology theory: the slogan is empty. Kill the denominators — work over ℤ_p or 𝔽_p — and a
+rich classification appears. The catalogue lives entirely in the non-integrality of the
+logarithm, which is a prime-by-prime phenomenon. It is also why the Hopkins–Morel precedent does
+not settle Lurie's case: it holds for characteristic ≠ p, which is exactly where the difficulty
+is not.</p>
+</details>
+<details>
+<summary>9. What would a prismatic Quillen theorem buy, concretely?</summary>
+<p>Two things. <strong>Steenrod operations</strong> on syntomic and prismatic cohomology, because classically
+Quillen's theorem is a repackaging of Cartan–Serre's determination of the Steenrod algebra — Ext
+from Hℤ to itself — which controls the structure of the whole stable homotopy category. Already
+cashed in a case: Carmeli–Feng constructed these operations in characteristic p and used them to
+resolve the last open cases of Tate's 1966 conjecture on symplectic forms on Brauer groups of
+smooth proper surfaces over finite fields. And <strong>a bigger catalogue</strong>: a translation rule saying
+that any cohomology theory on topological spaces should have a p-adic counterpart with the same
+formal group, each carrying its own TC/THH story.</p>
+</details>
+<details>
+<summary>10. What actually exists today, as opposed to being conjectured?</summary>
+<p>SH_prism itself: no definition. The prismatic Quillen theorem: open. What does exist: the two
+black boxes at either end (cyclotomic spectra, prismatic F-gauges) are well-defined; the
+Steenrod operations in characteristic p are constructed (Carmeli–Feng); and a <strong>relative</strong>
+version SH_prism(R) — modules over S_prism^X — can be defined outright whenever R is a p-complete
+ring carrying a compatible system of p^n-th roots of unity, which includes every ring in which
+p = 0, e.g. ℤ/p. Over 𝔽_p that construction is essentially in Carmeli–Feng. Neither recording
+gives the definition.</p>
+</details>
+<hr />
+<h2>11. Note on the tutorial process</h2>
+<p><strong>Difficulty against reputation: partially matched, and the split is the finding.</strong> Lurie's
+reputation predicts maximal abstraction, and the <em>objects</em> deliver exactly that — a 5. What the
+transcript settled, and no amount of reputation would have predicted, is that <strong>he black-boxes
+the hard objects himself, out loud, twice</strong>, and builds the entire hour on two consequences
+("tensor category", "triangulated category, so Ext makes sense") that a physicist can hold. The
+narrative as delivered is a 3. This is the reverse of the Gaitsgory case, where the speaker
+warned the room they would not follow; here the speaker engineered the talk so they would.</p>
+<p><strong>Rule 1 in action: the brief's anchor was wrong and the transcript said so.</strong> The brief proposed
+∞-categories and homotopy — "equal" replaced by "connected by a path" — as the honest anchor.
+<strong>The talk never says "∞-category", "higher category", or "homotopy" in that sense, once.</strong> Using
+it would have been decorating this talk with someone else's picture, exactly as the Gaitsgory
+tutorial declined to import Kapustin–Witten. I named it as present-and-untaught in one paragraph
+(§2.4) and anchored instead to what the talk actually repeats: <strong>Künneth as the factorization of
+independent subsystems</strong> (§2.1), the <strong>certified surrogate</strong> (§2.2), and <strong>spectral sequences as
+perturbation series</strong> (§2.3). The first of these is not a loose analogy — it is the stated design
+criterion for both THH and prismatic F-gauges, in his own words, twice.</p>
+<p><strong>How much mathematics survived the captions: most of the shapes, none of the indices.</strong> This is
+the important correction to the brief, which predicted a board talk whose formulas the captions
+would destroy entirely. It was a <strong>slide</strong> talk, and more to the point <strong>a talk of spoken
+formulas</strong>: Lurie states TC(R) = Ext(unit, THH(R)), THH(𝔽_p) = a polynomial ring on one generator
+of degree 2, the THH Künneth formula, ℤ_prism^{X×Y} = ℤ_prism^X ⊗ ℤ_prism^Y, MU^<em>(pt) = a
+polynomial ring on one generator in each even degree, and "mod out MU by those generators and you
+get Hℤ" — </em><em>all in words, all caught by the captions.</em>* What died on the slides is the indexing:
+degrees, weights, Tate twists, spectral-sequence pages, and the one displayed Künneth formula for
+syntomic cohomology.</p>
+<p><strong>Sources, precisely.</strong> No proceedings paper. No companion on <code>math.ias.edu/~lurie/</code> — I checked;
+the site lists nothing on prismatic anything and nothing after December 2019 apart from the three
+books, and the talk covers none of them. He names no survey of his own from the podium. I used a
+second recording of the same lecture (Simons Foundation, 14 March 2025, video <code>1fSd7FxEA3w</code>,
+same title, more technical) as a labelled cross-check, and marked every place I drew on it. I
+restored theorem statements from the primary literature for the individual results, cited inline.
+The 2025 recording's transcript was cleaned into my scratchpad, not into <code>transcripts/</code>.</p>
+<p><strong>Name corrections.</strong> Auto-captions destroyed almost every proper noun in this talk. Verified
+against a primary source unless marked.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Caption</th>
+<th>Correct</th>
+<th>Verified against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"prismatics tabletop theory" (announcer)</td>
+<td><strong>Prismatic Stable Homotopy Theory</strong></td>
+<td>title of the March 2025 talk, same speaker, same content — <em>reconstructed</em></td>
+</tr>
+<tr>
+<td>Jacob Lurri</td>
+<td><strong>Jacob Lurie</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>piotic / piatic / ptic / "the pi world"</td>
+<td><strong>p-adic</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Atia and Hibrook</td>
+<td><strong>Atiyah and Hirzebruch</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>bot periodicity</td>
+<td><strong>Bott periodicity</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>hop / hop vibrations</td>
+<td><strong>Hopf / Hopf fibrations</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Adams and AIA</td>
+<td><strong>Adams and Atiyah</strong>, <em>K-theory and the Hopf invariant</em></td>
+<td>Quart. J. Math. <strong>17</strong> (1966), 31–38 — an 8-page paper, matching the talk exactly</td>
+</tr>
+<tr>
+<td>Erdos</td>
+<td><strong>Erdős</strong> ("proof from the Book")</td>
+<td>—</td>
+</tr>
+<tr>
+<td>growth / "here's a growth"</td>
+<td><strong>Grothendieck</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Quillin</td>
+<td><strong>Quillen</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Boxet, Siang and Madson</td>
+<td><strong>Bökstedt, Hsiang and Madsen</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Claus and Matthew and Morrow</td>
+<td><strong>Clausen, Mathew and Morrow</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Hawkshield / Hawk shield hommology</td>
+<td><strong>Hochschild homology</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>cyclomic / cycllatomic / cycatomic spectra</td>
+<td><strong>cyclotomic spectra</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>kunith / kunth / kuni / "kun formula"</td>
+<td><strong>Künneth</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>tall descent</td>
+<td><strong>étale descent</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>coalology / komology / chology / coaly</td>
+<td><strong>cohomology</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>aelion</td>
+<td><strong>abelian</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>aphine</td>
+<td><strong>affine</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>"aier here" / "AIA here's a brook"</td>
+<td><strong>Atiyah–Hirzebruch</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Lavine and Freedellander Suslan</td>
+<td><strong>Levine and Friedlander–Suslin</strong></td>
+<td>speaker's own attribution; not independently checked</td>
+</tr>
+<tr>
+<td>bot mororrow and schulza / Bot Marorrow and Schultz</td>
+<td><strong>Bhatt, Morrow and Scholze</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Bot and Schultz</td>
+<td><strong>Bhatt and Scholze</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>syntoic coalology / syntoicology</td>
+<td><strong>syntomic cohomology</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>eenberg mlan / island mlan / Ember Mlan / Einberg MLAN</td>
+<td><strong>Eilenberg–MacLane</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>bortism / complex bortism</td>
+<td><strong>cobordism / complex cobordism</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Milner</td>
+<td><strong>Milnor</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>churn classes</td>
+<td><strong>Chern classes</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>brasmanians</td>
+<td><strong>Grassmannians</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Hopkins morel / Hopkins morale</td>
+<td><strong>Hopkins–Morel</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Carton and S's</td>
+<td><strong>Cartan and Serre</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Steinrod / steamrod algebra</td>
+<td><strong>Steenrod algebra</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Carmeli and Fang / Carmel and Fang / Carmelian Fang</strong></td>
+<td><strong>Shachar Carmeli and Tony Feng</strong></td>
+<td><a href="https://arxiv.org/abs/2507.13471">arXiv:2507.13471</a>, submitted 17 July 2025 — title and author list confirmed</td>
+</tr>
+<tr>
+<td>Brower groups</td>
+<td><strong>Brauer groups</strong></td>
+<td>Carmeli–Feng abstract</td>
+</tr>
+<tr>
+<td>fbanius</td>
+<td><strong>Frobenius</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>From the <strong>March 2025 recording only</strong>, listed separately because none of it is in the ICM talk
+and I have used almost none of it in the body: "Nickola schet" → <strong>Nikolaus–Scholze</strong>; "bargo's
+notation" → <strong>Bhargav</strong> [Bhatt]; "niggard filtration" → <strong>Nygaard filtration</strong>; "lzard ring" →
+<strong>Lazard ring</strong>; "atoms operations" → <strong>Adams operations</strong>; "Mark HOA" → <strong>Marc Hoyois</strong>; "Ben
+antiu and Noah riggenbach" → <strong>Ben Antieau and Noah Riggenbach</strong>; "Dustin and aille" →
+<strong>Dustin Clausen and Akhil Mathew</strong>; "tasos Molinos… Von toin… Rob, I forgot his first name,
+Marco" → <strong>Moulinos, Toën and Robalo</strong> <em>(reconstructed; plausible from the surnames and the
+subject matter, not verified)</em>.</p>
+<p><strong>Substantive corrections beyond spelling.</strong> Two, neither dangerous:</p>
+<ul>
+<li>The captions render the K-theory of the ring "<strong>Z mod 4</strong>" correctly but never name the people
+  who computed it. That computation is Antieau–Krause–Nikolaus, arXiv:2405.04329, and it uses
+  prismatic cohomology — which is why he chose the example. <strong>The talk does not name them</strong>; the
+  attribution in §4.1 is mine.</li>
+<li>The talk describes Carmeli–Feng as proving Tate's conjecture "in the trickiest cases", and the
+  2025 recording says "characteristic two". The paper's own abstract says "the last open cases"
+  and describes the general result as symplectic structure on higher Brauer groups of
+  even-dimensional varieties over finite fields. <strong>I quote the paper</strong>, and flag the difference
+  in §4.8.</li>
+</ul>
+<p><strong>Reconstructed, and what would verify each:</strong></p>
+<ul>
+<li><strong>The lecture title.</strong> From the announcer's mangled "prismatics tabletop theory" plus the
+  identical title of the March 2025 recording. The ICM programme would settle it.</li>
+<li><strong>The two-column chart (§4.3).</strong> Layout mine; every cell is stated aloud in the talk.</li>
+<li><strong>The Atiyah–Hirzebruch E₂ page</strong> (§4.2). Standard; he gives it in words only.</li>
+<li><strong>The multiplicative formal group law and the logarithm</strong> (§3.5, Exercise 7.2). Entirely mine;
+  the talk gives only the additive law. Verify via 1 + βF(x,y) = (1+βx)(1+βy).</li>
+<li><strong>The Eilenberg swindle</strong> (Exercise 7.1c). Standard, not in either recording.</li>
+<li><strong>Why p = 0 makes the roots-of-unity condition automatic</strong> (§4.10). Mine. Verify: in
+  characteristic p, x^{p^n} = 1 ⟹ (x−1)^{p^n} = 0 ⟹ x = 1.</li>
+</ul>
+<p><strong>Could not verify:</strong></p>
+<ul>
+<li>The pre-2000 "case of a field" for the motivic-to-K-theory spectral sequence. He says it was
+  "originally written down, I think, in the case of a field earlier on" and names nobody. I did
+  not supply a name.</li>
+<li>The identifications of "arpon and Allen" and "Sasha and Vadim" in the March 2025 recording.
+  Omitted entirely rather than guessed.</li>
+<li>"Bachman Berkland and Jew" and their "stable homotopy category of 𝔽₁" (March 2025 only).
+  Omitted.</li>
+</ul>
+<p><strong>Gaps marked in place, with impact:</strong></p>
+<ol>
+<li><strong>The Künneth formula for syntomic cohomology (§4.2). Moderate — the worst in the talk.</strong> He
+   says "there is a formula written here"; the slide is gone. The shape survives (motives tensor,
+   therefore a Künneth formula exists in F-gauge language) and the shape is what the argument
+   uses, but this is the single concrete payoff he offers for introducing F-gauges and I cannot
+   show it.</li>
+<li><strong>The relative construction of SH_prism(R) (§4.10). Moderate.</strong> "There's a definition that you
+   can write down that has all of the expected properties" is the entire content, in both
+   recordings. It is the only unconditional mathematics in the last third of the talk. Recoverable
+   only from arXiv:2507.13471.</li>
+<li><strong>The construction of MU_prism from Grassmannians (§4.7). Low</strong>, and declined by the speaker
+   himself: "the details of the construction are not the thing to focus on."</li>
+<li><strong>The Tor correction in the K-theory Künneth formula (§4.1). Low.</strong> Nothing downstream uses it.</li>
+<li><strong>The precise Clausen–Mathew–Morrow statement (§4.1). Low as used.</strong> I quote his phrasing
+   rather than sharpening it, because the published statements carry hypotheses the captions do
+   not carry and I will not manufacture them.</li>
+</ol>
+<p><strong>Three things I declined to teach</strong>, following the precedent set in
+<code>summaries/langlands-function-fields-gaitsgory.md</code>: <strong>cyclotomic spectra</strong>, <strong>prismatic
+F-gauges</strong>, and the <strong>higher-categorical substrate</strong> of everything here. The first two he declined
+himself, from the podium, and I have given each exactly what he gave: two structural facts, the
+motivation, and the consequence. The third he never raised, and §2.4 explains why I did not
+import it. All three are genuinely not learnable in a tutorial, and a smooth account would be the
+kind of fabrication you could not detect from the inside.</p>
+<p><strong>Length note.</strong> Shorter than the Gaitsgory tutorial and comparable to the others. There is less
+to rebuild here because the talk has one conjecture, one acceptance test and one piece of
+evidence, rather than seven numbered conjectures across two settings. I did not truncate the
+walkthrough; there was less walkthrough.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Verification — lens-of-circles-oh</title>
+<style>:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#e2e8f0;
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 6rem}
+a{color:#2dd4bf;text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.25;color:#f1f5f9;margin:2.2rem 0 .8rem}
+h1{font-size:1.9rem;margin-top:0}
+h2{font-size:1.4rem;border-bottom:1px solid #334155;padding-bottom:.35rem}
+h3{font-size:1.15rem;color:#fb923c}
+h4{font-size:1rem;color:#cbd5e1}
+p,li{color:#cbd5e1}
+strong{color:#f1f5f9}
+hr{border:0;border-top:1px solid #334155;margin:2.5rem 0}
+blockquote{margin:1.4rem 0;padding:.6rem 1.1rem;border-left:3px solid #fb923c;
+  background:#1e293b;border-radius:0 6px 6px 0;color:#cbd5e1}
+blockquote p:last-child{margin-bottom:0}
+code{background:#1e293b;border:1px solid #334155;border-radius:4px;
+  padding:.1rem .35rem;font-size:.9em;color:#fb923c}
+pre{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:1rem;overflow-x:auto}
+pre code{background:none;border:0;padding:0;color:#cbd5e1}
+.tablewrap{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem}
+th,td{border:1px solid #334155;padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:#1e293b;color:#f1f5f9}
+details{background:#1e293b;border:1px solid #334155;border-radius:8px;
+  padding:.7rem 1rem;margin:1.2rem 0}
+details[open]{padding-bottom:1rem}
+summary{cursor:pointer;color:#2dd4bf;font-weight:600}
+.meta{background:#1e293b;border:1px solid #334155;border-radius:10px;
+  padding:1rem 1.2rem;margin:0 0 2rem;font-size:.92rem;color:#94a3b8}
+.meta div{margin:.2rem 0}
+.meta b{color:#cbd5e1;font-weight:600}
+.home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:1.2rem 0}
+</style>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mathtools', '[tex]/textmacros']},
+  tex: {
+    packages: {'[+]': ['mathtools', 'textmacros']},
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: false,
+    macros: {fint: '{\\rlap{\\,\\text{--}}\\!\\int}'}
+  },
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
+  integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrap">
+<a class="home" href="../index.html">← all documents</a>
+<h1>Verification — lens-of-circles-oh</h1>
+<p>verdict: MINOR
+uncited_external_claims: 1
+unsupported_speaker_claims: 0
+title_check: PASS — front-matter title is the paper's title verbatim; the transcript opening announces exactly this subject.
+gap_honesty: PASS — the single <code>[Gap: ...]</code> (line 888) sits where both sources really are silent.</p>
+<h2>Method</h2>
+<ul>
+<li>Transcript <code>transcripts/clMjIGdpVMw_transcript.txt</code> is one unbroken line (~44 KB), so no line
+  numbers into it exist; I quote strings.</li>
+<li>Companion paper fetched from <code>ar5iv.labs.arxiv.org/html/2510.10771</code> (85 <code>ltx_bibitem</code>s,
+  24 numbered figures) plus the arXiv abs page for version history.</li>
+<li><strong>A naive HTML-to-text pass silently eats every formula containing a raw <code>&lt;</code></strong> (<code>0&lt;c_P&lt;inf</code>,
+  <code>Gamma&lt;PSL_2(C)</code>, <code>delta&lt;=1</code>). I hit this on my first extraction and re-extracted. The
+  tutorial's own process note reports the identical bug — independently reproduced, so that
+  note is truthful.</li>
+<li><strong>Coverage.</strong> §§1, 2, 4.1–4.3, 4.6–4.11, 6.1–6.2, 10 were checked line by line. §§3, 4.4–4.5,
+  5, 8 were swept by blockquote (<code>grep '^&gt; '</code>) with each displayed theorem, constant and quote
+  checked against the paper or transcript. §7 (transferable advice) and §9 (self-test) are the
+  writer's own synthesis over already-verified material and were read but not source-checked.
+  Additional items verified in the sweep, all PASS: the "snow falling" quote is verbatim
+  transcript; paper Thm 3.3 ([53] McMullen–Mohammadi–Oh, Duke 171 (2022), and [3] Benoist–Oh)
+  matches both displayed bullets including "at most countably many closed Γ-orbits in 𝒞*_Λ";
+  "ρ is algebraic if and only if Γ_ρ is not Zariski dense in PSL₂(ℂ)×PSL₂(ℂ)" is verbatim;
+  reading-list refs [56] Notices 69 (2022) 1888–1897, [57] the Margulis-impact survey, and
+  Kontorovich–Oh JAMS 24 (2011) 603–648 (paper [37]) all resolve exactly, page ranges included.</li>
+</ul>
+<h2>The load-bearing claim at :1675 — TESTED, HOLDS</h2>
+<p>Line 1675 says "everything displayed above is from arXiv:2510.10771v2" while "the track carries
+narration only". If false, the tutorial's displayed mathematics would be unsourced. I checked
+every displayed constant, theorem, exponent and dimension I could locate. All are in the paper,
+most verbatim:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tutorial</th>
+<th>Paper</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>δ_A ≈ 1.3057, same for every Apollonian packing</td>
+<td>§2.1, "estimated as δ_A ≈ 1.3057"</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>δ := limsup (1/T) log #{x ∈ Γ(o) : d(x,o) ≤ T}</td>
+<td>§2.2</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>δ = dim(Λ) (paper Thm 2.6)</td>
+<td>Thm 2.6 ([77],[80] Sullivan)</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>lattices ⇔ Λ = Ĉ; all others dim &lt; 2</td>
+<td>§2.2</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>geom. finite = <strong>unit</strong> neighbourhood of core has finite volume</td>
+<td>§2.2</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Counting: #{C ∈ P : rad ≥ 1/t, C ∩ R ≠ ∅} ~ c_P ω_Γ(R) t^δ</td>
+<td>Thm 2.7 [59]</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>"If δ ≤ 1, we further assume ... no infinite bouquet of tangent circles"</td>
+<td>Thm 2.7</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>dω_Γ(z) = (|z|²+1)^δ dν_o(z) on Λ ∩ ℂ</td>
+<td>§2.4</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>0 &lt; c_P = sk_Γ(P)/|m^BMS| &lt; ∞</td>
+<td>§2.4.2</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>PS measure: unique Γ-conformal probability measure of dimension δ</td>
+<td>Thm 2.8 ([62] Patterson, [77] Sullivan)</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Thm 3.1 = [52] McMullen–Mohammadi–Oh (convex cocompact) + [3] Benoist–Oh (all geom. finite)</td>
+<td>Thm 3.1</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Thick recurrence: ∃κ&gt;1, ∀s&gt;0, ∃t with s&lt;|t|&lt;κs, xu_t ∈ R</td>
+<td>§3.6</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Higher-dim: C meets Λ in <strong>more than</strong> two points</td>
+<td>§4</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Cross-ratio rigidity (real cross-ratio preserved ⇒ Möbius)</td>
+<td>Cor 5.6 [34]</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Thm 5.7: either Λ_f = Λ or <strong>ν(Λ_f) = 0</strong>, ν the geometric (Patterson–Sullivan) measure</td>
+<td>Thm 5.7 [36]</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Torus: vol(T) = ∏ rad(C_i); Thms 6.2/6.3 with c_f, δ_f, ω_f</td>
+<td>§6.1–6.2 [20]</td>
+<td>equivalent (paper writes vol &gt; 1/t as t→∞; tutorial reparametrizes to vol ≥ t as t→0, the same statement and the form the paper's own §1 question uses)</td>
+</tr>
+<tr>
+<td>Weighted exponent limsup (1/t) log #{γ ∈ Γ : Σ κ_i d(ρ_i(γ)o,o) ≤ t}</td>
+<td>§6.3 [20]</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>"the exponent depends on how the tori are ordered in the counting problem"</td>
+<td>§6.3</td>
+<td>verbatim quote</td>
+</tr>
+<tr>
+<td>Thm 8.1 local mixing: lim t^{(n−1)/2} e^{t(σ−ψ_ρ)(u)}⟨a_tu·f₁,f₂⟩ = κ_u m^BR_u(f₁) m^BR*_u(f₂)</td>
+<td>Thm 8.1 [19] Edwards–Lee–Oh, Geom. Topol. 27 (2023)</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Thm 8.4: A_u-action ergodic <strong>iff n ≤ 3</strong>; an ingredient in Thm 5.7</td>
+<td>Thm 8.4 [8] Burger–Landesberg–Lee–Oh, JMD 19 (2023) 301–330</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>"drunken person" / "drunken bird" quote</td>
+<td>§8.4, titled "Drunken bird vs. drunken person"</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>prime curvature ≪ T^{δ_A}/log T</td>
+<td>§7.5</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Thm 7.2 = Roblin [69], Winter [83]</td>
+<td>Thm 7.2</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>Cannon → <strong>Bers–Sullivan–Thurston</strong> density conjecture, Namazi–Souto and Ohshika</td>
+<td>§2.2</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>"alpha's first theory" → <strong>Ahlfors–Bers theorem</strong></td>
+<td>§3.2</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>symmetry group "generated by the inversions with respect to the four dual circles"</td>
+<td>§2.1</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>arXiv comment "To appear in the Proceedings of the ICM 2026, 33 pages, 24 figures"</td>
+<td>abs page</td>
+<td>verbatim</td>
+</tr>
+<tr>
+<td>v1 12 Oct 2025, v2 13 Apr 2026</td>
+<td>abs page submission history</td>
+<td>verbatim</td>
+</tr>
+</tbody>
+</table></div>
+<p>Bibliography entries checked one by one: [3] Y. Benoist and H. Oh, ETDS 42 (2022); [7] Burger,
+Duke 61 (1990); [8] Burger–Landesberg–Lee–Oh; [19] and [20] S. Edwards, M. Lee, H. Oh (the
+latter J. Reine Angew. Math. 807 (2024) 151–185); [34]–[36] D. M. Kim and H. Oh; [43] M. Lee
+and H. Oh; [50]–[53] C. (T.) McMullen; [55] Mostow; [59] Oh and Shah, Invent. Math. 187 (2012)
+1–35; [60] Oh and Shah, JAMS 26; [65] Prasad; [69] Roblin; [83] Winter; [84] and [85] Y. Zhang.
+Every citation in the tutorial resolves. <strong>No fabricated citation found.</strong></p>
+<h2>Speaker-attributed claims — all supported</h2>
+<p>Every garble the tutorial says it heard is in the transcript, verbatim, in the context claimed:
+"If Bou-Rabee", "the Kurt McMullen and Amir Mohammadi", "my student Minji Li", "Minju Lee",
+"with Semyon and Minju Lee", "my student Dong Yeol Kim", "the Young-Chan Zeng", "Burger-Rubel
+measure", "alpha's first theory", "Mostow's Prasad", "Klein Young group", "Hong Wang's
+notation", "Laurie Sullivan in her kitchen. Uh Sullivan's eldest daughter", "this was the
+Cannon Conjecture, which is now a theorem", "its parabolic measure is zero", "round Sierpinski
+gasket" (alongside a correct "round Sierpinski carpet", as the tutorial says).</p>
+<p>The talk side of all six talk-vs-paper differences is also present: no δ ≤ 1 caveat on the
+bouquet hypothesis; "which are contained in this fixed region"; "multiplied by
+Patterson-Sullivan measure of the region"; "geometrically finite if the convex core of the
+associated hyperbolic manifold has finite volume"; "we assume our circle intersect the limit
+set in at least two points"; "define its area to be the product of radius of C1 and radius of
+C2". The Apollonian conjecture as spoken is there too: "for any separating circle for the
+Apollonian gasket, the orbit is either closed or dense". The cusp-gap quote in §4.10 is in the
+transcript nearly word for word (the tutorial lightly normalizes "this gamma rule is a
+relatively Anosov" to "this Γ_ρ is relatively Anosov").
+<strong>unsupported_speaker_claims: 0.</strong></p>
+<p>Note on the transcript opening, quoted exactly: "my goal today is to explain how four natural
+questions about circle packings lead us to dynamics and rigidity in species species [garble for
+"spaces"] with lots of symmetries, but in infinite volume." That is the paper's subject.</p>
+<h2>Gap honesty</h2>
+<p>The sole <code>[Gap: ...]</code> at line 888 covers the avoidance theorem and inductive scheme. The
+transcript gives motivation only ("we need an avoidance theorem which says unless the orbit is
+already trapped in some intermediate closed orbit ..."; "with this avoidance theorem in hand,
+we then carry out very elaborate inductive scheme"), and the paper §3.6 likewise gives one
+"roughly speaking" paragraph. The gap is real and correctly placed. No silently filled gap
+found: the three self-flagged reconstructions (Poincaré-series-as-partition-function, the
+Descartes recursion, the radius/distance heuristic) are each marked in place with a
+verification pointer, and §2.4 is labelled "mine, and absent from the talk". <strong>PASS.</strong></p>
+<h2>Self-report audit</h2>
+<p>The §10 self-report is unusually honest and, on every checkable point except two, complete and
+correct. It correctly flags the paper as carrying all displayed mathematics; it correctly names
+Benoist for "If Bou-Rabee" and gives its reasoning; it correctly identifies the
+Cannon/Bers–Sullivan–Thurston, "parabolic"/Patterson–Sullivan and gasket/carpet substantive
+errors; its six-row talk-vs-paper table is right in both columns; "85-entry bibliography" and
+"24 figures" are exactly right; the v1/v2 dates are exactly right; and its process note about a
+<code>&lt;</code>-swallowing extraction bug is confirmed by my independently reproducing it. Two
+under-reports:</p>
+<ol>
+<li>
+<p><strong><code>summaries/lens-of-circles-oh.md:1676</code> — the snow metaphor is credited to the transcript
+   alone, but it is in the paper.</strong> The self-report lists "What the transcript supplied and the
+   paper did not: <strong>the snow metaphor</strong>, the traveller spending 0% of her time in compact sets,
+   ...". Paper §2.2 reads: "A useful picture is to imagine snow falling: the limit set is
+   precisely where the snow accumulates on the ground (see Figure 2.3). When Γ&lt;G is a lattice
+   ... the snow covers the entire ground." So the metaphor is in both sources. The same
+   sentence credits the traveller to the transcript; the paper also has a traveler (§4, "the
+   journey of a traveler through the hyperbolic world"; Figure 4.2, "Sightseeing of a horocycle
+   traveler in a hyperbolic manifold with Fuchsian ends"), though the specific "0% of her time
+   in compact sets" statistic is genuinely transcript-only. Impact: none on the mathematics; it
+   overstates how complementary the two sources are. Settled by: paper §2.2 and Figure 2.3.
+   Correctly transcript-only, and confirmed absent from the paper: the wild forest, the
+   sesame-oil-in-soy-sauce photograph, the 0% statistic.</p>
+</li>
+<li>
+<p><strong><code>summaries/lens-of-circles-oh.md:1687</code> — "Verified against the paper's text or its 85-entry
+   bibliography" over-claims for five given names.</strong> The bibliography carries initials only:
+   "Y. Benoist", "C. T. McMullen", "D. M. Kim", "S. Edwards", "Y. Zhang". The full forms the
+   table asserts — Yves, Curtis, Dongryul, Samuel, Yongquan — are not in the paper; they come
+   from outside knowledge. The surnames and the identifications <em>are</em> fully paper-verified, and
+   the expansions are correct as ordinary fact, so this is a sourcing-label problem, not a
+   fabrication. This is the one uncited external claim class in the file. Settled by: any author
+   page for the five. (The table already marks "Semyon"→Edwards as moderate confidence, which is
+   the right hedge and is honest; the transcript's own "Minju Lee" independently confirms that
+   row.)</p>
+</li>
+</ol>
+<p>Not an under-report but a wording inconsistency worth naming: <code>:1675</code> "Everything displayed
+above is from arXiv:2510.10771v2" is literally contradicted by the tutorial's own §6.1 displayed
+Descartes identity ("the formula is mine") and by the displayed transcript quotes in §4.7 and
+§4.10. The same §10 paragraph and the "Reconstructed" list resolve it correctly, so the reader
+is never misled — but the sentence is broader than the truth.</p>
+<h2>Findings</h2>
+<ol>
+<li><code>summaries/lens-of-circles-oh.md:1676</code> — snow metaphor credited to the transcript only; it is
+   in paper §2.2 verbatim, with its own figure. MINOR. Settled by paper §2.2 / Figure 2.3.</li>
+<li><code>summaries/lens-of-circles-oh.md:1687</code> — five author given names presented as
+   paper/bibliography-verified when the bibliography gives initials only. MINOR; the only
+   uncited external claim in the file. Settled by an author page for each.</li>
+<li><code>summaries/lens-of-circles-oh.md:1675</code> — the blanket "everything displayed above is from
+   arXiv:2510.10771v2" overstates; contradicted by the tutorial's own §6.1 and §4.10. MINOR
+   wording, resolved elsewhere in the same section.</li>
+<li><code>summaries/lens-of-circles-oh.md:454</code> — "δ = dim(Λ) (Patterson, Sullivan)". The paper's
+   Thm 2.6 cites [77] and [80], both Sullivan; Patterson appears at Thm 2.8. Standard joint
+   attribution, not an error. Informational only.</li>
+</ol>
+<h2>What I could not check</h2>
+<ul>
+<li>Whether ar5iv rendered v1 or v2. The rendered HTML carries no version stamp, and both versions
+  show the same byte size (27,670 KB) on the abs page, so any diff is likely cosmetic. Every
+  numbered result the tutorial cites (Thms 2.6, 2.7, 2.8, 3.1, 3.5, 3.6, 5.4, 5.7, Cor 5.6,
+  Thms 6.1, 6.2, 6.3, 7.2, 8.1, 8.4, Cor 7.8, footnote 4) exists at the cited number in what I
+  fetched, so version skew, if any, did not touch the cited material. Settled by diffing the v1
+  and v2 sources.</li>
+<li>Whether the mathematics is TRUE. Out of scope per the brief.</li>
+<li>The real name behind "Semyon"; the tutorial already flags it at moderate confidence.</li>
+<li>"Laurie Sullivan" — not in the paper and not otherwise checkable; the tutorial correctly
+  declines to assert the name in the body.</li>
+</ul>
+</div>
+</body>
+</html>
