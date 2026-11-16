@@ -78,8 +78,8 @@ summary{cursor:pointer;color:#2dd4bf;font-weight:600}
 .meta div{margin:.2rem 0}
 .meta b{color:#cbd5e1;font-weight:600}
 .home{display:inline-block;margin-bottom:1.5rem;font-size:.9rem;color:#94a3b8}
-mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
-mjx-container:not([display="true"]){display:inline-block;max-width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;vertical-align:middle}
+mjx-container[display="true"]{display:block!important;width:100%;min-width:0!important;max-width:100%;overflow-x:auto;overflow-y:hidden}
+mjx-container:not([display="true"]){display:inline-block;min-width:0!important;max-width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;vertical-align:middle}
 mjx-container:not([display="true"])::-webkit-scrollbar{display:none}
 mjx-container[display="true"]{margin:1.2rem 0}
 """
